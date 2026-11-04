@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="8dp"
+                                    app:cardElevation="4dp"
+>
+    <RelativeLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bahasa"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:text="Indonesia : "
+                android:layout_marginBottom="8dp"
+        />
+        <TextView
+                android:layout_toRightOf="@id/bahasa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valuebahasa"
+                android:textSize="15sp"
+                android:text="Value"
+
+        />
+
+        <TextView
+                android:layout_below="@id/bahasa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/krama"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:text="Krama : "
+                android:layout_marginBottom="8dp"
+        />
+        <TextView
+                android:layout_below="@id/bahasa"
+                android:layout_toRightOf="@id/krama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valuekrama"
+                android:textSize="15sp"
+                android:text="Value"
+                android:layout_marginBottom="8dp"
+
+        />
+
+        <TextView
+                android:layout_below="@id/krama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ngoko"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:text="Ngoko : "
+                android:layout_marginBottom="8dp"
+        />
+        <TextView
+                android:layout_below="@id/krama"
+                android:layout_toRightOf="@id/ngoko"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/valuengoko"
+                android:textSize="15sp"
+                android:text="Value"
+                android:layout_marginBottom="8dp"
+
+        />
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

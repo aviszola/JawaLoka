@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bgitemdoes"
+        android:layout_height="wrap_content">
+
+
+    <TextView
+            android:id="@+id/titledoes"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textColor="#000C5D"
+            android:text="Buy whiskas"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    <TextView
+            android:layout_below="@id/titledoes"
+            android:id="@+id/titledoess"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:textColor="#abb4c9"
+            android:text="Buy whiskas"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    <TextView
+            android:layout_below="@id/titledoess"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/titledoesss"
+            android:textSize="12sp"
+            android:textColor="#2e4d65"
+            android:background="#fff190"
+            android:text="Buy whiskas"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

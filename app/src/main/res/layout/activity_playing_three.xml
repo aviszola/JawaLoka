@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_playing"
+                tools:context=".activity.PlayingThree">
+
+    <TextView
+            android:id="@+id/soal"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:text="Soal: "
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="10dp"
+            android:textSize="36sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    <TextView
+            android:layout_toRightOf="@id/soal"
+            android:id="@+id/txtTotalQuestion"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
+            android:text="1/30"
+            android:layout_marginTop="10dp"
+            android:textSize="36sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <ImageView
+            android:layout_below="@id/txtTotalQuestion"
+            android:id="@+id/question_image"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="55dp"
+            android:layout_width="300dp"
+            android:layout_height="200dp" />
+
+    <TextView
+            android:id="@+id/question_text"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
+            android:layout_below="@id/question_image"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:paddingTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/group"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:max="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <Button
+                    android:id="@+id/btnAnswerA"
+                    android:text="Answer A"
+                    android:textSize="10sp"
+                    android:paddingLeft="30dp"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/a"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:paddingStart="30dp"/>
+
+            <Button
+                    android:id="@+id/btnAnswerB"
+                    android:text="Answer B"
+                    android:textSize="10sp"
+                    android:paddingLeft="30dp"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/b"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+            <Button
+                    android:id="@+id/btnAnswerC"
+                    android:text="Answer C"
+                    android:textSize="10sp"
+                    android:paddingLeft="30dp"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/c"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

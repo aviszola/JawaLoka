@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "241778286366",
+    "firebase_url": "https://sibowo-4e346.firebaseio.com",
+    "project_id": "sibowo-4e346",
+    "storage_bucket": "sibowo-4e346.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241778286366:android:207cf1a65d6b75f7",
+        "android_client_info": {
+          "package_name": "net.sijawa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241778286366-dor1ousq0hmblremq31opi2o90uq40if.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.sijawa",
+            "certificate_hash": "544e2a2b01f0f78e47f3184b0f89651209f9ef82"
+          }
+        },
+        {
+          "client_id": "241778286366-19nkgdb6v8mrk3j52sqa4t9ob7jhqfc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOp4NGcWusLYeqUjCtKyJx1S9Z004Mz4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241778286366-19nkgdb6v8mrk3j52sqa4t9ob7jhqfc1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

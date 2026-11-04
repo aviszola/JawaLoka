@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">Sibowo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="definisi_ngoko">Basa (Bahasa) ngoko dalam Bahasa Jawa digunakan oleh mereka yang status sosialnya
+        daripada lawan bicara (mitra wicara).
+    </string>
+    <string name="ngoko_2">Basa (Bahasa) ngoko dapat dibedakan lagi menjadi 2 yaitu ngoko lugu dan ngoko alus.</string>
+    <string name="ngoko_lugu">Yang dimaksud dengan ngoko lugu adalah bentuk unggah-ungguh bahasa Jawa yang semua
+        kosakatanya berbentuk ngoko dan netral tanpa terselip bahasa krama, krama inggil, atau krama andhap. Penggunaan
+        basa ngoko yakni untuk :
+    </string>
+    <string name="contoh_penggunaan_ngoko">Berikut adalah beberapa contoh penggunaan Ngoko Lugu dalam bahasa Jawa :
+    </string>
+    <string name="contoh_ngoko_1">Dhimas weruh ora ya, yen mengko sida gladhen tari ?
+    </string>
+    <string name="arti_contoh_ngoko_1">( Dhimas tahu tidak ya, kalau nanti jadi latihan tari ? )
+    </string>
+    <string name="contoh_ngoko_2">Kowe iku yen dijak dolan kok mesthi ora gelem, kenang apa ta?
+    </string>
+    <string name="arti_contoh_ngoko_2">( Kamu itu kalau diajak bermain kok tidak pernah mau, kenapa sih ? )
+    </string>
+    <string name="contoh_ngoko_3">Aku arep lunga menyang perpustakaan, golek buku drama tradisional</string>
+    <string name="arti_contoh_ngoko_3">( Aku mau pergi ke perpustakaan, mencari buku drama tradisional )</string>
+    <string name="ngoko_alus">Yang dimaksud dengan ngoko alus adalah bentuk unggah ungguh yang didalamnya bukan hanya
+        terdiri atas bahasa ngoko dan netral saja, melainkan juga terdiri atas bahasa krama inggil, krama andhap, atau
+        krama yang muncul di dalam ragam ini sebenarnya hanya digunakan untuk menghormati mitra wicara. Penggunaan basa
+        ngoko alus yakni untuk:
+    </string>
+    <string name="contoh_penggunaan_ngokoalus">Berikut adalah beberapa contoh penggunaan Ngoko Alus dalam bahasa Jawa
+        :
+    </string>
+    <string name="contoh_ngoko_alus_1">Sepedha montore sida diagem ora, mas Budi?</string>
+    <string name="contoh_arti_ngoko_alus_1">( Sepeda motornya jadi dipakai tidak, mas budi ? )</string>
+    <string name="contoh_ngoko_alus_2">Panjenengan wingi diaturi pinarak kok ora kersa, geneya ta?</string>
+    <string name="contoh_arti_ngoko_alus_2">( Anda kemarin disuruh mampir kok tidak mau, kenapa? )</string>
+    <string name="contoh_ngoko_alus_3">Panjenengan kok ora ndhang siram dhisik ta Pak, saiki wis awan lho!</string>
+    <string name="contoh_arti_ngoko_alus_3">( Kamu kok tidak segera mandi pak, sekarang sudah siang lho )</string>
+    <string name="definisi_krama">Yang dimaksud dengan ragam krama adalah bentuk unggah-ungguh bahasa Jawa yang
+        berintikan bahasa krama. Ragam krama digunakan oleh mereka yang belum akrab dan oleh mereka yang merasa dirinya
+        lebih rendah status sosialnya daripada lawan bicara. Ragam krama mempunyai tiga bentuk varian, yaitu krama lugu,
+        karma andhap dan krama alus.
+    </string>
+    <string name="krama_lugu">Ragam krama lugu dapat didefinisikan sebagai suatu bentuk ragam krama yang kadar
+        kehalusannya rendah. Meskipun begitu, jika dibandingkan dengan ngoko alus, ragam krama lugu tetap menunjukkan
+        kadar kehalusan.
+    </string>
+    <string name="contoh_penggunaan_krama">Berikut adalah beberapa contoh penggunaan Krama Lugu dalam bahasa Jawa :
+    </string>
+    <string name="contoh_krama_lugu_1">Ucup, Bagong taken: Sampeyan sampun mbeta napa kemawon?</string>
+    <string name="arti_contoh_krama_lugu_1">( Ucup, tanya: kamu sudah membawa apa saja ? )</string>
+    <string name="contoh_krama_lugu_2">Kula pireng, Sampeyan malah sampun angsal dhawuh, sinten ingkang sanjang?
+    </string>
+    <string name="arti_contoh_krama_lugu_2">( Saya dengar, kamu sepertinya sudah mendapat kabar, siapa yang bilang ? )
+    </string>
+    <string name="contoh_krama_lugu_3">Kula nuwun, adicara salajengipun inggih punika pagelaran ringgit wacucal.
+    </string>
+    <string name="arti_contoh_krama_lugu_3">( Permisi, acara selanjutnya adalah pagelaran wayang kulit )</string>
+    <string name="krama_inggil">Krama inggil dapat didefinisikan sebagai suatu bentuk ragam krama yang kadar
+        kehalusannya sangat tinggi. Penggunaan basa krama inggil adalah sebagai berikut:
+    </string>
+    <string name="contoh_penggunaan_kramainggil">Berikut adalah beberapa contoh penggunaan Krama Inggil dalam bahasa
+        Jawa :
+    </string>
+    <string name="contoh_krama_inggil_1">Bu guru, menapa Panjenengan mangke estu tindak dhateng Kediri?</string>
+    <string name="contoh_arti_krama_inggil_1">( Bu guru, apa anda nanti mau pergi ke kediri ? )</string>
+    <string name="contoh_arti_krama_inggil_3">( Permisi, apa anda yang bernama Ki Dhalang Murwa Kandha ? )</string>
+    <string name="contoh_krama_inggil_3">Nuwun sewu, menapa Panjenengan ta ingkang asma Ki Dhalang Murwa Kandha,
+        punika?
+    </string>
+    <string name="contoh_arti_krama_inggil_2">( Jika ada waktu luang anda kunjungi saya )</string>
+    <string name="contoh_krama_inggil_2">Bilih wonten dhangane penggalih Panjenengan kula aturi rawuh!</string>
+    <string name="krama2">Basa (Bahasa) krama dapat dibedakan lagi yaitu krama lugu dan krama inggil.</string>
+    <string name="definisi_angka">Jawa merupakan salah satu suku yang paling unik di Nusantara. Bukan hanya karena
+        mayoritas masyarakat di Indonesia adalah suku Jawa, melainkan adanya beragam ciri khas dari suku tersebut. Mulai
+        dari budaya, kuliner, karakter hingga pesan-pesan moral yang tersemat dalam bentuk legenda, mitos hingga alat
+        musik asal Jawa, semua memiliki makna. Dan, berikut ini adalah filosofi penyebutan angka dalam bahasa Jawa
+    </string>
+    <string name="angka110">Dalam bahasa Jawa angka itu terurut mulai dari 1-0, dengan pengucapan seperti berikut :
+    </string>
+    <string name="angka1119">Bahasa Jawa tidak menyebut angka 11 dengan ‘sepuluh siji’ 12 bukanlah ‘sepuluh loro’,
+        melainkan ‘sewelas’, ‘rolas’ dan seterusnya.
+    </string>
+    <string name="angka11">Ternyata, cara penyebutan itu memiliki makna tersendiri, di mana manusia pada usia tersebut
+        sudah memiliki rasa welas asih (kasih sayang) pada sesorang, khususnya pada lawan jenis. Usia tersebut adalah
+        ketika manusia memasuki masa baligh.
+    </string>
+    <string name="angka2029">Berbeda dengan bahasa Indonesia yang pola pengucapannya sesuai pola, misalnya dua puluh
+        satu, dua puluh dua, dan seterusnya. Bahasa Jawa tidak menyebutnya dengan, rong puluh siji, rong puluh loro dan
+        seterusnya. Orang Jawa kuno menyebut angka tersebut dengan menambahkan kata ‘likur’ seperti ‘selikur’,
+        ‘rolikur’, ‘telulikur’
+    </string>
+    <string name="angka20">Likur sendiri memiliki makna ‘lingguh kursi’ (duduk di kursi). Hal itu karena biasanya,
+        manusia di usia 21-29 sudah mendapatkan ‘tempat duduk’ atau biasa disebut kedudukan, Pesan moral yang terdapat
+        dalam cara penyebutan angka tersebut, jika memang merasa memasuki usia tersebut, baiknya memang terus giat dalam
+        bekerja untuk masa depan yang lebih baik. Oh, iya, ada juga pengecualian pada angka 25, orang Jawa bisanya
+        menyebutnya dengan ‘selawe’. Maksudnya adalah seneng-senenge lanang lan wedok (senang-senangnya laki-laki dan
+        perempuan) karena usia tersebut adalah yang paling pas untuk menikah.
+    </string>
+    <string name="angka5050">Bilangan 30 hingga 49, tidak ada yang aneh dari penyebutan angka tersebut. Nah, yang
+        berbeda
+        adalah angka 50 yang basa disebut dengan ‘seket’. Konon, istilah ‘seket’ tersebut adalah singkatan dari ‘seneng
+        kethunan’ (suka mengenakan peci, kopiah, kethu atau penutup kepala).
+    </string>
+    <string name="angka50">Hal tersebut melambangkan jika usia seseorang sudah semakin lanjut. Sementara penutup kepala
+        merupakan cerminan dari orang yang makin tua. Karena saat usia mulai lanjut, seseorang akan mulai ingat dengan
+        kematian.
+    </string>
+    <string name="angka6060">Angka dengan penyebutan berbeda lainnya adalah 60. Orang Jawa tidak menyebutnya dengan ‘nem
+        puluh’ sesuai pola, melainkan dengan istilah ‘suwidak’. Istilah tersebut juga memililiki makna ‘sejatine wis
+        wayahe tindak’ yang artinya sebenarnya sudah saatnya pergi. Seperti kita ketahui, Rasulullah SAW dahulu juga
+        meninggal di usia 60-an.
+    </string>
+    <string name="angka60">Pesan moral yang bisa dipetik adalah, saat manusia sudah memasuki usia tersebut, harus
+        memiliki pemikiran yang matang, lebih berhati-hati dalam menjalani hidup. Tentu manusia di usia ini harus lebih
+        giat beribadah.
+    </string>
+
+    <string-array name="value">
+        <item>Indonesia</item>
+        <item>Ngoko</item>
+        <item>Krama</item>
+    </string-array>
+
+    <string-array name="value2">
+        <item>Indonesia</item>
+        <item>Ngoko</item>
+        <item>Krama</item>
+    </string-array>
+
+    <string-array name="key">
+        <item>id-ID</item>
+        <item>jv-NG</item>
+        <item>jv-KI</item>
+    </string-array>
+
+    <string-array name="key2">
+        <item>id-ID</item>
+        <item>jv-NG</item>
+        <item>jv-KI</item>
+    </string-array>
+</resources>
