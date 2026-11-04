@@ -15,6 +15,8 @@ import '../../features/quiz/presentation/screens/drawing_canvas_screen.dart';
 import '../../features/quiz/presentation/screens/daily_result_screen.dart';
 import '../../features/profile/presentation/screens/choose_blangkon_screen.dart';
 import '../../features/profile/presentation/screens/settings_screen.dart';
+import '../../features/profile/presentation/screens/profile_screen.dart';
+import '../../features/profile/presentation/screens/level_up_screen.dart';
 
 /// Centralized router for JawaLoka navigation.
 /// All named routes are defined here.
@@ -40,6 +42,8 @@ class AppRouter {
   static const String dailyResult = '/quest/result';
   static const String chooseBlangkon = '/profile/blangkon';
   static const String settings = '/profile/settings';
+  static const String profile = '/profile';
+  static const String levelUp = '/level-up';
 
   // ═══════════════════════════════════════════════
   //   ROUTE GENERATOR
@@ -104,6 +108,14 @@ class AppRouter {
       case AppRouter.settings:
         return _FadePageRoute(
             page: const SettingsScreen(), settings: settings);
+
+      case AppRouter.profile:
+        return _FadePageRoute(
+            page: const ProfileScreen(), settings: settings);
+
+      case AppRouter.levelUp:
+        return _FadePageRoute(
+            page: const LevelUpScreen(), settings: settings);
 
       default:
         return _FadePageRoute(

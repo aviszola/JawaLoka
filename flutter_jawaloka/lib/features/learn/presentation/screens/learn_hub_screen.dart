@@ -282,7 +282,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const SizedBox(width: 8),
                   GestureDetector(
                     onTap: () =>
-                        Navigator.pushNamed(context, AppRouter.chooseBlangkon),
+                        Navigator.pushNamed(context, AppRouter.profile),
                     child: Container(
                       width: 38,
                       height: 38,
@@ -671,7 +671,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
             } else if (i == 2) {
               Navigator.pushNamed(context, AppRouter.translator);
             } else if (i == 3) {
-              Navigator.pushNamed(context, AppRouter.settings);
+              Navigator.pushNamed(context, AppRouter.profile);
             }
           },
           selectedItemColor: AppColors.accentOrange,
