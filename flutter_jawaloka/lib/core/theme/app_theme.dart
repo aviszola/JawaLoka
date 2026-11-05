@@ -83,7 +83,7 @@ class AppTheme {
         ),
         labelSmall: TextStyle(
           color: AppColors.inkMuted,
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: FontWeight.w600,
           letterSpacing: 0.8,
         ),

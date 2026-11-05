@@ -60,7 +60,7 @@ class TranslatorPanel extends StatelessWidget {
                 Text(
                   label,
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.6,
                     color: isOutput ? AppColors.amberDark : const Color(0xFF6B6257),
@@ -87,7 +87,7 @@ class TranslatorPanel extends StatelessWidget {
                   Text(
                     characterCount!,
                     style: const TextStyle(
-                      fontSize: 11,
+                      fontSize: 12,
                       color: Color(0xFF6B6257),
                     ),
                   ),
@@ -123,7 +123,7 @@ class _LanguageBadge extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 10,
+          fontSize: 12,
           fontWeight: FontWeight.w600,
           color: isOutput ? AppColors.amberDark : const Color(0xFF6B6257),
         ),

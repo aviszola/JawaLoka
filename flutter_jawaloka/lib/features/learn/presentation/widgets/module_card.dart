@@ -183,7 +183,7 @@ class _ModuleCardState extends State<ModuleCard>
                                   : '${(d.progress * 100).round()}%',
                               style: const TextStyle(
                                 color: AppColors.inkMuted,
-                                fontSize: 11,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -194,7 +194,7 @@ class _ModuleCardState extends State<ModuleCard>
                           d.progressLabel,
                           style: const TextStyle(
                             color: AppColors.inkMuted,
-                            fontSize: 11,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -212,7 +212,7 @@ class _ModuleCardState extends State<ModuleCard>
                       child: Text(
                         '${(d.progress * 100).round()}',
                         style: const TextStyle(
-                          fontSize: 9,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: AppColors.ink,
                         ),
@@ -274,7 +274,7 @@ class _BadgePill extends StatelessWidget {
         label,
         style: const TextStyle(
           color: AppColors.pastelMintText,
-          fontSize: 10,
+          fontSize: 12,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -301,7 +301,7 @@ class _WayangLockIcon extends StatelessWidget {
           'Terkunci',
           style: TextStyle(
             color: AppColors.inkSecondary,
-            fontSize: 11,
+            fontSize: 12,
             fontWeight: FontWeight.w600,
           ),
         ),

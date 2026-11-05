@@ -12,15 +12,18 @@ class BatikKawungPainter extends CustomPainter {
 
   BatikKawungPainter({
     this.animationProgress = 1.0,
-    this.opacity = 0.08,
+    this.opacity = 0.035,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     if (size.width <= 0 || size.height <= 0) return;
 
+    // Strict maximum effective opacity <= 0.04
+    final effectiveOpacity = opacity.clamp(0.0, 0.04);
+
     final paint = Paint()
-      ..color = AppColors.kawungStroke.withValues(alpha: opacity * animationProgress)
+      ..color = AppColors.kawungStroke.withValues(alpha: (effectiveOpacity * animationProgress).clamp(0.0, 0.04))
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.1;
 
@@ -31,15 +34,15 @@ class BatikKawungPainter extends CustomPainter {
     final int cols = (size.width / tileSize).ceil() + 2;
     final int rows = (size.height / tileSize).ceil() + 2;
 
-    // Apply radial gradient mask to match Stitch's aesthetic:
-    // subtle fade towards center and bottom to keep logo and landscape ultra clean.
+    // Apply radial gradient mask:
+    // subtle fade towards center and bottom to keep logo and text ultra clean without batik behind text.
     final maskShader = RadialGradient(
       center: const Alignment(0.7, -0.6), // Upper right focal point
       radius: 1.2,
       colors: [
-        AppColors.kawungStroke.withValues(alpha: (opacity * 1.5 * animationProgress).clamp(0.0, 1.0)),
-        AppColors.kawungStroke.withValues(alpha: (opacity * 0.7 * animationProgress).clamp(0.0, 1.0)),
-        AppColors.kawungStroke.withValues(alpha: (opacity * 0.1 * animationProgress).clamp(0.0, 1.0)),
+        AppColors.kawungStroke.withValues(alpha: (effectiveOpacity * animationProgress).clamp(0.0, 0.04)),
+        AppColors.kawungStroke.withValues(alpha: (effectiveOpacity * 0.5 * animationProgress).clamp(0.0, 0.04)),
+        AppColors.kawungStroke.withValues(alpha: 0.0), // Completely transparent behind text
       ],
       stops: const [0.0, 0.45, 1.0],
     ).createShader(Rect.fromLTWH(0, 0, size.width, size.height));

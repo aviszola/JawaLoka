@@ -8,14 +8,14 @@ class PathNode {
   final NodeStatus status;
   final String javaScript; // Aksara Jawa character
   final String latinName;
-  final int level;
+  final String topicName;
 
   const PathNode({
     required this.position,
     required this.status,
     required this.javaScript,
     required this.latinName,
-    required this.level,
+    this.topicName = '',
   });
 }
 

@@ -106,7 +106,7 @@ class AuthBanner extends StatelessWidget {
                             Text(
                               badgeLabel.toUpperCase(),
                               style: const TextStyle(
-                                fontSize: 10,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.ink,
                                 letterSpacing: 0.8,
@@ -159,7 +159,7 @@ class _KawungMiniPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.kawungStroke.withValues(alpha: 0.08)
+      ..color = AppColors.kawungStroke.withValues(alpha: 0.035)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.9;
 

@@ -66,7 +66,7 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -129,19 +129,25 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
       backgroundColor: AppColors.canvas,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
-      leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: Container(
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.border),
-          ),
-          child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 18,
-            color: AppColors.ink,
+      leading: Semantics(
+        label: 'Kembali',
+        button: true,
+        child: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            margin: const EdgeInsets.all(4),
+            constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.border),
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18,
+              color: AppColors.ink,
+            ),
           ),
         ),
       ),
@@ -260,7 +266,7 @@ class _HeroWordCard extends StatelessWidget {
                         child: const Text(
                           'Ngoko',
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: 12,
                             fontWeight: FontWeight.w700,
                             color: AppColors.amberDark,
                           ),
@@ -346,7 +352,7 @@ class _MaknaSection extends StatelessWidget {
 
         // Meaning cards
         const _MeaningCard(
-          emoji: '🇮🇩',
+          badgeText: 'ID',
           language: 'Bahasa Indonesia',
           value: 'Rumah',
           backgroundColor: AppColors.pastelMint,
@@ -354,7 +360,7 @@ class _MaknaSection extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         const _MeaningCard(
-          emoji: '🇬🇧',
+          badgeText: 'EN',
           language: 'English',
           value: 'House',
           backgroundColor: AppColors.pastelLavender,
@@ -362,7 +368,7 @@ class _MaknaSection extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         const _MeaningCard(
-          emoji: 'ꦗꦮ',
+          badgeText: 'ꦗꦮ',
           language: 'Basa Jawa (Ngoko)',
           value: 'Omah',
           backgroundColor: AppColors.pastelSand,
@@ -375,7 +381,7 @@ class _MaknaSection extends StatelessWidget {
 }
 
 class _MeaningCard extends StatelessWidget {
-  final String emoji;
+  final String badgeText;
   final String language;
   final String value;
   final Color backgroundColor;
@@ -383,7 +389,7 @@ class _MeaningCard extends StatelessWidget {
   final bool isJavanese;
 
   const _MeaningCard({
-    required this.emoji,
+    required this.badgeText,
     required this.language,
     required this.value,
     required this.backgroundColor,
@@ -403,11 +409,23 @@ class _MeaningCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(
-            emoji,
-            style: TextStyle(
-              fontSize: isJavanese ? 15 : 20,
-              fontFamilyFallback: isJavanese ? const ['Noto Sans Javanese'] : null,
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.6),
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Text(
+                badgeText,
+                style: TextStyle(
+                  fontSize: isJavanese ? 14 : 12,
+                  fontWeight: FontWeight.w800,
+                  color: textColor,
+                  fontFamilyFallback: isJavanese ? const ['Noto Sans Javanese'] : null,
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 12),
@@ -418,7 +436,7 @@ class _MeaningCard extends StatelessWidget {
                 Text(
                   language,
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w600,
                     color: textColor.withValues(alpha: 0.7),
                     letterSpacing: 0.3,
@@ -559,7 +577,7 @@ class _ExampleSentenceCard extends StatelessWidget {
                 Text(
                   aksara,
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 14,
                     color: AppColors.inkSecondary,
                     fontFamilyFallback: const ['Noto Sans Javanese'],
                   ),
@@ -568,7 +586,7 @@ class _ExampleSentenceCard extends StatelessWidget {
                 Text(
                   translation,
                   style: const TextStyle(
-                    fontSize: 13,
+                    fontSize: 14,
                     color: AppColors.inkMuted,
                     fontStyle: FontStyle.italic,
                   ),
@@ -600,7 +618,7 @@ class _BottomActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
       decoration: BoxDecoration(
         color: AppColors.canvas,
         border: Border(

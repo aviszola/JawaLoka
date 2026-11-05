@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen>
       setState(() => _showAuthError = true);
       HapticFeedback.heavyImpact();
     } else {
-      Navigator.of(context).pushReplacementNamed(AppRouter.learnHub);
+      Navigator.of(context).pushReplacementNamed(AppRouter.home);
     }
   }
 
@@ -200,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       child: Text(
                                         'Email atau kata sandi salah',
                                         style: TextStyle(
-                                          fontSize: 13,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.error,
                                         ),
@@ -302,7 +302,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       child: const Text(
                                         'Lupa kata sandi?',
                                         style: TextStyle(
-                                          fontSize: 13,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.amberDark,
                                           decoration: TextDecoration.underline,

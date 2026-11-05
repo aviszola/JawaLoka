@@ -156,7 +156,7 @@ class AksaraStrokePainter extends CustomPainter {
         text: '$number',
         style: const TextStyle(
           color: AppColors.ink,
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: FontWeight.w700,
         ),
       ),

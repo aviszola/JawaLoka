@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen>
     setState(() => _isLoading = false);
 
     // Navigate to home / learn hub
-    Navigator.of(context).pushReplacementNamed(AppRouter.learnHub);
+    Navigator.of(context).pushReplacementNamed(AppRouter.home);
   }
 
   @override

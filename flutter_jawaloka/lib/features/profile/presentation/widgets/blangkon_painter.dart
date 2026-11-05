@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
 /// Blangkon types available in JawaLoka
+// PERLU VALIDASI BUDAYA
 enum BlangkonType {
-  jogja,
-  solo,
-  betawi,
-  madura,
-  premium,
+  yogyakarta,
+  surakarta,
+  banyumas,
+  kedu,
+  cirebon,
+  pusaka,
 }
 
 /// Renders a traditional Javanese blangkon hat using CustomPainter.
@@ -21,20 +23,23 @@ class BlangkonPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     switch (type) {
-      case BlangkonType.jogja:
-        _paintJogja(canvas, size);
+      case BlangkonType.yogyakarta:
+        _paintYogyakarta(canvas, size);
         break;
-      case BlangkonType.solo:
-        _paintSolo(canvas, size);
+      case BlangkonType.surakarta:
+        _paintSurakarta(canvas, size);
         break;
-      case BlangkonType.betawi:
-        _paintBetawi(canvas, size);
+      case BlangkonType.banyumas:
+        _paintBanyumas(canvas, size);
         break;
-      case BlangkonType.madura:
-        _paintMadura(canvas, size);
+      case BlangkonType.kedu:
+        _paintKedu(canvas, size);
         break;
-      case BlangkonType.premium:
-        _paintPremium(canvas, size);
+      case BlangkonType.cirebon:
+        _paintCirebon(canvas, size);
+        break;
+      case BlangkonType.pusaka:
+        _paintPusaka(canvas, size);
         break;
     }
 
@@ -43,9 +48,9 @@ class BlangkonPainter extends CustomPainter {
     }
   }
 
-  // ─── Jogja Style ──────────────────────────────────────────────────────────
-  // Characteristics: Rounded dome, flat front, amber/gold with kawung pattern
-  void _paintJogja(Canvas canvas, Size size) {
+  // ─── Yogyakarta Style ─────────────────────────────────────────────────────
+  // Characteristics: Rounded dome, flat front, amber/gold with kawung pattern, mondolan rounded knot
+  void _paintYogyakarta(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
 
@@ -77,7 +82,7 @@ class BlangkonPainter extends CustomPainter {
       brimPaint,
     );
 
-    // Mondolan (the knot/bow at the back – shown as a teardrop on right)
+    // Mondolan (rounded knot at the back)
     final knobPaint = Paint()..color = AppColors.amberDark;
     final knobPath = Path()
       ..moveTo(w * 0.78, h * 0.28)
@@ -87,13 +92,13 @@ class BlangkonPainter extends CustomPainter {
     canvas.drawPath(knobPath, knobPaint);
 
     // Kawung dot pattern on dome
-    _drawKawungPattern(canvas, Offset(w * 0.3, h * 0.35), 5, AppColors.kawungStroke.withOpacity(0.5));
-    _drawKawungPattern(canvas, Offset(w * 0.5, h * 0.22), 5, AppColors.kawungStroke.withOpacity(0.5));
-    _drawKawungPattern(canvas, Offset(w * 0.65, h * 0.38), 5, AppColors.kawungStroke.withOpacity(0.5));
+    _drawKawungPattern(canvas, Offset(w * 0.3, h * 0.35), 5, AppColors.kawungStroke.withValues(alpha: 0.5));
+    _drawKawungPattern(canvas, Offset(w * 0.5, h * 0.22), 5, AppColors.kawungStroke.withValues(alpha: 0.5));
+    _drawKawungPattern(canvas, Offset(w * 0.65, h * 0.38), 5, AppColors.kawungStroke.withValues(alpha: 0.5));
 
     // Top highlight
     final highlightPaint = Paint()
-      ..color = Colors.white.withOpacity(0.25)
+      ..color = Colors.white.withValues(alpha: 0.25)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
     canvas.drawArc(
@@ -102,9 +107,9 @@ class BlangkonPainter extends CustomPainter {
     );
   }
 
-  // ─── Solo Style ───────────────────────────────────────────────────────────
-  // Characteristics: Taller pointed crown, maroon/dark red, gold trim stripe
-  void _paintSolo(Canvas canvas, Size size) {
+  // ─── Surakarta Style ──────────────────────────────────────────────────────
+  // Characteristics: Flat trepes back (no rounded mondolan), maroon/dark red, gold trim stripe
+  void _paintSurakarta(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
 
@@ -141,7 +146,7 @@ class BlangkonPainter extends CustomPainter {
       brimPaint,
     );
 
-    // Mondolan Solo (longer, pointed)
+    // Trepes Surakarta (flatter folded back)
     final knobPaint = Paint()
       ..shader = LinearGradient(
         colors: [const Color(0xFF8B1A2A), const Color(0xFF5C0F1A)],
@@ -170,117 +175,123 @@ class BlangkonPainter extends CustomPainter {
     canvas.drawCircle(Offset(w * 0.5, h * 0.03), 5, finialPaint);
   }
 
-  // ─── Betawi Style ─────────────────────────────────────────────────────────
-  // Characteristics: Flatter, wide brim, colorful multicolor stripes
-  void _paintBetawi(Canvas canvas, Size size) {
+  // ─── Banyumas Style ───────────────────────────────────────────────────────
+  // Characteristics: Bold dark-blue pattern with earth tone trim
+  void _paintBanyumas(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
 
-    // Wide flat-ish dome
-    final domePaint = Paint()..color = const Color(0xFF1A6B3A);
-    final domePath = Path()
-      ..moveTo(w * 0.05, h * 0.60)
-      ..quadraticBezierTo(w * 0.02, h * 0.30, w * 0.5, h * 0.12)
-      ..quadraticBezierTo(w * 0.98, h * 0.30, w * 0.95, h * 0.60)
-      ..close();
-    canvas.drawPath(domePath, domePaint);
-
-    // Colorful horizontal stripe bands
-    final stripeColors = [
-      const Color(0xFFE63946),
-      const Color(0xFFFFD166),
-      const Color(0xFF06D6A0),
-      const Color(0xFF118AB2),
-    ];
-    for (int i = 0; i < stripeColors.length; i++) {
-      final yTop = h * (0.42 + i * 0.045);
-      final stripePaint = Paint()
-        ..color = stripeColors[i]
-        ..strokeWidth = h * 0.04
-        ..style = PaintingStyle.stroke;
-      canvas.drawLine(
-        Offset(w * (0.07 + i * 0.02), yTop),
-        Offset(w * (0.93 - i * 0.02), yTop),
-        stripePaint,
-      );
-    }
-
-    // Wide brim
-    final brimPaint = Paint()..color = const Color(0xFF0D4A28);
-    final brimPath = Path()
-      ..moveTo(-w * 0.1, h * 0.60)
-      ..lineTo(w * 1.1, h * 0.60)
-      ..lineTo(w * 1.05, h * 0.76)
-      ..lineTo(-w * 0.05, h * 0.76)
-      ..close();
-    canvas.drawPath(brimPath, brimPaint);
-
-    // Gold brim edge
-    final brimEdgePaint = Paint()
-      ..color = AppColors.amber
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-    canvas.drawLine(Offset(-w * 0.1, h * 0.60), Offset(w * 1.1, h * 0.60), brimEdgePaint);
-    canvas.drawLine(Offset(-w * 0.05, h * 0.76), Offset(w * 1.05, h * 0.76), brimEdgePaint);
-  }
-
-  // ─── Madura Style ─────────────────────────────────────────────────────────
-  // Characteristics: Asymmetric dome with one raised side, blue-green (locked)
-  void _paintMadura(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-
-    // Asymmetric dome (left side taller)
     final bodyPaint = Paint()
       ..shader = LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [const Color(0xFF1565C0), const Color(0xFF004D7A)],
+        colors: [const Color(0xFF1B3B2B), const Color(0xFF0F241A)],
       ).createShader(Rect.fromLTWH(0, 0, w, h));
 
     final bodyPath = Path()
       ..moveTo(w * 0.08, h * 0.65)
-      ..cubicTo(w * 0.04, h * 0.35, w * 0.18, h * 0.05, w * 0.42, h * 0.08)
-      ..cubicTo(w * 0.62, h * 0.10, w * 0.78, h * 0.22, w * 0.88, h * 0.40)
-      ..quadraticBezierTo(w * 0.92, h * 0.55, w * 0.92, h * 0.65)
+      ..quadraticBezierTo(w * 0.05, h * 0.32, w * 0.5, h * 0.10)
+      ..quadraticBezierTo(w * 0.95, h * 0.32, w * 0.92, h * 0.65)
       ..close();
-
     canvas.drawPath(bodyPath, bodyPaint);
 
-    // Teal accent stripe
-    final accentPaint = Paint()
-      ..color = const Color(0xFF00BCD4)
-      ..strokeWidth = 3
+    // Diagonal pleat lines
+    final pleatPaint = Paint()
+      ..color = const Color(0xFF7CA982)
+      ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
-    final accentPath = Path()
-      ..moveTo(w * 0.15, h * 0.45)
-      ..cubicTo(w * 0.3, h * 0.25, w * 0.6, h * 0.20, w * 0.80, h * 0.42);
-    canvas.drawPath(accentPath, accentPaint);
+    for (int i = 1; i <= 4; i++) {
+      canvas.drawLine(
+        Offset(w * (0.2 + i * 0.12), h * 0.25),
+        Offset(w * (0.15 + i * 0.12), h * 0.60),
+        pleatPaint,
+      );
+    }
 
     // Brim
-    final brimPaint = Paint()..color = const Color(0xFF003058);
+    final brimPaint = Paint()..color = const Color(0xFF0D1F16);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Rect.fromLTWH(0, h * 0.65, w, h * 0.14), const Radius.circular(4)),
+      brimPaint,
+    );
+  }
+
+  // ─── Kedu Style ───────────────────────────────────────────────────────────
+  // Characteristics: Bagelen traditional style, warm umber and gold accents
+  void _paintKedu(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    final bodyPaint = Paint()
+      ..shader = LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [const Color(0xFF5D4037), const Color(0xFF3E2723)],
+      ).createShader(Rect.fromLTWH(0, 0, w, h));
+
+    final bodyPath = Path()
+      ..moveTo(w * 0.10, h * 0.65)
+      ..cubicTo(w * 0.06, h * 0.36, w * 0.22, h * 0.08, w * 0.5, h * 0.06)
+      ..cubicTo(w * 0.78, h * 0.08, w * 0.94, h * 0.36, w * 0.90, h * 0.65)
+      ..close();
+    canvas.drawPath(bodyPath, bodyPaint);
+
+    final trimPaint = Paint()
+      ..color = AppColors.amberSoft
+      ..strokeWidth = 2.5
+      ..style = PaintingStyle.stroke;
+    canvas.drawLine(Offset(w * 0.10, h * 0.65), Offset(w * 0.90, h * 0.65), trimPaint);
+
+    final brimPaint = Paint()..color = const Color(0xFF2E1C14);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Rect.fromLTWH(0, h * 0.65, w, h * 0.14), const Radius.circular(4)),
+      brimPaint,
+    );
+  }
+
+  // ─── Cirebon Style ────────────────────────────────────────────────────────
+  // Characteristics: Coastal Javanese influence with dynamic wave-inspired pleats
+  void _paintCirebon(Canvas canvas, Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    final bodyPaint = Paint()
+      ..shader = LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [const Color(0xFF1565C0), const Color(0xFF0D47A1)],
+      ).createShader(Rect.fromLTWH(0, 0, w, h));
+
+    final bodyPath = Path()
+      ..moveTo(w * 0.08, h * 0.65)
+      ..cubicTo(w * 0.04, h * 0.35, w * 0.18, h * 0.05, w * 0.45, h * 0.08)
+      ..cubicTo(w * 0.65, h * 0.10, w * 0.80, h * 0.22, w * 0.90, h * 0.42)
+      ..quadraticBezierTo(w * 0.92, h * 0.55, w * 0.92, h * 0.65)
+      ..close();
+    canvas.drawPath(bodyPath, bodyPaint);
+
+    final accentPaint = Paint()
+      ..color = const Color(0xFF90CAF9)
+      ..strokeWidth = 2.5
+      ..style = PaintingStyle.stroke;
+    final accentPath = Path()
+      ..moveTo(w * 0.15, h * 0.48)
+      ..cubicTo(w * 0.3, h * 0.28, w * 0.6, h * 0.22, w * 0.82, h * 0.44);
+    canvas.drawPath(accentPath, accentPaint);
+
+    final brimPaint = Paint()..color = const Color(0xFF0A2E63);
     canvas.drawRRect(
       RRect.fromRectAndRadius(Rect.fromLTWH(0, h * 0.65, w, h * 0.14), const Radius.circular(3)),
       brimPaint,
     );
-
-    // Red decorative triangle motif (Madura flag colors)
-    final motifPaint = Paint()..color = const Color(0xFFE53935).withOpacity(0.7);
-    final trianglePath = Path()
-      ..moveTo(w * 0.42, h * 0.25)
-      ..lineTo(w * 0.52, h * 0.42)
-      ..lineTo(w * 0.32, h * 0.42)
-      ..close();
-    canvas.drawPath(trianglePath, motifPaint);
   }
 
-  // ─── Premium Style ────────────────────────────────────────────────────────
-  // Characteristics: Tall, sleek, black with gold filigree, gem at top
-  void _paintPremium(Canvas canvas, Size size) {
+  // ─── Pusaka Style ─────────────────────────────────────────────────────────
+  // Characteristics: Deep charcoal batik with royal gold filigree
+  void _paintPusaka(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
 
-    // Sleek tall dome – near-black
     final bodyPaint = Paint()
       ..shader = LinearGradient(
         begin: Alignment.topLeft,
@@ -293,31 +304,25 @@ class BlangkonPainter extends CustomPainter {
       ..cubicTo(w * 0.08, h * 0.38, w * 0.28, h * 0.04, w * 0.5, h * 0.02)
       ..cubicTo(w * 0.72, h * 0.04, w * 0.92, h * 0.38, w * 0.88, h * 0.65)
       ..close();
-
     canvas.drawPath(bodyPath, bodyPaint);
 
-    // Gold filigree lines
-    final filigreeePaint = Paint()
-      ..color = AppColors.amber.withOpacity(0.8)
+    final filigreePaint = Paint()
+      ..color = AppColors.amber.withValues(alpha: 0.8)
       ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
 
-    // Left spiral line
     final leftLine = Path()
       ..moveTo(w * 0.25, h * 0.60)
       ..cubicTo(w * 0.18, h * 0.40, w * 0.28, h * 0.22, w * 0.5, h * 0.12);
-    canvas.drawPath(leftLine, filigreeePaint);
+    canvas.drawPath(leftLine, filigreePaint);
 
-    // Right spiral line
     final rightLine = Path()
       ..moveTo(w * 0.75, h * 0.60)
       ..cubicTo(w * 0.82, h * 0.40, w * 0.72, h * 0.22, w * 0.5, h * 0.12);
-    canvas.drawPath(rightLine, filigreeePaint);
+    canvas.drawPath(rightLine, filigreePaint);
 
-    // Center vertical line
-    canvas.drawLine(Offset(w * 0.5, h * 0.12), Offset(w * 0.5, h * 0.65), filigreeePaint);
+    canvas.drawLine(Offset(w * 0.5, h * 0.12), Offset(w * 0.5, h * 0.65), filigreePaint);
 
-    // Gold brim
     final brimPaint = Paint()
       ..shader = LinearGradient(
         colors: [AppColors.amberDark, AppColors.amber, AppColors.amberDark],
@@ -327,41 +332,8 @@ class BlangkonPainter extends CustomPainter {
       brimPaint,
     );
 
-    // Gem/jewel at top
-    final gemPaint = Paint()
-      ..shader = RadialGradient(
-        colors: [const Color(0xFFE040FB), const Color(0xFF7B1FA2)],
-      ).createShader(Rect.fromCircle(center: Offset(w * 0.5, h * 0.02), radius: 8));
-    canvas.drawCircle(Offset(w * 0.5, h * 0.02), 7, gemPaint);
-
-    final gemHighlightPaint = Paint()
-      ..color = Colors.white.withOpacity(0.6)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5;
-    canvas.drawArc(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.02), width: 8, height: 8),
-      3.9, 1.6, false, gemHighlightPaint,
-    );
-
-    // Mondolan premium (long elegant tail)
-    final tailPaint = Paint()
-      ..shader = LinearGradient(
-        colors: [const Color(0xFF1A1A2E), AppColors.amberDark.withOpacity(0.6)],
-      ).createShader(Rect.fromLTWH(w * 0.7, h * 0.1, w * 0.4, h * 0.5));
-    final tailPath = Path()
-      ..moveTo(w * 0.80, h * 0.18)
-      ..cubicTo(w * 1.08, h * 0.05, w * 1.12, h * 0.55, w * 0.90, h * 0.60)
-      ..cubicTo(w * 0.85, h * 0.60, w * 0.82, h * 0.50, w * 0.80, h * 0.38)
-      ..close();
-    canvas.drawPath(tailPath, tailPaint);
-
-    // Gold trim on tail
-    canvas.drawPath(
-      Path()
-        ..moveTo(w * 0.80, h * 0.28)
-        ..cubicTo(w * 0.98, h * 0.12, w * 1.05, h * 0.50, w * 0.90, h * 0.56),
-      filigreeePaint,
-    );
+    final finialPaint = Paint()..color = AppColors.amber;
+    canvas.drawCircle(Offset(w * 0.5, h * 0.03), 4, finialPaint);
   }
 
   // ─── Helpers ──────────────────────────────────────────────────────────────
@@ -378,7 +350,7 @@ class BlangkonPainter extends CustomPainter {
   }
 
   void _paintLockedOverlay(Canvas canvas, Size size) {
-    final overlayPaint = Paint()..color = Colors.black.withOpacity(0.45);
+    final overlayPaint = Paint()..color = Colors.black.withValues(alpha: 0.45);
     canvas.drawRRect(
       RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.width, size.height), const Radius.circular(16)),
       overlayPaint,

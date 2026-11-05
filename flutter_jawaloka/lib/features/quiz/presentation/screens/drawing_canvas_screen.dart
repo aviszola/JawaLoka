@@ -211,7 +211,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       appBar: _buildAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
+          padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -236,9 +236,13 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       backgroundColor: AppColors.canvas,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.ink),
-        onPressed: () => Navigator.pop(context),
+      leading: Semantics(
+        label: 'Kembali',
+        button: true,
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.ink),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       title: const Text(
         'Latihan Menulis',
@@ -274,7 +278,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
 
   Widget _buildInfoCard() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(20),
@@ -317,7 +321,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               const Text(
                 'Tulis aksara ini!',
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   color: AppColors.inkSecondary,
                 ),
               ),
@@ -401,21 +405,25 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       children: [
         // Hapus semua
         Expanded(
-          child: OutlinedButton.icon(
-            onPressed: _strokes.isEmpty ? null : _clearAll,
-            icon: const Icon(Icons.delete_outline_rounded, size: 18),
-            label: const Text('Hapus Semua'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.error,
-              disabledForegroundColor: AppColors.inkMuted,
-              side: BorderSide(
-                color: _strokes.isEmpty ? AppColors.border : AppColors.error,
+          child: Semantics(
+            label: 'Hapus Semua',
+            button: true,
+            child: OutlinedButton.icon(
+              onPressed: _strokes.isEmpty ? null : _clearAll,
+              icon: const Icon(Icons.delete_outline_rounded, size: 18),
+              label: const Text('Hapus Semua'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.error,
+                disabledForegroundColor: AppColors.inkMuted,
+                side: BorderSide(
+                  color: _strokes.isEmpty ? AppColors.border : AppColors.error,
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
           ),
         ),
@@ -424,21 +432,25 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
 
         // Batalkan goresan
         Expanded(
-          child: OutlinedButton.icon(
-            onPressed: _strokes.isEmpty ? null : _undoLastStroke,
-            icon: const Icon(Icons.undo_rounded, size: 18),
-            label: const Text('Batalkan'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.inkSecondary,
-              disabledForegroundColor: AppColors.inkMuted,
-              side: BorderSide(
-                color: _strokes.isEmpty ? AppColors.border : AppColors.inkSecondary,
+          child: Semantics(
+            label: 'Batalkan',
+            button: true,
+            child: OutlinedButton.icon(
+              onPressed: _strokes.isEmpty ? null : _undoLastStroke,
+              icon: const Icon(Icons.undo_rounded, size: 18),
+              label: const Text('Batalkan'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.inkSecondary,
+                disabledForegroundColor: AppColors.inkMuted,
+                side: BorderSide(
+                  color: _strokes.isEmpty ? AppColors.border : AppColors.inkSecondary,
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
           ),
         ),
@@ -459,22 +471,27 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               final isSelected = _selectedSize == size;
               return GestureDetector(
                 onTap: () => setState(() => _selectedSize = size),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: 28,
-                  height: 28,
-                  decoration: BoxDecoration(
-                    color: isSelected ? AppColors.amber : Colors.transparent,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Container(
-                      width: size.indicatorSize,
-                      height: size.indicatorSize,
-                      decoration: BoxDecoration(
-                        color: isSelected ? AppColors.ink : AppColors.inkMuted,
-                        shape: BoxShape.circle,
+                behavior: HitTestBehavior.opaque,
+                child: Container(
+                  constraints: const BoxConstraints(minWidth: 40, minHeight: 48),
+                  alignment: Alignment.center,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: isSelected ? AppColors.amber : Colors.transparent,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: size.indicatorSize,
+                        height: size.indicatorSize,
+                        decoration: BoxDecoration(
+                          color: isSelected ? AppColors.ink : AppColors.inkMuted,
+                          shape: BoxShape.circle,
+                        ),
                       ),
                     ),
                   ),

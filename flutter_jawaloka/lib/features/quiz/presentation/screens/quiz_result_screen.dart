@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/mock/mock_user_stats.dart';
 
 // ─────────────────────────────────────────────────────────
 //  DATA MODEL
@@ -10,19 +11,25 @@ import '../../../../core/router/app_router.dart';
 class QuizResult {
   final int score;
   final int maxScore;
-  final int xpEarned;
+  final int correctCount;
+  final int totalQuestions;
   final String timeTaken; // e.g. "2:34"
   final int accuracy; // percentage 0–100
+  final bool isStreakAchievedToday;
+  final int currentStreak;
 
   const QuizResult({
     required this.score,
-    required this.maxScore,
-    required this.xpEarned,
+    this.maxScore = 100,
+    this.correctCount = 8,
+    this.totalQuestions = 10,
     required this.timeTaken,
     required this.accuracy,
+    this.isStreakAchievedToday = true,
+    this.currentStreak = MockUserStats.streakDays,
   });
 
-  double get scoreRatio => score / maxScore;
+  double get scoreRatio => maxScore > 0 ? (score / maxScore).clamp(0.0, 1.0) : 0.0;
   int get stars => score >= 90 ? 3 : score >= 70 ? 2 : 1;
 }
 
@@ -111,14 +118,10 @@ class _ConfettiPainter extends CustomPainter {
 
 class _ScoreRingPainter extends CustomPainter {
   final double progress; // 0.0 – 1.0
-  final Color activeColor;
-  final Color trackColor;
   final double strokeWidth;
 
   const _ScoreRingPainter({
     required this.progress,
-    this.activeColor = AppColors.amber,
-    this.trackColor = AppColors.border,
     this.strokeWidth = 12,
   });
 
@@ -129,7 +132,7 @@ class _ScoreRingPainter extends CustomPainter {
 
     // Track
     final trackPaint = Paint()
-      ..color = trackColor
+      ..color = AppColors.border
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
@@ -139,7 +142,7 @@ class _ScoreRingPainter extends CustomPainter {
     // Active arc
     if (progress > 0) {
       final activePaint = Paint()
-        ..color = activeColor
+        ..color = AppColors.amber
         ..style = PaintingStyle.stroke
         ..strokeWidth = strokeWidth
         ..strokeCap = StrokeCap.round;
@@ -168,11 +171,14 @@ class QuizResultScreen extends StatefulWidget {
   const QuizResultScreen({
     super.key,
     this.result = const QuizResult(
-      score: 85,
+      score: 80,
       maxScore: 100,
-      xpEarned: 150,
-      timeTaken: '2:34',
-      accuracy: 85,
+      correctCount: 8,
+      totalQuestions: 10,
+      timeTaken: '1:45',
+      accuracy: 80,
+      isStreakAchievedToday: true,
+      currentStreak: MockUserStats.streakDays,
     ),
   });
 
@@ -362,7 +368,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
         children: [
           // Title
           const Text(
-            'Luar Biasa! 🎉',
+            'Luar Biasa!',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -375,15 +381,42 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           // Score ring
           _buildScoreRing(),
 
-          const SizedBox(height: 28),
+          if (widget.result.isStreakAchievedToday) ...[
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF4D6),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: AppColors.amberDark.withValues(alpha: 0.3)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.local_fire_department_rounded, color: Color(0xFFF26B2D), size: 22),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Streak kuis aktif: ${widget.result.currentStreak} hari',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.amberDark,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+
+          const SizedBox(height: 24),
 
           // Stats rows
-          _buildStatRow('XP Diperoleh', '+${widget.result.xpEarned} XP 🌟',
+          _buildStatRow('Soal Benar', '${widget.result.correctCount}/${widget.result.totalQuestions}',
               AppColors.amberDark),
           const SizedBox(height: 10),
-          _buildStatRow('Waktu', '${widget.result.timeTaken} ⏱️', AppColors.ink),
+          _buildStatRow('Waktu', widget.result.timeTaken, AppColors.ink),
           const SizedBox(height: 10),
-          _buildStatRow('Akurasi', '${widget.result.accuracy}% 🎯', AppColors.success),
+          _buildStatRow('Akurasi', '${widget.result.accuracy}%', AppColors.success),
 
           const SizedBox(height: 24),
 
@@ -489,7 +522,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, AppRouter.learnHub),
+            onPressed: () => Navigator.pushNamed(context, AppRouter.home),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.ink,
               foregroundColor: AppColors.amber,
@@ -498,7 +531,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               elevation: 0,
             ),
             child: const Text(
-              'Lanjut ke Level Berikutnya →',
+              'Kembali ke Beranda',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -521,7 +554,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               shape: const StadiumBorder(),
             ),
             child: const Text(
-              'Ulangi Kuis 🔄',
+              'Ulangi kuis',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

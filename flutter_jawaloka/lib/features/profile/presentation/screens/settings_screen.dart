@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 
 // ─── Avatar CustomPainter ─────────────────────────────────────────────────────
@@ -33,17 +34,15 @@ class _AvatarPainter extends CustomPainter {
     canvas.drawPath(smilePath, smilePaint);
 
     // ── Blangkon hat ──────────────────────────────────────────────────────────
-    // Flat trapezoid brim
     final hatPaint = Paint()..color = AppColors.amber;
     final brimPath = Path();
-    brimPath.moveTo(cx - r, cy - r + 2);        // left-bottom of brim
-    brimPath.lineTo(cx + r, cy - r + 2);        // right-bottom of brim
-    brimPath.lineTo(cx + r * 0.65, cy - r - 10); // right-top
-    brimPath.lineTo(cx - r * 0.65, cy - r - 10); // left-top
+    brimPath.moveTo(cx - r, cy - r + 2);
+    brimPath.lineTo(cx + r, cy - r + 2);
+    brimPath.lineTo(cx + r * 0.65, cy - r - 10);
+    brimPath.lineTo(cx - r * 0.65, cy - r - 10);
     brimPath.close();
     canvas.drawPath(brimPath, hatPaint);
 
-    // Crown (darker amber)
     final crownPaint = Paint()..color = AppColors.amberDark;
     final crownPath = Path();
     crownPath.moveTo(cx - r * 0.65, cy - r - 10);
@@ -53,11 +52,9 @@ class _AvatarPainter extends CustomPainter {
     crownPath.close();
     canvas.drawPath(crownPath, crownPaint);
 
-    // Small protrusion knob on top
     final knobPaint = Paint()..color = AppColors.kawungStroke;
     canvas.drawCircle(Offset(cx, cy - r - 20), 4, knobPaint);
 
-    // Hat band stripe
     final bandPaint = Paint()
       ..color = AppColors.kawungStroke
       ..strokeWidth = 2;
@@ -72,28 +69,7 @@ class _AvatarPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
-// ─── Helper widgets ────────────────────────────────────────────────────────────
-
-class _SectionHeader extends StatelessWidget {
-  final String label;
-  const _SectionHeader(this.label);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 20, 4, 6),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 1.2,
-          color: AppColors.inkMuted,
-        ),
-      ),
-    );
-  }
-}
+// ─── Settings Card Container ──────────────────────────────────────────────────
 
 class _SettingsCard extends StatelessWidget {
   final List<Widget> children;
@@ -113,7 +89,7 @@ class _SettingsCard extends StatelessWidget {
   }
 }
 
-// ─── Screen ────────────────────────────────────────────────────────────────────
+// ─── Settings Screen ──────────────────────────────────────────────────────────
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -124,9 +100,6 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen>
     with TickerProviderStateMixin {
-  bool _soundEnabled = true;
-  bool _dailyReminder = true;
-
   late AnimationController _headerCtrl;
   late AnimationController _bodyCtrl;
   late Animation<Offset> _headerSlide;
@@ -164,21 +137,21 @@ class _SettingsScreenState extends State<SettingsScreen>
     super.dispose();
   }
 
-  // ── Logout dialog ────────────────────────────────────────────────────────────
+  // ── Logout confirmation dialog ──────────────────────────────────────────────
   void _showLogoutDialog() {
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: const Text(
-          'Keluar?',
+          'Keluar',
           style: TextStyle(
             fontWeight: FontWeight.w700,
             color: AppColors.ink,
           ),
         ),
         content: const Text(
-          'Kamu yakin ingin keluar dari JawaLoka?',
+          'Yakin ingin keluar?',
           style: TextStyle(color: AppColors.inkSecondary),
         ),
         actions: [
@@ -192,11 +165,11 @@ class _SettingsScreenState extends State<SettingsScreen>
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
-              // TODO: implement logout logic
+              Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
             },
             child: const Text(
               'Keluar',
-              style: TextStyle(color: AppColors.error),
+              style: TextStyle(color: AppColors.error, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -204,7 +177,72 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 
-  // ── Build helpers ─────────────────────────────────────────────────────────────
+  // ── Language selection dialog ───────────────────────────────────────────────
+  void _showLanguageDialog() {
+    // BELUM TERHUBUNG KE LOKALISASI
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          'Pilih Bahasa',
+          style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+        ),
+        children: [
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              child: Text('Basa Jawa', style: TextStyle(fontSize: 15)),
+            ),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              child: Text('Bahasa Indonesia', style: TextStyle(fontSize: 15)),
+            ),
+          ),
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              child: Text('English', style: TextStyle(fontSize: 15)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Privacy policy dialog ───────────────────────────────────────────────────
+  void _showPrivacyPolicyDialog() {
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          'Kebijakan Privasi',
+          style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+        ),
+        content: const Text(
+          'JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.',
+          style: TextStyle(color: AppColors.inkSecondary, height: 1.4),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text(
+              'Tutup',
+              style: TextStyle(color: AppColors.ink),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Header Widget ───────────────────────────────────────────────────────────
   Widget _buildHeader() {
     return SlideTransition(
       position: _headerSlide,
@@ -224,6 +262,20 @@ class _SettingsScreenState extends State<SettingsScreen>
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Row(
               children: [
+                Semantics(
+                  label: 'Kembali',
+                  button: true,
+                  child: GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      width: 48,
+                      height: 48,
+                      alignment: Alignment.center,
+                      child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
                 // Avatar
                 SizedBox(
                   width: 60,
@@ -238,7 +290,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        'Dimas Pratama',
+                        '${MockUserStats.userName} Pratama',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
@@ -247,7 +299,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Level 12 • 1.250 XP',
+                        'Level ${MockUserStats.userLevel}',
                         style: TextStyle(
                           fontSize: 14,
                           color: AppColors.amberSoft,
@@ -255,18 +307,6 @@ class _SettingsScreenState extends State<SettingsScreen>
                       ),
                     ],
                   ),
-                ),
-                // Edit button
-                OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    side: const BorderSide(color: Colors.white, width: 1.5),
-                    shape: const CircleBorder(),
-                    padding: const EdgeInsets.all(8),
-                    minimumSize: const Size(36, 36),
-                  ),
-                  child: const Icon(Icons.edit, size: 18),
                 ),
               ],
             ),
@@ -276,124 +316,57 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 
+  // ── Body Widget ─────────────────────────────────────────────────────────────
   Widget _buildBody() {
     const chevron = Icon(Icons.chevron_right, color: AppColors.inkMuted);
 
     return FadeTransition(
       opacity: _bodyFade,
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+        padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
         children: [
-          // ── AKUN ─────────────────────────────────────────────────────────────
-          const _SectionHeader('AKUN'),
           _SettingsCard(
             children: [
+              // 1. Akun
               ListTile(
-                leading: const Text('👤', style: TextStyle(fontSize: 20)),
-                title: const Text('Profil Saya',
-                    style: TextStyle(color: AppColors.ink)),
+                leading: const Icon(Icons.person_outline_rounded, color: AppColors.ink),
+                title: const Text('Akun', style: TextStyle(color: AppColors.ink)),
                 trailing: chevron,
                 onTap: () {},
               ),
               const Divider(height: 1, indent: 56, color: AppColors.border),
-              ListTile(
-                leading: const Text('🎭', style: TextStyle(fontSize: 20)),
-                title: const Text('Pilih Blangkon',
-                    style: TextStyle(color: AppColors.ink)),
-                trailing: chevron,
-                onTap: () =>
-                    Navigator.pushNamed(context, '/profile/blangkon'),
-              ),
-              const Divider(height: 1, indent: 56, color: AppColors.border),
-              ListTile(
-                leading: const Text('🔑', style: TextStyle(fontSize: 20)),
-                title: const Text('Ubah Kata Sandi',
-                    style: TextStyle(color: AppColors.ink)),
-                trailing: chevron,
-                onTap: () {},
-              ),
-            ],
-          ),
 
-          // ── PEMBELAJARAN ──────────────────────────────────────────────────────
-          const _SectionHeader('PEMBELAJARAN'),
-          _SettingsCard(
-            children: [
-              SwitchListTile(
-                secondary: const Text('🔊', style: TextStyle(fontSize: 20)),
-                title: const Text('Efek Suara',
-                    style: TextStyle(color: AppColors.ink)),
-                value: _soundEnabled,
-                activeColor: AppColors.amber,
-                onChanged: (v) => setState(() => _soundEnabled = v),
-              ),
-              const Divider(height: 1, indent: 56, color: AppColors.border),
-              SwitchListTile(
-                secondary: const Text('🔔', style: TextStyle(fontSize: 20)),
-                title: const Text('Pengingat Harian',
-                    style: TextStyle(color: AppColors.ink)),
-                value: _dailyReminder,
-                activeColor: AppColors.amber,
-                onChanged: (v) => setState(() => _dailyReminder = v),
-              ),
-              const Divider(height: 1, indent: 56, color: AppColors.border),
+              // 2. Bahasa
               ListTile(
-                leading: const Text('🌙', style: TextStyle(fontSize: 20)),
-                title: const Text('Mode Gelap',
-                    style: TextStyle(color: AppColors.ink)),
-                trailing: chevron,
-                onTap: () {},
-              ),
-              const Divider(height: 1, indent: 56, color: AppColors.border),
-              ListTile(
-                leading: const Text('🌐', style: TextStyle(fontSize: 20)),
-                title: const Text('Bahasa Antarmuka',
-                    style: TextStyle(color: AppColors.ink)),
+                leading: const Icon(Icons.language_rounded, color: AppColors.ink),
+                title: const Text('Bahasa', style: TextStyle(color: AppColors.ink)),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
-                    Text('Indonesia',
-                        style: TextStyle(
-                            color: AppColors.inkSecondary, fontSize: 13)),
+                    Text(
+                      'Bahasa Indonesia',
+                      style: TextStyle(color: AppColors.inkSecondary, fontSize: 14),
+                    ),
                     SizedBox(width: 4),
                     Icon(Icons.chevron_right, color: AppColors.inkMuted),
                   ],
                 ),
-                onTap: () {},
+                onTap: _showLanguageDialog,
               ),
-            ],
-          ),
+              const Divider(height: 1, indent: 56, color: AppColors.border),
 
-          // ── LAINNYA ───────────────────────────────────────────────────────────
-          const _SectionHeader('LAINNYA'),
-          _SettingsCard(
-            children: [
+              // 3. Kebijakan Privasi
               ListTile(
-                leading: const Text('❓', style: TextStyle(fontSize: 20)),
-                title: const Text('Bantuan & FAQ',
-                    style: TextStyle(color: AppColors.ink)),
+                leading: const Icon(Icons.privacy_tip_outlined, color: AppColors.ink),
+                title: const Text('Kebijakan Privasi', style: TextStyle(color: AppColors.ink)),
                 trailing: chevron,
-                onTap: () {},
+                onTap: _showPrivacyPolicyDialog,
               ),
               const Divider(height: 1, indent: 56, color: AppColors.border),
+
+              // 4. Keluar
               ListTile(
-                leading: const Text('📋', style: TextStyle(fontSize: 20)),
-                title: const Text('Syarat & Ketentuan',
-                    style: TextStyle(color: AppColors.ink)),
-                trailing: chevron,
-                onTap: () {},
-              ),
-              const Divider(height: 1, indent: 56, color: AppColors.border),
-              ListTile(
-                leading: const Text('⭐', style: TextStyle(fontSize: 20)),
-                title: const Text('Beri Penilaian',
-                    style: TextStyle(color: AppColors.ink)),
-                trailing: chevron,
-                onTap: () {},
-              ),
-              const Divider(height: 1, indent: 56, color: AppColors.border),
-              ListTile(
-                leading: const Text('🚪', style: TextStyle(fontSize: 20)),
+                leading: const Icon(Icons.logout_rounded, color: AppColors.error),
                 title: const Text(
                   'Keluar',
                   style: TextStyle(

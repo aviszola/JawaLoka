@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -10,19 +9,6 @@ class _Language {
   final String name;
   final String code;
   const _Language(this.name, this.code);
-}
-
-class _HistoryItem {
-  final String source;
-  final String result;
-  final String fromLang;
-  final String toLang;
-  const _HistoryItem({
-    required this.source,
-    required this.result,
-    required this.fromLang,
-    required this.toLang,
-  });
 }
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
@@ -48,29 +34,14 @@ class _TranslatorScreenState extends State<TranslatorScreen>
 
   // Controllers
   final TextEditingController _inputCtrl = TextEditingController();
-  final ScrollController _historyScroll = ScrollController();
-  Timer? _debounce;
 
   // State
   bool _isTranslating = false;
   String _outputText = '';
-  String _outputAksara = '';
-  List<_HistoryItem> _history = [];
 
   // Swap animation
   late AnimationController _swapCtrl;
   late Animation<double> _swapRotation;
-
-  // Quick suggestions
-  static const List<String> _suggestions = [
-    'Halo',
-    'Apa kabar?',
-    'Matur nuwun',
-    'Sugeng enjing',
-    'Kula boten mangertos',
-    'Pundi dalemipun?',
-    'Sampun nedha?',
-  ];
 
   @override
   void initState() {
@@ -87,53 +58,37 @@ class _TranslatorScreenState extends State<TranslatorScreen>
 
   @override
   void dispose() {
-    _debounce?.cancel();
     _inputCtrl.dispose();
     _swapCtrl.dispose();
-    _historyScroll.dispose();
     super.dispose();
   }
 
   // ─── Logic ──────────────────────────────────────────────────────────────────
 
   void _onInputChanged() {
-    setState(() {}); // rebuild char counter
-    if (_inputCtrl.text.trim().isEmpty) {
+    setState(() {}); // Rebuild char counter
+    if (_inputCtrl.text.trim().isEmpty && _outputText.isNotEmpty) {
       setState(() {
         _outputText = '';
-        _outputAksara = '';
         _isTranslating = false;
       });
-      return;
     }
-    _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), _translate);
   }
 
   Future<void> _translate() async {
-    if (_inputCtrl.text.trim().isEmpty) return;
+    final text = _inputCtrl.text.trim();
+    if (text.isEmpty) return;
     setState(() => _isTranslating = true);
 
     // Simulated translation – replace with real API call
-    await Future.delayed(const Duration(milliseconds: 900));
+    await Future.delayed(const Duration(milliseconds: 600));
 
     if (!mounted) return;
-    final result = _mockTranslate(_inputCtrl.text.trim());
-    final aksara = _mockToAksara(_inputCtrl.text.trim());
+    final result = _mockTranslate(text);
 
     setState(() {
       _isTranslating = false;
       _outputText = result;
-      _outputAksara = aksara;
-      _history = [
-        _HistoryItem(
-          source: _inputCtrl.text.trim(),
-          result: result,
-          fromLang: _languages[_fromIndex].name,
-          toLang: _languages[_toIndex].name,
-        ),
-        ..._history.take(2),
-      ];
     });
   }
 
@@ -149,11 +104,6 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     return map[text] ?? 'Terjemahan: $text';
   }
 
-  String _mockToAksara(String text) {
-    // Placeholder Aksara Jawa-ish representation
-    return 'ꦲꦭꦺꦴ꧈ $text ꧈';
-  }
-
   Future<void> _swapLanguages() async {
     HapticFeedback.lightImpact();
     await _swapCtrl.forward();
@@ -162,18 +112,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       _fromIndex = _toIndex;
       _toIndex = tmp;
       _outputText = '';
-      _outputAksara = '';
       _inputCtrl.clear();
     });
     _swapCtrl.reset();
-  }
-
-  void _applySuggestion(String text) {
-    _inputCtrl.text = text;
-    _inputCtrl.selection = TextSelection.fromPosition(
-      TextPosition(offset: text.length),
-    );
-    _translate();
   }
 
   void _copyResult() {
@@ -199,7 +140,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       appBar: _buildAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+          padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -210,10 +151,6 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               _buildTranslateButton(),
               const SizedBox(height: 12),
               _buildOutputPanel(),
-              const SizedBox(height: 20),
-              _buildSuggestions(),
-              const SizedBox(height: 20),
-              if (_history.isNotEmpty) _buildHistory(),
             ],
           ),
         ),
@@ -225,6 +162,11 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     return AppBar(
       backgroundColor: AppColors.amber,
       elevation: 0,
+      leading: Semantics(
+        label: 'Kembali',
+        button: true,
+        child: BackButton(color: AppColors.ink),
+      ),
       title: const Text(
         'Penerjemah',
         style: TextStyle(
@@ -233,13 +175,6 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           fontSize: 18,
         ),
       ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.history_rounded, color: AppColors.ink),
-          onPressed: () {},
-          tooltip: 'Riwayat',
-        ),
-      ],
       // Kawung texture paint
       flexibleSpace: CustomPaint(
         painter: _KawungTexturePainter(),
@@ -258,30 +193,39 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         ),
         const SizedBox(width: 10),
         // Animated swap button
-        GestureDetector(
-          onTap: _swapLanguages,
-          child: AnimatedBuilder(
-            animation: _swapRotation,
-            builder: (context, child) => Transform.rotate(
-              angle: _swapRotation.value * 3.14159 * 2,
-              child: child,
-            ),
+        Semantics(
+          label: 'Tukar bahasa',
+          button: true,
+          child: GestureDetector(
+            onTap: _swapLanguages,
+            behavior: HitTestBehavior.opaque,
             child: Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                color: AppColors.surface,
-                shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.ink.withOpacity(0.07),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+              alignment: Alignment.center,
+              child: AnimatedBuilder(
+                animation: _swapRotation,
+                builder: (context, child) => Transform.rotate(
+                  angle: _swapRotation.value * 3.14159 * 2,
+                  child: child,
+                ),
+                child: Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: AppColors.surface,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.ink.withOpacity(0.07),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                ],
+                  child: const Icon(Icons.swap_horiz_rounded, color: AppColors.ink, size: 20),
+                ),
               ),
-              child: const Icon(Icons.swap_horiz_rounded, color: AppColors.ink, size: 20),
             ),
           ),
         ),
@@ -312,7 +256,6 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               _inputCtrl.clear();
               setState(() {
                 _outputText = '';
-                _outputAksara = '';
               });
             },
           ),
@@ -386,12 +329,6 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       languageBadge: _languages[_toIndex].name,
       actions: [
         _PanelIconButton(
-          icon: Icons.volume_up_rounded,
-          tooltip: 'Ucapkan',
-          onTap: _outputText.isEmpty ? null : () {},
-        ),
-        const SizedBox(width: 4),
-        _PanelIconButton(
           icon: Icons.copy_rounded,
           tooltip: 'Salin',
           onTap: _outputText.isEmpty ? null : _copyResult,
@@ -399,103 +336,14 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       ],
       child: _isTranslating
           ? const ShimmerPlaceholder(height: 80)
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _outputText.isEmpty ? 'Hasil terjemahan akan muncul di sini…' : _outputText,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: _outputText.isEmpty ? const Color(0xFFB0A898) : AppColors.ink,
-                    height: 1.6,
-                  ),
-                ),
-                if (_outputAksara.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: AppColors.amber.withOpacity(0.18),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      _outputAksara,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: AppColors.amberDark,
-                        height: 1.5,
-                        fontFamily: 'NotoSansJavanese',
-                      ),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-    );
-  }
-
-  Widget _buildSuggestions() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Saran Cepat',
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF6B6257),
-            letterSpacing: 0.4,
-          ),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 36,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: _suggestions.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 8),
-            itemBuilder: (context, i) => _SuggestionChip(
-              label: _suggestions[i],
-              onTap: () => _applySuggestion(_suggestions[i]),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildHistory() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            const Text(
-              'Riwayat Terakhir',
+          : Text(
+              _outputText.isEmpty ? 'Hasil terjemahan akan muncul di sini…' : _outputText,
               style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF6B6257),
-                letterSpacing: 0.4,
+                fontSize: 15,
+                color: _outputText.isEmpty ? const Color(0xFFB0A898) : AppColors.ink,
+                height: 1.6,
               ),
             ),
-            const Spacer(),
-            GestureDetector(
-              onTap: () => setState(() => _history = []),
-              child: const Text(
-                'Hapus',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Color(0xFFE53935),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        ..._history.map((item) => _HistoryCard(item: item, onTap: () => _applySuggestion(item.source))),
-      ],
     );
   }
 
@@ -535,8 +383,11 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                 title: Text(lang.name, style: const TextStyle(fontWeight: FontWeight.w500)),
                 onTap: () {
                   setState(() {
-                    if (isFrom) _fromIndex = _languages.indexOf(lang);
-                    else _toIndex = _languages.indexOf(lang);
+                    if (isFrom) {
+                      _fromIndex = _languages.indexOf(lang);
+                    } else {
+                      _toIndex = _languages.indexOf(lang);
+                    }
                   });
                   Navigator.pop(ctx);
                 },
@@ -562,6 +413,7 @@ class _LanguageChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        constraints: const BoxConstraints(minHeight: 48),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
           color: AppColors.surface,
@@ -582,7 +434,7 @@ class _LanguageChip extends StatelessWidget {
               child: Text(
                 label,
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: AppColors.ink,
                 ),
@@ -598,31 +450,6 @@ class _LanguageChip extends StatelessWidget {
   }
 }
 
-class _SuggestionChip extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-  const _SuggestionChip({required this.label, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(100),
-          border: Border.all(color: const Color(0xFFE8E1D6)),
-        ),
-        child: Text(
-          label,
-          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.ink),
-        ),
-      ),
-    );
-  }
-}
-
 class _PanelIconButton extends StatelessWidget {
   final IconData icon;
   final String tooltip;
@@ -631,83 +458,34 @@ class _PanelIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: tooltip,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          width: 34,
-          height: 34,
-          decoration: BoxDecoration(
-            color: onTap != null ? AppColors.surface : Colors.transparent,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: onTap != null ? const Color(0xFFE8E1D6) : Colors.transparent,
-            ),
-          ),
-          child: Icon(
-            icon,
-            size: 17,
-            color: onTap != null ? AppColors.ink : const Color(0xFFB0A898),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _HistoryCard extends StatelessWidget {
-  final _HistoryItem item;
-  final VoidCallback onTap;
-  const _HistoryCard({required this.item, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFE8E1D6)),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.source,
-                    style: const TextStyle(fontSize: 13, color: AppColors.ink, fontWeight: FontWeight.w500),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    item.result,
-                    style: const TextStyle(fontSize: 12, color: Color(0xFF6B6257)),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+    return Semantics(
+      label: tooltip,
+      button: true,
+      child: Tooltip(
+        message: tooltip,
+        child: GestureDetector(
+          onTap: onTap,
+          behavior: HitTestBehavior.opaque,
+          child: Container(
+            constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+            alignment: Alignment.center,
+            child: Container(
+              width: 36,
+              height: 36,
               decoration: BoxDecoration(
-                color: const Color(0xFFF5F1EB),
-                borderRadius: BorderRadius.circular(100),
+                color: onTap != null ? AppColors.surface : Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: onTap != null ? const Color(0xFFE8E1D6) : Colors.transparent,
+                ),
               ),
-              child: Text(
-                '${item.fromLang} → ${item.toLang}',
-                style: const TextStyle(fontSize: 9, color: Color(0xFF6B6257), fontWeight: FontWeight.w600),
+              child: Icon(
+                icon,
+                size: 18,
+                color: onTap != null ? AppColors.ink : const Color(0xFFB0A898),
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -720,7 +498,7 @@ class _KawungTexturePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.kawungStroke.withOpacity(0.18)
+      ..color = AppColors.kawungStroke.withValues(alpha: 0.035)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
 

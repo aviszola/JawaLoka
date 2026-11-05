@@ -68,7 +68,7 @@ class AnimatedLogoCard extends StatelessWidget {
                 'LOGO',
                 style: TextStyle(
                   color: AppColors.ink.withValues(alpha: 0.38),
-                  fontSize: 9.0,
+                  fontSize: 12.0,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 2.2,
                 ),

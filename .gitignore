@@ -11,3 +11,23 @@
 /build
 /captures
 .externalNativeBuild
+
+# AI agent folders
+.claude/
+.gemini/
+.antigravity/
+.agent/
+.agents/
+.cursor/
+.windsurf/
+.continue/
+.codex/
+.kiro/
+
+# Tooling and secrets
+.vscode/
+*.jks
+*.keystore
+key.properties
+.env
+.env.*
