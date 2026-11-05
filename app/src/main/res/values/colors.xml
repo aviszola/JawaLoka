@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#3BACED</color>
-    <color name="colorPrimaryDark">#3BACED</color>
-    <color name="colorAccent">#2590CC</color>
-    <color name="placeholder">#dddddd</color>
-    <color name="grey_bg">#f2f2f2</color>
-</resources>
