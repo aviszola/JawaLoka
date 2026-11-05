@@ -27,7 +27,7 @@ class LevelUpScreen extends StatefulWidget {
     super.key,
     this.newLevel = 5,
     this.blangkonName = 'Blangkon Surakarta',
-    this.blangkonType = BlangkonType.solo,
+    this.blangkonType = BlangkonType.surakarta,
   });
 
   static const String routeName = '/level-up';
@@ -148,7 +148,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           // 1. Subtle Kawung Background Pattern
           Positioned.fill(
             child: CustomPaint(
-              painter: BatikKawungPainter(opacity: 0.05),
+              painter: BatikKawungPainter(opacity: 0.035),
             ),
           ),
 
@@ -231,7 +231,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
       child: const Text(
         'PENCAPAIAN JAWALOKA',
         style: TextStyle(
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: FontWeight.w800,
           color: AppColors.ink,
           letterSpacing: 1.2,
@@ -443,7 +443,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                 Text(
                   'LENCANA BARU',
                   style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: AppColors.inkMuted,
                     letterSpacing: 1.0,
@@ -460,9 +460,9 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                 ),
                 SizedBox(height: 2),
                 Text(
-                  'Lulus 25 bab aksara berturut-turut',
+                  'Menyelesaikan 25 bab materi aksara',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: AppColors.inkMuted,
                   ),

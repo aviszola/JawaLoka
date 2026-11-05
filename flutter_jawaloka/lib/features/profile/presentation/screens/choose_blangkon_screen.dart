@@ -1,20 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/mock/mock_user_stats.dart';
 import '../widgets/blangkon_painter.dart';
 
-// ─── Data model ───────────────────────────────────────────────────────────────
+// ─── Syarat Buka Blangkon ─────────────────────────────────────────────────────
+
+// PERLU VALIDASI BUDAYA
+enum BlangkonUnlockType {
+  initial,        // Terpasang awal
+  level,          // Mencapai Level tertentu
+  masteryAksara,  // Selesai materi aksara
+}
+
+class BlangkonUnlockCondition {
+  final BlangkonUnlockType type;
+  final int? requiredLevel;
+  final String label;
+
+  const BlangkonUnlockCondition.initial()
+      : type = BlangkonUnlockType.initial,
+        requiredLevel = null,
+        label = 'Terpasang awal';
+
+  const BlangkonUnlockCondition.level(int level)
+      : type = BlangkonUnlockType.level,
+        requiredLevel = level,
+        label = 'Level $level';
+
+  const BlangkonUnlockCondition.masteryAksara()
+      : type = BlangkonUnlockType.masteryAksara,
+        requiredLevel = null,
+        label = 'Selesai aksara';
+}
+
+// PERLU KEPUTUSAN
+// PERLU VALIDASI BUDAYA
+const Map<BlangkonType, BlangkonUnlockCondition> blangkonUnlockConditions = {
+  BlangkonType.yogyakarta: BlangkonUnlockCondition.initial(),
+  BlangkonType.surakarta: BlangkonUnlockCondition.level(5),
+  BlangkonType.banyumas: BlangkonUnlockCondition.level(6),
+  BlangkonType.kedu: BlangkonUnlockCondition.level(8),
+  BlangkonType.cirebon: BlangkonUnlockCondition.level(10),
+  BlangkonType.pusaka: BlangkonUnlockCondition.masteryAksara(),
+};
 
 class _BlangkonOption {
   final BlangkonType type;
   final String name;
-  final int? xpRequired; // null = unlocked/owned
+  final BlangkonUnlockCondition condition;
   final String description;
 
   const _BlangkonOption({
     required this.type,
     required this.name,
-    this.xpRequired,
+    required this.condition,
     required this.description,
   });
 }
@@ -30,17 +70,50 @@ class ChooseBlangkonScreen extends StatefulWidget {
 
 class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     with SingleTickerProviderStateMixin {
-  static const int _currentXp = 820;
+  static const int _currentUserLevel = MockUserStats.userLevel;
+  static const bool _hasMasteredAksara = MockUserStats.hasMasteredAksara;
 
-  static const List<_BlangkonOption> _options = [
-    _BlangkonOption(type: BlangkonType.jogja, name: 'Blangkon Jogja', description: 'Klasik, elegan'),
-    _BlangkonOption(type: BlangkonType.solo, name: 'Blangkon Solo', description: 'Anggun & bersejarah'),
-    _BlangkonOption(type: BlangkonType.betawi, name: 'Blangkon Betawi', description: 'Warna-warni cerah'),
-    _BlangkonOption(type: BlangkonType.madura, xpRequired: 500, name: 'Blangkon Madura', description: 'Tegas & berani'),
-    _BlangkonOption(type: BlangkonType.premium, xpRequired: 1200, name: 'Blangkon Premium', description: 'Eksklusif & mewah'),
+  // PERLU VALIDASI BUDAYA
+  static final List<_BlangkonOption> _options = [
+    _BlangkonOption(
+      type: BlangkonType.yogyakarta,
+      name: 'Blangkon Yogyakarta',
+      condition: blangkonUnlockConditions[BlangkonType.yogyakarta]!,
+      description: 'Klasik, mondolan bulat menonjol',
+    ),
+    _BlangkonOption(
+      type: BlangkonType.surakarta,
+      name: 'Blangkon Surakarta',
+      condition: blangkonUnlockConditions[BlangkonType.surakarta]!,
+      description: 'Anggun, mondolan trepes pipih',
+    ),
+    _BlangkonOption(
+      type: BlangkonType.banyumas,
+      name: 'Blangkon Banyumas',
+      condition: blangkonUnlockConditions[BlangkonType.banyumas]!,
+      description: 'Tegas, corak khas Banyumasan',
+    ),
+    _BlangkonOption(
+      type: BlangkonType.kedu,
+      name: 'Blangkon Kedu',
+      condition: blangkonUnlockConditions[BlangkonType.kedu]!,
+      description: 'Gaya Bagelen Kedu bersahaja',
+    ),
+    _BlangkonOption(
+      type: BlangkonType.cirebon,
+      name: 'Blangkon Cirebon',
+      condition: blangkonUnlockConditions[BlangkonType.cirebon]!,
+      description: 'Pesisiran dinamis berwibawa',
+    ),
+    _BlangkonOption(
+      type: BlangkonType.pusaka,
+      name: 'Blangkon Pusaka',
+      condition: blangkonUnlockConditions[BlangkonType.pusaka]!,
+      description: 'Mahakarya tradisi berornamen emas',
+    ),
   ];
 
-  BlangkonType _selected = BlangkonType.jogja;
+  BlangkonType _selected = BlangkonType.yogyakarta;
 
   late AnimationController _avatarCtrl;
   late Animation<double> _avatarScale;
@@ -63,6 +136,17 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     super.dispose();
   }
 
+  bool _isOptionLocked(_BlangkonOption opt) {
+    switch (opt.condition.type) {
+      case BlangkonUnlockType.initial:
+        return false;
+      case BlangkonUnlockType.level:
+        return _currentUserLevel < (opt.condition.requiredLevel ?? 1);
+      case BlangkonUnlockType.masteryAksara:
+        return !_hasMasteredAksara;
+    }
+  }
+
   void _selectBlangkon(BlangkonType type, bool isLocked) {
     if (isLocked) {
       _showLockedSnackBar(type);
@@ -75,9 +159,21 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
 
   void _showLockedSnackBar(BlangkonType type) {
     final opt = _options.firstWhere((o) => o.type == type);
+    final String syaratText;
+    switch (opt.condition.type) {
+      case BlangkonUnlockType.initial:
+        syaratText = 'Terbuka sejak awal';
+        break;
+      case BlangkonUnlockType.level:
+        syaratText = 'Butuh Level ${opt.condition.requiredLevel}';
+        break;
+      case BlangkonUnlockType.masteryAksara:
+        syaratText = 'Selesaikan seluruh materi aksara';
+        break;
+    }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Butuh ${opt.xpRequired} XP untuk membuka ${opt.name}'),
+        content: Text('$syaratText untuk membuka ${opt.name}'),
         behavior: SnackBarBehavior.floating,
         backgroundColor: AppColors.ink,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -88,16 +184,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
 
   void _saveSelection() {
     HapticFeedback.mediumImpact();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Blangkon disimpan! Pilihan: ${_options.firstWhere((o) => o.type == _selected).name}',
-        ),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: AppColors.ink,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    );
+    Navigator.pop(context, _selected);
   }
 
   @override
@@ -107,14 +194,12 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       appBar: _buildAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
           child: Column(
             children: [
               _buildAvatarPreview(),
               const SizedBox(height: 24),
               _buildBlangkonGrid(),
-              const SizedBox(height: 10),
-              _buildMoreButton(),
               const SizedBox(height: 28),
               _buildSaveButton(),
             ],
@@ -128,6 +213,11 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     return AppBar(
       backgroundColor: AppColors.amber,
       elevation: 0,
+      leading: Semantics(
+        label: 'Kembali',
+        button: true,
+        child: BackButton(color: AppColors.ink),
+      ),
       title: const Text(
         'Pilih Blangkon',
         style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 18),
@@ -137,18 +227,18 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           margin: const EdgeInsets.only(right: 14),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: AppColors.ink.withOpacity(0.12),
+            color: AppColors.ink.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(100),
           ),
-          child: Row(
+          child: const Row(
             children: [
-              const Icon(Icons.star_rounded, size: 14, color: AppColors.ink),
-              const SizedBox(width: 4),
+              Icon(Icons.shield_outlined, size: 14, color: AppColors.ink),
+              SizedBox(width: 4),
               Text(
-                '$_currentXp XP',
-                style: const TextStyle(
+                'Level $_currentUserLevel',
+                style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 13,
+                  fontSize: 14,
                   color: AppColors.ink,
                 ),
               ),
@@ -169,7 +259,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
         border: Border.all(color: const Color(0xFFE8E1D6)),
         boxShadow: [
           BoxShadow(
-            color: AppColors.ink.withOpacity(0.06),
+            color: AppColors.ink.withValues(alpha: 0.06),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -185,7 +275,6 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  // Avatar body
                   Positioned(
                     bottom: 0,
                     child: CustomPaint(
@@ -193,7 +282,6 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
                       painter: _JavaneseCharacterPainter(),
                     ),
                   ),
-                  // Blangkon overlay
                   Positioned(
                     top: 0,
                     child: CustomPaint(
@@ -217,7 +305,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           const SizedBox(height: 4),
           Text(
             _options.firstWhere((o) => o.type == _selected).description,
-            style: const TextStyle(fontSize: 12, color: Color(0xFF6B6257)),
+            style: const TextStyle(fontSize: 14, color: Color(0xFF6B6257)),
           ),
         ],
       ),
@@ -237,7 +325,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       itemCount: _options.length,
       itemBuilder: (context, i) {
         final opt = _options[i];
-        final isLocked = opt.xpRequired != null && _currentXp < opt.xpRequired!;
+        final isLocked = _isOptionLocked(opt);
         final isSelected = _selected == opt.type;
 
         return _BlangkonGridItem(
@@ -247,34 +335,6 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           onTap: () => _selectBlangkon(opt.type, isLocked),
         );
       },
-    );
-  }
-
-  Widget _buildMoreButton() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
-        ),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.add_rounded, size: 18, color: Color(0xFF6B6257)),
-            SizedBox(width: 6),
-            Text(
-              'Lihat Lebih Banyak',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF6B6257),
-                fontSize: 13,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
@@ -329,7 +389,7 @@ class _BlangkonGridItem extends StatelessWidget {
             width: isSelected ? 2 : 1.5,
           ),
           boxShadow: isSelected
-              ? [BoxShadow(color: AppColors.amber.withOpacity(0.3), blurRadius: 10, offset: const Offset(0, 3))]
+              ? [BoxShadow(color: AppColors.amber.withValues(alpha: 0.3), blurRadius: 10, offset: const Offset(0, 3))]
               : [],
         ),
         child: Stack(
@@ -339,7 +399,6 @@ class _BlangkonGridItem extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Blangkon illustration
                   Expanded(
                     child: Center(
                       child: CustomPaint(
@@ -353,14 +412,14 @@ class _BlangkonGridItem extends StatelessWidget {
                     option.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: isLocked ? const Color(0xFFB0A898) : AppColors.ink,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  if (isLocked && option.xpRequired != null) ...[
+                  if (isLocked) ...[
                     const SizedBox(height: 3),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -369,19 +428,20 @@ class _BlangkonGridItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
-                        '${option.xpRequired} XP',
+                        option.condition.label,
                         style: const TextStyle(
-                          fontSize: 9,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF6B6257),
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
                 ],
               ),
             ),
-            // Selected checkmark badge
             if (isSelected)
               Positioned(
                 top: 6,
@@ -396,7 +456,6 @@ class _BlangkonGridItem extends StatelessWidget {
                   child: const Icon(Icons.check_rounded, size: 12, color: AppColors.ink),
                 ),
               ),
-            // Lock icon overlay
             if (isLocked)
               Positioned(
                 top: 6,
@@ -405,7 +464,7 @@ class _BlangkonGridItem extends StatelessWidget {
                   width: 18,
                   height: 18,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6B6257).withOpacity(0.8),
+                    color: const Color(0xFF6B6257).withValues(alpha: 0.8),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(Icons.lock_rounded, size: 10, color: Colors.white),
@@ -426,13 +485,9 @@ class _JavaneseCharacterPainter extends CustomPainter {
     final w = size.width;
     final h = size.height;
 
-    // Skin tone
     final skinPaint = Paint()..color = const Color(0xFFD4956A);
-
-    // Head (circle)
     canvas.drawCircle(Offset(w * 0.5, h * 0.22), h * 0.19, skinPaint);
 
-    // Body (kebaya/traditional outfit – deep green)
     final bodyPaint = Paint()..color = const Color(0xFF2E5A46);
     final bodyPath = Path()
       ..moveTo(w * 0.25, h * 0.42)
@@ -443,10 +498,8 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..close();
     canvas.drawPath(bodyPath, bodyPaint);
 
-    // Neck
     canvas.drawRect(Rect.fromLTWH(w * 0.42, h * 0.38, w * 0.16, h * 0.08), skinPaint);
 
-    // Gold trim on outfit collar
     final trimPaint = Paint()
       ..color = AppColors.amber
       ..strokeWidth = 2
@@ -456,12 +509,10 @@ class _JavaneseCharacterPainter extends CustomPainter {
       3.3, 2.6, false, trimPaint,
     );
 
-    // Face features
     final eyePaint = Paint()..color = AppColors.ink;
     canvas.drawOval(Rect.fromCenter(center: Offset(w * 0.42, h * 0.21), width: 5, height: 4), eyePaint);
     canvas.drawOval(Rect.fromCenter(center: Offset(w * 0.58, h * 0.21), width: 5, height: 4), eyePaint);
 
-    // Smile
     final smilePaint = Paint()
       ..color = AppColors.ink
       ..strokeWidth = 1.5
@@ -482,7 +533,7 @@ class _KawungAppBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.kawungStroke.withOpacity(0.15)
+      ..color = AppColors.kawungStroke.withValues(alpha: 0.035)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
 

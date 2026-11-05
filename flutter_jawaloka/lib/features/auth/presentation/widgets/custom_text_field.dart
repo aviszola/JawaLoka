@@ -165,16 +165,20 @@ class _CustomTextFieldState extends State<CustomTextField>
                 ),
                 prefixIcon: widget.prefixIcon,
                 suffixIcon: widget.showTogglePassword
-                    ? GestureDetector(
-                        onTap: () => setState(() => _obscured = !_obscured),
-                        child: Padding(
-                          padding: const EdgeInsets.all(14),
-                          child: Icon(
-                            _obscured
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            color: AppColors.inkSecondary,
-                            size: 20,
+                    ? Semantics(
+                        label: _obscured ? 'Tampilkan kata sandi' : 'Sembunyikan kata sandi',
+                        button: true,
+                        child: GestureDetector(
+                          onTap: () => setState(() => _obscured = !_obscured),
+                          child: Padding(
+                            padding: const EdgeInsets.all(14),
+                            child: Icon(
+                              _obscured
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              color: AppColors.inkSecondary,
+                              size: 20,
+                            ),
                           ),
                         ),
                       )

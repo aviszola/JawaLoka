@@ -4,6 +4,7 @@ import 'package:flutter_jawaloka/core/theme/app_colors.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/widgets/quiz_path_painter.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/widgets/quiz_bottom_sheet.dart';
+import 'package:flutter_jawaloka/core/mock/mock_user_stats.dart';
 
 /// Duolingo-style quiz path map with Javanese aesthetic.
 class QuizPathScreen extends StatefulWidget {
@@ -17,30 +18,96 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     with TickerProviderStateMixin {
   late final AnimationController _pulseController;
   late final Animation<double> _pulseAnim;
-  int _totalXP = 350;
+  final int _completedQuizzes = MockUserStats.totalCompletedQuizzes;
 
-  /// Demo path data - in production this comes from a repository.
+  int _selectedDifficultyIndex = 0; // 0 = Mudah, 1 = Mahir, 2 = Sangat Mahir
+  static const List<String> _difficultyLevels = [
+    'Mudah',
+    'Mahir',
+    'Sangat Mahir',
+  ];
+
+  /// Data jalur kuis per unit pembelajaran.
   static final List<_PathNodeData> _nodes = [
-    _PathNodeData(
-        javaScript: 'ꦲ', latinName: 'Ha', status: NodeStatus.completed, level: 1),
-    _PathNodeData(
-        javaScript: 'ꦤ', latinName: 'Na', status: NodeStatus.completed, level: 2),
-    _PathNodeData(
-        javaScript: 'ꦕ', latinName: 'Ca', status: NodeStatus.completed, level: 3),
-    _PathNodeData(
-        javaScript: 'ꦫ', latinName: 'Ra', status: NodeStatus.current, level: 4),
-    _PathNodeData(
-        javaScript: 'ꦏ', latinName: 'Ka', status: NodeStatus.locked, level: 5),
-    _PathNodeData(
-        javaScript: 'ꦢ', latinName: 'Da', status: NodeStatus.locked, level: 6),
-    _PathNodeData(
-        javaScript: 'ꦠ', latinName: 'Ta', status: NodeStatus.locked, level: 7),
-    _PathNodeData(
-        javaScript: 'ꦱ', latinName: 'Sa', status: NodeStatus.locked, level: 8),
-    _PathNodeData(
-        javaScript: 'ꦮ', latinName: 'Wa', status: NodeStatus.locked, level: 9),
-    _PathNodeData(
-        javaScript: 'ꦭ', latinName: 'La', status: NodeStatus.locked, level: 10),
+    // Unit 1: Sapaan dan Salam
+    const _PathNodeData(
+      topicName: 'Salam',
+      glyph: 'ꦱ',
+      description: 'Pelajari salam dan tegur sapa sopan santun bahasa Jawa.',
+      status: NodeStatus.completed,
+      quizIndex: 1,
+      totalInUnit: 5,
+      unitTitle: 'Unit 1 · Tingkat Mudah',
+    ),
+    const _PathNodeData(
+      topicName: 'Pamit',
+      glyph: 'ꦥ',
+      description: 'Ungkapan pamitan dan perpisahan sehari-hari yang santun.',
+      status: NodeStatus.completed,
+      quizIndex: 2,
+      totalInUnit: 5,
+      unitTitle: 'Unit 1 · Tingkat Mudah',
+    ),
+    const _PathNodeData(
+      topicName: 'Lencana',
+      glyph: 'ꦭ',
+      description: 'Uji pemahaman tonggak materi sapaan dan salam.',
+      status: NodeStatus.completed,
+      isMilestone: true,
+      quizIndex: 3,
+      totalInUnit: 5,
+      unitTitle: 'Unit 1 · Tingkat Mudah',
+    ),
+    const _PathNodeData(
+      topicName: 'Tanya kabar',
+      glyph: 'ꦠ',
+      description: 'Menanyakan keadaan dan kabar orang lain dalam bahasa Jawa.',
+      status: NodeStatus.current,
+      quizIndex: 4,
+      totalInUnit: 5,
+      unitTitle: 'Unit 1 · Tingkat Mudah',
+    ),
+    const _PathNodeData(
+      topicName: 'Perkenalan',
+      glyph: 'ꦥ',
+      description: 'Mengenalkan diri dengan unggah-ungguh yang tepat.',
+      status: NodeStatus.locked,
+      quizIndex: 5,
+      totalInUnit: 5,
+      unitTitle: 'Unit 1 · Tingkat Mudah',
+    ),
+
+    // Unit 2: Keluarga dan Rumah (terkunci)
+    const _PathNodeData(
+      topicName: 'Keluarga',
+      glyph: 'ꦏ',
+      description: 'Sebutan anggota keluarga dan kerabat terdekat.',
+      status: NodeStatus.locked,
+      quizIndex: 1,
+      totalInUnit: 3,
+      unitTitle: 'Unit 2 · Tingkat Mudah',
+      isUnit2: true,
+    ),
+    const _PathNodeData(
+      topicName: 'Rumah',
+      glyph: 'ꦫ',
+      description: 'Bagian-bagian rumah tradisional dan perlengkapan.',
+      status: NodeStatus.locked,
+      quizIndex: 2,
+      totalInUnit: 3,
+      unitTitle: 'Unit 2 · Tingkat Mudah',
+      isUnit2: true,
+    ),
+    const _PathNodeData(
+      topicName: 'Kerabat',
+      glyph: 'ꦏ',
+      description: 'Tingkatan silsilah keluarga besar masyarakat Jawa.',
+      status: NodeStatus.locked,
+      quizIndex: 3,
+      totalInUnit: 3,
+      unitTitle: 'Unit 2 · Tingkat Mudah',
+      isUnit2: true,
+    ),
   ];
 
   @override
@@ -88,7 +155,8 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     return AppBar(
       backgroundColor: const Color(0xFFF5F1EB),
       elevation: 0,
-      centerTitle: true,
+      centerTitle: false,
+      automaticallyImplyLeading: false,
       title: const Text(
         'Jalur Kuis',
         style: TextStyle(
@@ -108,12 +176,12 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('⭐', style: TextStyle(fontSize: 14)),
+              const Icon(Icons.star_rounded, size: 16, color: AppColors.amberDark),
               const SizedBox(width: 4),
               Text(
-                '$_totalXP XP',
+                '$_completedQuizzes Selesai',
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: AppColors.ink,
                 ),
@@ -122,6 +190,100 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           ),
         ),
       ],
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(48),
+        child: Container(
+          height: 48,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          alignment: Alignment.centerLeft,
+          child: Row(
+            children: List.generate(_difficultyLevels.length, (index) {
+              final isSelected = _selectedDifficultyIndex == index;
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: ChoiceChip(
+                  label: Text(
+                    _difficultyLevels[index],
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight:
+                          isSelected ? FontWeight.w700 : FontWeight.w500,
+                      color:
+                          isSelected ? AppColors.ink : const Color(0xFF7A6E60),
+                    ),
+                  ),
+                  selected: isSelected,
+                  selectedColor: AppColors.amber,
+                  backgroundColor: const Color(0xFFEFE8DD),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(
+                      color: isSelected
+                          ? AppColors.amberDark
+                          : const Color(0xFFD4CAB8),
+                    ),
+                  ),
+                  showCheckmark: false,
+                  onSelected: (selected) {
+                    if (selected) {
+                      setState(() {
+                        _selectedDifficultyIndex = index;
+                      });
+                    }
+                  },
+                ),
+              );
+            }),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildUnitHeader(String title, String subtitle,
+      {bool isLocked = false}) {
+    return Container(
+      margin: const EdgeInsets.only(top: 8, bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: isLocked ? const Color(0xFFE8E1D6) : AppColors.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isLocked ? const Color(0xFFD4CAB8) : AppColors.border,
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            isLocked ? Icons.lock_outline_rounded : Icons.menu_book_rounded,
+            color: isLocked ? const Color(0xFFADA49A) : AppColors.amberDark,
+            size: 20,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: isLocked ? const Color(0xFFADA49A) : AppColors.ink,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Color(0xFF7A6E60),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -131,8 +293,24 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 
     return Column(
       children: [
-        // Draw connecting line to previous node (except first)
-        if (index > 0) _buildConnector(index),
+        // Header for Unit 1 before the first node
+        if (index == 0)
+          _buildUnitHeader(
+            'Unit 1: Sapaan dan Salam',
+            'Dasar percakapan dan tata krama sopan santun',
+          ),
+
+        // Header for Unit 2 before the first locked node of Unit 2
+        if (index == 5)
+          _buildUnitHeader(
+            'Unit 2: Keluarga dan Rumah (Terkunci)',
+            'Silsilah keluarga, kerabat, dan lingkungan rumah',
+            isLocked: true,
+          ),
+
+        // Draw connecting line to previous node (except first node of each unit)
+        if (index > 0 && index != 5) _buildConnector(index),
+
         // The node itself
         Padding(
           padding: EdgeInsets.only(
@@ -167,9 +345,8 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 
   Widget _buildNode(_PathNodeData node) {
     return GestureDetector(
-      onTap: node.status == NodeStatus.locked
-          ? null
-          : () => _onNodeTapped(node),
+      onTap:
+          node.status == NodeStatus.locked ? null : () => _onNodeTapped(node),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -193,14 +370,20 @@ class _QuizPathScreenState extends State<QuizPathScreen>
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: AppColors.amber.withOpacity(0.4),
+                color: AppColors.amber.withValues(alpha: 0.4),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
           alignment: Alignment.center,
-          child: const Icon(Icons.check_rounded, size: 32, color: Colors.white),
+          child: Icon(
+            node.isMilestone
+                ? Icons.military_tech_rounded
+                : Icons.check_rounded,
+            size: node.isMilestone ? 36 : 32,
+            color: Colors.white,
+          ),
         );
         break;
 
@@ -220,7 +403,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.amber.withOpacity(0.35),
+                        color: AppColors.amber.withValues(alpha: 0.35),
                         width: 3,
                       ),
                     ),
@@ -236,21 +419,27 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                     border: Border.all(color: AppColors.amber, width: 3),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.amber.withOpacity(0.3),
+                        color: AppColors.amber.withValues(alpha: 0.3),
                         blurRadius: 16,
                         spreadRadius: 2,
                       ),
                     ],
                   ),
                   alignment: Alignment.center,
-                  child: Text(
-                    node.javaScript,
-                    style: const TextStyle(
-                      fontSize: 32,
-                      color: AppColors.amberDark,
-                      fontFamily: 'NotoSansJavanese',
-                    ),
-                  ),
+                  child: node.isMilestone
+                      ? const Icon(
+                          Icons.military_tech_rounded,
+                          size: 36,
+                          color: AppColors.amberDark,
+                        )
+                      : Text(
+                          node.glyph,
+                          style: const TextStyle(
+                            fontSize: 32,
+                            color: AppColors.amberDark,
+                            fontFamily: 'NotoSansJavanese',
+                          ),
+                        ),
                 ),
               ],
             );
@@ -268,7 +457,13 @@ class _QuizPathScreenState extends State<QuizPathScreen>
             border: Border.all(color: const Color(0xFFD4CAB8), width: 2),
           ),
           alignment: Alignment.center,
-          child: const Icon(Icons.lock_rounded, size: 28, color: Color(0xFFADA49A)),
+          child: Icon(
+            node.isMilestone
+                ? Icons.military_tech_rounded
+                : Icons.lock_rounded,
+            size: 28,
+            color: const Color(0xFFADA49A),
+          ),
         );
         break;
     }
@@ -281,22 +476,22 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     return Column(
       children: [
         Text(
-          node.javaScript,
+          node.topicName,
           style: TextStyle(
-            fontSize: 18,
-            fontFamily: 'NotoSansJavanese',
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
             color: isLocked ? const Color(0xFFADA49A) : AppColors.ink,
           ),
         ),
-        Text(
-          node.latinName,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: isLocked ? const Color(0xFFADA49A) : const Color(0xFF7A6E60),
-            letterSpacing: 0.5,
+        if (node.isMilestone)
+          const Text(
+            'Node Tonggak',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.amberDark,
+            ),
           ),
-        ),
       ],
     );
   }
@@ -304,14 +499,13 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   void _onNodeTapped(_PathNodeData node) {
     QuizBottomSheet.show(
       context,
-      moduleTitle: 'Aksara ${node.latinName}',
-      questionCount: 12,
-      estimatedMinutes: 8,
-      xpReward: 50,
+      unitTitle: node.unitTitle,
+      nodeTitle: node.topicName,
+      quizIndex: node.quizIndex,
+      totalQuizzes: node.totalInUnit,
+      questionCount: 10,
+      topicDescription: node.description,
       onStart: () {
-        Navigator.of(context).pushNamed(AppRouter.quizQuestion);
-      },
-      onRestart: () {
         Navigator.of(context).pushNamed(AppRouter.quizQuestion);
       },
     );
@@ -319,16 +513,26 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 }
 
 class _PathNodeData {
-  final String javaScript;
-  final String latinName;
+  final String topicName;
+  final String glyph;
+  final String description;
   final NodeStatus status;
-  final int level;
+  final bool isMilestone;
+  final int quizIndex;
+  final int totalInUnit;
+  final String unitTitle;
+  final bool isUnit2;
 
   const _PathNodeData({
-    required this.javaScript,
-    required this.latinName,
+    required this.topicName,
+    required this.glyph,
+    required this.description,
     required this.status,
-    required this.level,
+    this.isMilestone = false,
+    required this.quizIndex,
+    required this.totalInUnit,
+    this.unitTitle = 'Unit 1 · Tingkat Mudah',
+    this.isUnit2 = false,
   });
 }
 

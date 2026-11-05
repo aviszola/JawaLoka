@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
+import 'quiz_result_screen.dart';
 
 /// Quiz question type enum.
 enum QuestionType { glyphIdentify, textToAksara }
@@ -29,6 +30,11 @@ class QuizQuestionScreen extends StatefulWidget {
   final String moduleTitle;
   final VoidCallback? onComplete;
 
+  /// Jumlah soal per sesi kuis aksara.
+  // DATA CONTOH, TOPIK BELUM SESUAI
+  static const int totalQuestionsPerSession = 10;
+
+  // DATA CONTOH, TOPIK BELUM SESUAI
   static const List<QuizQuestion> defaultQuestions = [
     QuizQuestion(
       type: QuestionType.glyphIdentify,
@@ -58,6 +64,48 @@ class QuizQuestionScreen extends StatefulWidget {
       options: ['Ra', 'Pa', 'Dha', 'Ja'],
       correctIndex: 0,
     ),
+    QuizQuestion(
+      type: QuestionType.glyphIdentify,
+      prompt: 'Aksara apa ini?',
+      glyph: 'ꦏ',
+      options: ['Nya', 'Ka', 'Ma', 'Ga'],
+      correctIndex: 1,
+    ),
+    QuizQuestion(
+      type: QuestionType.glyphIdentify,
+      prompt: 'Pilih pelafalan untuk aksara berikut:',
+      glyph: 'ꦢ',
+      options: ['Ta', 'Sa', 'Da', 'Ba'],
+      correctIndex: 2,
+    ),
+    QuizQuestion(
+      type: QuestionType.glyphIdentify,
+      prompt: 'Aksara "ꦠ" dibaca sebagai apa?',
+      glyph: 'ꦠ',
+      options: ['Ta', 'Tha', 'Nga', 'La'],
+      correctIndex: 0,
+    ),
+    QuizQuestion(
+      type: QuestionType.glyphIdentify,
+      prompt: 'Manakah pelafalan untuk aksara di bawah?',
+      glyph: 'ꦱ',
+      options: ['Wa', 'Sa', 'Ha', 'Ya'],
+      correctIndex: 1,
+    ),
+    QuizQuestion(
+      type: QuestionType.glyphIdentify,
+      prompt: 'Aksara apa ini?',
+      glyph: 'ꦮ',
+      options: ['La', 'Pa', 'Ja', 'Wa'],
+      correctIndex: 3,
+    ),
+    QuizQuestion(
+      type: QuestionType.glyphIdentify,
+      prompt: 'Pilih pelafalan untuk aksara berikut:',
+      glyph: 'ꦭ',
+      options: ['La', 'Ma', 'Ga', 'Ba'],
+      correctIndex: 0,
+    ),
   ];
 
   const QuizQuestionScreen({
@@ -77,11 +125,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
   int _selectedOption = -1;
   bool _answered = false;
   bool _isCorrect = false;
-  int _score = 0;
-  int _streak = 0;
+  int _correctCount = 0;
+  int _combo = 0;
 
   late final AnimationController _progressController;
-  late final Animation<double> _progressAnim;
 
   late final AnimationController _shakeController;
   late final Animation<Offset> _shakeAnim;
@@ -99,11 +146,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     _progressController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 600),
-    );
-    _progressAnim = Tween<double>(begin: 0, end: 1 / widget.questions.length)
-        .animate(CurvedAnimation(
-            parent: _progressController, curve: Curves.easeOut));
-    _progressController.forward();
+    )..forward();
 
     _shakeController = AnimationController(
       vsync: this,
@@ -186,10 +229,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
       _answered = true;
       _isCorrect = correct;
       if (correct) {
-        _score++;
-        _streak++;
+        _correctCount++;
+        _combo++;
       } else {
-        _streak = 0;
+        _combo = 0;
       }
     });
 
@@ -197,7 +240,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
 
     if (correct) {
       _bounceController.forward(from: 0);
-      if (_streak >= 3) {
+      if (_combo >= 3) {
         _confettiController.forward(from: 0);
       }
     } else {
@@ -206,14 +249,8 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
   }
 
   void _animateProgressTo(double target) {
-    final old = _progressAnim.value;
     _progressController.duration = const Duration(milliseconds: 600);
-    // Replace animation with new range
-    final tween = Tween<double>(begin: old, end: target);
-    _progressController.reset();
-    _progressAnim.addListener(() {}); // keep ref
-    // Use a simple approach: drive via controller value directly
-    // We'll re-run the animation
+    _progressController.animateTo(target, curve: Curves.easeOut);
   }
 
   void _onConfirm() {
@@ -228,7 +265,22 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
       _animateProgressTo(_progressTarget);
     } else {
       widget.onComplete?.call();
-      Navigator.of(context).pushReplacementNamed(AppRouter.quizResult);
+      final total = widget.questions.length;
+      final scorePercentage =
+          total > 0 ? ((_correctCount / total) * 100).round() : 0;
+      final result = QuizResult(
+        score: scorePercentage,
+        maxScore: 100,
+        correctCount: _correctCount,
+        totalQuestions: total,
+        timeTaken: '1:45',
+        accuracy: scorePercentage,
+        isStreakAchievedToday: true,
+      );
+      Navigator.of(context).pushReplacementNamed(
+        AppRouter.quizResult,
+        arguments: result,
+      );
     }
   }
 
@@ -254,7 +306,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                 const SizedBox(height: 20),
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Column(
                       children: [
                         _buildQuestionCard(),
@@ -277,12 +329,14 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
             // Confetti overlay
             if (_confettiController.isAnimating || _confettiController.value > 0)
               Positioned.fill(
-                child: AnimatedBuilder(
-                  animation: _confettiController,
-                  builder: (context, _) => CustomPaint(
-                    painter: _ConfettiPainter(
-                      particles: _confettiParticles,
-                      progress: _confettiController.value,
+                child: IgnorePointer(
+                  child: AnimatedBuilder(
+                    animation: _confettiController,
+                    builder: (context, _) => CustomPaint(
+                      painter: _ConfettiPainter(
+                        particles: _confettiParticles,
+                        progress: _confettiController.value,
+                      ),
                     ),
                   ),
                 ),
@@ -295,14 +349,23 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
 
   Widget _buildTopBar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 0),
       child: Column(
         children: [
           Row(
             children: [
-              GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                child: const Icon(Icons.close_rounded, color: AppColors.ink, size: 24),
+              Semantics(
+                label: 'Tutup',
+                button: true,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Container(
+                    constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+                    alignment: Alignment.center,
+                    child: const Icon(Icons.close_rounded,
+                        color: AppColors.ink, size: 24),
+                  ),
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(child: _buildProgressBar()),
@@ -327,15 +390,16 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               Text(
                 '${_currentIndex + 1}/${widget.questions.length}',
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   color: Color(0xFF7A6E60),
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              if (_streak >= 3) ...[
+              if (_combo >= 3) ...[
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFE4A0),
                     borderRadius: BorderRadius.circular(10),
@@ -343,12 +407,13 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('🔥', style: TextStyle(fontSize: 12)),
+                      const Icon(Icons.local_fire_department_rounded,
+                          color: Color(0xFFF26B2D), size: 14),
                       const SizedBox(width: 2),
                       Text(
-                        'Streak $_streak!',
+                        '$_combo Benar!',
                         style: const TextStyle(
-                          fontSize: 11,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: AppColors.amberDark,
                         ),
@@ -368,7 +433,8 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     return AnimatedBuilder(
       animation: _progressController,
       builder: (context, _) {
-        final value = (_currentIndex + (_answered ? 1 : 0)) / widget.questions.length;
+        final value =
+            (_currentIndex + (_answered ? 1 : 0)) / widget.questions.length;
         return ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: LinearProgressIndicator(
@@ -468,15 +534,18 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     }
 
     Widget button = GestureDetector(
+      key: Key('quiz_option_$index'),
+      behavior: HitTestBehavior.opaque,
       onTap: () => _selectOption(index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         height: 56,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor, width: isCorrect || isWrong ? 2 : 1.5),
+          border: Border.all(
+              color: borderColor, width: isCorrect || isWrong ? 2 : 1.5),
           boxShadow: const [
             BoxShadow(
                 color: Color(0x08000000), blurRadius: 4, offset: Offset(0, 2))
@@ -484,6 +553,28 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         ),
         child: Row(
           children: [
+            Container(
+              width: 28,
+              height: 28,
+              margin: const EdgeInsets.only(right: 12),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: isSelected
+                    ? AppColors.amberDark.withValues(alpha: 0.15)
+                    : const Color(0xFFF0EAE1),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                String.fromCharCode(65 + index),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: isSelected
+                      ? AppColors.amberDark
+                      : const Color(0xFF7A6E60),
+                ),
+              ),
+            ),
             Expanded(
               child: Text(
                 _current.options[index],
@@ -494,7 +585,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                 ),
               ),
             ),
-            if (trailingIcon != null) trailingIcon,
+            ?trailingIcon,
           ],
         ),
       ),
@@ -511,22 +602,18 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
 
   Widget _buildBottomBar() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
       decoration: BoxDecoration(
         color: _answered
             ? (_isCorrect
                 ? const Color(0xFFDCEBD2)
                 : const Color(0xFFFFEAEA))
             : const Color(0xFFF5F1EB),
-        border: Border(
-          top: BorderSide(
-            color: _answered
-                ? (_isCorrect
-                    ? const Color(0xFF3E9B5F)
-                    : const Color(0xFFD64545))
-                : const Color(0xFFE8E1D6),
-          ),
-        ),
+        border: const Border(top: BorderSide(color: Color(0xFFE8E1D6))),
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0x10000000), blurRadius: 16, offset: Offset(0, -4))
+        ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -536,7 +623,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
             Row(
               children: [
                 Text(
-                  _isCorrect ? '✅ Betul!' : '❌ Kurang tepat',
+                  _isCorrect ? 'Betul!' : 'Kurang tepat',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -552,7 +639,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               Text(
                 'Jawaban: ${_current.options[_current.correctIndex]}',
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   color: Color(0xFFD64545),
                 ),
               ),
@@ -579,8 +666,8 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               child: Text(
                 _answered
                     ? (_currentIndex < widget.questions.length - 1
-                        ? 'Lanjut →'
-                        : 'Selesai ✓')
+                        ? 'Lanjut'
+                        : 'Selesai')
                     : 'Periksa',
                 style: const TextStyle(
                   fontSize: 16,
@@ -640,14 +727,15 @@ class _ConfettiPainter extends CustomPainter {
       final rotation = p.rotation + p.rotationSpeed * progress * pi * 4;
       final opacity = (1 - progress * 0.8).clamp(0.0, 1.0);
 
-      paint.color = p.color.withOpacity(opacity);
+      paint.color = p.color.withValues(alpha: opacity);
 
       canvas.save();
       canvas.translate(x, y);
       canvas.rotate(rotation);
       canvas.drawRRect(
         RRect.fromRectAndRadius(
-          Rect.fromCenter(center: Offset.zero, width: p.size, height: p.size * 0.5),
+          Rect.fromCenter(
+              center: Offset.zero, width: p.size, height: p.size * 0.5),
           const Radius.circular(2),
         ),
         paint,
@@ -658,43 +746,4 @@ class _ConfettiPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_ConfettiPainter old) => old.progress != progress;
-}
-
-// ---------------------------------------------------------------------------
-// Demo entry point (sample data)
-// ---------------------------------------------------------------------------
-class DemoQuizQuestionScreen extends StatelessWidget {
-  const DemoQuizQuestionScreen({super.key});
-
-  static const _sampleQuestions = [
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      prompt: 'Aksara apa ini?',
-      glyph: 'ꦲ',
-      options: ['Ha', 'Na', 'Ca', 'Ra'],
-      correctIndex: 0,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      prompt: 'Aksara apa ini?',
-      glyph: 'ꦤ',
-      options: ['Ka', 'Na', 'Da', 'Ta'],
-      correctIndex: 1,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      prompt: 'Aksara apa ini?',
-      glyph: 'ꦫ',
-      options: ['Sa', 'Wa', 'Ra', 'La'],
-      correctIndex: 2,
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return QuizQuestionScreen(
-      questions: _sampleQuestions,
-      moduleTitle: 'Aksara Jawa Dasar',
-    );
-  }
 }

@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Additional protections and QA assets
+build/
+local.properties
+.flutter-plugins*
+qa/**/screenshots/
+qa/**/*.png
+qa/**/*.jpg

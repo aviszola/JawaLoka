@@ -6,6 +6,7 @@ import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 import 'level_up_screen.dart';
+import '../../../../core/mock/mock_user_stats.dart';
 
 /// JawaLoka - Profile (Profil) Screen.
 /// Pixel-accurate implementation of Stitch Screen #e5a2d70abae2486ebdec67b521794944.
@@ -15,10 +16,9 @@ import 'level_up_screen.dart';
 /// - Amber Hero Card with faint Kawung background texture
 /// - Avatar with 75% circular progress ring, cute Javanese character, and edit button
 /// - Inline editable name (Dimas)
-/// - Two status pills: Level 4 & Streak 5 hari
+/// - Three status pills: Level 4, Streak 5 hari, 8 Kuis Minggu Ini
 /// - 4-badge achievement collection grid (Streak 7 Hari, Streak 30 Hari, Level 5, Tamat Aksara)
 /// - Primary ink button: "Pilih Blangkon" leading to customization catalog
-/// - 5-tab Android Bottom Navigation Bar with raised central Quest button
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -30,13 +30,12 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
-  String _displayName = 'Dimas';
+  String _displayName = MockUserStats.userName;
   bool _isEditingName = false;
-  final TextEditingController _nameCtrl = TextEditingController(text: 'Dimas');
+  final TextEditingController _nameCtrl = TextEditingController(text: MockUserStats.userName);
   String? _nameError;
 
-  BlangkonType _equippedBlangkon = BlangkonType.jogja;
-  int _selectedNavIndex = 4; // Profil active
+  BlangkonType _equippedBlangkon = BlangkonType.yogyakarta;
 
   late final AnimationController _entranceCtrl;
   late final Animation<double> _fadeAnim;
@@ -105,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       SnackBar(
         content: Text(
           message,
-          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
         ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: AppColors.ink,
@@ -132,7 +131,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -146,7 +145,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
                   ),
                 ),
-                _buildBottomNav(),
               ],
             ),
           ),
@@ -159,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   Widget _buildTopBar() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -173,30 +171,38 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
           ),
           // Gear Settings Button
-          GestureDetector(
-            onTap: () {
-              HapticFeedback.lightImpact();
-              Navigator.pushNamed(context, AppRouter.settings);
-            },
-            child: Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.border),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.ink.withValues(alpha: 0.05),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+          Semantics(
+            label: 'Pengaturan',
+            button: true,
+            child: GestureDetector(
+              onTap: () {
+                HapticFeedback.lightImpact();
+                Navigator.pushNamed(context, AppRouter.settings);
+              },
+              child: Container(
+                constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+                alignment: Alignment.center,
+                child: Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.border),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.ink.withValues(alpha: 0.05),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: const Icon(
-                Icons.settings_outlined,
-                size: 21,
-                color: AppColors.ink,
+                  child: const Icon(
+                    Icons.settings_outlined,
+                    size: 21,
+                    color: AppColors.ink,
+                  ),
+                ),
               ),
             ),
           ),
@@ -226,12 +232,14 @@ class _ProfileScreenState extends State<ProfileScreen>
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Faint Kawung Texture Background
+          // Faint Kawung Texture Background (opacity <= 0.04)
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(28),
-              child: CustomPaint(
-                painter: BatikKawungPainter(opacity: 0.09),
+              child: RepaintBoundary(
+                child: CustomPaint(
+                  painter: BatikKawungPainter(opacity: 0.035),
+                ),
               ),
             ),
           ),
@@ -377,7 +385,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       child: Text(
                         _nameError!,
                         style: const TextStyle(
-                          fontSize: 11,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: AppColors.error,
                         ),
@@ -387,9 +395,11 @@ class _ProfileScreenState extends State<ProfileScreen>
 
                 const SizedBox(height: 14),
 
-                // Two Status Pills: Lv 4 and Streak 5 hari
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                // Status Pills: Lv 4, Streak 5 hari, and 8 Kuis Minggu Ini
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -409,9 +419,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                           Icon(Icons.circle, size: 8, color: AppColors.amberDark),
                           SizedBox(width: 6),
                           Text(
-                            'Lv 4',
+                            'Lv ${MockUserStats.userLevel}',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
                               fontWeight: FontWeight.w800,
                               color: AppColors.ink,
                             ),
@@ -419,7 +429,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ],
                       ),
                     ),
-                    const SizedBox(width: 10),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                       decoration: BoxDecoration(
@@ -442,9 +451,41 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                           SizedBox(width: 4),
                           Text(
-                            'Streak 5 hari',
+                            'Streak ${MockUserStats.streakDays} hari',
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.ink,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.ink.withValues(alpha: 0.05),
+                            blurRadius: 4,
+                          ),
+                        ],
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.quiz_outlined,
+                            size: 16,
+                            color: AppColors.amberDark,
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            '${MockUserStats.quizzesThisWeek} Kuis Minggu Ini',
+                            style: TextStyle(
+                              fontSize: 14,
                               fontWeight: FontWeight.w800,
                               color: AppColors.ink,
                             ),
@@ -462,7 +503,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  // ── 3. Section Lencana ────────────────────────────────────────────────────
+  // ── 3. Section Lencana ───────────────────────────────────────────────────
 
   Widget _buildBadgeSection() {
     return Column(
@@ -492,7 +533,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   child: const Text(
                     '1 / 4 Terbuka',
                     style: TextStyle(
-                      fontSize: 11,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: AppColors.inkMuted,
                     ),
@@ -529,7 +570,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   bgColor: AppColors.pastelBlush,
                   icon: Icons.star_rounded,
                   iconColor: const Color(0xFFF26522),
-                  onTap: () => _showToast('Lencana Streak 7 Hari telah terbuka! 🔥'),
+                  onTap: () => _showToast('Lencana Streak 7 Hari telah terbuka!'),
                 ),
 
                 // Badge 2: Streak 30 Hari (Locked)
@@ -553,7 +594,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   bgColor: AppColors.pastelMint,
                   icon: Icons.emoji_events_rounded,
                   iconColor: AppColors.pastelMintText,
-                  badgeHighlight: 'Naik Level ✨',
+                  badgeHighlight: 'Naik Level',
                   onTap: () {
                     HapticFeedback.mediumImpact();
                     Navigator.push(
@@ -563,7 +604,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                     ).then((result) {
                       if (result == true) {
-                        setState(() => _equippedBlangkon = BlangkonType.solo);
+                        setState(() => _equippedBlangkon = BlangkonType.surakarta);
                         _showToast('Blangkon Surakarta berhasil dipasang!');
                       }
                     });
@@ -665,7 +706,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   child: Text(
                     badgeHighlight ?? statusLabel,
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: isUnlocked
                           ? const Color(0xFFD9534F)
@@ -696,7 +737,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             }
           });
         },
-        icon: const Text('🎭', style: TextStyle(fontSize: 20)),
+        icon: const Icon(Icons.style_outlined, size: 20, color: AppColors.amber),
         label: const Text(
           'Pilih Blangkon',
           style: TextStyle(
@@ -715,158 +756,4 @@ class _ProfileScreenState extends State<ProfileScreen>
       ),
     );
   }
-
-  // ── 5. Bottom Navigation Bar ──────────────────────────────────────────────
-
-  Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x14231C14),
-            blurRadius: 16,
-            offset: Offset(0, -4),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              // 1. Beranda
-              _buildNavItem(
-                icon: Icons.home_outlined,
-                activeIcon: Icons.home_rounded,
-                label: 'Beranda',
-                index: 0,
-                onTap: () => Navigator.pushReplacementNamed(context, AppRouter.learnHub),
-              ),
-
-              // 2. Belajar
-              _buildNavItem(
-                icon: Icons.school_outlined,
-                activeIcon: Icons.school_rounded,
-                label: 'Belajar',
-                index: 1,
-                onTap: () => Navigator.pushNamed(context, AppRouter.quizPath),
-              ),
-
-              // 3. Central Raised Quest Button
-              GestureDetector(
-                onTap: () {
-                  HapticFeedback.lightImpact();
-                  Navigator.pushNamed(context, AppRouter.drawingCanvas);
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: AppColors.amber,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2.5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.amberDark.withValues(alpha: 0.4),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.edit_note_rounded,
-                        color: AppColors.ink,
-                        size: 24,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    const Text(
-                      'Quest',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.ink,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // 4. Kuis
-              _buildNavItem(
-                icon: Icons.help_outline_rounded,
-                activeIcon: Icons.help_rounded,
-                label: 'Kuis',
-                index: 3,
-                onTap: () => Navigator.pushNamed(context, AppRouter.quizQuestion),
-              ),
-
-              // 5. Profil (Active)
-              _buildNavItem(
-                icon: Icons.person_outline_rounded,
-                activeIcon: Icons.person_rounded,
-                label: 'Profil',
-                index: 4,
-                onTap: () {},
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem({
-    required IconData icon,
-    required IconData activeIcon,
-    required String label,
-    required int index,
-    required VoidCallback onTap,
-  }) {
-    final isActive = _selectedNavIndex == index;
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: SizedBox(
-        width: 56,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              isActive ? activeIcon : icon,
-              size: 22,
-              color: isActive ? AppColors.ink : AppColors.inkMuted,
-            ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: isActive ? FontWeight.w800 : FontWeight.w500,
-                color: isActive ? AppColors.ink : AppColors.inkMuted,
-              ),
-            ),
-            if (isActive)
-              Container(
-                margin: const EdgeInsets.only(top: 2),
-                width: 5,
-                height: 5,
-                decoration: const BoxDecoration(
-                  color: AppColors.amber,
-                  shape: BoxShape.circle,
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
 }
-

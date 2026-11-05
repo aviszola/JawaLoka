@@ -4,18 +4,16 @@ import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/language_selection_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
-import '../../features/learn/presentation/screens/learn_hub_screen.dart';
+import '../../features/home/presentation/screens/main_shell_screen.dart';
 import '../../features/learn/presentation/screens/vocabulary_detail_screen.dart';
 import '../../features/learn/presentation/screens/aksara_detail_screen.dart';
 import '../../features/translator/presentation/screens/translator_screen.dart';
-import '../../features/quiz/presentation/screens/quiz_path_screen.dart';
 import '../../features/quiz/presentation/screens/quiz_question_screen.dart';
 import '../../features/quiz/presentation/screens/quiz_result_screen.dart';
 import '../../features/quiz/presentation/screens/drawing_canvas_screen.dart';
 import '../../features/quiz/presentation/screens/daily_result_screen.dart';
 import '../../features/profile/presentation/screens/choose_blangkon_screen.dart';
 import '../../features/profile/presentation/screens/settings_screen.dart';
-import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/profile/presentation/screens/level_up_screen.dart';
 
 /// Centralized router for JawaLoka navigation.
@@ -65,9 +63,20 @@ class AppRouter {
         return _FadePageRoute(page: const LoginScreen(), settings: settings);
 
       case AppRouter.home:
+        return _FadePageRoute(
+            page: const MainShellScreen(initialIndex: 0), settings: settings);
+
       case AppRouter.learnHub:
         return _FadePageRoute(
-            page: const LearnHubScreen(), settings: settings);
+            page: const MainShellScreen(initialIndex: 1), settings: settings);
+
+      case AppRouter.quizPath:
+        return _FadePageRoute(
+            page: const MainShellScreen(initialIndex: 3), settings: settings);
+
+      case AppRouter.profile:
+        return _FadePageRoute(
+            page: const MainShellScreen(initialIndex: 4), settings: settings);
 
       case AppRouter.vocabularyDetail:
         return _FadePageRoute(
@@ -81,17 +90,28 @@ class AppRouter {
         return _FadePageRoute(
             page: const TranslatorScreen(), settings: settings);
 
-      case AppRouter.quizPath:
-        return _FadePageRoute(
-            page: const QuizPathScreen(), settings: settings);
-
       case AppRouter.quizQuestion:
         return _FadePageRoute(
             page: const QuizQuestionScreen(), settings: settings);
 
       case AppRouter.quizResult:
+        final args = settings.arguments;
+        final QuizResult safeResult = args is QuizResult
+            ? args
+            : const QuizResult(
+                score: 0,
+                maxScore: 100,
+                correctCount: 0,
+                totalQuestions: 10,
+                timeTaken: '0:00',
+                accuracy: 0,
+                isStreakAchievedToday: false,
+              );
         return _FadePageRoute(
-            page: const QuizResultScreen(), settings: settings);
+            page: QuizResultScreen(result: safeResult),
+
+
+            settings: settings);
 
       case AppRouter.drawingCanvas:
         return _FadePageRoute(
@@ -108,10 +128,6 @@ class AppRouter {
       case AppRouter.settings:
         return _FadePageRoute(
             page: const SettingsScreen(), settings: settings);
-
-      case AppRouter.profile:
-        return _FadePageRoute(
-            page: const ProfileScreen(), settings: settings);
 
       case AppRouter.levelUp:
         return _FadePageRoute(
@@ -132,8 +148,8 @@ class _FadePageRoute<T> extends PageRouteBuilder<T> {
   _FadePageRoute({required Widget page, required RouteSettings settings})
       : super(
           settings: settings,
-          pageBuilder: (_, __, ___) => page,
-          transitionsBuilder: (_, anim, __, child) =>
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionsBuilder: (context, anim, secondaryAnimation, child) =>
               FadeTransition(opacity: anim, child: child),
           transitionDuration: const Duration(milliseconds: 300),
         );
@@ -175,7 +191,7 @@ class _ErrorScreen extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               routeName,
-              style: const TextStyle(color: Color(0xFF6B6257), fontSize: 13),
+              style: const TextStyle(color: Color(0xFF6B6257), fontSize: 14),
             ),
           ],
         ),

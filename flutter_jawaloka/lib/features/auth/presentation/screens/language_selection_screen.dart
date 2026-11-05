@@ -191,7 +191,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                                 Text(
                                   'Pilih basa · Pilih bahasa · Choose language',
                                   style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: 14,
                                     color: AppColors.inkSecondary,
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: 0.1,
@@ -256,7 +256,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                               'Kamu bisa menggantinya kapan saja di Pengaturan.',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 14,
                                 color: AppColors.inkSecondary,
                                 fontWeight: FontWeight.w500,
                               ),

@@ -17,7 +17,7 @@ class JavaneseAvatarWidget extends StatelessWidget {
   const JavaneseAvatarWidget({
     super.key,
     this.size = 92,
-    this.blangkonType = BlangkonType.jogja,
+    this.blangkonType = BlangkonType.yogyakarta,
     this.showEditButton = false,
     this.onEditTap,
     this.progress,
@@ -272,29 +272,33 @@ class _JavaneseCharacterPainter extends CustomPainter {
     Color bandColor;
 
     switch (type) {
-      case BlangkonType.solo:
+      case BlangkonType.surakarta:
         // Surakarta: Deep rich brown batik with refined golden-brown pleats
         baseColor = const Color(0xFF3B2215);
         highlightColor = const Color(0xFF825232);
         bandColor = const Color(0xFFA5734A);
         break;
-      case BlangkonType.betawi:
+      case BlangkonType.banyumas:
         baseColor = const Color(0xFF8B2500);
         highlightColor = const Color(0xFFD35400);
         bandColor = const Color(0xFFE67E22);
         break;
-      case BlangkonType.madura:
+      case BlangkonType.kedu:
         baseColor = const Color(0xFF1F2937);
         highlightColor = const Color(0xFF4B5563);
         bandColor = const Color(0xFFDC2626);
         break;
-      case BlangkonType.premium:
+      case BlangkonType.cirebon:
         baseColor = const Color(0xFF231C14);
         highlightColor = const Color(0xFFD4AF37);
         bandColor = const Color(0xFFFFC247);
         break;
-      case BlangkonType.jogja:
-      default:
+      case BlangkonType.pusaka:
+        baseColor = const Color(0xFF231C14);
+        highlightColor = const Color(0xFFD4AF37);
+        bandColor = const Color(0xFFFFC247);
+        break;
+      case BlangkonType.yogyakarta:
         baseColor = const Color(0xFF4B2E1E);
         highlightColor = const Color(0xFF68422A);
         bandColor = const Color(0xFF9C6B46);
@@ -371,4 +375,5 @@ class _JavaneseCharacterPainter extends CustomPainter {
     return oldDelegate.blangkonType != blangkonType;
   }
 }
+
 

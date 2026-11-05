@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/mock/mock_user_stats.dart';
 
 // ─────────────────────────────────────────────────────────
 //  SIMILARITY METER PAINTER
@@ -9,13 +10,9 @@ import '../../../../core/router/app_router.dart';
 
 class _SimilarityMeterPainter extends CustomPainter {
   final double progress; // 0.0 – 1.0
-  final String label;
-  final Color activeColor;
 
   const _SimilarityMeterPainter({
     required this.progress,
-    this.label = 'Kemiripan',
-    this.activeColor = AppColors.amber,
   });
 
   @override
@@ -35,7 +32,7 @@ class _SimilarityMeterPainter extends CustomPainter {
     // Active arc
     if (progress > 0) {
       final arcPaint = Paint()
-        ..color = activeColor
+        ..color = progress >= 0.85 ? AppColors.success : AppColors.amber
         ..style = PaintingStyle.stroke
         ..strokeWidth = strokeWidth
         ..strokeCap = StrokeCap.round;
@@ -68,10 +65,10 @@ class _SimilarityMeterPainter extends CustomPainter {
     );
 
     // "Kemiripan" label below percentage
-    final labelSpan = TextSpan(
-      text: label,
-      style: const TextStyle(
-        fontSize: 11,
+    const labelSpan = TextSpan(
+      text: 'Kemiripan',
+      style: TextStyle(
+        fontSize: 12,
         color: AppColors.inkMuted,
       ),
     );
@@ -132,15 +129,11 @@ class _DrawnAksaraPainter extends CustomPainter {
 class DailyResultScreen extends StatefulWidget {
   final String userName;
   final double similarity; // 0.0 – 1.0
-  final int xpEarned;
-  final int streakBonus;
 
   const DailyResultScreen({
     super.key,
-    this.userName = 'Dimas',
+    this.userName = MockUserStats.userName,
     this.similarity = 0.92,
-    this.xpEarned = 50,
-    this.streakBonus = 10,
   });
 
   @override
@@ -156,13 +149,6 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   // Similarity meter
   late final AnimationController _meterController;
   late final Animation<double> _meterAnim;
-
-  // XP counter tick-up
-  late final AnimationController _xpController;
-  late final Animation<int> _xpAnim;
-
-  // Shimmer for XP card
-  late final AnimationController _shimmerController;
 
   @override
   void initState() {
@@ -185,25 +171,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       CurvedAnimation(parent: _meterController, curve: Curves.easeOut),
     );
 
-    _xpController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-    _xpAnim = IntTween(begin: 0, end: widget.xpEarned).animate(
-      CurvedAnimation(parent: _xpController, curve: Curves.easeOut),
-    );
-
-    _shimmerController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
-    )..repeat(reverse: true);
-
     // Staggered start
     _slideController.forward().then((_) {
-      _meterController.forward();
-      Future.delayed(const Duration(milliseconds: 400), () {
-        if (mounted) _xpController.forward();
-      });
+      if (mounted) _meterController.forward();
     });
   }
 
@@ -211,8 +181,6 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   void dispose() {
     _slideController.dispose();
     _meterController.dispose();
-    _xpController.dispose();
-    _shimmerController.dispose();
     super.dispose();
   }
 
@@ -230,7 +198,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          'Hasil Latihan',
+          'Hasil Quest',
           style: TextStyle(
             color: AppColors.ink,
             fontSize: 18,
@@ -242,7 +210,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       body: SlideTransition(
         position: _slideAnim,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+          padding: const EdgeInsets.fromLTRB(24, 8, 24, 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -250,7 +218,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
               const SizedBox(height: 20),
               _buildDrawingResultCard(),
               const SizedBox(height: 20),
-              _buildXpCard(),
+              _buildQuestStatusCard(),
               const SizedBox(height: 28),
               _buildButtons(context),
             ],
@@ -263,18 +231,21 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   // ── Celebration Card ───────────────────────────────────
 
   Widget _buildCelebrationCard() {
+    final isPassed = widget.similarity >= 0.85;
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [AppColors.amber, AppColors.amberDark],
+        gradient: LinearGradient(
+          colors: isPassed
+              ? [AppColors.amber, AppColors.amberDark]
+              : [const Color(0xFFE8E1D6), const Color(0xFFD4C7B5)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: AppColors.amberDark.withOpacity(0.35),
+            color: AppColors.ink.withValues(alpha: 0.12),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -283,7 +254,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(child: _buildCelebrationText()),
+          Expanded(child: _buildCelebrationText(isPassed)),
           const SizedBox(width: 16),
           _buildSimilarityMeter(),
         ],
@@ -291,13 +262,13 @@ class _DailyResultScreenState extends State<DailyResultScreen>
     );
   }
 
-  Widget _buildCelebrationText() {
+  Widget _buildCelebrationText(bool isPassed) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'Hebat, ${widget.userName}! 🎉',
+          isPassed ? 'Hebat, ${widget.userName}!' : 'Ayo Latihan Lagi!',
           style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -305,10 +276,12 @@ class _DailyResultScreenState extends State<DailyResultScreen>
           ),
         ),
         const SizedBox(height: 8),
-        const Text(
-          'Kamu berhasil menulis aksara Jawa dengan baik',
-          style: TextStyle(
-            fontSize: 13,
+        Text(
+          isPassed
+              ? 'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.'
+              : 'Goresanmu hampir tepat. Coba perhatikan proporsi aksara target.',
+          style: const TextStyle(
+            fontSize: 14,
             color: AppColors.ink,
             height: 1.4,
           ),
@@ -340,7 +313,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.07),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -350,7 +323,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Hasil Tulisanmu',
+            'Perbandingan Tulisan',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -358,143 +331,72 @@ class _DailyResultScreenState extends State<DailyResultScreen>
             ),
           ),
           const SizedBox(height: 16),
-          Row(
+          const Row(
             children: [
-              Expanded(child: _buildDrawingPanel()),
-              const SizedBox(width: 16),
-              Expanded(child: _buildReferencePanel()),
+              Expanded(child: _DrawingPanel(title: 'Tulisanmu', isDrawn: true)),
+              SizedBox(width: 16),
+              Expanded(child: _DrawingPanel(title: 'Aksara Target', isDrawn: false)),
             ],
           ),
-          const SizedBox(height: 16),
-          _buildGoodBadge(),
         ],
       ),
     );
   }
 
-  Widget _buildDrawingPanel() {
-    return Column(
-      children: [
-        const Text(
-          'Tulisanmu',
-          style: TextStyle(fontSize: 13, color: AppColors.inkSecondary),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            color: AppColors.canvas,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: AppColors.border,
-              width: 1.5,
-              // Dotted border approximation with solid
-            ),
-          ),
-          child: const CustomPaint(
-            painter: _DrawnAksaraPainter(),
-          ),
-        ),
-      ],
-    );
-  }
+  // ── Status Card (Kemiripan & Lulus/Gagal) ──────────────────
 
-  Widget _buildReferencePanel() {
-    return Column(
-      children: [
-        const Text(
-          'Referensi',
-          style: TextStyle(fontSize: 13, color: AppColors.inkSecondary),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            color: AppColors.amberSoft,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: const Center(
-            child: Text(
-              'ꦲ',
-              style: TextStyle(
-                fontSize: 60,
-                color: AppColors.amberDark,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildGoodBadge() {
+  Widget _buildQuestStatusCard() {
+    final isPassed = widget.similarity >= 0.85;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
-        color: AppColors.successLight,
-        borderRadius: BorderRadius.circular(20),
+        color: isPassed ? AppColors.pastelMint : AppColors.pastelSand,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isPassed ? AppColors.success : AppColors.border,
+          width: 1.5,
+        ),
       ),
-      child: const Row(
-        mainAxisSize: MainAxisSize.min,
+      child: Row(
         children: [
-          Icon(Icons.check_circle_rounded, color: AppColors.success, size: 18),
-          SizedBox(width: 6),
-          Text(
-            'Sangat Baik',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: AppColors.successText,
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isPassed ? AppColors.success : AppColors.inkMuted,
+            ),
+            child: Icon(
+              isPassed ? Icons.check_rounded : Icons.replay_rounded,
+              color: Colors.white,
+              size: 24,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  isPassed ? 'Status: Lulus' : 'Status: Belum Lulus',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.ink,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Kemiripan ${(widget.similarity * 100).round()}% (Syarat lulus: ≥ 85%)',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: AppColors.inkSecondary,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  // ── XP Card ────────────────────────────────────────────
-
-  Widget _buildXpCard() {
-    return AnimatedBuilder(
-      animation: _shimmerController,
-      builder: (_, child) {
-        final shimmerOpacity = 0.7 + 0.3 * _shimmerController.value;
-        return AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-          decoration: BoxDecoration(
-            color: AppColors.amberSoft.withOpacity(shimmerOpacity),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.amber.withOpacity(0.4)),
-          ),
-          child: child,
-        );
-      },
-      child: AnimatedBuilder(
-        animation: _xpAnim,
-        builder: (_, __) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '+${_xpAnim.value} XP',
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: AppColors.amberDark,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Bonus streak: +${widget.streakBonus} XP 🔥',
-              style: const TextStyle(
-                fontSize: 14,
-                color: AppColors.inkSecondary,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -508,7 +410,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, AppRouter.learnHub),
+            onPressed: () => Navigator.pushNamed(context, AppRouter.home),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.ink,
               foregroundColor: AppColors.amber,
@@ -543,6 +445,58 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 fontWeight: FontWeight.w600,
               ),
             ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ─── Drawing Panel Sub-widget ─────────────────────────────
+
+class _DrawingPanel extends StatelessWidget {
+  final String title;
+  final bool isDrawn;
+
+  const _DrawingPanel({required this.title, required this.isDrawn});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: AppColors.inkSecondary,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          height: 120,
+          decoration: BoxDecoration(
+            color: isDrawn ? AppColors.canvas : AppColors.amberSoft,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: isDrawn ? AppColors.border : AppColors.amber,
+              width: 1.5,
+            ),
+          ),
+          child: Center(
+            child: isDrawn
+                ? const CustomPaint(
+                    size: Size(80, 80),
+                    painter: _DrawnAksaraPainter(),
+                  )
+                : const Text(
+                    'ꦲ',
+                    style: TextStyle(
+                      fontSize: 48,
+                      color: AppColors.ink,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
           ),
         ),
       ],

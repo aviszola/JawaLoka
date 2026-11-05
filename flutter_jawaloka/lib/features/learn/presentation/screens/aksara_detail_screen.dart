@@ -76,7 +76,7 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -144,19 +144,25 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
       backgroundColor: AppColors.canvas,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
-      leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: Container(
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: AppColors.surface,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.border),
-          ),
-          child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            size: 18,
-            color: AppColors.ink,
+      leading: Semantics(
+        label: 'Kembali',
+        button: true,
+        child: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            margin: const EdgeInsets.all(4),
+            constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.border),
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18,
+              color: AppColors.ink,
+            ),
           ),
         ),
       ),
@@ -182,7 +188,7 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
             child: const Text(
               'Dasar',
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
                 color: AppColors.amberDark,
               ),
@@ -299,35 +305,6 @@ class _AksaraHeroCard extends StatelessWidget {
               ],
             ),
           ),
-
-          // Audio FAB — bottom right
-          Positioned(
-            bottom: 16,
-            right: 20,
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                width: 44,
-                height: 44,
-                decoration: const BoxDecoration(
-                  color: AppColors.amber,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x33FFC247),
-                      blurRadius: 10,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.play_arrow_rounded,
-                  color: AppColors.ink,
-                  size: 24,
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -363,7 +340,7 @@ class AksaraStrokePainter extends CustomPainter {
         text: TextSpan(
           text: '${i + 1}',
           style: const TextStyle(
-            fontSize: 8,
+            fontSize: 12,
             fontWeight: FontWeight.w700,
             color: Colors.white,
           ),
@@ -494,7 +471,7 @@ class _ExampleWordCard extends StatelessWidget {
           Text(
             meaning,
             style: const TextStyle(
-              fontSize: 11,
+              fontSize: 12,
               color: AppColors.inkMuted,
             ),
           ),
@@ -595,7 +572,7 @@ class _SandanganChip extends StatelessWidget {
           Text(
             data.result,
             style: const TextStyle(
-              fontSize: 11,
+              fontSize: 12,
               fontWeight: FontWeight.w700,
               color: AppColors.amberDark,
             ),
@@ -679,7 +656,7 @@ class _WritingStepCard extends StatelessWidget {
               child: Text(
                 '$step',
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
@@ -771,7 +748,7 @@ class _BottomButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
       decoration: BoxDecoration(
         color: AppColors.canvas,
         border: Border(
@@ -809,8 +786,8 @@ class _BottomButtons extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(width: 4),
-                    Text('✏️', style: TextStyle(fontSize: 14)),
+                    SizedBox(width: 6),
+                    Icon(Icons.edit_rounded, color: Colors.white, size: 16),
                   ],
                 ),
               ),
@@ -840,8 +817,8 @@ class _BottomButtons extends StatelessWidget {
                         color: AppColors.amberDark,
                       ),
                     ),
-                    SizedBox(width: 4),
-                    Text('🎯', style: TextStyle(fontSize: 14)),
+                    SizedBox(width: 6),
+                    Icon(Icons.track_changes_rounded, color: AppColors.amberDark, size: 16),
                   ],
                 ),
               ),
