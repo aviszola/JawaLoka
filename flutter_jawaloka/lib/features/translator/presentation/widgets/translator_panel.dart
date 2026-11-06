@@ -34,7 +34,7 @@ class TranslatorPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bg = isOutput ? AppColors.amberSoft : AppColors.surface;
-    final border = isOutput ? AppColors.amber.withOpacity(0.35) : AppColors.surface;
+    final border = isOutput ? AppColors.amber.withValues(alpha: 0.35) : AppColors.surface;
 
     return Container(
       decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class TranslatorPanel extends StatelessWidget {
         border: Border.all(color: border, width: 1.5),
         boxShadow: [
           BoxShadow(
-            color: AppColors.ink.withOpacity(0.06),
+            color: AppColors.ink.withValues(alpha: 0.06),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -92,7 +92,7 @@ class TranslatorPanel extends StatelessWidget {
                     ),
                   ),
                 const Spacer(),
-                if (actions != null) ...actions!,
+                ...?actions,
               ],
             ),
           ),
@@ -113,10 +113,10 @@ class _LanguageBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: isOutput ? AppColors.amber.withOpacity(0.25) : const Color(0xFFF5F1EB),
+        color: isOutput ? AppColors.amber.withValues(alpha: 0.25) : const Color(0xFFF5F1EB),
         borderRadius: BorderRadius.circular(100),
         border: Border.all(
-          color: isOutput ? AppColors.amberDark.withOpacity(0.4) : const Color(0xFFE8E1D6),
+          color: isOutput ? AppColors.amberDark.withValues(alpha: 0.4) : const Color(0xFFE8E1D6),
           width: 1,
         ),
       ),

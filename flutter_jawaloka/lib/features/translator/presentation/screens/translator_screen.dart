@@ -217,7 +217,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                     border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.ink.withOpacity(0.07),
+                        color: AppColors.ink.withValues(alpha: 0.07),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),
@@ -292,7 +292,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           foregroundColor: AppColors.ink,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          disabledBackgroundColor: AppColors.amber.withOpacity(0.55),
+          disabledBackgroundColor: AppColors.amber.withValues(alpha: 0.55),
         ),
         child: _isTranslating
             ? Row(
@@ -303,7 +303,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                     height: 18,
                     child: CircularProgressIndicator(
                       strokeWidth: 2.5,
-                      color: AppColors.ink.withOpacity(0.7),
+                      color: AppColors.ink.withValues(alpha: 0.7),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -421,7 +421,7 @@ class _LanguageChip extends StatelessWidget {
           border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
           boxShadow: [
             BoxShadow(
-              color: AppColors.ink.withOpacity(0.06),
+              color: AppColors.ink.withValues(alpha: 0.06),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),

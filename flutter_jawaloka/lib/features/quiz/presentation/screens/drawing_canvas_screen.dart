@@ -1,99 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
-
-// ─────────────────────────────────────────────────────────
-//  DRAWING CANVAS PAINTER
-// ─────────────────────────────────────────────────────────
-
-class DrawingCanvasPainter extends CustomPainter {
-  final List<List<Offset>> strokes;
-  final Color strokeColor;
-  final double strokeWidth;
-
-  const DrawingCanvasPainter({
-    required this.strokes,
-    this.strokeColor = AppColors.ink,
-    this.strokeWidth = 4.0,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // ── Dotted grid background ──────────────────────────
-    final dotPaint = Paint()
-      ..color = AppColors.inkMuted.withOpacity(0.25)
-      ..style = PaintingStyle.fill;
-
-    const double gridSpacing = 24.0;
-    const double dotRadius = 1.5;
-
-    for (double x = gridSpacing; x < size.width; x += gridSpacing) {
-      for (double y = gridSpacing; y < size.height; y += gridSpacing) {
-        canvas.drawCircle(Offset(x, y), dotRadius, dotPaint);
-      }
-    }
-
-    // ── Ghost reference aksara ──────────────────────────
-    final ghostStyle = TextStyle(
-      fontSize: 100,
-      color: AppColors.amber.withOpacity(0.15),
-      fontFamily: 'NotoSansJavanese',
-    );
-    final ghostSpan = TextSpan(text: 'ꦲ', style: ghostStyle);
-    final ghostPainter = TextPainter(
-      text: ghostSpan,
-      textDirection: TextDirection.ltr,
-    )..layout();
-    ghostPainter.paint(
-      canvas,
-      Offset(
-        (size.width - ghostPainter.width) / 2,
-        (size.height - ghostPainter.height) / 2,
-      ),
-    );
-
-    // ── User strokes ────────────────────────────────────
-    final strokePaint = Paint()
-      ..color = strokeColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-
-    for (final stroke in strokes) {
-      if (stroke.isEmpty) continue;
-      if (stroke.length == 1) {
-        // Single tap → draw a dot
-        canvas.drawCircle(stroke.first, strokeWidth / 2, Paint()..color = strokeColor);
-        continue;
-      }
-
-      final path = Path()..moveTo(stroke.first.dx, stroke.first.dy);
-      for (int i = 1; i < stroke.length; i++) {
-        if (i < stroke.length - 1) {
-          // Smooth midpoint curves
-          final mid = Offset(
-            (stroke[i].dx + stroke[i + 1].dx) / 2,
-            (stroke[i].dy + stroke[i + 1].dy) / 2,
-          );
-          path.quadraticBezierTo(
-            stroke[i].dx, stroke[i].dy,
-            mid.dx, mid.dy,
-          );
-        } else {
-          path.lineTo(stroke[i].dx, stroke[i].dy);
-        }
-      }
-      canvas.drawPath(path, strokePaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(DrawingCanvasPainter old) =>
-      old.strokes != strokes ||
-      old.strokeColor != strokeColor ||
-      old.strokeWidth != strokeWidth;
-}
+import '../widgets/drawing_canvas_painter.dart';
 
 // ─────────────────────────────────────────────────────────
 //  STROKE WIDTH OPTION
@@ -110,17 +18,6 @@ extension _StrokeSizeExt on _StrokeSize {
         return 4.5;
       case _StrokeSize.thick:
         return 7.0;
-    }
-  }
-
-  String get label {
-    switch (this) {
-      case _StrokeSize.thin:
-        return 'T';
-      case _StrokeSize.medium:
-        return 'M';
-      case _StrokeSize.thick:
-        return 'B';
     }
   }
 
@@ -284,7 +181,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: 0.06),
             blurRadius: 12,
             offset: const Offset(0, 3),
           ),
@@ -342,7 +239,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.07),
+            color: Colors.black.withValues(alpha: 0.07),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -361,10 +258,11 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 child: AnimatedBuilder(
                   animation: const AlwaysStoppedAnimation(0),
                   // triggers rebuild on setState
-                  builder: (_, __) => CustomPaint(
+                  builder: (context, _) => CustomPaint(
                     painter: DrawingCanvasPainter(
                       strokes: _allStrokes,
                       strokeWidth: _selectedSize.width,
+                      targetAksara: widget.aksaraChar,
                     ),
                     child: const SizedBox.expand(),
                   ),
@@ -379,7 +277,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: AppColors.canvas.withOpacity(0.85),
+                  color: AppColors.canvas.withValues(alpha: 0.85),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(

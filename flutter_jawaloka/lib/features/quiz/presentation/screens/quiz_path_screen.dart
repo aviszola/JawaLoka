@@ -1,10 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_jawaloka/core/theme/app_colors.dart';
-import 'package:flutter_jawaloka/core/router/app_router.dart';
-import 'package:flutter_jawaloka/features/quiz/presentation/widgets/quiz_path_painter.dart';
-import 'package:flutter_jawaloka/features/quiz/presentation/widgets/quiz_bottom_sheet.dart';
-import 'package:flutter_jawaloka/core/mock/mock_user_stats.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/router/app_router.dart';
+import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
+import '../widgets/quiz_path_painter.dart';
+import '../widgets/quiz_bottom_sheet.dart';
+import '../../../../core/mock/mock_user_stats.dart';
 
 /// Duolingo-style quiz path map with Javanese aesthetic.
 class QuizPathScreen extends StatefulWidget {
@@ -368,22 +369,52 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           decoration: BoxDecoration(
             color: AppColors.amber,
             shape: BoxShape.circle,
+            border: Border.all(color: AppColors.amberDark, width: 2.5),
             boxShadow: [
               BoxShadow(
-                color: AppColors.amber.withValues(alpha: 0.4),
+                color: AppColors.amberDark.withValues(alpha: 0.4),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
           alignment: Alignment.center,
-          child: Icon(
-            node.isMilestone
-                ? Icons.military_tech_rounded
-                : Icons.check_rounded,
-            size: node.isMilestone ? 36 : 32,
-            color: Colors.white,
-          ),
+          child: node.isMilestone
+              ? const WayangGununganWidget(
+                  width: 40,
+                  height: 48,
+                  style: GununganStyle.royal,
+                )
+              : Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Text(
+                      node.glyph,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: AppColors.ink,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'NotoSansJavanese',
+                      ),
+                    ),
+                    Positioned(
+                      right: 2,
+                      bottom: 2,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          color: AppColors.success,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.check_rounded,
+                          size: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
         );
         break;
 
@@ -398,13 +429,13 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                 Transform.scale(
                   scale: _pulseAnim.value,
                   child: Container(
-                    width: 84,
-                    height: 84,
+                    width: 86,
+                    height: 86,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.amber.withValues(alpha: 0.35),
-                        width: 3,
+                        color: AppColors.amber.withValues(alpha: 0.45),
+                        width: 3.5,
                       ),
                     ),
                   ),
@@ -416,10 +447,10 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                   decoration: BoxDecoration(
                     color: const Color(0xFFFDF9F3),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.amber, width: 3),
+                    border: Border.all(color: AppColors.amberDark, width: 3),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.amber.withValues(alpha: 0.3),
+                        color: AppColors.amberDark.withValues(alpha: 0.35),
                         blurRadius: 16,
                         spreadRadius: 2,
                       ),
@@ -427,15 +458,16 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                   ),
                   alignment: Alignment.center,
                   child: node.isMilestone
-                      ? const Icon(
-                          Icons.military_tech_rounded,
-                          size: 36,
-                          color: AppColors.amberDark,
+                      ? const WayangGununganWidget(
+                          width: 38,
+                          height: 46,
+                          style: GununganStyle.royal,
                         )
                       : Text(
                           node.glyph,
                           style: const TextStyle(
                             fontSize: 32,
+                            fontWeight: FontWeight.bold,
                             color: AppColors.amberDark,
                             fontFamily: 'NotoSansJavanese',
                           ),
@@ -457,18 +489,25 @@ class _QuizPathScreenState extends State<QuizPathScreen>
             border: Border.all(color: const Color(0xFFD4CAB8), width: 2),
           ),
           alignment: Alignment.center,
-          child: Icon(
-            node.isMilestone
-                ? Icons.military_tech_rounded
-                : Icons.lock_rounded,
-            size: 28,
-            color: const Color(0xFFADA49A),
-          ),
+          child: node.isMilestone
+              ? const Opacity(
+                  opacity: 0.4,
+                  child: WayangGununganWidget(
+                    width: 34,
+                    height: 42,
+                    style: GununganStyle.watermark,
+                  ),
+                )
+              : const Icon(
+                  Icons.lock_rounded,
+                  size: 26,
+                  color: Color(0xFFADA49A),
+                ),
         );
         break;
     }
 
-    return SizedBox(width: 84, height: 84, child: Center(child: circle));
+    return SizedBox(width: 86, height: 86, child: Center(child: circle));
   }
 
   Widget _buildNodeLabel(_PathNodeData node) {

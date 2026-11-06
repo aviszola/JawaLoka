@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../widgets/auth_banner.dart';
-import '../widgets/custom_text_field.dart';
 import '../widgets/primary_button.dart';
 
 /// JawaLoka Language Selection Screen.
@@ -98,11 +96,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
         child: AnimatedBuilder(
           animation: _entranceController,
           builder: (context, _) {
-            final slideIn = CurvedAnimation(
-              parent: _entranceController,
-              curve: const Interval(0.0, 0.8, curve: Curves.easeOutCubic),
-            ).value;
-
             return Column(
               children: [
                 // Status bar spacer

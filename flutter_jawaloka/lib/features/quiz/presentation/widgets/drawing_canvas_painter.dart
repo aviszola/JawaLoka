@@ -1,170 +1,251 @@
-import 'dart:math';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 
-/// Holds a single drawn stroke as a list of points.
-class DrawnStroke {
-  final List<Offset> points;
-  final Color color;
-  final double strokeWidth;
-
-  const DrawnStroke({
-    required this.points,
-    required this.color,
-    required this.strokeWidth,
-  });
-}
-
-/// CustomPainter that renders all drawn strokes and an optional reference ghost.
+/// Calligraphic Drawing Canvas Painter for JawaLoka.
+///
+/// Features:
+/// 1. Traditional Javanese Manuscript Paper Background (Kertas Daluang):
+///    - Warm cream canvas background
+///    - Authentic writing guidelines (garis wates: dhuwur, tengah, ngisor)
+///    - Soft subtle grid dots
+/// 2. Calligraphic Ink Engine:
+///    - Variable thickness based on stroke direction & velocity
+///    - Chiseled nib angle (45-degree angle characteristic of Javanese bamboo kalam)
+///    - Fluid bezier curve smoothing
+/// 3. Calligraphic Ghost Guide of target Aksara
 class DrawingCanvasPainter extends CustomPainter {
-  final List<DrawnStroke> strokes;
-  final DrawnStroke? currentStroke;
-  final String referenceCharacter;
-  final bool showReference;
-  final double referenceOpacity;
+  final List<List<Offset>> strokes;
+  final List<Offset>? currentStroke;
+  final Color strokeColor;
+  final double strokeWidth;
+  final String targetAksara;
   final bool showGrid;
+  final bool showGuideLines;
+  final double ghostOpacity;
 
   const DrawingCanvasPainter({
     required this.strokes,
     this.currentStroke,
-    this.referenceCharacter = '',
-    this.showReference = true,
-    this.referenceOpacity = 0.18,
+    this.strokeColor = AppColors.ink,
+    this.strokeWidth = 5.0,
+    this.targetAksara = 'ꦲ',
     this.showGrid = true,
+    this.showGuideLines = true,
+    this.ghostOpacity = 0.16,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    // --- Dotted grid background ---
+    if (size.width <= 0 || size.height <= 0) return;
+
+    // 1. Grid & Traditional Guidelines (Garis Wates Nulis)
     if (showGrid) {
-      _drawGrid(canvas, size);
+      _drawManuscriptGrid(canvas, size);
+    }
+    if (showGuideLines) {
+      _drawGuideLines(canvas, size);
     }
 
-    // --- Ratio hint lines (thirds) ---
-    _drawHintLines(canvas, size);
-
-    // --- Reference ghost character ---
-    if (showReference && referenceCharacter.isNotEmpty) {
-      _drawReferenceGhost(canvas, size);
+    // 2. Ghost Target Aksara (Calligraphic Reference)
+    if (targetAksara.isNotEmpty && ghostOpacity > 0.01) {
+      _drawGhostReference(canvas, size);
     }
 
-    // --- Committed strokes ---
+    // 3. User Committed Strokes (Calligraphic Ink Brush)
     for (final stroke in strokes) {
-      _drawStroke(canvas, stroke);
+      _drawCalligraphicStroke(canvas, stroke, strokeColor, strokeWidth);
     }
 
-    // --- Current in-progress stroke ---
-    if (currentStroke != null) {
-      _drawStroke(canvas, currentStroke!);
+    // 4. Current In-progress Stroke
+    if (currentStroke != null && currentStroke!.isNotEmpty) {
+      _drawCalligraphicStroke(canvas, currentStroke!, strokeColor, strokeWidth);
     }
   }
 
-  void _drawGrid(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFFCFCABE)
-      ..strokeWidth = 1;
+  // ─── Manuscript Grid Dots ─────────────────────────────────────────────────
+  void _drawManuscriptGrid(Canvas canvas, Size size) {
+    final dotPaint = Paint()
+      ..color = AppColors.inkMuted.withValues(alpha: 0.15)
+      ..style = PaintingStyle.fill;
 
-    const spacing = 20.0;
-    const dotRadius = 1.2;
+    const double spacing = 24.0;
+    const double radius = 1.0;
 
-    double x = spacing;
-    while (x < size.width) {
-      double y = spacing;
-      while (y < size.height) {
-        canvas.drawCircle(Offset(x, y), dotRadius, paint);
-        y += spacing;
+    for (double x = spacing; x < size.width; x += spacing) {
+      for (double y = spacing; y < size.height; y += spacing) {
+        canvas.drawCircle(Offset(x, y), radius, dotPaint);
       }
-      x += spacing;
     }
   }
 
-  void _drawHintLines(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFFF5A31A).withOpacity(0.15)
-      ..strokeWidth = 1
+  // ─── Javanese Calligraphy Guide Lines (Garis Wates) ───────────────────────
+  void _drawGuideLines(Canvas canvas, Size size) {
+    final guidePaint = Paint()
+      ..color = AppColors.amberDark.withValues(alpha: 0.20)
+      ..strokeWidth = 1.0
       ..style = PaintingStyle.stroke;
 
-    // Horizontal thirds
+    final dashPaint = Paint()
+      ..color = AppColors.amberDark.withValues(alpha: 0.12)
+      ..strokeWidth = 1.0
+      ..style = PaintingStyle.stroke;
+
+    // Top ascender line (garis dhuwur)
     canvas.drawLine(
-      Offset(0, size.height / 3),
-      Offset(size.width, size.height / 3),
-      paint,
-    );
-    canvas.drawLine(
-      Offset(0, size.height * 2 / 3),
-      Offset(size.width, size.height * 2 / 3),
-      paint,
+      Offset(size.width * 0.1, size.height * 0.25),
+      Offset(size.width * 0.9, size.height * 0.25),
+      dashPaint,
     );
 
-    // Vertical center
+    // Baseline (garis ngisor / dhasar)
     canvas.drawLine(
-      Offset(size.width / 2, 0),
-      Offset(size.width / 2, size.height),
-      paint,
+      Offset(size.width * 0.08, size.height * 0.75),
+      Offset(size.width * 0.92, size.height * 0.75),
+      guidePaint,
+    );
+
+    // Center median line (garis tengah)
+    canvas.drawLine(
+      Offset(size.width * 0.1, size.height * 0.50),
+      Offset(size.width * 0.9, size.height * 0.50),
+      dashPaint,
+    );
+
+    // Vertical alignment guide
+    canvas.drawLine(
+      Offset(size.width * 0.50, size.height * 0.18),
+      Offset(size.width * 0.50, size.height * 0.82),
+      dashPaint,
     );
   }
 
-  void _drawReferenceGhost(Canvas canvas, Size size) {
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: referenceCharacter,
-        style: TextStyle(
-          fontSize: size.height * 0.6,
-          color: const Color(0xFFF5A31A).withOpacity(referenceOpacity),
-          fontFamily: 'NotoSansJavanese',
-        ),
-      ),
-      textDirection: TextDirection.ltr,
+  // ─── Ghost Reference Aksara ───────────────────────────────────────────────
+  void _drawGhostReference(Canvas canvas, Size size) {
+    final ghostSize = math.min(size.width, size.height) * 0.65;
+    final left = (size.width - ghostSize) / 2;
+    final top = (size.height - ghostSize) / 2;
+
+    canvas.save();
+    canvas.translate(left, top);
+
+    final ghostPainter = JavaneseCalligraphyPainter(
+      aksara: targetAksara,
+      inkColor: AppColors.amber.withValues(alpha: ghostOpacity),
+      strokeThickness: 5.5,
+      showInkPools: false,
     );
-    textPainter.layout(maxWidth: size.width);
-    final offset = Offset(
-      (size.width - textPainter.width) / 2,
-      (size.height - textPainter.height) / 2,
-    );
-    textPainter.paint(canvas, offset);
+    ghostPainter.paint(canvas, Size(ghostSize, ghostSize));
+
+    canvas.restore();
   }
 
-  void _drawStroke(Canvas canvas, DrawnStroke stroke) {
-    if (stroke.points.length < 2) {
-      if (stroke.points.length == 1) {
-        canvas.drawCircle(
-          stroke.points.first,
-          stroke.strokeWidth / 2,
-          Paint()..color = stroke.color,
-        );
-      }
+  // ─── Calligraphic Ink Engine (Kalam Aksara) ───────────────────────────────
+  void _drawCalligraphicStroke(
+      Canvas canvas, List<Offset> points, Color color, double baseWidth) {
+    if (points.isEmpty) return;
+
+    if (points.length == 1) {
+      // Tap dot with organic ink droplet shape
+      canvas.drawCircle(
+        points.first,
+        baseWidth * 0.8,
+        Paint()..color = color,
+      );
       return;
     }
 
-    final paint = Paint()
-      ..color = stroke.color
-      ..strokeWidth = stroke.strokeWidth
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round
-      ..style = PaintingStyle.stroke;
+    final inkPaint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
 
-    final path = Path()..moveTo(stroke.points.first.dx, stroke.points.first.dy);
+    // Build calligraphic ribbon polygon using 45-degree chisel nib offset
+    final angle = math.pi / 4; // 45 degrees
+    final nibDx = math.cos(angle);
+    final nibDy = math.sin(angle);
 
-    for (int i = 1; i < stroke.points.length - 1; i++) {
-      final mid = Offset(
-        (stroke.points[i].dx + stroke.points[i + 1].dx) / 2,
-        (stroke.points[i].dy + stroke.points[i + 1].dy) / 2,
-      );
-      path.quadraticBezierTo(
-        stroke.points[i].dx,
-        stroke.points[i].dy,
-        mid.dx,
-        mid.dy,
-      );
+    final List<Offset> leftEdge = [];
+    final List<Offset> rightEdge = [];
+
+    for (int i = 0; i < points.length; i++) {
+      final curr = points[i];
+
+      // Calculate direction vector
+      double dirX = 0;
+      double dirY = 0;
+      if (i < points.length - 1) {
+        dirX += points[i + 1].dx - curr.dx;
+        dirY += points[i + 1].dy - curr.dy;
+      }
+      if (i > 0) {
+        dirX += curr.dx - points[i - 1].dx;
+        dirY += curr.dy - points[i - 1].dy;
+      }
+
+      final dirLen = math.sqrt(dirX * dirX + dirY * dirY);
+      double widthFactor = 1.0;
+
+      if (dirLen > 0.001) {
+        final normDirX = dirX / dirLen;
+        final normDirY = dirY / dirLen;
+
+        // Dot product with nib normal: perpendicular to nib angle gives maximum thickness
+        final dot = (normDirX * -nibDy + normDirY * nibDx).abs();
+        widthFactor = 0.45 + (dot * 0.75); // Range from 0.45x (thin hair) to 1.2x (broad stroke)
+      }
+
+      // Taper at start and end
+      if (i < 3) {
+        widthFactor *= (i + 1) / 3.0;
+      } else if (i > points.length - 4) {
+        widthFactor *= (points.length - i) / 3.0;
+      }
+
+      final halfW = (baseWidth * widthFactor).clamp(1.5, baseWidth * 1.5) / 2;
+      final offX = -nibDy * halfW;
+      final offY = nibDx * halfW;
+
+      leftEdge.add(Offset(curr.dx + offX, curr.dy + offY));
+      rightEdge.add(Offset(curr.dx - offX, curr.dy - offY));
     }
-    path.lineTo(stroke.points.last.dx, stroke.points.last.dy);
-    canvas.drawPath(path, paint);
+
+    // Assemble smooth closed polygon path
+    final ribbonPath = Path()..moveTo(leftEdge.first.dx, leftEdge.first.dy);
+
+    for (int i = 0; i < leftEdge.length - 1; i++) {
+      final p0 = leftEdge[i];
+      final p1 = leftEdge[i + 1];
+      final mid = Offset((p0.dx + p1.dx) / 2, (p0.dy + p1.dy) / 2);
+      ribbonPath.quadraticBezierTo(p0.dx, p0.dy, mid.dx, mid.dy);
+    }
+    ribbonPath.lineTo(leftEdge.last.dx, leftEdge.last.dy);
+
+    // Connect to right edge in reverse
+    ribbonPath.lineTo(rightEdge.last.dx, rightEdge.last.dy);
+    for (int i = rightEdge.length - 1; i > 0; i--) {
+      final p0 = rightEdge[i];
+      final p1 = rightEdge[i - 1];
+      final mid = Offset((p0.dx + p1.dx) / 2, (p0.dy + p1.dy) / 2);
+      ribbonPath.quadraticBezierTo(p0.dx, p0.dy, mid.dx, mid.dy);
+    }
+    ribbonPath.close();
+
+    canvas.drawPath(ribbonPath, inkPaint);
+
+    // Rounded start and end terminals
+    canvas.drawCircle(points.first, baseWidth * 0.35, inkPaint);
+    canvas.drawCircle(points.last, baseWidth * 0.35, inkPaint);
   }
 
   @override
-  bool shouldRepaint(DrawingCanvasPainter oldDelegate) {
+  bool shouldRepaint(covariant DrawingCanvasPainter oldDelegate) {
     return oldDelegate.strokes != strokes ||
         oldDelegate.currentStroke != currentStroke ||
-        oldDelegate.showReference != showReference ||
-        oldDelegate.referenceOpacity != referenceOpacity;
+        oldDelegate.strokeColor != strokeColor ||
+        oldDelegate.strokeWidth != strokeWidth ||
+        oldDelegate.targetAksara != targetAksara ||
+        oldDelegate.showGrid != showGrid ||
+        oldDelegate.ghostOpacity != ghostOpacity;
   }
 }

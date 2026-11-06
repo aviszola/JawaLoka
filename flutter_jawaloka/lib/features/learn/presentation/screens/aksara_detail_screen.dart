@@ -1,7 +1,8 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
+import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 
 /// JawaLoka Aksara Jawa Detail Screen
 /// Shows a full breakdown of an aksara character: pronunciation, example words,
@@ -237,6 +238,16 @@ class _AksaraHeroCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          // Subtle Kawung Batik Watermark on hero card
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(28),
+              child: CustomPaint(
+                painter: BatikKawungPainter(opacity: 0.04),
+              ),
+            ),
+          ),
+
           // Stroke order mini indicators (top-right)
           Positioned(
             top: 16,
@@ -267,14 +278,14 @@ class _AksaraHeroCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Center(
-                    child: Text(
-                      'ꦲ',
-                      style: TextStyle(
-                        fontSize: 72,
-                        color: AppColors.ink,
-                        fontFamilyFallback: const ['Noto Sans Javanese'],
-                        height: 1.0,
+                  child: const Center(
+                    child: CustomPaint(
+                      size: Size(76, 76),
+                      painter: JavaneseCalligraphyPainter(
+                        aksara: 'ꦲ',
+                        inkColor: AppColors.ink,
+                        strokeThickness: 5.5,
+                        showInkPools: true,
                       ),
                     ),
                   ),
@@ -520,7 +531,7 @@ class _SandanganSection extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: _items.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            separatorBuilder: (_, _) => const SizedBox(width: 8),
             itemBuilder: (_, i) => _SandanganChip(data: _items[i]),
           ),
         ),

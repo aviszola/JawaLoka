@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  // ═══════════════════════════════════════════════
-  //   BRAND PRIMARY
-  // ═══════════════════════════════════════════════
   static const Color amber = Color(0xFFFFC247);       // Primary golden amber
   static const Color amberDark = Color(0xFFF5A31A);   // Deep warm amber
   static const Color amberSoft = Color(0xFFFFF1D0);   // Soft warm cream

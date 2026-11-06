@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
+import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 
@@ -418,7 +419,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
       ),
       child: Row(
         children: [
-          // Left: Trophy Icon Circle
+          // Left: Gunungan Royal Emblem Badge
           Container(
             width: 48,
             height: 48,
@@ -427,10 +428,12 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.amber.withValues(alpha: 0.5)),
             ),
-            child: const Icon(
-              Icons.emoji_events_rounded,
-              size: 26,
-              color: AppColors.amberDark,
+            child: const Center(
+              child: WayangGununganWidget(
+                width: 30,
+                height: 38,
+                style: GununganStyle.royal,
+              ),
             ),
           ),
           const SizedBox(width: 14),

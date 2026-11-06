@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
+import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 
 // ─────────────────────────────────────────────────────────
 //  DATA MODEL
@@ -87,7 +89,7 @@ class _ConfettiPainter extends CustomPainter {
       if (opacity <= 0) continue;
 
       final paint = Paint()
-        ..color = p.color.withOpacity(opacity * 0.85)
+        ..color = p.color.withValues(alpha: opacity * 0.85)
         ..style = PaintingStyle.fill;
 
       final cx = x * size.width;
@@ -305,10 +307,17 @@ class _QuizResultScreenState extends State<QuizResultScreen>
             ),
           ),
 
+          // Subtle Kawung Batik Motif
+          Positioned.fill(
+            child: CustomPaint(
+              painter: BatikKawungPainter(opacity: 0.035),
+            ),
+          ),
+
           // Confetti layer
           AnimatedBuilder(
             animation: _confettiController,
-            builder: (_, __) => CustomPaint(
+            builder: (context, _) => CustomPaint(
               painter: _ConfettiPainter(
                 animValue: _confettiController.value,
                 particles: _confettiParticles,
@@ -357,7 +366,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
         borderRadius: BorderRadius.circular(28),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.18),
+            color: Colors.black.withValues(alpha: 0.18),
             blurRadius: 32,
             offset: const Offset(0, 12),
           ),
@@ -366,6 +375,14 @@ class _QuizResultScreenState extends State<QuizResultScreen>
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Gunungan Victory Crest
+          const WayangGununganWidget(
+            width: 54,
+            height: 68,
+            style: GununganStyle.royal,
+          ),
+          const SizedBox(height: 12),
+
           // Title
           const Text(
             'Luar Biasa!',
@@ -433,7 +450,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
       height: 140,
       child: AnimatedBuilder(
         animation: _ringAnim,
-        builder: (_, __) => Stack(
+        builder: (context, _) => Stack(
           alignment: Alignment.center,
           children: [
             CustomPaint(

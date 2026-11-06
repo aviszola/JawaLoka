@@ -57,7 +57,7 @@ class QuizPathPainter extends CustomPainter {
     final paint = Paint()
       ..color = isLocked
           ? const Color(0xFFD4CAB8)
-          : AppColors.amberSoft.withOpacity(0.6)
+          : AppColors.amberSoft.withValues(alpha: 0.6)
       ..strokeWidth = 6
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

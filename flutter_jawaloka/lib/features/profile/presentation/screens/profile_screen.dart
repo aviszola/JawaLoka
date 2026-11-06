@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
+import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
+import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 import 'level_up_screen.dart';
@@ -594,6 +596,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                   bgColor: AppColors.pastelMint,
                   icon: Icons.emoji_events_rounded,
                   iconColor: AppColors.pastelMintText,
+                  customIconWidget: const WayangGununganWidget(
+                    width: 24,
+                    height: 28,
+                    style: GununganStyle.goldOutline,
+                  ),
                   badgeHighlight: 'Naik Level',
                   onTap: () {
                     HapticFeedback.mediumImpact();
@@ -618,8 +625,17 @@ class _ProfileScreenState extends State<ProfileScreen>
                   statusLabel: 'Tingkat Mudah',
                   isUnlocked: false,
                   bgColor: AppColors.pastelLavender,
-                  icon: Icons.lock_rounded,
+                  icon: Icons.auto_stories_rounded,
                   iconColor: AppColors.inkMuted,
+                  customIconWidget: const CustomPaint(
+                    size: Size(22, 22),
+                    painter: JavaneseCalligraphyPainter(
+                      aksara: 'ꦲ',
+                      inkColor: AppColors.inkMuted,
+                      strokeThickness: 3.5,
+                      showInkPools: false,
+                    ),
+                  ),
                   onTap: () => _showToast('Selesaikan seluruh modul aksara dasar untuk membuka!'),
                 ),
               ],
@@ -638,6 +654,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     required Color bgColor,
     required IconData icon,
     required Color iconColor,
+    Widget? customIconWidget,
     String? badgeHighlight,
     required VoidCallback onTap,
   }) {
@@ -680,7 +697,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
                 ],
               ),
-              child: Icon(icon, size: 20, color: iconColor),
+              child: Center(
+                child: customIconWidget ??
+                    Icon(icon, size: 20, color: iconColor),
+              ),
             ),
 
             Column(

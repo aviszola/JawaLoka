@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
+import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 
 // ─────────────────────────────────────────────────────────
 //  SIMILARITY METER PAINTER
@@ -86,41 +88,7 @@ class _SimilarityMeterPainter extends CustomPainter {
   bool shouldRepaint(_SimilarityMeterPainter old) => old.progress != progress;
 }
 
-// ─────────────────────────────────────────────────────────
-//  DRAWN AKSARA PAINTER  (decorative simplified stroke)
-// ─────────────────────────────────────────────────────────
 
-class _DrawnAksaraPainter extends CustomPainter {
-  const _DrawnAksaraPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.ink
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-
-    final w = size.width;
-    final h = size.height;
-
-    // Simple stylised Ha aksara curves (decorative approximation)
-    final path = Path()
-      ..moveTo(w * 0.25, h * 0.30)
-      ..cubicTo(w * 0.30, h * 0.20, w * 0.50, h * 0.18, w * 0.60, h * 0.28)
-      ..cubicTo(w * 0.70, h * 0.38, w * 0.72, h * 0.55, w * 0.65, h * 0.60)
-      ..cubicTo(w * 0.58, h * 0.65, w * 0.45, h * 0.68, w * 0.40, h * 0.62)
-      ..moveTo(w * 0.35, h * 0.60)
-      ..cubicTo(w * 0.30, h * 0.72, w * 0.28, h * 0.80, w * 0.35, h * 0.85)
-      ..cubicTo(w * 0.42, h * 0.90, w * 0.60, h * 0.88, w * 0.65, h * 0.78);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(_DrawnAksaraPainter _) => false;
-}
 
 // ─────────────────────────────────────────────────────────
 //  SCREEN
@@ -233,7 +201,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   Widget _buildCelebrationCard() {
     final isPassed = widget.similarity >= 0.85;
     return Container(
-      padding: const EdgeInsets.all(24),
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: isPassed
@@ -251,12 +219,33 @@ class _DailyResultScreenState extends State<DailyResultScreen>
           ),
         ],
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
         children: [
-          Expanded(child: _buildCelebrationText(isPassed)),
-          const SizedBox(width: 16),
-          _buildSimilarityMeter(),
+          // Gunungan watermark emblem on the right edge
+          Positioned(
+            right: -15,
+            top: -10,
+            bottom: -10,
+            child: Opacity(
+              opacity: 0.12,
+              child: const WayangGununganWidget(
+                width: 140,
+                height: 180,
+                style: GununganStyle.royal,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(child: _buildCelebrationText(isPassed)),
+                const SizedBox(width: 16),
+                _buildSimilarityMeter(),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -293,7 +282,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   Widget _buildSimilarityMeter() {
     return AnimatedBuilder(
       animation: _meterAnim,
-      builder: (_, __) => SizedBox(
+      builder: (context, _) => SizedBox(
         width: 90,
         height: 90,
         child: CustomPaint(
@@ -487,14 +476,20 @@ class _DrawingPanel extends StatelessWidget {
             child: isDrawn
                 ? const CustomPaint(
                     size: Size(80, 80),
-                    painter: _DrawnAksaraPainter(),
+                    painter: JavaneseCalligraphyPainter(
+                      aksara: 'ꦲ',
+                      inkColor: AppColors.ink,
+                      strokeThickness: 5.5,
+                      showInkPools: true,
+                    ),
                   )
-                : const Text(
-                    'ꦲ',
-                    style: TextStyle(
-                      fontSize: 48,
-                      color: AppColors.ink,
-                      fontWeight: FontWeight.bold,
+                : const CustomPaint(
+                    size: Size(80, 80),
+                    painter: JavaneseCalligraphyPainter(
+                      aksara: 'ꦲ',
+                      inkColor: AppColors.amberDark,
+                      strokeThickness: 4.5,
+                      showInkPools: false,
                     ),
                   ),
           ),

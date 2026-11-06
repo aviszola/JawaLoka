@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 
 /// Hero Quest Card with single dark pill button "Mulai Menggambar".
 class HomeHeroQuestCard extends StatelessWidget {
@@ -81,14 +82,22 @@ class HomeHeroQuestCard extends StatelessWidget {
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: AppColors.border),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.amberDark.withValues(alpha: 0.15),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
                 ),
                 child: const Center(
-                  child: Text(
-                    'ꦲ',
-                    style: TextStyle(
-                      fontSize: 48,
-                      color: AppColors.ink,
-                      height: 1.1,
+                  child: CustomPaint(
+                    size: Size(52, 52),
+                    painter: JavaneseCalligraphyPainter(
+                      aksara: 'ꦲ',
+                      inkColor: AppColors.ink,
+                      strokeThickness: 5.0,
+                      showInkPools: true,
                     ),
                   ),
                 ),

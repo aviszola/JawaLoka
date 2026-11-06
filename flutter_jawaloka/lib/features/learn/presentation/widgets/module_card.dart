@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 import 'animated_progress_ring.dart';
 
 /// Data model for a learning module card.
@@ -109,12 +110,12 @@ class _ModuleCardState extends State<ModuleCard>
                     ),
                     child: Center(
                       child: d.iconGlyph.isNotEmpty
-                          ? Text(
-                              d.iconGlyph,
-                              style: TextStyle(
-                                fontSize: 26,
-                                color: d.iconTextColor,
-                                fontWeight: FontWeight.w700,
+                          ? CustomPaint(
+                              size: const Size(32, 32),
+                              painter: JavaneseCalligraphyPainter(
+                                aksara: d.iconGlyph,
+                                inkColor: d.iconTextColor,
+                                strokeThickness: 4.5,
                               ),
                             )
                           : Icon(d.iconData, size: 26, color: d.iconTextColor),
