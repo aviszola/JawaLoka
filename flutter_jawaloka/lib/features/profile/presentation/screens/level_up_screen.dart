@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
-import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 
@@ -85,9 +84,10 @@ class _LevelUpScreenState extends State<LevelUpScreen>
       duration: const Duration(milliseconds: 2000),
     )..repeat(reverse: true);
 
-    _haloScale = Tween<double>(begin: 0.95, end: 1.12).animate(
-      CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut),
-    );
+    _haloScale = Tween<double>(
+      begin: 0.95,
+      end: 1.12,
+    ).animate(CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut));
 
     // 3. Floating Confetti animation
     _confettiCtrl = AnimationController(
@@ -110,15 +110,17 @@ class _LevelUpScreenState extends State<LevelUpScreen>
     ];
 
     for (int i = 0; i < 24; i++) {
-      _confetti.add(_ConfettiItem(
-        x: rng.nextDouble(),
-        yStart: rng.nextDouble(),
-        speed: 0.25 + rng.nextDouble() * 0.45,
-        size: 5.0 + rng.nextDouble() * 5.0,
-        color: colors[rng.nextInt(colors.length)],
-        isCircle: rng.nextBool(),
-        rotationSpeed: (rng.nextDouble() - 0.5) * 4,
-      ));
+      _confetti.add(
+        _ConfettiItem(
+          x: rng.nextDouble(),
+          yStart: rng.nextDouble(),
+          speed: 0.25 + rng.nextDouble() * 0.45,
+          size: 5.0 + rng.nextDouble() * 5.0,
+          color: colors[rng.nextInt(colors.length)],
+          isCircle: rng.nextBool(),
+          rotationSpeed: (rng.nextDouble() - 0.5) * 4,
+        ),
+      );
     }
   }
 
@@ -148,9 +150,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
         children: [
           // 1. Subtle Kawung Background Pattern
           Positioned.fill(
-            child: CustomPaint(
-              painter: BatikKawungPainter(opacity: 0.035),
-            ),
+            child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
           ),
 
           // 2. Floating Celebration Confetti
@@ -324,7 +324,10 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               Positioned(
                 bottom: -14,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
@@ -419,7 +422,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
       ),
       child: Row(
         children: [
-          // Left: Gunungan Royal Emblem Badge
+          // Left: Trophy Icon Circle
           Container(
             width: 48,
             height: 48,
@@ -428,12 +431,10 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.amber.withValues(alpha: 0.5)),
             ),
-            child: const Center(
-              child: WayangGununganWidget(
-                width: 30,
-                height: 38,
-                style: GununganStyle.royal,
-              ),
+            child: const Icon(
+              Icons.emoji_events_rounded,
+              size: 26,
+              color: AppColors.amberDark,
             ),
           ),
           const SizedBox(width: 14),
@@ -517,10 +518,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               children: [
                 Text(
                   'Pakai Blangkon',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                 ),
                 SizedBox(width: 8),
                 Icon(Icons.arrow_forward_rounded, size: 20),
@@ -594,7 +592,11 @@ class _CelebrationConfettiPainter extends CustomPainter {
         canvas.translate(x, y);
         canvas.rotate(progress * p.rotationSpeed * math.pi);
         canvas.drawRect(
-          Rect.fromCenter(center: Offset.zero, width: p.size, height: p.size * 0.7),
+          Rect.fromCenter(
+            center: Offset.zero,
+            width: p.size,
+            height: p.size * 0.7,
+          ),
           paint,
         );
         canvas.restore();
@@ -607,4 +609,3 @@ class _CelebrationConfettiPainter extends CustomPainter {
     return oldDelegate.progress != progress;
   }
 }
-

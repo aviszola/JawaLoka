@@ -346,35 +346,49 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                       ),
                       const SizedBox(width: 6),
-                      GestureDetector(
-                        onTap: _saveName,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                          decoration: BoxDecoration(
-                            color: AppColors.ink,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: const Text(
-                            'Simpan',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                      Semantics(
+                        label: 'Simpan nama',
+                        button: true,
+                        child: GestureDetector(
+                          onTap: _saveName,
+                          behavior: HitTestBehavior.opaque,
+                          child: Container(
+                            constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: AppColors.ink,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Simpan',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 4),
-                      GestureDetector(
-                        onTap: _cancelEditName,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                          child: const Text(
-                            'Batal',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.ink,
+                      Semantics(
+                        label: 'Batal edit nama',
+                        button: true,
+                        child: GestureDetector(
+                          onTap: _cancelEditName,
+                          behavior: HitTestBehavior.opaque,
+                          child: Container(
+                            constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Batal',
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.ink,
+                              ),
                             ),
                           ),
                         ),

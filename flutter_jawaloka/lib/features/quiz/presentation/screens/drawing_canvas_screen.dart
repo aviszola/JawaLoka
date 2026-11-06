@@ -232,19 +232,21 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
   // ── Canvas Card ────────────────────────────────────────
 
   Widget _buildCanvasCard() {
-    return Container(
-      height: 300,
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.07),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
+    return AspectRatio(
+      aspectRatio: 1.15,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: AppColors.border),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 16,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Stack(
@@ -293,8 +295,9 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   // ── Controls Row ───────────────────────────────────────
 

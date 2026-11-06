@@ -1,73 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
-
-// ─── Avatar CustomPainter ─────────────────────────────────────────────────────
-
-class _AvatarPainter extends CustomPainter {
-  const _AvatarPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final cx = size.width / 2;
-    final cy = size.height / 2;
-    const r = 30.0; // 60px circle → 30 radius
-
-    // ── Face circle (ink background) ──────────────────────────────────────────
-    final facePaint = Paint()..color = AppColors.ink;
-    canvas.drawCircle(Offset(cx, cy), r, facePaint);
-
-    // ── Eyes (white dots) ─────────────────────────────────────────────────────
-    final eyePaint = Paint()..color = Colors.white;
-    canvas.drawCircle(Offset(cx - 9, cy - 4), 3.5, eyePaint);
-    canvas.drawCircle(Offset(cx + 9, cy - 4), 3.5, eyePaint);
-
-    // ── Smile curve ───────────────────────────────────────────────────────────
-    final smilePaint = Paint()
-      ..color = Colors.white
-      ..strokeWidth = 2.5
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-    final smilePath = Path();
-    smilePath.moveTo(cx - 9, cy + 7);
-    smilePath.quadraticBezierTo(cx, cy + 15, cx + 9, cy + 7);
-    canvas.drawPath(smilePath, smilePaint);
-
-    // ── Blangkon hat ──────────────────────────────────────────────────────────
-    final hatPaint = Paint()..color = AppColors.amber;
-    final brimPath = Path();
-    brimPath.moveTo(cx - r, cy - r + 2);
-    brimPath.lineTo(cx + r, cy - r + 2);
-    brimPath.lineTo(cx + r * 0.65, cy - r - 10);
-    brimPath.lineTo(cx - r * 0.65, cy - r - 10);
-    brimPath.close();
-    canvas.drawPath(brimPath, hatPaint);
-
-    final crownPaint = Paint()..color = AppColors.amberDark;
-    final crownPath = Path();
-    crownPath.moveTo(cx - r * 0.65, cy - r - 10);
-    crownPath.lineTo(cx + r * 0.65, cy - r - 10);
-    crownPath.lineTo(cx + r * 0.4, cy - r - 20);
-    crownPath.lineTo(cx - r * 0.4, cy - r - 20);
-    crownPath.close();
-    canvas.drawPath(crownPath, crownPaint);
-
-    final knobPaint = Paint()..color = AppColors.kawungStroke;
-    canvas.drawCircle(Offset(cx, cy - r - 20), 4, knobPaint);
-
-    final bandPaint = Paint()
-      ..color = AppColors.kawungStroke
-      ..strokeWidth = 2;
-    canvas.drawLine(
-      Offset(cx - r, cy - r + 2),
-      Offset(cx + r, cy - r + 2),
-      bandPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
+import '../widgets/blangkon_painter.dart';
+import '../widgets/javanese_avatar_widget.dart';
 
 // ─── Settings Card Container ──────────────────────────────────────────────────
 
@@ -81,7 +16,7 @@ class _SettingsCard extends StatelessWidget {
       elevation: 0,
       color: AppColors.surface,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         side: const BorderSide(color: AppColors.border),
       ),
       child: Column(children: children),
@@ -142,7 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen>
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text(
           'Keluar',
           style: TextStyle(
@@ -183,7 +118,7 @@ class _SettingsScreenState extends State<SettingsScreen>
     showDialog<void>(
       context: context,
       builder: (ctx) => SimpleDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text(
           'Pilih Bahasa',
           style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
@@ -192,22 +127,22 @@ class _SettingsScreenState extends State<SettingsScreen>
           SimpleDialogOption(
             onPressed: () => Navigator.pop(ctx),
             child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 4),
-              child: Text('Basa Jawa', style: TextStyle(fontSize: 15)),
+              padding: EdgeInsets.symmetric(vertical: 6),
+              child: Text('Basa Jawa', style: TextStyle(fontSize: 15, color: AppColors.ink)),
             ),
           ),
           SimpleDialogOption(
             onPressed: () => Navigator.pop(ctx),
             child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 4),
-              child: Text('Bahasa Indonesia', style: TextStyle(fontSize: 15)),
+              padding: EdgeInsets.symmetric(vertical: 6),
+              child: Text('Bahasa Indonesia', style: TextStyle(fontSize: 15, color: AppColors.ink)),
             ),
           ),
           SimpleDialogOption(
             onPressed: () => Navigator.pop(ctx),
             child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 4),
-              child: Text('English', style: TextStyle(fontSize: 15)),
+              padding: EdgeInsets.symmetric(vertical: 6),
+              child: Text('English', style: TextStyle(fontSize: 15, color: AppColors.ink)),
             ),
           ),
         ],
@@ -220,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen>
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text(
           'Kebijakan Privasi',
           style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
@@ -234,7 +169,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             onPressed: () => Navigator.pop(ctx),
             child: const Text(
               'Tutup',
-              style: TextStyle(color: AppColors.ink),
+              style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -242,7 +177,7 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 
-  // ── Header Widget ───────────────────────────────────────────────────────────
+  // ── Header Widget (High Contrast, WCAG AA Compliant) ─────────────────────────
   Widget _buildHeader() {
     return SlideTransition(
       position: _headerSlide,
@@ -250,7 +185,7 @@ class _SettingsScreenState extends State<SettingsScreen>
         height: 160,
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: AppColors.amberGradient,
+          color: AppColors.amber,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(32),
             bottomRight: Radius.circular(32),
@@ -267,23 +202,28 @@ class _SettingsScreenState extends State<SettingsScreen>
                   button: true,
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
+                    behavior: HitTestBehavior.opaque,
                     child: Container(
                       width: 48,
                       height: 48,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.border),
+                      ),
                       alignment: Alignment.center,
-                      child: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                      child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: AppColors.ink),
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
-                // Avatar
-                SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: CustomPaint(painter: const _AvatarPainter()),
+                const SizedBox(width: 14),
+                // Reusable Avatar Component
+                const JavaneseAvatarWidget(
+                  size: 60,
+                  blangkonType: BlangkonType.yogyakarta,
                 ),
                 const SizedBox(width: 16),
-                // Name & level
+                // Name & level (High Contrast Ink on Amber)
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -293,8 +233,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                         '${MockUserStats.userName} Pratama',
                         style: TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.ink,
+                          letterSpacing: -0.3,
                         ),
                       ),
                       SizedBox(height: 4),
@@ -302,7 +243,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                         'Level ${MockUserStats.userLevel}',
                         style: TextStyle(
                           fontSize: 14,
-                          color: AppColors.amberSoft,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.inkSecondary,
                         ),
                       ),
                     ],
@@ -329,8 +271,9 @@ class _SettingsScreenState extends State<SettingsScreen>
             children: [
               // 1. Akun
               ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.person_outline_rounded, color: AppColors.ink),
-                title: const Text('Akun', style: TextStyle(color: AppColors.ink)),
+                title: const Text('Akun', style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
                 trailing: chevron,
                 onTap: () {},
               ),
@@ -338,8 +281,9 @@ class _SettingsScreenState extends State<SettingsScreen>
 
               // 2. Bahasa
               ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.language_rounded, color: AppColors.ink),
-                title: const Text('Bahasa', style: TextStyle(color: AppColors.ink)),
+                title: const Text('Bahasa', style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: const [
@@ -357,8 +301,9 @@ class _SettingsScreenState extends State<SettingsScreen>
 
               // 3. Kebijakan Privasi
               ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.privacy_tip_outlined, color: AppColors.ink),
-                title: const Text('Kebijakan Privasi', style: TextStyle(color: AppColors.ink)),
+                title: const Text('Kebijakan Privasi', style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
                 trailing: chevron,
                 onTap: _showPrivacyPolicyDialog,
               ),
@@ -366,12 +311,13 @@ class _SettingsScreenState extends State<SettingsScreen>
 
               // 4. Keluar
               ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.logout_rounded, color: AppColors.error),
                 title: const Text(
                   'Keluar',
                   style: TextStyle(
                     color: AppColors.error,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 onTap: _showLogoutDialog,

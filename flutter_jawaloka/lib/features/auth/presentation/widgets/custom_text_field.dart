@@ -19,6 +19,8 @@ class CustomTextField extends StatefulWidget {
   final void Function(String)? onSubmitted;
   final bool autofocus;
   final int maxLines;
+  final TextCapitalization textCapitalization;
+  final Iterable<String>? autofillHints;
 
   const CustomTextField({
     super.key,
@@ -37,6 +39,8 @@ class CustomTextField extends StatefulWidget {
     this.onSubmitted,
     this.autofocus = false,
     this.maxLines = 1,
+    this.textCapitalization = TextCapitalization.none,
+    this.autofillHints,
   });
 
   @override
@@ -63,12 +67,10 @@ class _CustomTextFieldState extends State<CustomTextField>
       duration: const Duration(milliseconds: 400),
     );
 
-    _shakeAnimation = Tween<Offset>(
-      begin: Offset.zero,
-      end: const Offset(0.02, 0),
-    ).animate(
-      CurvedAnimation(parent: _shakeController, curve: Curves.elasticIn),
-    );
+    _shakeAnimation =
+        Tween<Offset>(begin: Offset.zero, end: const Offset(0.02, 0)).animate(
+          CurvedAnimation(parent: _shakeController, curve: Curves.elasticIn),
+        );
   }
 
   void _onFocusChange() {
@@ -96,7 +98,8 @@ class _CustomTextFieldState extends State<CustomTextField>
 
   bool get _hasContent => widget.controller.text.isNotEmpty;
   bool get _isFocused => _focusNode.hasFocus;
-  bool get _hasError => widget.errorText != null && widget.errorText!.isNotEmpty;
+  bool get _hasError =>
+      widget.errorText != null && widget.errorText!.isNotEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -118,18 +121,20 @@ class _CustomTextFieldState extends State<CustomTextField>
                       ),
                     ]
                   : _hasError
-                      ? [
-                          BoxShadow(
-                            color: AppColors.error.withValues(alpha: 0.15),
-                            blurRadius: 8,
-                          ),
-                        ]
-                      : [],
+                  ? [
+                      BoxShadow(
+                        color: AppColors.error.withValues(alpha: 0.15),
+                        blurRadius: 8,
+                      ),
+                    ]
+                  : [],
             ),
             child: TextFormField(
               controller: widget.controller,
               focusNode: _focusNode,
               keyboardType: widget.keyboardType,
+              textCapitalization: widget.textCapitalization,
+              autofillHints: widget.autofillHints,
               obscureText: _obscured,
               textInputAction: widget.textInputAction,
               onChanged: (val) {
@@ -147,12 +152,13 @@ class _CustomTextFieldState extends State<CustomTextField>
               decoration: InputDecoration(
                 labelText: widget.label,
                 hintText: widget.hint,
+                floatingLabelBehavior: FloatingLabelBehavior.auto,
                 labelStyle: TextStyle(
                   color: _hasError
                       ? AppColors.error
                       : _isFocused
-                          ? AppColors.ink
-                          : AppColors.inkSecondary,
+                      ? AppColors.ink
+                      : AppColors.inkSecondary,
                   fontSize: 14,
                   fontWeight: _isFocused || _hasContent
                       ? FontWeight.w600
@@ -166,7 +172,9 @@ class _CustomTextFieldState extends State<CustomTextField>
                 prefixIcon: widget.prefixIcon,
                 suffixIcon: widget.showTogglePassword
                     ? Semantics(
-                        label: _obscured ? 'Tampilkan kata sandi' : 'Sembunyikan kata sandi',
+                        label: _obscured
+                            ? 'Tampilkan kata sandi'
+                            : 'Sembunyikan kata sandi',
                         button: true,
                         child: GestureDetector(
                           onTap: () => setState(() => _obscured = !_obscured),
@@ -236,12 +244,14 @@ class _CustomTextFieldState extends State<CustomTextField>
                       color: AppColors.error,
                     ),
                     const SizedBox(width: 4),
-                    Text(
-                      widget.errorText!,
-                      style: const TextStyle(
-                        color: AppColors.error,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Text(
+                        widget.errorText!,
+                        style: const TextStyle(
+                          color: AppColors.error,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
@@ -253,4 +263,3 @@ class _CustomTextFieldState extends State<CustomTextField>
     );
   }
 }
-

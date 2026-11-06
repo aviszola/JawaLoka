@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_colors.dart';
 
-/// Animated 3-dot loading indicator matching Google Stitch design:
-/// Features continuous traveling wave animation with smooth scaling and opacity.
+/// Loading indicator for Splash Screen.
+/// Replaces static multi-dots with a single, subtle active moving dot (6 dp)
+/// on a gentle track. Respects [MediaQuery.disableAnimations] by rendering statically.
 class AnimatedLoadingDots extends StatelessWidget {
   final double animationValue; // 0.0 to 1.0 looped
 
@@ -14,45 +16,38 @@ class AnimatedLoadingDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(3, (index) {
-        // Calculate phase shift for each dot (0, 1, 2)
-        // This produces a fluid traveling wave from left to right.
-        final double phase = (animationValue - (index * 0.28)) % 1.0;
-        final double sinVal = math.sin(phase * math.pi * 2);
+    final bool disableAnimations =
+        MediaQuery.maybeDisableAnimationsOf(context) ?? false;
 
-        // Map sine wave (-1 to 1) to smooth scaling and opacity
-        final double intensity = (sinVal + 1.0) / 2.0; // 0.0 to 1.0
-        final double scale = 0.95 + (intensity * 0.40); // 0.95 to 1.35
-        final double opacity = 0.38 + (intensity * 0.62); // 0.38 to 1.0
+    const double trackWidth = 48.0;
+    const double dotSize = 6.0;
 
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-          child: Transform.scale(
-            scale: scale,
-            child: Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: AppColors.ink.withValues(alpha: opacity),
-                shape: BoxShape.circle,
-                boxShadow: intensity > 0.6
-                    ? [
-                        BoxShadow(
-                          color: AppColors.ink.withValues(alpha: 0.18 * intensity),
-                          blurRadius: 6,
-                          spreadRadius: 1,
-                        ),
-                      ]
-                    : null,
-              ),
+    // Smooth sinusoidal movement across track (0.0 to 1.0 back and forth)
+    final double normalizedPos = disableAnimations
+        ? 0.5
+        : (math.sin(animationValue * math.pi * 2 - (math.pi / 2)) + 1.0) / 2.0;
+
+    return Semantics(
+      label: AppStrings.loadingLabel,
+      child: Container(
+        width: trackWidth,
+        height: dotSize,
+        decoration: BoxDecoration(
+          color: AppColors.ink.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(dotSize / 2),
+        ),
+        child: Align(
+          alignment: Alignment(normalizedPos * 2.0 - 1.0, 0.0),
+          child: Container(
+            width: dotSize,
+            height: dotSize,
+            decoration: BoxDecoration(
+              color: AppColors.ink.withValues(alpha: 0.85),
+              shape: BoxShape.circle,
             ),
           ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }
-

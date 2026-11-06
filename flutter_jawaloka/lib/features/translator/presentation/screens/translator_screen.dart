@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -50,9 +51,10 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       vsync: this,
       duration: const Duration(milliseconds: 420),
     );
-    _swapRotation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _swapCtrl, curve: Curves.easeInOutBack),
-    );
+    _swapRotation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _swapCtrl, curve: Curves.easeInOutBack));
     _inputCtrl.addListener(_onInputChanged);
   }
 
@@ -176,9 +178,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         ),
       ),
       // Kawung texture paint
-      flexibleSpace: CustomPaint(
-        painter: _KawungTexturePainter(),
-      ),
+      flexibleSpace: CustomPaint(painter: _KawungTexturePainter()),
     );
   }
 
@@ -205,7 +205,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               child: AnimatedBuilder(
                 animation: _swapRotation,
                 builder: (context, child) => Transform.rotate(
-                  angle: _swapRotation.value * 3.14159 * 2,
+                  angle: _swapRotation.value * math.pi * 2,
                   child: child,
                 ),
                 child: Container(
@@ -214,7 +214,10 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     shape: BoxShape.circle,
-                    border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
+                    border: Border.all(
+                      color: AppColors.border,
+                      width: 1.5,
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.ink.withValues(alpha: 0.07),
@@ -223,7 +226,11 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                       ),
                     ],
                   ),
-                  child: const Icon(Icons.swap_horiz_rounded, color: AppColors.ink, size: 20),
+                  child: const Icon(
+                    Icons.swap_horiz_rounded,
+                    color: AppColors.ink,
+                    size: 20,
+                  ),
                 ),
               ),
             ),
@@ -264,7 +271,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         controller: _inputCtrl,
         maxLines: 4,
         maxLength: 500,
-        buildCounter: (_, {required currentLength, required isFocused, maxLength}) => null,
+        buildCounter:
+            (_, {required currentLength, required isFocused, maxLength}) =>
+                null,
         style: const TextStyle(
           fontSize: 15,
           color: AppColors.ink,
@@ -291,7 +300,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           backgroundColor: AppColors.amber,
           foregroundColor: AppColors.ink,
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           disabledBackgroundColor: AppColors.amber.withValues(alpha: 0.55),
         ),
         child: _isTranslating
@@ -307,7 +318,10 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Text('Menerjemahkan...', style: TextStyle(fontWeight: FontWeight.w600)),
+                  const Text(
+                    'Menerjemahkan...',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 ],
               )
             : const Text(
@@ -337,10 +351,14 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       child: _isTranslating
           ? const ShimmerPlaceholder(height: 80)
           : Text(
-              _outputText.isEmpty ? 'Hasil terjemahan akan muncul di sini…' : _outputText,
+              _outputText.isEmpty
+                  ? 'Hasil terjemahan akan muncul di sini…'
+                  : _outputText,
               style: TextStyle(
                 fontSize: 15,
-                color: _outputText.isEmpty ? const Color(0xFFB0A898) : AppColors.ink,
+                color: _outputText.isEmpty
+                    ? const Color(0xFFB0A898)
+                    : AppColors.ink,
                 height: 1.6,
               ),
             ),
@@ -370,17 +388,25 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               ),
             ),
             const SizedBox(height: 16),
-            const Text('Pilih Bahasa', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+            const Text(
+              'Pilih Bahasa',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            ),
             const SizedBox(height: 8),
             ..._languages.map((lang) {
               final selectedIndex = isFrom ? _fromIndex : _toIndex;
               final isSelected = _languages.indexOf(lang) == selectedIndex;
               return ListTile(
                 leading: Icon(
-                  isSelected ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
+                  isSelected
+                      ? Icons.check_circle_rounded
+                      : Icons.radio_button_unchecked_rounded,
                   color: isSelected ? AppColors.amber : const Color(0xFFB0A898),
                 ),
-                title: Text(lang.name, style: const TextStyle(fontWeight: FontWeight.w500)),
+                title: Text(
+                  lang.name,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
                 onTap: () {
                   setState(() {
                     if (isFrom) {
@@ -418,7 +444,7 @@ class _LanguageChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(100),
-          border: Border.all(color: const Color(0xFFE8E1D6), width: 1.5),
+          border: Border.all(color: AppColors.border, width: 1.5),
           boxShadow: [
             BoxShadow(
               color: AppColors.ink.withValues(alpha: 0.06),
@@ -442,7 +468,11 @@ class _LanguageChip extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 4),
-            const Icon(Icons.keyboard_arrow_down_rounded, size: 16, color: Color(0xFF6B6257)),
+            const Icon(
+              Icons.keyboard_arrow_down_rounded,
+              size: 16,
+              color: Color(0xFF6B6257),
+            ),
           ],
         ),
       ),
@@ -454,7 +484,11 @@ class _PanelIconButton extends StatelessWidget {
   final IconData icon;
   final String tooltip;
   final VoidCallback? onTap;
-  const _PanelIconButton({required this.icon, required this.tooltip, this.onTap});
+  const _PanelIconButton({
+    required this.icon,
+    required this.tooltip,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -476,7 +510,9 @@ class _PanelIconButton extends StatelessWidget {
                 color: onTap != null ? AppColors.surface : Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: onTap != null ? const Color(0xFFE8E1D6) : Colors.transparent,
+                  color: onTap != null
+                      ? const Color(0xFFE8E1D6)
+                      : Colors.transparent,
                 ),
               ),
               child: Icon(

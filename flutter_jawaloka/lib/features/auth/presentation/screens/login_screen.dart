@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/auth_banner.dart';
@@ -7,7 +8,8 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/primary_button.dart';
 
 /// JawaLoka Login Screen
-/// Mirrors the design language of register_screen.dart with login-specific content.
+/// Implements responsive, keyboard-resilient layout with SliverFillRemaining,
+/// WCAG AA high-contrast typography, and no synthetic chrome elements.
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -46,10 +48,13 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Future<void> _login() async {
+    final emailText = _emailCtrl.text.trim();
+    final passwordText = _passwordCtrl.text;
+
     setState(() {
       _showAuthError = false;
-      _emailError = !_emailCtrl.text.contains('@') ? 'Format email tidak valid' : null;
-      _passwordError = _passwordCtrl.text.isEmpty ? 'Kata sandi tidak boleh kosong' : null;
+      _emailError = !emailText.contains('@') ? AppStrings.emailInvalidError : null;
+      _passwordError = passwordText.isEmpty ? 'Kata sandi tidak boleh kosong' : null;
     });
 
     if (_emailError != null || _passwordError != null) {
@@ -66,8 +71,8 @@ class _LoginScreenState extends State<LoginScreen>
     if (!mounted) return;
     setState(() => _isLoading = false);
 
-    // If email is explicitly salah@jawaloka.id, demonstrate error state from Stitch design
-    if (_emailCtrl.text.trim() == 'salah@jawaloka.id') {
+    // If email is explicitly salah@jawaloka.id, demonstrate error state
+    if (emailText == 'salah@jawaloka.id') {
       setState(() => _showAuthError = true);
       HapticFeedback.heavyImpact();
     } else {
@@ -83,10 +88,12 @@ class _LoginScreenState extends State<LoginScreen>
         child: AnimatedBuilder(
           animation: _entranceCtrl,
           builder: (context, _) {
-            return Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
+            return CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Form(
                       key: _formKey,
@@ -95,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen>
                         children: [
                           const SizedBox(height: 12),
 
-                          // Back button row
+                          // Tombol Kembali (touch target >= 48 dp)
                           Row(
                             children: [
                               _BackButton(onTap: () => Navigator.pop(context)),
@@ -103,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                           const SizedBox(height: 16),
 
-                          // Amber Cultural Banner
+                          // Amber Cultural Banner (tanpa chip pengisi, tinggi 120, radius 28)
                           FadeTransition(
                             opacity: Tween<double>(begin: 0, end: 1).animate(
                               CurvedAnimation(
@@ -113,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen>
                             ),
                             child: SlideTransition(
                               position: Tween<Offset>(
-                                begin: const Offset(0, 0.3),
+                                begin: const Offset(0, 0.2),
                                 end: Offset.zero,
                               ).animate(
                                 CurvedAnimation(
@@ -122,16 +129,16 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                               ),
                               child: const AuthBanner(
-                                badgeLabel: 'Sugeng rawuh kembali',
-                                title: 'Selamat datang kembali',
-                                subtitle: 'Lanjutkan petualangan aksaramu',
+                                title: AppStrings.welcomeBannerTitle,
+                                subtitle: AppStrings.welcomeBannerSubtitle,
                                 glyphWatermark: 'ꦗ',
+                                height: 120,
                               ),
                             ),
                           ),
                           const SizedBox(height: 20),
 
-                          // Header text
+                          // Judul Halaman Masuk
                           FadeTransition(
                             opacity: Tween<double>(begin: 0, end: 1).animate(
                               CurvedAnimation(
@@ -143,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Masuk sekarang',
+                                  AppStrings.loginTitle,
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w800,
@@ -153,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                                 SizedBox(height: 4),
                                 Text(
-                                  'Lanjutkan perjalanan belajar bahasa Jawa',
+                                  AppStrings.loginSubtitle,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: AppColors.inkSecondary,
@@ -165,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                           const SizedBox(height: 20),
 
-                          // Error banner (shown when credentials are wrong)
+                          // Error banner (jika kredensial salah)
                           if (_showAuthError)
                             FadeTransition(
                               opacity: Tween<double>(begin: 0, end: 1).animate(
@@ -198,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     const SizedBox(width: 10),
                                     const Expanded(
                                       child: Text(
-                                        'Email atau kata sandi salah',
+                                        AppStrings.invalidCredentialsError,
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
@@ -206,12 +213,16 @@ class _LoginScreenState extends State<LoginScreen>
                                         ),
                                       ),
                                     ),
-                                    GestureDetector(
-                                      onTap: () => setState(() => _showAuthError = false),
-                                      child: const Icon(
-                                        Icons.close_rounded,
-                                        color: AppColors.error,
-                                        size: 18,
+                                    Semantics(
+                                      label: 'Tutup pesan error',
+                                      button: true,
+                                      child: GestureDetector(
+                                        onTap: () => setState(() => _showAuthError = false),
+                                        child: const Icon(
+                                          Icons.close_rounded,
+                                          color: AppColors.error,
+                                          size: 18,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -240,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen>
                               child: Column(
                                 children: [
                                   CustomTextField(
-                                    label: 'Email',
+                                    label: AppStrings.emailLabel,
                                     controller: _emailCtrl,
                                     keyboardType: TextInputType.emailAddress,
                                     errorText: _emailError,
@@ -270,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                   const SizedBox(height: 14),
                                   CustomTextField(
-                                    label: 'Kata Sandi',
+                                    label: AppStrings.passwordLabel,
                                     controller: _passwordCtrl,
                                     obscureText: true,
                                     showTogglePassword: true,
@@ -292,7 +303,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                   const SizedBox(height: 10),
 
-                                  // Forgot password link
+                                  // Lupa kata sandi
                                   Align(
                                     alignment: Alignment.centerRight,
                                     child: GestureDetector(
@@ -300,7 +311,7 @@ class _LoginScreenState extends State<LoginScreen>
                                         // Navigate to forgot password in production
                                       },
                                       child: const Text(
-                                        'Lupa kata sandi?',
+                                        AppStrings.forgotPassword,
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
@@ -315,108 +326,100 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                             ),
                           ),
-                          const SizedBox(height: 32),
+
+                          const Spacer(),
+                          const SizedBox(height: 24),
+
+                          // Tombol Masuk Utama
+                          FadeTransition(
+                            opacity: Tween<double>(begin: 0, end: 1).animate(
+                              CurvedAnimation(
+                                parent: _entranceCtrl,
+                                curve: const Interval(0.5, 1.0),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                PrimaryButton(
+                                  label: AppStrings.loginButton,
+                                  onPressed: _isLoading ? null : _login,
+                                  isLoading: _isLoading,
+                                ),
+                                const SizedBox(height: 16),
+
+                                // Divider dengan "Atau masuk dengan"
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColors.border,
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 12),
+                                      child: Text(
+                                        AppStrings.orLoginWith,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: AppColors.inkMuted,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColors.border,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 14),
+
+                                // Google sign-in button
+                                _GoogleSignInButton(
+                                  onTap: () {
+                                    // Google sign-in in production
+                                  },
+                                ),
+                                const SizedBox(height: 18),
+
+                                // Footer: register link (Kontras tinggi, WCAG AA compliant)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      AppStrings.dontHaveAccount,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.inkSecondary,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () => Navigator.pushReplacementNamed(
+                                        context,
+                                        AppRouter.register,
+                                      ),
+                                      child: const Text(
+                                        'Daftar',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w800,
+                                          color: AppColors.ink,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: AppColors.amberDark,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-
-                // Bottom actions
-                FadeTransition(
-                  opacity: Tween<double>(begin: 0, end: 1).animate(
-                    CurvedAnimation(
-                      parent: _entranceCtrl,
-                      curve: const Interval(0.5, 1.0),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
-                    child: Column(
-                      children: [
-                        // Primary login button
-                        PrimaryButton(
-                          label: 'Masuk',
-                          onPressed: _isLoading ? null : _login,
-                          isLoading: _isLoading,
-                        ),
-                        const SizedBox(height: 16),
-
-                        // Divider with "Atau masuk dengan"
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 1,
-                                color: AppColors.border,
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 12),
-                              child: Text(
-                                'Atau masuk dengan',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: AppColors.inkMuted,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 1,
-                                color: AppColors.border,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 14),
-
-                        // Google sign-in button
-                        _GoogleSignInButton(
-                          onTap: () {
-                            // Google sign-in in production
-                          },
-                        ),
-                        const SizedBox(height: 16),
-
-                        // Footer: register link
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Belum punya akun? ',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: AppColors.inkSecondary,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pushReplacementNamed(
-                                context,
-                                AppRouter.register,
-                              ),
-                              child: const Text(
-                                'Daftar',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.amber,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          width: 128,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            color: AppColors.ink.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ),
@@ -439,20 +442,33 @@ class _BackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.7),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.border),
-        ),
-        child: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          size: 18,
-          color: AppColors.ink,
+    return Semantics(
+      label: 'Kembali',
+      button: true,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.8),
+            shape: BoxShape.circle,
+            border: Border.all(color: AppColors.border),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.ink.withValues(alpha: 0.04),
+                blurRadius: 4,
+                offset: const Offset(0, 1),
+              ),
+            ],
+          ),
+          alignment: Alignment.center,
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 18,
+            color: AppColors.ink,
+          ),
         ),
       ),
     );
@@ -465,56 +481,61 @@ class _GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: 52,
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.border, width: 1.5),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.ink.withValues(alpha: 0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Google "G" logo using text — avoids external asset dependency
-            Container(
-              width: 24,
-              height: 24,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.border),
+    return Semantics(
+      label: AppStrings.googleLogin,
+      button: true,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: Container(
+          width: double.infinity,
+          height: 52,
+          decoration: BoxDecoration(
+            color: AppColors.surface,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.border, width: 1.5),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.ink.withValues(alpha: 0.04),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
               ),
-              child: const Center(
-                child: Text(
-                  'G',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.accentOrange,
-                    height: 1,
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.amberSoft,
+                  border: Border.all(color: AppColors.amber.withValues(alpha: 0.5)),
+                ),
+                child: const Center(
+                  child: Text(
+                    'G',
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      color: AppColors.ink,
+                      height: 1,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(width: 10),
-            const Text(
-              'Lanjutkan dengan Google',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: AppColors.ink,
+              const SizedBox(width: 10),
+              const Text(
+                AppStrings.googleLogin,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.ink,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -511,82 +511,87 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     final isCorrect = _answered && index == _current.correctIndex;
     final isWrong = _answered && isSelected && !_isCorrect;
 
-    Color bgColor = Colors.white;
-    Color borderColor = const Color(0xFFE8E1D6);
+    Color bgColor = AppColors.surface;
+    Color borderColor = AppColors.border;
     Color textColor = AppColors.ink;
     Widget? trailingIcon;
 
     if (isCorrect) {
-      bgColor = const Color(0xFFDCEBD2);
-      borderColor = const Color(0xFF3E9B5F);
-      textColor = const Color(0xFF2A6E40);
+      bgColor = AppColors.successLight;
+      borderColor = AppColors.success;
+      textColor = AppColors.successText;
       trailingIcon =
-          const Icon(Icons.check_circle_rounded, color: Color(0xFF3E9B5F));
+          const Icon(Icons.check_circle_rounded, color: AppColors.success);
     } else if (isWrong) {
-      bgColor = const Color(0xFFFFEAEA);
-      borderColor = const Color(0xFFD64545);
-      textColor = const Color(0xFFD64545);
+      bgColor = AppColors.errorLight;
+      borderColor = AppColors.error;
+      textColor = AppColors.error;
       trailingIcon =
-          const Icon(Icons.cancel_rounded, color: Color(0xFFD64545));
+          const Icon(Icons.cancel_rounded, color: AppColors.error);
     } else if (isSelected) {
       bgColor = AppColors.amberSoft;
       borderColor = AppColors.amber;
     }
 
-    Widget button = GestureDetector(
-      key: Key('quiz_option_$index'),
-      behavior: HitTestBehavior.opaque,
-      onTap: () => _selectOption(index),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        height: 56,
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-              color: borderColor, width: isCorrect || isWrong ? 2 : 1.5),
-          boxShadow: const [
-            BoxShadow(
-                color: Color(0x08000000), blurRadius: 4, offset: Offset(0, 2))
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 28,
-              height: 28,
-              margin: const EdgeInsets.only(right: 12),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isSelected
-                    ? AppColors.amberDark.withValues(alpha: 0.15)
-                    : const Color(0xFFF0EAE1),
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                String.fromCharCode(65 + index),
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
+    Widget button = Semantics(
+      label: 'Pilihan ${String.fromCharCode(65 + index)}: ${_current.options[index]}',
+      button: true,
+      selected: isSelected,
+      child: GestureDetector(
+        key: Key('quiz_option_$index'),
+        behavior: HitTestBehavior.opaque,
+        onTap: () => _selectOption(index),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          height: 56,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+                color: borderColor, width: isCorrect || isWrong ? 2 : 1.5),
+            boxShadow: const [
+              BoxShadow(
+                  color: Color(0x08000000), blurRadius: 4, offset: Offset(0, 2))
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 28,
+                height: 28,
+                margin: const EdgeInsets.only(right: 12),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   color: isSelected
-                      ? AppColors.amberDark
-                      : const Color(0xFF7A6E60),
+                      ? AppColors.amberDark.withValues(alpha: 0.15)
+                      : const Color(0xFFF0EAE1),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  String.fromCharCode(65 + index),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: isSelected
+                        ? AppColors.amberDark
+                        : const Color(0xFF7A6E60),
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Text(
-                _current.options[index],
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: textColor,
+              Expanded(
+                child: Text(
+                  _current.options[index],
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: textColor,
+                  ),
                 ),
               ),
-            ),
-            ?trailingIcon,
-          ],
+              ?trailingIcon,
+            ],
+          ),
         ),
       ),
     );

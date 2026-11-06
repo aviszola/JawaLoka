@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 import 'animated_progress_ring.dart';
 
 /// Data model for a learning module card.
@@ -8,14 +7,15 @@ class ModuleCardData {
   final String id;
   final String title;
   final String subtitle;
-  final String iconGlyph;      // Javanese glyph or emoji
-  final IconData? iconData;    // Material icon (fallback / accent)
+  final String iconGlyph; // Javanese glyph or emoji
+  final IconData? iconData; // Material icon (fallback / accent)
   final Color bgColor;
   final Color iconTextColor;
-  final double progress;       // 0.0 – 1.0
-  final String progressLabel;  // e.g. "20 aksara"
+  final double progress; // 0.0 – 1.0
+  final String progressLabel; // e.g. "20 aksara"
   final bool isLocked;
   final String? tag;
+  final bool isTool;
 
   const ModuleCardData({
     required this.id,
@@ -29,6 +29,7 @@ class ModuleCardData {
     required this.progressLabel,
     this.isLocked = false,
     this.tag,
+    this.isTool = false,
   });
 }
 
@@ -55,9 +56,13 @@ class _ModuleCardState extends State<ModuleCard>
   void initState() {
     super.initState();
     _hoverCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 120));
-    _scaleAnim = Tween<double>(begin: 1.0, end: 0.96).animate(
-        CurvedAnimation(parent: _hoverCtrl, curve: Curves.easeInOut));
+      vsync: this,
+      duration: const Duration(milliseconds: 120),
+    );
+    _scaleAnim = Tween<double>(
+      begin: 1.0,
+      end: 0.96,
+    ).animate(CurvedAnimation(parent: _hoverCtrl, curve: Curves.easeInOut));
   }
 
   @override
@@ -110,12 +115,12 @@ class _ModuleCardState extends State<ModuleCard>
                     ),
                     child: Center(
                       child: d.iconGlyph.isNotEmpty
-                          ? CustomPaint(
-                              size: const Size(32, 32),
-                              painter: JavaneseCalligraphyPainter(
-                                aksara: d.iconGlyph,
-                                inkColor: d.iconTextColor,
-                                strokeThickness: 4.5,
+                          ? Text(
+                              d.iconGlyph,
+                              style: TextStyle(
+                                fontSize: 26,
+                                color: d.iconTextColor,
+                                fontWeight: FontWeight.w700,
                               ),
                             )
                           : Icon(d.iconData, size: 26, color: d.iconTextColor),
@@ -159,66 +164,105 @@ class _ModuleCardState extends State<ModuleCard>
                         ),
                         const SizedBox(height: 10),
 
-                        // Linear progress + label
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(99),
-                                child: LinearProgressIndicator(
-                                  value: d.isLocked ? 0 : d.progress,
-                                  minHeight: 6,
-                                  backgroundColor: AppColors.border,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    d.isLocked
-                                        ? AppColors.border
-                                        : AppColors.amberDark,
+                        if (d.isTool) ...[
+                          Row(
+                            children: [
+                              Container(
+                                width: 8,
+                                height: 8,
+                                decoration: const BoxDecoration(
+                                  color: AppColors.success,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                d.progressLabel,
+                                style: const TextStyle(
+                                  color: AppColors.success,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ] else ...[
+                          // Linear progress + label
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(99),
+                                  child: LinearProgressIndicator(
+                                    value: d.isLocked ? 0 : d.progress,
+                                    minHeight: 6,
+                                    backgroundColor: AppColors.border,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      d.isLocked
+                                          ? AppColors.border
+                                          : AppColors.amberDark,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 10),
-                            Text(
-                              d.isLocked
-                                  ? '—'
-                                  : '${(d.progress * 100).round()}%',
-                              style: const TextStyle(
-                                color: AppColors.inkMuted,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
+                              const SizedBox(width: 10),
+                              Text(
+                                d.isLocked
+                                    ? '—'
+                                    : '${(d.progress * 100).round()}%',
+                                style: const TextStyle(
+                                  color: AppColors.inkMuted,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          d.progressLabel,
-                          style: const TextStyle(
-                            color: AppColors.inkMuted,
-                            fontSize: 12,
+                            ],
                           ),
-                        ),
+                          const SizedBox(height: 4),
+                          Text(
+                            d.progressLabel,
+                            style: const TextStyle(
+                              color: AppColors.inkMuted,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),
 
-                  // Progress ring (compact, only when unlocked)
+                  // Trailing indicator (ring for lessons, arrow badge for tools)
                   if (!d.isLocked) ...[
                     const SizedBox(width: 10),
-                    AnimatedProgressRing(
-                      progress: d.progress,
-                      size: 44,
-                      strokeWidth: 5,
-                      progressColor: AppColors.amberDark,
-                      child: Text(
-                        '${(d.progress * 100).round()}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.ink,
+                    if (d.isTool)
+                      Container(
+                        width: 36,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          color: AppColors.pastelMint.withValues(alpha: 0.5),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 14,
+                          color: AppColors.pastelMintText,
+                        ),
+                      )
+                    else
+                      AnimatedProgressRing(
+                        progress: d.progress,
+                        size: 44,
+                        strokeWidth: 5,
+                        progressColor: AppColors.amberDark,
+                        child: Text(
+                          '${(d.progress * 100).round()}',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.ink,
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ],
               ),
@@ -231,9 +275,7 @@ class _ModuleCardState extends State<ModuleCard>
                       color: AppColors.canvas.withValues(alpha: 0.65),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Center(
-                      child: _WayangLockIcon(),
-                    ),
+                    child: const Center(child: _WayangLockIcon()),
                   ),
                 ),
 
@@ -324,7 +366,11 @@ class _WayangSilhouettePainter extends CustomPainter {
 
     // Head
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.14), width: w * 0.28, height: h * 0.22),
+      Rect.fromCenter(
+        center: Offset(w * 0.5, h * 0.14),
+        width: w * 0.28,
+        height: h * 0.22,
+      ),
       paint,
     );
 
@@ -377,7 +423,11 @@ class _WayangSilhouettePainter extends CustomPainter {
       ..style = PaintingStyle.fill;
     canvas.drawRRect(
       RRect.fromRectAndRadius(
-        Rect.fromCenter(center: Offset(w * 0.5, h * 0.88), width: w * 0.32, height: h * 0.18),
+        Rect.fromCenter(
+          center: Offset(w * 0.5, h * 0.88),
+          width: w * 0.32,
+          height: h * 0.18,
+        ),
         const Radius.circular(4),
       ),
       lockPaint,
@@ -388,7 +438,11 @@ class _WayangSilhouettePainter extends CustomPainter {
       ..strokeWidth = 2.5
       ..strokeCap = StrokeCap.round;
     canvas.drawArc(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.83), width: w * 0.18, height: h * 0.14),
+      Rect.fromCenter(
+        center: Offset(w * 0.5, h * 0.83),
+        width: w * 0.18,
+        height: h * 0.14,
+      ),
       3.14,
       3.14,
       false,

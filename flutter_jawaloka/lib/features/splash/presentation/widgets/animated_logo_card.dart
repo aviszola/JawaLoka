@@ -52,28 +52,11 @@ class AnimatedLogoCard extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 4),
-              // Aksara Jawa Glyph "ꦗ" (Ja)
-              const JavaneseGlyphWidget(
-                size: 50,
-                color: AppColors.ink,
-              ),
-              const SizedBox(height: 2),
-              // Tiny stylized logo label
-              Text(
-                'LOGO',
-                style: TextStyle(
-                  color: AppColors.ink.withValues(alpha: 0.38),
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 2.2,
-                ),
-              ),
-            ],
+          child: const Center(
+            child: JavaneseGlyphWidget(
+              size: 52,
+              color: AppColors.ink,
+            ),
           ),
         ),
       ),

@@ -12,26 +12,20 @@ import '../widgets/javanese_glyph_painter.dart';
 import '../widgets/javanese_landscape_painter.dart';
 
 /// JawaLoka Splash Screen.
-/// Pixel-accurate implementation of Google Stitch Project #17251431980647989546
-/// Screen #556120f80baf469ba46efa7fc181d3b6.
-///
-/// Features:
-/// - Traditional Kawung Batik texture overlay
-/// - Ghosted Aksara Jawa "ꦗ" background watermark
-/// - Centered Logo Tile (96x96, 28px radius, diffused soft shadows)
-/// - Stylized Aksara Jawa glyph "ꦗ" (Ja) with vector precision fallback
-/// - Wordmark "JawaLoka" & Tagline
-/// - Animated 3-dot traveling wave loading indicator
-/// - High-fidelity vector panorama: Mount Merapi/Lawu, sunrise aura, 4-tier terraced rice fields
-/// - Staggered entrance and continuous organic floating animations
+/// Authentic warm amber splash screen with edge-to-edge system chrome,
+/// theme-aligned typography, single-mark logo, and Javanese panorama.
 class SplashScreen extends StatefulWidget {
+  static const Duration splashMinDuration = Duration(
+    milliseconds: 3000,
+  ); // [ASUMSI: durasi ~1 detik]
+
   final bool autoNavigate;
   final Duration displayDuration;
 
   const SplashScreen({
     super.key,
     this.autoNavigate = true,
-    this.displayDuration = const Duration(milliseconds: 3800),
+    this.displayDuration = splashMinDuration,
   });
 
   @override
@@ -58,29 +52,30 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // Set immersive status bar styling matching warm amber theme
+    // Enable true edge-to-edge system chrome with dark icons on warm amber
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: AppColors.terraceTier4,
-        systemNavigationBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
 
-    // 1. Staggered Entrance Controller (2200ms)
+    // 1. Staggered Entrance Controller (850ms)
     _entranceController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2200),
+      duration: const Duration(milliseconds: 850),
     );
 
-    // 2. Continuous Ambient Controller (3000ms loop for floating, sun aura, dots wave)
+    // 2. Continuous Ambient Controller for subtle loop
     _ambientController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3000),
+      duration: const Duration(milliseconds: 2400),
     )..repeat();
 
-    // Staggered animation curves
     _kawungAnimation = CurvedAnimation(
       parent: _entranceController,
       curve: const Interval(0.0, 0.45, curve: Curves.easeOut),
@@ -98,33 +93,30 @@ class _SplashScreenState extends State<SplashScreen>
 
     _logoScaleAnimation = CurvedAnimation(
       parent: _entranceController,
-      curve: const Interval(0.35, 0.78, curve: Curves.easeOutBack),
+      curve: const Interval(0.25, 0.75, curve: Curves.easeOutBack),
     );
 
     _textFadeAnimation = CurvedAnimation(
       parent: _entranceController,
-      curve: const Interval(0.50, 0.85, curve: Curves.easeOut),
+      curve: const Interval(0.40, 0.85, curve: Curves.easeOut),
     );
 
-    _textSlideAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 0.25),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _entranceController,
-        curve: const Interval(0.50, 0.85, curve: Curves.easeOutCubic),
-      ),
-    );
+    _textSlideAnimation =
+        Tween<Offset>(begin: const Offset(0.0, 0.20), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _entranceController,
+            curve: const Interval(0.40, 0.85, curve: Curves.easeOutCubic),
+          ),
+        );
 
     _dotsFadeAnimation = CurvedAnimation(
       parent: _entranceController,
-      curve: const Interval(0.68, 0.95, curve: Curves.easeIn),
+      curve: const Interval(0.60, 0.95, curve: Curves.easeIn),
     );
 
-    // Start entrance animation
     _entranceController.forward();
 
-    // Auto-advance to Home/Learning screen after loading duration
+    // Auto-advance to Language Selection screen after minimum splash duration
     if (widget.autoNavigate) {
       _navigationTimer = Timer(widget.displayDuration, _navigateToHome);
     }
@@ -140,12 +132,9 @@ class _SplashScreenState extends State<SplashScreen>
         pageBuilder: (context, animation, secondaryAnimation) =>
             const LanguageSelectionScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
+          return FadeTransition(opacity: animation, child: child);
         },
-        transitionDuration: const Duration(milliseconds: 700),
+        transitionDuration: const Duration(milliseconds: 400),
       ),
     );
   }
@@ -160,144 +149,106 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: AppColors.ink,
-      body: Center(
-        child: GestureDetector(
-          onTap: _navigateToHome,
-          behavior: HitTestBehavior.opaque,
-          child: Container(
-            constraints: const BoxConstraints(
-              maxWidth: 412,
-              maxHeight: 892,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.amber,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.35),
-                  blurRadius: 40,
-                  offset: const Offset(0, 16),
-                ),
-              ],
-            ),
-            child: AnimatedBuilder(
-              animation: Listenable.merge([_entranceController, _ambientController]),
-              builder: (context, _) {
-                return Stack(
-                  children: [
-                    // Layer 1: Traditional Kawung Batik pattern overlay
-                    Positioned.fill(
-                      child: RepaintBoundary(
-                        child: CustomPaint(
-                          painter: BatikKawungPainter(
-                            animationProgress: _kawungAnimation.value,
-                            opacity: 0.075,
-                          ),
-                        ),
-                      ),
+      backgroundColor: AppColors.amber,
+      body: AnimatedBuilder(
+        animation: Listenable.merge([_entranceController, _ambientController]),
+        builder: (context, _) {
+          return Stack(
+            children: [
+              // Layer 1: Traditional Kawung Batik pattern overlay (RepaintBoundary)
+              Positioned.fill(
+                child: RepaintBoundary(
+                  child: CustomPaint(
+                    painter: BatikKawungPainter(
+                      animationProgress: _kawungAnimation.value,
+                      opacity: 0.04,
                     ),
-
-                    // Layer 2: Ghosted Aksara Jawa "ꦗ" Watermark in upper right
-                    Positioned(
-                      top: 100,
-                      right: -35,
-                      child: Opacity(
-                        opacity: 0.05 * _watermarkAnimation.value,
-                        child: Transform.rotate(
-                          angle: -10 * math.pi / 180,
-                          child: const JavaneseGlyphWidget(
-                            size: 260,
-                            color: AppColors.ink,
-                            isGhost: true,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // Layer 3: Main UI Content (Status bar, Brand block, Loading & Landscape)
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Top Android Status Bar Area
-                        _buildStatusBarArea(),
-
-                        // Center Brand Block (Logo, Wordmark, Tagline)
-                        Expanded(
-                          child: _buildCenterBrandBlock(),
-                        ),
-
-                        // Bottom Section (Loading Dots, Terraced Landscape & Nav Bar)
-                        _buildBottomSection(),
-                      ],
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// Android Status Bar Area (09:41, Signal, Wifi, Battery)
-  Widget _buildStatusBarArea() {
-    return SafeArea(
-      bottom: false,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              '09:41',
-              style: TextStyle(
-                color: AppColors.ink,
-                fontSize: 12.0,
-                fontWeight: FontWeight.w700,
-                letterSpacing: -0.2,
-              ),
-            ),
-            Row(
-              children: [
-                // Cellular Signal Icon
-                Icon(
-                  Icons.signal_cellular_alt_rounded,
-                  size: 15.0,
-                  color: AppColors.ink.withValues(alpha: 0.8),
-                ),
-                const SizedBox(width: 4),
-                // Wifi Icon
-                Icon(
-                  Icons.wifi_rounded,
-                  size: 15.0,
-                  color: AppColors.ink.withValues(alpha: 0.8),
-                ),
-                const SizedBox(width: 4),
-                // Battery Icon
-                Transform.rotate(
-                  angle: math.pi / 2,
-                  child: Icon(
-                    Icons.battery_full_rounded,
-                    size: 16.0,
-                    color: AppColors.ink.withValues(alpha: 0.8),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+
+              // Layer 2: Ghosted Aksara Jawa "ꦗ" Watermark in upper right corner
+              // Opacity <= 0.06, does not overlap the central brand card or text
+              Positioned(
+                top: 24,
+                right: -16,
+                child: RepaintBoundary(
+                  child: Opacity(
+                    opacity: (0.05 * _watermarkAnimation.value).clamp(
+                      0.0,
+                      0.05,
+                    ),
+                    child: Transform.rotate(
+                      angle: -8 * math.pi / 180,
+                      child: const JavaneseGlyphWidget(
+                        size: 130,
+                        color: AppColors.ink,
+                        isGhost: true,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              // Layer 3: Main UI Content wrapped in SafeArea
+              SafeArea(
+                child: Column(
+                  children: [
+                    // Top breathing space
+                    const Spacer(flex: 2),
+
+                    // Center Brand Block (Logo Tile, Wordmark, Tagline)
+                    _buildCenterBrandBlock(theme),
+
+                    // Middle breathing space
+                    const Spacer(flex: 3),
+
+                    // Subtle loading activity indicator (6 dp, non-pager)
+                    FadeTransition(
+                      opacity: _dotsFadeAnimation,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 24.0),
+                        child: RepaintBoundary(
+                          child: AnimatedLoadingDots(
+                            animationValue: _ambientController.value,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // Vector Panorama (Matahari jingga #F5A31A, gunung tengah menimpa matahari, 3 nuansa hijau)
+                    SizedBox(
+                      width: double.infinity,
+                      height: 180,
+                      child: RepaintBoundary(
+                        child: CustomPaint(
+                          size: const Size(double.infinity, 180),
+                          painter: JavaneseLandscapePainter(
+                            entranceProgress: _landscapeEntrance.value,
+                            shimmerProgress: _ambientController.value,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
 
   /// Center Brand Block: Animated Logo Tile + Wordmark + Tagline
-  Widget _buildCenterBrandBlock() {
+  Widget _buildCenterBrandBlock(ThemeData theme) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Logo Tile with soft diffused shadow & floating oscillation
+        // Logo Tile with soft diffused shadow & floating oscillation (single mark)
         AnimatedLogoCard(
           scaleProgress: _logoScaleAnimation.value,
           floatPhase: _ambientController.value,
@@ -311,15 +262,14 @@ class _SplashScreenState extends State<SplashScreen>
             opacity: _textFadeAnimation,
             child: Column(
               children: [
-                const Text(
+                Text(
                   AppStrings.appName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: theme.textTheme.displayLarge?.copyWith(
                     color: AppColors.ink,
-                    fontSize: 36.0,
-                    height: 1.15,
                     fontWeight: FontWeight.w800,
                     letterSpacing: -0.6,
+                    height: 1.15,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -328,11 +278,13 @@ class _SplashScreenState extends State<SplashScreen>
                   child: Text(
                     AppStrings.appTagline,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: AppColors.ink.withValues(alpha: 0.72),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: AppColors.ink.withValues(
+                        alpha: 0.85,
+                      ), // >= 80% opasitas, kontras > 4.5:1
                       fontSize: 14.0,
-                      height: 1.45,
                       fontWeight: FontWeight.w500,
+                      height: 1.45,
                     ),
                   ),
                 ),
@@ -343,57 +295,4 @@ class _SplashScreenState extends State<SplashScreen>
       ],
     );
   }
-
-  /// Bottom Section: 3 Pulsing Wave Loading Dots + Panoramic Landscape + Navigation Indicator
-  Widget _buildBottomSection() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // 3 Animated Loading Dots with continuous traveling wave
-        FadeTransition(
-          opacity: _dotsFadeAnimation,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            child: AnimatedLoadingDots(
-              animationValue: _ambientController.value,
-            ),
-          ),
-        ),
-
-        // Flat Landscape Illustration (Merapi volcano, sunrise, rice terraces)
-        SizedBox(
-          width: double.infinity,
-          height: 220,
-          child: RepaintBoundary(
-            child: CustomPaint(
-              size: const Size(double.infinity, 220),
-              painter: JavaneseLandscapePainter(
-                entranceProgress: _landscapeEntrance.value,
-                sunPulse: _ambientController.value,
-                shimmerProgress: _ambientController.value,
-              ),
-            ),
-          ),
-        ),
-
-        // Android Navigation Bar Indicator (Grounded in deep forest terrace green)
-        Container(
-          width: double.infinity,
-          color: AppColors.terraceTier4,
-          padding: const EdgeInsets.only(top: 8.0, bottom: 12.0),
-          child: Center(
-            child: Container(
-              width: 128,
-              height: 4,
-              decoration: BoxDecoration(
-                color: AppColors.navPill,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }
-

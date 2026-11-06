@@ -1,16 +1,18 @@
+/*  */
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/primary_button.dart';
 
 /// JawaLoka Language Selection Screen.
-/// First screen shown after splash — user picks their UI language.
-/// Design: Google Stitch Project #17251431980647989546, Screen #1f081e9b56724b8ab9aa389ab7b7bc1e
+/// First screen shown after splash — user selects their UI language.
 class LanguageSelectionScreen extends StatefulWidget {
   const LanguageSelectionScreen({super.key});
 
   @override
-  State<LanguageSelectionScreen> createState() => _LanguageSelectionScreenState();
+  State<LanguageSelectionScreen> createState() =>
+      _LanguageSelectionScreenState();
 }
 
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
@@ -54,15 +56,15 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
     super.initState();
     _entranceController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 600),
     )..forward();
 
     _cardControllers = {
       for (var opt in _options)
         opt.code: AnimationController(
           vsync: this,
-          duration: const Duration(milliseconds: 200),
-        )
+          duration: const Duration(milliseconds: 180),
+        ),
     };
   }
 
@@ -79,17 +81,20 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
     if (_selectedLang == code) return;
     HapticFeedback.selectionClick();
     setState(() => _selectedLang = code);
+    // BELUM TERHUBUNG KE LOKALISASI: pilihan bahasa belum disimpan ke persistent storage / belum mengubah locale app
     _cardControllers[code]?.forward(from: 0.0);
   }
 
   void _proceed() {
     HapticFeedback.mediumImpact();
-    // Navigate to Register screen
+    // BELUM TERHUBUNG KE LOKALISASI: preferensi bahasa (_selectedLang) belum disimpan ke shared_preferences
     Navigator.of(context).pushNamed('/register');
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: AppColors.canvas,
       body: SafeArea(
@@ -98,92 +103,56 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
           builder: (context, _) {
             return Column(
               children: [
-                // Status bar spacer
-                const SizedBox(height: 8),
-
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 24),
+                        // Jarak atas wajar di bawah area aman (tanpa elemen ikon matahari dekoratif)
+                        const SizedBox(height: 32),
 
-                        // Sun icon badge
-                        SlideTransition(
-                          position: Tween<Offset>(
-                            begin: const Offset(0, -0.5),
-                            end: Offset.zero,
-                          ).animate(CurvedAnimation(
-                            parent: _entranceController,
-                            curve: const Interval(0.0, 0.6, curve: Curves.easeOutBack),
-                          )),
-                          child: FadeTransition(
-                            opacity: Tween<double>(begin: 0, end: 1).animate(
-                              CurvedAnimation(
-                                parent: _entranceController,
-                                curve: const Interval(0.0, 0.5),
-                              ),
-                            ),
-                            child: Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                color: AppColors.amberSoft,
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: const Color(0xFFFFE7B3)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.amber.withValues(alpha: 0.2),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: const Icon(
-                                Icons.wb_sunny_outlined,
-                                color: AppColors.amberDark,
-                                size: 24,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // Title & trilingual subtitle
+                        // Judul & Subjudul
                         FadeTransition(
                           opacity: Tween<double>(begin: 0, end: 1).animate(
                             CurvedAnimation(
                               parent: _entranceController,
-                              curve: const Interval(0.15, 0.65),
+                              curve: const Interval(0.0, 0.6),
                             ),
                           ),
                           child: SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(0, 0.3),
-                              end: Offset.zero,
-                            ).animate(CurvedAnimation(
-                              parent: _entranceController,
-                              curve: const Interval(0.15, 0.65, curve: Curves.easeOutCubic),
-                            )),
+                            position:
+                                Tween<Offset>(
+                                  begin: const Offset(0, 0.2),
+                                  end: Offset.zero,
+                                ).animate(
+                                  CurvedAnimation(
+                                    parent: _entranceController,
+                                    curve: const Interval(
+                                      0.0,
+                                      0.6,
+                                      curve: Curves.easeOutCubic,
+                                    ),
+                                  ),
+                                ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'Pilih bahasa',
-                                  style: TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.ink,
-                                    letterSpacing: -0.5,
-                                    height: 1.2,
-                                  ),
+                                Text(
+                                  AppStrings.selectLanguageTitle,
+                                  style: theme.textTheme.displayMedium
+                                      ?.copyWith(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.ink,
+                                        letterSpacing: -0.5,
+                                        height: 1.2,
+                                      ),
                                 ),
                                 const SizedBox(height: 6),
                                 Text(
-                                  'Pilih basa · Pilih bahasa · Choose language',
-                                  style: TextStyle(
+                                  AppStrings.selectLanguageSubtitle,
+                                  style: theme.textTheme.bodyMedium?.copyWith(
                                     fontSize: 14,
                                     color: AppColors.inkSecondary,
                                     fontWeight: FontWeight.w500,
@@ -197,29 +166,35 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
 
                         const SizedBox(height: 28),
 
-                        // Language Option Cards
+                        // Kartu Pilihan Bahasa
                         ..._options.asMap().entries.map((entry) {
                           final idx = entry.key;
                           final opt = entry.value;
                           final isSelected = _selectedLang == opt.code;
 
                           return SlideTransition(
-                            position: Tween<Offset>(
-                              begin: Offset(0, 0.4 + idx * 0.15),
-                              end: Offset.zero,
-                            ).animate(CurvedAnimation(
-                              parent: _entranceController,
-                              curve: Interval(
-                                0.25 + idx * 0.1,
-                                0.75 + idx * 0.1,
-                                curve: Curves.easeOutCubic,
-                              ),
-                            )),
+                            position:
+                                Tween<Offset>(
+                                  begin: Offset(0, 0.3 + idx * 0.1),
+                                  end: Offset.zero,
+                                ).animate(
+                                  CurvedAnimation(
+                                    parent: _entranceController,
+                                    curve: Interval(
+                                      0.15 + idx * 0.1,
+                                      0.65 + idx * 0.1,
+                                      curve: Curves.easeOutCubic,
+                                    ),
+                                  ),
+                                ),
                             child: FadeTransition(
                               opacity: Tween<double>(begin: 0, end: 1).animate(
                                 CurvedAnimation(
                                   parent: _entranceController,
-                                  curve: Interval(0.25 + idx * 0.1, 0.7 + idx * 0.1),
+                                  curve: Interval(
+                                    0.15 + idx * 0.1,
+                                    0.6 + idx * 0.1,
+                                  ),
                                 ),
                               ),
                               child: Padding(
@@ -236,19 +211,19 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
 
                         const SizedBox(height: 8),
 
-                        // Helper text
+                        // Teks bantuan
                         FadeTransition(
                           opacity: Tween<double>(begin: 0, end: 1).animate(
                             CurvedAnimation(
                               parent: _entranceController,
-                              curve: const Interval(0.6, 1.0),
+                              curve: const Interval(0.5, 1.0),
                             ),
                           ),
                           child: Center(
                             child: Text(
-                              'Kamu bisa menggantinya kapan saja di Pengaturan.',
+                              AppStrings.selectLanguageHint,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: theme.textTheme.bodyMedium?.copyWith(
                                 fontSize: 14,
                                 color: AppColors.inkSecondary,
                                 fontWeight: FontWeight.w500,
@@ -261,27 +236,16 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                   ),
                 ),
 
-                // Bottom Action
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
-                  child: Column(
-                    children: [
-                      PrimaryButton(
-                        label: 'Lanjut',
-                        onPressed: _proceed,
-                        trailingIcon: Icons.arrow_forward_rounded,
-                      ),
-                      const SizedBox(height: 8),
-                      // Android gesture bar
-                      Container(
-                        width: 128,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          color: AppColors.ink.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                      ),
-                    ],
+                // Tombol Aksi Bawah dengan SafeArea alami (tanpa home indicator tiruan)
+                SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
+                    child: PrimaryButton(
+                      label: AppStrings.continueButton,
+                      onPressed: _proceed,
+                      trailingIcon: Icons.arrow_forward_rounded,
+                    ),
                   ),
                 ),
               ],
@@ -293,7 +257,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
   }
 }
 
-/// Individual language option card
+/// Kartu pilihan bahasa individual dengan semantik aksesibilitas
 class _LanguageCard extends StatefulWidget {
   final _LanguageOption option;
   final bool isSelected;
@@ -321,9 +285,10 @@ class _LanguageCardState extends State<_LanguageCard>
       vsync: this,
       duration: const Duration(milliseconds: 120),
     );
-    _scaleAnim = Tween<double>(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _pressController, curve: Curves.easeOut),
-    );
+    _scaleAnim = Tween<double>(
+      begin: 1.0,
+      end: 0.97,
+    ).animate(CurvedAnimation(parent: _pressController, curve: Curves.easeOut));
   }
 
   @override
@@ -334,111 +299,126 @@ class _LanguageCardState extends State<_LanguageCard>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => _pressController.forward(),
-      onTapUp: (_) {
-        _pressController.reverse();
-        widget.onTap();
-      },
-      onTapCancel: () => _pressController.reverse(),
-      child: ScaleTransition(
-        scale: _scaleAnim,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 220),
-          curve: Curves.easeOut,
-          height: 76,
-          decoration: BoxDecoration(
-            color: widget.isSelected ? AppColors.amberSoft : AppColors.surface,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: widget.isSelected ? AppColors.amber : AppColors.border,
-              width: widget.isSelected ? 2.0 : 1.0,
+    return Semantics(
+      key: Key('lang_semantics_${widget.option.code}'),
+      label: widget.option.name,
+      button: true,
+      inMutuallyExclusiveGroup: true,
+      checked: widget.isSelected,
+      excludeSemantics: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapDown: (_) => _pressController.forward(),
+        onTapUp: (_) {
+          _pressController.reverse();
+          widget.onTap();
+        },
+        onTapCancel: () => _pressController.reverse(),
+        child: ScaleTransition(
+          scale: _scaleAnim,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+            height: 76, // Tinggi minimal >= 72 dp
+            decoration: BoxDecoration(
+              color: widget.isSelected
+                  ? AppColors.amberSoft
+                  : AppColors.surface,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: widget.isSelected ? AppColors.amber : AppColors.border,
+                width: widget.isSelected ? 2.0 : 1.0,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: widget.isSelected
+                      ? AppColors.amber.withValues(alpha: 0.15)
+                      : AppColors.ink.withValues(alpha: 0.04),
+                  blurRadius: widget.isSelected ? 16 : 8,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: widget.isSelected
-                    ? AppColors.amber.withValues(alpha: 0.15)
-                    : AppColors.ink.withValues(alpha: 0.04),
-                blurRadius: widget.isSelected ? 16 : 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              // Avatar circle
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: widget.option.avatarBg,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: widget.option.avatarBorder),
-                ),
-                child: Center(
-                  child: Text(
-                    widget.option.avatar,
-                    style: TextStyle(
-                      fontSize: widget.option.isJavaneseGlyph ? 22 : 16,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.ink,
-                    ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                // Avatar badge bahasa
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: widget.option.avatarBg,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: widget.option.avatarBorder),
                   ),
-                ),
-              ),
-              const SizedBox(width: 14),
-              // Name + subtitle
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.option.name,
+                  child: Center(
+                    child: Text(
+                      widget.option.avatar,
                       style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: widget.isSelected
-                            ? FontWeight.w700
-                            : FontWeight.w600,
+                        fontSize: widget.option.isJavaneseGlyph ? 22 : 16,
+                        fontWeight: FontWeight.w700,
                         color: AppColors.ink,
                       ),
                     ),
-                    const SizedBox(height: 2),
-                    Text(
-                      widget.option.sub,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: AppColors.inkSecondary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Radio indicator
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                width: 24,
-                height: 24,
-                decoration: BoxDecoration(
-                  color: widget.isSelected ? AppColors.amber : Colors.transparent,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: widget.isSelected ? AppColors.amber : AppColors.border,
-                    width: 2,
                   ),
                 ),
-                child: widget.isSelected
-                    ? const Icon(
-                        Icons.check_rounded,
-                        size: 14,
-                        color: AppColors.ink,
-                      )
-                    : null,
-              ),
-            ],
+                const SizedBox(width: 14),
+                // Nama + Subjudul
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.option.name,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: widget.isSelected
+                              ? FontWeight.w700
+                              : FontWeight.w600,
+                          color: AppColors.ink,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        widget.option.sub,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: AppColors.inkSecondary,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Radio indicator
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: widget.isSelected
+                        ? AppColors.amber
+                        : Colors.transparent,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: widget.isSelected
+                          ? AppColors.amber
+                          : AppColors.border,
+                      width: 2,
+                    ),
+                  ),
+                  child: widget.isSelected
+                      ? const Icon(
+                          Icons.check_rounded,
+                          size: 14,
+                          color: AppColors.ink,
+                        )
+                      : null,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -446,7 +426,7 @@ class _LanguageCardState extends State<_LanguageCard>
   }
 }
 
-/// Language option data model
+/// Model data opsi bahasa
 class _LanguageOption {
   final String code;
   final String name;
@@ -466,4 +446,3 @@ class _LanguageOption {
     this.isJavaneseGlyph = true,
   });
 }
-

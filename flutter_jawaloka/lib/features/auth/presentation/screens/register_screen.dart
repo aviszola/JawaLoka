@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/constants/app_strings.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/auth_banner.dart';
@@ -23,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen>
   final _nameCtrl = TextEditingController();
 
   bool _isLoading = false;
+  bool _hasAttemptedSubmit = false;
   String? _emailError;
   String? _passwordError;
   String? _nameError;
@@ -47,17 +49,42 @@ class _RegisterScreenState extends State<RegisterScreen>
     super.dispose();
   }
 
-  Future<void> _register() async {
-    // Basic validation
+  bool _validateForm() {
+    final name = _nameCtrl.text.trim();
+    final email = _emailCtrl.text.trim();
+    final password = _passwordCtrl.text;
+
+    String? nameErr;
+    String? emailErr;
+    String? passErr;
+
+    if (name.isEmpty) {
+      nameErr = AppStrings.nameRequiredError;
+    }
+
+    final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+    if (email.isEmpty || !emailRegex.hasMatch(email)) {
+      emailErr = AppStrings.emailInvalidError;
+    }
+
+    if (password.length < 8) {
+      passErr = AppStrings.passwordMinLengthError;
+    }
+
     setState(() {
-      _nameError = _nameCtrl.text.trim().isEmpty ? 'Nama tidak boleh kosong' : null;
-      _emailError = !_emailCtrl.text.contains('@') ? 'Format email tidak valid' : null;
-      _passwordError = _passwordCtrl.text.length < 8
-          ? 'Kata sandi minimal 8 karakter'
-          : null;
+      _nameError = nameErr;
+      _emailError = emailErr;
+      _passwordError = passErr;
     });
 
-    if (_nameError != null || _emailError != null || _passwordError != null) {
+    return nameErr == null && emailErr == null && passErr == null;
+  }
+
+  Future<void> _register() async {
+    _hasAttemptedSubmit = true;
+    final isValid = _validateForm();
+
+    if (!isValid) {
       HapticFeedback.heavyImpact();
       return;
     }
@@ -65,28 +92,32 @@ class _RegisterScreenState extends State<RegisterScreen>
     setState(() => _isLoading = true);
     HapticFeedback.mediumImpact();
 
-    // Simulate network request
+    // Simulasi request pendaftaran
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (!mounted) return;
     setState(() => _isLoading = false);
 
-    // Navigate to home / learn hub
+    // Navigasi ke beranda
     Navigator.of(context).pushReplacementNamed(AppRouter.home);
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: AppColors.canvas,
       body: SafeArea(
         child: AnimatedBuilder(
           animation: _entranceCtrl,
           builder: (context, _) {
-            return Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
+            return CustomScrollView(
+              physics: const ClampingScrollPhysics(),
+              slivers: [
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Form(
                       key: _formKey,
@@ -95,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         children: [
                           const SizedBox(height: 12),
 
-                          // Back button row
+                          // Tombol Kembali
                           Row(
                             children: [
                               _BackButton(onTap: () => Navigator.pop(context)),
@@ -103,115 +134,186 @@ class _RegisterScreenState extends State<RegisterScreen>
                           ),
                           const SizedBox(height: 16),
 
-                          // Amber Cultural Banner
+                          // 1. Amber Cultural Banner (tanpa chip LANGKAH AWAL, tinggi 120, radius 28)
                           FadeTransition(
                             opacity: Tween<double>(begin: 0, end: 1).animate(
-                              CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.0, 0.5)),
+                              CurvedAnimation(
+                                parent: _entranceCtrl,
+                                curve: const Interval(0.0, 0.5),
+                              ),
                             ),
                             child: SlideTransition(
-                              position: Tween<Offset>(begin: const Offset(0, 0.3), end: Offset.zero).animate(
-                                CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic)),
+                              position: Tween<Offset>(
+                                begin: const Offset(0, 0.2),
+                                end: Offset.zero,
+                              ).animate(
+                                CurvedAnimation(
+                                  parent: _entranceCtrl,
+                                  curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
+                                ),
                               ),
                               child: const AuthBanner(
-                                badgeLabel: 'Langkah Awal',
-                                title: 'Buat akunmu',
-                                subtitle: 'Simpan progres belajarmu di mana saja',
+                                title: AppStrings.welcomeBannerTitle,
+                                subtitle: AppStrings.welcomeBannerSubtitle,
                                 glyphWatermark: 'ꦲ',
+                                height: 120,
                               ),
                             ),
                           ),
                           const SizedBox(height: 20),
 
-                          // Header text
+                          // 2. Judul Halaman Tunggal (Buat akunmu & Simpan progres belajarmu di mana saja)
                           FadeTransition(
                             opacity: Tween<double>(begin: 0, end: 1).animate(
-                              CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.2, 0.7)),
+                              CurvedAnimation(
+                                parent: _entranceCtrl,
+                                curve: const Interval(0.2, 0.7),
+                              ),
                             ),
-                            child: const Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Daftar sekarang',
-                                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: AppColors.ink, letterSpacing: -0.5),
+                                  AppStrings.createAccountTitle,
+                                  style: theme.textTheme.displayMedium?.copyWith(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppColors.ink,
+                                    letterSpacing: -0.5,
+                                  ),
                                 ),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 Text(
-                                  'Mulai perjalanan belajar bahasa Jawa',
-                                  style: TextStyle(fontSize: 14, color: AppColors.inkSecondary, fontWeight: FontWeight.w500),
+                                  AppStrings.createAccountSubtitle,
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontSize: 14,
+                                    color: AppColors.inkSecondary,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                           const SizedBox(height: 20),
 
-                          // Form fields
+                          // 3. Kolom Formulir Pendaftaran
                           FadeTransition(
                             opacity: Tween<double>(begin: 0, end: 1).animate(
-                              CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.3, 0.8)),
+                              CurvedAnimation(
+                                parent: _entranceCtrl,
+                                curve: const Interval(0.3, 0.8),
+                              ),
                             ),
                             child: SlideTransition(
-                              position: Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero).animate(
-                                CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.3, 0.8, curve: Curves.easeOut)),
+                              position: Tween<Offset>(
+                                begin: const Offset(0, 0.15),
+                                end: Offset.zero,
+                              ).animate(
+                                CurvedAnimation(
+                                  parent: _entranceCtrl,
+                                  curve: const Interval(0.3, 0.8, curve: Curves.easeOut),
+                                ),
                               ),
                               child: Column(
                                 children: [
+                                  // KEPUTUSAN PRODUK: nama di registrasi atau di profil
                                   CustomTextField(
-                                    label: 'Nama Lengkap',
+                                    label: AppStrings.fullNameLabel,
                                     controller: _nameCtrl,
+                                    textCapitalization: TextCapitalization.words,
                                     keyboardType: TextInputType.name,
-                                    errorText: _nameError,
                                     textInputAction: TextInputAction.next,
+                                    autofillHints: const [AutofillHints.name],
+                                    errorText: _nameError,
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
-                                      child: Icon(Icons.person_outline, color: AppColors.inkSecondary, size: 20),
+                                      child: Icon(
+                                        Icons.person_outline,
+                                        color: AppColors.inkSecondary,
+                                        size: 20,
+                                      ),
                                     ),
-                                    onChanged: (_) => setState(() => _nameError = null),
+                                    onChanged: (_) {
+                                      if (_hasAttemptedSubmit) _validateForm();
+                                    },
                                   ),
                                   const SizedBox(height: 14),
+
                                   CustomTextField(
-                                    label: 'Email',
+                                    label: AppStrings.emailLabel,
                                     controller: _emailCtrl,
                                     keyboardType: TextInputType.emailAddress,
-                                    errorText: _emailError,
                                     textInputAction: TextInputAction.next,
+                                    autofillHints: const [AutofillHints.email],
+                                    errorText: _emailError,
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
-                                      child: Icon(Icons.email_outlined, color: AppColors.inkSecondary, size: 20),
+                                      child: Icon(
+                                        Icons.email_outlined,
+                                        color: AppColors.inkSecondary,
+                                        size: 20,
+                                      ),
                                     ),
-                                    suffixIcon: _emailCtrl.text.contains('@') && _emailError == null
+                                    suffixIcon: _emailCtrl.text.trim().contains('@') &&
+                                            _emailError == null
                                         ? const Padding(
                                             padding: EdgeInsets.all(14),
-                                            child: Icon(Icons.check_circle_rounded, color: AppColors.success, size: 20),
+                                            child: Icon(
+                                              Icons.check_circle_rounded,
+                                              color: AppColors.success,
+                                              size: 20,
+                                            ),
                                           )
                                         : null,
-                                    onChanged: (_) => setState(() => _emailError = null),
+                                    onChanged: (_) {
+                                      if (_hasAttemptedSubmit) _validateForm();
+                                    },
                                   ),
                                   const SizedBox(height: 14),
+
                                   CustomTextField(
-                                    label: 'Kata Sandi',
+                                    label: AppStrings.passwordLabel,
                                     controller: _passwordCtrl,
                                     obscureText: true,
                                     showTogglePassword: true,
-                                    errorText: _passwordError,
                                     textInputAction: TextInputAction.done,
+                                    autofillHints: const [AutofillHints.newPassword],
+                                    errorText: _passwordError,
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
-                                      child: Icon(Icons.lock_outline, color: AppColors.inkSecondary, size: 20),
+                                      child: Icon(
+                                        Icons.lock_outline,
+                                        color: AppColors.inkSecondary,
+                                        size: 20,
+                                      ),
                                     ),
-                                    onChanged: (_) => setState(() => _passwordError = null),
+                                    onChanged: (_) {
+                                      if (_hasAttemptedSubmit) _validateForm();
+                                    },
                                     onSubmitted: (_) => _register(),
                                   ),
                                   const SizedBox(height: 8),
-                                  // Password strength hint
+
+                                  // Hint kekuatan kata sandi
                                   Padding(
                                     padding: const EdgeInsets.only(left: 16),
                                     child: Row(
                                       children: [
-                                        Icon(Icons.info_outline, size: 14, color: AppColors.amberDark),
+                                        const Icon(
+                                          Icons.info_outline,
+                                          size: 14,
+                                          color: AppColors.amberDark,
+                                        ),
                                         const SizedBox(width: 6),
-                                        Text(
-                                          'Gunakan kata sandi yang kuat (min. 8 karakter)',
-                                          style: TextStyle(fontSize: 12, color: AppColors.inkSecondary, fontWeight: FontWeight.w500),
+                                        Expanded(
+                                          child: Text(
+                                            AppStrings.passwordHint,
+                                            style: theme.textTheme.bodyMedium?.copyWith(
+                                              fontSize: 12,
+                                              color: AppColors.inkSecondary,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -220,59 +322,76 @@ class _RegisterScreenState extends State<RegisterScreen>
                               ),
                             ),
                           ),
-                          const SizedBox(height: 32),
+
+                          // Spacer fleksibel: mendorong aksi ke bawah saat keyboard tertutup, ikut scroll saat terbuka
+                          const Spacer(),
+                          const SizedBox(height: 24),
+
+                          // 4. Tombol Aksi Bawah & Footer
+                          PrimaryButton(
+                            label: AppStrings.registerButton,
+                            onPressed: _isLoading ? null : _register,
+                            isLoading: _isLoading,
+                          ),
+                          const SizedBox(height: 16),
+
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                // TUJUAN BELUM ADA (Jalur 2)
+                              },
+                              child: Text.rich(
+                                TextSpan(
+                                  text: AppStrings.termsPrefix,
+                                  style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontSize: 12,
+                                    color: AppColors.inkSecondary,
+                                  ),
+                                  children: const [
+                                    TextSpan(
+                                      text: AppStrings.privacyPolicy,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.ink,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: AppColors.amberDark,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                AppStrings.alreadyHaveAccount,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontSize: 14,
+                                  color: AppColors.inkSecondary,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Navigator.pushReplacementNamed(context, '/login'),
+                                child: const Text(
+                                  AppStrings.loginLink,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.ink,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
                         ],
                       ),
                     ),
-                  ),
-                ),
-
-                // Bottom actions
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
-                  child: Column(
-                    children: [
-                      PrimaryButton(
-                        label: 'Daftar',
-                        onPressed: _isLoading ? null : _register,
-                        isLoading: _isLoading,
-                      ),
-                      const SizedBox(height: 16),
-                      Text.rich(
-                        TextSpan(
-                          text: 'Dengan mendaftar, kamu menyetujui ',
-                          style: const TextStyle(fontSize: 12, color: AppColors.inkSecondary),
-                          children: [
-                            TextSpan(
-                              text: 'Kebijakan Privasi',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.ink,
-                                decoration: TextDecoration.underline,
-                                decorationColor: AppColors.amberDark,
-                              ),
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Sudah punya akun? ', style: TextStyle(fontSize: 14, color: AppColors.inkSecondary)),
-                          GestureDetector(
-                            onTap: () => Navigator.pushReplacementNamed(context, '/login'),
-                            child: const Text(
-                              'Masuk',
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.ink),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      Container(width: 128, height: 4, decoration: BoxDecoration(color: AppColors.ink.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(2))),
-                    ],
                   ),
                 ),
               ],
@@ -293,15 +412,19 @@ class _BackButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 40, height: 40,
+        width: 40,
+        height: 40,
         decoration: BoxDecoration(
           color: Colors.white.withValues(alpha: 0.7),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: AppColors.border),
         ),
-        child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: AppColors.ink),
+        child: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+          size: 18,
+          color: AppColors.ink,
+        ),
       ),
     );
   }
 }
-

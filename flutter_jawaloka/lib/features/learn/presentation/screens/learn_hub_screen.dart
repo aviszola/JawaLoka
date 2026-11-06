@@ -29,30 +29,35 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
   final List<_DailyWord> _dailyWords = const [
     _DailyWord(
-        javanese: 'Omah',
-        aksara: 'ꦲꦺꦴꦩꦃ',
-        indonesian: 'Rumah',
-        level: 'Ngoko'),
+      javanese: 'Omah',
+      aksara: 'ꦲꦺꦴꦩꦃ',
+      indonesian: 'Rumah',
+      level: 'Ngoko',
+    ),
     _DailyWord(
-        javanese: 'Banyu',
-        aksara: 'ꦧꦤꦾꦸ',
-        indonesian: 'Air',
-        level: 'Ngoko'),
+      javanese: 'Banyu',
+      aksara: 'ꦧꦤꦾꦸ',
+      indonesian: 'Air',
+      level: 'Ngoko',
+    ),
     _DailyWord(
-        javanese: 'Segara',
-        aksara: 'ꦱꦼꦒꦫ',
-        indonesian: 'Laut',
-        level: 'Krama'),
+      javanese: 'Segara',
+      aksara: 'ꦱꦼꦒꦫ',
+      indonesian: 'Laut',
+      level: 'Krama',
+    ),
     _DailyWord(
-        javanese: 'Lemah',
-        aksara: 'ꦭꦼꦩꦃ',
-        indonesian: 'Tanah',
-        level: 'Ngoko'),
+      javanese: 'Lemah',
+      aksara: 'ꦭꦼꦩꦃ',
+      indonesian: 'Tanah',
+      level: 'Ngoko',
+    ),
     _DailyWord(
-        javanese: 'Langit',
-        aksara: 'ꦭꦁꦒꦶꦠ꧀',
-        indonesian: 'Langit',
-        level: 'Ngoko'),
+      javanese: 'Langit',
+      aksara: 'ꦭꦁꦒꦶꦠ꧀',
+      indonesian: 'Langit',
+      level: 'Ngoko',
+    ),
   ];
 
   static const List<ModuleCardData> _modules = [
@@ -63,8 +68,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       iconGlyph: 'ꦲ',
       bgColor: AppColors.amberSoft,
       progress: 0.65,
-      progressLabel: '20 aksara',
-      tag: '65%',
+      progressLabel: '20 aksara terselesaikan',
+      tag: 'Aksara',
     ),
     ModuleCardData(
       id: 'kosakata',
@@ -74,8 +79,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       bgColor: AppColors.pastelSand,
       iconTextColor: AppColors.amberDark,
       progress: 0.50,
-      progressLabel: '120 tembung',
-      tag: '50%',
+      progressLabel: '120 tembung terselesaikan',
+      tag: 'Kamus',
     ),
     ModuleCardData(
       id: 'penerjemah',
@@ -84,9 +89,10 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       iconData: Icons.translate_rounded,
       bgColor: AppColors.pastelMint,
       iconTextColor: AppColors.pastelMintText,
-      progress: 0.80,
-      progressLabel: 'Aktif',
-      tag: 'Alat',
+      progress: 1.0,
+      progressLabel: 'Siap Digunakan',
+      tag: 'Utilitas',
+      isTool: true,
     ),
     ModuleCardData(
       id: 'unggah_ungguh',
@@ -96,8 +102,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       bgColor: AppColors.pastelLavender,
       iconTextColor: AppColors.pastelLavenderText,
       progress: 0.35,
-      progressLabel: '4 tingkatan',
-      tag: '35%',
+      progressLabel: '4 tingkatan tutur',
+      tag: 'Wicara',
     ),
     ModuleCardData(
       id: 'peribahasa',
@@ -108,7 +114,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       iconTextColor: AppColors.pastelBlushText,
       progress: 0.20,
       progressLabel: '15 peribahasa',
-      tag: '20%',
+      tag: 'Sastra',
     ),
   ];
 
@@ -116,9 +122,13 @@ class _LearnHubScreenState extends State<LearnHubScreen>
   void initState() {
     super.initState();
     _greetingCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 700));
-    _greetingFade =
-        CurvedAnimation(parent: _greetingCtrl, curve: Curves.easeOut);
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _greetingFade = CurvedAnimation(
+      parent: _greetingCtrl,
+      curve: Curves.easeOut,
+    );
     _greetingCtrl.forward();
   }
 
@@ -201,28 +211,32 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const SizedBox(height: 20),
                   _buildUnggahCard(
                     title: '1. Basa Ngoko Lugu',
-                    desc: 'Dipigunakake kanggo kanca sebaya, sedulur nom, utawa wong sing wis raket banget.',
+                    desc:
+                        'Dipigunakake kanggo kanca sebaya, sedulur nom, utawa wong sing wis raket banget.',
                     example: 'Kowe arep mangan apa?',
                     color: AppColors.pastelSand,
                   ),
                   const SizedBox(height: 12),
                   _buildUnggahCard(
                     title: '2. Basa Ngoko Alus',
-                    desc: 'Basa ngoko sing kacampuran tembung krama inggil kanggo ngurmati wong sing diajak guneman.',
+                    desc:
+                        'Basa ngoko sing kacampuran tembung krama inggil kanggo ngurmati wong sing diajak guneman.',
                     example: 'Panjenengan apa wis dhahar?',
                     color: AppColors.pastelMint,
                   ),
                   const SizedBox(height: 12),
                   _buildUnggahCard(
                     title: '3. Basa Krama Lugu / Madya',
-                    desc: 'Basa krama sopan umum marang wong sing durung pati kenal utawa kanca kerja.',
+                    desc:
+                        'Basa krama sopan umum marang wong sing durung pati kenal utawa kanca kerja.',
                     example: 'Kula nedha sekul goreng.',
                     color: AppColors.pastelLavender,
                   ),
                   const SizedBox(height: 12),
                   _buildUnggahCard(
                     title: '4. Basa Krama Inggil / Alus',
-                    desc: 'Tingkatan paling luhur, dipigunakake marang wong tuwa, guru, utawa pinisepuh.',
+                    desc:
+                        'Tingkatan paling luhur, dipigunakake marang wong tuwa, guru, utawa pinisepuh.',
                     example: 'Bapak saweg tindak dhateng kantor.',
                     color: AppColors.pastelBlush,
                   ),
@@ -302,23 +316,28 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         final proverbs = [
           {
             'jawa': 'Ajining dhiri ana ing lathi, ajining raga ana ing busana.',
-            'arti': 'Kehormatan seseorang terletak pada tutur katanya, dan kehormatan tubuh terletak pada pakaiannya.',
+            'arti':
+                'Kehormatan seseorang terletak pada tutur katanya, dan kehormatan tubuh terletak pada pakaiannya.',
           },
           {
             'jawa': 'Urip iku urup.',
-            'arti': 'Hidup itu hendaknya memberi manfaat dan menerangi orang lain di sekitarnya.',
+            'arti':
+                'Hidup itu hendaknya memberi manfaat dan menerangi orang lain di sekitarnya.',
           },
           {
             'jawa': 'Jer basuki mawa beya.',
-            'arti': 'Setiap cita-cita dan kesuksesan memerlukan usaha, pengorbanan, dan biaya.',
+            'arti':
+                'Setiap cita-cita dan kesuksesan memerlukan usaha, pengorbanan, dan biaya.',
           },
           {
             'jawa': 'Mikul dhuwur mendhem jero.',
-            'arti': 'Menjunjung tinggi kehormatan orang tua dan keluarga serta menutup aib atau keburukan.',
+            'arti':
+                'Menjunjung tinggi kehormatan orang tua dan keluarga serta menutup aib atau keburukan.',
           },
           {
             'jawa': 'Rukun agawe santosa, crah agawe bubrah.',
-            'arti': 'Kerukunan menciptakan ketenteraman dan kekuatan, perpecahan membawa kehancuran.',
+            'arti':
+                'Kerukunan menciptakan ketenteraman dan kekuatan, perpecahan membawa kehancuran.',
           },
         ];
 
@@ -361,37 +380,39 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ...proverbs.map((p) => Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.canvas,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: AppColors.border),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              p['jawa']!,
-                              style: const TextStyle(
-                                color: AppColors.ink,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                              ),
+                  ...proverbs.map(
+                    (p) => Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: AppColors.canvas,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            p['jawa']!,
+                            style: const TextStyle(
+                              color: AppColors.ink,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
                             ),
-                            const SizedBox(height: 6),
-                            Text(
-                              p['arti']!,
-                              style: const TextStyle(
-                                color: AppColors.inkSecondary,
-                                fontSize: 12,
-                                height: 1.3,
-                              ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            p['arti']!,
+                            style: const TextStyle(
+                              color: AppColors.inkSecondary,
+                              fontSize: 12,
+                              height: 1.3,
                             ),
-                          ],
-                        ),
-                      )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );
@@ -427,7 +448,10 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const SizedBox(height: 28),
 
                   // Module section (Aksara, Kosa Kata, Penerjemah, Penggunaan Bahasa, Peribahasa)
-                  _buildSectionHeader('Materi Belajar', Icons.auto_stories_rounded),
+                  _buildSectionHeader(
+                    'Materi Belajar',
+                    Icons.auto_stories_rounded,
+                  ),
                   const SizedBox(height: 14),
                   ..._modules.map(
                     (m) => ModuleCard(data: m, onTap: () => _onModuleTap(m)),
@@ -437,7 +461,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
                   // Tembung Dina Iki carousel
                   _buildSectionHeader(
-                      'Tembung Dina Iki', Icons.translate_rounded),
+                    'Tembung Dina Iki',
+                    Icons.translate_rounded,
+                  ),
                   const SizedBox(height: 14),
                   _buildWordCarousel(),
                   const SizedBox(height: 32),
@@ -468,17 +494,14 @@ class _LearnHubScreenState extends State<LearnHubScreen>
           // Batik kawung texture overlay (opacity 0.035, strictly <= 0.04)
           Positioned.fill(
             child: RepaintBoundary(
-              child: CustomPaint(
-                painter: BatikKawungPainter(opacity: 0.035),
-              ),
+              child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
             ),
           ),
 
           SafeArea(
             bottom: false,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
               child: Row(
                 children: [
                   Expanded(
@@ -512,7 +535,10 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
                   // Level badge
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(99),
@@ -562,19 +588,18 @@ class _LearnHubScreenState extends State<LearnHubScreen>
     ];
 
     return Row(
-      children: actions
-          .map(
-            (a) => Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: _QuickActionCard(action: a),
-              ),
-            ),
-          )
-          .toList()
-        ..last = Expanded(
-          child: _QuickActionCard(action: actions.last),
-        ),
+      children:
+          actions
+              .map(
+                (a) => Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: _QuickActionCard(action: a),
+                  ),
+                ),
+              )
+              .toList()
+            ..last = Expanded(child: _QuickActionCard(action: actions.last)),
     );
   }
 
@@ -608,11 +633,14 @@ class _LearnHubScreenState extends State<LearnHubScreen>
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => VocabularyDetailScreen(word: w.javanese)),
+                builder: (_) => VocabularyDetailScreen(word: w.javanese),
+              ),
             ),
             child: Container(
               width: 140,
-              margin: EdgeInsets.only(right: i < _dailyWords.length - 1 ? 12 : 0),
+              margin: EdgeInsets.only(
+                right: i < _dailyWords.length - 1 ? 12 : 0,
+              ),
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 color: AppColors.surface,
@@ -631,7 +659,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                      horizontal: 7,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.pastelSand,
                       borderRadius: BorderRadius.circular(99),
@@ -691,11 +721,12 @@ class _DailyWord {
   final String aksara;
   final String indonesian;
   final String level;
-  const _DailyWord(
-      {required this.javanese,
-      required this.aksara,
-      required this.indonesian,
-      required this.level});
+  const _DailyWord({
+    required this.javanese,
+    required this.aksara,
+    required this.indonesian,
+    required this.level,
+  });
 }
 
 class _QuickAction {

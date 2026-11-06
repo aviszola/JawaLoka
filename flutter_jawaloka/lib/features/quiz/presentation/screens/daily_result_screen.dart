@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
-import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
-import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 
 // ─────────────────────────────────────────────────────────
 //  SIMILARITY METER PAINTER
@@ -13,9 +11,7 @@ import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart'
 class _SimilarityMeterPainter extends CustomPainter {
   final double progress; // 0.0 – 1.0
 
-  const _SimilarityMeterPainter({
-    required this.progress,
-  });
+  const _SimilarityMeterPainter({required this.progress});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -69,10 +65,7 @@ class _SimilarityMeterPainter extends CustomPainter {
     // "Kemiripan" label below percentage
     const labelSpan = TextSpan(
       text: 'Kemiripan',
-      style: TextStyle(
-        fontSize: 12,
-        color: AppColors.inkMuted,
-      ),
+      style: TextStyle(fontSize: 12, color: AppColors.inkMuted),
     );
     final labelPainter = TextPainter(
       text: labelSpan,
@@ -88,7 +81,41 @@ class _SimilarityMeterPainter extends CustomPainter {
   bool shouldRepaint(_SimilarityMeterPainter old) => old.progress != progress;
 }
 
+// ─────────────────────────────────────────────────────────
+//  DRAWN AKSARA PAINTER  (decorative simplified stroke)
+// ─────────────────────────────────────────────────────────
 
+class _DrawnAksaraPainter extends CustomPainter {
+  const _DrawnAksaraPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppColors.ink
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+
+    final w = size.width;
+    final h = size.height;
+
+    // Simple stylised Ha aksara curves (decorative approximation)
+    final path = Path()
+      ..moveTo(w * 0.25, h * 0.30)
+      ..cubicTo(w * 0.30, h * 0.20, w * 0.50, h * 0.18, w * 0.60, h * 0.28)
+      ..cubicTo(w * 0.70, h * 0.38, w * 0.72, h * 0.55, w * 0.65, h * 0.60)
+      ..cubicTo(w * 0.58, h * 0.65, w * 0.45, h * 0.68, w * 0.40, h * 0.62)
+      ..moveTo(w * 0.35, h * 0.60)
+      ..cubicTo(w * 0.30, h * 0.72, w * 0.28, h * 0.80, w * 0.35, h * 0.85)
+      ..cubicTo(w * 0.42, h * 0.90, w * 0.60, h * 0.88, w * 0.65, h * 0.78);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(_DrawnAksaraPainter _) => false;
+}
 
 // ─────────────────────────────────────────────────────────
 //  SCREEN
@@ -126,18 +153,19 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       vsync: this,
       duration: const Duration(milliseconds: 700),
     );
-    _slideAnim = Tween<Offset>(
-      begin: const Offset(0, 1.5),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic));
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 1.5), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+        );
 
     _meterController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
-    _meterAnim = Tween<double>(begin: 0, end: widget.similarity).animate(
-      CurvedAnimation(parent: _meterController, curve: Curves.easeOut),
-    );
+    _meterAnim = Tween<double>(
+      begin: 0,
+      end: widget.similarity,
+    ).animate(CurvedAnimation(parent: _meterController, curve: Curves.easeOut));
 
     // Staggered start
     _slideController.forward().then((_) {
@@ -162,7 +190,10 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.ink),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: AppColors.ink,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -201,7 +232,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   Widget _buildCelebrationCard() {
     final isPassed = widget.similarity >= 0.85;
     return Container(
-      clipBehavior: Clip.antiAlias,
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: isPassed
@@ -219,33 +250,12 @@ class _DailyResultScreenState extends State<DailyResultScreen>
           ),
         ],
       ),
-      child: Stack(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Gunungan watermark emblem on the right edge
-          Positioned(
-            right: -15,
-            top: -10,
-            bottom: -10,
-            child: Opacity(
-              opacity: 0.12,
-              child: const WayangGununganWidget(
-                width: 140,
-                height: 180,
-                style: GununganStyle.royal,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(24),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(child: _buildCelebrationText(isPassed)),
-                const SizedBox(width: 16),
-                _buildSimilarityMeter(),
-              ],
-            ),
-          ),
+          Expanded(child: _buildCelebrationText(isPassed)),
+          const SizedBox(width: 16),
+          _buildSimilarityMeter(),
         ],
       ),
     );
@@ -282,7 +292,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   Widget _buildSimilarityMeter() {
     return AnimatedBuilder(
       animation: _meterAnim,
-      builder: (context, _) => SizedBox(
+      builder: (context, child) => SizedBox(
         width: 90,
         height: 90,
         child: CustomPaint(
@@ -324,7 +334,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
             children: [
               Expanded(child: _DrawingPanel(title: 'Tulisanmu', isDrawn: true)),
               SizedBox(width: 16),
-              Expanded(child: _DrawingPanel(title: 'Aksara Target', isDrawn: false)),
+              Expanded(
+                child: _DrawingPanel(title: 'Aksara Target', isDrawn: false),
+              ),
             ],
           ),
         ],
@@ -409,10 +421,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
             ),
             child: const Text(
               'Lanjutkan Belajar →',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -429,10 +438,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
             ),
             child: const Text(
               'Coba Lagi',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
         ),
@@ -476,20 +482,14 @@ class _DrawingPanel extends StatelessWidget {
             child: isDrawn
                 ? const CustomPaint(
                     size: Size(80, 80),
-                    painter: JavaneseCalligraphyPainter(
-                      aksara: 'ꦲ',
-                      inkColor: AppColors.ink,
-                      strokeThickness: 5.5,
-                      showInkPools: true,
-                    ),
+                    painter: _DrawnAksaraPainter(),
                   )
-                : const CustomPaint(
-                    size: Size(80, 80),
-                    painter: JavaneseCalligraphyPainter(
-                      aksara: 'ꦲ',
-                      inkColor: AppColors.amberDark,
-                      strokeThickness: 4.5,
-                      showInkPools: false,
+                : const Text(
+                    'ꦲ',
+                    style: TextStyle(
+                      fontSize: 48,
+                      color: AppColors.ink,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
           ),
