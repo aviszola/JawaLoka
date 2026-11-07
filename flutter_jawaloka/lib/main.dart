@@ -8,6 +8,9 @@ import 'core/l10n/locale_preferences.dart';
 import 'core/l10n/locale_controller.dart';
 import 'core/l10n/locale_scope.dart';
 import 'core/l10n/jv_localizations_delegate.dart';
+import 'core/profile/profile_preferences.dart';
+import 'core/profile/profile_controller.dart';
+import 'core/profile/profile_scope.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -20,12 +23,22 @@ void main() async {
 
   final localePreferences = SharedPrefsLocalePreferences();
   final localeController = LocaleController(preferences: localePreferences);
-  await localeController.loadSavedLocale();
+
+  final profilePreferences = SharedPrefsProfilePreferences();
+  final profileController = ProfileController(preferences: profilePreferences);
+
+  await Future.wait([
+    localeController.loadSavedLocale(),
+    profileController.loadProfile(),
+  ]);
 
   runApp(
     LocaleScope(
       controller: localeController,
-      child: const JawaLokaApp(),
+      child: ProfileScope(
+        controller: profileController,
+        child: const JawaLokaApp(),
+      ),
     ),
   );
 }

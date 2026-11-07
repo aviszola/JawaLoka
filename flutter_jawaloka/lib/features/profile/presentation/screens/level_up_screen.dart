@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
@@ -135,6 +136,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
 
   void _onEquipBlangkon() {
     HapticFeedback.heavyImpact();
+    ProfileScope.maybeOf(context)?.setEquippedBlangkon(widget.blangkonType);
     Navigator.pop(context, true);
   }
 

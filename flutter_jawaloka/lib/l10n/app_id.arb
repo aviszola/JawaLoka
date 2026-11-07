@@ -478,7 +478,7 @@
   "@learnTagAksara": {
     "description": "Tag kategori modul aksara"
   },
-  "learnTagKamus": "Kamus",
+  "learnTagKamus": "Kosa Kata",
   "@learnTagKamus": {
     "description": "Tag kategori modul kamus"
   },
@@ -918,6 +918,30 @@
   "@blangkonMasteryAksara": {
     "description": "Syarat membuka blangkon pusaka"
   },
+  "blangkonDescYogyakarta": "Klasik, mondolan bulat menonjol",
+  "@blangkonDescYogyakarta": {
+    "description": "Deskripsi ciri khas blangkon gaya Yogyakarta"
+  },
+  "blangkonDescSurakarta": "Anggun, mondolan trepes pipih",
+  "@blangkonDescSurakarta": {
+    "description": "Deskripsi ciri khas blangkon gaya Surakarta"
+  },
+  "blangkonDescBanyumas": "Tegas, corak khas Banyumasan",
+  "@blangkonDescBanyumas": {
+    "description": "Deskripsi ciri khas blangkon gaya Banyumas"
+  },
+  "blangkonDescKedu": "Gaya Bagelen Kedu bersahaja",
+  "@blangkonDescKedu": {
+    "description": "Deskripsi ciri khas blangkon gaya Kedu"
+  },
+  "blangkonDescCirebon": "Pesisiran dinamis berwibawa",
+  "@blangkonDescCirebon": {
+    "description": "Deskripsi ciri khas blangkon gaya Cirebon"
+  },
+  "blangkonDescPusaka": "Mahakarya tradisi berornamen emas",
+  "@blangkonDescPusaka": {
+    "description": "Deskripsi ciri khas blangkon gaya Pusaka"
+  },
   "levelUpMicroTag": "PENCAPAIAN JAWALOKA",
   "@levelUpMicroTag": {
     "description": "Mikro tag perayaan naik level"
@@ -984,6 +1008,18 @@
   "@settingsAccountRow": {
     "description": "Label baris pengaturan akun"
   },
+  "settingsAccountDialogTitle": "Detail Akun",
+  "@settingsAccountDialogTitle": {
+    "description": "Judul dialog detail akun"
+  },
+  "settingsAccountNameLabel": "Nama Pengguna",
+  "@settingsAccountNameLabel": {
+    "description": "Label nama pengguna di dialog akun"
+  },
+  "settingsAccountEmailLabel": "Email",
+  "@settingsAccountEmailLabel": {
+    "description": "Label email di dialog akun"
+  },
   "translatorTitle": "Penerjemah",
   "@translatorTitle": {
     "description": "Judul layar penerjemah"
@@ -1031,6 +1067,10 @@
   "translatorClearTooltip": "Hapus",
   "@translatorClearTooltip": {
     "description": "Tooltip tombol hapus input terjemahan"
+  },
+  "translatorMockUnavailable": "Belum tersedia pada versi contoh",
+  "@translatorMockUnavailable": {
+    "description": "Pesan saat teks belum ada di kamus contoh penerjemah"
   },
   "aksaraDetailTitle": "Aksara Jawa",
   "@aksaraDetailTitle": {
@@ -1165,5 +1205,241 @@
   "vocabDetailFavoriteMarked": "Ditandai Favorit",
   "@vocabDetailFavoriteMarked": {
     "description": "Status kosa kata sudah ditandai favorit"
+  },
+  "quizMilestoneNode": "Node Tonggak",
+  "@quizMilestoneNode": {
+    "description": "Label node tonggak pada peta kuis"
+  },
+  "quizNodeLockedToast": "Materi {topic} masih terkunci. Selesaikan materi sebelumnya!",
+  "@quizNodeLockedToast": {
+    "description": "Pesan toast saat node kuis terkunci diketuk",
+    "placeholders": {
+      "topic": {
+        "type": "String",
+        "example": "Keluarga"
+      }
+    }
+  },
+  "quizUnitTitle": "Unit {unit} · Tingkat {level}",
+  "@quizUnitTitle": {
+    "description": "Format judul unit kuis",
+    "placeholders": {
+      "unit": {
+        "type": "int",
+        "example": "1"
+      },
+      "level": {
+        "type": "String",
+        "example": "Mudah"
+      }
+    }
+  },
+  "quizTopicSalamDesc": "Pelajari salam dan tegur sapa sopan santun bahasa Jawa.",
+  "@quizTopicSalamDesc": {
+    "description": "Deskripsi topik kuis Salam"
+  },
+  "quizTopicPamitDesc": "Ungkapan pamitan dan perpisahan sehari-hari yang santun.",
+  "@quizTopicPamitDesc": {
+    "description": "Deskripsi topik kuis Pamit"
+  },
+  "quizTopicLencanaDesc": "Uji pemahaman tonggak materi sapaan dan salam.",
+  "@quizTopicLencanaDesc": {
+    "description": "Deskripsi topik kuis Lencana"
+  },
+  "quizTopicTanyaKabarDesc": "Menanyakan keadaan dan kabar orang lain dalam bahasa Jawa.",
+  "@quizTopicTanyaKabarDesc": {
+    "description": "Deskripsi topik kuis Tanya Kabar"
+  },
+  "quizTopicPerkenalanDesc": "Mengenalkan diri dengan unggah-ungguh yang tepat.",
+  "@quizTopicPerkenalanDesc": {
+    "description": "Deskripsi topik kuis Perkenalan"
+  },
+  "quizTopicKeluargaDesc": "Sebutan anggota keluarga dan kerabat terdekat.",
+  "@quizTopicKeluargaDesc": {
+    "description": "Deskripsi topik kuis Keluarga"
+  },
+  "quizTopicRumahDesc": "Bagian-bagian rumah tradisional dan perlengkapan.",
+  "@quizTopicRumahDesc": {
+    "description": "Deskripsi topik kuis Rumah"
+  },
+  "quizTopicKerabatDesc": "Tingkatan silsilah keluarga besar masyarakat Jawa.",
+  "@quizTopicKerabatDesc": {
+    "description": "Deskripsi topik kuis Kerabat"
+  },
+  "quizQuestionPromptWhatGlyph": "Aksara apa ini?",
+  "@quizQuestionPromptWhatGlyph": {
+    "description": "Pertanyaan kuis mengidentifikasi aksara"
+  },
+  "quizQuestionPromptPronunciation": "Pilih pelafalan untuk aksara berikut:",
+  "@quizQuestionPromptPronunciation": {
+    "description": "Pertanyaan kuis memilih pelafalan aksara"
+  },
+  "quizQuestionPromptHowToRead": "Aksara \"{glyph}\" dibaca sebagai apa?",
+  "@quizQuestionPromptHowToRead": {
+    "description": "Pertanyaan kuis bagaimana cara membaca aksara",
+    "placeholders": {
+      "glyph": {
+        "type": "String",
+        "example": "ꦕ"
+      }
+    }
+  },
+  "quizQuestionPromptWhichPronunciation": "Manakah pelafalan untuk aksara di bawah?",
+  "@quizQuestionPromptWhichPronunciation": {
+    "description": "Pertanyaan kuis pelafalan aksara di bawah"
+  },
+  "quizSkip": "Lewati",
+  "@quizSkip": {
+    "description": "Tombol lewati pertanyaan kuis"
+  },
+  "quizCloseSemantics": "Tutup",
+  "@quizCloseSemantics": {
+    "description": "Semantik tombol tutup kuis"
+  },
+  "quizExitDialogTitle": "Keluar dari Kuis?",
+  "@quizExitDialogTitle": {
+    "description": "Judul dialog keluar kuis"
+  },
+  "quizExitDialogMessage": "Progres kuis saat ini tidak akan disimpan.",
+  "@quizExitDialogMessage": {
+    "description": "Pesan peringatan dialog keluar kuis"
+  },
+  "quizExitDialogConfirm": "Keluar",
+  "@quizExitDialogConfirm": {
+    "description": "Tombol konfirmasi keluar kuis"
+  },
+  "quizExitDialogCancel": "Lanjutkan",
+  "@quizExitDialogCancel": {
+    "description": "Tombol batal keluar kuis"
+  },
+  "learnUnggahSheetTitle": "Penggunaan Bahasa",
+  "@learnUnggahSheetTitle": {
+    "description": "Judul bottom sheet penggunaan bahasa dan unggah-ungguh"
+  },
+  "learnUnggahSheetSubtitle": "Tingkatan ragam bahasa Jawa menurut tata krama dan unggah-ungguh.",
+  "@learnUnggahSheetSubtitle": {
+    "description": "Subjudul bottom sheet penggunaan bahasa dan unggah-ungguh"
+  },
+  "learnUnggahNgokoLuguTitle": "1. Basa Ngoko Lugu",
+  "@learnUnggahNgokoLuguTitle": {
+    "description": "Judul kartu tingkatan bahasa ngoko lugu"
+  },
+  "learnUnggahNgokoLuguDesc": "Digunakan untuk teman sebaya, saudara muda, atau orang yang sudah sangat akrab.",
+  "@learnUnggahNgokoLuguDesc": {
+    "description": "Deskripsi penggunaan bahasa ngoko lugu"
+  },
+  "learnUnggahNgokoAlusTitle": "2. Basa Ngoko Alus",
+  "@learnUnggahNgokoAlusTitle": {
+    "description": "Judul kartu tingkatan bahasa ngoko alus"
+  },
+  "learnUnggahNgokoAlusDesc": "Bahasa ngoko yang bercampur kata krama inggil untuk menghormati lawan bicara.",
+  "@learnUnggahNgokoAlusDesc": {
+    "description": "Deskripsi penggunaan bahasa ngoko alus"
+  },
+  "learnUnggahKramaLuguTitle": "3. Basa Krama Lugu / Madya",
+  "@learnUnggahKramaLuguTitle": {
+    "description": "Judul kartu tingkatan bahasa krama lugu atau madya"
+  },
+  "learnUnggahKramaLuguDesc": "Bahasa krama sopan umum untuk orang yang belum begitu dikenal atau rekan kerja.",
+  "@learnUnggahKramaLuguDesc": {
+    "description": "Deskripsi penggunaan bahasa krama lugu"
+  },
+  "learnUnggahKramaInggilTitle": "4. Basa Krama Inggil / Alus",
+  "@learnUnggahKramaInggilTitle": {
+    "description": "Judul kartu tingkatan bahasa krama inggil atau alus"
+  },
+  "learnUnggahKramaInggilDesc": "Tingkatan paling luhur, digunakan kepada orang tua, guru, atau sesepuh.",
+  "@learnUnggahKramaInggilDesc": {
+    "description": "Deskripsi penggunaan bahasa krama inggil"
+  },
+  "learnUnggahExamplePrefix": "Contoh: \"{example}\"",
+  "@learnUnggahExamplePrefix": {
+    "description": "Awalan contoh kalimat pada unggah-ungguh",
+    "placeholders": {
+      "example": {
+        "type": "String",
+        "example": "Kowe arep mangan apa?"
+      }
+    }
+  },
+  "learnPeribahasaSheetTitle": "Peribahasa & Saloka Jawa",
+  "@learnPeribahasaSheetTitle": {
+    "description": "Judul bottom sheet peribahasa dan saloka Jawa"
+  },
+  "learnPeribahasaSheetSubtitle": "Pepatah dan ungkapan luhur warisan leluhur kebudayaan Jawa.",
+  "@learnPeribahasaSheetSubtitle": {
+    "description": "Subjudul bottom sheet peribahasa dan saloka Jawa"
+  },
+  "learnProverb1Meaning": "Kehormatan seseorang terletak pada tutur katanya, dan kehormatan tubuh terletak pada pakaiannya.",
+  "@learnProverb1Meaning": {
+    "description": "Arti peribahasa Ajining dhiri ana ing lathi"
+  },
+  "learnProverb2Meaning": "Hidup itu hendaknya memberi manfaat dan menerangi orang lain di sekitarnya.",
+  "@learnProverb2Meaning": {
+    "description": "Arti peribahasa Urip iku urup"
+  },
+  "learnProverb3Meaning": "Setiap cita-cita dan kesuksesan memerlukan usaha, pengorbanan, dan biaya.",
+  "@learnProverb3Meaning": {
+    "description": "Arti peribahasa Jer basuki mawa beya"
+  },
+  "learnProverb4Meaning": "Menjunjung tinggi kehormatan orang tua dan keluarga serta menutup aib atau keburukan.",
+  "@learnProverb4Meaning": {
+    "description": "Arti peribahasa Mikul dhuwur mendhem jero"
+  },
+  "learnProverb5Meaning": "Kerukunan menciptakan ketenteraman dan kekuatan, perpecahan membawa kehancuran.",
+  "@learnProverb5Meaning": {
+    "description": "Arti peribahasa Rukun agawe santosa, crah agawe bubrah"
+  },
+  "learnDailyWordOmah": "Rumah",
+  "@learnDailyWordOmah": {
+    "description": "Arti kata harian Omah"
+  },
+  "learnDailyWordBanyu": "Air",
+  "@learnDailyWordBanyu": {
+    "description": "Arti kata harian Banyu"
+  },
+  "learnDailyWordSegara": "Laut",
+  "@learnDailyWordSegara": {
+    "description": "Arti kata harian Segara"
+  },
+  "learnDailyWordLemah": "Tanah",
+  "@learnDailyWordLemah": {
+    "description": "Arti kata harian Lemah"
+  },
+  "learnDailyWordLangit": "Langit",
+  "@learnDailyWordLangit": {
+    "description": "Arti kata harian Langit"
+  },
+  "vocabDetailLangId": "Bahasa Indonesia",
+  "@vocabDetailLangId": {
+    "description": "Label bahasa Indonesia pada kartu makna"
+  },
+  "vocabDetailLangEn": "Bahasa Inggris",
+  "@vocabDetailLangEn": {
+    "description": "Label bahasa Inggris pada kartu makna"
+  },
+  "vocabDetailLangJv": "Bahasa Jawa (Ngoko)",
+  "@vocabDetailLangJv": {
+    "description": "Label bahasa Jawa pada kartu makna"
+  },
+  "vocabDetailSentence1Translation": "Rumahku ada di desa",
+  "@vocabDetailSentence1Translation": {
+    "description": "Terjemahan contoh kalimat 1 detail kosakata"
+  },
+  "vocabDetailSentence2Translation": "Rumah ini sangat besar",
+  "@vocabDetailSentence2Translation": {
+    "description": "Terjemahan contoh kalimat 2 detail kosakata"
+  },
+  "aksaraDetailExampleHaraMeaning": "Cabang",
+  "@aksaraDetailExampleHaraMeaning": {
+    "description": "Arti contoh kata Hara pada aksara Ha"
+  },
+  "aksaraDetailExampleHawuMeaning": "Tungku",
+  "@aksaraDetailExampleHawuMeaning": {
+    "description": "Arti contoh kata Hawu pada aksara Ha"
+  },
+  "aksaraDetailExampleHasthaMeaning": "Delapan",
+  "@aksaraDetailExampleHasthaMeaning": {
+    "description": "Arti contoh kata Hastha pada aksara Ha"
   }
 }

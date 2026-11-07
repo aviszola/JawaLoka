@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../widgets/blangkon_painter.dart';
 
 // ─── Syarat Buka Blangkon ─────────────────────────────────────────────────────
@@ -50,14 +51,29 @@ class _BlangkonOption {
   final BlangkonType type;
   final String name;
   final BlangkonUnlockCondition condition;
-  final String description;
 
   const _BlangkonOption({
     required this.type,
     required this.name,
     required this.condition,
-    required this.description,
   });
+
+  String description(BuildContext context) {
+    switch (type) {
+      case BlangkonType.yogyakarta:
+        return context.l10n.blangkonDescYogyakarta;
+      case BlangkonType.surakarta:
+        return context.l10n.blangkonDescSurakarta;
+      case BlangkonType.banyumas:
+        return context.l10n.blangkonDescBanyumas;
+      case BlangkonType.kedu:
+        return context.l10n.blangkonDescKedu;
+      case BlangkonType.cirebon:
+        return context.l10n.blangkonDescCirebon;
+      case BlangkonType.pusaka:
+        return context.l10n.blangkonDescPusaka;
+    }
+  }
 }
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
@@ -74,43 +90,36 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
   static const int _currentUserLevel = MockUserStats.userLevel;
   static const bool _hasMasteredAksara = MockUserStats.hasMasteredAksara;
 
-  // PERLU VALIDASI BUDAYA
   static final List<_BlangkonOption> _options = [
     _BlangkonOption(
       type: BlangkonType.yogyakarta,
       name: 'Blangkon Yogyakarta',
       condition: blangkonUnlockConditions[BlangkonType.yogyakarta]!,
-      description: 'Klasik, mondolan bulat menonjol',
     ),
     _BlangkonOption(
       type: BlangkonType.surakarta,
       name: 'Blangkon Surakarta',
       condition: blangkonUnlockConditions[BlangkonType.surakarta]!,
-      description: 'Anggun, mondolan trepes pipih',
     ),
     _BlangkonOption(
       type: BlangkonType.banyumas,
       name: 'Blangkon Banyumas',
       condition: blangkonUnlockConditions[BlangkonType.banyumas]!,
-      description: 'Tegas, corak khas Banyumasan',
     ),
     _BlangkonOption(
       type: BlangkonType.kedu,
       name: 'Blangkon Kedu',
       condition: blangkonUnlockConditions[BlangkonType.kedu]!,
-      description: 'Gaya Bagelen Kedu bersahaja',
     ),
     _BlangkonOption(
       type: BlangkonType.cirebon,
       name: 'Blangkon Cirebon',
       condition: blangkonUnlockConditions[BlangkonType.cirebon]!,
-      description: 'Pesisiran dinamis berwibawa',
     ),
     _BlangkonOption(
       type: BlangkonType.pusaka,
       name: 'Blangkon Pusaka',
       condition: blangkonUnlockConditions[BlangkonType.pusaka]!,
-      description: 'Mahakarya tradisi berornamen emas',
     ),
   ];
 
@@ -129,6 +138,20 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     _avatarScale = Tween<double>(begin: 1.0, end: 1.06).animate(
       CurvedAnimation(parent: _avatarCtrl, curve: Curves.elasticOut),
     );
+  }
+
+  bool _initializedFromScope = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_initializedFromScope) {
+      _initializedFromScope = true;
+      final equipped = ProfileScope.maybeOf(context)?.equippedBlangkon;
+      if (equipped != null) {
+        _selected = equipped;
+      }
+    }
   }
 
   @override
@@ -185,6 +208,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
 
   void _saveSelection() {
     HapticFeedback.mediumImpact();
+    ProfileScope.maybeOf(context)?.setEquippedBlangkon(_selected);
     Navigator.pop(context, _selected);
   }
 
@@ -305,7 +329,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           ),
           const SizedBox(height: 4),
           Text(
-            _options.firstWhere((o) => o.type == _selected).description,
+            _options.firstWhere((o) => o.type == _selected).description(context),
             style: const TextStyle(fontSize: 14, color: Color(0xFF6B6257)),
           ),
         ],

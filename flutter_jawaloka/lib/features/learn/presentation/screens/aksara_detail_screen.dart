@@ -402,28 +402,28 @@ class _ContohKataSection extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Row(
-          children: const [
+          children: [
             Expanded(
               child: _ExampleWordCard(
                 aksara: 'ꦲꦫ',
                 latin: 'Hara',
-                meaning: 'Cabang',
+                meaning: context.l10n.aksaraDetailExampleHaraMeaning,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: _ExampleWordCard(
                 aksara: 'ꦲꦮꦸ',
                 latin: 'Hawu',
-                meaning: 'Tungku',
+                meaning: context.l10n.aksaraDetailExampleHawuMeaning,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: _ExampleWordCard(
                 aksara: 'ꦲꦱ꧀ꦛ',
                 latin: 'Hastha',
-                meaning: 'Delapan',
+                meaning: context.l10n.aksaraDetailExampleHasthaMeaning,
               ),
             ),
           ],

@@ -6,6 +6,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 import 'level_up_screen.dart';
@@ -65,6 +66,19 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final profile = ProfileScope.maybeOf(context);
+    if (profile != null) {
+      if (!_isEditingName) {
+        _displayName = profile.displayName;
+        _nameCtrl.text = _displayName;
+      }
+      _equippedBlangkon = profile.equippedBlangkon;
+    }
+  }
+
+  @override
   void dispose() {
     _entranceCtrl.dispose();
     _nameCtrl.dispose();
@@ -85,6 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       _isEditingName = false;
     });
 
+    ProfileScope.maybeOf(context)?.setDisplayName(text);
     HapticFeedback.mediumImpact();
     _showToast(context.l10n.profileNameSaved(text));
   }
@@ -270,15 +285,17 @@ class _ProfileScreenState extends State<ProfileScreen>
                   blangkonType: _equippedBlangkon,
                   progress: 0.75, // Level 4 towards Level 5 (75%)
                   showEditButton: true,
-                  onEditTap: () {
+                  onEditTap: () async {
                     HapticFeedback.selectionClick();
-                    Navigator.pushNamed(context, AppRouter.chooseBlangkon).then(
-                      (val) {
-                        if (val is BlangkonType) {
-                          setState(() => _equippedBlangkon = val);
-                        }
-                      },
+                    final val = await Navigator.pushNamed(
+                      context,
+                      AppRouter.chooseBlangkon,
                     );
+                    if (!mounted) return;
+                    if (val is BlangkonType) {
+                      setState(() => _equippedBlangkon = val);
+                      ProfileScope.maybeOf(context)?.setEquippedBlangkon(val);
+                    }
                   },
                 ),
                 const SizedBox(height: 14),
@@ -612,7 +629,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
         // Grid of 4 Achievement Badges
         LayoutBuilder(
-          builder: (context, constraints) {
+          builder: (_, constraints) {
             final cardWidth = (constraints.maxWidth - 20) / 2;
             return Wrap(
               spacing: 12,
@@ -671,6 +688,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                       setState(
                         () => _equippedBlangkon = BlangkonType.surakarta,
                       );
+                      ProfileScope.maybeOf(context)
+                          ?.setEquippedBlangkon(BlangkonType.surakarta);
                       _showToast(toastMsg);
                     }
                   },
@@ -810,13 +829,17 @@ class _ProfileScreenState extends State<ProfileScreen>
       width: double.infinity,
       height: 56,
       child: ElevatedButton.icon(
-        onPressed: () {
+        onPressed: () async {
           HapticFeedback.mediumImpact();
-          Navigator.pushNamed(context, AppRouter.chooseBlangkon).then((val) {
-            if (val is BlangkonType) {
-              setState(() => _equippedBlangkon = val);
-            }
-          });
+          final val = await Navigator.pushNamed(
+            context,
+            AppRouter.chooseBlangkon,
+          );
+          if (!mounted) return;
+          if (val is BlangkonType) {
+            setState(() => _equippedBlangkon = val);
+            ProfileScope.maybeOf(context)?.setEquippedBlangkon(val);
+          }
         },
         icon: const Icon(
           Icons.style_outlined,

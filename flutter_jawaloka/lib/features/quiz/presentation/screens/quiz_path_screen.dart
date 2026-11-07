@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
@@ -28,6 +29,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   static final List<_PathNodeData> _nodes = [
     // Unit 1: Sapaan dan Salam
     const _PathNodeData(
+      topicKey: 'salam',
       topicName: 'Salam',
       glyph: 'ꦱ',
       description: 'Pelajari salam dan tegur sapa sopan santun bahasa Jawa.',
@@ -37,6 +39,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       unitTitle: 'Unit 1 · Tingkat Mudah',
     ),
     const _PathNodeData(
+      topicKey: 'pamit',
       topicName: 'Pamit',
       glyph: 'ꦥ',
       description: 'Ungkapan pamitan dan perpisahan sehari-hari yang santun.',
@@ -46,6 +49,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       unitTitle: 'Unit 1 · Tingkat Mudah',
     ),
     const _PathNodeData(
+      topicKey: 'lencana',
       topicName: 'Lencana',
       glyph: 'ꦭ',
       description: 'Uji pemahaman tonggak materi sapaan dan salam.',
@@ -56,6 +60,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       unitTitle: 'Unit 1 · Tingkat Mudah',
     ),
     const _PathNodeData(
+      topicKey: 'tanya_kabar',
       topicName: 'Tanya kabar',
       glyph: 'ꦠ',
       description: 'Menanyakan keadaan dan kabar orang lain dalam bahasa Jawa.',
@@ -65,6 +70,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       unitTitle: 'Unit 1 · Tingkat Mudah',
     ),
     const _PathNodeData(
+      topicKey: 'perkenalan',
       topicName: 'Perkenalan',
       glyph: 'ꦥ',
       description: 'Mengenalkan diri dengan unggah-ungguh yang tepat.',
@@ -76,6 +82,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 
     // Unit 2: Keluarga dan Rumah (terkunci)
     const _PathNodeData(
+      topicKey: 'keluarga',
       topicName: 'Keluarga',
       glyph: 'ꦏ',
       description: 'Sebutan anggota keluarga dan kerabat terdekat.',
@@ -86,6 +93,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       isUnit2: true,
     ),
     const _PathNodeData(
+      topicKey: 'rumah',
       topicName: 'Rumah',
       glyph: 'ꦫ',
       description: 'Bagian-bagian rumah tradisional dan perlengkapan.',
@@ -96,6 +104,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       isUnit2: true,
     ),
     const _PathNodeData(
+      topicKey: 'kerabat',
       topicName: 'Kerabat',
       glyph: 'ꦏ',
       description: 'Tingkatan silsilah keluarga besar masyarakat Jawa.',
@@ -348,8 +357,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 
   Widget _buildNode(_PathNodeData node) {
     return GestureDetector(
-      onTap:
-          node.status == NodeStatus.locked ? null : () => _onNodeTapped(node),
+      onTap: () => _onNodeTapped(node),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -517,7 +525,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     return Column(
       children: [
         Text(
-          node.topicName,
+          node.getTopicName(context),
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
@@ -525,9 +533,9 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           ),
         ),
         if (node.isMilestone)
-          const Text(
-            'Node Tonggak',
-            style: TextStyle(
+          Text(
+            context.l10n.quizMilestoneNode,
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
               color: AppColors.amberDark,
@@ -538,14 +546,28 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   }
 
   void _onNodeTapped(_PathNodeData node) {
+    if (node.status == NodeStatus.locked) {
+      HapticFeedback.lightImpact();
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            context.l10n.quizNodeLockedToast(node.getTopicName(context)),
+          ),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
     QuizBottomSheet.show(
       context,
-      unitTitle: node.unitTitle,
-      nodeTitle: node.topicName,
+      unitTitle: node.getUnitTitle(context),
+      nodeTitle: node.getTopicName(context),
       quizIndex: node.quizIndex,
       totalQuizzes: node.totalInUnit,
       questionCount: 10,
-      topicDescription: node.description,
+      topicDescription: node.getDescription(context),
       onStart: () {
         Navigator.of(context).pushNamed(AppRouter.quizQuestion);
       },
@@ -554,6 +576,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 }
 
 class _PathNodeData {
+  final String topicKey;
   final String topicName;
   final String glyph;
   final String description;
@@ -565,6 +588,7 @@ class _PathNodeData {
   final bool isUnit2;
 
   const _PathNodeData({
+    required this.topicKey,
     required this.topicName,
     required this.glyph,
     required this.description,
@@ -575,6 +599,59 @@ class _PathNodeData {
     this.unitTitle = 'Unit 1 · Tingkat Mudah',
     this.isUnit2 = false,
   });
+
+  String getTopicName(BuildContext context) {
+    switch (topicKey) {
+      case 'salam':
+        return context.l10n.quizTopicSalam;
+      case 'pamit':
+        return context.l10n.quizTopicPamit;
+      case 'lencana':
+        return context.l10n.quizTopicLencana;
+      case 'tanya_kabar':
+        return context.l10n.quizTopicTanyaKabar;
+      case 'perkenalan':
+        return context.l10n.quizTopicPerkenalan;
+      case 'keluarga':
+        return context.l10n.quizTopicKeluarga;
+      case 'rumah':
+        return context.l10n.quizTopicRumah;
+      case 'kerabat':
+        return context.l10n.quizTopicKerabat;
+      default:
+        return topicName;
+    }
+  }
+
+  String getDescription(BuildContext context) {
+    switch (topicKey) {
+      case 'salam':
+        return context.l10n.quizTopicSalamDesc;
+      case 'pamit':
+        return context.l10n.quizTopicPamitDesc;
+      case 'lencana':
+        return context.l10n.quizTopicLencanaDesc;
+      case 'tanya_kabar':
+        return context.l10n.quizTopicTanyaKabarDesc;
+      case 'perkenalan':
+        return context.l10n.quizTopicPerkenalanDesc;
+      case 'keluarga':
+        return context.l10n.quizTopicKeluargaDesc;
+      case 'rumah':
+        return context.l10n.quizTopicRumahDesc;
+      case 'kerabat':
+        return context.l10n.quizTopicKerabatDesc;
+      default:
+        return description;
+    }
+  }
+
+  String getUnitTitle(BuildContext context) {
+    return context.l10n.quizUnitTitle(
+      isUnit2 ? 2 : 1,
+      context.l10n.difficultyMudah,
+    );
+  }
 }
 
 /// Draws the small curved connector between two nodes.

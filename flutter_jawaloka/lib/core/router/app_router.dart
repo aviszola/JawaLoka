@@ -79,8 +79,11 @@ class AppRouter {
             page: const MainShellScreen(initialIndex: 4), settings: settings);
 
       case AppRouter.vocabularyDetail:
+        final raw = settings.arguments;
+        final index = raw is int ? raw : 0;
         return _FadePageRoute(
-            page: const VocabularyDetailScreen(), settings: settings);
+            page: VocabularyDetailScreen(initialIndex: index),
+            settings: settings);
 
       case AppRouter.aksaraDetail:
         return _FadePageRoute(
@@ -103,7 +106,6 @@ class AppRouter {
                 maxScore: 100,
                 correctCount: 0,
                 totalQuestions: 10,
-                timeTaken: '0:00',
                 accuracy: 0,
                 isStreakAchievedToday: false,
               );
