@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
@@ -22,11 +23,6 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   final int _completedQuizzes = MockUserStats.totalCompletedQuizzes;
 
   int _selectedDifficultyIndex = 0; // 0 = Mudah, 1 = Mahir, 2 = Sangat Mahir
-  static const List<String> _difficultyLevels = [
-    'Mudah',
-    'Mahir',
-    'Sangat Mahir',
-  ];
 
   /// Data jalur kuis per unit pembelajaran.
   static final List<_PathNodeData> _nodes = [
@@ -153,14 +149,20 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   }
 
   PreferredSizeWidget _buildAppBar() {
+    final l10n = context.l10n;
+    final difficultyLevels = [
+      l10n.difficultyMudah,
+      l10n.difficultyMahir,
+      l10n.difficultySangatMahir,
+    ];
     return AppBar(
       backgroundColor: const Color(0xFFF5F1EB),
       elevation: 0,
       centerTitle: false,
       automaticallyImplyLeading: false,
-      title: const Text(
-        'Jalur Kuis',
-        style: TextStyle(
+      title: Text(
+        l10n.quizPathTitle,
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
@@ -180,7 +182,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
               const Icon(Icons.star_rounded, size: 16, color: AppColors.amberDark),
               const SizedBox(width: 4),
               Text(
-                '$_completedQuizzes Selesai',
+                l10n.quizCompletedBadge(_completedQuizzes),
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -198,13 +200,13 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           alignment: Alignment.centerLeft,
           child: Row(
-            children: List.generate(_difficultyLevels.length, (index) {
+            children: List.generate(difficultyLevels.length, (index) {
               final isSelected = _selectedDifficultyIndex == index;
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: ChoiceChip(
                   label: Text(
-                    _difficultyLevels[index],
+                    difficultyLevels[index],
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight:
@@ -297,15 +299,15 @@ class _QuizPathScreenState extends State<QuizPathScreen>
         // Header for Unit 1 before the first node
         if (index == 0)
           _buildUnitHeader(
-            'Unit 1: Sapaan dan Salam',
-            'Dasar percakapan dan tata krama sopan santun',
+            context.l10n.quizUnit1Title,
+            context.l10n.quizUnit1Subtitle,
           ),
 
         // Header for Unit 2 before the first locked node of Unit 2
         if (index == 5)
           _buildUnitHeader(
-            'Unit 2: Keluarga dan Rumah (Terkunci)',
-            'Silsilah keluarga, kerabat, dan lingkungan rumah',
+            context.l10n.quizUnit2Title,
+            context.l10n.quizUnit2Subtitle,
             isLocked: true,
           ),
 

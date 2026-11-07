@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../auth/presentation/screens/language_selection_screen.dart';
 import '../widgets/animated_loading_dots.dart';
@@ -263,7 +263,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               children: [
                 Text(
-                  AppStrings.appName,
+                  context.l10n.splashAppName,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.displayLarge?.copyWith(
                     color: AppColors.ink,
@@ -276,7 +276,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40.0),
                   child: Text(
-                    AppStrings.appTagline,
+                    context.l10n.splashAppTagline,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: AppColors.ink.withValues(

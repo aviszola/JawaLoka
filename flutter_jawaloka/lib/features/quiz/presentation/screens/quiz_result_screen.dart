@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
@@ -384,9 +385,9 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           const SizedBox(height: 12),
 
           // Title
-          const Text(
-            'Luar Biasa!',
-            style: TextStyle(
+          Text(
+            context.l10n.quizResultAwesome,
+            style: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
               color: AppColors.ink,
@@ -413,7 +414,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
                   const Icon(Icons.local_fire_department_rounded, color: Color(0xFFF26B2D), size: 22),
                   const SizedBox(width: 8),
                   Text(
-                    'Streak kuis aktif: ${widget.result.currentStreak} hari',
+                    context.l10n.quizResultStreakBanner(widget.result.currentStreak),
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -428,12 +429,12 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           const SizedBox(height: 24),
 
           // Stats rows
-          _buildStatRow('Soal Benar', '${widget.result.correctCount}/${widget.result.totalQuestions}',
+          _buildStatRow(context.l10n.quizResultCorrectAnswers, '${widget.result.correctCount}/${widget.result.totalQuestions}',
               AppColors.amberDark),
           const SizedBox(height: 10),
-          _buildStatRow('Waktu', widget.result.timeTaken, AppColors.ink),
+          _buildStatRow(context.l10n.quizResultTime, widget.result.timeTaken, AppColors.ink),
           const SizedBox(height: 10),
-          _buildStatRow('Akurasi', '${widget.result.accuracy}%', AppColors.success),
+          _buildStatRow(context.l10n.quizResultAccuracy, '${widget.result.accuracy}%', AppColors.success),
 
           const SizedBox(height: 24),
 
@@ -547,9 +548,9 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               shape: const StadiumBorder(),
               elevation: 0,
             ),
-            child: const Text(
-              'Kembali ke Beranda',
-              style: TextStyle(
+            child: Text(
+              context.l10n.quizResultBackHome,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -570,9 +571,9 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: const StadiumBorder(),
             ),
-            child: const Text(
-              'Ulangi kuis',
-              style: TextStyle(
+            child: Text(
+              context.l10n.quizResultRetry,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/auth_banner.dart';
@@ -59,16 +59,16 @@ class _RegisterScreenState extends State<RegisterScreen>
     String? passErr;
 
     if (name.isEmpty) {
-      nameErr = AppStrings.nameRequiredError;
+      nameErr = context.l10n.validationNameRequired;
     }
 
     final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
     if (email.isEmpty || !emailRegex.hasMatch(email)) {
-      emailErr = AppStrings.emailInvalidError;
+      emailErr = context.l10n.validationEmailInvalid;
     }
 
     if (password.length < 8) {
-      passErr = AppStrings.passwordMinLengthError;
+      passErr = context.l10n.validationPasswordMinLength;
     }
 
     setState(() {
@@ -152,9 +152,9 @@ class _RegisterScreenState extends State<RegisterScreen>
                                   curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
                                 ),
                               ),
-                              child: const AuthBanner(
-                                title: AppStrings.welcomeBannerTitle,
-                                subtitle: AppStrings.welcomeBannerSubtitle,
+                              child: AuthBanner(
+                                title: context.l10n.authWelcomeBannerTitle,
+                                subtitle: context.l10n.authWelcomeBannerSubtitle,
                                 glyphWatermark: 'ꦲ',
                                 height: 120,
                               ),
@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  AppStrings.createAccountTitle,
+                                  context.l10n.registerTitle,
                                   style: theme.textTheme.displayMedium?.copyWith(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w800,
@@ -184,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  AppStrings.createAccountSubtitle,
+                                  context.l10n.registerSubtitle,
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     fontSize: 14,
                                     color: AppColors.inkSecondary,
@@ -218,7 +218,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                 children: [
                                   // KEPUTUSAN PRODUK: nama di registrasi atau di profil
                                   CustomTextField(
-                                    label: AppStrings.fullNameLabel,
+                                    label: context.l10n.authFullNameLabel,
                                     controller: _nameCtrl,
                                     textCapitalization: TextCapitalization.words,
                                     keyboardType: TextInputType.name,
@@ -240,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                   const SizedBox(height: 14),
 
                                   CustomTextField(
-                                    label: AppStrings.emailLabel,
+                                    label: context.l10n.authEmailLabel,
                                     controller: _emailCtrl,
                                     keyboardType: TextInputType.emailAddress,
                                     textInputAction: TextInputAction.next,
@@ -272,7 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                   const SizedBox(height: 14),
 
                                   CustomTextField(
-                                    label: AppStrings.passwordLabel,
+                                    label: context.l10n.authPasswordLabel,
                                     controller: _passwordCtrl,
                                     obscureText: true,
                                     showTogglePassword: true,
@@ -307,7 +307,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                         const SizedBox(width: 6),
                                         Expanded(
                                           child: Text(
-                                            AppStrings.passwordHint,
+                                            context.l10n.registerPasswordHint,
                                             style: theme.textTheme.bodyMedium?.copyWith(
                                               fontSize: 12,
                                               color: AppColors.inkSecondary,
@@ -329,7 +329,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
                           // 4. Tombol Aksi Bawah & Footer
                           PrimaryButton(
-                            label: AppStrings.registerButton,
+                            label: context.l10n.registerButton,
                             onPressed: _isLoading ? null : _register,
                             isLoading: _isLoading,
                           ),
@@ -342,15 +342,15 @@ class _RegisterScreenState extends State<RegisterScreen>
                               },
                               child: Text.rich(
                                 TextSpan(
-                                  text: AppStrings.termsPrefix,
+                                  text: context.l10n.registerTermsPrefix,
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     fontSize: 12,
                                     color: AppColors.inkSecondary,
                                   ),
-                                  children: const [
+                                  children: [
                                     TextSpan(
-                                      text: AppStrings.privacyPolicy,
-                                      style: TextStyle(
+                                      text: context.l10n.registerPrivacyPolicy,
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.w700,
                                         color: AppColors.ink,
                                         decoration: TextDecoration.underline,
@@ -369,7 +369,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                AppStrings.alreadyHaveAccount,
+                                context.l10n.registerAlreadyHaveAccount,
                                 style: theme.textTheme.bodyMedium?.copyWith(
                                   fontSize: 14,
                                   color: AppColors.inkSecondary,
@@ -377,9 +377,9 @@ class _RegisterScreenState extends State<RegisterScreen>
                               ),
                               GestureDetector(
                                 onTap: () => Navigator.pushReplacementNamed(context, '/login'),
-                                child: const Text(
-                                  AppStrings.loginLink,
-                                  style: TextStyle(
+                                child: Text(
+                                  context.l10n.registerLoginLink,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.ink,
@@ -409,20 +409,24 @@ class _BackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.7),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppColors.border),
-        ),
-        child: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          size: 18,
-          color: AppColors.ink,
+    return Semantics(
+      label: context.l10n.commonBack,
+      button: true,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.7),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.border),
+          ),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 18,
+            color: AppColors.ink,
+          ),
         ),
       ),
     );

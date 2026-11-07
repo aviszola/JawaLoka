@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
@@ -10,8 +11,9 @@ import '../../../../core/mock/mock_user_stats.dart';
 
 class _SimilarityMeterPainter extends CustomPainter {
   final double progress; // 0.0 – 1.0
+  final String label;
 
-  const _SimilarityMeterPainter({required this.progress});
+  const _SimilarityMeterPainter({required this.progress, this.label = 'Kemiripan'});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -62,10 +64,10 @@ class _SimilarityMeterPainter extends CustomPainter {
       center - Offset(percentPainter.width / 2, percentPainter.height / 2 + 7),
     );
 
-    // "Kemiripan" label below percentage
-    const labelSpan = TextSpan(
-      text: 'Kemiripan',
-      style: TextStyle(fontSize: 12, color: AppColors.inkMuted),
+    // Similarity label below percentage
+    final labelSpan = TextSpan(
+      text: label,
+      style: const TextStyle(fontSize: 12, color: AppColors.inkMuted),
     );
     final labelPainter = TextPainter(
       text: labelSpan,
@@ -78,7 +80,8 @@ class _SimilarityMeterPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_SimilarityMeterPainter old) => old.progress != progress;
+  bool shouldRepaint(_SimilarityMeterPainter old) =>
+      old.progress != progress || old.label != label;
 }
 
 // ─────────────────────────────────────────────────────────
@@ -196,9 +199,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
           ),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Hasil Quest',
-          style: TextStyle(
+        title: Text(
+          context.l10n.dailyResultTitle,
+          style: const TextStyle(
             color: AppColors.ink,
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -262,12 +265,15 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   }
 
   Widget _buildCelebrationText(bool isPassed) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          isPassed ? 'Hebat, ${widget.userName}!' : 'Ayo Latihan Lagi!',
+          isPassed
+              ? l10n.dailyResultCelebrationPassed(widget.userName)
+              : l10n.dailyResultCelebrationFailed,
           style: const TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -277,8 +283,8 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         const SizedBox(height: 8),
         Text(
           isPassed
-              ? 'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.'
-              : 'Goresanmu hampir tepat. Coba perhatikan proporsi aksara target.',
+              ? l10n.dailyResultDescPassed
+              : l10n.dailyResultDescFailed,
           style: const TextStyle(
             fontSize: 14,
             color: AppColors.ink,
@@ -296,7 +302,10 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         width: 90,
         height: 90,
         child: CustomPaint(
-          painter: _SimilarityMeterPainter(progress: _meterAnim.value),
+          painter: _SimilarityMeterPainter(
+            progress: _meterAnim.value,
+            label: context.l10n.dailyResultSimilarityLabel,
+          ),
         ),
       ),
     );
@@ -305,6 +314,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   // ── Drawing Result Card ────────────────────────────────
 
   Widget _buildDrawingResultCard() {
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -321,21 +331,29 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Perbandingan Tulisan',
-            style: TextStyle(
+          Text(
+            l10n.dailyResultComparison,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: AppColors.ink,
             ),
           ),
           const SizedBox(height: 16),
-          const Row(
+          Row(
             children: [
-              Expanded(child: _DrawingPanel(title: 'Tulisanmu', isDrawn: true)),
-              SizedBox(width: 16),
               Expanded(
-                child: _DrawingPanel(title: 'Aksara Target', isDrawn: false),
+                child: _DrawingPanel(
+                  title: l10n.dailyResultYourDrawing,
+                  isDrawn: true,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: _DrawingPanel(
+                  title: l10n.dailyResultTargetScript,
+                  isDrawn: false,
+                ),
               ),
             ],
           ),
@@ -348,6 +366,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
 
   Widget _buildQuestStatusCard() {
     final isPassed = widget.similarity >= 0.85;
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
@@ -379,7 +398,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isPassed ? 'Status: Lulus' : 'Status: Belum Lulus',
+                  isPassed
+                      ? l10n.dailyResultStatusPassed
+                      : l10n.dailyResultStatusFailed,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -388,7 +409,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Kemiripan ${(widget.similarity * 100).round()}% (Syarat lulus: ≥ 85%)',
+                  l10n.dailyResultRequirement((widget.similarity * 100).round()),
                   style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.inkSecondary,
@@ -405,6 +426,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   // ── Buttons ────────────────────────────────────────────
 
   Widget _buildButtons(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -419,9 +441,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
               shape: const StadiumBorder(),
               elevation: 0,
             ),
-            child: const Text(
-              'Lanjutkan Belajar →',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            child: Text(
+              l10n.dailyResultContinueLearning,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -436,9 +458,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: const StadiumBorder(),
             ),
-            child: const Text(
-              'Coba Lagi',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            child: Text(
+              l10n.dailyResultTryAgain,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
 import 'quiz_result_screen.dart';
@@ -411,7 +412,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                           color: Color(0xFFF26B2D), size: 14),
                       const SizedBox(width: 2),
                       Text(
-                        '$_combo Benar!',
+                        context.l10n.quizComboCount(_combo),
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
@@ -534,7 +535,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     }
 
     Widget button = Semantics(
-      label: 'Pilihan ${String.fromCharCode(65 + index)}: ${_current.options[index]}',
+      label: context.l10n.quizOptionSemantics(
+        String.fromCharCode(65 + index),
+        _current.options[index],
+      ),
       button: true,
       selected: isSelected,
       child: GestureDetector(
@@ -628,7 +632,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
             Row(
               children: [
                 Text(
-                  _isCorrect ? 'Betul!' : 'Kurang tepat',
+                  _isCorrect ? context.l10n.quizCorrect : context.l10n.quizIncorrect,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -642,7 +646,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
             if (!_isCorrect) ...[
               const SizedBox(height: 2),
               Text(
-                'Jawaban: ${_current.options[_current.correctIndex]}',
+                context.l10n.quizAnswerLabel(_current.options[_current.correctIndex]),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color(0xFFD64545),
@@ -671,9 +675,9 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               child: Text(
                 _answered
                     ? (_currentIndex < widget.questions.length - 1
-                        ? 'Lanjut'
-                        : 'Selesai')
-                    : 'Periksa',
+                        ? context.l10n.quizContinue
+                        : context.l10n.quizFinish)
+                    : context.l10n.quizCheck,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,

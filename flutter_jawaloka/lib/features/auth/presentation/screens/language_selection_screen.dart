@@ -1,7 +1,8 @@
 /*  */
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/l10n/l10n_extension.dart';
+import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/primary_button.dart';
 
@@ -24,7 +25,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
 
   final List<_LanguageOption> _options = const [
     _LanguageOption(
-      code: 'jw',
+      code: 'jv',
       name: 'Basa Jawa',
       sub: 'Javanese',
       avatar: 'ꦗ',
@@ -81,19 +82,31 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
     if (_selectedLang == code) return;
     HapticFeedback.selectionClick();
     setState(() => _selectedLang = code);
-    // BELUM TERHUBUNG KE LOKALISASI: pilihan bahasa belum disimpan ke persistent storage / belum mengubah locale app
+    final controller = LocaleScope.maybeOf(context);
+    controller?.setLocale(Locale(code));
     _cardControllers[code]?.forward(from: 0.0);
   }
 
   void _proceed() {
     HapticFeedback.mediumImpact();
-    // BELUM TERHUBUNG KE LOKALISASI: preferensi bahasa (_selectedLang) belum disimpan ke shared_preferences
+    final controller = LocaleScope.maybeOf(context);
+    controller?.markLanguageChosen();
     Navigator.of(context).pushNamed('/register');
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final controller = LocaleScope.maybeOf(context);
+    if (controller != null && controller.locale.languageCode != _selectedLang) {
+      _selectedLang = controller.locale.languageCode;
+    }
+
+    final l10n = context.l10n;
+    final titleText = l10n.langSelectTitle;
+    final subtitleText = l10n.langSelectSubtitle;
+    final hintText = l10n.langSelectHint;
+    final continueButtonText = l10n.langSelectContinueButton;
 
     return Scaffold(
       backgroundColor: AppColors.canvas,
@@ -139,7 +152,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  AppStrings.selectLanguageTitle,
+                                  titleText,
                                   style: theme.textTheme.displayMedium
                                       ?.copyWith(
                                         fontSize: 28,
@@ -151,7 +164,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                                 ),
                                 const SizedBox(height: 6),
                                 Text(
-                                  AppStrings.selectLanguageSubtitle,
+                                  subtitleText,
                                   style: theme.textTheme.bodyMedium?.copyWith(
                                     fontSize: 14,
                                     color: AppColors.inkSecondary,
@@ -221,7 +234,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                           ),
                           child: Center(
                             child: Text(
-                              AppStrings.selectLanguageHint,
+                              hintText,
                               textAlign: TextAlign.center,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontSize: 14,
@@ -242,7 +255,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
                     child: PrimaryButton(
-                      label: AppStrings.continueButton,
+                      label: continueButtonText,
                       onPressed: _proceed,
                       trailingIcon: Icons.arrow_forward_rounded,
                     ),

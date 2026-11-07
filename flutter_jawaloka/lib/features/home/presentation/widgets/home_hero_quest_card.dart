@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
@@ -9,6 +10,7 @@ class HomeHeroQuestCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -37,14 +39,14 @@ class HomeHeroQuestCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(99),
                   border: Border.all(color: AppColors.border),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.edit_rounded, size: 14, color: AppColors.amberDark),
-                    SizedBox(width: 6),
+                    const Icon(Icons.edit_rounded, size: 14, color: AppColors.amberDark),
+                    const SizedBox(width: 6),
                     Text(
-                      'MISI HARI INI',
-                      style: TextStyle(
+                      l10n.homeHeroQuestBadge,
+                      style: const TextStyle(
                         color: AppColors.ink,
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
@@ -59,9 +61,9 @@ class HomeHeroQuestCard extends StatelessWidget {
                   color: AppColors.ink.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(99),
                 ),
-                child: const Text(
-                  'Target: ≥85% Presisi',
-                  style: TextStyle(
+                child: Text(
+                  l10n.homeHeroQuestTarget,
+                  style: const TextStyle(
                     color: AppColors.ink,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -106,19 +108,19 @@ class HomeHeroQuestCard extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'Aksara "Ha" (ꦲ)',
-                      style: TextStyle(
+                      l10n.homeHeroQuestTitle,
+                      style: const TextStyle(
                         color: AppColors.ink,
                         fontSize: 17,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
-                      'Tulis aksara dasar pertama Hanacaraka dengan goresan tepat.',
-                      style: TextStyle(
+                      l10n.homeHeroQuestDesc,
+                      style: const TextStyle(
                         color: AppColors.inkSecondary,
                         fontSize: 14,
                         height: 1.3,
@@ -147,14 +149,14 @@ class HomeHeroQuestCard extends StatelessWidget {
                 ),
                 elevation: 0,
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.edit_rounded, size: 18, color: Colors.white),
-                  SizedBox(width: 8),
+                  const Icon(Icons.edit_rounded, size: 18, color: Colors.white),
+                  const SizedBox(width: 8),
                   Text(
-                    'Mulai Menggambar',
-                    style: TextStyle(
+                    l10n.homeHeroQuestButton,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,

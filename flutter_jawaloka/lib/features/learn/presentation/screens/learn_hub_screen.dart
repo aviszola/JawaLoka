@@ -1,5 +1,6 @@
 import '../../../../core/mock/mock_user_stats.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
@@ -60,63 +61,66 @@ class _LearnHubScreenState extends State<LearnHubScreen>
     ),
   ];
 
-  static const List<ModuleCardData> _modules = [
-    ModuleCardData(
-      id: 'aksara',
-      title: 'Aksara Jawa Dhasar',
-      subtitle: 'Hanacaraka — 20 aksara dasar, sandhangan & pasangan',
-      iconGlyph: 'ꦲ',
-      bgColor: AppColors.amberSoft,
-      progress: 0.65,
-      progressLabel: '20 aksara terselesaikan',
-      tag: 'Aksara',
-    ),
-    ModuleCardData(
-      id: 'kosakata',
-      title: 'Kosa Kata (Kamus)',
-      subtitle: 'Kamus 3 tingkat tutur: Ngoko, Krama Madya, Krama Inggil',
-      iconData: Icons.menu_book_rounded,
-      bgColor: AppColors.pastelSand,
-      iconTextColor: AppColors.amberDark,
-      progress: 0.50,
-      progressLabel: '120 tembung terselesaikan',
-      tag: 'Kamus',
-    ),
-    ModuleCardData(
-      id: 'penerjemah',
-      title: 'Penerjemah Bahasa',
-      subtitle: 'Terjemahan dwiarah Indonesia, Ngoko, dan Krama',
-      iconData: Icons.translate_rounded,
-      bgColor: AppColors.pastelMint,
-      iconTextColor: AppColors.pastelMintText,
-      progress: 1.0,
-      progressLabel: 'Siap Digunakan',
-      tag: 'Utilitas',
-      isTool: true,
-    ),
-    ModuleCardData(
-      id: 'unggah_ungguh',
-      title: 'Penggunaan Bahasa',
-      subtitle: 'Unggah-ungguh & tata krama ragam wicara',
-      iconData: Icons.record_voice_over_rounded,
-      bgColor: AppColors.pastelLavender,
-      iconTextColor: AppColors.pastelLavenderText,
-      progress: 0.35,
-      progressLabel: '4 tingkatan tutur',
-      tag: 'Wicara',
-    ),
-    ModuleCardData(
-      id: 'peribahasa',
-      title: 'Peribahasa & Saloka',
-      subtitle: 'Paribasan, bebasan, lan saloka warisan Jawa',
-      iconData: Icons.auto_stories_rounded,
-      bgColor: AppColors.pastelBlush,
-      iconTextColor: AppColors.pastelBlushText,
-      progress: 0.20,
-      progressLabel: '15 peribahasa',
-      tag: 'Sastra',
-    ),
-  ];
+  List<ModuleCardData> _getModules(BuildContext context) {
+    final l10n = context.l10n;
+    return [
+      ModuleCardData(
+        id: 'aksara',
+        title: l10n.learnModuleAksaraTitle,
+        subtitle: l10n.learnModuleAksaraSubtitle,
+        iconGlyph: 'ꦲ',
+        bgColor: AppColors.amberSoft,
+        progress: 0.65,
+        progressLabel: l10n.learnModuleAksaraLabel,
+        tag: l10n.learnTagAksara,
+      ),
+      ModuleCardData(
+        id: 'kosakata',
+        title: l10n.learnModuleVocabTitle,
+        subtitle: l10n.learnModuleVocabSubtitle,
+        iconData: Icons.menu_book_rounded,
+        bgColor: AppColors.pastelSand,
+        iconTextColor: AppColors.amberDark,
+        progress: 0.50,
+        progressLabel: l10n.learnModuleVocabLabel,
+        tag: l10n.learnTagKamus,
+      ),
+      ModuleCardData(
+        id: 'penerjemah',
+        title: l10n.learnModuleTranslatorTitle,
+        subtitle: l10n.learnModuleTranslatorSubtitle,
+        iconData: Icons.translate_rounded,
+        bgColor: AppColors.pastelMint,
+        iconTextColor: AppColors.pastelMintText,
+        progress: 1.0,
+        progressLabel: l10n.learnModuleTranslatorLabel,
+        tag: l10n.learnTagUtilitas,
+        isTool: true,
+      ),
+      ModuleCardData(
+        id: 'unggah_ungguh',
+        title: l10n.learnModuleEtiquetteTitle,
+        subtitle: l10n.learnModuleEtiquetteSubtitle,
+        iconData: Icons.record_voice_over_rounded,
+        bgColor: AppColors.pastelLavender,
+        iconTextColor: AppColors.pastelLavenderText,
+        progress: 0.35,
+        progressLabel: l10n.learnModuleEtiquetteLabel,
+        tag: l10n.learnTagWicara,
+      ),
+      ModuleCardData(
+        id: 'peribahasa',
+        title: l10n.learnModuleProverbsTitle,
+        subtitle: l10n.learnModuleProverbsSubtitle,
+        iconData: Icons.auto_stories_rounded,
+        bgColor: AppColors.pastelBlush,
+        iconTextColor: AppColors.pastelBlushText,
+        progress: 0.20,
+        progressLabel: l10n.learnModuleProverbsLabel,
+        tag: l10n.learnTagSastra,
+      ),
+    ];
+  }
 
   @override
   void initState() {
@@ -449,11 +453,11 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
                   // Module section (Aksara, Kosa Kata, Penerjemah, Penggunaan Bahasa, Peribahasa)
                   _buildSectionHeader(
-                    'Materi Belajar',
+                    context.l10n.learnSectionModules,
                     Icons.auto_stories_rounded,
                   ),
                   const SizedBox(height: 14),
-                  ..._modules.map(
+                  ..._getModules(context).map(
                     (m) => ModuleCard(data: m, onTap: () => _onModuleTap(m)),
                   ),
 
@@ -461,7 +465,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
                   // Tembung Dina Iki carousel
                   _buildSectionHeader(
-                    'Tembung Dina Iki',
+                    context.l10n.learnSectionDailyWord,
                     Icons.translate_rounded,
                   ),
                   const SizedBox(height: 14),
@@ -486,6 +490,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
   }
 
   Widget _buildHeroHeader() {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       color: AppColors.amber,
@@ -509,19 +514,19 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                       opacity: _greetingFade,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
-                            'Pusat Sinau JawaLoka',
-                            style: TextStyle(
+                            l10n.learnHeaderTitle,
+                            style: const TextStyle(
                               color: AppColors.ink,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(height: 2),
+                          const SizedBox(height: 2),
                           Text(
-                            'Materi & Modul Sinau',
-                            style: TextStyle(
+                            l10n.learnHeaderSubtitle,
+                            style: const TextStyle(
                               color: AppColors.ink,
                               fontSize: 22,
                               fontWeight: FontWeight.w800,
@@ -544,9 +549,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                       borderRadius: BorderRadius.circular(99),
                       border: Border.all(color: AppColors.border),
                     ),
-                    child: const Text(
-                      'Level ${MockUserStats.userLevel}',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.profileLevelPill(MockUserStats.userLevel),
+                      style: const TextStyle(
                         color: AppColors.ink,
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
@@ -563,24 +568,25 @@ class _LearnHubScreenState extends State<LearnHubScreen>
   }
 
   Widget _buildQuickActions() {
+    final l10n = context.l10n;
     final actions = [
       _QuickAction(
         icon: Icons.menu_book_rounded,
-        label: 'Kamus',
+        label: l10n.learnTagKamus,
         color: AppColors.pastelSand,
         iconColor: AppColors.amberDark,
         onTap: () => Navigator.pushNamed(context, AppRouter.vocabularyDetail),
       ),
       _QuickAction(
         icon: Icons.edit_note_rounded,
-        label: 'Aksara',
+        label: l10n.learnTagAksara,
         color: AppColors.amberSoft,
         iconColor: AppColors.accentOrange,
         onTap: () => Navigator.pushNamed(context, AppRouter.aksaraDetail),
       ),
       _QuickAction(
         icon: Icons.translate_rounded,
-        label: 'Penerjemah',
+        label: l10n.translatorTitle,
         color: AppColors.pastelMint,
         iconColor: AppColors.pastelMintText,
         onTap: () => Navigator.pushNamed(context, AppRouter.translator),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../widgets/blangkon_painter.dart';
@@ -159,21 +160,21 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
 
   void _showLockedSnackBar(BlangkonType type) {
     final opt = _options.firstWhere((o) => o.type == type);
-    final String syaratText;
+    final String message;
     switch (opt.condition.type) {
       case BlangkonUnlockType.initial:
-        syaratText = 'Terbuka sejak awal';
+        message = context.l10n.blangkonToastInitial(opt.name);
         break;
       case BlangkonUnlockType.level:
-        syaratText = 'Butuh Level ${opt.condition.requiredLevel}';
+        message = context.l10n.blangkonToastLevel(opt.condition.requiredLevel ?? 1, opt.name);
         break;
       case BlangkonUnlockType.masteryAksara:
-        syaratText = 'Selesaikan seluruh materi aksara';
+        message = context.l10n.blangkonToastAksara(opt.name);
         break;
     }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('$syaratText untuk membuka ${opt.name}'),
+        content: Text(message),
         behavior: SnackBarBehavior.floating,
         backgroundColor: AppColors.ink,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -214,13 +215,13 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       backgroundColor: AppColors.amber,
       elevation: 0,
       leading: Semantics(
-        label: 'Kembali',
+        label: context.l10n.commonBack,
         button: true,
         child: BackButton(color: AppColors.ink),
       ),
-      title: const Text(
-        'Pilih Blangkon',
-        style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 18),
+      title: Text(
+        context.l10n.blangkonTitle,
+        style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 18),
       ),
       actions: [
         Container(
@@ -230,13 +231,13 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
             color: AppColors.ink.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(100),
           ),
-          child: const Row(
+          child: Row(
             children: [
-              Icon(Icons.shield_outlined, size: 14, color: AppColors.ink),
-              SizedBox(width: 4),
+              const Icon(Icons.shield_outlined, size: 14, color: AppColors.ink),
+              const SizedBox(width: 4),
               Text(
-                'Level $_currentUserLevel',
-                style: TextStyle(
+                context.l10n.homeLevelPill(_currentUserLevel),
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
                   color: AppColors.ink,
@@ -350,9 +351,9 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         ),
-        child: const Text(
-          'Simpan Pilihan',
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, letterSpacing: 0.3),
+        child: Text(
+          context.l10n.blangkonSaveButton,
+          style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16, letterSpacing: 0.3),
         ),
       ),
     );
@@ -373,6 +374,17 @@ class _BlangkonGridItem extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
   });
+
+  String _getConditionLabel(BuildContext context, BlangkonUnlockCondition condition) {
+    switch (condition.type) {
+      case BlangkonUnlockType.initial:
+        return context.l10n.blangkonInitialUnlock;
+      case BlangkonUnlockType.level:
+        return context.l10n.blangkonLevelRequired(condition.requiredLevel ?? 1);
+      case BlangkonUnlockType.masteryAksara:
+        return context.l10n.blangkonMasteryAksara;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -428,7 +440,7 @@ class _BlangkonGridItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
-                        option.condition.label,
+                        _getConditionLabel(context, option.condition),
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,

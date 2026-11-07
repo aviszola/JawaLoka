@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
@@ -11,6 +12,7 @@ class HomeContinueQuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
@@ -33,12 +35,12 @@ class HomeContinueQuizCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                children: const [
-                  Icon(Icons.quiz_rounded, size: 18, color: AppColors.amberDark),
-                  SizedBox(width: 8),
+                children: [
+                  const Icon(Icons.quiz_rounded, size: 18, color: AppColors.amberDark),
+                  const SizedBox(width: 8),
                   Text(
-                    'Lanjutkan Kuis',
-                    style: TextStyle(
+                    l10n.homeContinueQuizTitle,
+                    style: const TextStyle(
                       color: AppColors.ink,
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -53,9 +55,9 @@ class HomeContinueQuizCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: AppColors.amberDark.withValues(alpha: 0.3)),
                 ),
-                child: const Text(
-                  'Tingkat: Mahir',
-                  style: TextStyle(
+                child: Text(
+                  l10n.homeContinueQuizLevel,
+                  style: const TextStyle(
                     color: AppColors.amberDark,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -65,18 +67,18 @@ class HomeContinueQuizCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Node 4: Aksara Ra (ꦫ)',
-            style: TextStyle(
+          Text(
+            l10n.homeContinueQuizNode,
+            style: const TextStyle(
               color: AppColors.ink,
               fontSize: 14,
               fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(height: 4),
-          const Text(
-            '${MockUserStats.totalCompletedQuizzes} dari 10 bab kuis terselesaikan',
-            style: TextStyle(
+          Text(
+            l10n.homeContinueQuizProgress(MockUserStats.totalCompletedQuizzes),
+            style: const TextStyle(
               color: AppColors.inkSecondary,
               fontSize: 12,
             ),
@@ -106,17 +108,17 @@ class HomeContinueQuizCard extends StatelessWidget {
               alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
-                    'Buka Jalur Kuis',
-                    style: TextStyle(
+                    l10n.homeContinueQuizButton,
+                    style: const TextStyle(
                       color: AppColors.ink,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(width: 6),
-                  Icon(Icons.arrow_forward_rounded, size: 16, color: AppColors.ink),
+                  const SizedBox(width: 6),
+                  const Icon(Icons.arrow_forward_rounded, size: 16, color: AppColors.ink),
                 ],
               ),
             ),

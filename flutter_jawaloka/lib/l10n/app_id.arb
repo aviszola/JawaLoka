@@ -1,0 +1,1169 @@
+{
+  "@@locale": "id",
+  "langSelectTitle": "Pilih Bahasa Pengantar",
+  "@langSelectTitle": {
+    "description": "Judul layar pemilihan bahasa"
+  },
+  "langSelectSubtitle": "Sesuaikan bahasa antarmuka aplikasi dengan kenyamanan belajarmu.",
+  "@langSelectSubtitle": {
+    "description": "Subjudul layar pemilihan bahasa"
+  },
+  "langSelectHint": "Kamu dapat mengubah pilihan bahasa ini kapan saja melalui menu Pengaturan.",
+  "@langSelectHint": {
+    "description": "Petunjuk bawah layar pemilihan bahasa"
+  },
+  "langSelectContinueButton": "Lanjut",
+  "@langSelectContinueButton": {
+    "description": "Label tombol lanjut pada layar pemilihan bahasa"
+  },
+  "langSelectJvSub": "Bahasa Jawa",
+  "@langSelectJvSub": {
+    "description": "Keterangan kartu pilihan bahasa Jawa"
+  },
+  "langSelectIdSub": "Bawaan",
+  "@langSelectIdSub": {
+    "description": "Keterangan kartu pilihan bahasa Indonesia"
+  },
+  "langSelectEnSub": "Untuk pelajar seluruh dunia",
+  "@langSelectEnSub": {
+    "description": "Keterangan kartu pilihan bahasa Inggris"
+  },
+  "settingsLanguageRow": "Bahasa",
+  "@settingsLanguageRow": {
+    "description": "Label baris pengaturan bahasa di layar Pengaturan"
+  },
+  "settingsLanguageDialogTitle": "Pilih Bahasa",
+  "@settingsLanguageDialogTitle": {
+    "description": "Judul dialog pemilihan bahasa di Pengaturan"
+  },
+  "quizProgress": "Soal {current} dari {total}",
+  "@quizProgress": {
+    "description": "Format kemajuan nomor kuis",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "streakDays": "{count, plural, =1{1 hari} other{{count} hari}}",
+  "@streakDays": {
+    "description": "Jumlah hari streak belajar",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "splashAppName": "JawaLoka",
+  "@splashAppName": {
+    "description": "Nama merek aplikasi"
+  },
+  "splashAppTagline": "Belajar bahasa dan aksara Jawa setiap hari",
+  "@splashAppTagline": {
+    "description": "Tagline merek di layar splash"
+  },
+  "splashLoadingLabel": "Memuat aplikasi...",
+  "@splashLoadingLabel": {
+    "description": "Label semantik loading pada splash screen"
+  },
+  "authWelcomeBannerTitle": "Selamat datang di JawaLoka",
+  "@authWelcomeBannerTitle": {
+    "description": "Judul banner budaya di layar autentikasi"
+  },
+  "authWelcomeBannerSubtitle": "Lestarikan warisan leluhur nusantara",
+  "@authWelcomeBannerSubtitle": {
+    "description": "Subjudul banner budaya di layar autentikasi"
+  },
+  "commonBack": "Kembali",
+  "@commonBack": {
+    "description": "Label semantik tombol navigasi kembali"
+  },
+  "commonCloseError": "Tutup pesan error",
+  "@commonCloseError": {
+    "description": "Label semantik tombol tutup pesan error"
+  },
+  "authFullNameLabel": "Nama Lengkap",
+  "@authFullNameLabel": {
+    "description": "Label input nama lengkap"
+  },
+  "authEmailLabel": "Email",
+  "@authEmailLabel": {
+    "description": "Label input alamat email"
+  },
+  "authPasswordLabel": "Kata Sandi",
+  "@authPasswordLabel": {
+    "description": "Label input kata sandi"
+  },
+  "authShowPassword": "Tampilkan kata sandi",
+  "@authShowPassword": {
+    "description": "Label semantik lihat kata sandi"
+  },
+  "authHidePassword": "Sembunyikan kata sandi",
+  "@authHidePassword": {
+    "description": "Label semantik sembunyikan kata sandi"
+  },
+  "validationNameRequired": "Nama tidak boleh kosong",
+  "@validationNameRequired": {
+    "description": "Pesan validasi nama wajib diisi"
+  },
+  "validationEmailInvalid": "Format email belum benar",
+  "@validationEmailInvalid": {
+    "description": "Pesan validasi format email tidak valid"
+  },
+  "validationPasswordMinLength": "Kata sandi minimal 8 karakter",
+  "@validationPasswordMinLength": {
+    "description": "Pesan validasi panjang kata sandi kurang"
+  },
+  "validationPasswordEmpty": "Kata sandi tidak boleh kosong",
+  "@validationPasswordEmpty": {
+    "description": "Pesan validasi kata sandi wajib diisi"
+  },
+  "loginTitle": "Masuk ke akunmu",
+  "@loginTitle": {
+    "description": "Judul utama halaman login"
+  },
+  "loginSubtitle": "Lanjutkan progres belajarmu di mana saja",
+  "@loginSubtitle": {
+    "description": "Subjudul halaman login"
+  },
+  "loginInvalidCredentialsError": "Email atau kata sandi salah",
+  "@loginInvalidCredentialsError": {
+    "description": "Pesan kesalahan autentikasi login"
+  },
+  "loginForgotPassword": "Lupa kata sandi?",
+  "@loginForgotPassword": {
+    "description": "Tautan lupa kata sandi"
+  },
+  "loginButton": "Masuk",
+  "@loginButton": {
+    "description": "Tombol utama masuk di layar login"
+  },
+  "loginOrWith": "Atau masuk dengan",
+  "@loginOrWith": {
+    "description": "Pemisah opsi alternatif masuk"
+  },
+  "loginGoogleButton": "Lanjutkan dengan Google",
+  "@loginGoogleButton": {
+    "description": "Tombol masuk dengan akun Google"
+  },
+  "loginDontHaveAccount": "Belum punya akun? ",
+  "@loginDontHaveAccount": {
+    "description": "Teks ajakan pendaftaran di footer login"
+  },
+  "loginRegisterLink": "Daftar",
+  "@loginRegisterLink": {
+    "description": "Tautan navigasi ke halaman pendaftaran"
+  },
+  "registerTitle": "Buat akunmu",
+  "@registerTitle": {
+    "description": "Judul utama halaman pendaftaran"
+  },
+  "registerSubtitle": "Simpan progres belajarmu di mana saja",
+  "@registerSubtitle": {
+    "description": "Subjudul halaman pendaftaran"
+  },
+  "registerPasswordHint": "Gunakan kata sandi yang kuat (min. 8 karakter)",
+  "@registerPasswordHint": {
+    "description": "Petunjuk kekuatan kata sandi di layar pendaftaran"
+  },
+  "registerButton": "Daftar",
+  "@registerButton": {
+    "description": "Tombol utama pendaftaran akun"
+  },
+  "registerTermsPrefix": "Dengan mendaftar, kamu menyetujui ",
+  "@registerTermsPrefix": {
+    "description": "Teks pengantar persetujuan syarat ketentuan"
+  },
+  "registerPrivacyPolicy": "Kebijakan Privasi",
+  "@registerPrivacyPolicy": {
+    "description": "Label tautan kebijakan privasi"
+  },
+  "registerAlreadyHaveAccount": "Sudah punya akun? ",
+  "@registerAlreadyHaveAccount": {
+    "description": "Teks pengantar masuk di footer pendaftaran"
+  },
+  "registerLoginLink": "Masuk",
+  "@registerLoginLink": {
+    "description": "Tautan navigasi ke halaman masuk"
+  },
+  "navHome": "Beranda",
+  "@navHome": {
+    "description": "Label tab navigasi Beranda"
+  },
+  "navLearn": "Belajar",
+  "@navLearn": {
+    "description": "Label tab navigasi Belajar"
+  },
+  "navQuest": "Quest",
+  "@navQuest": {
+    "description": "Label tombol tengah Quest"
+  },
+  "navQuiz": "Kuis",
+  "@navQuiz": {
+    "description": "Label tab navigasi Kuis"
+  },
+  "navProfile": "Profil",
+  "@navProfile": {
+    "description": "Label tab navigasi Profil"
+  },
+  "homeGreetingMorning": "Selamat pagi",
+  "@homeGreetingMorning": {
+    "description": "Sapaan pagi hari di Beranda"
+  },
+  "homeGreetingAfternoon": "Selamat siang",
+  "@homeGreetingAfternoon": {
+    "description": "Sapaan siang hari di Beranda"
+  },
+  "homeGreetingEvening": "Selamat sore",
+  "@homeGreetingEvening": {
+    "description": "Sapaan sore hari di Beranda"
+  },
+  "homeGreetingNight": "Selamat malam",
+  "@homeGreetingNight": {
+    "description": "Sapaan malam hari di Beranda"
+  },
+  "homeGreetingUser": "Halo, {name}!",
+  "@homeGreetingUser": {
+    "description": "Sapaan nama pengguna di Beranda",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Dimas"
+      }
+    }
+  },
+  "homeLevelPill": "L{level}",
+  "@homeLevelPill": {
+    "description": "Label pill level di samping avatar Beranda",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "homeWeeklyStripTitle": "Aktivitas Kuis Minggu Ini",
+  "@homeWeeklyStripTitle": {
+    "description": "Judul strip mingguan kuis di Beranda"
+  },
+  "homeWeeklyCompletedCount": "{count} kuis selesai",
+  "@homeWeeklyCompletedCount": {
+    "description": "Jumlah kuis selesai minggu ini",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "homeWeeklyStreakInfo": "Streak kuis {count} hari aktif. Selesaikan kuis harian untuk menjaga streak.",
+  "@homeWeeklyStreakInfo": {
+    "description": "Pesan info streak pada strip mingguan",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "dayMon": "Sen",
+  "@dayMon": {
+    "description": "Singkatan hari Senin"
+  },
+  "dayTue": "Sel",
+  "@dayTue": {
+    "description": "Singkatan hari Selasa"
+  },
+  "dayWed": "Rab",
+  "@dayWed": {
+    "description": "Singkatan hari Rabu"
+  },
+  "dayThu": "Kam",
+  "@dayThu": {
+    "description": "Singkatan hari Kamis"
+  },
+  "dayFri": "Jum",
+  "@dayFri": {
+    "description": "Singkatan hari Jumat"
+  },
+  "daySat": "Sab",
+  "@daySat": {
+    "description": "Singkatan hari Sabtu"
+  },
+  "daySun": "Min",
+  "@daySun": {
+    "description": "Singkatan hari Minggu"
+  },
+  "homeHeroQuestBadge": "MISI HARI INI",
+  "@homeHeroQuestBadge": {
+    "description": "Badge kartu misi harian"
+  },
+  "homeHeroQuestTarget": "Target: ≥85% Presisi",
+  "@homeHeroQuestTarget": {
+    "description": "Target presisi misi harian"
+  },
+  "homeHeroQuestTitle": "Aksara \"Ha\" (ꦲ)",
+  "@homeHeroQuestTitle": {
+    "description": "Judul aksara misi harian"
+  },
+  "homeHeroQuestDesc": "Tulis aksara dasar pertama Hanacaraka dengan goresan tepat.",
+  "@homeHeroQuestDesc": {
+    "description": "Deskripsi panduan misi harian"
+  },
+  "homeHeroQuestButton": "Mulai Menggambar",
+  "@homeHeroQuestButton": {
+    "description": "Tombol aksi mulai menggambar di kartu hero"
+  },
+  "homeContinueQuizTitle": "Lanjutkan Kuis",
+  "@homeContinueQuizTitle": {
+    "description": "Judul kartu lanjutkan kuis di Beranda"
+  },
+  "homeContinueQuizLevel": "Tingkat: Mahir",
+  "@homeContinueQuizLevel": {
+    "description": "Label tingkat kesulitan di kartu lanjutkan kuis"
+  },
+  "homeContinueQuizNode": "Node 4: Aksara Ra (ꦫ)",
+  "@homeContinueQuizNode": {
+    "description": "Subjudul bab kuis aktif di kartu lanjutkan kuis"
+  },
+  "homeContinueQuizProgress": "{completed} dari 10 bab kuis terselesaikan",
+  "@homeContinueQuizProgress": {
+    "description": "Progres bab terselesaikan di kartu lanjutkan kuis",
+    "placeholders": {
+      "completed": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "homeContinueQuizButton": "Buka Jalur Kuis",
+  "@homeContinueQuizButton": {
+    "description": "Tombol menuju jalur kuis di Beranda"
+  },
+  "homeQuickLearnTitle": "Belajar Cepat",
+  "@homeQuickLearnTitle": {
+    "description": "Judul bagian belajar cepat di Beranda"
+  },
+  "homeQuickLearnSubtitle": "Topik Ringkas",
+  "@homeQuickLearnSubtitle": {
+    "description": "Subjudul bagian belajar cepat di Beranda"
+  },
+  "homeQuickLearnVocab": "Kosa Kata",
+  "@homeQuickLearnVocab": {
+    "description": "Judul item kosa kata di belajar cepat"
+  },
+  "homeQuickLearnVocabSub": "3 Tingkat",
+  "@homeQuickLearnVocabSub": {
+    "description": "Keterangan item kosa kata di belajar cepat"
+  },
+  "homeQuickLearnAksara": "Aksara Jawa",
+  "@homeQuickLearnAksara": {
+    "description": "Judul item aksara di belajar cepat"
+  },
+  "homeQuickLearnAksaraSub": "Hanacaraka",
+  "@homeQuickLearnAksaraSub": {
+    "description": "Keterangan item aksara di belajar cepat"
+  },
+  "homeQuickLearnTranslator": "Penerjemah",
+  "@homeQuickLearnTranslator": {
+    "description": "Judul item penerjemah di belajar cepat"
+  },
+  "homeQuickLearnTranslatorSub": "Ngoko-Krama",
+  "@homeQuickLearnTranslatorSub": {
+    "description": "Keterangan item penerjemah di belajar cepat"
+  },
+  "homeQuickLearnEtiquette": "Penggunaan Bahasa",
+  "@homeQuickLearnEtiquette": {
+    "description": "Judul item etika wicara di belajar cepat"
+  },
+  "homeQuickLearnEtiquetteSub": "Unggah-Ungguh",
+  "@homeQuickLearnEtiquetteSub": {
+    "description": "Keterangan item etika wicara di belajar cepat"
+  },
+  "homeQuickLearnProverbs": "Peribahasa",
+  "@homeQuickLearnProverbs": {
+    "description": "Judul item peribahasa di belajar cepat"
+  },
+  "homeQuickLearnProverbsSub": "Paribasan",
+  "@homeQuickLearnProverbsSub": {
+    "description": "Keterangan item peribahasa di belajar cepat"
+  },
+  "learnHeaderTitle": "Pusat Belajar",
+  "@learnHeaderTitle": {
+    "description": "Judul header layar Pusat Belajar"
+  },
+  "learnHeaderSubtitle": "Eksplorasi warisan budaya dan bahasa Jawa",
+  "@learnHeaderSubtitle": {
+    "description": "Subjudul header layar Pusat Belajar"
+  },
+  "learnSectionModules": "Modul Pembelajaran",
+  "@learnSectionModules": {
+    "description": "Judul bagian modul di Belajar"
+  },
+  "learnSectionDailyWord": "Tembung Dina Iki",
+  "@learnSectionDailyWord": {
+    "description": "Judul bagian kata harian di Belajar"
+  },
+  "moduleCardLocked": "Terkunci",
+  "@moduleCardLocked": {
+    "description": "Status modul terkunci"
+  },
+  "learnModuleAksaraTitle": "Aksara Jawa Dhasar",
+  "@learnModuleAksaraTitle": {
+    "description": "Judul modul aksara Jawa"
+  },
+  "learnModuleAksaraSubtitle": "Hanacaraka — 20 aksara dasar, sandhangan & pasangan",
+  "@learnModuleAksaraSubtitle": {
+    "description": "Subjudul modul aksara Jawa"
+  },
+  "learnModuleAksaraLabel": "20 aksara terselesaikan",
+  "@learnModuleAksaraLabel": {
+    "description": "Label progres modul aksara Jawa"
+  },
+  "learnModuleVocabTitle": "Kosa Kata (Kamus)",
+  "@learnModuleVocabTitle": {
+    "description": "Judul modul kosa kata kamus"
+  },
+  "learnModuleVocabSubtitle": "Kamus 3 tingkat tutur: Ngoko, Krama Madya, Krama Inggil",
+  "@learnModuleVocabSubtitle": {
+    "description": "Subjudul modul kosa kata kamus"
+  },
+  "learnModuleVocabLabel": "120 tembung terselesaikan",
+  "@learnModuleVocabLabel": {
+    "description": "Label progres modul kosa kata"
+  },
+  "learnModuleTranslatorTitle": "Penerjemah Bahasa",
+  "@learnModuleTranslatorTitle": {
+    "description": "Judul modul penerjemah bahasa"
+  },
+  "learnModuleTranslatorSubtitle": "Terjemahan dwiarah Indonesia, Ngoko, dan Krama",
+  "@learnModuleTranslatorSubtitle": {
+    "description": "Subjudul modul penerjemah bahasa"
+  },
+  "learnModuleTranslatorLabel": "Siap Digunakan",
+  "@learnModuleTranslatorLabel": {
+    "description": "Label modul penerjemah siap digunakan"
+  },
+  "learnModuleEtiquetteTitle": "Penggunaan Bahasa",
+  "@learnModuleEtiquetteTitle": {
+    "description": "Judul modul unggah-ungguh wicara"
+  },
+  "learnModuleEtiquetteSubtitle": "Unggah-ungguh & tata krama ragam wicara",
+  "@learnModuleEtiquetteSubtitle": {
+    "description": "Subjudul modul unggah-ungguh wicara"
+  },
+  "learnModuleEtiquetteLabel": "4 tingkatan tutur",
+  "@learnModuleEtiquetteLabel": {
+    "description": "Label progres modul wicara"
+  },
+  "learnModuleProverbsTitle": "Peribahasa & Saloka",
+  "@learnModuleProverbsTitle": {
+    "description": "Judul modul peribahasa dan saloka"
+  },
+  "learnModuleProverbsSubtitle": "Paribasan, bebasan, lan saloka warisan Jawa",
+  "@learnModuleProverbsSubtitle": {
+    "description": "Subjudul modul peribahasa dan saloka"
+  },
+  "learnModuleProverbsLabel": "15 peribahasa",
+  "@learnModuleProverbsLabel": {
+    "description": "Label progres modul peribahasa"
+  },
+  "learnTagAksara": "Aksara",
+  "@learnTagAksara": {
+    "description": "Tag kategori modul aksara"
+  },
+  "learnTagKamus": "Kamus",
+  "@learnTagKamus": {
+    "description": "Tag kategori modul kamus"
+  },
+  "learnTagUtilitas": "Utilitas",
+  "@learnTagUtilitas": {
+    "description": "Tag kategori modul utilitas"
+  },
+  "learnTagWicara": "Wicara",
+  "@learnTagWicara": {
+    "description": "Tag kategori modul wicara"
+  },
+  "learnTagSastra": "Sastra",
+  "@learnTagSastra": {
+    "description": "Tag kategori modul sastra"
+  },
+  "difficultyMudah": "Mudah",
+  "@difficultyMudah": {
+    "description": "Label tingkat kesulitan mudah"
+  },
+  "difficultyMahir": "Mahir",
+  "@difficultyMahir": {
+    "description": "Label tingkat kesulitan mahir"
+  },
+  "difficultySangatMahir": "Sangat Mahir",
+  "@difficultySangatMahir": {
+    "description": "Label tingkat kesulitan sangat mahir"
+  },
+  "quizPathTitle": "Jalur Kuis",
+  "@quizPathTitle": {
+    "description": "Judul layar jalur peta kuis"
+  },
+  "quizCompletedBadge": "{count} Selesai",
+  "@quizCompletedBadge": {
+    "description": "Lencana jumlah kuis selesai di AppBar",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "quizUnit1Title": "Unit 1: Sapaan dan Salam",
+  "@quizUnit1Title": {
+    "description": "Judul Unit 1 di peta kuis"
+  },
+  "quizUnit1Subtitle": "Dasar percakapan dan tata krama sopan santun",
+  "@quizUnit1Subtitle": {
+    "description": "Subjudul Unit 1 di peta kuis"
+  },
+  "quizUnit2Title": "Unit 2: Keluarga dan Rumah (Terkunci)",
+  "@quizUnit2Title": {
+    "description": "Judul Unit 2 di peta kuis"
+  },
+  "quizUnit2Subtitle": "Silsilah keluarga, kerabat, dan lingkungan rumah",
+  "@quizUnit2Subtitle": {
+    "description": "Subjudul Unit 2 di peta kuis"
+  },
+  "quizTopicSalam": "Salam",
+  "@quizTopicSalam": {
+    "description": "Topik kuis Salam"
+  },
+  "quizTopicPamit": "Pamit",
+  "@quizTopicPamit": {
+    "description": "Topik kuis Pamit"
+  },
+  "quizTopicLencana": "Lencana",
+  "@quizTopicLencana": {
+    "description": "Topik kuis Lencana"
+  },
+  "quizTopicTanyaKabar": "Tanya kabar",
+  "@quizTopicTanyaKabar": {
+    "description": "Topik kuis Tanya Kabar"
+  },
+  "quizTopicPerkenalan": "Perkenalan",
+  "@quizTopicPerkenalan": {
+    "description": "Topik kuis Perkenalan"
+  },
+  "quizTopicKeluarga": "Keluarga",
+  "@quizTopicKeluarga": {
+    "description": "Topik kuis Keluarga"
+  },
+  "quizTopicRumah": "Rumah",
+  "@quizTopicRumah": {
+    "description": "Topik kuis Rumah"
+  },
+  "quizTopicKerabat": "Kerabat",
+  "@quizTopicKerabat": {
+    "description": "Topik kuis Kerabat"
+  },
+  "quizBottomSheetProgress": "Kuis {quizIndex} dari {totalQuizzes} · {questionCount} soal",
+  "@quizBottomSheetProgress": {
+    "description": "Keterangan kuis di bottom sheet konfirmasi kuis",
+    "placeholders": {
+      "quizIndex": {
+        "type": "int",
+        "example": "1"
+      },
+      "totalQuizzes": {
+        "type": "int",
+        "example": "5"
+      },
+      "questionCount": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "quizBottomSheetStart": "Mulai Kuis",
+  "@quizBottomSheetStart": {
+    "description": "Tombol mulai kuis pada bottom sheet"
+  },
+  "quizBottomSheetLater": "Nanti saja",
+  "@quizBottomSheetLater": {
+    "description": "Tombol tunda kuis pada bottom sheet"
+  },
+  "quizComboCount": "{count} Benar!",
+  "@quizComboCount": {
+    "description": "Penanda kombo jawaban benar berurutan",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "quizOptionSemantics": "Pilihan {letter}: {option}",
+  "@quizOptionSemantics": {
+    "description": "Label semantik opsi soal kuis",
+    "placeholders": {
+      "letter": {
+        "type": "String",
+        "example": "A"
+      },
+      "option": {
+        "type": "String",
+        "example": "Ha"
+      }
+    }
+  },
+  "quizCorrect": "Betul!",
+  "@quizCorrect": {
+    "description": "Umpan balik jawaban benar"
+  },
+  "quizIncorrect": "Kurang tepat",
+  "@quizIncorrect": {
+    "description": "Umpan balik jawaban salah"
+  },
+  "quizAnswerLabel": "Jawaban: {answer}",
+  "@quizAnswerLabel": {
+    "description": "Kunci jawaban yang benar saat salah",
+    "placeholders": {
+      "answer": {
+        "type": "String",
+        "example": "Ha"
+      }
+    }
+  },
+  "quizCheck": "Periksa",
+  "@quizCheck": {
+    "description": "Tombol periksa jawaban kuis"
+  },
+  "quizContinue": "Lanjut",
+  "@quizContinue": {
+    "description": "Tombol lanjut ke soal kuis berikutnya"
+  },
+  "quizFinish": "Selesai",
+  "@quizFinish": {
+    "description": "Tombol selesai pada soal kuis terakhir"
+  },
+  "quizResultAwesome": "Luar Biasa!",
+  "@quizResultAwesome": {
+    "description": "Judul kemenangan pada layar hasil kuis"
+  },
+  "quizResultStreakBanner": "Streak kuis aktif: {days} hari",
+  "@quizResultStreakBanner": {
+    "description": "Banner streak aktif di layar hasil kuis",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "quizResultCorrectAnswers": "Soal Benar",
+  "@quizResultCorrectAnswers": {
+    "description": "Label statistik jumlah soal benar"
+  },
+  "quizResultTime": "Waktu",
+  "@quizResultTime": {
+    "description": "Label durasi pengerjaan kuis"
+  },
+  "quizResultAccuracy": "Akurasi",
+  "@quizResultAccuracy": {
+    "description": "Label persentase akurasi kuis"
+  },
+  "quizResultBackHome": "Kembali ke Beranda",
+  "@quizResultBackHome": {
+    "description": "Tombol kembali ke Beranda dari hasil kuis"
+  },
+  "quizResultRetry": "Ulangi kuis",
+  "@quizResultRetry": {
+    "description": "Tombol ulangi kuis di layar hasil kuis"
+  },
+  "drawingTitle": "Latihan Menulis",
+  "@drawingTitle": {
+    "description": "Judul layar latihan menulis aksara"
+  },
+  "drawingBackSemantics": "Kembali",
+  "@drawingBackSemantics": {
+    "description": "Label semantik tombol kembali layar gambar"
+  },
+  "drawingInstruction": "Tulis aksara ini!",
+  "@drawingInstruction": {
+    "description": "Instruksi latihan menulis aksara"
+  },
+  "drawingStrokeCount": "Goresan: {count}",
+  "@drawingStrokeCount": {
+    "description": "Penghitung jumlah goresan di kanvas",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "drawingClearAll": "Hapus Semua",
+  "@drawingClearAll": {
+    "description": "Tombol bersihkan kanvas gambar"
+  },
+  "drawingUndo": "Batalkan",
+  "@drawingUndo": {
+    "description": "Tombol batalkan goresan terakhir"
+  },
+  "drawingCheckButton": "Periksa Tulisan",
+  "@drawingCheckButton": {
+    "description": "Tombol periksa tulisan aksara pada kanvas"
+  },
+  "dailyResultTitle": "Hasil Quest",
+  "@dailyResultTitle": {
+    "description": "Judul layar hasil quest harian"
+  },
+  "dailyResultSimilarityLabel": "Kemiripan",
+  "@dailyResultSimilarityLabel": {
+    "description": "Label meter kemiripan tulisan"
+  },
+  "dailyResultCelebrationPassed": "Hebat, {name}!",
+  "@dailyResultCelebrationPassed": {
+    "description": "Ucapan selamat lulus quest harian",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Dimas"
+      }
+    }
+  },
+  "dailyResultCelebrationFailed": "Ayo Latihan Lagi!",
+  "@dailyResultCelebrationFailed": {
+    "description": "Ucapan penyemangat saat quest belum lulus"
+  },
+  "dailyResultDescPassed": "Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.",
+  "@dailyResultDescPassed": {
+    "description": "Keterangan lulus quest aksara"
+  },
+  "dailyResultDescFailed": "Goresanmu hampir tepat. Coba perhatikan proporsi aksara target.",
+  "@dailyResultDescFailed": {
+    "description": "Keterangan saat presisi belum mencapai target"
+  },
+  "dailyResultComparison": "Perbandingan Tulisan",
+  "@dailyResultComparison": {
+    "description": "Judul kartu komparasi tulisan"
+  },
+  "dailyResultYourDrawing": "Tulisanmu",
+  "@dailyResultYourDrawing": {
+    "description": "Label panel hasil goresan pengguna"
+  },
+  "dailyResultTargetScript": "Aksara Target",
+  "@dailyResultTargetScript": {
+    "description": "Label panel aksara target acuan"
+  },
+  "dailyResultStatusPassed": "Status: Lulus",
+  "@dailyResultStatusPassed": {
+    "description": "Status kelulusan quest tercapai"
+  },
+  "dailyResultStatusFailed": "Status: Belum Lulus",
+  "@dailyResultStatusFailed": {
+    "description": "Status kelulusan quest belum tercapai"
+  },
+  "dailyResultRequirement": "Kemiripan {percent}% (Syarat lulus: ≥ 85%)",
+  "@dailyResultRequirement": {
+    "description": "Keterangan skor kemiripan dan ambang kelulusan",
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "92"
+      }
+    }
+  },
+  "dailyResultContinueLearning": "Lanjutkan Belajar →",
+  "@dailyResultContinueLearning": {
+    "description": "Tombol lanjut belajar dari hasil quest"
+  },
+  "dailyResultTryAgain": "Coba Lagi",
+  "@dailyResultTryAgain": {
+    "description": "Tombol coba lagi pada hasil quest"
+  },
+  "profileTitle": "Profil",
+  "@profileTitle": {
+    "description": "Judul layar Profil pengguna"
+  },
+  "profileSettingsSemantics": "Pengaturan",
+  "@profileSettingsSemantics": {
+    "description": "Label semantik ikon tombol pengaturan di Profil"
+  },
+  "profileNameEmptyError": "Nama tidak boleh kosong",
+  "@profileNameEmptyError": {
+    "description": "Pesan validasi nama pengguna kosong di Profil"
+  },
+  "profileNameSaved": "Nama berhasil disimpan: {name}",
+  "@profileNameSaved": {
+    "description": "Toast pemberitahuan nama berhasil disimpan",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Dimas"
+      }
+    }
+  },
+  "profileSaveName": "Simpan",
+  "@profileSaveName": {
+    "description": "Tombol simpan pengubahan nama profil"
+  },
+  "profileCancelEdit": "Batal",
+  "@profileCancelEdit": {
+    "description": "Tombol batal edit nama profil"
+  },
+  "profileLevelPill": "Lv {level}",
+  "@profileLevelPill": {
+    "description": "Pill penunjuk level pengguna",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "4"
+      }
+    }
+  },
+  "profileStreakPill": "Streak {days} hari",
+  "@profileStreakPill": {
+    "description": "Pill penunjuk hari streak di Profil",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "profileQuizzesThisWeek": "{count} Kuis Minggu Ini",
+  "@profileQuizzesThisWeek": {
+    "description": "Pill jumlah kuis minggu ini di Profil",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "8"
+      }
+    }
+  },
+  "profileBadgeTitle": "Lencana",
+  "@profileBadgeTitle": {
+    "description": "Judul bagian koleksi lencana di Profil"
+  },
+  "profileBadgeOpenCount": "1 / 4 Terbuka",
+  "@profileBadgeOpenCount": {
+    "description": "Indikator jumlah lencana terbuka"
+  },
+  "profileBadgeCollection": "Koleksi Prestasi",
+  "@profileBadgeCollection": {
+    "description": "Subjudul bagian lencana profil"
+  },
+  "profileBadgeStreak7Title": "Streak 7 Hari",
+  "@profileBadgeStreak7Title": {
+    "description": "Judul lencana streak 7 hari"
+  },
+  "profileBadgeStreak30Title": "Streak 30 Hari",
+  "@profileBadgeStreak30Title": {
+    "description": "Judul lencana streak 30 hari"
+  },
+  "profileBadgeLevel5Title": "Level 5",
+  "@profileBadgeLevel5Title": {
+    "description": "Judul lencana level 5"
+  },
+  "profileBadgeLevelUpHighlight": "Naik Level",
+  "@profileBadgeLevelUpHighlight": {
+    "description": "Sorotan aksi naik level di lencana"
+  },
+  "profileBadgeAksaraCompleteTitle": "Tamat Aksara",
+  "@profileBadgeAksaraCompleteTitle": {
+    "description": "Judul lencana tamat aksara"
+  },
+  "profileBadgeEasyLevel": "Tingkat Mudah",
+  "@profileBadgeEasyLevel": {
+    "description": "Keterangan tingkat mudah di lencana"
+  },
+  "profileBadgeUnlocked": "Terbuka",
+  "@profileBadgeUnlocked": {
+    "description": "Status lencana terbuka"
+  },
+  "profileBadgeLocked": "Terkunci",
+  "@profileBadgeLocked": {
+    "description": "Status lencana terkunci"
+  },
+  "profileChooseBlangkonButton": "Pilih Blangkon",
+  "@profileChooseBlangkonButton": {
+    "description": "Tombol utama pilih kustomisasi blangkon"
+  },
+  "blangkonTitle": "Pilih Blangkon",
+  "@blangkonTitle": {
+    "description": "Judul layar katalog blangkon"
+  },
+  "blangkonSaveButton": "Simpan Pilihan",
+  "@blangkonSaveButton": {
+    "description": "Tombol simpan pilihan blangkon"
+  },
+  "blangkonLevelRequired": "Level {level}",
+  "@blangkonLevelRequired": {
+    "description": "Syarat level untuk membuka blangkon",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "blangkonInitialUnlock": "Terpasang awal",
+  "@blangkonInitialUnlock": {
+    "description": "Keterangan blangkon terpasang secara bawaan"
+  },
+  "blangkonMasteryAksara": "Selesai aksara",
+  "@blangkonMasteryAksara": {
+    "description": "Syarat membuka blangkon pusaka"
+  },
+  "levelUpMicroTag": "PENCAPAIAN JAWALOKA",
+  "@levelUpMicroTag": {
+    "description": "Mikro tag perayaan naik level"
+  },
+  "levelUpTitle": "Level {level}!",
+  "@levelUpTitle": {
+    "description": "Judul perayaan naik level baru",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "5"
+      }
+    }
+  },
+  "levelUpBlangkonUnlocked": "Blangkon baru terbuka: ",
+  "@levelUpBlangkonUnlocked": {
+    "description": "Pengantar nama blangkon baru terbuka"
+  },
+  "levelUpBadgeCategory": "LENCANA BARU",
+  "@levelUpBadgeCategory": {
+    "description": "Kategori kartu lencana baru yang didapat"
+  },
+  "levelUpAchievementTitle": "Sinau Mandiri V",
+  "@levelUpAchievementTitle": {
+    "description": "Nama lencana baru diraih"
+  },
+  "levelUpAchievementDesc": "Menyelesaikan 25 bab materi aksara",
+  "@levelUpAchievementDesc": {
+    "description": "Deskripsi syarat pencapaian lencana baru"
+  },
+  "levelUpEquipButton": "Pakai Blangkon",
+  "@levelUpEquipButton": {
+    "description": "Tombol langsung memakai blangkon baru terbuka"
+  },
+  "levelUpSkipButton": "Nanti saja",
+  "@levelUpSkipButton": {
+    "description": "Tombol lewati pemakaian blangkon saat ini"
+  },
+  "settingsLogout": "Keluar",
+  "@settingsLogout": {
+    "description": "Label aksi keluar akun di Pengaturan"
+  },
+  "settingsLogoutConfirm": "Yakin ingin keluar?",
+  "@settingsLogoutConfirm": {
+    "description": "Pertanyaan konfirmasi keluar akun"
+  },
+  "settingsCancel": "Batal",
+  "@settingsCancel": {
+    "description": "Tombol batal di dialog Pengaturan"
+  },
+  "settingsPrivacyPolicy": "Kebijakan Privasi",
+  "@settingsPrivacyPolicy": {
+    "description": "Judul baris kebijakan privasi di Pengaturan"
+  },
+  "settingsPrivacyPolicyContent": "JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.",
+  "@settingsPrivacyPolicyContent": {
+    "description": "Teks isi dialog kebijakan privasi"
+  },
+  "settingsClose": "Tutup",
+  "@settingsClose": {
+    "description": "Tombol tutup dialog"
+  },
+  "settingsAccountRow": "Akun",
+  "@settingsAccountRow": {
+    "description": "Label baris pengaturan akun"
+  },
+  "translatorTitle": "Penerjemah",
+  "@translatorTitle": {
+    "description": "Judul layar penerjemah"
+  },
+  "translatorInputLabel": "MASUKKAN TEKS",
+  "@translatorInputLabel": {
+    "description": "Label kotak teks input penerjemah"
+  },
+  "translatorInputHint": "Ketik teks...",
+  "@translatorInputHint": {
+    "description": "Hint kotak input teks penerjemah"
+  },
+  "translatorButton": "Terjemahkan",
+  "@translatorButton": {
+    "description": "Tombol jalankan penerjemahan teks"
+  },
+  "translatorTranslating": "Menerjemahkan...",
+  "@translatorTranslating": {
+    "description": "Status saat proses penerjemahan berlangsung"
+  },
+  "translatorOutputLabel": "HASIL TERJEMAHAN",
+  "@translatorOutputLabel": {
+    "description": "Label kotak hasil terjemahan"
+  },
+  "translatorOutputPlaceholder": "Hasil terjemahan akan muncul di sini…",
+  "@translatorOutputPlaceholder": {
+    "description": "Placeholder sebelum ada hasil terjemahan"
+  },
+  "translatorCopiedToast": "Teks disalin",
+  "@translatorCopiedToast": {
+    "description": "Pemberitahuan teks hasil berhasil disalin"
+  },
+  "translatorPickerTitle": "Pilih Bahasa",
+  "@translatorPickerTitle": {
+    "description": "Judul bottom sheet pemilihan bahasa terjemahan"
+  },
+  "translatorSwapSemantics": "Tukar bahasa",
+  "@translatorSwapSemantics": {
+    "description": "Label semantik tombol tukar bahasa terjemahan"
+  },
+  "translatorCopyTooltip": "Salin",
+  "@translatorCopyTooltip": {
+    "description": "Tooltip tombol salin hasil terjemahan"
+  },
+  "translatorClearTooltip": "Hapus",
+  "@translatorClearTooltip": {
+    "description": "Tooltip tombol hapus input terjemahan"
+  },
+  "aksaraDetailTitle": "Aksara Jawa",
+  "@aksaraDetailTitle": {
+    "description": "Judul layar detail aksara"
+  },
+  "aksaraDetailTag": "Dasar",
+  "@aksaraDetailTag": {
+    "description": "Tag kategori dasar aksara"
+  },
+  "aksaraDetailExampleHeader": "Contoh Kata",
+  "@aksaraDetailExampleHeader": {
+    "description": "Judul bagian contoh kata aksara"
+  },
+  "aksaraDetailSandanganHeader": "Sandangan",
+  "@aksaraDetailSandanganHeader": {
+    "description": "Judul bagian sandhangan aksara"
+  },
+  "aksaraDetailSandanganSubtitle": "Variasi vokal pada aksara ꦲ (Ha)",
+  "@aksaraDetailSandanganSubtitle": {
+    "description": "Keterangan variasi vokal sandhangan aksara Ha"
+  },
+  "aksaraDetailWritingHeader": "Cara Menulis",
+  "@aksaraDetailWritingHeader": {
+    "description": "Judul bagian tata cara menulis aksara"
+  },
+  "aksaraDetailStep1Title": "Mulai dari kanan atas",
+  "@aksaraDetailStep1Title": {
+    "description": "Langkah 1 menulis aksara Ha"
+  },
+  "aksaraDetailStep1Desc": "Tarik garis lengkung ke bawah dari titik awal di kanan atas.",
+  "@aksaraDetailStep1Desc": {
+    "description": "Deskripsi langkah 1 menulis aksara Ha"
+  },
+  "aksaraDetailStep2Title": "Lengkung badan aksara",
+  "@aksaraDetailStep2Title": {
+    "description": "Langkah 2 menulis aksara Ha"
+  },
+  "aksaraDetailStep2Desc": "Buat lengkungan utama yang membentuk tubuh aksara Ha ke kiri.",
+  "@aksaraDetailStep2Desc": {
+    "description": "Deskripsi langkah 2 menulis aksara Ha"
+  },
+  "aksaraDetailStep3Title": "Tutup dengan ekor",
+  "@aksaraDetailStep3Title": {
+    "description": "Langkah 3 menulis aksara Ha"
+  },
+  "aksaraDetailStep3Desc": "Akhiri dengan garis ekor pendek yang melengkung ke dalam.",
+  "@aksaraDetailStep3Desc": {
+    "description": "Deskripsi langkah 3 menulis aksara Ha"
+  },
+  "aksaraDetailWritingButton": "Latihan Menulis",
+  "@aksaraDetailWritingButton": {
+    "description": "Tombol aksi latihan menulis pada detail aksara"
+  },
+  "aksaraDetailQuizButton": "Mulai Kuis",
+  "@aksaraDetailQuizButton": {
+    "description": "Tombol aksi mulai kuis pada detail aksara"
+  },
+  "vocabDetailTitle": "Kosa Kata",
+  "@vocabDetailTitle": {
+    "description": "Judul layar detail kosa kata"
+  },
+  "vocabDetailTag": "Mudah",
+  "@vocabDetailTag": {
+    "description": "Tag tingkat kesulitan kosa kata"
+  },
+  "vocabDetailMeaningHeader": "Makna & Tingkatan",
+  "@vocabDetailMeaningHeader": {
+    "description": "Judul bagian makna dan tingkatan kosa kata"
+  },
+  "vocabDetailExamplesHeader": "Contoh Kalimat",
+  "@vocabDetailExamplesHeader": {
+    "description": "Judul bagian contoh kalimat kosa kata"
+  },
+  "vocabDetailNextButton": "Kata Berikutnya",
+  "@vocabDetailNextButton": {
+    "description": "Tombol lanjut ke kosa kata berikutnya"
+  },
+  "profileBadgeStreak7Toast": "Lencana Streak 7 Hari telah terbuka!",
+  "@profileBadgeStreak7Toast": {
+    "description": "Toast pemberitahuan lencana streak 7 hari terbuka"
+  },
+  "profileBadgeStreak30Toast": "Pertahankan streak 30 hari untuk membuka lencana ini!",
+  "@profileBadgeStreak30Toast": {
+    "description": "Toast pemberitahuan syarat lencana streak 30 hari"
+  },
+  "profileBadgeLevel5Toast": "Blangkon Surakarta berhasil dipasang!",
+  "@profileBadgeLevel5Toast": {
+    "description": "Toast pemberitahuan blangkon berhasil dipasang"
+  },
+  "profileBadgeAksaraToast": "Selesaikan seluruh modul aksara dasar untuk membuka!",
+  "@profileBadgeAksaraToast": {
+    "description": "Toast pemberitahuan syarat lencana aksara"
+  },
+  "blangkonToastInitial": "Terbuka sejak awal: {name}",
+  "@blangkonToastInitial": {
+    "description": "Toast syarat blangkon terbuka sejak awal",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Blangkon Yogyakarta"
+      }
+    }
+  },
+  "blangkonToastLevel": "Butuh Level {level} untuk membuka {name}",
+  "@blangkonToastLevel": {
+    "description": "Toast syarat level untuk membuka blangkon",
+    "placeholders": {
+      "level": {
+        "type": "int",
+        "example": "5"
+      },
+      "name": {
+        "type": "String",
+        "example": "Blangkon Surakarta"
+      }
+    }
+  },
+  "blangkonToastAksara": "Selesaikan seluruh materi aksara untuk membuka {name}",
+  "@blangkonToastAksara": {
+    "description": "Toast syarat aksara untuk membuka blangkon",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Blangkon Pusaka"
+      }
+    }
+  },
+  "vocabDetailFavoriteMark": "Tandai Favorit",
+  "@vocabDetailFavoriteMark": {
+    "description": "Tombol aksi tandai favorit kosa kata"
+  },
+  "vocabDetailFavoriteMarked": "Ditandai Favorit",
+  "@vocabDetailFavoriteMarked": {
+    "description": "Status kosa kata sudah ditandai favorit"
+  }
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import 'animated_progress_ring.dart';
 
@@ -340,9 +341,9 @@ class _WayangLockIcon extends StatelessWidget {
           child: CustomPaint(painter: _WayangSilhouettePainter()),
         ),
         const SizedBox(height: 4),
-        const Text(
-          'Terkunci',
-          style: TextStyle(
+        Text(
+          context.l10n.moduleCardLocked,
+          style: const TextStyle(
             color: AppColors.inkSecondary,
             fontSize: 12,
             fontWeight: FontWeight.w600,

@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/blangkon_painter.dart';
@@ -229,9 +230,9 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           ),
         ],
       ),
-      child: const Text(
-        'PENCAPAIAN JAWALOKA',
-        style: TextStyle(
+      child: Text(
+        context.l10n.levelUpMicroTag,
+        style: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w800,
           color: AppColors.ink,
@@ -349,7 +350,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        'Lv ${widget.newLevel}',
+                        context.l10n.profileLevelPill(widget.newLevel),
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w900,
@@ -369,7 +370,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
 
         // Headline Celebration Text
         Text(
-          'Level ${widget.newLevel}!',
+          context.l10n.levelUpTitle(widget.newLevel),
           style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.w900,
@@ -388,7 +389,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               height: 1.3,
             ),
             children: [
-              const TextSpan(text: 'Blangkon baru terbuka: '),
+              TextSpan(text: context.l10n.levelUpBlangkonUnlocked),
               TextSpan(
                 text: widget.blangkonName,
                 style: const TextStyle(
@@ -440,32 +441,32 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           const SizedBox(width: 14),
 
           // Middle: Titles
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'LENCANA BARU',
-                  style: TextStyle(
+                  context.l10n.levelUpBadgeCategory,
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: AppColors.inkMuted,
                     letterSpacing: 1.0,
                   ),
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
                 Text(
-                  'Sinau Mandiri V',
-                  style: TextStyle(
+                  context.l10n.levelUpAchievementTitle,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     color: AppColors.ink,
                   ),
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 2),
                 Text(
-                  'Menyelesaikan 25 bab materi aksara',
-                  style: TextStyle(
+                  context.l10n.levelUpAchievementDesc,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: AppColors.inkMuted,
@@ -513,15 +514,15 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               elevation: 4,
               shadowColor: AppColors.ink.withValues(alpha: 0.3),
             ),
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Pakai Blangkon',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                  context.l10n.levelUpEquipButton,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                 ),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward_rounded, size: 20),
+                const SizedBox(width: 8),
+                const Icon(Icons.arrow_forward_rounded, size: 20),
               ],
             ),
           ),
@@ -532,9 +533,9 @@ class _LevelUpScreenState extends State<LevelUpScreen>
         // Secondary Text Button
         TextButton(
           onPressed: _onSkip,
-          child: const Text(
-            'Nanti saja',
-            style: TextStyle(
+          child: Text(
+            context.l10n.levelUpSkipButton,
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: AppColors.inkSecondary,

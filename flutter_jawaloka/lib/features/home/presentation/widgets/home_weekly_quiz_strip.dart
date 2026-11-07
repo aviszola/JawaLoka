@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 
@@ -8,7 +9,16 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const dayNames = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+    final l10n = context.l10n;
+    final dayNames = [
+      l10n.dayMon,
+      l10n.dayTue,
+      l10n.dayWed,
+      l10n.dayThu,
+      l10n.dayFri,
+      l10n.daySat,
+      l10n.daySun,
+    ];
 
     return Container(
       width: double.infinity,
@@ -32,16 +42,16 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                children: const [
-                  Icon(
+                children: [
+                  const Icon(
                     Icons.calendar_today_rounded,
                     size: 16,
                     color: AppColors.amberDark,
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Text(
-                    'Aktivitas Kuis Minggu Ini',
-                    style: TextStyle(
+                    l10n.homeWeeklyStripTitle,
+                    style: const TextStyle(
                       color: AppColors.ink,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -50,7 +60,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                 ],
               ),
               Text(
-                '${MockUserStats.quizzesThisWeek} kuis selesai',
+                l10n.homeWeeklyCompletedCount(MockUserStats.quizzesThisWeek),
                 style: const TextStyle(
                   color: AppColors.inkSecondary,
                   fontSize: 12,
@@ -123,13 +133,13 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
           const Divider(height: 1, color: AppColors.border),
           const SizedBox(height: 10),
           Row(
-            children: const [
-              Icon(Icons.info_outline_rounded, size: 14, color: AppColors.inkMuted),
-              SizedBox(width: 6),
+            children: [
+              const Icon(Icons.info_outline_rounded, size: 14, color: AppColors.inkMuted),
+              const SizedBox(width: 6),
               Expanded(
                 child: Text(
-                  'Streak kuis ${MockUserStats.streakDays} hari aktif. Selesaikan kuis harian untuk menjaga streak.',
-                  style: TextStyle(
+                  l10n.homeWeeklyStreakInfo(MockUserStats.streakDays),
+                  style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.inkSecondary,
                   ),

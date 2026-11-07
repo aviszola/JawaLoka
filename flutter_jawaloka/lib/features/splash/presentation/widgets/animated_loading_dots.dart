@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 
 /// Loading indicator for Splash Screen.
@@ -9,10 +9,7 @@ import '../../../../core/theme/app_colors.dart';
 class AnimatedLoadingDots extends StatelessWidget {
   final double animationValue; // 0.0 to 1.0 looped
 
-  const AnimatedLoadingDots({
-    super.key,
-    required this.animationValue,
-  });
+  const AnimatedLoadingDots({super.key, required this.animationValue});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,7 @@ class AnimatedLoadingDots extends StatelessWidget {
         : (math.sin(animationValue * math.pi * 2 - (math.pi / 2)) + 1.0) / 2.0;
 
     return Semantics(
-      label: AppStrings.loadingLabel,
+      label: context.l10n.splashLoadingLabel,
       child: Container(
         width: trackWidth,
         height: dotSize,
