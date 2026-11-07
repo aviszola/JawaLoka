@@ -38,21 +38,16 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
       duration: const Duration(milliseconds: 700),
     )..forward();
 
-    _heroSlide = Tween<Offset>(
-      begin: const Offset(0, 0.25),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _slideCtrl,
-        curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
-      ),
-    );
+    _heroSlide = Tween<Offset>(begin: const Offset(0, 0.25), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _slideCtrl,
+            curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
+          ),
+        );
 
     _contentFade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _slideCtrl,
-        curve: const Interval(0.4, 1.0),
-      ),
+      CurvedAnimation(parent: _slideCtrl, curve: const Interval(0.4, 1.0)),
     );
   }
 
@@ -320,7 +315,10 @@ class _MaknaSection extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 5,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(20),
@@ -415,7 +413,9 @@ class _MeaningCard extends StatelessWidget {
                   fontSize: isJavanese ? 14 : 12,
                   fontWeight: FontWeight.w800,
                   color: textColor,
-                  fontFamilyFallback: isJavanese ? const ['Noto Sans Javanese'] : null,
+                  fontFamilyFallback: isJavanese
+                      ? const ['Noto Sans Javanese']
+                      : null,
                 ),
               ),
             ),
@@ -613,9 +613,7 @@ class _BottomActions extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
       decoration: BoxDecoration(
         color: AppColors.canvas,
-        border: Border(
-          top: BorderSide(color: AppColors.border),
-        ),
+        border: Border(top: BorderSide(color: AppColors.border)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -649,7 +647,11 @@ class _BottomActions extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 6),
-                  const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 18),
+                  const Icon(
+                    Icons.arrow_forward_rounded,
+                    color: Colors.white,
+                    size: 18,
+                  ),
                 ],
               ),
             ),
@@ -675,8 +677,12 @@ class _BottomActions extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-                    color: isFavorite ? AppColors.amberDark : AppColors.inkSecondary,
+                    isFavorite
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_border_rounded,
+                    color: isFavorite
+                        ? AppColors.amberDark
+                        : AppColors.inkSecondary,
                     size: 18,
                   ),
                   const SizedBox(width: 6),
@@ -687,7 +693,9 @@ class _BottomActions extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: isFavorite ? AppColors.amberDark : AppColors.inkSecondary,
+                      color: isFavorite
+                          ? AppColors.amberDark
+                          : AppColors.inkSecondary,
                     ),
                   ),
                 ],

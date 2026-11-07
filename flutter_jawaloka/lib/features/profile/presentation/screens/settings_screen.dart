@@ -62,9 +62,10 @@ class _SettingsScreenState extends State<SettingsScreen>
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _headerCtrl, curve: Curves.easeOut));
 
-    _bodyFade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _bodyCtrl, curve: Curves.easeIn),
-    );
+    _bodyFade = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _bodyCtrl, curve: Curves.easeIn));
 
     _headerCtrl.forward().then((_) => _bodyCtrl.forward());
   }
@@ -104,11 +105,16 @@ class _SettingsScreenState extends State<SettingsScreen>
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
-              Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+              Navigator.of(
+                context,
+              ).pushNamedAndRemoveUntil('/login', (route) => false);
             },
             child: Text(
               context.l10n.settingsLogout,
-              style: const TextStyle(color: AppColors.error, fontWeight: FontWeight.w700),
+              style: const TextStyle(
+                color: AppColors.error,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],
@@ -127,7 +133,10 @@ class _SettingsScreenState extends State<SettingsScreen>
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(
           dialogTitle,
-          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            color: AppColors.ink,
+          ),
         ),
         children: [
           SimpleDialogOption(
@@ -182,7 +191,10 @@ class _SettingsScreenState extends State<SettingsScreen>
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(
           context.l10n.settingsPrivacyPolicy,
-          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            color: AppColors.ink,
+          ),
         ),
         content: Text(
           context.l10n.settingsPrivacyPolicyContent,
@@ -193,7 +205,10 @@ class _SettingsScreenState extends State<SettingsScreen>
             onPressed: () => Navigator.pop(ctx),
             child: Text(
               context.l10n.settingsClose,
-              style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700),
+              style: const TextStyle(
+                color: AppColors.ink,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],
@@ -202,7 +217,8 @@ class _SettingsScreenState extends State<SettingsScreen>
   }
 
   // ── Account detail dialog ───────────────────────────────────────────────────
-  static const String _mockUserEmail = 'dimas.pratama@example.com'; // DATA CONTOH
+  static const String _mockUserEmail =
+      'dimas.pratama@example.com'; // DATA CONTOH
 
   void _showAccountDialog() {
     final profile = ProfileScope.maybeOf(context);
@@ -215,7 +231,10 @@ class _SettingsScreenState extends State<SettingsScreen>
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(
           l10n.settingsAccountDialogTitle,
-          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            color: AppColors.ink,
+          ),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -250,10 +269,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             const SizedBox(height: 4),
             const Text(
               _mockUserEmail,
-              style: TextStyle(
-                fontSize: 15,
-                color: AppColors.ink,
-              ),
+              style: TextStyle(fontSize: 15, color: AppColors.ink),
             ),
           ],
         ),
@@ -262,7 +278,10 @@ class _SettingsScreenState extends State<SettingsScreen>
             onPressed: () => Navigator.pop(ctx),
             child: Text(
               l10n.settingsClose,
-              style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700),
+              style: const TextStyle(
+                color: AppColors.ink,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ],
@@ -276,7 +295,7 @@ class _SettingsScreenState extends State<SettingsScreen>
         ProfileScope.maybeOf(context)?.displayName ?? MockUserStats.userName;
     final equippedBlangkon =
         ProfileScope.maybeOf(context)?.equippedBlangkon ??
-            BlangkonType.yogyakarta;
+        BlangkonType.yogyakarta;
     final userFullName = '$displayName Pratama';
     return SlideTransition(
       position: _headerSlide,
@@ -311,16 +330,17 @@ class _SettingsScreenState extends State<SettingsScreen>
                         border: Border.all(color: AppColors.border),
                       ),
                       alignment: Alignment.center,
-                      child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: AppColors.ink),
+                      child: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 18,
+                        color: AppColors.ink,
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(width: 14),
                 // Reusable Avatar Component
-                JavaneseAvatarWidget(
-                  size: 60,
-                  blangkonType: equippedBlangkon,
-                ),
+                JavaneseAvatarWidget(size: 60, blangkonType: equippedBlangkon),
                 const SizedBox(width: 16),
                 // Name & level (High Contrast Ink on Amber)
                 Expanded(
@@ -339,7 +359,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        context.l10n.homeLevelPill(MockUserStats.userLevel),
+                        context.l10n.homeLevelPill(
+                          ProfileScope.maybeOf(context)?.userLevel ?? 1,
+                        ),
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -370,9 +392,21 @@ class _SettingsScreenState extends State<SettingsScreen>
             children: [
               // 1. Akun
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                leading: const Icon(Icons.person_outline_rounded, color: AppColors.ink),
-                title: Text(context.l10n.settingsAccountRow, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
+                leading: const Icon(
+                  Icons.person_outline_rounded,
+                  color: AppColors.ink,
+                ),
+                title: Text(
+                  context.l10n.settingsAccountRow,
+                  style: const TextStyle(
+                    color: AppColors.ink,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 trailing: chevron,
                 onTap: _showAccountDialog,
               ),
@@ -383,22 +417,41 @@ class _SettingsScreenState extends State<SettingsScreen>
                 builder: (ctx) {
                   final controller = LocaleScope.of(ctx);
                   final rowTitle = ctx.l10n.settingsLanguageRow;
-                  final activeLanguageName =
-                      AppLocales.endonymOf(controller.locale.languageCode);
+                  final activeLanguageName = AppLocales.endonymOf(
+                    controller.locale.languageCode,
+                  );
 
                   return ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                    leading: const Icon(Icons.language_rounded, color: AppColors.ink),
-                    title: Text(rowTitle, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 4,
+                    ),
+                    leading: const Icon(
+                      Icons.language_rounded,
+                      color: AppColors.ink,
+                    ),
+                    title: Text(
+                      rowTitle,
+                      style: const TextStyle(
+                        color: AppColors.ink,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           activeLanguageName,
-                          style: const TextStyle(color: AppColors.inkSecondary, fontSize: 14),
+                          style: const TextStyle(
+                            color: AppColors.inkSecondary,
+                            fontSize: 14,
+                          ),
                         ),
                         const SizedBox(width: 4),
-                        const Icon(Icons.chevron_right, color: AppColors.inkMuted),
+                        const Icon(
+                          Icons.chevron_right,
+                          color: AppColors.inkMuted,
+                        ),
                       ],
                     ),
                     onTap: _showLanguageDialog,
@@ -409,9 +462,21 @@ class _SettingsScreenState extends State<SettingsScreen>
 
               // 3. Kebijakan Privasi
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                leading: const Icon(Icons.privacy_tip_outlined, color: AppColors.ink),
-                title: Text(context.l10n.settingsPrivacyPolicy, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
+                leading: const Icon(
+                  Icons.privacy_tip_outlined,
+                  color: AppColors.ink,
+                ),
+                title: Text(
+                  context.l10n.settingsPrivacyPolicy,
+                  style: const TextStyle(
+                    color: AppColors.ink,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 trailing: chevron,
                 onTap: _showPrivacyPolicyDialog,
               ),
@@ -419,8 +484,14 @@ class _SettingsScreenState extends State<SettingsScreen>
 
               // 4. Keluar
               ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                leading: const Icon(Icons.logout_rounded, color: AppColors.error),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
+                leading: const Icon(
+                  Icons.logout_rounded,
+                  color: AppColors.error,
+                ),
                 title: Text(
                   context.l10n.settingsLogout,
                   style: const TextStyle(

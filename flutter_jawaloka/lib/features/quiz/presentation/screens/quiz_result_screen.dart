@@ -5,7 +5,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
+import '../../../../core/progression/reward_summary.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
+import 'quiz_question_screen.dart';
 
 // ─────────────────────────────────────────────────────────
 //  DATA MODEL
@@ -19,6 +21,9 @@ class QuizResult {
   final int accuracy; // percentage 0–100
   final bool isStreakAchievedToday;
   final int currentStreak;
+  final List<QuizQuestion>? questions;
+  final String? moduleTitle;
+  final RewardSummary? rewardSummary;
 
   const QuizResult({
     required this.score,
@@ -28,10 +33,18 @@ class QuizResult {
     required this.accuracy,
     this.isStreakAchievedToday = true,
     this.currentStreak = MockUserStats.streakDays,
+    this.questions,
+    this.moduleTitle,
+    this.rewardSummary,
   });
 
-  double get scoreRatio => maxScore > 0 ? (score / maxScore).clamp(0.0, 1.0) : 0.0;
-  int get stars => score >= 90 ? 3 : score >= 70 ? 2 : 1;
+  double get scoreRatio =>
+      maxScore > 0 ? (score / maxScore).clamp(0.0, 1.0) : 0.0;
+  int get stars => score >= 90
+      ? 3
+      : score >= 70
+      ? 2
+      : 1;
 }
 
 // ─────────────────────────────────────────────────────────
@@ -39,9 +52,9 @@ class QuizResult {
 // ─────────────────────────────────────────────────────────
 
 class _ConfettiParticle {
-  final double x;      // 0.0 – 1.0 horizontal start
+  final double x; // 0.0 – 1.0 horizontal start
   final double yStart; // 0.0 – 1.0 vertical start (can be negative)
-  final double speed;  // vertical speed multiplier
+  final double speed; // vertical speed multiplier
   final double size;
   final Color color;
   final bool isCircle;
@@ -73,10 +86,7 @@ class _ConfettiPainter extends CustomPainter {
     AppColors.accentOrange,
   ];
 
-  const _ConfettiPainter({
-    required this.animValue,
-    required this.particles,
-  });
+  const _ConfettiPainter({required this.animValue, required this.particles});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -84,7 +94,9 @@ class _ConfettiPainter extends CustomPainter {
       final double y = (p.yStart + animValue * p.speed) % 1.2;
       final double x = p.x;
       // fade out near bottom
-      final double opacity = y > 0.8 ? (1.0 - (y - 0.8) / 0.4).clamp(0.0, 1.0) : 1.0;
+      final double opacity = y > 0.8
+          ? (1.0 - (y - 0.8) / 0.4).clamp(0.0, 1.0)
+          : 1.0;
       if (opacity <= 0) continue;
 
       final paint = Paint()
@@ -121,10 +133,7 @@ class _ScoreRingPainter extends CustomPainter {
   final double progress; // 0.0 – 1.0
   final double strokeWidth;
 
-  const _ScoreRingPainter({
-    required this.progress,
-    this.strokeWidth = 12,
-  });
+  const _ScoreRingPainter({required this.progress, this.strokeWidth = 12});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -150,8 +159,8 @@ class _ScoreRingPainter extends CustomPainter {
 
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
-        -pi / 2,            // start at top
-        2 * pi * progress,  // sweep
+        -pi / 2, // start at top
+        2 * pi * progress, // sweep
         false,
         activePaint,
       );
@@ -233,19 +242,20 @@ class _QuizResultScreenState extends State<QuizResultScreen>
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
-    _ringAnim = Tween<double>(begin: 0, end: widget.result.scoreRatio).animate(
-      CurvedAnimation(parent: _ringController, curve: Curves.easeOut),
-    );
+    _ringAnim = Tween<double>(
+      begin: 0,
+      end: widget.result.scoreRatio,
+    ).animate(CurvedAnimation(parent: _ringController, curve: Curves.easeOut));
 
     // Card slide-up
     _slideController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 700),
     );
-    _slideAnim = Tween<Offset>(
-      begin: const Offset(0, 1.2),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic));
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 1.2), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+        );
 
     // Stars – 3 controllers with staggered delays
     _starControllers = List.generate(
@@ -256,13 +266,15 @@ class _QuizResultScreenState extends State<QuizResultScreen>
       ),
     );
     _starScaleAnims = _starControllers.map((ctrl) {
-      return Tween<double>(begin: 0, end: 1).animate(
-        CurvedAnimation(parent: ctrl, curve: Curves.elasticOut),
-      );
+      return Tween<double>(
+        begin: 0,
+        end: 1,
+      ).animate(CurvedAnimation(parent: ctrl, curve: Curves.elasticOut));
     }).toList();
 
     // Start sequence
     _slideController.forward().then((_) {
+      if (!mounted) return;
       _ringController.forward();
       _startStarsSequence();
     });
@@ -272,7 +284,8 @@ class _QuizResultScreenState extends State<QuizResultScreen>
     final stars = widget.result.stars;
     for (int i = 0; i < stars; i++) {
       await Future.delayed(const Duration(milliseconds: 200));
-      if (mounted) _starControllers[i].forward();
+      if (!mounted) return;
+      _starControllers[i].forward();
     }
   }
 
@@ -307,9 +320,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
 
           // Subtle Kawung Batik Motif
           Positioned.fill(
-            child: CustomPaint(
-              painter: BatikKawungPainter(opacity: 0.035),
-            ),
+            child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
           ),
 
           // Confetti layer
@@ -328,7 +339,10 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 32,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -403,15 +417,23 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               decoration: BoxDecoration(
                 color: const Color(0xFFFFF4D6),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.amberDark.withValues(alpha: 0.3)),
+                border: Border.all(
+                  color: AppColors.amberDark.withValues(alpha: 0.3),
+                ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.local_fire_department_rounded, color: Color(0xFFF26B2D), size: 22),
+                  const Icon(
+                    Icons.local_fire_department_rounded,
+                    color: Color(0xFFF26B2D),
+                    size: 22,
+                  ),
                   const SizedBox(width: 8),
                   Text(
-                    context.l10n.quizResultStreakBanner(widget.result.currentStreak),
+                    context.l10n.quizResultStreakBanner(
+                      widget.result.currentStreak,
+                    ),
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -426,10 +448,25 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           const SizedBox(height: 24),
 
           // Stats rows
-          _buildStatRow(context.l10n.quizResultCorrectAnswers, '${widget.result.correctCount}/${widget.result.totalQuestions}',
-              AppColors.amberDark),
+          _buildStatRow(
+            context.l10n.quizResultCorrectAnswers,
+            '${widget.result.correctCount}/${widget.result.totalQuestions}',
+            AppColors.amberDark,
+          ),
           const SizedBox(height: 10),
-          _buildStatRow(context.l10n.quizResultAccuracy, '${widget.result.accuracy}%', AppColors.success),
+          _buildStatRow(
+            context.l10n.quizResultAccuracy,
+            '${widget.result.accuracy}%',
+            AppColors.success,
+          ),
+          if (widget.result.rewardSummary != null) ...[
+            const SizedBox(height: 10),
+            _buildStatRow(
+              'XP Diperoleh',
+              '+${widget.result.rewardSummary!.xpEarned} XP${widget.result.rewardSummary!.isFirstClear ? ' (Bonus Pertama)' : ' (Latihan)'}',
+              AppColors.amberDark,
+            ),
+          ],
 
           const SizedBox(height: 24),
 
@@ -470,10 +507,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
                 ),
                 const Text(
                   '/100',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: AppColors.inkMuted,
-                  ),
+                  style: TextStyle(fontSize: 20, color: AppColors.inkMuted),
                 ),
               ],
             ),
@@ -488,10 +522,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
       children: [
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 15,
-            color: AppColors.inkSecondary,
-          ),
+          style: const TextStyle(fontSize: 15, color: AppColors.inkSecondary),
         ),
         const Spacer(),
         Text(
@@ -535,7 +566,16 @@ class _QuizResultScreenState extends State<QuizResultScreen>
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, AppRouter.home),
+            onPressed: () {
+              if (Navigator.of(context).canPop()) {
+                Navigator.of(context).popUntil(
+                  (route) =>
+                      route.settings.name == AppRouter.home || route.isFirst,
+                );
+              } else {
+                Navigator.of(context).pushReplacementNamed(AppRouter.home);
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.ink,
               foregroundColor: AppColors.amber,
@@ -545,21 +585,26 @@ class _QuizResultScreenState extends State<QuizResultScreen>
             ),
             child: Text(
               context.l10n.quizResultBackHome,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
         ),
 
         const SizedBox(height: 14),
 
-        // Secondary
+        // Secondary: Retry (starts clean session without route stacking)
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(
+                AppRouter.quizQuestion,
+                arguments: QuizQuestionArgs(
+                  questions: widget.result.questions,
+                  moduleTitle: widget.result.moduleTitle ?? 'Aksara Dhasar',
+                ),
+              );
+            },
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.surface,
               side: const BorderSide(color: AppColors.surface, width: 2),
@@ -568,10 +613,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
             ),
             child: Text(
               context.l10n.quizResultRetry,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
         ),

@@ -32,7 +32,7 @@ class JavaneseCalligraphyPainter extends CustomPainter {
 
     canvas.save();
 
-    final Path charPath = _buildPathForAksara(aksara, sx, sy);
+    final Path charPath = buildPathForAksara(aksara, sx, sy);
 
     final Paint strokePaint = Paint()
       ..color = inkColor
@@ -73,7 +73,7 @@ class JavaneseCalligraphyPainter extends CustomPainter {
     canvas.restore();
   }
 
-  Path _buildPathForAksara(String char, double sx, double sy) {
+  static Path buildPathForAksara(String char, double sx, double sy) {
     final Path path = Path();
 
     switch (char) {

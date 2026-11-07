@@ -283,7 +283,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 JavaneseAvatarWidget(
                   size: 92,
                   blangkonType: _equippedBlangkon,
-                  progress: 0.75, // Level 4 towards Level 5 (75%)
+                  progress: ProfileScope.maybeOf(context)?.levelProgress ?? 0.0,
                   showEditButton: true,
                   onEditTap: () async {
                     HapticFeedback.selectionClick();
@@ -479,7 +479,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           const SizedBox(width: 6),
                           Text(
                             context.l10n.profileLevelPill(
-                              MockUserStats.userLevel,
+                              ProfileScope.maybeOf(context)?.userLevel ?? 1,
                             ),
                             style: const TextStyle(
                               fontSize: 14,
@@ -490,6 +490,48 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ],
                       ),
                     ),
+                    Builder(
+                      builder: (context) {
+                        final xpText =
+                            '${ProfileScope.maybeOf(context)?.totalXP ?? 0} XP';
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.ink.withValues(alpha: 0.05),
+                                blurRadius: 4,
+                              ),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.auto_awesome_rounded,
+                                size: 14,
+                                color: AppColors.amberDark,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(
+                                xpText,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.ink,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 14,
@@ -688,8 +730,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       setState(
                         () => _equippedBlangkon = BlangkonType.surakarta,
                       );
-                      ProfileScope.maybeOf(context)
-                          ?.setEquippedBlangkon(BlangkonType.surakarta);
+                      ProfileScope.maybeOf(
+                        context,
+                      )?.setEquippedBlangkon(BlangkonType.surakarta);
                       _showToast(toastMsg);
                     }
                   },

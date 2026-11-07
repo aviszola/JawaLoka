@@ -182,9 +182,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
               ),
 
               // 2. Quest: Central Elevated 56 px amber button with pen icon
-              Expanded(
-                child: _buildCenterQuestButton(context.l10n.navQuest),
-              ),
+              Expanded(child: _buildCenterQuestButton(context.l10n.navQuest)),
 
               // 3. Kuis
               Expanded(
@@ -277,11 +275,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            isSelected ? activeIcon : icon,
-            color: color,
-            size: 24,
-          ),
+          Icon(isSelected ? activeIcon : icon, color: color, size: 24),
           const SizedBox(height: 3),
           Text(
             label,

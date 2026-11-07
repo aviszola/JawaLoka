@@ -143,16 +143,16 @@ class DrawingCanvasPainter extends CustomPainter {
 
   // ─── Calligraphic Ink Engine (Kalam Aksara) ───────────────────────────────
   void _drawCalligraphicStroke(
-      Canvas canvas, List<Offset> points, Color color, double baseWidth) {
+    Canvas canvas,
+    List<Offset> points,
+    Color color,
+    double baseWidth,
+  ) {
     if (points.isEmpty) return;
 
     if (points.length == 1) {
       // Tap dot with organic ink droplet shape
-      canvas.drawCircle(
-        points.first,
-        baseWidth * 0.8,
-        Paint()..color = color,
-      );
+      canvas.drawCircle(points.first, baseWidth * 0.8, Paint()..color = color);
       return;
     }
 
@@ -192,7 +192,9 @@ class DrawingCanvasPainter extends CustomPainter {
 
         // Dot product with nib normal: perpendicular to nib angle gives maximum thickness
         final dot = (normDirX * -nibDy + normDirY * nibDx).abs();
-        widthFactor = 0.45 + (dot * 0.75); // Range from 0.45x (thin hair) to 1.2x (broad stroke)
+        widthFactor =
+            0.45 +
+            (dot * 0.75); // Range from 0.45x (thin hair) to 1.2x (broad stroke)
       }
 
       // Taper at start and end

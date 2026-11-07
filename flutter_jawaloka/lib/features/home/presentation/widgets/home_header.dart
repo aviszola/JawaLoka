@@ -34,9 +34,7 @@ class HomeHeader extends StatelessWidget {
           // Background subtle batik pattern wrapped in RepaintBoundary (opacity <= 0.04)
           Positioned.fill(
             child: RepaintBoundary(
-              child: CustomPaint(
-                painter: BatikKawungPainter(opacity: 0.035),
-              ),
+              child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
             ),
           ),
           SafeArea(
@@ -76,7 +74,10 @@ class HomeHeader extends StatelessWidget {
 
                   // Streak Badge (fire icon + days)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(20),
@@ -139,8 +140,10 @@ class HomeHeader extends StatelessWidget {
                           ),
                           child: Center(
                             child: JavaneseAvatarWidget(
-                              blangkonType: ProfileScope.maybeOf(context)
-                                      ?.equippedBlangkon ??
+                              blangkonType:
+                                  ProfileScope.maybeOf(
+                                    context,
+                                  )?.equippedBlangkon ??
                                   BlangkonType.yogyakarta,
                               size: 38,
                             ),
@@ -150,13 +153,18 @@ class HomeHeader extends StatelessWidget {
                           bottom: -4,
                           right: -4,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                              vertical: 1,
+                            ),
                             decoration: BoxDecoration(
                               color: AppColors.ink,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              l10n.homeLevelPill(MockUserStats.userLevel),
+                              l10n.homeLevelPill(
+                                ProfileScope.maybeOf(context)?.userLevel ?? 1,
+                              ),
                               style: const TextStyle(
                                 color: AppColors.amber,
                                 fontSize: 12,
@@ -177,4 +185,3 @@ class HomeHeader extends StatelessWidget {
     );
   }
 }
-

@@ -8,8 +8,13 @@ import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
 import '../widgets/quiz_path_painter.dart';
 import '../widgets/quiz_bottom_sheet.dart';
 import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_scope.dart';
+import '../../domain/adaptive_quiz_bank.dart';
+import '../../domain/quiz_path_models.dart';
+import '../../domain/quiz_path_data.dart';
+import 'quiz_question_screen.dart';
 
-/// Duolingo-style quiz path map with Javanese aesthetic.
+/// Duolingo-style quiz path map with Javanese aesthetic and 50-node extended curriculum.
 class QuizPathScreen extends StatefulWidget {
   const QuizPathScreen({super.key});
 
@@ -19,106 +24,20 @@ class QuizPathScreen extends StatefulWidget {
 
 class _QuizPathScreenState extends State<QuizPathScreen>
     with TickerProviderStateMixin {
+  late final ScrollController _scrollController;
   late final AnimationController _pulseController;
   late final Animation<double> _pulseAnim;
   final int _completedQuizzes = MockUserStats.totalCompletedQuizzes;
 
   int _selectedDifficultyIndex = 0; // 0 = Mudah, 1 = Mahir, 2 = Sangat Mahir
 
-  /// Data jalur kuis per unit pembelajaran.
-  static final List<_PathNodeData> _nodes = [
-    // Unit 1: Sapaan dan Salam
-    const _PathNodeData(
-      topicKey: 'salam',
-      topicName: 'Salam',
-      glyph: 'ꦱ',
-      description: 'Pelajari salam dan tegur sapa sopan santun bahasa Jawa.',
-      status: NodeStatus.completed,
-      quizIndex: 1,
-      totalInUnit: 5,
-      unitTitle: 'Unit 1 · Tingkat Mudah',
-    ),
-    const _PathNodeData(
-      topicKey: 'pamit',
-      topicName: 'Pamit',
-      glyph: 'ꦥ',
-      description: 'Ungkapan pamitan dan perpisahan sehari-hari yang santun.',
-      status: NodeStatus.completed,
-      quizIndex: 2,
-      totalInUnit: 5,
-      unitTitle: 'Unit 1 · Tingkat Mudah',
-    ),
-    const _PathNodeData(
-      topicKey: 'lencana',
-      topicName: 'Lencana',
-      glyph: 'ꦭ',
-      description: 'Uji pemahaman tonggak materi sapaan dan salam.',
-      status: NodeStatus.completed,
-      isMilestone: true,
-      quizIndex: 3,
-      totalInUnit: 5,
-      unitTitle: 'Unit 1 · Tingkat Mudah',
-    ),
-    const _PathNodeData(
-      topicKey: 'tanya_kabar',
-      topicName: 'Tanya kabar',
-      glyph: 'ꦠ',
-      description: 'Menanyakan keadaan dan kabar orang lain dalam bahasa Jawa.',
-      status: NodeStatus.current,
-      quizIndex: 4,
-      totalInUnit: 5,
-      unitTitle: 'Unit 1 · Tingkat Mudah',
-    ),
-    const _PathNodeData(
-      topicKey: 'perkenalan',
-      topicName: 'Perkenalan',
-      glyph: 'ꦥ',
-      description: 'Mengenalkan diri dengan unggah-ungguh yang tepat.',
-      status: NodeStatus.locked,
-      quizIndex: 5,
-      totalInUnit: 5,
-      unitTitle: 'Unit 1 · Tingkat Mudah',
-    ),
-
-    // Unit 2: Keluarga dan Rumah (terkunci)
-    const _PathNodeData(
-      topicKey: 'keluarga',
-      topicName: 'Keluarga',
-      glyph: 'ꦏ',
-      description: 'Sebutan anggota keluarga dan kerabat terdekat.',
-      status: NodeStatus.locked,
-      quizIndex: 1,
-      totalInUnit: 3,
-      unitTitle: 'Unit 2 · Tingkat Mudah',
-      isUnit2: true,
-    ),
-    const _PathNodeData(
-      topicKey: 'rumah',
-      topicName: 'Rumah',
-      glyph: 'ꦫ',
-      description: 'Bagian-bagian rumah tradisional dan perlengkapan.',
-      status: NodeStatus.locked,
-      quizIndex: 2,
-      totalInUnit: 3,
-      unitTitle: 'Unit 2 · Tingkat Mudah',
-      isUnit2: true,
-    ),
-    const _PathNodeData(
-      topicKey: 'kerabat',
-      topicName: 'Kerabat',
-      glyph: 'ꦏ',
-      description: 'Tingkatan silsilah keluarga besar masyarakat Jawa.',
-      status: NodeStatus.locked,
-      quizIndex: 3,
-      totalInUnit: 3,
-      unitTitle: 'Unit 2 · Tingkat Mudah',
-      isUnit2: true,
-    ),
-  ];
+  /// Flat list of 50 curriculum nodes across 5 units.
+  static final List<QuizPathNode> _nodes = QuizPathData.allNodes;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     _pulseController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
@@ -131,16 +50,20 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 
   @override
   void dispose() {
+    _scrollController.dispose();
     _pulseController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final jumpLabel = context.l10n.homeContinueQuizButton;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F1EB),
       appBar: _buildAppBar(),
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -151,8 +74,24 @@ class _QuizPathScreenState extends State<QuizPathScreen>
               ),
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+          const SliverToBoxAdapter(child: SizedBox(height: 100)),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _scrollToActiveNode,
+        backgroundColor: AppColors.amber,
+        foregroundColor: AppColors.ink,
+        elevation: 3,
+        icon: const Icon(Icons.navigation_rounded, size: 20),
+        label: Text(
+          jumpLabel,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: AppColors.ink,
+          ),
+        ),
       ),
     );
   }
@@ -164,6 +103,8 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       l10n.difficultyMahir,
       l10n.difficultySangatMahir,
     ];
+    final completedCountText = l10n.quizCompletedBadge(_completedQuizzes);
+
     return AppBar(
       backgroundColor: const Color(0xFFF5F1EB),
       elevation: 0,
@@ -188,10 +129,14 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.star_rounded, size: 16, color: AppColors.amberDark),
+              const Icon(
+                Icons.star_rounded,
+                size: 16,
+                color: AppColors.amberDark,
+              ),
               const SizedBox(width: 4),
               Text(
-                l10n.quizCompletedBadge(_completedQuizzes),
+                completedCountText,
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
@@ -218,10 +163,12 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                     difficultyLevels[index],
                     style: TextStyle(
                       fontSize: 12,
-                      fontWeight:
-                          isSelected ? FontWeight.w700 : FontWeight.w500,
-                      color:
-                          isSelected ? AppColors.ink : const Color(0xFF7A6E60),
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
+                      color: isSelected
+                          ? AppColors.ink
+                          : const Color(0xFF7A6E60),
                     ),
                   ),
                   selected: isSelected,
@@ -252,26 +199,54 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     );
   }
 
-  Widget _buildUnitHeader(String title, String subtitle,
-      {bool isLocked = false}) {
+  Widget _buildUnitHeader(QuizUnitData unit) {
+    final isLocked = unit.isLocked;
+    final title = unit.getLocalizedTitle(context);
+    final subtitle = unit.getLocalizedSubtitle(context);
+    final progressBadge = '${unit.completedCount}/${unit.nodes.length}';
+
     return Container(
-      margin: const EdgeInsets.only(top: 8, bottom: 20),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      margin: const EdgeInsets.only(top: 16, bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         color: isLocked ? const Color(0xFFE8E1D6) : AppColors.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isLocked ? const Color(0xFFD4CAB8) : AppColors.border,
         ),
+        boxShadow: isLocked
+            ? null
+            : [
+                BoxShadow(
+                  color: AppColors.ink.withValues(alpha: 0.04),
+                  blurRadius: 10,
+                  offset: const Offset(0, 3),
+                ),
+              ],
       ),
       child: Row(
         children: [
-          Icon(
-            isLocked ? Icons.lock_outline_rounded : Icons.menu_book_rounded,
-            color: isLocked ? const Color(0xFFADA49A) : AppColors.amberDark,
-            size: 20,
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: isLocked
+                  ? const Color(0xFFD4CAB8).withValues(alpha: 0.5)
+                  : AppColors.amber.withValues(alpha: 0.2),
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Icon(
+              isLocked
+                  ? Icons.lock_outline_rounded
+                  : (unit.unitId == 5
+                        ? Icons.military_tech_rounded
+                        : Icons.menu_book_rounded),
+              color: isLocked ? const Color(0xFFADA49A) : AppColors.amberDark,
+              size: 20,
+            ),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -284,6 +259,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                     color: isLocked ? const Color(0xFFADA49A) : AppColors.ink,
                   ),
                 ),
+                const SizedBox(height: 2),
                 Text(
                   subtitle,
                   style: const TextStyle(
@@ -294,6 +270,23 @@ class _QuizPathScreenState extends State<QuizPathScreen>
               ],
             ),
           ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: isLocked
+                  ? const Color(0xFFD4CAB8).withValues(alpha: 0.4)
+                  : AppColors.amber.withValues(alpha: 0.3),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              progressBadge,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: isLocked ? const Color(0xFF8A8073) : AppColors.ink,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -301,34 +294,21 @@ class _QuizPathScreenState extends State<QuizPathScreen>
 
   Widget _buildPathSection(int index) {
     final node = _nodes[index];
-    final isEven = index % 2 == 0;
+    final isFirstInUnit = node.indexInUnit == 1;
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        // Header for Unit 1 before the first node
-        if (index == 0)
-          _buildUnitHeader(
-            context.l10n.quizUnit1Title,
-            context.l10n.quizUnit1Subtitle,
-          ),
+        // Unit header before the first node of each unit
+        if (isFirstInUnit)
+          _buildUnitHeader(QuizPathData.units[node.unitId - 1]),
 
-        // Header for Unit 2 before the first locked node of Unit 2
-        if (index == 5)
-          _buildUnitHeader(
-            context.l10n.quizUnit2Title,
-            context.l10n.quizUnit2Subtitle,
-            isLocked: true,
-          ),
+        // Connector from previous node in the same unit
+        if (!isFirstInUnit) _buildConnector(index),
 
-        // Draw connecting line to previous node (except first node of each unit)
-        if (index > 0 && index != 5) _buildConnector(index),
-
-        // The node itself
-        Padding(
-          padding: EdgeInsets.only(
-            left: isEven ? 60 : 0,
-            right: isEven ? 0 : 60,
-          ),
+        // Node with smooth horizontal positioning
+        Align(
+          alignment: Alignment(node.position.alignmentX, 0),
           child: _buildNode(node),
         ),
       ],
@@ -341,36 +321,47 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     final isLocked = curr.status == NodeStatus.locked;
     final isCompleted = prev.status == NodeStatus.completed;
 
-    return Container(
+    return SizedBox(
       height: 48,
-      alignment: Alignment.center,
+      width: double.infinity,
       child: CustomPaint(
-        size: const Size(100, 48),
         painter: _ConnectorPainter(
+          startAlignmentX: prev.position.alignmentX,
+          endAlignmentX: curr.position.alignmentX,
           isCompleted: isCompleted && !isLocked,
           isLocked: isLocked,
-          flip: index % 2 == 0,
         ),
       ),
     );
   }
 
-  Widget _buildNode(_PathNodeData node) {
-    return GestureDetector(
-      onTap: () => _onNodeTapped(node),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildNodeCircle(node),
-          const SizedBox(height: 6),
-          _buildNodeLabel(node),
-        ],
+  Widget _buildNode(QuizPathNode node) {
+    final localizedTitle = node.getLocalizedTitle(context);
+
+    return Semantics(
+      button: true,
+      label: localizedTitle,
+      child: GestureDetector(
+        onTap: () => _onNodeTapped(node),
+        child: SizedBox(
+          width: 120,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildNodeCircle(node),
+              const SizedBox(height: 6),
+              _buildNodeLabel(node),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildNodeCircle(_PathNodeData node) {
+  Widget _buildNodeCircle(QuizPathNode node) {
     Widget circle;
+    final isFinalExam = node.type == QuizNodeType.finalExam;
+
     switch (node.status) {
       case NodeStatus.completed:
         circle = Container(
@@ -379,7 +370,12 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           decoration: BoxDecoration(
             color: AppColors.amber,
             shape: BoxShape.circle,
-            border: Border.all(color: AppColors.amberDark, width: 2.5),
+            border: Border.all(
+              color: isFinalExam
+                  ? const Color(0xFFB8860B)
+                  : AppColors.amberDark,
+              width: isFinalExam ? 3.0 : 2.5,
+            ),
             boxShadow: [
               BoxShadow(
                 color: AppColors.amberDark.withValues(alpha: 0.4),
@@ -457,7 +453,12 @@ class _QuizPathScreenState extends State<QuizPathScreen>
                   decoration: BoxDecoration(
                     color: const Color(0xFFFDF9F3),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.amberDark, width: 3),
+                    border: Border.all(
+                      color: isFinalExam
+                          ? const Color(0xFFB8860B)
+                          : AppColors.amberDark,
+                      width: 3,
+                    ),
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.amberDark.withValues(alpha: 0.35),
@@ -517,24 +518,62 @@ class _QuizPathScreenState extends State<QuizPathScreen>
         break;
     }
 
+    if (isFinalExam) {
+      return SizedBox(
+        width: 86,
+        height: 86,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            circle,
+            Positioned(
+              top: 0,
+              right: 6,
+              child: Container(
+                padding: const EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                  color: AppColors.amber,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.amberDark, width: 1.5),
+                ),
+                child: const Icon(
+                  Icons.workspace_premium_rounded,
+                  size: 14,
+                  color: AppColors.ink,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return SizedBox(width: 86, height: 86, child: Center(child: circle));
   }
 
-  Widget _buildNodeLabel(_PathNodeData node) {
+  Widget _buildNodeLabel(QuizPathNode node) {
     final isLocked = node.status == NodeStatus.locked;
+    final localizedTitle = node.getLocalizedTitle(context);
+    final milestoneLabel = context.l10n.quizMilestoneNode;
+
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          node.getTopicName(context),
+          localizedTitle,
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w700,
             color: isLocked ? const Color(0xFFADA49A) : AppColors.ink,
           ),
         ),
-        if (node.isMilestone)
+        if (node.topicKey == 'lencana')
           Text(
-            context.l10n.quizMilestoneNode,
+            milestoneLabel,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
@@ -545,15 +584,16 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     );
   }
 
-  void _onNodeTapped(_PathNodeData node) {
+  void _onNodeTapped(QuizPathNode node) {
+    final localizedTitle = node.getLocalizedTitle(context);
+
     if (node.status == NodeStatus.locked) {
       HapticFeedback.lightImpact();
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      final lockedToast = context.l10n.quizNodeLockedToast(localizedTitle);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            context.l10n.quizNodeLockedToast(node.getTopicName(context)),
-          ),
+          content: Text(lockedToast),
           duration: const Duration(seconds: 2),
         ),
       );
@@ -563,107 +603,62 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     QuizBottomSheet.show(
       context,
       unitTitle: node.getUnitTitle(context),
-      nodeTitle: node.getTopicName(context),
-      quizIndex: node.quizIndex,
-      totalQuizzes: node.totalInUnit,
+      nodeTitle: localizedTitle,
+      quizIndex: node.indexInUnit,
+      totalQuizzes: 10,
       questionCount: 10,
-      topicDescription: node.getDescription(context),
+      topicDescription: node.getLocalizedDescription(context),
       onStart: () {
-        Navigator.of(context).pushNamed(AppRouter.quizQuestion);
+        final profile = ProfileScope.maybeOf(context);
+        final level = profile?.userLevel ?? 1;
+        final questions = AdaptiveQuizBank.getQuestionsForLevel(level);
+        Navigator.of(context).pushNamed(
+          AppRouter.quizQuestion,
+          arguments: QuizQuestionArgs(
+            questions: questions,
+            moduleTitle: localizedTitle,
+            userLevel: level,
+          ),
+        );
       },
     );
   }
-}
 
-class _PathNodeData {
-  final String topicKey;
-  final String topicName;
-  final String glyph;
-  final String description;
-  final NodeStatus status;
-  final bool isMilestone;
-  final int quizIndex;
-  final int totalInUnit;
-  final String unitTitle;
-  final bool isUnit2;
+  void _scrollToActiveNode() {
+    if (!_scrollController.hasClients) return;
+    HapticFeedback.selectionClick();
 
-  const _PathNodeData({
-    required this.topicKey,
-    required this.topicName,
-    required this.glyph,
-    required this.description,
-    required this.status,
-    this.isMilestone = false,
-    required this.quizIndex,
-    required this.totalInUnit,
-    this.unitTitle = 'Unit 1 · Tingkat Mudah',
-    this.isUnit2 = false,
-  });
+    final activeIndex = _nodes.indexWhere(
+      (n) => n.status == NodeStatus.current,
+    );
+    final targetIndex = activeIndex != -1 ? activeIndex : 0;
 
-  String getTopicName(BuildContext context) {
-    switch (topicKey) {
-      case 'salam':
-        return context.l10n.quizTopicSalam;
-      case 'pamit':
-        return context.l10n.quizTopicPamit;
-      case 'lencana':
-        return context.l10n.quizTopicLencana;
-      case 'tanya_kabar':
-        return context.l10n.quizTopicTanyaKabar;
-      case 'perkenalan':
-        return context.l10n.quizTopicPerkenalan;
-      case 'keluarga':
-        return context.l10n.quizTopicKeluarga;
-      case 'rumah':
-        return context.l10n.quizTopicRumah;
-      case 'kerabat':
-        return context.l10n.quizTopicKerabat;
-      default:
-        return topicName;
-    }
-  }
+    final unitHeadersBefore = (targetIndex / 10).floor() + 1;
+    final estimatedOffset =
+        (targetIndex * 150.0) + (unitHeadersBefore * 90.0) - 160.0;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final clampedOffset = estimatedOffset.clamp(0.0, maxScroll);
 
-  String getDescription(BuildContext context) {
-    switch (topicKey) {
-      case 'salam':
-        return context.l10n.quizTopicSalamDesc;
-      case 'pamit':
-        return context.l10n.quizTopicPamitDesc;
-      case 'lencana':
-        return context.l10n.quizTopicLencanaDesc;
-      case 'tanya_kabar':
-        return context.l10n.quizTopicTanyaKabarDesc;
-      case 'perkenalan':
-        return context.l10n.quizTopicPerkenalanDesc;
-      case 'keluarga':
-        return context.l10n.quizTopicKeluargaDesc;
-      case 'rumah':
-        return context.l10n.quizTopicRumahDesc;
-      case 'kerabat':
-        return context.l10n.quizTopicKerabatDesc;
-      default:
-        return description;
-    }
-  }
-
-  String getUnitTitle(BuildContext context) {
-    return context.l10n.quizUnitTitle(
-      isUnit2 ? 2 : 1,
-      context.l10n.difficultyMudah,
+    _scrollController.animateTo(
+      clampedOffset,
+      duration: const Duration(milliseconds: 600),
+      curve: Curves.easeInOutCubic,
     );
   }
 }
 
-/// Draws the small curved connector between two nodes.
+/// Draws the curved bezier connector between two nodes with smooth horizontal positioning.
 class _ConnectorPainter extends CustomPainter {
+  final double startAlignmentX;
+  final double endAlignmentX;
   final bool isCompleted;
   final bool isLocked;
-  final bool flip;
 
   const _ConnectorPainter({
+    required this.startAlignmentX,
+    required this.endAlignmentX,
     required this.isCompleted,
     required this.isLocked,
-    required this.flip,
   });
 
   @override
@@ -674,13 +669,25 @@ class _ConnectorPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
+    // Node wrapper width is 120. Calculate center of child in Align(alignment: Alignment(x, 0)).
+    final availableWidth = size.width - 120;
+    final startCenterX =
+        size.width / 2 + (startAlignmentX * availableWidth / 2);
+    final endCenterX = size.width / 2 + (endAlignmentX * availableWidth / 2);
+
+    final startPoint = Offset(startCenterX, 0);
+    final endPoint = Offset(endCenterX, size.height);
+    final midY = size.height / 2;
+
     final path = Path()
-      ..moveTo(flip ? size.width * 0.3 : size.width * 0.7, 0)
-      ..quadraticBezierTo(
-        size.width / 2,
-        size.height / 2,
-        flip ? size.width * 0.7 : size.width * 0.3,
-        size.height,
+      ..moveTo(startPoint.dx, startPoint.dy)
+      ..cubicTo(
+        startPoint.dx,
+        midY,
+        endPoint.dx,
+        midY,
+        endPoint.dx,
+        endPoint.dy,
       );
 
     if (isLocked) {
@@ -697,7 +704,9 @@ class _ConnectorPainter extends CustomPainter {
       double d = 0;
       while (d < metric.length) {
         canvas.drawPath(
-            metric.extractPath(d, min(d + dashLen, metric.length)), paint);
+          metric.extractPath(d, min(d + dashLen, metric.length)),
+          paint,
+        );
         d += dashLen + gapLen;
       }
     }
@@ -705,5 +714,8 @@ class _ConnectorPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_ConnectorPainter old) =>
-      old.isCompleted != isCompleted || old.isLocked != isLocked;
+      old.startAlignmentX != startAlignmentX ||
+      old.endAlignmentX != endAlignmentX ||
+      old.isCompleted != isCompleted ||
+      old.isLocked != isLocked;
 }

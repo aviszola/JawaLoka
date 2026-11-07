@@ -521,7 +521,10 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               children: [
                 Text(
                   context.l10n.levelUpEquipButton,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(width: 8),
                 const Icon(Icons.arrow_forward_rounded, size: 20),

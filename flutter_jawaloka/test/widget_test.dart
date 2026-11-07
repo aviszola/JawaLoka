@@ -18,13 +18,12 @@ import 'helpers/pump_app.dart';
 
 void main() {
   testWidgets('JawaLoka splash screen smoke test', (WidgetTester tester) async {
-    final controller = LocaleController(preferences: InMemoryLocalePreferences());
+    final controller = LocaleController(
+      preferences: InMemoryLocalePreferences(),
+    );
     await controller.loadSavedLocale();
     await tester.pumpWidget(
-      LocaleScope(
-        controller: controller,
-        child: const JawaLokaApp(),
-      ),
+      LocaleScope(controller: controller, child: const JawaLokaApp()),
     );
 
     // Verify that the Splash Screen is present.
@@ -32,31 +31,33 @@ void main() {
 
     // Verify brand name and tagline exist.
     expect(find.text('JawaLoka'), findsOneWidget);
-    expect(find.text('Belajar bahasa dan aksara Jawa setiap hari'), findsOneWidget);
+    expect(
+      find.text('Belajar bahasa dan aksara Jawa setiap hari'),
+      findsOneWidget,
+    );
   });
 
   // ─── Test (a): 5 Bottom Navigation items ─────────────────────────────────
-  testWidgets('Bottom nav has exactly 5 items labeled Beranda, Belajar, Misi, Kuis, Profil',
-      (WidgetTester tester) async {
-    await tester.pumpApp(
-      const MainShellScreen(),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+  testWidgets(
+    'Bottom nav has exactly 5 items labeled Beranda, Belajar, Misi, Kuis, Profil',
+    (WidgetTester tester) async {
+      await tester.pumpApp(const MainShellScreen());
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('Beranda'), findsOneWidget);
-    expect(find.text('Belajar'), findsOneWidget);
-    expect(find.text('Misi'), findsOneWidget);
-    expect(find.text('Kuis'), findsOneWidget);
-    expect(find.text('Profil'), findsOneWidget);
-  });
+      expect(find.text('Beranda'), findsOneWidget);
+      expect(find.text('Belajar'), findsOneWidget);
+      expect(find.text('Misi'), findsOneWidget);
+      expect(find.text('Kuis'), findsOneWidget);
+      expect(find.text('Profil'), findsOneWidget);
+    },
+  );
 
   // ─── Test (b): Tapping each tab switches screens ───────────────────────────
-  testWidgets('Tapping each tab displays the correct screen',
-      (WidgetTester tester) async {
-    await tester.pumpApp(
-      const MainShellScreen(),
-    );
+  testWidgets('Tapping each tab displays the correct screen', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpApp(const MainShellScreen());
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
 
@@ -89,8 +90,9 @@ void main() {
   });
 
   // ─── Test (c): Quest button opens canvas without changing tab index ────────
-  testWidgets('Tapping Quest opens canvas without changing the active tab',
-      (WidgetTester tester) async {
+  testWidgets('Tapping Quest opens canvas without changing the active tab', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpApp(
       const SizedBox.shrink(),
       initialRoute: AppRouter.home,
@@ -121,62 +123,68 @@ void main() {
   });
 
   // ─── Test (d): Belajar tab contains required learning cards ────────────────
-  testWidgets('Tab Belajar displays Aksara, Kosa Kata, Penerjemah, Penggunaan Bahasa, and Peribahasa cards',
-      (WidgetTester tester) async {
-    await tester.pumpApp(
-      const MainShellScreen(initialIndex: 1),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+  testWidgets(
+    'Tab Belajar displays Aksara, Kosa Kata, Penerjemah, Penggunaan Bahasa, and Peribahasa cards',
+    (WidgetTester tester) async {
+      await tester.pumpApp(const MainShellScreen(initialIndex: 1));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.textContaining('Aksara Jawa Dhasar'), findsOneWidget);
-    expect(find.textContaining('Kosa Kata (Kamus)'), findsOneWidget);
-    expect(find.textContaining('Penerjemah Bahasa'), findsOneWidget);
-    expect(find.textContaining('Penggunaan Bahasa'), findsWidgets);
-    expect(find.textContaining('Peribahasa & Saloka'), findsOneWidget);
-  });
+      expect(find.textContaining('Aksara Jawa Dhasar'), findsOneWidget);
+      expect(find.textContaining('Kosa Kata (Kamus)'), findsOneWidget);
+      expect(find.textContaining('Penerjemah Bahasa'), findsOneWidget);
+      expect(find.textContaining('Penggunaan Bahasa'), findsWidgets);
+      expect(find.textContaining('Peribahasa & Saloka'), findsOneWidget);
+    },
+  );
 
   // ─── Test (e): Quiz Path displays 3 Tingkat chips and unit topics ──────────
-  testWidgets('QuizPathScreen displays Tingkat chips (Mudah, Mahir, Sangat Mahir) and unit topics',
-      (WidgetTester tester) async {
-    await tester.pumpApp(
-      const QuizPathScreen(),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+  testWidgets(
+    'QuizPathScreen displays Tingkat chips (Mudah, Mahir, Sangat Mahir) and unit topics',
+    (WidgetTester tester) async {
+      await tester.pumpApp(const QuizPathScreen());
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    // 3 difficulty chips with default Mudah
-    expect(find.text('Mudah'), findsOneWidget);
-    expect(find.text('Mahir'), findsOneWidget);
-    expect(find.text('Sangat Mahir'), findsOneWidget);
+      // 3 difficulty chips with default Mudah
+      expect(find.text('Mudah'), findsOneWidget);
+      expect(find.text('Mahir'), findsOneWidget);
+      expect(find.text('Sangat Mahir'), findsOneWidget);
 
-    // Unit 1 topics visible at top
-    expect(find.text('Unit 1: Sapaan dan Salam'), findsOneWidget);
-    expect(find.text('Salam'), findsOneWidget);
-    expect(find.text('Pamit'), findsOneWidget);
-    expect(find.text('Lencana'), findsOneWidget);
+      // Unit 1 topics visible at top
+      expect(find.text('Unit 1: Sapaan dan Salam'), findsOneWidget);
+      expect(find.text('Salam'), findsOneWidget);
+      expect(find.text('Pamit'), findsOneWidget);
+      expect(find.text('Lencana'), findsOneWidget);
 
-    // Scroll down to see remaining topics in Unit 1 and Unit 2
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, -700));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+      // Scroll down to see remaining topics in Unit 1 and Unit 2
+      await tester.drag(find.byType(CustomScrollView), const Offset(0, -700));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('Tanya kabar'), findsOneWidget);
-    expect(find.text('Perkenalan'), findsOneWidget);
-    expect(find.text('Unit 2: Keluarga dan Rumah (Terkunci)'), findsOneWidget);
-  });
+      expect(find.text('Tanya kabar'), findsOneWidget);
+      expect(find.text('Perkenalan'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text('Unit 2: Keluarga dan Rumah (Terkunci)'),
+        200,
+      );
+      expect(
+        find.text('Unit 2: Keluarga dan Rumah (Terkunci)'),
+        findsOneWidget,
+      );
+    },
+  );
 
   // ─── Test (f): Quiz session has 10 questions with 4 options (A-D) ─────────
-  testWidgets('Quiz question default has 10 questions with 4 options',
-      (WidgetTester tester) async {
+  testWidgets('Quiz question default has 10 questions with 4 options', (
+    WidgetTester tester,
+  ) async {
     expect(QuizQuestionScreen.defaultQuestions.length, 10);
     for (final q in QuizQuestionScreen.defaultQuestions) {
       expect(q.options.length, 4);
     }
 
-    await tester.pumpApp(
-      const QuizQuestionScreen(),
-    );
+    await tester.pumpApp(const QuizQuestionScreen());
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
 
@@ -188,110 +196,110 @@ void main() {
   });
 
   // ─── Test (g): QuizResultScreen shows real score and streak banner ─────────
-  testWidgets('QuizResultScreen displays real score and streak banner without threshold',
-      (WidgetTester tester) async {
-    const testResult = QuizResult(
-      score: 90,
-      maxScore: 100,
-      correctCount: 9,
-      totalQuestions: 10,
-      accuracy: 90,
-      isStreakAchievedToday: true,
-      currentStreak: 5,
-    );
+  testWidgets(
+    'QuizResultScreen displays real score and streak banner without threshold',
+    (WidgetTester tester) async {
+      const testResult = QuizResult(
+        score: 90,
+        maxScore: 100,
+        correctCount: 9,
+        totalQuestions: 10,
+        accuracy: 90,
+        isStreakAchievedToday: true,
+        currentStreak: 5,
+      );
 
-    await tester.pumpApp(
-      const QuizResultScreen(result: testResult),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+      await tester.pumpApp(const QuizResultScreen(result: testResult));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('90'), findsOneWidget);
-    expect(find.text('9/10'), findsOneWidget);
-    expect(find.text('Streak kuis aktif: 5 hari'), findsOneWidget);
-    expect(find.text('Kembali ke Beranda'), findsOneWidget);
-    expect(find.text('Ulangi kuis'), findsOneWidget);
+      expect(find.text('90'), findsOneWidget);
+      expect(find.text('9/10'), findsOneWidget);
+      expect(find.text('Streak kuis aktif: 5 hari'), findsOneWidget);
+      expect(find.text('Kembali ke Beranda'), findsOneWidget);
+      expect(find.text('Ulangi kuis'), findsOneWidget);
 
-    // Verify passing threshold is NOT displayed
-    expect(find.textContaining('Target'), findsNothing);
-    expect(find.textContaining('≥80%'), findsNothing);
-    expect(find.textContaining('Lulus'), findsNothing);
-  });
+      // Verify passing threshold is NOT displayed
+      expect(find.textContaining('Target'), findsNothing);
+      expect(find.textContaining('≥80%'), findsNothing);
+      expect(find.textContaining('Lulus'), findsNothing);
+    },
+  );
 
   // ─── Test (h): Answering 10 questions sequentially navigates to result ────
-  testWidgets('Behavior: answering 10 questions sequentially navigates to result with correct score',
-      (WidgetTester tester) async {
-    await tester.pumpApp(
-      const QuizQuestionScreen(),
-      onGenerateRoute: AppRouter.generateRoute,
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-
-    // Answer 10 questions sequentially
-    for (int i = 0; i < 10; i++) {
-      expect(find.text('${i + 1}/10'), findsOneWidget);
-
-      // Tap option A
-      await tester.tap(find.byKey(const Key('quiz_option_0')));
+  testWidgets(
+    'Behavior: answering 10 questions sequentially navigates to result with correct score',
+    (WidgetTester tester) async {
+      await tester.pumpApp(
+        const QuizQuestionScreen(),
+        onGenerateRoute: AppRouter.generateRoute,
+      );
       await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+      await tester.pump(const Duration(milliseconds: 300));
 
-      // Tap Lanjut (or Selesai on question 10)
-      if (i < 9) {
-        await tester.tap(find.text('Lanjut'));
+      // Answer 10 questions sequentially
+      for (int i = 0; i < 10; i++) {
+        expect(find.text('${i + 1}/10'), findsOneWidget);
+
+        // Tap option A
+        await tester.tap(find.byKey(const Key('quiz_option_0')));
         await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-      } else {
-        await tester.tap(find.text('Selesai'));
-        await tester.pump();
-        await tester.pump(const Duration(milliseconds: 500));
+        await tester.pump(const Duration(milliseconds: 300));
+
+        // Tap Lanjut (or Selesai on question 10)
+        if (i < 9) {
+          await tester.tap(find.text('Lanjut'));
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 300));
+        } else {
+          await tester.tap(find.text('Selesai'));
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 500));
+        }
       }
-    }
 
-    // Navigated to QuizResultScreen
-    expect(find.byType(QuizResultScreen), findsOneWidget);
-    expect(find.text('Kembali ke Beranda'), findsOneWidget);
-    expect(find.text('Ulangi kuis'), findsOneWidget);
-  });
+      // Navigated to QuizResultScreen
+      expect(find.byType(QuizResultScreen), findsOneWidget);
+      expect(find.text('Kembali ke Beranda'), findsOneWidget);
+      expect(find.text('Ulangi kuis'), findsOneWidget);
+    },
+  );
 
   // ─── Test (i): Streak banner appears only when isStreakAchievedToday is true ─
-  testWidgets('Behavior: streak banner appears only when isStreakAchievedToday is true',
-      (WidgetTester tester) async {
-    // When isStreakAchievedToday is true
-    const achievedResult = QuizResult(
-      score: 80,
-      correctCount: 8,
-      totalQuestions: 10,
-      accuracy: 80,
-      isStreakAchievedToday: true,
-      currentStreak: 5,
-    );
+  testWidgets(
+    'Behavior: streak banner appears only when isStreakAchievedToday is true',
+    (WidgetTester tester) async {
+      // When isStreakAchievedToday is true
+      const achievedResult = QuizResult(
+        score: 80,
+        correctCount: 8,
+        totalQuestions: 10,
+        accuracy: 80,
+        isStreakAchievedToday: true,
+        currentStreak: 5,
+      );
 
-    await tester.pumpApp(
-      const QuizResultScreen(result: achievedResult),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+      await tester.pumpApp(const QuizResultScreen(result: achievedResult));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('Streak kuis aktif: 5 hari'), findsOneWidget);
+      expect(find.text('Streak kuis aktif: 5 hari'), findsOneWidget);
 
-    // When isStreakAchievedToday is false
-    const notAchievedResult = QuizResult(
-      score: 80,
-      correctCount: 8,
-      totalQuestions: 10,
-      accuracy: 80,
-      isStreakAchievedToday: false,
-      currentStreak: 5,
-    );
+      // When isStreakAchievedToday is false
+      const notAchievedResult = QuizResult(
+        score: 80,
+        correctCount: 8,
+        totalQuestions: 10,
+        accuracy: 80,
+        isStreakAchievedToday: false,
+        currentStreak: 5,
+      );
 
-    await tester.pumpApp(
-      const QuizResultScreen(result: notAchievedResult),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+      await tester.pumpApp(const QuizResultScreen(result: notAchievedResult));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
 
-    expect(find.text('Streak kuis aktif: 5 hari'), findsNothing);
-  });
+      expect(find.text('Streak kuis aktif: 5 hari'), findsNothing);
+    },
+  );
 }
