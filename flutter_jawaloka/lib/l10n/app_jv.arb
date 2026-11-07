@@ -1,0 +1,15 @@
+{
+  "@@locale": "jv",
+  "langSelectTitle": "Pilih Basa Pitedah",
+  "langSelectSubtitle": "Cocogna basa antarmuka aplikasi manut kepenake anggonmu sinau.",
+  "langSelectHint": "Panjenengan saged ngowahi pilihan basa punika kapan kemawon lumantar menu Pengaturan.",
+  "langSelectContinueButton": "Lajeng",
+  "langSelectJvSub": "Basa Jawa",
+  "langSelectIdSub": "Bawaan",
+  "langSelectEnSub": "Kanggo para pambelajar saindenging jagad",
+  "settingsLanguageRow": "Basa",
+  "settingsLanguageDialogTitle": "Pilih Basa",
+  "quizProgress": "Pitakon {current} saka {total}",
+  "streakDays": "{count, plural, =1{1 dina} other{{count} dina}}"
+}
+

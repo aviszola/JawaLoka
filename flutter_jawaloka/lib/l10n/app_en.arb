@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "langSelectTitle": "Choose App Language",
+  "langSelectSubtitle": "Customize the interface language to match your learning preference.",
+  "langSelectHint": "You can change this language anytime in Settings.",
+  "langSelectContinueButton": "Continue",
+  "langSelectJvSub": "Javanese",
+  "langSelectIdSub": "Default",
+  "langSelectEnSub": "For learners worldwide",
+  "settingsLanguageRow": "Language",
+  "settingsLanguageDialogTitle": "Select Language",
+  "quizProgress": "Question {current} of {total}",
+  "streakDays": "{count, plural, =1{1 day} other{{count} days}}"
+}
+

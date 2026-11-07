@@ -1,0 +1,64 @@
+{
+  "@@locale": "id",
+  "langSelectTitle": "Pilih Bahasa Pengantar",
+  "@langSelectTitle": {
+    "description": "Judul layar pemilihan bahasa"
+  },
+  "langSelectSubtitle": "Sesuaikan bahasa antarmuka aplikasi dengan kenyamanan belajarmu.",
+  "@langSelectSubtitle": {
+    "description": "Subjudul layar pemilihan bahasa"
+  },
+  "langSelectHint": "Kamu dapat mengubah pilihan bahasa ini kapan saja melalui menu Pengaturan.",
+  "@langSelectHint": {
+    "description": "Petunjuk bawah layar pemilihan bahasa"
+  },
+  "langSelectContinueButton": "Lanjut",
+  "@langSelectContinueButton": {
+    "description": "Label tombol lanjut pada layar pemilihan bahasa"
+  },
+  "langSelectJvSub": "Bahasa Jawa",
+  "@langSelectJvSub": {
+    "description": "Keterangan kartu pilihan bahasa Jawa"
+  },
+  "langSelectIdSub": "Bawaan",
+  "@langSelectIdSub": {
+    "description": "Keterangan kartu pilihan bahasa Indonesia"
+  },
+  "langSelectEnSub": "Untuk pelajar seluruh dunia",
+  "@langSelectEnSub": {
+    "description": "Keterangan kartu pilihan bahasa Inggris"
+  },
+  "settingsLanguageRow": "Bahasa",
+  "@settingsLanguageRow": {
+    "description": "Label baris pengaturan bahasa di layar Pengaturan"
+  },
+  "settingsLanguageDialogTitle": "Pilih Bahasa",
+  "@settingsLanguageDialogTitle": {
+    "description": "Judul dialog pemilihan bahasa di Pengaturan"
+  },
+  "quizProgress": "Soal {current} dari {total}",
+  "@quizProgress": {
+    "description": "Format kemajuan nomor kuis",
+    "placeholders": {
+      "current": {
+        "type": "int",
+        "example": "1"
+      },
+      "total": {
+        "type": "int",
+        "example": "10"
+      }
+    }
+  },
+  "streakDays": "{count, plural, =1{1 hari} other{{count} hari}}",
+  "@streakDays": {
+    "description": "Jumlah hari streak belajar",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  }
+}
+
