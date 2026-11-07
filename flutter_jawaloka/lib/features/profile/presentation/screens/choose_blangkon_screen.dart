@@ -10,9 +10,9 @@ import '../widgets/blangkon_painter.dart';
 
 // PERLU VALIDASI BUDAYA
 enum BlangkonUnlockType {
-  initial,        // Terpasang awal
-  level,          // Mencapai Level tertentu
-  masteryAksara,  // Selesai materi aksara
+  initial, // Terpasang awal
+  level, // Mencapai Level tertentu
+  masteryAksara, // Selesai materi aksara
 }
 
 class BlangkonUnlockCondition {
@@ -21,19 +21,19 @@ class BlangkonUnlockCondition {
   final String label;
 
   const BlangkonUnlockCondition.initial()
-      : type = BlangkonUnlockType.initial,
-        requiredLevel = null,
-        label = 'Terpasang awal';
+    : type = BlangkonUnlockType.initial,
+      requiredLevel = null,
+      label = 'Terpasang awal';
 
   const BlangkonUnlockCondition.level(int level)
-      : type = BlangkonUnlockType.level,
-        requiredLevel = level,
-        label = 'Level $level';
+    : type = BlangkonUnlockType.level,
+      requiredLevel = level,
+      label = 'Level $level';
 
   const BlangkonUnlockCondition.masteryAksara()
-      : type = BlangkonUnlockType.masteryAksara,
-        requiredLevel = null,
-        label = 'Selesai aksara';
+    : type = BlangkonUnlockType.masteryAksara,
+      requiredLevel = null,
+      label = 'Selesai aksara';
 }
 
 // PERLU KEPUTUSAN
@@ -87,7 +87,7 @@ class ChooseBlangkonScreen extends StatefulWidget {
 
 class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     with SingleTickerProviderStateMixin {
-  static const int _currentUserLevel = MockUserStats.userLevel;
+  int get _currentUserLevel => ProfileScope.maybeOf(context)?.userLevel ?? 1;
   static const bool _hasMasteredAksara = MockUserStats.hasMasteredAksara;
 
   static final List<_BlangkonOption> _options = [
@@ -135,9 +135,10 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
-    _avatarScale = Tween<double>(begin: 1.0, end: 1.06).animate(
-      CurvedAnimation(parent: _avatarCtrl, curve: Curves.elasticOut),
-    );
+    _avatarScale = Tween<double>(
+      begin: 1.0,
+      end: 1.06,
+    ).animate(CurvedAnimation(parent: _avatarCtrl, curve: Curves.elasticOut));
   }
 
   bool _initializedFromScope = false;
@@ -189,7 +190,10 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
         message = context.l10n.blangkonToastInitial(opt.name);
         break;
       case BlangkonUnlockType.level:
-        message = context.l10n.blangkonToastLevel(opt.condition.requiredLevel ?? 1, opt.name);
+        message = context.l10n.blangkonToastLevel(
+          opt.condition.requiredLevel ?? 1,
+          opt.name,
+        );
         break;
       case BlangkonUnlockType.masteryAksara:
         message = context.l10n.blangkonToastAksara(opt.name);
@@ -245,7 +249,11 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       ),
       title: Text(
         context.l10n.blangkonTitle,
-        style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700, fontSize: 18),
+        style: const TextStyle(
+          color: AppColors.ink,
+          fontWeight: FontWeight.w700,
+          fontSize: 18,
+        ),
       ),
       actions: [
         Container(
@@ -329,7 +337,9 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           ),
           const SizedBox(height: 4),
           Text(
-            _options.firstWhere((o) => o.type == _selected).description(context),
+            _options
+                .firstWhere((o) => o.type == _selected)
+                .description(context),
             style: const TextStyle(fontSize: 14, color: Color(0xFF6B6257)),
           ),
         ],
@@ -373,11 +383,17 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           backgroundColor: AppColors.ink,
           foregroundColor: AppColors.amber,
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
         ),
         child: Text(
           context.l10n.blangkonSaveButton,
-          style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16, letterSpacing: 0.3),
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            letterSpacing: 0.3,
+          ),
         ),
       ),
     );
@@ -399,7 +415,10 @@ class _BlangkonGridItem extends StatelessWidget {
     required this.onTap,
   });
 
-  String _getConditionLabel(BuildContext context, BlangkonUnlockCondition condition) {
+  String _getConditionLabel(
+    BuildContext context,
+    BlangkonUnlockCondition condition,
+  ) {
     switch (condition.type) {
       case BlangkonUnlockType.initial:
         return context.l10n.blangkonInitialUnlock;
@@ -425,7 +444,13 @@ class _BlangkonGridItem extends StatelessWidget {
             width: isSelected ? 2 : 1.5,
           ),
           boxShadow: isSelected
-              ? [BoxShadow(color: AppColors.amber.withValues(alpha: 0.3), blurRadius: 10, offset: const Offset(0, 3))]
+              ? [
+                  BoxShadow(
+                    color: AppColors.amber.withValues(alpha: 0.3),
+                    blurRadius: 10,
+                    offset: const Offset(0, 3),
+                  ),
+                ]
               : [],
         ),
         child: Stack(
@@ -439,7 +464,10 @@ class _BlangkonGridItem extends StatelessWidget {
                     child: Center(
                       child: CustomPaint(
                         size: const Size(70, 55),
-                        painter: BlangkonPainter(type: option.type, isLocked: isLocked),
+                        painter: BlangkonPainter(
+                          type: option.type,
+                          isLocked: isLocked,
+                        ),
                       ),
                     ),
                   ),
@@ -458,7 +486,10 @@ class _BlangkonGridItem extends StatelessWidget {
                   if (isLocked) ...[
                     const SizedBox(height: 3),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: const Color(0xFFF5F1EB),
                         borderRadius: BorderRadius.circular(100),
@@ -489,7 +520,11 @@ class _BlangkonGridItem extends StatelessWidget {
                     color: AppColors.amber,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.check_rounded, size: 12, color: AppColors.ink),
+                  child: const Icon(
+                    Icons.check_rounded,
+                    size: 12,
+                    color: AppColors.ink,
+                  ),
                 ),
               ),
             if (isLocked)
@@ -503,7 +538,11 @@ class _BlangkonGridItem extends StatelessWidget {
                     color: const Color(0xFF6B6257).withValues(alpha: 0.8),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.lock_rounded, size: 10, color: Colors.white),
+                  child: const Icon(
+                    Icons.lock_rounded,
+                    size: 10,
+                    color: Colors.white,
+                  ),
                 ),
               ),
           ],
@@ -534,20 +573,36 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..close();
     canvas.drawPath(bodyPath, bodyPaint);
 
-    canvas.drawRect(Rect.fromLTWH(w * 0.42, h * 0.38, w * 0.16, h * 0.08), skinPaint);
+    canvas.drawRect(
+      Rect.fromLTWH(w * 0.42, h * 0.38, w * 0.16, h * 0.08),
+      skinPaint,
+    );
 
     final trimPaint = Paint()
       ..color = AppColors.amber
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
     canvas.drawArc(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.44), width: w * 0.46, height: h * 0.14),
-      3.3, 2.6, false, trimPaint,
+      Rect.fromCenter(
+        center: Offset(w * 0.5, h * 0.44),
+        width: w * 0.46,
+        height: h * 0.14,
+      ),
+      3.3,
+      2.6,
+      false,
+      trimPaint,
     );
 
     final eyePaint = Paint()..color = AppColors.ink;
-    canvas.drawOval(Rect.fromCenter(center: Offset(w * 0.42, h * 0.21), width: 5, height: 4), eyePaint);
-    canvas.drawOval(Rect.fromCenter(center: Offset(w * 0.58, h * 0.21), width: 5, height: 4), eyePaint);
+    canvas.drawOval(
+      Rect.fromCenter(center: Offset(w * 0.42, h * 0.21), width: 5, height: 4),
+      eyePaint,
+    );
+    canvas.drawOval(
+      Rect.fromCenter(center: Offset(w * 0.58, h * 0.21), width: 5, height: 4),
+      eyePaint,
+    );
 
     final smilePaint = Paint()
       ..color = AppColors.ink
@@ -555,7 +610,10 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
     canvas.drawArc(
       Rect.fromCenter(center: Offset(w * 0.5, h * 0.26), width: 14, height: 7),
-      0, 3.14, false, smilePaint,
+      0,
+      3.14,
+      false,
+      smilePaint,
     );
   }
 

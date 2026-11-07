@@ -36,7 +36,11 @@ class HomeContinueQuizCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.quiz_rounded, size: 18, color: AppColors.amberDark),
+                  const Icon(
+                    Icons.quiz_rounded,
+                    size: 18,
+                    color: AppColors.amberDark,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     l10n.homeContinueQuizTitle,
@@ -53,7 +57,9 @@ class HomeContinueQuizCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.pastelSand,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.amberDark.withValues(alpha: 0.3)),
+                  border: Border.all(
+                    color: AppColors.amberDark.withValues(alpha: 0.3),
+                  ),
                 ),
                 child: Text(
                   l10n.homeContinueQuizLevel,
@@ -78,10 +84,7 @@ class HomeContinueQuizCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             l10n.homeContinueQuizProgress(MockUserStats.totalCompletedQuizzes),
-            style: const TextStyle(
-              color: AppColors.inkSecondary,
-              fontSize: 12,
-            ),
+            style: const TextStyle(color: AppColors.inkSecondary, fontSize: 12),
           ),
           const SizedBox(height: 10),
           ClipRRect(
@@ -118,7 +121,11 @@ class HomeContinueQuizCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 6),
-                  const Icon(Icons.arrow_forward_rounded, size: 16, color: AppColors.ink),
+                  const Icon(
+                    Icons.arrow_forward_rounded,
+                    size: 16,
+                    color: AppColors.ink,
+                  ),
                 ],
               ),
             ),
@@ -128,4 +135,3 @@ class HomeContinueQuizCard extends StatelessWidget {
     );
   }
 }
-

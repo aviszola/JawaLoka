@@ -39,24 +39,15 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
     );
 
     _section1Fade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _entranceCtrl,
-        curve: const Interval(0.35, 0.65),
-      ),
+      CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.35, 0.65)),
     );
 
     _section2Fade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _entranceCtrl,
-        curve: const Interval(0.5, 0.8),
-      ),
+      CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.5, 0.8)),
     );
 
     _section3Fade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _entranceCtrl,
-        curve: const Interval(0.65, 1.0),
-      ),
+      CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.65, 1.0)),
     );
   }
 
@@ -229,11 +220,7 @@ class _AksaraHeroCard extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFFFFF8EE),
-            Color(0xFFFFF1D0),
-            Color(0xFFF5E9C8),
-          ],
+          colors: [Color(0xFFFFF8EE), Color(0xFFFFF1D0), Color(0xFFF5E9C8)],
           stops: [0.0, 0.5, 1.0],
         ),
       ),
@@ -243,9 +230,7 @@ class _AksaraHeroCard extends StatelessWidget {
           Positioned.fill(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(28),
-              child: CustomPaint(
-                painter: BatikKawungPainter(opacity: 0.04),
-              ),
+              child: CustomPaint(painter: BatikKawungPainter(opacity: 0.04)),
             ),
           ),
 
@@ -482,10 +467,7 @@ class _ExampleWordCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             meaning,
-            style: const TextStyle(
-              fontSize: 12,
-              color: AppColors.inkMuted,
-            ),
+            style: const TextStyle(fontSize: 12, color: AppColors.inkMuted),
           ),
         ],
       ),
@@ -521,10 +503,7 @@ class _SandanganSection extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           context.l10n.aksaraDetailSandanganSubtitle,
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.inkMuted,
-          ),
+          style: const TextStyle(fontSize: 12, color: AppColors.inkMuted),
         ),
         const SizedBox(height: 12),
         SizedBox(
@@ -564,9 +543,7 @@ class _SandanganChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.amberSoft,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: AppColors.amber.withValues(alpha: 0.5),
-        ),
+        border: Border.all(color: AppColors.amber.withValues(alpha: 0.5)),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -754,10 +731,7 @@ class _BottomButtons extends StatelessWidget {
   final VoidCallback onWritingTap;
   final VoidCallback onQuizTap;
 
-  const _BottomButtons({
-    required this.onWritingTap,
-    required this.onQuizTap,
-  });
+  const _BottomButtons({required this.onWritingTap, required this.onQuizTap});
 
   @override
   Widget build(BuildContext context) {
@@ -765,9 +739,7 @@ class _BottomButtons extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
       decoration: BoxDecoration(
         color: AppColors.canvas,
-        border: Border(
-          top: BorderSide(color: AppColors.border),
-        ),
+        border: Border(top: BorderSide(color: AppColors.border)),
       ),
       child: Row(
         children: [
@@ -801,7 +773,11 @@ class _BottomButtons extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    const Icon(Icons.edit_rounded, color: Colors.white, size: 16),
+                    const Icon(
+                      Icons.edit_rounded,
+                      color: Colors.white,
+                      size: 16,
+                    ),
                   ],
                 ),
               ),
@@ -832,7 +808,11 @@ class _BottomButtons extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    const Icon(Icons.track_changes_rounded, color: AppColors.amberDark, size: 16),
+                    const Icon(
+                      Icons.track_changes_rounded,
+                      color: AppColors.amberDark,
+                      size: 16,
+                    ),
                   ],
                 ),
               ),

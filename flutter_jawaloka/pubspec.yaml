@@ -13,29 +13,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
-  google_fonts: ^6.2.1
   intl: ^0.20.2
 
   # ─── State & Persistence ───────────────────────────────────────────────────
   # Simpan preferensi user: nama, blangkon pilihan, streak harian.
   shared_preferences: ^2.3.2
-
-  # ─── Smooth Drawing Canvas ─────────────────────────────────────────────────
-  # Stroke interpolation untuk Misi Harian menggambar aksara Jawa.
-  perfect_freehand: ^2.0.2
-
-  # ─── Lottie Animations ─────────────────────────────────────────────────────
-  # Animasi confetti / perayaan untuk Level Up dan Hasil Kuis.
-  lottie: ^3.1.2
-
-  # ─── Audio Pronunciations ──────────────────────────────────────────────────
-  # Putar audio pengucapan aksara & kosakata.
-  audioplayers: ^6.1.0
-
-  # ─── Provider State Management ─────────────────────────────────────────────
-  # Lightweight state management untuk user profile & progress.
-  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

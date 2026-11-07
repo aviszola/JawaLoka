@@ -186,10 +186,7 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..shader = RadialGradient(
         center: const Alignment(0.0, 0.1),
         radius: 0.75,
-        colors: [
-          const Color(0xFFFFF3DA),
-          const Color(0xFFFFF9E9),
-        ],
+        colors: [const Color(0xFFFFF3DA), const Color(0xFFFFF9E9)],
       ).createShader(Rect.fromLTWH(0, 0, w, h));
     canvas.drawRect(Rect.fromLTWH(0, 0, w, h), bgPaint);
 
@@ -263,9 +260,17 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     // Left collar trim
-    canvas.drawLine(Offset(15 * sx, 78 * sy), Offset(44 * sx, 68 * sy), trimPaint);
+    canvas.drawLine(
+      Offset(15 * sx, 78 * sy),
+      Offset(44 * sx, 68 * sy),
+      trimPaint,
+    );
     // Right collar trim
-    canvas.drawLine(Offset(85 * sx, 78 * sy), Offset(56 * sx, 68 * sy), trimPaint);
+    canvas.drawLine(
+      Offset(85 * sx, 78 * sy),
+      Offset(56 * sx, 68 * sy),
+      trimPaint,
+    );
 
     // Central V-opening of collar
     final vPath = Path()
@@ -279,8 +284,16 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..color = AppColors.amber.withValues(alpha: 0.4)
       ..style = PaintingStyle.fill;
     for (int i = 0; i < 3; i++) {
-      canvas.drawCircle(Offset((18 + i * 5.0) * sx, 82 * sy), 1.2 * sx, dotPaint);
-      canvas.drawCircle(Offset((82 - i * 5.0) * sx, 82 * sy), 1.2 * sx, dotPaint);
+      canvas.drawCircle(
+        Offset((18 + i * 5.0) * sx, 82 * sy),
+        1.2 * sx,
+        dotPaint,
+      );
+      canvas.drawCircle(
+        Offset((82 - i * 5.0) * sx, 82 * sy),
+        1.2 * sx,
+        dotPaint,
+      );
     }
   }
 
@@ -350,7 +363,11 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..color = const Color(0xFFFFF0D6).withValues(alpha: 0.6)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(37 * sx, 52 * sy), width: 14 * sx, height: 10 * sy),
+      Rect.fromCenter(
+        center: Offset(37 * sx, 52 * sy),
+        width: 14 * sx,
+        height: 10 * sy,
+      ),
       cheekHighlight,
     );
   }
@@ -362,23 +379,39 @@ class _JavaneseCharacterPainter extends CustomPainter {
 
     // Left ear
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(24 * sx, 51 * sy), width: 7 * sx, height: 10 * sy),
+      Rect.fromCenter(
+        center: Offset(24 * sx, 51 * sy),
+        width: 7 * sx,
+        height: 10 * sy,
+      ),
       earPaint,
     );
     // Left ear inner
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(25 * sx, 51 * sy), width: 3.5 * sx, height: 6 * sy),
+      Rect.fromCenter(
+        center: Offset(25 * sx, 51 * sy),
+        width: 3.5 * sx,
+        height: 6 * sy,
+      ),
       earShadow,
     );
 
     // Right ear
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(76 * sx, 51 * sy), width: 7 * sx, height: 10 * sy),
+      Rect.fromCenter(
+        center: Offset(76 * sx, 51 * sy),
+        width: 7 * sx,
+        height: 10 * sy,
+      ),
       earPaint,
     );
     // Right ear inner
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(75 * sx, 51 * sy), width: 3.5 * sx, height: 6 * sy),
+      Rect.fromCenter(
+        center: Offset(75 * sx, 51 * sy),
+        width: 3.5 * sx,
+        height: 6 * sy,
+      ),
       earShadow,
     );
   }
@@ -393,7 +426,11 @@ class _JavaneseCharacterPainter extends CustomPainter {
         ..color = const Color(0xFF7A4A28).withValues(alpha: 0.2)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2);
       canvas.drawOval(
-        Rect.fromCenter(center: center.translate(0, -1 * sy), width: 11 * sx, height: 6 * sy),
+        Rect.fromCenter(
+          center: center.translate(0, -1 * sy),
+          width: 11 * sx,
+          height: 6 * sy,
+        ),
         lidShadow,
       );
 
@@ -406,15 +443,22 @@ class _JavaneseCharacterPainter extends CustomPainter {
 
       // Iris — warm dark brown
       final irisPaint = Paint()
-        ..shader = RadialGradient(
-          colors: [const Color(0xFF5C3017), const Color(0xFF2E1A0E)],
-          center: const Alignment(-0.3, -0.3),
-          radius: 0.9,
-        ).createShader(Rect.fromCenter(center: center, width: 6 * sx, height: 6 * sy));
+        ..shader =
+            RadialGradient(
+              colors: [const Color(0xFF5C3017), const Color(0xFF2E1A0E)],
+              center: const Alignment(-0.3, -0.3),
+              radius: 0.9,
+            ).createShader(
+              Rect.fromCenter(center: center, width: 6 * sx, height: 6 * sy),
+            );
       canvas.drawCircle(center, 3 * sx, irisPaint);
 
       // Pupil
-      canvas.drawCircle(center, 1.6 * sx, Paint()..color = const Color(0xFF0E0906));
+      canvas.drawCircle(
+        center,
+        1.6 * sx,
+        Paint()..color = const Color(0xFF0E0906),
+      );
 
       // Catchlight top-left (primary)
       canvas.drawCircle(
@@ -438,9 +482,12 @@ class _JavaneseCharacterPainter extends CustomPainter {
       final lashPath = Path()
         ..moveTo(center.dx - 5 * sx, center.dy - 2 * sy)
         ..cubicTo(
-          center.dx - 2 * sx, center.dy - 5 * sy,
-          center.dx + 2 * sx, center.dy - 5 * sy,
-          center.dx + 5 * sx, center.dy - 2 * sy,
+          center.dx - 2 * sx,
+          center.dy - 5 * sy,
+          center.dx + 2 * sx,
+          center.dy - 5 * sy,
+          center.dx + 5 * sx,
+          center.dy - 2 * sy,
         );
       canvas.drawPath(lashPath, lashPaint);
 
@@ -452,7 +499,12 @@ class _JavaneseCharacterPainter extends CustomPainter {
         ..strokeCap = StrokeCap.round;
       final lowerLashPath = Path()
         ..moveTo(center.dx - 4 * sx, center.dy + 3 * sy)
-        ..quadraticBezierTo(center.dx, center.dy + 4.5 * sy, center.dx + 4 * sx, center.dy + 3 * sy);
+        ..quadraticBezierTo(
+          center.dx,
+          center.dy + 4.5 * sy,
+          center.dx + 4 * sx,
+          center.dy + 3 * sy,
+        );
       canvas.drawPath(lowerLashPath, lowerLash);
     }
   }
@@ -508,11 +560,19 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..color = const Color(0xFFBB7845).withValues(alpha: 0.6)
       ..style = PaintingStyle.fill;
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(46.5 * sx, 62 * sy), width: 4 * sx, height: 2.8 * sy),
+      Rect.fromCenter(
+        center: Offset(46.5 * sx, 62 * sy),
+        width: 4 * sx,
+        height: 2.8 * sy,
+      ),
       nostrilPaint,
     );
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(53.5 * sx, 62 * sy), width: 4 * sx, height: 2.8 * sy),
+      Rect.fromCenter(
+        center: Offset(53.5 * sx, 62 * sy),
+        width: 4 * sx,
+        height: 2.8 * sy,
+      ),
       nostrilPaint,
     );
   }
@@ -552,8 +612,16 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..color = const Color(0xFFE0D4C0).withValues(alpha: 0.6)
       ..strokeWidth = 0.7 * sx
       ..style = PaintingStyle.stroke;
-    canvas.drawLine(Offset(49 * sx, 68.5 * sy), Offset(49.5 * sx, 71 * sy), toothDivPaint);
-    canvas.drawLine(Offset(51 * sx, 68.5 * sy), Offset(51.5 * sx, 71 * sy), toothDivPaint);
+    canvas.drawLine(
+      Offset(49 * sx, 68.5 * sy),
+      Offset(49.5 * sx, 71 * sy),
+      toothDivPaint,
+    );
+    canvas.drawLine(
+      Offset(51 * sx, 68.5 * sy),
+      Offset(51.5 * sx, 71 * sy),
+      toothDivPaint,
+    );
 
     // Lower lip
     final lowerLipPath = Path()
@@ -573,7 +641,11 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
     canvas.drawArc(
-      Rect.fromCenter(center: Offset(50 * sx, 76 * sy), width: 8 * sx, height: 6 * sy),
+      Rect.fromCenter(
+        center: Offset(50 * sx, 76 * sy),
+        width: 8 * sx,
+        height: 6 * sy,
+      ),
       0.3,
       math.pi - 0.6,
       false,
@@ -587,11 +659,19 @@ class _JavaneseCharacterPainter extends CustomPainter {
       ..color = const Color(0xFFFF9B84).withValues(alpha: 0.38)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(31 * sx, 59 * sy), width: 14 * sx, height: 8 * sy),
+      Rect.fromCenter(
+        center: Offset(31 * sx, 59 * sy),
+        width: 14 * sx,
+        height: 8 * sy,
+      ),
       blushPaint,
     );
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(69 * sx, 59 * sy), width: 14 * sx, height: 8 * sy),
+      Rect.fromCenter(
+        center: Offset(69 * sx, 59 * sy),
+        width: 14 * sx,
+        height: 8 * sy,
+      ),
       blushPaint,
     );
   }
@@ -616,14 +696,22 @@ class _JavaneseCharacterPainter extends CustomPainter {
 
     // Hair mass behind blangkon (top of head, peeking at sides)
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(50 * sx, 32 * sy), width: 54 * sx, height: 20 * sy),
+      Rect.fromCenter(
+        center: Offset(50 * sx, 32 * sy),
+        width: 54 * sx,
+        height: 20 * sy,
+      ),
       hairPaint,
     );
   }
 
   // ─── Blangkon Headdress ───────────────────────────────────────────────────
   void _drawBlangkonOnCharacter(
-      Canvas canvas, double sx, double sy, BlangkonType type) {
+    Canvas canvas,
+    double sx,
+    double sy,
+    BlangkonType type,
+  ) {
     // Blangkon sits on top of head. Clipped to character canvas (100x100 coords).
     // We scale the BlangkonPainter coordinate space to fit the hat region.
     final hatRect = Rect.fromLTWH(14 * sx, 2 * sy, 72 * sx, 42 * sy);

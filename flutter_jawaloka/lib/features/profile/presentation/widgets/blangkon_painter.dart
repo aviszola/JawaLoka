@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
 /// Blangkon types available in JawaLoka
-enum BlangkonType {
-  yogyakarta,
-  surakarta,
-  banyumas,
-  kedu,
-  cirebon,
-  pusaka,
-}
+enum BlangkonType { yogyakarta, surakarta, banyumas, kedu, cirebon, pusaka }
 
 /// Renders a traditional Javanese blangkon hat using CustomPainter.
 /// Each type has a highly detailed distinct vector shape, lighting,
@@ -55,7 +48,11 @@ class BlangkonPainter extends CustomPainter {
       ..color = Colors.black.withValues(alpha: 0.18)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.78), width: w * 0.82, height: h * 0.1),
+      Rect.fromCenter(
+        center: Offset(w * 0.5, h * 0.78),
+        width: w * 0.82,
+        height: h * 0.1,
+      ),
       shadowPaint,
     );
 
@@ -135,14 +132,17 @@ class BlangkonPainter extends CustomPainter {
     _drawKawungGrid(canvas, w, h);
 
     // ── Pleat Folds (Wiron) on front ──
-    _drawWironFolds(canvas, w, h,
-        baseColor: const Color(0xFF3D2010));
+    _drawWironFolds(canvas, w, h, baseColor: const Color(0xFF3D2010));
 
     // ── Headband Brim ──
-    _drawBrim(canvas, w, h,
-        brimColor: const Color(0xFF2E1A08),
-        trimColor: AppColors.amber,
-        trimWidth: 3.0);
+    _drawBrim(
+      canvas,
+      w,
+      h,
+      brimColor: const Color(0xFF2E1A08),
+      trimColor: AppColors.amber,
+      trimWidth: 3.0,
+    );
 
     // Gold center ornament badge
     _drawCenterOrnament(canvas, w, h, AppColors.amber);
@@ -180,9 +180,12 @@ class BlangkonPainter extends CustomPainter {
         Path()
           ..moveTo(w * (0.78 + i * 0.03), h * (0.22 + i * 0.04))
           ..cubicTo(
-            w * (0.90 + i * 0.03), h * (0.14 + i * 0.04),
-            w * (0.98 + i * 0.02), h * (0.36 + i * 0.03),
-            w * (0.90 + i * 0.02), h * (0.52 + i * 0.04),
+            w * (0.90 + i * 0.03),
+            h * (0.14 + i * 0.04),
+            w * (0.98 + i * 0.02),
+            h * (0.36 + i * 0.03),
+            w * (0.90 + i * 0.02),
+            h * (0.52 + i * 0.04),
           ),
         Paint()
           ..color = AppColors.amber.withValues(alpha: 0.3 - i * 0.05)
@@ -228,10 +231,14 @@ class BlangkonPainter extends CustomPainter {
     _drawParangStripes(canvas, w, h, const Color(0xFF7A1020));
 
     // ── Headband Brim ──
-    _drawBrim(canvas, w, h,
-        brimColor: const Color(0xFF3A0810),
-        trimColor: AppColors.amber,
-        trimWidth: 2.5);
+    _drawBrim(
+      canvas,
+      w,
+      h,
+      brimColor: const Color(0xFF3A0810),
+      trimColor: AppColors.amber,
+      trimWidth: 2.5,
+    );
 
     // Top finial jewel
     final finialPaint = Paint()
@@ -241,7 +248,11 @@ class BlangkonPainter extends CustomPainter {
     canvas.save();
     canvas.translate(w * 0.50, h * 0.03);
     canvas.drawCircle(Offset.zero, 4, finialPaint);
-    canvas.drawCircle(Offset(-1, -1), 1.5, Paint()..color = Colors.white.withValues(alpha: 0.6));
+    canvas.drawCircle(
+      Offset(-1, -1),
+      1.5,
+      Paint()..color = Colors.white.withValues(alpha: 0.6),
+    );
     canvas.restore();
 
     _drawCenterOrnament(canvas, w, h, AppColors.amber);
@@ -330,10 +341,14 @@ class BlangkonPainter extends CustomPainter {
     );
 
     // ── Brim ──
-    _drawBrim(canvas, w, h,
-        brimColor: const Color(0xFF102918),
-        trimColor: const Color(0xFF7CA870),
-        trimWidth: 2.5);
+    _drawBrim(
+      canvas,
+      w,
+      h,
+      brimColor: const Color(0xFF102918),
+      trimColor: const Color(0xFF7CA870),
+      trimWidth: 2.5,
+    );
 
     _drawCenterOrnament(canvas, w, h, const Color(0xFFD4B060));
   }
@@ -377,7 +392,11 @@ class BlangkonPainter extends CustomPainter {
         ..shader = LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [const Color(0xFF8C5C38), const Color(0xFF5A3A1E), const Color(0xFF3E2510)],
+          colors: [
+            const Color(0xFF8C5C38),
+            const Color(0xFF5A3A1E),
+            const Color(0xFF3E2510),
+          ],
           stops: const [0.0, 0.55, 1.0],
         ).createShader(Rect.fromLTWH(0, 0, w, h * 0.65)),
     );
@@ -429,10 +448,14 @@ class BlangkonPainter extends CustomPainter {
         ..style = PaintingStyle.stroke,
     );
 
-    _drawBrim(canvas, w, h,
-        brimColor: const Color(0xFF2E1C0E),
-        trimColor: const Color(0xFFD4A875),
-        trimWidth: 2.5);
+    _drawBrim(
+      canvas,
+      w,
+      h,
+      brimColor: const Color(0xFF2E1C0E),
+      trimColor: const Color(0xFFD4A875),
+      trimWidth: 2.5,
+    );
 
     _drawCenterOrnament(canvas, w, h, const Color(0xFFD4A875));
   }
@@ -499,12 +522,26 @@ class BlangkonPainter extends CustomPainter {
       final cy = h * (0.22 + i * 0.12);
       final cx = w * (0.20 + i * 0.10);
       canvas.drawArc(
-        Rect.fromCenter(center: Offset(cx, cy), width: w * 0.22, height: h * 0.14),
-        math.pi, math.pi, false, cloudPaint,
+        Rect.fromCenter(
+          center: Offset(cx, cy),
+          width: w * 0.22,
+          height: h * 0.14,
+        ),
+        math.pi,
+        math.pi,
+        false,
+        cloudPaint,
       );
       canvas.drawArc(
-        Rect.fromCenter(center: Offset(cx + w * 0.12, cy), width: w * 0.16, height: h * 0.10),
-        math.pi, math.pi, false, cloudPaint,
+        Rect.fromCenter(
+          center: Offset(cx + w * 0.12, cy),
+          width: w * 0.16,
+          height: h * 0.10,
+        ),
+        math.pi,
+        math.pi,
+        false,
+        cloudPaint,
       );
     }
 
@@ -520,10 +557,14 @@ class BlangkonPainter extends CustomPainter {
         ..strokeCap = StrokeCap.round,
     );
 
-    _drawBrim(canvas, w, h,
-        brimColor: const Color(0xFF08244E),
-        trimColor: AppColors.amber,
-        trimWidth: 2.8);
+    _drawBrim(
+      canvas,
+      w,
+      h,
+      brimColor: const Color(0xFF08244E),
+      trimColor: AppColors.amber,
+      trimWidth: 2.8,
+    );
 
     _drawCenterOrnament(canvas, w, h, AppColors.amber);
   }
@@ -606,19 +647,41 @@ class BlangkonPainter extends CustomPainter {
       canvas.drawPath(
         Path()
           ..moveTo(w * 0.50, h * t)
-          ..cubicTo(w * 0.42, h * (t + 0.04), w * 0.28, h * (t + 0.02), w * 0.20, h * (t + 0.06)),
+          ..cubicTo(
+            w * 0.42,
+            h * (t + 0.04),
+            w * 0.28,
+            h * (t + 0.02),
+            w * 0.20,
+            h * (t + 0.06),
+          ),
         filigree,
       );
       // Right branch
       canvas.drawPath(
         Path()
           ..moveTo(w * 0.50, h * t)
-          ..cubicTo(w * 0.58, h * (t + 0.04), w * 0.72, h * (t + 0.02), w * 0.80, h * (t + 0.06)),
+          ..cubicTo(
+            w * 0.58,
+            h * (t + 0.04),
+            w * 0.72,
+            h * (t + 0.02),
+            w * 0.80,
+            h * (t + 0.06),
+          ),
         filigree,
       );
       // End dots
-      canvas.drawCircle(Offset(w * 0.20, h * (t + 0.06)), 2, Paint()..color = AppColors.amber);
-      canvas.drawCircle(Offset(w * 0.80, h * (t + 0.06)), 2, Paint()..color = AppColors.amber);
+      canvas.drawCircle(
+        Offset(w * 0.20, h * (t + 0.06)),
+        2,
+        Paint()..color = AppColors.amber,
+      );
+      canvas.drawCircle(
+        Offset(w * 0.80, h * (t + 0.06)),
+        2,
+        Paint()..color = AppColors.amber,
+      );
     }
 
     // Rim light on dome
@@ -634,10 +697,14 @@ class BlangkonPainter extends CustomPainter {
     );
 
     // ── Gold gemstone brim ──
-    _drawBrim(canvas, w, h,
-        brimColor: const Color(0xFF0A0A14),
-        trimColor: AppColors.amber,
-        trimWidth: 4.0);
+    _drawBrim(
+      canvas,
+      w,
+      h,
+      brimColor: const Color(0xFF0A0A14),
+      trimColor: AppColors.amber,
+      trimWidth: 4.0,
+    );
 
     // Gemstone dots along brim
     final gemPaint = Paint()..color = AppColors.amber;
@@ -656,7 +723,11 @@ class BlangkonPainter extends CustomPainter {
         radius: 0.9,
       ).createShader(Rect.fromCircle(center: Offset.zero, radius: 6));
     canvas.drawCircle(Offset.zero, 5.5, jewel);
-    canvas.drawCircle(const Offset(-1.5, -2), 1.8, Paint()..color = Colors.white.withValues(alpha: 0.5));
+    canvas.drawCircle(
+      const Offset(-1.5, -2),
+      1.8,
+      Paint()..color = Colors.white.withValues(alpha: 0.5),
+    );
     canvas.restore();
   }
 
@@ -667,7 +738,11 @@ class BlangkonPainter extends CustomPainter {
       ..color = Colors.black.withValues(alpha: 0.16)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
     canvas.drawOval(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.78), width: w * 0.80, height: h * 0.08),
+      Rect.fromCenter(
+        center: Offset(w * 0.5, h * 0.78),
+        width: w * 0.80,
+        height: h * 0.08,
+      ),
       shadowPaint,
     );
   }
@@ -690,11 +765,43 @@ class BlangkonPainter extends CustomPainter {
     for (final c in centers) {
       final r = w * 0.055;
       final r2 = w * 0.038;
-      canvas.drawOval(Rect.fromCenter(center: c.translate(0, -r), width: r2 * 2, height: r * 2.4), paint);
-      canvas.drawOval(Rect.fromCenter(center: c.translate(0, r), width: r2 * 2, height: r * 2.4), paint);
-      canvas.drawOval(Rect.fromCenter(center: c.translate(-r, 0), width: r * 2.4, height: r2 * 2), paint);
-      canvas.drawOval(Rect.fromCenter(center: c.translate(r, 0), width: r * 2.4, height: r2 * 2), paint);
-      canvas.drawCircle(c, r2 * 0.4, Paint()..color = AppColors.kawungStroke.withValues(alpha: 0.2));
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: c.translate(0, -r),
+          width: r2 * 2,
+          height: r * 2.4,
+        ),
+        paint,
+      );
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: c.translate(0, r),
+          width: r2 * 2,
+          height: r * 2.4,
+        ),
+        paint,
+      );
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: c.translate(-r, 0),
+          width: r * 2.4,
+          height: r2 * 2,
+        ),
+        paint,
+      );
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: c.translate(r, 0),
+          width: r * 2.4,
+          height: r2 * 2,
+        ),
+        paint,
+      );
+      canvas.drawCircle(
+        c,
+        r2 * 0.4,
+        Paint()..color = AppColors.kawungStroke.withValues(alpha: 0.2),
+      );
     }
   }
 
@@ -719,7 +826,14 @@ class BlangkonPainter extends CustomPainter {
       canvas.drawPath(
         Path()
           ..moveTo(startX, h * 0.04)
-          ..cubicTo(startX + w * 0.08, h * 0.14, startX - w * 0.02, h * 0.36, startX + w * 0.06, h * 0.60),
+          ..cubicTo(
+            startX + w * 0.08,
+            h * 0.14,
+            startX - w * 0.02,
+            h * 0.36,
+            startX + w * 0.06,
+            h * 0.60,
+          ),
         paint,
       );
     }
@@ -727,7 +841,12 @@ class BlangkonPainter extends CustomPainter {
   }
 
   /// Wiron / pleat folds on front face of blangkon
-  void _drawWironFolds(Canvas canvas, double w, double h, {required Color baseColor}) {
+  void _drawWironFolds(
+    Canvas canvas,
+    double w,
+    double h, {
+    required Color baseColor,
+  }) {
     final foldPaint = Paint()
       ..color = baseColor.withValues(alpha: 0.5)
       ..strokeWidth = 1.4
@@ -740,9 +859,12 @@ class BlangkonPainter extends CustomPainter {
         Path()
           ..moveTo(w * (0.50 + i * 0.10), h * 0.60)
           ..cubicTo(
-            w * (0.44 + i * 0.10), h * 0.42,
-            w * (0.38 + i * 0.08), h * 0.26,
-            w * (0.44 + i * 0.08), h * 0.14,
+            w * (0.44 + i * 0.10),
+            h * 0.42,
+            w * (0.38 + i * 0.08),
+            h * 0.26,
+            w * (0.44 + i * 0.08),
+            h * 0.14,
           ),
         foldPaint,
       );
@@ -750,7 +872,10 @@ class BlangkonPainter extends CustomPainter {
   }
 
   /// Headband brim at the bottom of the dome
-  void _drawBrim(Canvas canvas, double w, double h, {
+  void _drawBrim(
+    Canvas canvas,
+    double w,
+    double h, {
     required Color brimColor,
     required Color trimColor,
     required double trimWidth,
@@ -809,10 +934,7 @@ class BlangkonPainter extends CustomPainter {
       ..lineTo(cx, cy + h * 0.04)
       ..lineTo(cx - w * 0.03, cy)
       ..close();
-    canvas.drawPath(
-      diamPath,
-      Paint()..color = color.withValues(alpha: 0.85),
-    );
+    canvas.drawPath(diamPath, Paint()..color = color.withValues(alpha: 0.85));
 
     // Inner gem highlight
     canvas.drawCircle(
@@ -845,17 +967,27 @@ class BlangkonPainter extends CustomPainter {
     // Shackle arc
     canvas.drawArc(
       Rect.fromCenter(center: Offset(cx, cy - 8), width: 14, height: 12),
-      math.pi, math.pi, false, lockPaint,
+      math.pi,
+      math.pi,
+      false,
+      lockPaint,
     );
     // Lock body
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromCenter(center: Offset(cx, cy + 2), width: 18, height: 14), const Radius.circular(3)),
+      RRect.fromRectAndRadius(
+        Rect.fromCenter(center: Offset(cx, cy + 2), width: 18, height: 14),
+        const Radius.circular(3),
+      ),
       Paint()
         ..color = Colors.white.withValues(alpha: 0.80)
         ..style = PaintingStyle.fill,
     );
     // Keyhole
-    canvas.drawCircle(Offset(cx, cy + 1), 3, Paint()..color = Colors.black.withValues(alpha: 0.5));
+    canvas.drawCircle(
+      Offset(cx, cy + 1),
+      3,
+      Paint()..color = Colors.black.withValues(alpha: 0.5),
+    );
     canvas.drawRect(
       Rect.fromCenter(center: Offset(cx, cy + 4.5), width: 2.5, height: 4),
       Paint()..color = Colors.black.withValues(alpha: 0.5),

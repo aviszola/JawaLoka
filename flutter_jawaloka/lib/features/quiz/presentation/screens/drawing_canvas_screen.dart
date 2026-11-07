@@ -1,8 +1,14 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
+import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_scope.dart';
+import '../../../../core/progression/reward_summary.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../domain/stroke_similarity_evaluator.dart';
 import '../widgets/drawing_canvas_painter.dart';
+import 'daily_result_screen.dart';
 
 // ─────────────────────────────────────────────────────────
 //  STROKE WIDTH OPTION
@@ -61,8 +67,10 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
 
   _StrokeSize _selectedSize = _StrokeSize.medium;
 
-  List<List<Offset>> get _allStrokes =>
-      [..._strokes, if (_currentStroke.isNotEmpty) _currentStroke];
+  List<List<Offset>> get _allStrokes => [
+    ..._strokes,
+    if (_currentStroke.isNotEmpty) _currentStroke,
+  ];
 
   // ── Gesture handlers ───────────────────────────────────
 
@@ -98,6 +106,15 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
     setState(() {
       _strokes.removeLast();
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant DrawingCanvasScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.aksaraChar != widget.aksaraChar ||
+        oldWidget.aksaraName != widget.aksaraName) {
+      _clearAll();
+    }
   }
 
   // ── UI ──────────────────────────────────────────────────
@@ -138,7 +155,10 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         label: context.l10n.drawingBackSemantics,
         button: true,
         child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.ink),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: AppColors.ink,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -248,57 +268,60 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
             ),
           ],
         ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(
-          children: [
-            // Painting area
-            RepaintBoundary(
-              child: GestureDetector(
-                onPanStart: _onPanStart,
-                onPanUpdate: _onPanUpdate,
-                onPanEnd: _onPanEnd,
-                child: AnimatedBuilder(
-                  animation: const AlwaysStoppedAnimation(0),
-                  // triggers rebuild on setState
-                  builder: (context, _) => CustomPaint(
-                    painter: DrawingCanvasPainter(
-                      strokes: _allStrokes,
-                      strokeWidth: _selectedSize.width,
-                      targetAksara: widget.aksaraChar,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(
+            children: [
+              // Painting area
+              RepaintBoundary(
+                child: GestureDetector(
+                  onPanStart: _onPanStart,
+                  onPanUpdate: _onPanUpdate,
+                  onPanEnd: _onPanEnd,
+                  child: AnimatedBuilder(
+                    animation: const AlwaysStoppedAnimation(0),
+                    // triggers rebuild on setState
+                    builder: (context, _) => CustomPaint(
+                      painter: DrawingCanvasPainter(
+                        strokes: _allStrokes,
+                        strokeWidth: _selectedSize.width,
+                        targetAksara: widget.aksaraChar,
+                      ),
+                      child: const SizedBox.expand(),
                     ),
-                    child: const SizedBox.expand(),
                   ),
                 ),
               ),
-            ),
 
-            // Stroke counter overlay
-            Positioned(
-              top: 12,
-              right: 14,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: AppColors.canvas.withValues(alpha: 0.85),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  context.l10n.drawingStrokeCount(_strokes.length),
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.inkSecondary,
+              // Stroke counter overlay
+              Positioned(
+                top: 12,
+                right: 14,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.canvas.withValues(alpha: 0.85),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    context.l10n.drawingStrokeCount(_strokes.length),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.inkSecondary,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   // ── Controls Row ───────────────────────────────────────
 
@@ -320,11 +343,17 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 side: BorderSide(
                   color: _strokes.isEmpty ? AppColors.border : AppColors.error,
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 8,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
@@ -345,13 +374,21 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 foregroundColor: AppColors.inkSecondary,
                 disabledForegroundColor: AppColors.inkMuted,
                 side: BorderSide(
-                  color: _strokes.isEmpty ? AppColors.border : AppColors.inkSecondary,
+                  color: _strokes.isEmpty
+                      ? AppColors.border
+                      : AppColors.inkSecondary,
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 8,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
@@ -375,7 +412,10 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 onTap: () => setState(() => _selectedSize = size),
                 behavior: HitTestBehavior.opaque,
                 child: Container(
-                  constraints: const BoxConstraints(minWidth: 40, minHeight: 48),
+                  constraints: const BoxConstraints(
+                    minWidth: 40,
+                    minHeight: 48,
+                  ),
                   alignment: Alignment.center,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
@@ -391,7 +431,9 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                         width: size.indicatorSize,
                         height: size.indicatorSize,
                         decoration: BoxDecoration(
-                          color: isSelected ? AppColors.ink : AppColors.inkMuted,
+                          color: isSelected
+                              ? AppColors.ink
+                              : AppColors.inkMuted,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -406,6 +448,48 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
     );
   }
 
+  void _onCheckDrawing() async {
+    if (_strokes.isEmpty) return;
+
+    final similarity = StrokeSimilarityEvaluator.evaluate(
+      strokes: _strokes,
+      targetAksara: widget.aksaraChar,
+    );
+
+    final profile = ProfileScope.maybeOf(context);
+    final userName = profile?.displayName ?? MockUserStats.userName;
+    RewardSummary? summary;
+
+    if (profile != null) {
+      final activityId = 'drawing_${widget.aksaraChar}';
+      final claimId =
+          'draw_${widget.aksaraChar}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}';
+      summary = await profile.awardDrawingChallengeReward(
+        activityId: activityId,
+        claimId: claimId,
+        similarity: similarity,
+      );
+    }
+
+    if (!mounted) return;
+
+    final result = await Navigator.pushNamed(
+      context,
+      AppRouter.dailyResult,
+      arguments: DailyResultArgs(
+        similarity: similarity,
+        userStrokes: _strokes.map((s) => List<Offset>.from(s)).toList(),
+        targetAksara: widget.aksaraChar,
+        userName: userName,
+        rewardSummary: summary,
+      ),
+    );
+
+    if (result == true && mounted) {
+      _clearAll();
+    }
+  }
+
   // ── Check Button ───────────────────────────────────────
 
   Widget _buildCheckButton(BuildContext context) {
@@ -413,9 +497,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: hasStrokes
-            ? () => Navigator.pushNamed(context, AppRouter.dailyResult)
-            : null,
+        onPressed: hasStrokes ? _onCheckDrawing : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.ink,
           foregroundColor: AppColors.amber,
@@ -427,10 +509,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         ),
         child: Text(
           context.l10n.drawingCheckButton,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/progression/reward_summary.dart';
 
 // ─────────────────────────────────────────────────────────
 //  SIMILARITY METER PAINTER
@@ -13,7 +14,10 @@ class _SimilarityMeterPainter extends CustomPainter {
   final double progress; // 0.0 – 1.0
   final String label;
 
-  const _SimilarityMeterPainter({required this.progress, this.label = 'Kemiripan'});
+  const _SimilarityMeterPainter({
+    required this.progress,
+    this.label = 'Kemiripan',
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -121,17 +125,40 @@ class _DrawnAksaraPainter extends CustomPainter {
 }
 
 // ─────────────────────────────────────────────────────────
-//  SCREEN
+//  SCREEN ARGUMENTS & SCREEN
 // ─────────────────────────────────────────────────────────
+
+/// Arguments passed to [DailyResultScreen] from drawing canvas.
+class DailyResultArgs {
+  final double similarity;
+  final List<List<Offset>> userStrokes;
+  final String targetAksara;
+  final String userName;
+  final RewardSummary? rewardSummary;
+
+  const DailyResultArgs({
+    required this.similarity,
+    required this.userStrokes,
+    this.targetAksara = 'ꦲ',
+    this.userName = MockUserStats.userName,
+    this.rewardSummary,
+  });
+}
 
 class DailyResultScreen extends StatefulWidget {
   final String userName;
   final double similarity; // 0.0 – 1.0
+  final List<List<Offset>> userStrokes;
+  final String targetAksara;
+  final RewardSummary? rewardSummary;
 
   const DailyResultScreen({
     super.key,
     this.userName = MockUserStats.userName,
     this.similarity = 0.92,
+    this.userStrokes = const [],
+    this.targetAksara = 'ꦲ',
+    this.rewardSummary,
   });
 
   @override
@@ -282,9 +309,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         ),
         const SizedBox(height: 8),
         Text(
-          isPassed
-              ? l10n.dailyResultDescPassed
-              : l10n.dailyResultDescFailed,
+          isPassed ? l10n.dailyResultDescPassed : l10n.dailyResultDescFailed,
           style: const TextStyle(
             fontSize: 14,
             color: AppColors.ink,
@@ -346,6 +371,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 child: _DrawingPanel(
                   title: l10n.dailyResultYourDrawing,
                   isDrawn: true,
+                  userStrokes: widget.userStrokes,
                 ),
               ),
               const SizedBox(width: 16),
@@ -353,6 +379,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 child: _DrawingPanel(
                   title: l10n.dailyResultTargetScript,
                   isDrawn: false,
+                  targetChar: widget.targetAksara,
                 ),
               ),
             ],
@@ -409,12 +436,36 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  l10n.dailyResultRequirement((widget.similarity * 100).round()),
+                  l10n.dailyResultRequirement(
+                    (widget.similarity * 100).round(),
+                  ),
                   style: const TextStyle(
                     fontSize: 14,
                     color: AppColors.inkSecondary,
                   ),
                 ),
+                if (widget.rewardSummary != null &&
+                    widget.rewardSummary!.xpEarned > 0) ...[
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.amberSoft,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      '+${widget.rewardSummary!.xpEarned} XP (${widget.rewardSummary!.isFirstClear ? 'Misi Selesai' : 'Latihan'})',
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.ink,
+                      ),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -433,7 +484,16 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () => Navigator.pushNamed(context, AppRouter.home),
+            onPressed: () {
+              if (Navigator.of(context).canPop()) {
+                Navigator.of(context).popUntil(
+                  (route) =>
+                      route.settings.name == AppRouter.home || route.isFirst,
+                );
+              } else {
+                Navigator.of(context).pushReplacementNamed(AppRouter.home);
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.ink,
               foregroundColor: AppColors.amber,
@@ -451,7 +511,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         SizedBox(
           width: double.infinity,
           child: OutlinedButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(context, true),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.ink,
               side: const BorderSide(color: AppColors.border, width: 2),
@@ -474,8 +534,15 @@ class _DailyResultScreenState extends State<DailyResultScreen>
 class _DrawingPanel extends StatelessWidget {
   final String title;
   final bool isDrawn;
+  final List<List<Offset>> userStrokes;
+  final String targetChar;
 
-  const _DrawingPanel({required this.title, required this.isDrawn});
+  const _DrawingPanel({
+    required this.title,
+    required this.isDrawn,
+    this.userStrokes = const [],
+    this.targetChar = 'ꦲ',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -502,13 +569,20 @@ class _DrawingPanel extends StatelessWidget {
           ),
           child: Center(
             child: isDrawn
-                ? const CustomPaint(
-                    size: Size(80, 80),
-                    painter: _DrawnAksaraPainter(),
-                  )
-                : const Text(
-                    'ꦲ',
-                    style: TextStyle(
+                ? (userStrokes.isNotEmpty
+                      ? CustomPaint(
+                          size: const Size(80, 80),
+                          painter: UserDrawingThumbnailPainter(
+                            strokes: userStrokes,
+                          ),
+                        )
+                      : const CustomPaint(
+                          size: Size(80, 80),
+                          painter: _DrawnAksaraPainter(),
+                        ))
+                : Text(
+                    targetChar,
+                    style: const TextStyle(
                       fontSize: 48,
                       color: AppColors.ink,
                       fontWeight: FontWeight.bold,
@@ -519,4 +593,81 @@ class _DrawingPanel extends StatelessWidget {
       ],
     );
   }
+}
+
+/// Painter rendering the user's authentic handwritten strokes scaled to fit the thumbnail.
+class UserDrawingThumbnailPainter extends CustomPainter {
+  final List<List<Offset>> strokes;
+  final Color strokeColor;
+
+  const UserDrawingThumbnailPainter({
+    required this.strokes,
+    this.strokeColor = AppColors.ink,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (strokes.isEmpty) return;
+
+    double minX = double.infinity, minY = double.infinity;
+    double maxX = double.negativeInfinity, maxY = double.negativeInfinity;
+
+    for (final stroke in strokes) {
+      for (final p in stroke) {
+        if (p.dx < minX) minX = p.dx;
+        if (p.dy < minY) minY = p.dy;
+        if (p.dx > maxX) maxX = p.dx;
+        if (p.dy > maxY) maxY = p.dy;
+      }
+    }
+
+    if (minX == double.infinity) return;
+
+    final strokeWidth = maxX - minX;
+    final strokeHeight = maxY - minY;
+    final maxDim = max(strokeWidth, strokeHeight);
+
+    final padding = size.width * 0.12;
+    final availableSize = size.width - 2 * padding;
+    final scale = maxDim > 0 ? availableSize / maxDim : 1.0;
+
+    final offsetX =
+        padding + (availableSize - strokeWidth * scale) / 2 - minX * scale;
+    final offsetY =
+        padding + (availableSize - strokeHeight * scale) / 2 - minY * scale;
+
+    canvas.save();
+    canvas.translate(offsetX, offsetY);
+    canvas.scale(scale);
+
+    final paint = Paint()
+      ..color = strokeColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = max(1.5, 3.5 / scale)
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+
+    for (final stroke in strokes) {
+      if (stroke.isEmpty) continue;
+      if (stroke.length == 1) {
+        canvas.drawCircle(
+          stroke.first,
+          2.5 / scale,
+          Paint()..color = strokeColor,
+        );
+      } else {
+        final path = Path()..moveTo(stroke.first.dx, stroke.first.dy);
+        for (int i = 1; i < stroke.length; i++) {
+          path.lineTo(stroke[i].dx, stroke[i].dy);
+        }
+        canvas.drawPath(path, paint);
+      }
+    }
+
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant UserDrawingThumbnailPainter oldDelegate) =>
+      oldDelegate.strokes != strokes || oldDelegate.strokeColor != strokeColor;
 }

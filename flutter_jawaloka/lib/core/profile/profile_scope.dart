@@ -29,4 +29,3 @@ class ProfileScope extends InheritedNotifier<ProfileController> {
     return scope?.notifier;
   }
 }
-

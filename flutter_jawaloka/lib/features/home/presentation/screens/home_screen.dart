@@ -34,7 +34,10 @@ class HomeScreen extends StatelessWidget {
             children: [
               HomeHeader(onNavigateTab: onNavigateTab),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

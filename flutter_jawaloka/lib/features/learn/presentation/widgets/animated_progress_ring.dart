@@ -6,7 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 ///
 /// Animates from 0 to [progress] (0.0 – 1.0) on first build.
 class AnimatedProgressRing extends StatefulWidget {
-  final double progress;      // 0.0 – 1.0
+  final double progress; // 0.0 – 1.0
   final double size;
   final double strokeWidth;
   final Color trackColor;
@@ -38,9 +38,10 @@ class _AnimatedProgressRingState extends State<AnimatedProgressRing>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _animation = Tween<double>(begin: 0, end: widget.progress).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
-    );
+    _animation = Tween<double>(
+      begin: 0,
+      end: widget.progress,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
     _controller.forward();
   }
 
@@ -48,10 +49,10 @@ class _AnimatedProgressRingState extends State<AnimatedProgressRing>
   void didUpdateWidget(AnimatedProgressRing old) {
     super.didUpdateWidget(old);
     if (old.progress != widget.progress) {
-      _animation = Tween<double>(
-        begin: _animation.value,
-        end: widget.progress,
-      ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
+      _animation = Tween<double>(begin: _animation.value, end: widget.progress)
+          .animate(
+            CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
+          );
       _controller
         ..reset()
         ..forward();

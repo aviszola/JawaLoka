@@ -15,6 +15,8 @@ import '../../features/quiz/presentation/screens/daily_result_screen.dart';
 import '../../features/profile/presentation/screens/choose_blangkon_screen.dart';
 import '../../features/profile/presentation/screens/settings_screen.dart';
 import '../../features/profile/presentation/screens/level_up_screen.dart';
+import '../../features/quiz/domain/adaptive_quiz_bank.dart';
+import '../profile/profile_scope.dart';
 
 /// Centralized router for JawaLoka navigation.
 /// All named routes are defined here.
@@ -53,49 +55,89 @@ class AppRouter {
 
       case AppRouter.languageSelection:
         return _FadePageRoute(
-            page: const LanguageSelectionScreen(), settings: settings);
+          page: const LanguageSelectionScreen(),
+          settings: settings,
+        );
 
       case AppRouter.register:
-        return _FadePageRoute(
-            page: const RegisterScreen(), settings: settings);
+        return _FadePageRoute(page: const RegisterScreen(), settings: settings);
 
       case AppRouter.login:
         return _FadePageRoute(page: const LoginScreen(), settings: settings);
 
       case AppRouter.home:
         return _FadePageRoute(
-            page: const MainShellScreen(initialIndex: 0), settings: settings);
+          page: const MainShellScreen(initialIndex: 0),
+          settings: settings,
+        );
 
       case AppRouter.learnHub:
         return _FadePageRoute(
-            page: const MainShellScreen(initialIndex: 1), settings: settings);
+          page: const MainShellScreen(initialIndex: 1),
+          settings: settings,
+        );
 
       case AppRouter.quizPath:
         return _FadePageRoute(
-            page: const MainShellScreen(initialIndex: 3), settings: settings);
+          page: const MainShellScreen(initialIndex: 3),
+          settings: settings,
+        );
 
       case AppRouter.profile:
         return _FadePageRoute(
-            page: const MainShellScreen(initialIndex: 4), settings: settings);
+          page: const MainShellScreen(initialIndex: 4),
+          settings: settings,
+        );
 
       case AppRouter.vocabularyDetail:
         final raw = settings.arguments;
         final index = raw is int ? raw : 0;
         return _FadePageRoute(
-            page: VocabularyDetailScreen(initialIndex: index),
-            settings: settings);
+          page: VocabularyDetailScreen(initialIndex: index),
+          settings: settings,
+        );
 
       case AppRouter.aksaraDetail:
         return _FadePageRoute(
-            page: const AksaraDetailScreen(), settings: settings);
+          page: const AksaraDetailScreen(),
+          settings: settings,
+        );
 
       case AppRouter.translator:
         return _FadePageRoute(
-            page: const TranslatorScreen(), settings: settings);
+          page: const TranslatorScreen(),
+          settings: settings,
+        );
 
       case AppRouter.quizQuestion:
+        final args = settings.arguments;
+        if (args is QuizQuestionArgs) {
+          final questions =
+              args.questions ??
+              (args.userLevel != null
+                  ? AdaptiveQuizBank.getQuestionsForLevel(args.userLevel!)
+                  : QuizQuestionScreen.defaultQuestions);
+          return _FadePageRoute(
+            page: QuizQuestionScreen(
+              questions: questions,
+              moduleTitle: args.moduleTitle,
+              onComplete: args.onComplete,
+            ),
+            settings: settings,
+          );
+        }
         return _FadePageRoute(
-            page: const QuizQuestionScreen(), settings: settings);
+          page: Builder(
+            builder: (context) {
+              final profile = ProfileScope.maybeOf(context);
+              final level = profile?.userLevel ?? 1;
+              return QuizQuestionScreen(
+                questions: AdaptiveQuizBank.getQuestionsForLevel(level),
+              );
+            },
+          ),
+          settings: settings,
+        );
 
       case AppRouter.quizResult:
         final args = settings.arguments;
@@ -110,30 +152,47 @@ class AppRouter {
                 isStreakAchievedToday: false,
               );
         return _FadePageRoute(
-            page: QuizResultScreen(result: safeResult),
+          page: QuizResultScreen(result: safeResult),
 
-
-            settings: settings);
+          settings: settings,
+        );
 
       case AppRouter.drawingCanvas:
         return _FadePageRoute(
-            page: const DrawingCanvasScreen(), settings: settings);
+          page: const DrawingCanvasScreen(),
+          settings: settings,
+        );
 
       case AppRouter.dailyResult:
+        final args = settings.arguments;
+        if (args is DailyResultArgs) {
+          return _FadePageRoute(
+            page: DailyResultScreen(
+              userName: args.userName,
+              similarity: args.similarity,
+              userStrokes: args.userStrokes,
+              targetAksara: args.targetAksara,
+              rewardSummary: args.rewardSummary,
+            ),
+            settings: settings,
+          );
+        }
         return _FadePageRoute(
-            page: const DailyResultScreen(), settings: settings);
+          page: const DailyResultScreen(),
+          settings: settings,
+        );
 
       case AppRouter.chooseBlangkon:
         return _FadePageRoute(
-            page: const ChooseBlangkonScreen(), settings: settings);
+          page: const ChooseBlangkonScreen(),
+          settings: settings,
+        );
 
       case AppRouter.settings:
-        return _FadePageRoute(
-            page: const SettingsScreen(), settings: settings);
+        return _FadePageRoute(page: const SettingsScreen(), settings: settings);
 
       case AppRouter.levelUp:
-        return _FadePageRoute(
-            page: const LevelUpScreen(), settings: settings);
+        return _FadePageRoute(page: const LevelUpScreen(), settings: settings);
 
       default:
         return _FadePageRoute(
@@ -148,13 +207,13 @@ class AppRouter {
 
 class _FadePageRoute<T> extends PageRouteBuilder<T> {
   _FadePageRoute({required Widget page, required RouteSettings settings})
-      : super(
-          settings: settings,
-          pageBuilder: (context, animation, secondaryAnimation) => page,
-          transitionsBuilder: (context, anim, secondaryAnimation, child) =>
-              FadeTransition(opacity: anim, child: child),
-          transitionDuration: const Duration(milliseconds: 300),
-        );
+    : super(
+        settings: settings,
+        pageBuilder: (context, animation, secondaryAnimation) => page,
+        transitionsBuilder: (context, anim, secondaryAnimation, child) =>
+            FadeTransition(opacity: anim, child: child),
+        transitionDuration: const Duration(milliseconds: 300),
+      );
 }
 
 // ─── Error scaffold ───────────────────────────────────────────────────────────

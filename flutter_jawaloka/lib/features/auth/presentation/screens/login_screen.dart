@@ -53,8 +53,12 @@ class _LoginScreenState extends State<LoginScreen>
 
     setState(() {
       _showAuthError = false;
-      _emailError = !emailText.contains('@') ? context.l10n.validationEmailInvalid : null;
-      _passwordError = passwordText.isEmpty ? context.l10n.validationPasswordEmpty : null;
+      _emailError = !emailText.contains('@')
+          ? context.l10n.validationEmailInvalid
+          : null;
+      _passwordError = passwordText.isEmpty
+          ? context.l10n.validationPasswordEmpty
+          : null;
     });
 
     if (_emailError != null || _passwordError != null) {
@@ -76,7 +80,9 @@ class _LoginScreenState extends State<LoginScreen>
       setState(() => _showAuthError = true);
       HapticFeedback.heavyImpact();
     } else {
-      Navigator.of(context).pushReplacementNamed(AppRouter.home);
+      Navigator.of(
+        context,
+      ).pushNamedAndRemoveUntil(AppRouter.home, (route) => false);
     }
   }
 
@@ -119,18 +125,24 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                             ),
                             child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, 0.2),
-                                end: Offset.zero,
-                              ).animate(
-                                CurvedAnimation(
-                                  parent: _entranceCtrl,
-                                  curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
-                                ),
-                              ),
+                              position:
+                                  Tween<Offset>(
+                                    begin: const Offset(0, 0.2),
+                                    end: Offset.zero,
+                                  ).animate(
+                                    CurvedAnimation(
+                                      parent: _entranceCtrl,
+                                      curve: const Interval(
+                                        0.0,
+                                        0.6,
+                                        curve: Curves.easeOutCubic,
+                                      ),
+                                    ),
+                                  ),
                               child: AuthBanner(
                                 title: context.l10n.authWelcomeBannerTitle,
-                                subtitle: context.l10n.authWelcomeBannerSubtitle,
+                                subtitle:
+                                    context.l10n.authWelcomeBannerSubtitle,
                                 glyphWatermark: 'ꦗ',
                                 height: 120,
                               ),
@@ -192,7 +204,9 @@ class _LoginScreenState extends State<LoginScreen>
                                   color: AppColors.errorLight,
                                   borderRadius: BorderRadius.circular(16),
                                   border: Border.all(
-                                    color: AppColors.error.withValues(alpha: 0.3),
+                                    color: AppColors.error.withValues(
+                                      alpha: 0.3,
+                                    ),
                                   ),
                                 ),
                                 child: Row(
@@ -205,7 +219,9 @@ class _LoginScreenState extends State<LoginScreen>
                                     const SizedBox(width: 10),
                                     Expanded(
                                       child: Text(
-                                        context.l10n.loginInvalidCredentialsError,
+                                        context
+                                            .l10n
+                                            .loginInvalidCredentialsError,
                                         style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
@@ -217,7 +233,9 @@ class _LoginScreenState extends State<LoginScreen>
                                       label: context.l10n.commonCloseError,
                                       button: true,
                                       child: GestureDetector(
-                                        onTap: () => setState(() => _showAuthError = false),
+                                        onTap: () => setState(
+                                          () => _showAuthError = false,
+                                        ),
                                         child: const Icon(
                                           Icons.close_rounded,
                                           color: AppColors.error,
@@ -239,15 +257,20 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                             ),
                             child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, 0.2),
-                                end: Offset.zero,
-                              ).animate(
-                                CurvedAnimation(
-                                  parent: _entranceCtrl,
-                                  curve: const Interval(0.3, 0.8, curve: Curves.easeOut),
-                                ),
-                              ),
+                              position:
+                                  Tween<Offset>(
+                                    begin: const Offset(0, 0.2),
+                                    end: Offset.zero,
+                                  ).animate(
+                                    CurvedAnimation(
+                                      parent: _entranceCtrl,
+                                      curve: const Interval(
+                                        0.3,
+                                        0.8,
+                                        curve: Curves.easeOut,
+                                      ),
+                                    ),
+                                  ),
                               child: Column(
                                 children: [
                                   CustomTextField(
@@ -264,7 +287,9 @@ class _LoginScreenState extends State<LoginScreen>
                                         size: 20,
                                       ),
                                     ),
-                                    suffixIcon: _emailCtrl.text.contains('@') && _emailError == null
+                                    suffixIcon:
+                                        _emailCtrl.text.contains('@') &&
+                                            _emailError == null
                                         ? const Padding(
                                             padding: EdgeInsets.all(14),
                                             child: Icon(
@@ -357,7 +382,9 @@ class _LoginScreenState extends State<LoginScreen>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                      ),
                                       child: Text(
                                         context.l10n.loginOrWith,
                                         style: const TextStyle(
@@ -397,10 +424,11 @@ class _LoginScreenState extends State<LoginScreen>
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap: () => Navigator.pushReplacementNamed(
-                                        context,
-                                        AppRouter.register,
-                                      ),
+                                      onTap: () =>
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            AppRouter.register,
+                                          ),
                                       child: Text(
                                         context.l10n.loginRegisterLink,
                                         style: const TextStyle(
@@ -511,7 +539,9 @@ class _GoogleSignInButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.amberSoft,
-                  border: Border.all(color: AppColors.amber.withValues(alpha: 0.5)),
+                  border: Border.all(
+                    color: AppColors.amber.withValues(alpha: 0.5),
+                  ),
                 ),
                 child: const Center(
                   child: Text(

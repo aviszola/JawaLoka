@@ -85,8 +85,9 @@ class QuizBottomSheet extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFFFFF4D6),
               borderRadius: BorderRadius.circular(20),
-              border:
-                  Border.all(color: AppColors.amberDark.withValues(alpha: 0.3)),
+              border: Border.all(
+                color: AppColors.amberDark.withValues(alpha: 0.3),
+              ),
             ),
             child: Text(
               unitTitle,
@@ -114,7 +115,11 @@ class QuizBottomSheet extends StatelessWidget {
 
           // "Kuis N dari M · 10 soal"
           Text(
-            context.l10n.quizBottomSheetProgress(quizIndex, totalQuizzes, questionCount),
+            context.l10n.quizBottomSheetProgress(
+              quizIndex,
+              totalQuizzes,
+              questionCount,
+            ),
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -136,8 +141,11 @@ class QuizBottomSheet extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.info_outline_rounded,
-                    color: AppColors.amberDark, size: 22),
+                const Icon(
+                  Icons.info_outline_rounded,
+                  color: AppColors.amberDark,
+                  size: 22,
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -173,7 +181,10 @@ class QuizBottomSheet extends StatelessWidget {
               ),
               child: Text(
                 context.l10n.quizBottomSheetStart,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ),

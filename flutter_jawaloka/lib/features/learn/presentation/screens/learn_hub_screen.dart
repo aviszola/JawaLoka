@@ -1,4 +1,4 @@
-import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_scope.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -118,11 +118,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         MaterialPageRoute(builder: (_) => const AksaraDetailScreen()),
       );
     } else if (data.id == 'kosakata') {
-      Navigator.pushNamed(
-        context,
-        AppRouter.vocabularyDetail,
-        arguments: 0,
-      );
+      Navigator.pushNamed(context, AppRouter.vocabularyDetail, arguments: 0);
     } else if (data.id == 'penerjemah') {
       Navigator.push(
         context,
@@ -290,14 +286,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
             'jawa': 'Ajining dhiri ana ing lathi, ajining raga ana ing busana.',
             'arti': l10n.learnProverb1Meaning,
           },
-          {
-            'jawa': 'Urip iku urup.',
-            'arti': l10n.learnProverb2Meaning,
-          },
-          {
-            'jawa': 'Jer basuki mawa beya.',
-            'arti': l10n.learnProverb3Meaning,
-          },
+          {'jawa': 'Urip iku urup.', 'arti': l10n.learnProverb2Meaning},
+          {'jawa': 'Jer basuki mawa beya.', 'arti': l10n.learnProverb3Meaning},
           {
             'jawa': 'Mikul dhuwur mendhem jero.',
             'arti': l10n.learnProverb4Meaning,
@@ -513,7 +503,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                       border: Border.all(color: AppColors.border),
                     ),
                     child: Text(
-                      l10n.profileLevelPill(MockUserStats.userLevel),
+                      l10n.profileLevelPill(
+                        ProfileScope.maybeOf(context)?.userLevel ?? 1,
+                      ),
                       style: const TextStyle(
                         color: AppColors.ink,
                         fontSize: 12,

@@ -76,8 +76,8 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(7, (i) {
               final dayIndex = i + 1; // 1 = Sen, 7 = Min
-              final isCompleted =
-                  MockUserStats.completedQuizDaysOfWeek.contains(dayIndex);
+              final isCompleted = MockUserStats.completedQuizDaysOfWeek
+                  .contains(dayIndex);
 
               return Column(
                 children: [
@@ -118,11 +118,10 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                     dayNames[i],
                     style: TextStyle(
                       fontSize: 12,
-                      fontWeight:
-                          isCompleted ? FontWeight.w700 : FontWeight.w500,
-                      color: isCompleted
-                          ? AppColors.ink
-                          : AppColors.inkMuted,
+                      fontWeight: isCompleted
+                          ? FontWeight.w700
+                          : FontWeight.w500,
+                      color: isCompleted ? AppColors.ink : AppColors.inkMuted,
                     ),
                   ),
                 ],
@@ -134,7 +133,11 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              const Icon(Icons.info_outline_rounded, size: 14, color: AppColors.inkMuted),
+              const Icon(
+                Icons.info_outline_rounded,
+                size: 14,
+                color: AppColors.inkMuted,
+              ),
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
@@ -152,4 +155,3 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
     );
   }
 }
-

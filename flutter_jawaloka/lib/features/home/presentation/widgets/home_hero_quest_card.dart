@@ -17,7 +17,10 @@ class HomeHeroQuestCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.amberSoft,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: AppColors.amber.withValues(alpha: 0.5), width: 1.5),
+        border: Border.all(
+          color: AppColors.amber.withValues(alpha: 0.5),
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
             color: AppColors.amberDark.withValues(alpha: 0.12),
@@ -33,7 +36,10 @@ class HomeHeroQuestCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(99),
@@ -42,7 +48,11 @@ class HomeHeroQuestCard extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.edit_rounded, size: 14, color: AppColors.amberDark),
+                    const Icon(
+                      Icons.edit_rounded,
+                      size: 14,
+                      color: AppColors.amberDark,
+                    ),
                     const SizedBox(width: 6),
                     Text(
                       l10n.homeHeroQuestBadge,
@@ -171,4 +181,3 @@ class HomeHeroQuestCard extends StatelessWidget {
     );
   }
 }
-

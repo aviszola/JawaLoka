@@ -104,8 +104,10 @@ class _RegisterScreenState extends State<RegisterScreen>
     await ProfileScope.maybeOf(context)?.setDisplayName(trimmedName);
     if (!mounted) return;
 
-    // Navigasi ke beranda
-    Navigator.of(context).pushReplacementNamed(AppRouter.home);
+    // Navigasi ke beranda dan bersihkan riwayat onboarding/pendaftaran
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRouter.home, (route) => false);
   }
 
   @override
@@ -149,18 +151,24 @@ class _RegisterScreenState extends State<RegisterScreen>
                               ),
                             ),
                             child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, 0.2),
-                                end: Offset.zero,
-                              ).animate(
-                                CurvedAnimation(
-                                  parent: _entranceCtrl,
-                                  curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
-                                ),
-                              ),
+                              position:
+                                  Tween<Offset>(
+                                    begin: const Offset(0, 0.2),
+                                    end: Offset.zero,
+                                  ).animate(
+                                    CurvedAnimation(
+                                      parent: _entranceCtrl,
+                                      curve: const Interval(
+                                        0.0,
+                                        0.6,
+                                        curve: Curves.easeOutCubic,
+                                      ),
+                                    ),
+                                  ),
                               child: AuthBanner(
                                 title: context.l10n.authWelcomeBannerTitle,
-                                subtitle: context.l10n.authWelcomeBannerSubtitle,
+                                subtitle:
+                                    context.l10n.authWelcomeBannerSubtitle,
                                 glyphWatermark: 'ꦲ',
                                 height: 120,
                               ),
@@ -181,12 +189,13 @@ class _RegisterScreenState extends State<RegisterScreen>
                               children: [
                                 Text(
                                   context.l10n.registerTitle,
-                                  style: theme.textTheme.displayMedium?.copyWith(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w800,
-                                    color: AppColors.ink,
-                                    letterSpacing: -0.5,
-                                  ),
+                                  style: theme.textTheme.displayMedium
+                                      ?.copyWith(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w800,
+                                        color: AppColors.ink,
+                                        letterSpacing: -0.5,
+                                      ),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
@@ -211,22 +220,28 @@ class _RegisterScreenState extends State<RegisterScreen>
                               ),
                             ),
                             child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: const Offset(0, 0.15),
-                                end: Offset.zero,
-                              ).animate(
-                                CurvedAnimation(
-                                  parent: _entranceCtrl,
-                                  curve: const Interval(0.3, 0.8, curve: Curves.easeOut),
-                                ),
-                              ),
+                              position:
+                                  Tween<Offset>(
+                                    begin: const Offset(0, 0.15),
+                                    end: Offset.zero,
+                                  ).animate(
+                                    CurvedAnimation(
+                                      parent: _entranceCtrl,
+                                      curve: const Interval(
+                                        0.3,
+                                        0.8,
+                                        curve: Curves.easeOut,
+                                      ),
+                                    ),
+                                  ),
                               child: Column(
                                 children: [
                                   // KEPUTUSAN PRODUK: nama di registrasi atau di profil
                                   CustomTextField(
                                     label: context.l10n.authFullNameLabel,
                                     controller: _nameCtrl,
-                                    textCapitalization: TextCapitalization.words,
+                                    textCapitalization:
+                                        TextCapitalization.words,
                                     keyboardType: TextInputType.name,
                                     textInputAction: TextInputAction.next,
                                     autofillHints: const [AutofillHints.name],
@@ -260,7 +275,8 @@ class _RegisterScreenState extends State<RegisterScreen>
                                         size: 20,
                                       ),
                                     ),
-                                    suffixIcon: _emailCtrl.text.trim().contains('@') &&
+                                    suffixIcon:
+                                        _emailCtrl.text.trim().contains('@') &&
                                             _emailError == null
                                         ? const Padding(
                                             padding: EdgeInsets.all(14),
@@ -283,7 +299,9 @@ class _RegisterScreenState extends State<RegisterScreen>
                                     obscureText: true,
                                     showTogglePassword: true,
                                     textInputAction: TextInputAction.done,
-                                    autofillHints: const [AutofillHints.newPassword],
+                                    autofillHints: const [
+                                      AutofillHints.newPassword,
+                                    ],
                                     errorText: _passwordError,
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
@@ -314,11 +332,12 @@ class _RegisterScreenState extends State<RegisterScreen>
                                         Expanded(
                                           child: Text(
                                             context.l10n.registerPasswordHint,
-                                            style: theme.textTheme.bodyMedium?.copyWith(
-                                              fontSize: 12,
-                                              color: AppColors.inkSecondary,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                            style: theme.textTheme.bodyMedium
+                                                ?.copyWith(
+                                                  fontSize: 12,
+                                                  color: AppColors.inkSecondary,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -382,7 +401,10 @@ class _RegisterScreenState extends State<RegisterScreen>
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () => Navigator.pushReplacementNamed(context, '/login'),
+                                onTap: () => Navigator.pushReplacementNamed(
+                                  context,
+                                  '/login',
+                                ),
                                 child: Text(
                                   context.l10n.registerLoginLink,
                                   style: const TextStyle(

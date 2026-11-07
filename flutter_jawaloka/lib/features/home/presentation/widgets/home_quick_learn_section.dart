@@ -105,7 +105,10 @@ class HomeQuickLearnSection extends StatelessWidget {
                 onTap: it.onTap,
                 child: Container(
                   width: 120,
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     borderRadius: BorderRadius.circular(16),
@@ -179,4 +182,3 @@ class _QuickLearnItem {
     required this.onTap,
   });
 }
-

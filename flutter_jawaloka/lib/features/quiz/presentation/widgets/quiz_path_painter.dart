@@ -26,10 +26,7 @@ class QuizPathPainter extends CustomPainter {
   final List<PathNode> nodes;
   final double animationValue;
 
-  const QuizPathPainter({
-    required this.nodes,
-    this.animationValue = 1.0,
-  });
+  const QuizPathPainter({required this.nodes, this.animationValue = 1.0});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -39,7 +36,8 @@ class QuizPathPainter extends CustomPainter {
       final from = nodes[i].position;
       final to = nodes[i + 1].position;
 
-      final isCompleted = nodes[i].status == NodeStatus.completed &&
+      final isCompleted =
+          nodes[i].status == NodeStatus.completed &&
           nodes[i + 1].status != NodeStatus.locked;
       final isLocked = nodes[i + 1].status == NodeStatus.locked;
 
@@ -99,8 +97,7 @@ class QuizPathPainter extends CustomPainter {
       );
   }
 
-  void _drawDashedCurve(
-      Canvas canvas, Offset from, Offset to, Paint paint) {
+  void _drawDashedCurve(Canvas canvas, Offset from, Offset to, Paint paint) {
     const dashLength = 10.0;
     const gapLength = 6.0;
     final path = _buildCubicPath(from, to);
