@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 
 /// Reusable text input field with animated floating label for JawaLoka.
@@ -173,8 +174,8 @@ class _CustomTextFieldState extends State<CustomTextField>
                 suffixIcon: widget.showTogglePassword
                     ? Semantics(
                         label: _obscured
-                            ? 'Tampilkan kata sandi'
-                            : 'Sembunyikan kata sandi',
+                            ? context.l10n.authShowPassword
+                            : context.l10n.authHidePassword,
                         button: true,
                         child: GestureDetector(
                           onTap: () => setState(() => _obscured = !_obscured),

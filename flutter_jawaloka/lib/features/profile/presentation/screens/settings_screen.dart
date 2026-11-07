@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/app_locales.dart';
+import '../../../../core/l10n/l10n_extension.dart';
+import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/blangkon_painter.dart';
@@ -78,23 +81,23 @@ class _SettingsScreenState extends State<SettingsScreen>
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text(
-          'Keluar',
-          style: TextStyle(
+        title: Text(
+          context.l10n.settingsLogout,
+          style: const TextStyle(
             fontWeight: FontWeight.w700,
             color: AppColors.ink,
           ),
         ),
-        content: const Text(
-          'Yakin ingin keluar?',
-          style: TextStyle(color: AppColors.inkSecondary),
+        content: Text(
+          context.l10n.settingsLogoutConfirm,
+          style: const TextStyle(color: AppColors.inkSecondary),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text(
-              'Batal',
-              style: TextStyle(color: AppColors.inkSecondary),
+            child: Text(
+              context.l10n.settingsCancel,
+              style: const TextStyle(color: AppColors.inkSecondary),
             ),
           ),
           TextButton(
@@ -102,9 +105,9 @@ class _SettingsScreenState extends State<SettingsScreen>
               Navigator.of(ctx).pop();
               Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
             },
-            child: const Text(
-              'Keluar',
-              style: TextStyle(color: AppColors.error, fontWeight: FontWeight.w700),
+            child: Text(
+              context.l10n.settingsLogout,
+              style: const TextStyle(color: AppColors.error, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -114,32 +117,43 @@ class _SettingsScreenState extends State<SettingsScreen>
 
   // ── Language selection dialog ───────────────────────────────────────────────
   void _showLanguageDialog() {
-    // BELUM TERHUBUNG KE LOKALISASI
+    final controller = LocaleScope.of(context);
+    final dialogTitle = context.l10n.settingsLanguageDialogTitle;
+
     showDialog<void>(
       context: context,
       builder: (ctx) => SimpleDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text(
-          'Pilih Bahasa',
-          style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+        title: Text(
+          dialogTitle,
+          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
         ),
         children: [
           SimpleDialogOption(
-            onPressed: () => Navigator.pop(ctx),
+            onPressed: () {
+              controller.setLocale(const Locale('jv'));
+              Navigator.pop(ctx);
+            },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 6),
               child: Text('Basa Jawa', style: TextStyle(fontSize: 15, color: AppColors.ink)),
             ),
           ),
           SimpleDialogOption(
-            onPressed: () => Navigator.pop(ctx),
+            onPressed: () {
+              controller.setLocale(const Locale('id'));
+              Navigator.pop(ctx);
+            },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 6),
               child: Text('Bahasa Indonesia', style: TextStyle(fontSize: 15, color: AppColors.ink)),
             ),
           ),
           SimpleDialogOption(
-            onPressed: () => Navigator.pop(ctx),
+            onPressed: () {
+              controller.setLocale(const Locale('en'));
+              Navigator.pop(ctx);
+            },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 6),
               child: Text('English', style: TextStyle(fontSize: 15, color: AppColors.ink)),
@@ -156,20 +170,20 @@ class _SettingsScreenState extends State<SettingsScreen>
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text(
-          'Kebijakan Privasi',
-          style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+        title: Text(
+          context.l10n.settingsPrivacyPolicy,
+          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
         ),
-        content: const Text(
-          'JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.',
-          style: TextStyle(color: AppColors.inkSecondary, height: 1.4),
+        content: Text(
+          context.l10n.settingsPrivacyPolicyContent,
+          style: const TextStyle(color: AppColors.inkSecondary, height: 1.4),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text(
-              'Tutup',
-              style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700),
+            child: Text(
+              context.l10n.settingsClose,
+              style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700),
             ),
           ),
         ],
@@ -198,7 +212,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             child: Row(
               children: [
                 Semantics(
-                  label: 'Kembali',
+                  label: context.l10n.commonBack,
                   button: true,
                   child: GestureDetector(
                     onTap: () => Navigator.pop(context),
@@ -228,8 +242,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         '${MockUserStats.userName} Pratama',
                         style: TextStyle(
                           fontSize: 20,
@@ -238,10 +252,10 @@ class _SettingsScreenState extends State<SettingsScreen>
                           letterSpacing: -0.3,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
-                        'Level ${MockUserStats.userLevel}',
-                        style: TextStyle(
+                        context.l10n.homeLevelPill(MockUserStats.userLevel),
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: AppColors.inkSecondary,
@@ -273,29 +287,38 @@ class _SettingsScreenState extends State<SettingsScreen>
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.person_outline_rounded, color: AppColors.ink),
-                title: const Text('Akun', style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
+                title: Text(context.l10n.settingsAccountRow, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
                 trailing: chevron,
                 onTap: () {},
               ),
               const Divider(height: 1, indent: 56, color: AppColors.border),
 
               // 2. Bahasa
-              ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                leading: const Icon(Icons.language_rounded, color: AppColors.ink),
-                title: const Text('Bahasa', style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    Text(
-                      'Bahasa Indonesia',
-                      style: TextStyle(color: AppColors.inkSecondary, fontSize: 14),
+              Builder(
+                builder: (ctx) {
+                  final controller = LocaleScope.of(ctx);
+                  final rowTitle = ctx.l10n.settingsLanguageRow;
+                  final activeLanguageName =
+                      AppLocales.endonymOf(controller.locale.languageCode);
+
+                  return ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    leading: const Icon(Icons.language_rounded, color: AppColors.ink),
+                    title: Text(rowTitle, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          activeLanguageName,
+                          style: const TextStyle(color: AppColors.inkSecondary, fontSize: 14),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.chevron_right, color: AppColors.inkMuted),
+                      ],
                     ),
-                    SizedBox(width: 4),
-                    Icon(Icons.chevron_right, color: AppColors.inkMuted),
-                  ],
-                ),
-                onTap: _showLanguageDialog,
+                    onTap: _showLanguageDialog,
+                  );
+                },
               ),
               const Divider(height: 1, indent: 56, color: AppColors.border),
 
@@ -303,7 +326,7 @@ class _SettingsScreenState extends State<SettingsScreen>
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.privacy_tip_outlined, color: AppColors.ink),
-                title: const Text('Kebijakan Privasi', style: TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
+                title: Text(context.l10n.settingsPrivacyPolicy, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
                 trailing: chevron,
                 onTap: _showPrivacyPolicyDialog,
               ),
@@ -313,9 +336,9 @@ class _SettingsScreenState extends State<SettingsScreen>
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 leading: const Icon(Icons.logout_rounded, color: AppColors.error),
-                title: const Text(
-                  'Keluar',
-                  style: TextStyle(
+                title: Text(
+                  context.l10n.settingsLogout,
+                  style: const TextStyle(
                     color: AppColors.error,
                     fontWeight: FontWeight.w700,
                   ),

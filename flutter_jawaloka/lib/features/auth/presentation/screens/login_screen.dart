@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../../core/constants/app_strings.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/auth_banner.dart';
@@ -53,8 +53,8 @@ class _LoginScreenState extends State<LoginScreen>
 
     setState(() {
       _showAuthError = false;
-      _emailError = !emailText.contains('@') ? AppStrings.emailInvalidError : null;
-      _passwordError = passwordText.isEmpty ? 'Kata sandi tidak boleh kosong' : null;
+      _emailError = !emailText.contains('@') ? context.l10n.validationEmailInvalid : null;
+      _passwordError = passwordText.isEmpty ? context.l10n.validationPasswordEmpty : null;
     });
 
     if (_emailError != null || _passwordError != null) {
@@ -128,9 +128,9 @@ class _LoginScreenState extends State<LoginScreen>
                                   curve: const Interval(0.0, 0.6, curve: Curves.easeOutCubic),
                                 ),
                               ),
-                              child: const AuthBanner(
-                                title: AppStrings.welcomeBannerTitle,
-                                subtitle: AppStrings.welcomeBannerSubtitle,
+                              child: AuthBanner(
+                                title: context.l10n.authWelcomeBannerTitle,
+                                subtitle: context.l10n.authWelcomeBannerSubtitle,
                                 glyphWatermark: 'ꦗ',
                                 height: 120,
                               ),
@@ -146,22 +146,22 @@ class _LoginScreenState extends State<LoginScreen>
                                 curve: const Interval(0.2, 0.7),
                               ),
                             ),
-                            child: const Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  AppStrings.loginTitle,
-                                  style: TextStyle(
+                                  context.l10n.loginTitle,
+                                  style: const TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w800,
                                     color: AppColors.ink,
                                     letterSpacing: -0.5,
                                   ),
                                 ),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 Text(
-                                  AppStrings.loginSubtitle,
-                                  style: TextStyle(
+                                  context.l10n.loginSubtitle,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: AppColors.inkSecondary,
                                     fontWeight: FontWeight.w500,
@@ -203,10 +203,10 @@ class _LoginScreenState extends State<LoginScreen>
                                       size: 20,
                                     ),
                                     const SizedBox(width: 10),
-                                    const Expanded(
+                                    Expanded(
                                       child: Text(
-                                        AppStrings.invalidCredentialsError,
-                                        style: TextStyle(
+                                        context.l10n.loginInvalidCredentialsError,
+                                        style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.error,
@@ -214,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       ),
                                     ),
                                     Semantics(
-                                      label: 'Tutup pesan error',
+                                      label: context.l10n.commonCloseError,
                                       button: true,
                                       child: GestureDetector(
                                         onTap: () => setState(() => _showAuthError = false),
@@ -251,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen>
                               child: Column(
                                 children: [
                                   CustomTextField(
-                                    label: AppStrings.emailLabel,
+                                    label: context.l10n.authEmailLabel,
                                     controller: _emailCtrl,
                                     keyboardType: TextInputType.emailAddress,
                                     errorText: _emailError,
@@ -281,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                   const SizedBox(height: 14),
                                   CustomTextField(
-                                    label: AppStrings.passwordLabel,
+                                    label: context.l10n.authPasswordLabel,
                                     controller: _passwordCtrl,
                                     obscureText: true,
                                     showTogglePassword: true,
@@ -310,9 +310,9 @@ class _LoginScreenState extends State<LoginScreen>
                                       onTap: () {
                                         // Navigate to forgot password in production
                                       },
-                                      child: const Text(
-                                        AppStrings.forgotPassword,
-                                        style: TextStyle(
+                                      child: Text(
+                                        context.l10n.loginForgotPassword,
+                                        style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           color: AppColors.amberDark,
@@ -341,7 +341,7 @@ class _LoginScreenState extends State<LoginScreen>
                             child: Column(
                               children: [
                                 PrimaryButton(
-                                  label: AppStrings.loginButton,
+                                  label: context.l10n.loginButton,
                                   onPressed: _isLoading ? null : _login,
                                   isLoading: _isLoading,
                                 ),
@@ -356,11 +356,11 @@ class _LoginScreenState extends State<LoginScreen>
                                         color: AppColors.border,
                                       ),
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 12),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 12),
                                       child: Text(
-                                        AppStrings.orLoginWith,
-                                        style: TextStyle(
+                                        context.l10n.loginOrWith,
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           color: AppColors.inkMuted,
                                           fontWeight: FontWeight.w500,
@@ -389,9 +389,9 @@ class _LoginScreenState extends State<LoginScreen>
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text(
-                                      AppStrings.dontHaveAccount,
-                                      style: TextStyle(
+                                    Text(
+                                      context.l10n.loginDontHaveAccount,
+                                      style: const TextStyle(
                                         fontSize: 14,
                                         color: AppColors.inkSecondary,
                                       ),
@@ -401,9 +401,9 @@ class _LoginScreenState extends State<LoginScreen>
                                         context,
                                         AppRouter.register,
                                       ),
-                                      child: const Text(
-                                        'Daftar',
-                                        style: TextStyle(
+                                      child: Text(
+                                        context.l10n.loginRegisterLink,
+                                        style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w800,
                                           color: AppColors.ink,
@@ -443,7 +443,7 @@ class _BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: 'Kembali',
+      label: context.l10n.commonBack,
       button: true,
       child: GestureDetector(
         onTap: onTap,
@@ -482,7 +482,7 @@ class _GoogleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: AppStrings.googleLogin,
+      label: context.l10n.loginGoogleButton,
       button: true,
       child: GestureDetector(
         onTap: onTap,
@@ -526,9 +526,9 @@ class _GoogleSignInButton extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              const Text(
-                AppStrings.googleLogin,
-                style: TextStyle(
+              Text(
+                context.l10n.loginGoogleButton,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: AppColors.ink,

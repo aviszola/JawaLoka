@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 
@@ -130,7 +131,7 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       leading: Semantics(
-        label: 'Kembali',
+        label: context.l10n.commonBack,
         button: true,
         child: GestureDetector(
           onTap: () => Navigator.pop(context),
@@ -151,9 +152,9 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
           ),
         ),
       ),
-      title: const Text(
-        'Kosa Kata',
-        style: TextStyle(
+      title: Text(
+        context.l10n.vocabDetailTitle,
+        style: const TextStyle(
           fontSize: 17,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
@@ -169,9 +170,9 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
             color: AppColors.pastelMint,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Text(
-            'Mudah',
-            style: TextStyle(
+          child: Text(
+            context.l10n.vocabDetailTag,
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w700,
               color: AppColors.pastelMintText,
@@ -334,9 +335,9 @@ class _MaknaSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: AppColors.border),
                 ),
-                child: const Text(
-                  'Makna',
-                  style: TextStyle(
+                child: Text(
+                  context.l10n.vocabDetailMeaningHeader,
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     color: AppColors.inkSecondary,
@@ -480,9 +481,9 @@ class _ContohKalimatSection extends StatelessWidget {
               color: AppColors.inkSecondary,
             ),
             const SizedBox(width: 8),
-            const Text(
-              'Contoh Kalimat',
-              style: TextStyle(
+            Text(
+              context.l10n.vocabDetailExamplesHeader,
+              style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
                 color: AppColors.ink,
@@ -645,19 +646,19 @@ class _BottomActions extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Kata berikutnya',
-                    style: TextStyle(
+                    context.l10n.vocabDetailNextButton,
+                    style: const TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(width: 6),
-                  Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 18),
+                  const SizedBox(width: 6),
+                  const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 18),
                 ],
               ),
             ),
@@ -689,7 +690,9 @@ class _BottomActions extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Text(
-                    isFavorite ? 'Ditandai Favorit' : 'Tandai Favorit',
+                    isFavorite
+                        ? context.l10n.vocabDetailFavoriteMarked
+                        : context.l10n.vocabDetailFavoriteMark,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,

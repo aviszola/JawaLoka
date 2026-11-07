@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_jawaloka/main.dart';
+import 'package:flutter_jawaloka/core/l10n/locale_controller.dart';
+import 'package:flutter_jawaloka/core/l10n/locale_preferences.dart';
+import 'package:flutter_jawaloka/core/l10n/locale_scope.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
 import 'package:flutter_jawaloka/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter_jawaloka/features/home/presentation/screens/main_shell_screen.dart';
@@ -11,11 +14,18 @@ import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_questio
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_result_screen.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/drawing_canvas_screen.dart';
 import 'package:flutter_jawaloka/features/profile/presentation/screens/profile_screen.dart';
+import 'helpers/pump_app.dart';
 
 void main() {
   testWidgets('JawaLoka splash screen smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const JawaLokaApp());
+    final controller = LocaleController(preferences: InMemoryLocalePreferences());
+    await controller.loadSavedLocale();
+    await tester.pumpWidget(
+      LocaleScope(
+        controller: controller,
+        child: const JawaLokaApp(),
+      ),
+    );
 
     // Verify that the Splash Screen is present.
     expect(find.byType(SplashScreen), findsOneWidget);
@@ -28,10 +38,8 @@ void main() {
   // ─── Test (a): 5 Bottom Navigation items ─────────────────────────────────
   testWidgets('Bottom nav has exactly 5 items labeled Beranda, Belajar, Quest, Kuis, Profil',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: MainShellScreen(),
-      ),
+    await tester.pumpApp(
+      const MainShellScreen(),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -46,10 +54,8 @@ void main() {
   // ─── Test (b): Tapping each tab switches screens ───────────────────────────
   testWidgets('Tapping each tab displays the correct screen',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: MainShellScreen(),
-      ),
+    await tester.pumpApp(
+      const MainShellScreen(),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -85,11 +91,10 @@ void main() {
   // ─── Test (c): Quest button opens canvas without changing tab index ────────
   testWidgets('Tapping Quest opens canvas without changing the active tab',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        initialRoute: AppRouter.home,
-        onGenerateRoute: AppRouter.generateRoute,
-      ),
+    await tester.pumpApp(
+      const SizedBox.shrink(),
+      initialRoute: AppRouter.home,
+      onGenerateRoute: AppRouter.generateRoute,
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -118,10 +123,8 @@ void main() {
   // ─── Test (d): Belajar tab contains required learning cards ────────────────
   testWidgets('Tab Belajar displays Aksara, Kosa Kata, Penerjemah, Penggunaan Bahasa, and Peribahasa cards',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: MainShellScreen(initialIndex: 1),
-      ),
+    await tester.pumpApp(
+      const MainShellScreen(initialIndex: 1),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -136,10 +139,8 @@ void main() {
   // ─── Test (e): Quiz Path displays 3 Tingkat chips and unit topics ──────────
   testWidgets('QuizPathScreen displays Tingkat chips (Mudah, Mahir, Sangat Mahir) and unit topics',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: QuizPathScreen(),
-      ),
+    await tester.pumpApp(
+      const QuizPathScreen(),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -173,10 +174,8 @@ void main() {
       expect(q.options.length, 4);
     }
 
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: QuizQuestionScreen(),
-      ),
+    await tester.pumpApp(
+      const QuizQuestionScreen(),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -202,10 +201,8 @@ void main() {
       currentStreak: 5,
     );
 
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: QuizResultScreen(result: testResult),
-      ),
+    await tester.pumpApp(
+      const QuizResultScreen(result: testResult),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -225,11 +222,9 @@ void main() {
   // ─── Test (h): Answering 10 questions sequentially navigates to result ────
   testWidgets('Behavior: answering 10 questions sequentially navigates to result with correct score',
       (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: const QuizQuestionScreen(),
-        onGenerateRoute: AppRouter.generateRoute,
-      ),
+    await tester.pumpApp(
+      const QuizQuestionScreen(),
+      onGenerateRoute: AppRouter.generateRoute,
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -275,10 +270,8 @@ void main() {
       currentStreak: 5,
     );
 
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: QuizResultScreen(result: achievedResult),
-      ),
+    await tester.pumpApp(
+      const QuizResultScreen(result: achievedResult),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));
@@ -296,10 +289,8 @@ void main() {
       currentStreak: 5,
     );
 
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: QuizResultScreen(result: notAchievedResult),
-      ),
+    await tester.pumpApp(
+      const QuizResultScreen(result: notAchievedResult),
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 300));

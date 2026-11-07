@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
@@ -34,7 +35,9 @@ class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   String _displayName = MockUserStats.userName;
   bool _isEditingName = false;
-  final TextEditingController _nameCtrl = TextEditingController(text: MockUserStats.userName);
+  final TextEditingController _nameCtrl = TextEditingController(
+    text: MockUserStats.userName,
+  );
   String? _nameError;
 
   BlangkonType _equippedBlangkon = BlangkonType.yogyakarta;
@@ -51,18 +54,12 @@ class _ProfileScreenState extends State<ProfileScreen>
       duration: const Duration(milliseconds: 650),
     );
 
-    _fadeAnim = CurvedAnimation(
-      parent: _entranceCtrl,
-      curve: Curves.easeOut,
-    );
+    _fadeAnim = CurvedAnimation(parent: _entranceCtrl, curve: Curves.easeOut);
 
-    _slideAnim = Tween<Offset>(
-      begin: const Offset(0, 0.08),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _entranceCtrl,
-      curve: Curves.easeOutCubic,
-    ));
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.08), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _entranceCtrl, curve: Curves.easeOutCubic),
+        );
 
     _entranceCtrl.forward();
   }
@@ -77,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   void _saveName() {
     final text = _nameCtrl.text.trim();
     if (text.isEmpty) {
-      setState(() => _nameError = 'Nama tidak boleh kosong');
+      setState(() => _nameError = context.l10n.profileNameEmptyError);
       HapticFeedback.heavyImpact();
       return;
     }
@@ -89,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     });
 
     HapticFeedback.mediumImpact();
-    _showToast('Nama berhasil disimpan: $text');
+    _showToast(context.l10n.profileNameSaved(text));
   }
 
   void _cancelEditName() {
@@ -133,7 +130,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                 Expanded(
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 10,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -163,9 +163,9 @@ class _ProfileScreenState extends State<ProfileScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            'Profil',
-            style: TextStyle(
+          Text(
+            context.l10n.profileTitle,
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w800,
               color: AppColors.ink,
@@ -174,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
           // Gear Settings Button
           Semantics(
-            label: 'Pengaturan',
+            label: context.l10n.profileSettingsSemantics,
             button: true,
             child: GestureDetector(
               onTap: () {
@@ -239,9 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(28),
               child: RepaintBoundary(
-                child: CustomPaint(
-                  painter: BatikKawungPainter(opacity: 0.035),
-                ),
+                child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
               ),
             ),
           ),
@@ -274,12 +272,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                   showEditButton: true,
                   onEditTap: () {
                     HapticFeedback.selectionClick();
-                    Navigator.pushNamed(context, AppRouter.chooseBlangkon)
-                        .then((val) {
-                      if (val is BlangkonType) {
-                        setState(() => _equippedBlangkon = val);
-                      }
-                    });
+                    Navigator.pushNamed(context, AppRouter.chooseBlangkon).then(
+                      (val) {
+                        if (val is BlangkonType) {
+                          setState(() => _equippedBlangkon = val);
+                        }
+                      },
+                    );
                   },
                 ),
                 const SizedBox(height: 14),
@@ -331,38 +330,52 @@ class _ProfileScreenState extends State<ProfileScreen>
                             color: AppColors.ink,
                           ),
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                            ),
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: AppColors.ink, width: 2),
+                              borderSide: const BorderSide(
+                                color: AppColors.ink,
+                                width: 2,
+                              ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(color: AppColors.ink, width: 2),
+                              borderSide: const BorderSide(
+                                color: AppColors.ink,
+                                width: 2,
+                              ),
                             ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 6),
                       Semantics(
-                        label: 'Simpan nama',
+                        label: context.l10n.profileSaveName,
                         button: true,
                         child: GestureDetector(
                           onTap: _saveName,
                           behavior: HitTestBehavior.opaque,
                           child: Container(
-                            constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            constraints: const BoxConstraints(
+                              minHeight: 48,
+                              minWidth: 48,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 10,
+                            ),
                             decoration: BoxDecoration(
                               color: AppColors.ink,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             alignment: Alignment.center,
-                            child: const Text(
-                              'Simpan',
-                              style: TextStyle(
+                            child: Text(
+                              context.l10n.profileSaveName,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white,
@@ -373,18 +386,24 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                       const SizedBox(width: 4),
                       Semantics(
-                        label: 'Batal edit nama',
+                        label: context.l10n.profileCancelEdit,
                         button: true,
                         child: GestureDetector(
                           onTap: _cancelEditName,
                           behavior: HitTestBehavior.opaque,
                           child: Container(
-                            constraints: const BoxConstraints(minHeight: 48, minWidth: 48),
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                            constraints: const BoxConstraints(
+                              minHeight: 48,
+                              minWidth: 48,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
                             alignment: Alignment.center,
-                            child: const Text(
-                              'Batal',
-                              style: TextStyle(
+                            child: Text(
+                              context.l10n.profileCancelEdit,
+                              style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.ink,
@@ -418,7 +437,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                   runSpacing: 8,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -429,14 +451,20 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ],
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.circle, size: 8, color: AppColors.amberDark),
-                          SizedBox(width: 6),
+                          const Icon(
+                            Icons.circle,
+                            size: 8,
+                            color: AppColors.amberDark,
+                          ),
+                          const SizedBox(width: 6),
                           Text(
-                            'Lv ${MockUserStats.userLevel}',
-                            style: TextStyle(
+                            context.l10n.profileLevelPill(
+                              MockUserStats.userLevel,
+                            ),
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
                               color: AppColors.ink,
@@ -446,7 +474,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -457,18 +488,20 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ],
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.local_fire_department_rounded,
                             size: 16,
                             color: Color(0xFFF26522),
                           ),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Text(
-                            'Streak ${MockUserStats.streakDays} hari',
-                            style: TextStyle(
+                            context.l10n.profileStreakPill(
+                              MockUserStats.streakDays,
+                            ),
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
                               color: AppColors.ink,
@@ -478,7 +511,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -489,18 +525,20 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ],
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.quiz_outlined,
                             size: 16,
                             color: AppColors.amberDark,
                           ),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Text(
-                            '${MockUserStats.quizzesThisWeek} Kuis Minggu Ini',
-                            style: TextStyle(
+                            context.l10n.profileQuizzesThisWeek(
+                              MockUserStats.quizzesThisWeek,
+                            ),
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w800,
                               color: AppColors.ink,
@@ -531,9 +569,9 @@ class _ProfileScreenState extends State<ProfileScreen>
           children: [
             Row(
               children: [
-                const Text(
-                  'Lencana',
-                  style: TextStyle(
+                Text(
+                  context.l10n.profileBadgeTitle,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
                     color: AppColors.ink,
@@ -541,14 +579,17 @@ class _ProfileScreenState extends State<ProfileScreen>
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.pastelSand,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Text(
-                    '1 / 4 Terbuka',
-                    style: TextStyle(
+                  child: Text(
+                    context.l10n.profileBadgeOpenCount,
+                    style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: AppColors.inkMuted,
@@ -557,9 +598,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                 ),
               ],
             ),
-            const Text(
-              'Koleksi Prestasi',
-              style: TextStyle(
+            Text(
+              context.l10n.profileBadgeCollection,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: AppColors.inkMuted,
@@ -580,32 +621,34 @@ class _ProfileScreenState extends State<ProfileScreen>
                 // Badge 1: Streak 7 Hari (Unlocked)
                 _buildBadgeCard(
                   width: cardWidth,
-                  title: 'Streak 7 Hari',
-                  statusLabel: 'Terbuka',
+                  title: context.l10n.profileBadgeStreak7Title,
+                  statusLabel: context.l10n.profileBadgeUnlocked,
                   isUnlocked: true,
                   bgColor: AppColors.pastelBlush,
                   icon: Icons.star_rounded,
                   iconColor: const Color(0xFFF26522),
-                  onTap: () => _showToast('Lencana Streak 7 Hari telah terbuka!'),
+                  onTap: () =>
+                      _showToast(context.l10n.profileBadgeStreak7Toast),
                 ),
 
                 // Badge 2: Streak 30 Hari (Locked)
                 _buildBadgeCard(
                   width: cardWidth,
-                  title: 'Streak 30 Hari',
-                  statusLabel: 'Terkunci',
+                  title: context.l10n.profileBadgeStreak30Title,
+                  statusLabel: context.l10n.profileBadgeLocked,
                   isUnlocked: false,
                   bgColor: AppColors.pastelSand,
                   icon: Icons.lock_rounded,
                   iconColor: AppColors.inkMuted,
-                  onTap: () => _showToast('Pertahankan streak 30 hari untuk membuka lencana ini!'),
+                  onTap: () =>
+                      _showToast(context.l10n.profileBadgeStreak30Toast),
                 ),
 
                 // Badge 3: Level 5 (Locked - tap to preview Level Up!)
                 _buildBadgeCard(
                   width: cardWidth,
-                  title: 'Level 5',
-                  statusLabel: 'Terkunci',
+                  title: context.l10n.profileBadgeLevel5Title,
+                  statusLabel: context.l10n.profileBadgeLocked,
                   isUnlocked: false,
                   bgColor: AppColors.pastelMint,
                   icon: Icons.emoji_events_rounded,
@@ -615,28 +658,29 @@ class _ProfileScreenState extends State<ProfileScreen>
                     height: 28,
                     style: GununganStyle.goldOutline,
                   ),
-                  badgeHighlight: 'Naik Level',
-                  onTap: () {
+                  badgeHighlight: context.l10n.profileBadgeLevelUpHighlight,
+                  onTap: () async {
                     HapticFeedback.mediumImpact();
-                    Navigator.push(
+                    final toastMsg = context.l10n.profileBadgeLevel5Toast;
+                    final result = await Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => const LevelUpScreen(),
-                      ),
-                    ).then((result) {
-                      if (result == true) {
-                        setState(() => _equippedBlangkon = BlangkonType.surakarta);
-                        _showToast('Blangkon Surakarta berhasil dipasang!');
-                      }
-                    });
+                      MaterialPageRoute(builder: (_) => const LevelUpScreen()),
+                    );
+                    if (!mounted) return;
+                    if (result == true) {
+                      setState(
+                        () => _equippedBlangkon = BlangkonType.surakarta,
+                      );
+                      _showToast(toastMsg);
+                    }
                   },
                 ),
 
                 // Badge 4: Tamat Aksara (Locked)
                 _buildBadgeCard(
                   width: cardWidth,
-                  title: 'Tamat Aksara',
-                  statusLabel: 'Tingkat Mudah',
+                  title: context.l10n.profileBadgeAksaraCompleteTitle,
+                  statusLabel: context.l10n.profileBadgeEasyLevel,
                   isUnlocked: false,
                   bgColor: AppColors.pastelLavender,
                   icon: Icons.auto_stories_rounded,
@@ -650,7 +694,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       showInkPools: false,
                     ),
                   ),
-                  onTap: () => _showToast('Selesaikan seluruh modul aksara dasar untuk membuka!'),
+                  onTap: () => _showToast(context.l10n.profileBadgeAksaraToast),
                 ),
               ],
             );
@@ -712,8 +756,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                 ],
               ),
               child: Center(
-                child: customIconWidget ??
-                    Icon(icon, size: 20, color: iconColor),
+                child:
+                    customIconWidget ?? Icon(icon, size: 20, color: iconColor),
               ),
             ),
 
@@ -730,7 +774,10 @@ class _ProfileScreenState extends State<ProfileScreen>
                 ),
                 const SizedBox(height: 2),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1.5),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 1.5,
+                  ),
                   decoration: BoxDecoration(
                     color: isUnlocked
                         ? Colors.white.withValues(alpha: 0.8)
@@ -771,10 +818,14 @@ class _ProfileScreenState extends State<ProfileScreen>
             }
           });
         },
-        icon: const Icon(Icons.style_outlined, size: 20, color: AppColors.amber),
-        label: const Text(
-          'Pilih Blangkon',
-          style: TextStyle(
+        icon: const Icon(
+          Icons.style_outlined,
+          size: 20,
+          color: AppColors.amber,
+        ),
+        label: Text(
+          context.l10n.profileChooseBlangkonButton,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w800,
             color: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import 'home_screen.dart';
@@ -166,7 +167,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
                   index: 0,
                   icon: Icons.home_outlined,
                   activeIcon: Icons.home_rounded,
-                  label: 'Beranda',
+                  label: context.l10n.navHome,
                 ),
               ),
 
@@ -176,13 +177,13 @@ class _MainShellScreenState extends State<MainShellScreen> {
                   index: 1,
                   icon: Icons.menu_book_outlined,
                   activeIcon: Icons.menu_book_rounded,
-                  label: 'Belajar',
+                  label: context.l10n.navLearn,
                 ),
               ),
 
               // 2. Quest: Central Elevated 56 px amber button with pen icon
               Expanded(
-                child: _buildCenterQuestButton(),
+                child: _buildCenterQuestButton(context.l10n.navQuest),
               ),
 
               // 3. Kuis
@@ -191,7 +192,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
                   index: 3,
                   icon: Icons.quiz_outlined,
                   activeIcon: Icons.quiz_rounded,
-                  label: 'Kuis',
+                  label: context.l10n.navQuiz,
                 ),
               ),
 
@@ -201,7 +202,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
                   index: 4,
                   icon: Icons.person_outline_rounded,
                   activeIcon: Icons.person_rounded,
-                  label: 'Profil',
+                  label: context.l10n.navProfile,
                 ),
               ),
             ],
@@ -211,7 +212,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
     );
   }
 
-  Widget _buildCenterQuestButton() {
+  Widget _buildCenterQuestButton(String questLabel) {
     return GestureDetector(
       onTap: () => _onTabSelected(2),
       behavior: HitTestBehavior.opaque,
@@ -244,9 +245,9 @@ class _MainShellScreenState extends State<MainShellScreen> {
               ),
             ),
             const SizedBox(height: 2),
-            const Text(
-              'Quest',
-              style: TextStyle(
+            Text(
+              questLabel,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
                 color: AppColors.ink,

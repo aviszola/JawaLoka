@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/drawing_canvas_painter.dart';
@@ -134,16 +135,16 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       leading: Semantics(
-        label: 'Kembali',
+        label: context.l10n.drawingBackSemantics,
         button: true,
         child: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.ink),
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      title: const Text(
-        'Latihan Menulis',
-        style: TextStyle(
+      title: Text(
+        context.l10n.drawingTitle,
+        style: const TextStyle(
           color: AppColors.ink,
           fontSize: 18,
           fontWeight: FontWeight.bold,
@@ -215,9 +216,9 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                   color: AppColors.ink,
                 ),
               ),
-              const Text(
-                'Tulis aksara ini!',
-                style: TextStyle(
+              Text(
+                context.l10n.drawingInstruction,
+                style: const TextStyle(
                   fontSize: 14,
                   color: AppColors.inkSecondary,
                 ),
@@ -283,7 +284,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  'Goresan: ${_strokes.length}',
+                  context.l10n.drawingStrokeCount(_strokes.length),
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -307,12 +308,12 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         // Hapus semua
         Expanded(
           child: Semantics(
-            label: 'Hapus Semua',
+            label: context.l10n.drawingClearAll,
             button: true,
             child: OutlinedButton.icon(
               onPressed: _strokes.isEmpty ? null : _clearAll,
               icon: const Icon(Icons.delete_outline_rounded, size: 18),
-              label: const Text('Hapus Semua'),
+              label: Text(context.l10n.drawingClearAll),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.error,
                 disabledForegroundColor: AppColors.inkMuted,
@@ -334,12 +335,12 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         // Batalkan goresan
         Expanded(
           child: Semantics(
-            label: 'Batalkan',
+            label: context.l10n.drawingUndo,
             button: true,
             child: OutlinedButton.icon(
               onPressed: _strokes.isEmpty ? null : _undoLastStroke,
               icon: const Icon(Icons.undo_rounded, size: 18),
-              label: const Text('Batalkan'),
+              label: Text(context.l10n.drawingUndo),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.inkSecondary,
                 disabledForegroundColor: AppColors.inkMuted,
@@ -424,9 +425,9 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           shape: const StadiumBorder(),
           elevation: 0,
         ),
-        child: const Text(
-          'Periksa Tulisan',
-          style: TextStyle(
+        child: Text(
+          context.l10n.drawingCheckButton,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),

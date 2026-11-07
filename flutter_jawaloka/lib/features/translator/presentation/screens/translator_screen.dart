@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/translator_panel.dart';
 
@@ -124,7 +125,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     Clipboard.setData(ClipboardData(text: _outputText));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Disalin ke clipboard'),
+        content: Text(context.l10n.translatorCopiedToast),
         behavior: SnackBarBehavior.floating,
         backgroundColor: AppColors.ink,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -165,13 +166,13 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       backgroundColor: AppColors.amber,
       elevation: 0,
       leading: Semantics(
-        label: 'Kembali',
+        label: context.l10n.commonBack,
         button: true,
         child: BackButton(color: AppColors.ink),
       ),
-      title: const Text(
-        'Penerjemah',
-        style: TextStyle(
+      title: Text(
+        context.l10n.translatorTitle,
+        style: const TextStyle(
           color: AppColors.ink,
           fontWeight: FontWeight.w700,
           fontSize: 18,
@@ -194,7 +195,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         const SizedBox(width: 10),
         // Animated swap button
         Semantics(
-          label: 'Tukar bahasa',
+          label: context.l10n.translatorSwapSemantics,
           button: true,
           child: GestureDetector(
             onTap: _swapLanguages,
@@ -251,14 +252,14 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     final charCount = _inputCtrl.text.length;
     return TranslatorPanel(
       isOutput: false,
-      label: 'MASUKKAN TEKS',
+      label: context.l10n.translatorInputLabel,
       languageBadge: _languages[_fromIndex].name,
       characterCount: '$charCount/500',
       actions: [
         if (_inputCtrl.text.isNotEmpty)
           _PanelIconButton(
             icon: Icons.close_rounded,
-            tooltip: 'Hapus',
+            tooltip: context.l10n.translatorClearTooltip,
             onTap: () {
               _inputCtrl.clear();
               setState(() {
@@ -279,9 +280,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           color: AppColors.ink,
           height: 1.55,
         ),
-        decoration: const InputDecoration(
-          hintText: 'Ketik teks...',
-          hintStyle: TextStyle(color: Color(0xFFB0A898), fontSize: 15),
+        decoration: InputDecoration(
+          hintText: context.l10n.translatorInputHint,
+          hintStyle: const TextStyle(color: Color(0xFFB0A898), fontSize: 15),
           border: InputBorder.none,
           isDense: true,
           contentPadding: EdgeInsets.zero,
@@ -318,15 +319,15 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                     ),
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'Menerjemahkan...',
-                    style: TextStyle(fontWeight: FontWeight.w600),
+                  Text(
+                    context.l10n.translatorTranslating,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                 ],
               )
-            : const Text(
-                'Terjemahkan',
-                style: TextStyle(
+            : Text(
+                context.l10n.translatorButton,
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
                   letterSpacing: 0.3,
@@ -339,12 +340,12 @@ class _TranslatorScreenState extends State<TranslatorScreen>
   Widget _buildOutputPanel() {
     return TranslatorPanel(
       isOutput: true,
-      label: 'HASIL TERJEMAHAN',
+      label: context.l10n.translatorOutputLabel,
       languageBadge: _languages[_toIndex].name,
       actions: [
         _PanelIconButton(
           icon: Icons.copy_rounded,
-          tooltip: 'Salin',
+          tooltip: context.l10n.translatorCopyTooltip,
           onTap: _outputText.isEmpty ? null : _copyResult,
         ),
       ],
@@ -352,7 +353,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           ? const ShimmerPlaceholder(height: 80)
           : Text(
               _outputText.isEmpty
-                  ? 'Hasil terjemahan akan muncul di sini…'
+                  ? context.l10n.translatorOutputPlaceholder
                   : _outputText,
               style: TextStyle(
                 fontSize: 15,
@@ -388,9 +389,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'Pilih Bahasa',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+            Text(
+              context.l10n.translatorPickerTitle,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 8),
             ..._languages.map((lang) {

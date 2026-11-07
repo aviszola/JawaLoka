@@ -6,6 +6,7 @@ import 'package:flutter_jawaloka/features/auth/presentation/screens/language_sel
 import 'package:flutter_jawaloka/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/widgets/primary_button.dart';
+import 'helpers/pump_app.dart';
 
 void main() {
   group('Onboarding Screens (Splash, Pilih Bahasa, Daftar)', () {
@@ -13,16 +14,15 @@ void main() {
     testWidgets(
       'Splash: tidak memuat teks "LOGO" maupun "09:41" dan berpindah ke Pilih Bahasa setelah splashMinDuration',
       (WidgetTester tester) async {
-        await tester.pumpWidget(
-          MaterialApp(
-            initialRoute: AppRouter.splash,
-            routes: {
-              AppRouter.splash: (context) => const SplashScreen(),
-              '/language_selection': (context) =>
-                  const LanguageSelectionScreen(),
-            },
-            onGenerateRoute: AppRouter.generateRoute,
-          ),
+        await tester.pumpApp(
+          const SizedBox.shrink(),
+          initialRoute: AppRouter.splash,
+          routes: {
+            AppRouter.splash: (context) => const SplashScreen(),
+            '/language_selection': (context) =>
+                const LanguageSelectionScreen(),
+          },
+          onGenerateRoute: AppRouter.generateRoute,
         );
 
         // Verifikasi tidak ada teks tiruan
@@ -44,12 +44,10 @@ void main() {
     testWidgets(
       'Pilih Bahasa: mengetuk kartu mengubah pilihan dan semantik checked, tombol Lanjut membuka Daftar',
       (WidgetTester tester) async {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: const LanguageSelectionScreen(),
-            routes: {AppRouter.register: (context) => const RegisterScreen()},
-            onGenerateRoute: AppRouter.generateRoute,
-          ),
+        await tester.pumpApp(
+          const LanguageSelectionScreen(),
+          routes: {AppRouter.register: (context) => const RegisterScreen()},
+          onGenerateRoute: AppRouter.generateRoute,
         );
         await tester.pumpAndSettle();
 
@@ -91,8 +89,8 @@ void main() {
           ),
         );
 
-        // Ketuk tombol 'Lanjut'
-        await tester.tap(find.widgetWithText(PrimaryButton, 'Lanjut'));
+        // Ketuk tombol Lanjut / aksi utama (kini berlabel 'Lajeng' karena Basa Jawa aktif)
+        await tester.tap(find.byType(PrimaryButton));
         await tester.pumpAndSettle();
 
         // Membuka Daftar (RegisterScreen)
@@ -104,7 +102,7 @@ void main() {
     testWidgets(
       'Daftar: kolom kosong, email tidak valid, sandi < 8 tampilkan pesan, teks ganda tidak ada, judul Buat akunmu sekali, tidak overflow dengan viewInsets 300',
       (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: RegisterScreen()));
+        await tester.pumpApp(const RegisterScreen());
         await tester.pumpAndSettle();
 
         // (d) Judul "Buat akunmu" hanya muncul sekali
@@ -158,13 +156,13 @@ void main() {
         expect(find.text('Kata sandi minimal 8 karakter'), findsOneWidget);
 
         // Uji ketahanan terhadap keyboard: viewInsets bawah 300 tanpa overflow
-        await tester.pumpWidget(
+        await tester.pumpApp(
           const MediaQuery(
             data: MediaQueryData(
               size: Size(390, 844),
               viewInsets: EdgeInsets.only(bottom: 300),
             ),
-            child: MaterialApp(home: RegisterScreen()),
+            child: RegisterScreen(),
           ),
         );
         await tester.pumpAndSettle();
@@ -178,7 +176,7 @@ void main() {
     testWidgets(
       'Login: validasi form, tidak ada garis 128x4, dan tahan keyboard viewInsets 300',
       (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: LoginScreen()));
+        await tester.pumpApp(const LoginScreen());
         await tester.pumpAndSettle();
 
         // Judul login
@@ -193,13 +191,13 @@ void main() {
         expect(find.text('Kata sandi tidak boleh kosong'), findsOneWidget);
 
         // Uji ketahanan terhadap keyboard
-        await tester.pumpWidget(
+        await tester.pumpApp(
           const MediaQuery(
             data: MediaQueryData(
               size: Size(390, 844),
               viewInsets: EdgeInsets.only(bottom: 300),
             ),
-            child: MaterialApp(home: LoginScreen()),
+            child: LoginScreen(),
           ),
         );
         await tester.pumpAndSettle();

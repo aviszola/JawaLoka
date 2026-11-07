@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 
@@ -10,34 +11,35 @@ class HomeQuickLearnSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final items = [
       _QuickLearnItem(
-        title: 'Kosa Kata',
-        subtitle: '3 Tingkat',
+        title: l10n.homeQuickLearnVocab,
+        subtitle: l10n.homeQuickLearnVocabSub,
         icon: Icons.menu_book_rounded,
         bgColor: AppColors.pastelSand,
         iconColor: AppColors.amberDark,
         onTap: () => Navigator.pushNamed(context, AppRouter.vocabularyDetail),
       ),
       _QuickLearnItem(
-        title: 'Aksara Jawa',
-        subtitle: 'Hanacaraka',
+        title: l10n.homeQuickLearnAksara,
+        subtitle: l10n.homeQuickLearnAksaraSub,
         icon: Icons.edit_note_rounded,
         bgColor: AppColors.amberSoft,
         iconColor: AppColors.accentOrange,
         onTap: () => Navigator.pushNamed(context, AppRouter.aksaraDetail),
       ),
       _QuickLearnItem(
-        title: 'Penerjemah',
-        subtitle: 'Ngoko-Krama',
+        title: l10n.homeQuickLearnTranslator,
+        subtitle: l10n.homeQuickLearnTranslatorSub,
         icon: Icons.translate_rounded,
         bgColor: AppColors.pastelMint,
         iconColor: AppColors.pastelMintText,
         onTap: () => Navigator.pushNamed(context, AppRouter.translator),
       ),
       _QuickLearnItem(
-        title: 'Penggunaan Bahasa',
-        subtitle: 'Unggah-Ungguh',
+        title: l10n.homeQuickLearnEtiquette,
+        subtitle: l10n.homeQuickLearnEtiquetteSub,
         icon: Icons.record_voice_over_rounded,
         bgColor: AppColors.pastelLavender,
         iconColor: AppColors.pastelLavenderText,
@@ -50,8 +52,8 @@ class HomeQuickLearnSection extends StatelessWidget {
         },
       ),
       _QuickLearnItem(
-        title: 'Peribahasa',
-        subtitle: 'Paribasan',
+        title: l10n.homeQuickLearnProverbs,
+        subtitle: l10n.homeQuickLearnProverbsSub,
         icon: Icons.auto_stories_rounded,
         bgColor: AppColors.pastelBlush,
         iconColor: AppColors.pastelBlushText,
@@ -70,18 +72,18 @@ class HomeQuickLearnSection extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             Text(
-              'Belajar Cepat',
-              style: TextStyle(
+              l10n.homeQuickLearnTitle,
+              style: const TextStyle(
                 color: AppColors.ink,
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
               ),
             ),
             Text(
-              'Topik Ringkas',
-              style: TextStyle(
+              l10n.homeQuickLearnSubtitle,
+              style: const TextStyle(
                 color: AppColors.inkSecondary,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,

@@ -52,4 +52,788 @@ class AppLocalizationsId extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get splashAppName => 'JawaLoka';
+
+  @override
+  String get splashAppTagline => 'Belajar bahasa dan aksara Jawa setiap hari';
+
+  @override
+  String get splashLoadingLabel => 'Memuat aplikasi...';
+
+  @override
+  String get authWelcomeBannerTitle => 'Selamat datang di JawaLoka';
+
+  @override
+  String get authWelcomeBannerSubtitle =>
+      'Lestarikan warisan leluhur nusantara';
+
+  @override
+  String get commonBack => 'Kembali';
+
+  @override
+  String get commonCloseError => 'Tutup pesan error';
+
+  @override
+  String get authFullNameLabel => 'Nama Lengkap';
+
+  @override
+  String get authEmailLabel => 'Email';
+
+  @override
+  String get authPasswordLabel => 'Kata Sandi';
+
+  @override
+  String get authShowPassword => 'Tampilkan kata sandi';
+
+  @override
+  String get authHidePassword => 'Sembunyikan kata sandi';
+
+  @override
+  String get validationNameRequired => 'Nama tidak boleh kosong';
+
+  @override
+  String get validationEmailInvalid => 'Format email belum benar';
+
+  @override
+  String get validationPasswordMinLength => 'Kata sandi minimal 8 karakter';
+
+  @override
+  String get validationPasswordEmpty => 'Kata sandi tidak boleh kosong';
+
+  @override
+  String get loginTitle => 'Masuk ke akunmu';
+
+  @override
+  String get loginSubtitle => 'Lanjutkan progres belajarmu di mana saja';
+
+  @override
+  String get loginInvalidCredentialsError => 'Email atau kata sandi salah';
+
+  @override
+  String get loginForgotPassword => 'Lupa kata sandi?';
+
+  @override
+  String get loginButton => 'Masuk';
+
+  @override
+  String get loginOrWith => 'Atau masuk dengan';
+
+  @override
+  String get loginGoogleButton => 'Lanjutkan dengan Google';
+
+  @override
+  String get loginDontHaveAccount => 'Belum punya akun? ';
+
+  @override
+  String get loginRegisterLink => 'Daftar';
+
+  @override
+  String get registerTitle => 'Buat akunmu';
+
+  @override
+  String get registerSubtitle => 'Simpan progres belajarmu di mana saja';
+
+  @override
+  String get registerPasswordHint =>
+      'Gunakan kata sandi yang kuat (min. 8 karakter)';
+
+  @override
+  String get registerButton => 'Daftar';
+
+  @override
+  String get registerTermsPrefix => 'Dengan mendaftar, kamu menyetujui ';
+
+  @override
+  String get registerPrivacyPolicy => 'Kebijakan Privasi';
+
+  @override
+  String get registerAlreadyHaveAccount => 'Sudah punya akun? ';
+
+  @override
+  String get registerLoginLink => 'Masuk';
+
+  @override
+  String get navHome => 'Beranda';
+
+  @override
+  String get navLearn => 'Belajar';
+
+  @override
+  String get navQuest => 'Quest';
+
+  @override
+  String get navQuiz => 'Kuis';
+
+  @override
+  String get navProfile => 'Profil';
+
+  @override
+  String get homeGreetingMorning => 'Selamat pagi';
+
+  @override
+  String get homeGreetingAfternoon => 'Selamat siang';
+
+  @override
+  String get homeGreetingEvening => 'Selamat sore';
+
+  @override
+  String get homeGreetingNight => 'Selamat malam';
+
+  @override
+  String homeGreetingUser(String name) {
+    return 'Halo, $name!';
+  }
+
+  @override
+  String homeLevelPill(int level) {
+    return 'L$level';
+  }
+
+  @override
+  String get homeWeeklyStripTitle => 'Aktivitas Kuis Minggu Ini';
+
+  @override
+  String homeWeeklyCompletedCount(int count) {
+    return '$count kuis selesai';
+  }
+
+  @override
+  String homeWeeklyStreakInfo(int count) {
+    return 'Streak kuis $count hari aktif. Selesaikan kuis harian untuk menjaga streak.';
+  }
+
+  @override
+  String get dayMon => 'Sen';
+
+  @override
+  String get dayTue => 'Sel';
+
+  @override
+  String get dayWed => 'Rab';
+
+  @override
+  String get dayThu => 'Kam';
+
+  @override
+  String get dayFri => 'Jum';
+
+  @override
+  String get daySat => 'Sab';
+
+  @override
+  String get daySun => 'Min';
+
+  @override
+  String get homeHeroQuestBadge => 'MISI HARI INI';
+
+  @override
+  String get homeHeroQuestTarget => 'Target: ≥85% Presisi';
+
+  @override
+  String get homeHeroQuestTitle => 'Aksara \"Ha\" (ꦲ)';
+
+  @override
+  String get homeHeroQuestDesc =>
+      'Tulis aksara dasar pertama Hanacaraka dengan goresan tepat.';
+
+  @override
+  String get homeHeroQuestButton => 'Mulai Menggambar';
+
+  @override
+  String get homeContinueQuizTitle => 'Lanjutkan Kuis';
+
+  @override
+  String get homeContinueQuizLevel => 'Tingkat: Mahir';
+
+  @override
+  String get homeContinueQuizNode => 'Node 4: Aksara Ra (ꦫ)';
+
+  @override
+  String homeContinueQuizProgress(int completed) {
+    return '$completed dari 10 bab kuis terselesaikan';
+  }
+
+  @override
+  String get homeContinueQuizButton => 'Buka Jalur Kuis';
+
+  @override
+  String get homeQuickLearnTitle => 'Belajar Cepat';
+
+  @override
+  String get homeQuickLearnSubtitle => 'Topik Ringkas';
+
+  @override
+  String get homeQuickLearnVocab => 'Kosa Kata';
+
+  @override
+  String get homeQuickLearnVocabSub => '3 Tingkat';
+
+  @override
+  String get homeQuickLearnAksara => 'Aksara Jawa';
+
+  @override
+  String get homeQuickLearnAksaraSub => 'Hanacaraka';
+
+  @override
+  String get homeQuickLearnTranslator => 'Penerjemah';
+
+  @override
+  String get homeQuickLearnTranslatorSub => 'Ngoko-Krama';
+
+  @override
+  String get homeQuickLearnEtiquette => 'Penggunaan Bahasa';
+
+  @override
+  String get homeQuickLearnEtiquetteSub => 'Unggah-Ungguh';
+
+  @override
+  String get homeQuickLearnProverbs => 'Peribahasa';
+
+  @override
+  String get homeQuickLearnProverbsSub => 'Paribasan';
+
+  @override
+  String get learnHeaderTitle => 'Pusat Belajar';
+
+  @override
+  String get learnHeaderSubtitle => 'Eksplorasi warisan budaya dan bahasa Jawa';
+
+  @override
+  String get learnSectionModules => 'Modul Pembelajaran';
+
+  @override
+  String get learnSectionDailyWord => 'Tembung Dina Iki';
+
+  @override
+  String get moduleCardLocked => 'Terkunci';
+
+  @override
+  String get learnModuleAksaraTitle => 'Aksara Jawa Dhasar';
+
+  @override
+  String get learnModuleAksaraSubtitle =>
+      'Hanacaraka — 20 aksara dasar, sandhangan & pasangan';
+
+  @override
+  String get learnModuleAksaraLabel => '20 aksara terselesaikan';
+
+  @override
+  String get learnModuleVocabTitle => 'Kosa Kata (Kamus)';
+
+  @override
+  String get learnModuleVocabSubtitle =>
+      'Kamus 3 tingkat tutur: Ngoko, Krama Madya, Krama Inggil';
+
+  @override
+  String get learnModuleVocabLabel => '120 tembung terselesaikan';
+
+  @override
+  String get learnModuleTranslatorTitle => 'Penerjemah Bahasa';
+
+  @override
+  String get learnModuleTranslatorSubtitle =>
+      'Terjemahan dwiarah Indonesia, Ngoko, dan Krama';
+
+  @override
+  String get learnModuleTranslatorLabel => 'Siap Digunakan';
+
+  @override
+  String get learnModuleEtiquetteTitle => 'Penggunaan Bahasa';
+
+  @override
+  String get learnModuleEtiquetteSubtitle =>
+      'Unggah-ungguh & tata krama ragam wicara';
+
+  @override
+  String get learnModuleEtiquetteLabel => '4 tingkatan tutur';
+
+  @override
+  String get learnModuleProverbsTitle => 'Peribahasa & Saloka';
+
+  @override
+  String get learnModuleProverbsSubtitle =>
+      'Paribasan, bebasan, lan saloka warisan Jawa';
+
+  @override
+  String get learnModuleProverbsLabel => '15 peribahasa';
+
+  @override
+  String get learnTagAksara => 'Aksara';
+
+  @override
+  String get learnTagKamus => 'Kamus';
+
+  @override
+  String get learnTagUtilitas => 'Utilitas';
+
+  @override
+  String get learnTagWicara => 'Wicara';
+
+  @override
+  String get learnTagSastra => 'Sastra';
+
+  @override
+  String get difficultyMudah => 'Mudah';
+
+  @override
+  String get difficultyMahir => 'Mahir';
+
+  @override
+  String get difficultySangatMahir => 'Sangat Mahir';
+
+  @override
+  String get quizPathTitle => 'Jalur Kuis';
+
+  @override
+  String quizCompletedBadge(int count) {
+    return '$count Selesai';
+  }
+
+  @override
+  String get quizUnit1Title => 'Unit 1: Sapaan dan Salam';
+
+  @override
+  String get quizUnit1Subtitle =>
+      'Dasar percakapan dan tata krama sopan santun';
+
+  @override
+  String get quizUnit2Title => 'Unit 2: Keluarga dan Rumah (Terkunci)';
+
+  @override
+  String get quizUnit2Subtitle =>
+      'Silsilah keluarga, kerabat, dan lingkungan rumah';
+
+  @override
+  String get quizTopicSalam => 'Salam';
+
+  @override
+  String get quizTopicPamit => 'Pamit';
+
+  @override
+  String get quizTopicLencana => 'Lencana';
+
+  @override
+  String get quizTopicTanyaKabar => 'Tanya kabar';
+
+  @override
+  String get quizTopicPerkenalan => 'Perkenalan';
+
+  @override
+  String get quizTopicKeluarga => 'Keluarga';
+
+  @override
+  String get quizTopicRumah => 'Rumah';
+
+  @override
+  String get quizTopicKerabat => 'Kerabat';
+
+  @override
+  String quizBottomSheetProgress(
+    int quizIndex,
+    int totalQuizzes,
+    int questionCount,
+  ) {
+    return 'Kuis $quizIndex dari $totalQuizzes · $questionCount soal';
+  }
+
+  @override
+  String get quizBottomSheetStart => 'Mulai Kuis';
+
+  @override
+  String get quizBottomSheetLater => 'Nanti saja';
+
+  @override
+  String quizComboCount(int count) {
+    return '$count Benar!';
+  }
+
+  @override
+  String quizOptionSemantics(String letter, String option) {
+    return 'Pilihan $letter: $option';
+  }
+
+  @override
+  String get quizCorrect => 'Betul!';
+
+  @override
+  String get quizIncorrect => 'Kurang tepat';
+
+  @override
+  String quizAnswerLabel(String answer) {
+    return 'Jawaban: $answer';
+  }
+
+  @override
+  String get quizCheck => 'Periksa';
+
+  @override
+  String get quizContinue => 'Lanjut';
+
+  @override
+  String get quizFinish => 'Selesai';
+
+  @override
+  String get quizResultAwesome => 'Luar Biasa!';
+
+  @override
+  String quizResultStreakBanner(int days) {
+    return 'Streak kuis aktif: $days hari';
+  }
+
+  @override
+  String get quizResultCorrectAnswers => 'Soal Benar';
+
+  @override
+  String get quizResultTime => 'Waktu';
+
+  @override
+  String get quizResultAccuracy => 'Akurasi';
+
+  @override
+  String get quizResultBackHome => 'Kembali ke Beranda';
+
+  @override
+  String get quizResultRetry => 'Ulangi kuis';
+
+  @override
+  String get drawingTitle => 'Latihan Menulis';
+
+  @override
+  String get drawingBackSemantics => 'Kembali';
+
+  @override
+  String get drawingInstruction => 'Tulis aksara ini!';
+
+  @override
+  String drawingStrokeCount(int count) {
+    return 'Goresan: $count';
+  }
+
+  @override
+  String get drawingClearAll => 'Hapus Semua';
+
+  @override
+  String get drawingUndo => 'Batalkan';
+
+  @override
+  String get drawingCheckButton => 'Periksa Tulisan';
+
+  @override
+  String get dailyResultTitle => 'Hasil Quest';
+
+  @override
+  String get dailyResultSimilarityLabel => 'Kemiripan';
+
+  @override
+  String dailyResultCelebrationPassed(String name) {
+    return 'Hebat, $name!';
+  }
+
+  @override
+  String get dailyResultCelebrationFailed => 'Ayo Latihan Lagi!';
+
+  @override
+  String get dailyResultDescPassed =>
+      'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.';
+
+  @override
+  String get dailyResultDescFailed =>
+      'Goresanmu hampir tepat. Coba perhatikan proporsi aksara target.';
+
+  @override
+  String get dailyResultComparison => 'Perbandingan Tulisan';
+
+  @override
+  String get dailyResultYourDrawing => 'Tulisanmu';
+
+  @override
+  String get dailyResultTargetScript => 'Aksara Target';
+
+  @override
+  String get dailyResultStatusPassed => 'Status: Lulus';
+
+  @override
+  String get dailyResultStatusFailed => 'Status: Belum Lulus';
+
+  @override
+  String dailyResultRequirement(int percent) {
+    return 'Kemiripan $percent% (Syarat lulus: ≥ 85%)';
+  }
+
+  @override
+  String get dailyResultContinueLearning => 'Lanjutkan Belajar →';
+
+  @override
+  String get dailyResultTryAgain => 'Coba Lagi';
+
+  @override
+  String get profileTitle => 'Profil';
+
+  @override
+  String get profileSettingsSemantics => 'Pengaturan';
+
+  @override
+  String get profileNameEmptyError => 'Nama tidak boleh kosong';
+
+  @override
+  String profileNameSaved(String name) {
+    return 'Nama berhasil disimpan: $name';
+  }
+
+  @override
+  String get profileSaveName => 'Simpan';
+
+  @override
+  String get profileCancelEdit => 'Batal';
+
+  @override
+  String profileLevelPill(int level) {
+    return 'Lv $level';
+  }
+
+  @override
+  String profileStreakPill(int days) {
+    return 'Streak $days hari';
+  }
+
+  @override
+  String profileQuizzesThisWeek(int count) {
+    return '$count Kuis Minggu Ini';
+  }
+
+  @override
+  String get profileBadgeTitle => 'Lencana';
+
+  @override
+  String get profileBadgeOpenCount => '1 / 4 Terbuka';
+
+  @override
+  String get profileBadgeCollection => 'Koleksi Prestasi';
+
+  @override
+  String get profileBadgeStreak7Title => 'Streak 7 Hari';
+
+  @override
+  String get profileBadgeStreak30Title => 'Streak 30 Hari';
+
+  @override
+  String get profileBadgeLevel5Title => 'Level 5';
+
+  @override
+  String get profileBadgeLevelUpHighlight => 'Naik Level';
+
+  @override
+  String get profileBadgeAksaraCompleteTitle => 'Tamat Aksara';
+
+  @override
+  String get profileBadgeEasyLevel => 'Tingkat Mudah';
+
+  @override
+  String get profileBadgeUnlocked => 'Terbuka';
+
+  @override
+  String get profileBadgeLocked => 'Terkunci';
+
+  @override
+  String get profileChooseBlangkonButton => 'Pilih Blangkon';
+
+  @override
+  String get blangkonTitle => 'Pilih Blangkon';
+
+  @override
+  String get blangkonSaveButton => 'Simpan Pilihan';
+
+  @override
+  String blangkonLevelRequired(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String get blangkonInitialUnlock => 'Terpasang awal';
+
+  @override
+  String get blangkonMasteryAksara => 'Selesai aksara';
+
+  @override
+  String get levelUpMicroTag => 'PENCAPAIAN JAWALOKA';
+
+  @override
+  String levelUpTitle(int level) {
+    return 'Level $level!';
+  }
+
+  @override
+  String get levelUpBlangkonUnlocked => 'Blangkon baru terbuka: ';
+
+  @override
+  String get levelUpBadgeCategory => 'LENCANA BARU';
+
+  @override
+  String get levelUpAchievementTitle => 'Sinau Mandiri V';
+
+  @override
+  String get levelUpAchievementDesc => 'Menyelesaikan 25 bab materi aksara';
+
+  @override
+  String get levelUpEquipButton => 'Pakai Blangkon';
+
+  @override
+  String get levelUpSkipButton => 'Nanti saja';
+
+  @override
+  String get settingsLogout => 'Keluar';
+
+  @override
+  String get settingsLogoutConfirm => 'Yakin ingin keluar?';
+
+  @override
+  String get settingsCancel => 'Batal';
+
+  @override
+  String get settingsPrivacyPolicy => 'Kebijakan Privasi';
+
+  @override
+  String get settingsPrivacyPolicyContent =>
+      'JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.';
+
+  @override
+  String get settingsClose => 'Tutup';
+
+  @override
+  String get settingsAccountRow => 'Akun';
+
+  @override
+  String get translatorTitle => 'Penerjemah';
+
+  @override
+  String get translatorInputLabel => 'MASUKKAN TEKS';
+
+  @override
+  String get translatorInputHint => 'Ketik teks...';
+
+  @override
+  String get translatorButton => 'Terjemahkan';
+
+  @override
+  String get translatorTranslating => 'Menerjemahkan...';
+
+  @override
+  String get translatorOutputLabel => 'HASIL TERJEMAHAN';
+
+  @override
+  String get translatorOutputPlaceholder =>
+      'Hasil terjemahan akan muncul di sini…';
+
+  @override
+  String get translatorCopiedToast => 'Teks disalin';
+
+  @override
+  String get translatorPickerTitle => 'Pilih Bahasa';
+
+  @override
+  String get translatorSwapSemantics => 'Tukar bahasa';
+
+  @override
+  String get translatorCopyTooltip => 'Salin';
+
+  @override
+  String get translatorClearTooltip => 'Hapus';
+
+  @override
+  String get aksaraDetailTitle => 'Aksara Jawa';
+
+  @override
+  String get aksaraDetailTag => 'Dasar';
+
+  @override
+  String get aksaraDetailExampleHeader => 'Contoh Kata';
+
+  @override
+  String get aksaraDetailSandanganHeader => 'Sandangan';
+
+  @override
+  String get aksaraDetailSandanganSubtitle =>
+      'Variasi vokal pada aksara ꦲ (Ha)';
+
+  @override
+  String get aksaraDetailWritingHeader => 'Cara Menulis';
+
+  @override
+  String get aksaraDetailStep1Title => 'Mulai dari kanan atas';
+
+  @override
+  String get aksaraDetailStep1Desc =>
+      'Tarik garis lengkung ke bawah dari titik awal di kanan atas.';
+
+  @override
+  String get aksaraDetailStep2Title => 'Lengkung badan aksara';
+
+  @override
+  String get aksaraDetailStep2Desc =>
+      'Buat lengkungan utama yang membentuk tubuh aksara Ha ke kiri.';
+
+  @override
+  String get aksaraDetailStep3Title => 'Tutup dengan ekor';
+
+  @override
+  String get aksaraDetailStep3Desc =>
+      'Akhiri dengan garis ekor pendek yang melengkung ke dalam.';
+
+  @override
+  String get aksaraDetailWritingButton => 'Latihan Menulis';
+
+  @override
+  String get aksaraDetailQuizButton => 'Mulai Kuis';
+
+  @override
+  String get vocabDetailTitle => 'Kosa Kata';
+
+  @override
+  String get vocabDetailTag => 'Mudah';
+
+  @override
+  String get vocabDetailMeaningHeader => 'Makna & Tingkatan';
+
+  @override
+  String get vocabDetailExamplesHeader => 'Contoh Kalimat';
+
+  @override
+  String get vocabDetailNextButton => 'Kata Berikutnya';
+
+  @override
+  String get profileBadgeStreak7Toast => 'Lencana Streak 7 Hari telah terbuka!';
+
+  @override
+  String get profileBadgeStreak30Toast =>
+      'Pertahankan streak 30 hari untuk membuka lencana ini!';
+
+  @override
+  String get profileBadgeLevel5Toast => 'Blangkon Surakarta berhasil dipasang!';
+
+  @override
+  String get profileBadgeAksaraToast =>
+      'Selesaikan seluruh modul aksara dasar untuk membuka!';
+
+  @override
+  String blangkonToastInitial(String name) {
+    return 'Terbuka sejak awal: $name';
+  }
+
+  @override
+  String blangkonToastLevel(int level, String name) {
+    return 'Butuh Level $level untuk membuka $name';
+  }
+
+  @override
+  String blangkonToastAksara(String name) {
+    return 'Selesaikan seluruh materi aksara untuk membuka $name';
+  }
+
+  @override
+  String get vocabDetailFavoriteMark => 'Tandai Favorit';
+
+  @override
+  String get vocabDetailFavoriteMarked => 'Ditandai Favorit';
 }

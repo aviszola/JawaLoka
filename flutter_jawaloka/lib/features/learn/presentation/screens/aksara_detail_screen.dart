@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
@@ -146,7 +147,7 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       leading: Semantics(
-        label: 'Kembali',
+        label: context.l10n.commonBack,
         button: true,
         child: GestureDetector(
           onTap: () => Navigator.pop(context),
@@ -170,9 +171,9 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            'Aksara Jawa',
-            style: TextStyle(
+          Text(
+            context.l10n.aksaraDetailTitle,
+            style: const TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w700,
               color: AppColors.ink,
@@ -186,9 +187,9 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
               color: AppColors.amberSoft,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Text(
-              'Dasar',
-              style: TextStyle(
+            child: Text(
+              context.l10n.aksaraDetailTag,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
                 color: AppColors.amberDark,
@@ -397,7 +398,7 @@ class _ContohKataSection extends StatelessWidget {
       children: [
         _SectionHeader(
           icon: Icons.text_fields_rounded,
-          label: 'Contoh Kata',
+          label: context.l10n.aksaraDetailExampleHeader,
         ),
         const SizedBox(height: 12),
         Row(
@@ -515,19 +516,19 @@ class _SandanganSection extends StatelessWidget {
       children: [
         _SectionHeader(
           icon: Icons.tune_rounded,
-          label: 'Sandangan',
+          label: context.l10n.aksaraDetailSandanganHeader,
         ),
         const SizedBox(height: 4),
-        const Text(
-          'Variasi vokal pada aksara ꦲ (Ha)',
-          style: TextStyle(
+        Text(
+          context.l10n.aksaraDetailSandanganSubtitle,
+          style: const TextStyle(
             fontSize: 12,
             color: AppColors.inkMuted,
           ),
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 76,
+          height: 86,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: _items.length,
@@ -559,7 +560,7 @@ class _SandanganChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 72,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       decoration: BoxDecoration(
         color: AppColors.amberSoft,
         borderRadius: BorderRadius.circular(16),
@@ -569,14 +570,16 @@ class _SandanganChip extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            data.combined,
-            style: TextStyle(
-              fontSize: 20,
-              color: AppColors.ink,
-              fontFamilyFallback: const ['Noto Sans Javanese'],
-              height: 1.6,
+          Flexible(
+            child: Text(
+              data.combined,
+              style: const TextStyle(
+                fontSize: 20,
+                color: AppColors.ink,
+                fontFamilyFallback: ['Noto Sans Javanese'],
+              ),
             ),
           ),
           const SizedBox(height: 2),
@@ -608,25 +611,25 @@ class _CaraMenulisSection extends StatelessWidget {
       children: [
         _SectionHeader(
           icon: Icons.edit_note_rounded,
-          label: 'Cara Menulis',
+          label: context.l10n.aksaraDetailWritingHeader,
         ),
         const SizedBox(height: 12),
-        const _WritingStepCard(
+        _WritingStepCard(
           step: 1,
-          title: 'Mulai dari kanan atas',
-          description: 'Tarik garis lengkung ke bawah dari titik awal di kanan atas.',
+          title: context.l10n.aksaraDetailStep1Title,
+          description: context.l10n.aksaraDetailStep1Desc,
         ),
         const SizedBox(height: 8),
-        const _WritingStepCard(
+        _WritingStepCard(
           step: 2,
-          title: 'Lengkung badan aksara',
-          description: 'Buat lengkungan utama yang membentuk tubuh aksara Ha ke kiri.',
+          title: context.l10n.aksaraDetailStep2Title,
+          description: context.l10n.aksaraDetailStep2Desc,
         ),
         const SizedBox(height: 8),
-        const _WritingStepCard(
+        _WritingStepCard(
           step: 3,
-          title: 'Tutup dengan ekor',
-          description: 'Akhiri dengan garis ekor pendek yang melengkung ke dalam.',
+          title: context.l10n.aksaraDetailStep3Title,
+          description: context.l10n.aksaraDetailStep3Desc,
         ),
       ],
     );
@@ -786,19 +789,19 @@ class _BottomButtons extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Latihan Menulis',
-                      style: TextStyle(
+                      context.l10n.aksaraDetailWritingButton,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(width: 6),
-                    Icon(Icons.edit_rounded, color: Colors.white, size: 16),
+                    const SizedBox(width: 6),
+                    const Icon(Icons.edit_rounded, color: Colors.white, size: 16),
                   ],
                 ),
               ),
@@ -817,19 +820,19 @@ class _BottomButtons extends StatelessWidget {
                   borderRadius: BorderRadius.circular(26),
                   border: Border.all(color: AppColors.amber, width: 1.5),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Mulai Kuis',
-                      style: TextStyle(
+                      context.l10n.aksaraDetailQuizButton,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: AppColors.amberDark,
                       ),
                     ),
-                    SizedBox(width: 6),
-                    Icon(Icons.track_changes_rounded, color: AppColors.amberDark, size: 16),
+                    const SizedBox(width: 6),
+                    const Icon(Icons.track_changes_rounded, color: AppColors.amberDark, size: 16),
                   ],
                 ),
               ),

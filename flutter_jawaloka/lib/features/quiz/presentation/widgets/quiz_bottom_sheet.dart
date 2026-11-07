@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
 
 /// Modal bottom sheet shown before starting a quiz module.
@@ -113,7 +114,7 @@ class QuizBottomSheet extends StatelessWidget {
 
           // "Kuis N dari M · 10 soal"
           Text(
-            'Kuis $quizIndex dari $totalQuizzes · $questionCount soal',
+            context.l10n.quizBottomSheetProgress(quizIndex, totalQuizzes, questionCount),
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
@@ -170,9 +171,9 @@ class QuizBottomSheet extends StatelessWidget {
                 ),
                 elevation: 0,
               ),
-              child: const Text(
-                'Mulai Kuis',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              child: Text(
+                context.l10n.quizBottomSheetStart,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
               ),
             ),
           ),
@@ -181,9 +182,9 @@ class QuizBottomSheet extends StatelessWidget {
           // Tautan: "Nanti saja"
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text(
-              'Nanti saja',
-              style: TextStyle(
+            child: Text(
+              context.l10n.quizBottomSheetLater,
+              style: const TextStyle(
                 fontSize: 14,
                 color: Color(0xFF7A6E60),
                 fontWeight: FontWeight.w500,

@@ -227,6 +227,47 @@ void main() {
       expect(cup.datePickerDateOrder, isNotNull);
       expect(delegate.shouldReload(delegate), isFalse);
     });
+
+    testWidgets(
+      'MaterialApp with jv locale and fallback delegate renders TextField, tooltip, and text selection without exceptions',
+      (tester) async {
+        final textController = TextEditingController(text: 'Kula sinau basa Jawa');
+        addTearDown(textController.dispose);
+
+        await tester.pumpWidget(
+          MaterialApp(
+            locale: const Locale('jv'),
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              ...AppLocalizationDelegates.delegates,
+            ],
+            home: Scaffold(
+              body: Column(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.info),
+                    tooltip: 'Katrangan',
+                    onPressed: () {},
+                  ),
+                  TextField(
+                    controller: textController,
+                    decoration: const InputDecoration(labelText: 'Tulis aksara'),
+                  ),
+                  const SelectableText('Teks pilihan krama'),
+                ],
+              ),
+            ),
+          ),
+        );
+
+        // Long press SelectableText to trigger text selection menu/toolbar
+        await tester.longPress(find.text('Teks pilihan krama'));
+        await tester.pumpAndSettle();
+
+        expect(tester.takeException(), isNull);
+      },
+    );
   });
 }
 

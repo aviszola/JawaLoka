@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
@@ -12,16 +13,18 @@ class HomeHeader extends StatelessWidget {
 
   const HomeHeader({super.key, this.onNavigateTab});
 
-  String _greetingText() {
+  String _greetingText(BuildContext context) {
+    final l10n = context.l10n;
     final hour = DateTime.now().hour;
-    if (hour < 11) return 'Sugeng enjang';
-    if (hour < 15) return 'Sugeng siang';
-    if (hour < 18) return 'Sugeng sonten';
-    return 'Sugeng dalu';
+    if (hour < 11) return l10n.homeGreetingMorning;
+    if (hour < 15) return l10n.homeGreetingAfternoon;
+    if (hour < 18) return l10n.homeGreetingEvening;
+    return l10n.homeGreetingNight;
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       color: AppColors.amber,
@@ -46,7 +49,7 @@ class HomeHeader extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          _greetingText(),
+                          _greetingText(context),
                           style: const TextStyle(
                             color: AppColors.ink,
                             fontSize: 14,
@@ -55,7 +58,7 @@ class HomeHeader extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          'Halo, ${MockUserStats.userName}!',
+                          l10n.homeGreetingUser(MockUserStats.userName),
                           style: const TextStyle(
                             color: AppColors.ink,
                             fontSize: 22,
@@ -91,7 +94,7 @@ class HomeHeader extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '${MockUserStats.streakDays} Dina',
+                          l10n.streakDays(MockUserStats.streakDays),
                           style: const TextStyle(
                             color: AppColors.ink,
                             fontSize: 14,
@@ -147,7 +150,7 @@ class HomeHeader extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              'L${MockUserStats.userLevel}',
+                              l10n.homeLevelPill(MockUserStats.userLevel),
                               style: const TextStyle(
                                 color: AppColors.amber,
                                 fontSize: 12,
