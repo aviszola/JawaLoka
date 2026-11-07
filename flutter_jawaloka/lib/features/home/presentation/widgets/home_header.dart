@@ -3,6 +3,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../profile/presentation/widgets/blangkon_painter.dart';
 import '../../../profile/presentation/widgets/javanese_avatar_widget.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
@@ -58,7 +59,10 @@ class HomeHeader extends StatelessWidget {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          l10n.homeGreetingUser(MockUserStats.userName),
+                          l10n.homeGreetingUser(
+                            ProfileScope.maybeOf(context)?.displayName ??
+                                MockUserStats.userName,
+                          ),
                           style: const TextStyle(
                             color: AppColors.ink,
                             fontSize: 22,
@@ -133,9 +137,11 @@ class HomeHeader extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: const Center(
+                          child: Center(
                             child: JavaneseAvatarWidget(
-                              blangkonType: BlangkonType.yogyakarta,
+                              blangkonType: ProfileScope.maybeOf(context)
+                                      ?.equippedBlangkon ??
+                                  BlangkonType.yogyakarta,
                               size: 38,
                             ),
                           ),

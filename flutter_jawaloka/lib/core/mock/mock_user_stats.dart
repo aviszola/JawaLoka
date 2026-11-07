@@ -4,6 +4,7 @@
 class MockUserStats {
   MockUserStats._();
 
+  // DATA CONTOH: nama bawaan "Dimas" dipakai sampai ada backend
   static const String userName = 'Dimas';
   static const int userLevel = 4;
   static const int streakDays = 5;

@@ -16,7 +16,6 @@ class QuizResult {
   final int maxScore;
   final int correctCount;
   final int totalQuestions;
-  final String timeTaken; // e.g. "2:34"
   final int accuracy; // percentage 0–100
   final bool isStreakAchievedToday;
   final int currentStreak;
@@ -26,7 +25,6 @@ class QuizResult {
     this.maxScore = 100,
     this.correctCount = 8,
     this.totalQuestions = 10,
-    required this.timeTaken,
     required this.accuracy,
     this.isStreakAchievedToday = true,
     this.currentStreak = MockUserStats.streakDays,
@@ -178,7 +176,6 @@ class QuizResultScreen extends StatefulWidget {
       maxScore: 100,
       correctCount: 8,
       totalQuestions: 10,
-      timeTaken: '1:45',
       accuracy: 80,
       isStreakAchievedToday: true,
       currentStreak: MockUserStats.streakDays,
@@ -431,8 +428,6 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           // Stats rows
           _buildStatRow(context.l10n.quizResultCorrectAnswers, '${widget.result.correctCount}/${widget.result.totalQuestions}',
               AppColors.amberDark),
-          const SizedBox(height: 10),
-          _buildStatRow(context.l10n.quizResultTime, widget.result.timeTaken, AppColors.ink),
           const SizedBox(height: 10),
           _buildStatRow(context.l10n.quizResultAccuracy, '${widget.result.accuracy}%', AppColors.success),
 

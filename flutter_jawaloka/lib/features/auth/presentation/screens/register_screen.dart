@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/auth_banner.dart';
@@ -89,6 +90,8 @@ class _RegisterScreenState extends State<RegisterScreen>
       return;
     }
 
+    final trimmedName = _nameCtrl.text.trim();
+
     setState(() => _isLoading = true);
     HapticFeedback.mediumImpact();
 
@@ -97,6 +100,9 @@ class _RegisterScreenState extends State<RegisterScreen>
 
     if (!mounted) return;
     setState(() => _isLoading = false);
+
+    await ProfileScope.maybeOf(context)?.setDisplayName(trimmedName);
+    if (!mounted) return;
 
     // Navigasi ke beranda
     Navigator.of(context).pushReplacementNamed(AppRouter.home);

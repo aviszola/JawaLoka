@@ -93,7 +93,7 @@ class HomeQuickLearnSection extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 100,
+          height: 112,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
@@ -105,7 +105,7 @@ class HomeQuickLearnSection extends StatelessWidget {
                 onTap: it.onTap,
                 child: Container(
                   width: 120,
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     borderRadius: BorderRadius.circular(16),
@@ -123,14 +123,14 @@ class HomeQuickLearnSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: it.bgColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Icon(it.icon, size: 18, color: it.iconColor),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 6),
                       Text(
                         it.title,
                         style: const TextStyle(

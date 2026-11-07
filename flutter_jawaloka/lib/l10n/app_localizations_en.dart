@@ -342,7 +342,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learnModuleTranslatorLabel => 'Ready to Use';
 
   @override
-  String get learnModuleEtiquetteTitle => 'Language Etiquette';
+  String get learnModuleEtiquetteTitle => 'Language Usage';
 
   @override
   String get learnModuleEtiquetteSubtitle =>
@@ -365,7 +365,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get learnTagAksara => 'Script';
 
   @override
-  String get learnTagKamus => 'Dictionary';
+  String get learnTagKamus => 'Vocabulary';
 
   @override
   String get learnTagUtilitas => 'Utility';
@@ -658,6 +658,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get blangkonMasteryAksara => 'Script completed';
 
   @override
+  String get blangkonDescYogyakarta => 'Classic, pronounced rounded mondolan';
+
+  @override
+  String get blangkonDescSurakarta => 'Elegant, flat mondolan';
+
+  @override
+  String get blangkonDescBanyumas => 'Bold, distinctive Banyumasan pattern';
+
+  @override
+  String get blangkonDescKedu => 'Simple Bagelen Kedu style';
+
+  @override
+  String get blangkonDescCirebon => 'Dynamic coastal style with authority';
+
+  @override
+  String get blangkonDescPusaka =>
+      'Traditional masterpiece with gold ornamentation';
+
+  @override
   String get levelUpMicroTag => 'JAWALOKA ACHIEVEMENT';
 
   @override
@@ -706,6 +725,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAccountRow => 'Account';
 
   @override
+  String get settingsAccountDialogTitle => 'Account Details';
+
+  @override
+  String get settingsAccountNameLabel => 'Username';
+
+  @override
+  String get settingsAccountEmailLabel => 'Email';
+
+  @override
   String get translatorTitle => 'Translator';
 
   @override
@@ -740,6 +768,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get translatorClearTooltip => 'Clear';
+
+  @override
+  String get translatorMockUnavailable => 'Not available in demo version';
 
   @override
   String get aksaraDetailTitle => 'Javanese Script';
@@ -837,4 +868,190 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get vocabDetailFavoriteMarked => 'Favorited';
+
+  @override
+  String get quizMilestoneNode => 'Milestone Node';
+
+  @override
+  String quizNodeLockedToast(String topic) {
+    return '$topic is still locked. Complete previous topics first!';
+  }
+
+  @override
+  String quizUnitTitle(int unit, String level) {
+    return 'Unit $unit · $level Level';
+  }
+
+  @override
+  String get quizTopicSalamDesc =>
+      'Learn polite Javanese greetings and etiquette.';
+
+  @override
+  String get quizTopicPamitDesc =>
+      'Polite everyday farewells and parting expressions.';
+
+  @override
+  String get quizTopicLencanaDesc =>
+      'Milestone test for greetings and etiquette.';
+
+  @override
+  String get quizTopicTanyaKabarDesc =>
+      'Asking how someone is doing in Javanese.';
+
+  @override
+  String get quizTopicPerkenalanDesc =>
+      'Introducing yourself with proper etiquette.';
+
+  @override
+  String get quizTopicKeluargaDesc =>
+      'Family members and close relatives in Javanese.';
+
+  @override
+  String get quizTopicRumahDesc =>
+      'Traditional Javanese house parts and furnishings.';
+
+  @override
+  String get quizTopicKerabatDesc =>
+      'Genealogy and extended family terms in Javanese culture.';
+
+  @override
+  String get quizQuestionPromptWhatGlyph => 'What character is this?';
+
+  @override
+  String get quizQuestionPromptPronunciation =>
+      'Choose the pronunciation for this character:';
+
+  @override
+  String quizQuestionPromptHowToRead(String glyph) {
+    return 'How is character \"$glyph\" read?';
+  }
+
+  @override
+  String get quizQuestionPromptWhichPronunciation =>
+      'Which is the pronunciation for the character below?';
+
+  @override
+  String get quizSkip => 'Skip';
+
+  @override
+  String get quizCloseSemantics => 'Close';
+
+  @override
+  String get quizExitDialogTitle => 'Exit Quiz?';
+
+  @override
+  String get quizExitDialogMessage =>
+      'Current quiz progress will not be saved.';
+
+  @override
+  String get quizExitDialogConfirm => 'Exit';
+
+  @override
+  String get quizExitDialogCancel => 'Continue';
+
+  @override
+  String get learnUnggahSheetTitle => 'Language Usage';
+
+  @override
+  String get learnUnggahSheetSubtitle =>
+      'Levels of Javanese speech according to etiquette and politeness.';
+
+  @override
+  String get learnUnggahNgokoLuguTitle => '1. Ngoko Lugu';
+
+  @override
+  String get learnUnggahNgokoLuguDesc =>
+      'Used for peers, younger siblings, or people who are very close.';
+
+  @override
+  String get learnUnggahNgokoAlusTitle => '2. Ngoko Alus';
+
+  @override
+  String get learnUnggahNgokoAlusDesc =>
+      'Ngoko speech mixed with krama inggil words to show respect to the listener.';
+
+  @override
+  String get learnUnggahKramaLuguTitle => '3. Krama Lugu / Madya';
+
+  @override
+  String get learnUnggahKramaLuguDesc =>
+      'Polite formal speech for people who are not yet well acquainted or coworkers.';
+
+  @override
+  String get learnUnggahKramaInggilTitle => '4. Krama Inggil / Alus';
+
+  @override
+  String get learnUnggahKramaInggilDesc =>
+      'The highest level of politeness, used when addressing parents, teachers, or elders.';
+
+  @override
+  String learnUnggahExamplePrefix(String example) {
+    return 'Example: \"$example\"';
+  }
+
+  @override
+  String get learnPeribahasaSheetTitle => 'Javanese Proverbs & Idioms';
+
+  @override
+  String get learnPeribahasaSheetSubtitle =>
+      'Wise proverbs and sayings inherited from Javanese ancestral culture.';
+
+  @override
+  String get learnProverb1Meaning =>
+      'A person\'s honor lies in their words, and physical dignity in their attire.';
+
+  @override
+  String get learnProverb2Meaning =>
+      'Life should be beneficial and illuminate the lives of those around us.';
+
+  @override
+  String get learnProverb3Meaning =>
+      'Every ambition and success requires effort, sacrifice, and cost.';
+
+  @override
+  String get learnProverb4Meaning =>
+      'Upholding the honor of parents and family while keeping flaws private.';
+
+  @override
+  String get learnProverb5Meaning =>
+      'Unity brings strength and peace, division leads to ruin.';
+
+  @override
+  String get learnDailyWordOmah => 'House';
+
+  @override
+  String get learnDailyWordBanyu => 'Water';
+
+  @override
+  String get learnDailyWordSegara => 'Sea';
+
+  @override
+  String get learnDailyWordLemah => 'Earth / Ground';
+
+  @override
+  String get learnDailyWordLangit => 'Sky';
+
+  @override
+  String get vocabDetailLangId => 'Indonesian';
+
+  @override
+  String get vocabDetailLangEn => 'English';
+
+  @override
+  String get vocabDetailLangJv => 'Javanese (Ngoko)';
+
+  @override
+  String get vocabDetailSentence1Translation => 'My house is in the village';
+
+  @override
+  String get vocabDetailSentence2Translation => 'This house is very big';
+
+  @override
+  String get aksaraDetailExampleHaraMeaning => 'Branch';
+
+  @override
+  String get aksaraDetailExampleHawuMeaning => 'Stove';
+
+  @override
+  String get aksaraDetailExampleHasthaMeaning => 'Eight';
 }

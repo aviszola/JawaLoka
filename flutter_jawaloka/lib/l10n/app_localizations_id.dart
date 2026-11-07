@@ -363,7 +363,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get learnTagAksara => 'Aksara';
 
   @override
-  String get learnTagKamus => 'Kamus';
+  String get learnTagKamus => 'Kosa Kata';
 
   @override
   String get learnTagUtilitas => 'Utilitas';
@@ -657,6 +657,24 @@ class AppLocalizationsId extends AppLocalizations {
   String get blangkonMasteryAksara => 'Selesai aksara';
 
   @override
+  String get blangkonDescYogyakarta => 'Klasik, mondolan bulat menonjol';
+
+  @override
+  String get blangkonDescSurakarta => 'Anggun, mondolan trepes pipih';
+
+  @override
+  String get blangkonDescBanyumas => 'Tegas, corak khas Banyumasan';
+
+  @override
+  String get blangkonDescKedu => 'Gaya Bagelen Kedu bersahaja';
+
+  @override
+  String get blangkonDescCirebon => 'Pesisiran dinamis berwibawa';
+
+  @override
+  String get blangkonDescPusaka => 'Mahakarya tradisi berornamen emas';
+
+  @override
   String get levelUpMicroTag => 'PENCAPAIAN JAWALOKA';
 
   @override
@@ -705,6 +723,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsAccountRow => 'Akun';
 
   @override
+  String get settingsAccountDialogTitle => 'Detail Akun';
+
+  @override
+  String get settingsAccountNameLabel => 'Nama Pengguna';
+
+  @override
+  String get settingsAccountEmailLabel => 'Email';
+
+  @override
   String get translatorTitle => 'Penerjemah';
 
   @override
@@ -740,6 +767,9 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get translatorClearTooltip => 'Hapus';
+
+  @override
+  String get translatorMockUnavailable => 'Belum tersedia pada versi contoh';
 
   @override
   String get aksaraDetailTitle => 'Aksara Jawa';
@@ -836,4 +866,190 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get vocabDetailFavoriteMarked => 'Ditandai Favorit';
+
+  @override
+  String get quizMilestoneNode => 'Node Tonggak';
+
+  @override
+  String quizNodeLockedToast(String topic) {
+    return 'Materi $topic masih terkunci. Selesaikan materi sebelumnya!';
+  }
+
+  @override
+  String quizUnitTitle(int unit, String level) {
+    return 'Unit $unit · Tingkat $level';
+  }
+
+  @override
+  String get quizTopicSalamDesc =>
+      'Pelajari salam dan tegur sapa sopan santun bahasa Jawa.';
+
+  @override
+  String get quizTopicPamitDesc =>
+      'Ungkapan pamitan dan perpisahan sehari-hari yang santun.';
+
+  @override
+  String get quizTopicLencanaDesc =>
+      'Uji pemahaman tonggak materi sapaan dan salam.';
+
+  @override
+  String get quizTopicTanyaKabarDesc =>
+      'Menanyakan keadaan dan kabar orang lain dalam bahasa Jawa.';
+
+  @override
+  String get quizTopicPerkenalanDesc =>
+      'Mengenalkan diri dengan unggah-ungguh yang tepat.';
+
+  @override
+  String get quizTopicKeluargaDesc =>
+      'Sebutan anggota keluarga dan kerabat terdekat.';
+
+  @override
+  String get quizTopicRumahDesc =>
+      'Bagian-bagian rumah tradisional dan perlengkapan.';
+
+  @override
+  String get quizTopicKerabatDesc =>
+      'Tingkatan silsilah keluarga besar masyarakat Jawa.';
+
+  @override
+  String get quizQuestionPromptWhatGlyph => 'Aksara apa ini?';
+
+  @override
+  String get quizQuestionPromptPronunciation =>
+      'Pilih pelafalan untuk aksara berikut:';
+
+  @override
+  String quizQuestionPromptHowToRead(String glyph) {
+    return 'Aksara \"$glyph\" dibaca sebagai apa?';
+  }
+
+  @override
+  String get quizQuestionPromptWhichPronunciation =>
+      'Manakah pelafalan untuk aksara di bawah?';
+
+  @override
+  String get quizSkip => 'Lewati';
+
+  @override
+  String get quizCloseSemantics => 'Tutup';
+
+  @override
+  String get quizExitDialogTitle => 'Keluar dari Kuis?';
+
+  @override
+  String get quizExitDialogMessage =>
+      'Progres kuis saat ini tidak akan disimpan.';
+
+  @override
+  String get quizExitDialogConfirm => 'Keluar';
+
+  @override
+  String get quizExitDialogCancel => 'Lanjutkan';
+
+  @override
+  String get learnUnggahSheetTitle => 'Penggunaan Bahasa';
+
+  @override
+  String get learnUnggahSheetSubtitle =>
+      'Tingkatan ragam bahasa Jawa menurut tata krama dan unggah-ungguh.';
+
+  @override
+  String get learnUnggahNgokoLuguTitle => '1. Basa Ngoko Lugu';
+
+  @override
+  String get learnUnggahNgokoLuguDesc =>
+      'Digunakan untuk teman sebaya, saudara muda, atau orang yang sudah sangat akrab.';
+
+  @override
+  String get learnUnggahNgokoAlusTitle => '2. Basa Ngoko Alus';
+
+  @override
+  String get learnUnggahNgokoAlusDesc =>
+      'Bahasa ngoko yang bercampur kata krama inggil untuk menghormati lawan bicara.';
+
+  @override
+  String get learnUnggahKramaLuguTitle => '3. Basa Krama Lugu / Madya';
+
+  @override
+  String get learnUnggahKramaLuguDesc =>
+      'Bahasa krama sopan umum untuk orang yang belum begitu dikenal atau rekan kerja.';
+
+  @override
+  String get learnUnggahKramaInggilTitle => '4. Basa Krama Inggil / Alus';
+
+  @override
+  String get learnUnggahKramaInggilDesc =>
+      'Tingkatan paling luhur, digunakan kepada orang tua, guru, atau sesepuh.';
+
+  @override
+  String learnUnggahExamplePrefix(String example) {
+    return 'Contoh: \"$example\"';
+  }
+
+  @override
+  String get learnPeribahasaSheetTitle => 'Peribahasa & Saloka Jawa';
+
+  @override
+  String get learnPeribahasaSheetSubtitle =>
+      'Pepatah dan ungkapan luhur warisan leluhur kebudayaan Jawa.';
+
+  @override
+  String get learnProverb1Meaning =>
+      'Kehormatan seseorang terletak pada tutur katanya, dan kehormatan tubuh terletak pada pakaiannya.';
+
+  @override
+  String get learnProverb2Meaning =>
+      'Hidup itu hendaknya memberi manfaat dan menerangi orang lain di sekitarnya.';
+
+  @override
+  String get learnProverb3Meaning =>
+      'Setiap cita-cita dan kesuksesan memerlukan usaha, pengorbanan, dan biaya.';
+
+  @override
+  String get learnProverb4Meaning =>
+      'Menjunjung tinggi kehormatan orang tua dan keluarga serta menutup aib atau keburukan.';
+
+  @override
+  String get learnProverb5Meaning =>
+      'Kerukunan menciptakan ketenteraman dan kekuatan, perpecahan membawa kehancuran.';
+
+  @override
+  String get learnDailyWordOmah => 'Rumah';
+
+  @override
+  String get learnDailyWordBanyu => 'Air';
+
+  @override
+  String get learnDailyWordSegara => 'Laut';
+
+  @override
+  String get learnDailyWordLemah => 'Tanah';
+
+  @override
+  String get learnDailyWordLangit => 'Langit';
+
+  @override
+  String get vocabDetailLangId => 'Bahasa Indonesia';
+
+  @override
+  String get vocabDetailLangEn => 'Bahasa Inggris';
+
+  @override
+  String get vocabDetailLangJv => 'Bahasa Jawa (Ngoko)';
+
+  @override
+  String get vocabDetailSentence1Translation => 'Rumahku ada di desa';
+
+  @override
+  String get vocabDetailSentence2Translation => 'Rumah ini sangat besar';
+
+  @override
+  String get aksaraDetailExampleHaraMeaning => 'Cabang';
+
+  @override
+  String get aksaraDetailExampleHawuMeaning => 'Tungku';
+
+  @override
+  String get aksaraDetailExampleHasthaMeaning => 'Delapan';
 }

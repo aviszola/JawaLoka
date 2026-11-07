@@ -751,7 +751,7 @@ abstract class AppLocalizations {
   /// Tag kategori modul kamus
   ///
   /// In id, this message translates to:
-  /// **'Kamus'**
+  /// **'Kosa Kata'**
   String get learnTagKamus;
 
   /// Tag kategori modul utilitas
@@ -1268,6 +1268,42 @@ abstract class AppLocalizations {
   /// **'Selesai aksara'**
   String get blangkonMasteryAksara;
 
+  /// Deskripsi ciri khas blangkon gaya Yogyakarta
+  ///
+  /// In id, this message translates to:
+  /// **'Klasik, mondolan bulat menonjol'**
+  String get blangkonDescYogyakarta;
+
+  /// Deskripsi ciri khas blangkon gaya Surakarta
+  ///
+  /// In id, this message translates to:
+  /// **'Anggun, mondolan trepes pipih'**
+  String get blangkonDescSurakarta;
+
+  /// Deskripsi ciri khas blangkon gaya Banyumas
+  ///
+  /// In id, this message translates to:
+  /// **'Tegas, corak khas Banyumasan'**
+  String get blangkonDescBanyumas;
+
+  /// Deskripsi ciri khas blangkon gaya Kedu
+  ///
+  /// In id, this message translates to:
+  /// **'Gaya Bagelen Kedu bersahaja'**
+  String get blangkonDescKedu;
+
+  /// Deskripsi ciri khas blangkon gaya Cirebon
+  ///
+  /// In id, this message translates to:
+  /// **'Pesisiran dinamis berwibawa'**
+  String get blangkonDescCirebon;
+
+  /// Deskripsi ciri khas blangkon gaya Pusaka
+  ///
+  /// In id, this message translates to:
+  /// **'Mahakarya tradisi berornamen emas'**
+  String get blangkonDescPusaka;
+
   /// Mikro tag perayaan naik level
   ///
   /// In id, this message translates to:
@@ -1358,6 +1394,24 @@ abstract class AppLocalizations {
   /// **'Akun'**
   String get settingsAccountRow;
 
+  /// Judul dialog detail akun
+  ///
+  /// In id, this message translates to:
+  /// **'Detail Akun'**
+  String get settingsAccountDialogTitle;
+
+  /// Label nama pengguna di dialog akun
+  ///
+  /// In id, this message translates to:
+  /// **'Nama Pengguna'**
+  String get settingsAccountNameLabel;
+
+  /// Label email di dialog akun
+  ///
+  /// In id, this message translates to:
+  /// **'Email'**
+  String get settingsAccountEmailLabel;
+
   /// Judul layar penerjemah
   ///
   /// In id, this message translates to:
@@ -1429,6 +1483,12 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Hapus'**
   String get translatorClearTooltip;
+
+  /// Pesan saat teks belum ada di kamus contoh penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'Belum tersedia pada versi contoh'**
+  String get translatorMockUnavailable;
 
   /// Judul layar detail aksara
   ///
@@ -1597,6 +1657,318 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Ditandai Favorit'**
   String get vocabDetailFavoriteMarked;
+
+  /// Label node tonggak pada peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Node Tonggak'**
+  String get quizMilestoneNode;
+
+  /// Pesan toast saat node kuis terkunci diketuk
+  ///
+  /// In id, this message translates to:
+  /// **'Materi {topic} masih terkunci. Selesaikan materi sebelumnya!'**
+  String quizNodeLockedToast(String topic);
+
+  /// Format judul unit kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Unit {unit} · Tingkat {level}'**
+  String quizUnitTitle(int unit, String level);
+
+  /// Deskripsi topik kuis Salam
+  ///
+  /// In id, this message translates to:
+  /// **'Pelajari salam dan tegur sapa sopan santun bahasa Jawa.'**
+  String get quizTopicSalamDesc;
+
+  /// Deskripsi topik kuis Pamit
+  ///
+  /// In id, this message translates to:
+  /// **'Ungkapan pamitan dan perpisahan sehari-hari yang santun.'**
+  String get quizTopicPamitDesc;
+
+  /// Deskripsi topik kuis Lencana
+  ///
+  /// In id, this message translates to:
+  /// **'Uji pemahaman tonggak materi sapaan dan salam.'**
+  String get quizTopicLencanaDesc;
+
+  /// Deskripsi topik kuis Tanya Kabar
+  ///
+  /// In id, this message translates to:
+  /// **'Menanyakan keadaan dan kabar orang lain dalam bahasa Jawa.'**
+  String get quizTopicTanyaKabarDesc;
+
+  /// Deskripsi topik kuis Perkenalan
+  ///
+  /// In id, this message translates to:
+  /// **'Mengenalkan diri dengan unggah-ungguh yang tepat.'**
+  String get quizTopicPerkenalanDesc;
+
+  /// Deskripsi topik kuis Keluarga
+  ///
+  /// In id, this message translates to:
+  /// **'Sebutan anggota keluarga dan kerabat terdekat.'**
+  String get quizTopicKeluargaDesc;
+
+  /// Deskripsi topik kuis Rumah
+  ///
+  /// In id, this message translates to:
+  /// **'Bagian-bagian rumah tradisional dan perlengkapan.'**
+  String get quizTopicRumahDesc;
+
+  /// Deskripsi topik kuis Kerabat
+  ///
+  /// In id, this message translates to:
+  /// **'Tingkatan silsilah keluarga besar masyarakat Jawa.'**
+  String get quizTopicKerabatDesc;
+
+  /// Pertanyaan kuis mengidentifikasi aksara
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara apa ini?'**
+  String get quizQuestionPromptWhatGlyph;
+
+  /// Pertanyaan kuis memilih pelafalan aksara
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih pelafalan untuk aksara berikut:'**
+  String get quizQuestionPromptPronunciation;
+
+  /// Pertanyaan kuis bagaimana cara membaca aksara
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara \"{glyph}\" dibaca sebagai apa?'**
+  String quizQuestionPromptHowToRead(String glyph);
+
+  /// Pertanyaan kuis pelafalan aksara di bawah
+  ///
+  /// In id, this message translates to:
+  /// **'Manakah pelafalan untuk aksara di bawah?'**
+  String get quizQuestionPromptWhichPronunciation;
+
+  /// Tombol lewati pertanyaan kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Lewati'**
+  String get quizSkip;
+
+  /// Semantik tombol tutup kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Tutup'**
+  String get quizCloseSemantics;
+
+  /// Judul dialog keluar kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Keluar dari Kuis?'**
+  String get quizExitDialogTitle;
+
+  /// Pesan peringatan dialog keluar kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Progres kuis saat ini tidak akan disimpan.'**
+  String get quizExitDialogMessage;
+
+  /// Tombol konfirmasi keluar kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Keluar'**
+  String get quizExitDialogConfirm;
+
+  /// Tombol batal keluar kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get quizExitDialogCancel;
+
+  /// Judul bottom sheet penggunaan bahasa dan unggah-ungguh
+  ///
+  /// In id, this message translates to:
+  /// **'Penggunaan Bahasa'**
+  String get learnUnggahSheetTitle;
+
+  /// Subjudul bottom sheet penggunaan bahasa dan unggah-ungguh
+  ///
+  /// In id, this message translates to:
+  /// **'Tingkatan ragam bahasa Jawa menurut tata krama dan unggah-ungguh.'**
+  String get learnUnggahSheetSubtitle;
+
+  /// Judul kartu tingkatan bahasa ngoko lugu
+  ///
+  /// In id, this message translates to:
+  /// **'1. Basa Ngoko Lugu'**
+  String get learnUnggahNgokoLuguTitle;
+
+  /// Deskripsi penggunaan bahasa ngoko lugu
+  ///
+  /// In id, this message translates to:
+  /// **'Digunakan untuk teman sebaya, saudara muda, atau orang yang sudah sangat akrab.'**
+  String get learnUnggahNgokoLuguDesc;
+
+  /// Judul kartu tingkatan bahasa ngoko alus
+  ///
+  /// In id, this message translates to:
+  /// **'2. Basa Ngoko Alus'**
+  String get learnUnggahNgokoAlusTitle;
+
+  /// Deskripsi penggunaan bahasa ngoko alus
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa ngoko yang bercampur kata krama inggil untuk menghormati lawan bicara.'**
+  String get learnUnggahNgokoAlusDesc;
+
+  /// Judul kartu tingkatan bahasa krama lugu atau madya
+  ///
+  /// In id, this message translates to:
+  /// **'3. Basa Krama Lugu / Madya'**
+  String get learnUnggahKramaLuguTitle;
+
+  /// Deskripsi penggunaan bahasa krama lugu
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa krama sopan umum untuk orang yang belum begitu dikenal atau rekan kerja.'**
+  String get learnUnggahKramaLuguDesc;
+
+  /// Judul kartu tingkatan bahasa krama inggil atau alus
+  ///
+  /// In id, this message translates to:
+  /// **'4. Basa Krama Inggil / Alus'**
+  String get learnUnggahKramaInggilTitle;
+
+  /// Deskripsi penggunaan bahasa krama inggil
+  ///
+  /// In id, this message translates to:
+  /// **'Tingkatan paling luhur, digunakan kepada orang tua, guru, atau sesepuh.'**
+  String get learnUnggahKramaInggilDesc;
+
+  /// Awalan contoh kalimat pada unggah-ungguh
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh: \"{example}\"'**
+  String learnUnggahExamplePrefix(String example);
+
+  /// Judul bottom sheet peribahasa dan saloka Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Peribahasa & Saloka Jawa'**
+  String get learnPeribahasaSheetTitle;
+
+  /// Subjudul bottom sheet peribahasa dan saloka Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Pepatah dan ungkapan luhur warisan leluhur kebudayaan Jawa.'**
+  String get learnPeribahasaSheetSubtitle;
+
+  /// Arti peribahasa Ajining dhiri ana ing lathi
+  ///
+  /// In id, this message translates to:
+  /// **'Kehormatan seseorang terletak pada tutur katanya, dan kehormatan tubuh terletak pada pakaiannya.'**
+  String get learnProverb1Meaning;
+
+  /// Arti peribahasa Urip iku urup
+  ///
+  /// In id, this message translates to:
+  /// **'Hidup itu hendaknya memberi manfaat dan menerangi orang lain di sekitarnya.'**
+  String get learnProverb2Meaning;
+
+  /// Arti peribahasa Jer basuki mawa beya
+  ///
+  /// In id, this message translates to:
+  /// **'Setiap cita-cita dan kesuksesan memerlukan usaha, pengorbanan, dan biaya.'**
+  String get learnProverb3Meaning;
+
+  /// Arti peribahasa Mikul dhuwur mendhem jero
+  ///
+  /// In id, this message translates to:
+  /// **'Menjunjung tinggi kehormatan orang tua dan keluarga serta menutup aib atau keburukan.'**
+  String get learnProverb4Meaning;
+
+  /// Arti peribahasa Rukun agawe santosa, crah agawe bubrah
+  ///
+  /// In id, this message translates to:
+  /// **'Kerukunan menciptakan ketenteraman dan kekuatan, perpecahan membawa kehancuran.'**
+  String get learnProverb5Meaning;
+
+  /// Arti kata harian Omah
+  ///
+  /// In id, this message translates to:
+  /// **'Rumah'**
+  String get learnDailyWordOmah;
+
+  /// Arti kata harian Banyu
+  ///
+  /// In id, this message translates to:
+  /// **'Air'**
+  String get learnDailyWordBanyu;
+
+  /// Arti kata harian Segara
+  ///
+  /// In id, this message translates to:
+  /// **'Laut'**
+  String get learnDailyWordSegara;
+
+  /// Arti kata harian Lemah
+  ///
+  /// In id, this message translates to:
+  /// **'Tanah'**
+  String get learnDailyWordLemah;
+
+  /// Arti kata harian Langit
+  ///
+  /// In id, this message translates to:
+  /// **'Langit'**
+  String get learnDailyWordLangit;
+
+  /// Label bahasa Indonesia pada kartu makna
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa Indonesia'**
+  String get vocabDetailLangId;
+
+  /// Label bahasa Inggris pada kartu makna
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa Inggris'**
+  String get vocabDetailLangEn;
+
+  /// Label bahasa Jawa pada kartu makna
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa Jawa (Ngoko)'**
+  String get vocabDetailLangJv;
+
+  /// Terjemahan contoh kalimat 1 detail kosakata
+  ///
+  /// In id, this message translates to:
+  /// **'Rumahku ada di desa'**
+  String get vocabDetailSentence1Translation;
+
+  /// Terjemahan contoh kalimat 2 detail kosakata
+  ///
+  /// In id, this message translates to:
+  /// **'Rumah ini sangat besar'**
+  String get vocabDetailSentence2Translation;
+
+  /// Arti contoh kata Hara pada aksara Ha
+  ///
+  /// In id, this message translates to:
+  /// **'Cabang'**
+  String get aksaraDetailExampleHaraMeaning;
+
+  /// Arti contoh kata Hawu pada aksara Ha
+  ///
+  /// In id, this message translates to:
+  /// **'Tungku'**
+  String get aksaraDetailExampleHawuMeaning;
+
+  /// Arti contoh kata Hastha pada aksara Ha
+  ///
+  /// In id, this message translates to:
+  /// **'Delapan'**
+  String get aksaraDetailExampleHasthaMeaning;
 }
 
 class _AppLocalizationsDelegate

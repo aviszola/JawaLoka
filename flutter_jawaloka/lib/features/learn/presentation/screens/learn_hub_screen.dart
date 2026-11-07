@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../data/vocab_word.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/module_card.dart';
-import 'vocabulary_detail_screen.dart';
 import 'aksara_detail_screen.dart';
 import '../../../translator/presentation/screens/translator_screen.dart';
 
@@ -28,38 +28,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
   late final AnimationController _greetingCtrl;
   late final Animation<double> _greetingFade;
 
-  final List<_DailyWord> _dailyWords = const [
-    _DailyWord(
-      javanese: 'Omah',
-      aksara: 'ꦲꦺꦴꦩꦃ',
-      indonesian: 'Rumah',
-      level: 'Ngoko',
-    ),
-    _DailyWord(
-      javanese: 'Banyu',
-      aksara: 'ꦧꦤꦾꦸ',
-      indonesian: 'Air',
-      level: 'Ngoko',
-    ),
-    _DailyWord(
-      javanese: 'Segara',
-      aksara: 'ꦱꦼꦒꦫ',
-      indonesian: 'Laut',
-      level: 'Krama',
-    ),
-    _DailyWord(
-      javanese: 'Lemah',
-      aksara: 'ꦭꦼꦩꦃ',
-      indonesian: 'Tanah',
-      level: 'Ngoko',
-    ),
-    _DailyWord(
-      javanese: 'Langit',
-      aksara: 'ꦭꦁꦒꦶꦠ꧀',
-      indonesian: 'Langit',
-      level: 'Ngoko',
-    ),
-  ];
+  final List<VocabWord> _dailyWords = VocabWord.sampleWords;
 
   List<ModuleCardData> _getModules(BuildContext context) {
     final l10n = context.l10n;
@@ -149,9 +118,10 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         MaterialPageRoute(builder: (_) => const AksaraDetailScreen()),
       );
     } else if (data.id == 'kosakata') {
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(builder: (_) => const VocabularyDetailScreen()),
+        AppRouter.vocabularyDetail,
+        arguments: 0,
       );
     } else if (data.id == 'penerjemah') {
       Navigator.push(
@@ -173,7 +143,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (context) {
+      builder: (sheetContext) {
+        final sheetL10n = sheetContext.l10n;
         return DraggableScrollableSheet(
           initialChildSize: 0.7,
           minChildSize: 0.4,
@@ -196,51 +167,47 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'Penggunaan Bahasa',
-                    style: TextStyle(
+                  Text(
+                    sheetL10n.learnUnggahSheetTitle,
+                    style: const TextStyle(
                       color: AppColors.ink,
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: 6),
-                  const Text(
-                    'Tingkatan ragam bahasa Jawa miturut trapsila lan unggah-ungguh.',
-                    style: TextStyle(
+                  Text(
+                    sheetL10n.learnUnggahSheetSubtitle,
+                    style: const TextStyle(
                       color: AppColors.inkSecondary,
                       fontSize: 14,
                     ),
                   ),
                   const SizedBox(height: 20),
                   _buildUnggahCard(
-                    title: '1. Basa Ngoko Lugu',
-                    desc:
-                        'Dipigunakake kanggo kanca sebaya, sedulur nom, utawa wong sing wis raket banget.',
+                    title: sheetL10n.learnUnggahNgokoLuguTitle,
+                    desc: sheetL10n.learnUnggahNgokoLuguDesc,
                     example: 'Kowe arep mangan apa?',
                     color: AppColors.pastelSand,
                   ),
                   const SizedBox(height: 12),
                   _buildUnggahCard(
-                    title: '2. Basa Ngoko Alus',
-                    desc:
-                        'Basa ngoko sing kacampuran tembung krama inggil kanggo ngurmati wong sing diajak guneman.',
+                    title: sheetL10n.learnUnggahNgokoAlusTitle,
+                    desc: sheetL10n.learnUnggahNgokoAlusDesc,
                     example: 'Panjenengan apa wis dhahar?',
                     color: AppColors.pastelMint,
                   ),
                   const SizedBox(height: 12),
                   _buildUnggahCard(
-                    title: '3. Basa Krama Lugu / Madya',
-                    desc:
-                        'Basa krama sopan umum marang wong sing durung pati kenal utawa kanca kerja.',
+                    title: sheetL10n.learnUnggahKramaLuguTitle,
+                    desc: sheetL10n.learnUnggahKramaLuguDesc,
                     example: 'Kula nedha sekul goreng.',
                     color: AppColors.pastelLavender,
                   ),
                   const SizedBox(height: 12),
                   _buildUnggahCard(
-                    title: '4. Basa Krama Inggil / Alus',
-                    desc:
-                        'Tingkatan paling luhur, dipigunakake marang wong tuwa, guru, utawa pinisepuh.',
+                    title: sheetL10n.learnUnggahKramaInggilTitle,
+                    desc: sheetL10n.learnUnggahKramaInggilDesc,
                     example: 'Bapak saweg tindak dhateng kantor.',
                     color: AppColors.pastelBlush,
                   ),
@@ -294,7 +261,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(
-              'Tuladha: "$example"',
+              context.l10n.learnUnggahExamplePrefix(example),
               style: const TextStyle(
                 color: AppColors.ink,
                 fontSize: 12,
@@ -316,32 +283,28 @@ class _LearnHubScreenState extends State<LearnHubScreen>
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      builder: (context) {
+      builder: (sheetContext) {
+        final l10n = sheetContext.l10n;
         final proverbs = [
           {
             'jawa': 'Ajining dhiri ana ing lathi, ajining raga ana ing busana.',
-            'arti':
-                'Kehormatan seseorang terletak pada tutur katanya, dan kehormatan tubuh terletak pada pakaiannya.',
+            'arti': l10n.learnProverb1Meaning,
           },
           {
             'jawa': 'Urip iku urup.',
-            'arti':
-                'Hidup itu hendaknya memberi manfaat dan menerangi orang lain di sekitarnya.',
+            'arti': l10n.learnProverb2Meaning,
           },
           {
             'jawa': 'Jer basuki mawa beya.',
-            'arti':
-                'Setiap cita-cita dan kesuksesan memerlukan usaha, pengorbanan, dan biaya.',
+            'arti': l10n.learnProverb3Meaning,
           },
           {
             'jawa': 'Mikul dhuwur mendhem jero.',
-            'arti':
-                'Menjunjung tinggi kehormatan orang tua dan keluarga serta menutup aib atau keburukan.',
+            'arti': l10n.learnProverb4Meaning,
           },
           {
             'jawa': 'Rukun agawe santosa, crah agawe bubrah.',
-            'arti':
-                'Kerukunan menciptakan ketenteraman dan kekuatan, perpecahan membawa kehancuran.',
+            'arti': l10n.learnProverb5Meaning,
           },
         ];
 
@@ -367,18 +330,18 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const Text(
-                    'Peribahasa & Saloka Jawa',
-                    style: TextStyle(
+                  Text(
+                    l10n.learnPeribahasaSheetTitle,
+                    style: const TextStyle(
                       color: AppColors.ink,
                       fontSize: 18,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: 6),
-                  const Text(
-                    'Pepatah lan bebasan luhur warisan leluhur kabudayan Jawa.',
-                    style: TextStyle(
+                  Text(
+                    l10n.learnPeribahasaSheetSubtitle,
+                    style: const TextStyle(
                       color: AppColors.inkSecondary,
                       fontSize: 14,
                     ),
@@ -575,7 +538,11 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         label: l10n.learnTagKamus,
         color: AppColors.pastelSand,
         iconColor: AppColors.amberDark,
-        onTap: () => Navigator.pushNamed(context, AppRouter.vocabularyDetail),
+        onTap: () => Navigator.pushNamed(
+          context,
+          AppRouter.vocabularyDetail,
+          arguments: 0,
+        ),
       ),
       _QuickAction(
         icon: Icons.edit_note_rounded,
@@ -628,7 +595,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
   Widget _buildWordCarousel() {
     return SizedBox(
-      height: 130,
+      height: 172,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
@@ -636,18 +603,17 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         itemBuilder: (context, i) {
           final w = _dailyWords[i];
           return GestureDetector(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (_) => VocabularyDetailScreen(word: w.javanese),
-              ),
+              AppRouter.vocabularyDetail,
+              arguments: i,
             ),
             child: Container(
-              width: 140,
+              width: 148,
               margin: EdgeInsets.only(
                 right: i < _dailyWords.length - 1 ? 12 : 0,
               ),
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
                 color: AppColors.surface,
                 borderRadius: BorderRadius.circular(18),
@@ -702,11 +668,13 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   ),
                   const Spacer(),
                   Text(
-                    w.indonesian,
+                    w.meaning(context),
                     style: const TextStyle(
                       color: AppColors.inkSecondary,
                       fontSize: 12,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
@@ -721,19 +689,6 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 // ─────────────────────────────────────────────────────────────────────────────
 // Supporting data classes
 // ─────────────────────────────────────────────────────────────────────────────
-
-class _DailyWord {
-  final String javanese;
-  final String aksara;
-  final String indonesian;
-  final String level;
-  const _DailyWord({
-    required this.javanese,
-    required this.aksara,
-    required this.indonesian,
-    required this.level,
-  });
-}
 
 class _QuickAction {
   final IconData icon;

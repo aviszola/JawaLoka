@@ -104,7 +104,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       'Sugeng enjing': 'Selamat pagi',
       'Kula boten mangertos': 'Saya tidak mengerti',
     };
-    return map[text] ?? 'Terjemahan: $text';
+    return map[text] ?? context.l10n.translatorMockUnavailable;
   }
 
   Future<void> _swapLanguages() async {

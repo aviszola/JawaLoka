@@ -12,6 +12,9 @@ void main() {
     const kJvPendingKeys = <String>{
       'registerTermsPrefix',
       'registerPrivacyPolicy',
+      'learnModuleEtiquetteTitle',
+      'learnTagKamus',
+      'translatorMockUnavailable',
     };
 
     // Allowed exceptions where Javanese or English text may legitimately match Indonesian
@@ -20,6 +23,7 @@ void main() {
       'langSelectIdSub', // "Bawaan" is acceptable in both ID and JV draft
       'splashAppName', // Brand name
       'authEmailLabel', // International technical term
+      'settingsAccountEmailLabel', // International technical term
       'navHome',
       'navQuest',
       'navQuiz',
@@ -67,6 +71,12 @@ void main() {
       'translatorTitle',
       'aksaraDetailTitle',
       'aksaraDetailSandanganHeader',
+      'quizMilestoneNode',
+      'quizCloseSemantics',
+      'learnUnggahNgokoLuguTitle',
+      'learnUnggahNgokoAlusTitle',
+      'learnUnggahKramaLuguTitle',
+      'learnUnggahKramaInggilTitle',
       ...kJvPendingKeys,
     };
 
@@ -162,15 +172,18 @@ void main() {
       }
     });
 
-    test('All kJvPendingKeys must start with TODO(jv): prefix', () {
-      for (final key in kJvPendingKeys) {
-        expect(arbJv.containsKey(key), isTrue);
-        final val = arbJv[key] as String;
-        expect(
-          val.startsWith('TODO(jv): '),
-          isTrue,
-          reason: 'Pending Javanese key "$key" should be prefixed with "TODO(jv): "',
-        );
+    test('No ARB value in any language contains "TODO" or "[PERLU"', () {
+      for (final key in templateKeys) {
+        final valId = arbId[key] as String;
+        final valJv = arbJv[key] as String;
+        final valEn = arbEn[key] as String;
+
+        expect(valId.contains('TODO'), isFalse, reason: 'app_id.arb key "$key" contains TODO');
+        expect(valId.contains('[PERLU'), isFalse, reason: 'app_id.arb key "$key" contains [PERLU');
+        expect(valJv.contains('TODO'), isFalse, reason: 'app_jv.arb key "$key" contains TODO');
+        expect(valJv.contains('[PERLU'), isFalse, reason: 'app_jv.arb key "$key" contains [PERLU');
+        expect(valEn.contains('TODO'), isFalse, reason: 'app_en.arb key "$key" contains TODO');
+        expect(valEn.contains('[PERLU'), isFalse, reason: 'app_en.arb key "$key" contains [PERLU');
       }
     });
 

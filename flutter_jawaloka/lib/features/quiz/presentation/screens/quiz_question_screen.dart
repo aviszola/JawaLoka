@@ -11,18 +11,37 @@ enum QuestionType { glyphIdentify, textToAksara }
 /// Model for a single quiz question.
 class QuizQuestion {
   final QuestionType type;
-  final String prompt; // e.g. "Aksara apa ini?" or aksara character
+  final String prompt; // Fallback or explicit prompt
+  final String? promptKey; // Key for localization: what_glyph, pronunciation, how_to_read, which_pronunciation
   final String glyph; // Javanese character displayed
   final List<String> options; // For MCQ
   final int correctIndex;
 
   const QuizQuestion({
     required this.type,
-    required this.prompt,
+    this.prompt = '',
+    this.promptKey,
     required this.glyph,
     required this.options,
     required this.correctIndex,
   });
+
+  String getPrompt(BuildContext context) {
+    switch (promptKey) {
+      case 'what_glyph':
+        return context.l10n.quizQuestionPromptWhatGlyph;
+      case 'pronunciation':
+        return context.l10n.quizQuestionPromptPronunciation;
+      case 'how_to_read':
+        return context.l10n.quizQuestionPromptHowToRead(glyph);
+      case 'which_pronunciation':
+        return context.l10n.quizQuestionPromptWhichPronunciation;
+      default:
+        return prompt.isNotEmpty
+            ? prompt
+            : context.l10n.quizQuestionPromptWhatGlyph;
+    }
+  }
 }
 
 /// Full-screen quiz experience with animations.
@@ -39,70 +58,70 @@ class QuizQuestionScreen extends StatefulWidget {
   static const List<QuizQuestion> defaultQuestions = [
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara apa ini?',
+      promptKey: 'what_glyph',
       glyph: 'ꦲ',
       options: ['Ha', 'Na', 'Ca', 'Ra'],
       correctIndex: 0,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Pilih pelafalan untuk aksara berikut:',
+      promptKey: 'pronunciation',
       glyph: 'ꦤ',
       options: ['Ka', 'Da', 'Na', 'Ta'],
       correctIndex: 2,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara "ꦕ" dibaca sebagai apa?',
+      promptKey: 'how_to_read',
       glyph: 'ꦕ',
       options: ['Sa', 'Wa', 'La', 'Ca'],
       correctIndex: 3,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Manakah pelafalan untuk aksara di bawah?',
+      promptKey: 'which_pronunciation',
       glyph: 'ꦫ',
       options: ['Ra', 'Pa', 'Dha', 'Ja'],
       correctIndex: 0,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara apa ini?',
+      promptKey: 'what_glyph',
       glyph: 'ꦏ',
       options: ['Nya', 'Ka', 'Ma', 'Ga'],
       correctIndex: 1,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Pilih pelafalan untuk aksara berikut:',
+      promptKey: 'pronunciation',
       glyph: 'ꦢ',
       options: ['Ta', 'Sa', 'Da', 'Ba'],
       correctIndex: 2,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara "ꦠ" dibaca sebagai apa?',
+      promptKey: 'how_to_read',
       glyph: 'ꦠ',
       options: ['Ta', 'Tha', 'Nga', 'La'],
       correctIndex: 0,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Manakah pelafalan untuk aksara di bawah?',
+      promptKey: 'which_pronunciation',
       glyph: 'ꦱ',
       options: ['Wa', 'Sa', 'Ha', 'Ya'],
       correctIndex: 1,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara apa ini?',
+      promptKey: 'what_glyph',
       glyph: 'ꦮ',
       options: ['La', 'Pa', 'Ja', 'Wa'],
       correctIndex: 3,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Pilih pelafalan untuk aksara berikut:',
+      promptKey: 'pronunciation',
       glyph: 'ꦭ',
       options: ['La', 'Ma', 'Ga', 'Ba'],
       correctIndex: 0,
@@ -127,7 +146,6 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
   bool _answered = false;
   bool _isCorrect = false;
   int _correctCount = 0;
-  int _combo = 0;
 
   late final AnimationController _progressController;
 
@@ -231,9 +249,6 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
       _isCorrect = correct;
       if (correct) {
         _correctCount++;
-        _combo++;
-      } else {
-        _combo = 0;
       }
     });
 
@@ -241,9 +256,6 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
 
     if (correct) {
       _bounceController.forward(from: 0);
-      if (_combo >= 3) {
-        _confettiController.forward(from: 0);
-      }
     } else {
       _shakeController.forward(from: 0);
     }
@@ -274,7 +286,6 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         maxScore: 100,
         correctCount: _correctCount,
         totalQuestions: total,
-        timeTaken: '1:45',
         accuracy: scorePercentage,
         isStreakAchievedToday: true,
       );
@@ -287,62 +298,117 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
 
   void _skip() {
     if (_answered) return;
-    setState(() {
-      _selectedOption = -1;
-      _answered = false;
-    });
-    _onConfirm();
+    if (_currentIndex < widget.questions.length - 1) {
+      setState(() {
+        _currentIndex++;
+        _selectedOption = -1;
+        _answered = false;
+        _isCorrect = false;
+      });
+      _animateProgressTo(_progressTarget);
+    } else {
+      widget.onComplete?.call();
+      final total = widget.questions.length;
+      final scorePercentage =
+          total > 0 ? ((_correctCount / total) * 100).round() : 0;
+      final result = QuizResult(
+        score: scorePercentage,
+        maxScore: 100,
+        correctCount: _correctCount,
+        totalQuestions: total,
+        accuracy: scorePercentage,
+        isStreakAchievedToday: true,
+      );
+      Navigator.of(context).pushReplacementNamed(
+        AppRouter.quizResult,
+        arguments: result,
+      );
+    }
+  }
+
+  Future<void> _onClosePressed() async {
+    final shouldExit = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(dialogContext.l10n.quizExitDialogTitle),
+        content: Text(dialogContext.l10n.quizExitDialogMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(dialogContext.l10n.quizExitDialogCancel),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.error,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(dialogContext.l10n.quizExitDialogConfirm),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldExit == true && mounted) {
+      Navigator.of(context).pop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF5F1EB),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                _buildTopBar(),
-                const SizedBox(height: 20),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      children: [
-                        _buildQuestionCard(),
-                        const SizedBox(height: 24),
-                        _buildOptions(),
-                        const SizedBox(height: 100),
-                      ],
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) _onClosePressed();
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF5F1EB),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  _buildTopBar(),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        children: [
+                          _buildQuestionCard(),
+                          const SizedBox(height: 24),
+                          _buildOptions(),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            // Bottom confirm/next button
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: _buildBottomBar(),
-            ),
-            // Confetti overlay
-            if (_confettiController.isAnimating || _confettiController.value > 0)
-              Positioned.fill(
-                child: IgnorePointer(
-                  child: AnimatedBuilder(
-                    animation: _confettiController,
-                    builder: (context, _) => CustomPaint(
-                      painter: _ConfettiPainter(
-                        particles: _confettiParticles,
-                        progress: _confettiController.value,
+                ],
+              ),
+              // Bottom confirm/next button
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: _buildBottomBar(),
+              ),
+              // Confetti overlay
+              if (_confettiController.isAnimating || _confettiController.value > 0)
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: AnimatedBuilder(
+                      animation: _confettiController,
+                      builder: (context, _) => CustomPaint(
+                        painter: _ConfettiPainter(
+                          particles: _confettiParticles,
+                          progress: _confettiController.value,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -356,10 +422,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
           Row(
             children: [
               Semantics(
-                label: 'Tutup',
+                label: context.l10n.quizCloseSemantics,
                 button: true,
                 child: GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: _onClosePressed,
                   child: Container(
                     constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
                     alignment: Alignment.center,
@@ -373,9 +439,9 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               const SizedBox(width: 12),
               GestureDetector(
                 onTap: _skip,
-                child: const Text(
-                  'Lewati',
-                  style: TextStyle(
+                child: Text(
+                  context.l10n.quizSkip,
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFF7A6E60),
                     fontWeight: FontWeight.w500,
@@ -396,33 +462,6 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              if (_combo >= 3) ...[
-                const SizedBox(width: 8),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFE4A0),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.local_fire_department_rounded,
-                          color: Color(0xFFF26B2D), size: 14),
-                      const SizedBox(width: 2),
-                      Text(
-                        context.l10n.quizComboCount(_combo),
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.amberDark,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
             ],
           ),
         ],
@@ -473,7 +512,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         child: Column(
           children: [
             Text(
-              _current.prompt,
+              _current.getPrompt(context),
               style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF7A6E60),

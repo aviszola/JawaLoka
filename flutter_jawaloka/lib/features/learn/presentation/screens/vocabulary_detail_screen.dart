@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../data/vocab_word.dart';
 
 /// JawaLoka Vocabulary Detail Screen
 /// Shows a full breakdown of a Javanese word: aksara, meaning in 3 languages,
 /// example sentences, and navigation controls.
 class VocabularyDetailScreen extends StatefulWidget {
-  final String? word;
+  final int initialIndex;
 
-  const VocabularyDetailScreen({super.key, this.word});
+  const VocabularyDetailScreen({super.key, this.initialIndex = 0});
 
   @override
   State<VocabularyDetailScreen> createState() => _VocabularyDetailScreenState();
@@ -18,6 +19,7 @@ class VocabularyDetailScreen extends StatefulWidget {
 class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
     with SingleTickerProviderStateMixin {
   bool _isFavorite = false;
+  late int _currentIndex;
 
   late final AnimationController _slideCtrl;
   late final Animation<Offset> _heroSlide;
@@ -26,6 +28,11 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
   @override
   void initState() {
     super.initState();
+    final total = VocabWord.sampleWords.length;
+    _currentIndex = (widget.initialIndex >= 0 && widget.initialIndex < total)
+        ? widget.initialIndex
+        : 0;
+
     _slideCtrl = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 700),
@@ -55,8 +62,19 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
     super.dispose();
   }
 
+  void _onNextWord() {
+    final nextIndex = (_currentIndex + 1) % VocabWord.sampleWords.length;
+    Navigator.pushReplacementNamed(
+      context,
+      AppRouter.vocabularyDetail,
+      arguments: nextIndex,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final currentWord = VocabWord.sampleWords[_currentIndex];
+
     return Scaffold(
       backgroundColor: AppColors.canvas,
       appBar: _buildAppBar(context),
@@ -83,7 +101,7 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
                               curve: const Interval(0.0, 0.5),
                             ),
                           ),
-                          child: const _HeroWordCard(),
+                          child: _HeroWordCard(word: currentWord),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -91,15 +109,17 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
                       // ── Makna Section ──
                       FadeTransition(
                         opacity: _contentFade,
-                        child: const _MaknaSection(),
+                        child: _MaknaSection(word: currentWord),
                       ),
-                      const SizedBox(height: 24),
 
-                      // ── Contoh Kalimat Section ──
-                      FadeTransition(
-                        opacity: _contentFade,
-                        child: const _ContohKalimatSection(),
-                      ),
+                      // ── Contoh Kalimat Section (hanya bila ada contoh kalimat) ──
+                      if (currentWord.id == 'omah') ...[
+                        const SizedBox(height: 24),
+                        FadeTransition(
+                          opacity: _contentFade,
+                          child: const _ContohKalimatSection(),
+                        ),
+                      ],
                       const SizedBox(height: 32),
                     ],
                   ),
@@ -112,10 +132,7 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
                 child: _BottomActions(
                   isFavorite: _isFavorite,
                   onFavorite: () => setState(() => _isFavorite = !_isFavorite),
-                  onNext: () => Navigator.pushReplacementNamed(
-                    context,
-                    AppRouter.vocabularyDetail,
-                  ),
+                  onNext: _onNextWord,
                 ),
               ),
             ],
@@ -189,12 +206,14 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
 // ─────────────────────────────────────────────
 
 class _HeroWordCard extends StatelessWidget {
-  const _HeroWordCard();
+  final VocabWord word;
+
+  const _HeroWordCard({required this.word});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
+      constraints: const BoxConstraints(minHeight: 180),
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.pastelSand,
@@ -215,7 +234,7 @@ class _HeroWordCard extends StatelessWidget {
             right: 16,
             bottom: -12,
             child: Text(
-              'ꦲ',
+              word.aksara.isNotEmpty ? word.aksara.characters.first : 'ꦲ',
               style: TextStyle(
                 fontSize: 100,
                 color: AppColors.ink.withValues(alpha: 0.05),
@@ -226,78 +245,48 @@ class _HeroWordCard extends StatelessWidget {
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Left: Word + Aksara + Badge
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Omah',
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.ink,
-                          letterSpacing: -1,
-                          height: 1.0,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'ꦲꦺꦴꦩꦃ',
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: AppColors.inkSecondary,
-                          fontFamilyFallback: const ['Noto Sans Javanese'],
-                          height: 1.4,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.amberSoft,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Text(
-                          'Ngoko',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.amberDark,
-                          ),
-                        ),
-                      ),
-                    ],
+                Text(
+                  word.javanese,
+                  style: const TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.ink,
+                    letterSpacing: -1,
+                    height: 1.0,
                   ),
                 ),
-
-                // Right: Audio button
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: 52,
-                    height: 52,
-                    decoration: const BoxDecoration(
-                      color: AppColors.amber,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x33FFC247),
-                          blurRadius: 12,
-                          offset: Offset(0, 4),
-                        ),
-                      ],
+                if (word.aksara.isNotEmpty) ...[
+                  const SizedBox(height: 6),
+                  Text(
+                    word.aksara,
+                    style: const TextStyle(
+                      fontSize: 30,
+                      color: AppColors.inkSecondary,
+                      fontFamilyFallback: ['Noto Sans Javanese'],
+                      height: 1.4,
                     ),
-                    child: const Icon(
-                      Icons.volume_up_rounded,
-                      color: AppColors.ink,
-                      size: 24,
+                  ),
+                ],
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.amberSoft,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    word.level,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.amberDark,
                     ),
                   ),
                 ),
@@ -315,7 +304,9 @@ class _HeroWordCard extends StatelessWidget {
 // ─────────────────────────────────────────────
 
 class _MaknaSection extends StatelessWidget {
-  const _MaknaSection();
+  final VocabWord word;
+
+  const _MaknaSection({required this.word});
 
   @override
   Widget build(BuildContext context) {
@@ -352,26 +343,26 @@ class _MaknaSection extends StatelessWidget {
         const SizedBox(height: 16),
 
         // Meaning cards
-        const _MeaningCard(
+        _MeaningCard(
           badgeText: 'ID',
-          language: 'Bahasa Indonesia',
-          value: 'Rumah',
+          language: context.l10n.vocabDetailLangId,
+          value: word.indonesian,
           backgroundColor: AppColors.pastelMint,
           textColor: AppColors.pastelMintText,
         ),
         const SizedBox(height: 10),
-        const _MeaningCard(
+        _MeaningCard(
           badgeText: 'EN',
-          language: 'English',
-          value: 'House',
+          language: context.l10n.vocabDetailLangEn,
+          value: word.english,
           backgroundColor: AppColors.pastelLavender,
           textColor: AppColors.pastelLavenderText,
         ),
         const SizedBox(height: 10),
-        const _MeaningCard(
+        _MeaningCard(
           badgeText: 'ꦗꦮ',
-          language: 'Basa Jawa (Ngoko)',
-          value: 'Omah',
+          language: context.l10n.vocabDetailLangJv,
+          value: word.javanese,
           backgroundColor: AppColors.pastelSand,
           textColor: AppColors.ink,
           isJavanese: true,
@@ -492,17 +483,17 @@ class _ContohKalimatSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        const _ExampleSentenceCard(
+        _ExampleSentenceCard(
           javanese: 'Omahku ana ing desa',
           aksara: 'ꦲꦺꦴꦩꦃꦏꦸꦲꦤꦆꦁꦢꦺꦱ',
-          translation: 'Rumahku ada di desa',
+          translation: context.l10n.vocabDetailSentence1Translation,
           index: 1,
         ),
         const SizedBox(height: 10),
-        const _ExampleSentenceCard(
+        _ExampleSentenceCard(
           javanese: 'Omah iki gedhe banget',
           aksara: 'ꦲꦺꦴꦩꦃꦲꦶꦏꦶꦒꦼꦝꦺꦧꦔꦼꦠ꧀',
-          translation: 'Rumah ini sangat besar',
+          translation: context.l10n.vocabDetailSentence2Translation,
           index: 2,
         ),
       ],

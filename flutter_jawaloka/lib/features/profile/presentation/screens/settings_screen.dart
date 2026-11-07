@@ -3,6 +3,7 @@ import '../../../../core/l10n/app_locales.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
@@ -134,9 +135,12 @@ class _SettingsScreenState extends State<SettingsScreen>
               controller.setLocale(const Locale('jv'));
               Navigator.pop(ctx);
             },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 6),
-              child: Text('Basa Jawa', style: TextStyle(fontSize: 15, color: AppColors.ink)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: Text(
+                AppLocales.endonymOf('jv'),
+                style: const TextStyle(fontSize: 15, color: AppColors.ink),
+              ),
             ),
           ),
           SimpleDialogOption(
@@ -144,9 +148,12 @@ class _SettingsScreenState extends State<SettingsScreen>
               controller.setLocale(const Locale('id'));
               Navigator.pop(ctx);
             },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 6),
-              child: Text('Bahasa Indonesia', style: TextStyle(fontSize: 15, color: AppColors.ink)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: Text(
+                AppLocales.endonymOf('id'),
+                style: const TextStyle(fontSize: 15, color: AppColors.ink),
+              ),
             ),
           ),
           SimpleDialogOption(
@@ -154,9 +161,12 @@ class _SettingsScreenState extends State<SettingsScreen>
               controller.setLocale(const Locale('en'));
               Navigator.pop(ctx);
             },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 6),
-              child: Text('English', style: TextStyle(fontSize: 15, color: AppColors.ink)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6),
+              child: Text(
+                AppLocales.endonymOf('en'),
+                style: const TextStyle(fontSize: 15, color: AppColors.ink),
+              ),
             ),
           ),
         ],
@@ -191,8 +201,83 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 
+  // ── Account detail dialog ───────────────────────────────────────────────────
+  static const String _mockUserEmail = 'dimas.pratama@example.com'; // DATA CONTOH
+
+  void _showAccountDialog() {
+    final profile = ProfileScope.maybeOf(context);
+    final l10n = context.l10n;
+    final name = profile?.displayName ?? MockUserStats.userName;
+
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text(
+          l10n.settingsAccountDialogTitle,
+          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.settingsAccountNameLabel,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.inkSecondary,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                color: AppColors.ink,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              l10n.settingsAccountEmailLabel,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.inkSecondary,
+              ),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              _mockUserEmail,
+              style: TextStyle(
+                fontSize: 15,
+                color: AppColors.ink,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(
+              l10n.settingsClose,
+              style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   // ── Header Widget (High Contrast, WCAG AA Compliant) ─────────────────────────
   Widget _buildHeader() {
+    final displayName =
+        ProfileScope.maybeOf(context)?.displayName ?? MockUserStats.userName;
+    final equippedBlangkon =
+        ProfileScope.maybeOf(context)?.equippedBlangkon ??
+            BlangkonType.yogyakarta;
+    final userFullName = '$displayName Pratama';
     return SlideTransition(
       position: _headerSlide,
       child: Container(
@@ -232,9 +317,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                 ),
                 const SizedBox(width: 14),
                 // Reusable Avatar Component
-                const JavaneseAvatarWidget(
+                JavaneseAvatarWidget(
                   size: 60,
-                  blangkonType: BlangkonType.yogyakarta,
+                  blangkonType: equippedBlangkon,
                 ),
                 const SizedBox(width: 16),
                 // Name & level (High Contrast Ink on Amber)
@@ -243,9 +328,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        '${MockUserStats.userName} Pratama',
-                        style: TextStyle(
+                      Text(
+                        userFullName,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w800,
                           color: AppColors.ink,
@@ -289,7 +374,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 leading: const Icon(Icons.person_outline_rounded, color: AppColors.ink),
                 title: Text(context.l10n.settingsAccountRow, style: const TextStyle(color: AppColors.ink, fontWeight: FontWeight.w600)),
                 trailing: chevron,
-                onTap: () {},
+                onTap: _showAccountDialog,
               ),
               const Divider(height: 1, indent: 56, color: AppColors.border),
 
