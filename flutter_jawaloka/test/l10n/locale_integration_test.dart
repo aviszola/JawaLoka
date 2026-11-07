@@ -511,7 +511,7 @@ void main() {
       // Bottom nav labels in Javanese
       expect(find.text('Beranda'), findsOneWidget);
       expect(find.text('Sinau'), findsOneWidget);
-      expect(find.text('Quest'), findsOneWidget);
+      expect(find.text('Misi'), findsOneWidget);
       expect(find.text('Kuis'), findsOneWidget);
       expect(find.text('Profil'), findsOneWidget);
 
@@ -664,7 +664,7 @@ void main() {
 
       expect(find.text('Beranda'), findsOneWidget);
       expect(find.text('Belajar'), findsOneWidget);
-      expect(find.text('Quest'), findsOneWidget);
+      expect(find.text('Misi'), findsOneWidget);
       expect(find.text('Kuis'), findsOneWidget);
       expect(find.text('Profil'), findsOneWidget);
 
@@ -1263,7 +1263,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1600));
 
       // ID assertions
-      expect(find.text('Hasil Quest'), findsOneWidget);
+      expect(find.text('Hasil Misi'), findsOneWidget);
       expect(find.text('Perbandingan Tulisan'), findsOneWidget);
       expect(find.text('Tulisanmu'), findsOneWidget);
       expect(find.text('Aksara Target'), findsOneWidget);
@@ -1275,7 +1275,7 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 1600));
 
-      expect(find.text('Asil Quest'), findsOneWidget);
+      expect(find.text('Asil Misi'), findsOneWidget);
       expect(find.text('Pabandhingan Tulisan'), findsOneWidget);
       expect(find.text('Seratan panjenengan'), findsOneWidget);
       expect(find.text('Aksara Target'), findsOneWidget);

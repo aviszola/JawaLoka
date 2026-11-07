@@ -200,9 +200,9 @@
   "@navLearn": {
     "description": "Label tab navigasi Belajar"
   },
-  "navQuest": "Quest",
+  "navQuest": "Misi",
   "@navQuest": {
-    "description": "Label tombol tengah Quest"
+    "description": "Label tombol tengah Misi/Quest"
   },
   "navQuiz": "Kuis",
   "@navQuiz": {
@@ -716,9 +716,9 @@
   "@drawingCheckButton": {
     "description": "Tombol periksa tulisan aksara pada kanvas"
   },
-  "dailyResultTitle": "Hasil Quest",
+  "dailyResultTitle": "Hasil Misi",
   "@dailyResultTitle": {
-    "description": "Judul layar hasil quest harian"
+    "description": "Judul layar hasil misi harian"
   },
   "dailyResultSimilarityLabel": "Kemiripan",
   "@dailyResultSimilarityLabel": {

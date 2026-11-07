@@ -376,10 +376,10 @@ abstract class AppLocalizations {
   /// **'Belajar'**
   String get navLearn;
 
-  /// Label tombol tengah Quest
+  /// Label tombol tengah Misi/Quest
   ///
   /// In id, this message translates to:
-  /// **'Quest'**
+  /// **'Misi'**
   String get navQuest;
 
   /// Label tab navigasi Kuis
@@ -1028,10 +1028,10 @@ abstract class AppLocalizations {
   /// **'Periksa Tulisan'**
   String get drawingCheckButton;
 
-  /// Judul layar hasil quest harian
+  /// Judul layar hasil misi harian
   ///
   /// In id, this message translates to:
-  /// **'Hasil Quest'**
+  /// **'Hasil Misi'**
   String get dailyResultTitle;
 
   /// Label meter kemiripan tulisan

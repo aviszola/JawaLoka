@@ -36,7 +36,7 @@ void main() {
   });
 
   // ─── Test (a): 5 Bottom Navigation items ─────────────────────────────────
-  testWidgets('Bottom nav has exactly 5 items labeled Beranda, Belajar, Quest, Kuis, Profil',
+  testWidgets('Bottom nav has exactly 5 items labeled Beranda, Belajar, Misi, Kuis, Profil',
       (WidgetTester tester) async {
     await tester.pumpApp(
       const MainShellScreen(),
@@ -46,7 +46,7 @@ void main() {
 
     expect(find.text('Beranda'), findsOneWidget);
     expect(find.text('Belajar'), findsOneWidget);
-    expect(find.text('Quest'), findsOneWidget);
+    expect(find.text('Misi'), findsOneWidget);
     expect(find.text('Kuis'), findsOneWidget);
     expect(find.text('Profil'), findsOneWidget);
   });
@@ -102,8 +102,8 @@ void main() {
     // Verify initially on Beranda
     expect(find.byType(HomeScreen), findsOneWidget);
 
-    // Tap Quest button
-    await tester.tap(find.text('Quest'));
+    // Tap Misi (Quest) button
+    await tester.tap(find.text('Misi'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
