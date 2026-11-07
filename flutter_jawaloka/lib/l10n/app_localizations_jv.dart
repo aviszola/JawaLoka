@@ -162,7 +162,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get navLearn => 'Sinau';
 
   @override
-  String get navQuest => 'Quest';
+  String get navQuest => 'Misi';
 
   @override
   String get navQuiz => 'Kuis';
@@ -521,7 +521,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get drawingCheckButton => 'Priksa Tulisan';
 
   @override
-  String get dailyResultTitle => 'Asil Quest';
+  String get dailyResultTitle => 'Asil Misi';
 
   @override
   String get dailyResultSimilarityLabel => 'Kamiripan';

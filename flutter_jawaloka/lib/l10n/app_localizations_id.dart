@@ -161,7 +161,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get navLearn => 'Belajar';
 
   @override
-  String get navQuest => 'Quest';
+  String get navQuest => 'Misi';
 
   @override
   String get navQuiz => 'Kuis';
@@ -521,7 +521,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get drawingCheckButton => 'Periksa Tulisan';
 
   @override
-  String get dailyResultTitle => 'Hasil Quest';
+  String get dailyResultTitle => 'Hasil Misi';
 
   @override
   String get dailyResultSimilarityLabel => 'Kemiripan';
