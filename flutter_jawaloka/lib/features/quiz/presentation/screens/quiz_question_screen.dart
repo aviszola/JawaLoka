@@ -679,6 +679,18 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                       : const Color(0xFF8B2020),
                 ),
               ),
+              const SizedBox(height: 4),
+              // ATRIBUSI SUMBER BELUM DIVERIFIKASI, jangan tampilkan ke pengguna
+              Text(
+                context.l10n.quizQuestionSourceAttribution,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontStyle: FontStyle.italic,
+                  color: _isCorrect
+                      ? const Color(0xFF205530).withValues(alpha: 0.8)
+                      : const Color(0xFF8B2020).withValues(alpha: 0.8),
+                ),
+              ),
             ],
             const SizedBox(height: 10),
           ],

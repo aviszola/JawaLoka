@@ -304,9 +304,15 @@
   "@homeHeroQuestBadge": {
     "description": "Badge kartu misi harian"
   },
-  "homeHeroQuestTarget": "Target: ≥85% Presisi",
+  "homeHeroQuestTarget": "Target: ≥{percent}% Presisi",
   "@homeHeroQuestTarget": {
-    "description": "Target presisi misi harian"
+    "description": "Target presisi misi harian",
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "70"
+      }
+    }
   },
   "homeHeroQuestTitle": "Aksara \"Ha\" (ꦲ)",
   "@homeHeroQuestTitle": {
@@ -636,6 +642,10 @@
       }
     }
   },
+  "quizQuestionSourceAttribution": "Materi JawaLoka (draf, belum diverifikasi penutur Jawa)",
+  "@quizQuestionSourceAttribution": {
+    "description": "Atribusi sumber tetap pada kartu penjelasan kuis"
+  },
   "quizCheck": "Periksa",
   "@quizCheck": {
     "description": "Tombol periksa jawaban kuis"
@@ -738,9 +748,15 @@
   "@dailyResultCelebrationFailed": {
     "description": "Ucapan penyemangat saat quest belum lulus"
   },
-  "dailyResultDescPassed": "Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.",
+  "dailyResultDescPassed": "Kamu berhasil menulis aksara Jawa dengan kemiripan di atas {percent}%.",
   "@dailyResultDescPassed": {
-    "description": "Keterangan lulus quest aksara"
+    "description": "Keterangan lulus quest aksara",
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "70"
+      }
+    }
   },
   "dailyResultDescFailed": "Goresanmu hampir tepat. Coba perhatikan proporsi aksara target.",
   "@dailyResultDescFailed": {
@@ -766,13 +782,17 @@
   "@dailyResultStatusFailed": {
     "description": "Status kelulusan quest belum tercapai"
   },
-  "dailyResultRequirement": "Kemiripan {percent}% (Syarat lulus: ≥ 85%)",
+  "dailyResultRequirement": "Kemiripan {percent}% (Syarat lulus: ≥ {threshold}%)",
   "@dailyResultRequirement": {
     "description": "Keterangan skor kemiripan dan ambang kelulusan",
     "placeholders": {
       "percent": {
         "type": "int",
         "example": "92"
+      },
+      "threshold": {
+        "type": "int",
+        "example": "70"
       }
     }
   },
@@ -1014,7 +1034,7 @@
   "@settingsPrivacyPolicy": {
     "description": "Judul baris kebijakan privasi di Pengaturan"
   },
-  "settingsPrivacyPolicyContent": "JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.",
+  "settingsPrivacyPolicyContent": "Aplikasi JawaLoka menyimpan nama tampilan, pilihan bahasa, koleksi blangkon, progres kuis, XP, dan Level secara lokal di perangkat Anda. Aplikasi ini tidak mengirim data ke server, tidak memiliki akun sungguhan (versi demo), dan tidak menyimpan kata sandi.",
   "@settingsPrivacyPolicyContent": {
     "description": "Teks isi dialog kebijakan privasi"
   },
@@ -1034,9 +1054,9 @@
   "@settingsAccountNameLabel": {
     "description": "Label nama pengguna di dialog akun"
   },
-  "settingsAccountEmailLabel": "Email",
-  "@settingsAccountEmailLabel": {
-    "description": "Label email di dialog akun"
+  "settingsAccountLocalNote": "Akun lokal pada perangkat ini",
+  "@settingsAccountLocalNote": {
+    "description": "Keterangan jenis akun lokal perangkat di dialog akun"
   },
   "translatorTitle": "Penerjemah",
   "@translatorTitle": {

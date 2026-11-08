@@ -84,7 +84,7 @@ class ProfileController extends ChangeNotifier {
   }
 
   bool get hasMasteredAksara =>
-      isEvaluationPassed('path_node_u1_n10_evaluasi_unit1');
+      isEvaluationPassed('path_node_u2_n20_evaluasi_unit2');
   int get completedQuizzesCount => QuizPathData.resolveCurriculum(
         clearedActivities: _clearedActivities,
         isEvaluationPassed: isEvaluationPassed,
@@ -332,6 +332,7 @@ class ProfileController extends ChangeNotifier {
     required String claimId,
     required int rawXP,
     String? message,
+    bool isQuiz = false,
   }) async {
     final canonicalId = QuizPathData.resolveCanonicalActivityId(activityId);
     final prevXP = _totalXP;
@@ -390,13 +391,16 @@ class ProfileController extends ChangeNotifier {
     _claimedSessionIds.add(claimId);
     _totalXP += effectiveXP;
 
-    final todayWeekday = _nowProvider().weekday;
-    if (!_completedQuizDaysOfWeek.contains(todayWeekday)) {
-      _completedQuizDaysOfWeek = [..._completedQuizDaysOfWeek, todayWeekday];
-    }
-    _quizzesThisWeek += 1;
-    if (_streakDays == 0) {
-      _streakDays = 1;
+    // DEMO: jam perangkat, bukan waktu server
+    if (isQuiz) {
+      final todayWeekday = _nowProvider().weekday;
+      if (!_completedQuizDaysOfWeek.contains(todayWeekday)) {
+        _completedQuizDaysOfWeek = [..._completedQuizDaysOfWeek, todayWeekday];
+      }
+      _quizzesThisWeek += 1;
+      if (_streakDays == 0) {
+        _streakDays = 1;
+      }
     }
 
     final newLevel = userLevel;
@@ -499,6 +503,7 @@ class ProfileController extends ChangeNotifier {
       activityId: canonicalId,
       claimId: claimId,
       rawXP: rawXP,
+      isQuiz: true,
       message: isFirstClear ? 'Quiz First Clear' : 'Quiz Practice Replay',
     );
   }
@@ -520,6 +525,7 @@ class ProfileController extends ChangeNotifier {
       activityId: canonicalId,
       claimId: claimId,
       rawXP: rawXP,
+      isQuiz: false,
       message: isFirstClear
           ? 'Drawing Mission First Clear'
           : 'Drawing Mission Practice Replay',

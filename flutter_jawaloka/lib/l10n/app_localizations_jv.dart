@@ -230,7 +230,9 @@ class AppLocalizationsJv extends AppLocalizations {
   String get homeHeroQuestBadge => 'MISI DINA IKI';
 
   @override
-  String get homeHeroQuestTarget => 'Target: ≥85% Presisi';
+  String homeHeroQuestTarget(int percent) {
+    return 'Target: ≥$percent% Presisi';
+  }
 
   @override
   String get homeHeroQuestTitle => 'Aksara \"Ha\" (ꦲ)';
@@ -466,6 +468,10 @@ class AppLocalizationsJv extends AppLocalizations {
   }
 
   @override
+  String get quizQuestionSourceAttribution =>
+      'Materi JawaLoka (draf, dereng dipunverifikasi penutur Jawa)';
+
+  @override
   String get quizCheck => 'Priksa';
 
   @override
@@ -535,8 +541,9 @@ class AppLocalizationsJv extends AppLocalizations {
   String get dailyResultCelebrationFailed => 'Sumangga Gladhen Malih!';
 
   @override
-  String get dailyResultDescPassed =>
-      'Panjenengan sampun kasil nyerat aksara Jawa kanthi mirip langkung saking 85%.';
+  String dailyResultDescPassed(int percent) {
+    return 'Panjenengan sampun kasil nyerat aksara Jawa kanthi mirip langkung saking $percent%.';
+  }
 
   @override
   String get dailyResultDescFailed =>
@@ -558,8 +565,8 @@ class AppLocalizationsJv extends AppLocalizations {
   String get dailyResultStatusFailed => 'Status: Dereng Lulus';
 
   @override
-  String dailyResultRequirement(int percent) {
-    return 'Kemiripan $percent% (Syarat lulus: ≥ 85%)';
+  String dailyResultRequirement(int percent, int threshold) {
+    return 'Kemiripan $percent% (Syarat lulus: ≥ $threshold%)';
   }
 
   @override
@@ -726,7 +733,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get settingsPrivacyPolicyContent =>
-      'JawaLoka ngajeni privasi panjenengan. Sedaya kemajengan sinau, gladhen aksara, lan pilihan naraguna kasimpen kanthi lokal wonten ing piranti panjenengan.';
+      'Aplikasi JawaLoka nyimpen asma panjenengan, pilihan basa, koleksi blangkon, kemajengan kuis, XP, lan Level kanthi lokal wonten ing piranti panjenengan. Aplikasi demo menika mboten ngintun data dhateng server, mboten gadhah akun saleresipun, lan mboten nyimpen tembung sandi.';
 
   @override
   String get settingsClose => 'Tutup';
@@ -741,7 +748,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get settingsAccountNameLabel => 'Asma Naraguna';
 
   @override
-  String get settingsAccountEmailLabel => 'Email';
+  String get settingsAccountLocalNote => 'Akun lokal wonten ing piranti menika';
 
   @override
   String get translatorTitle => 'Penerjemah';

@@ -230,7 +230,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeHeroQuestBadge => 'TODAY\'S QUEST';
 
   @override
-  String get homeHeroQuestTarget => 'Target: ≥85% Precision';
+  String homeHeroQuestTarget(int percent) {
+    return 'Target: ≥$percent% Precision';
+  }
 
   @override
   String get homeHeroQuestTitle => 'Aksara \"Ha\" (ꦲ)';
@@ -469,6 +471,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get quizQuestionSourceAttribution =>
+      'JawaLoka Material (draft, unverified by native Javanese speakers)';
+
+  @override
   String get quizCheck => 'Check';
 
   @override
@@ -538,8 +544,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dailyResultCelebrationFailed => 'Let\'s Practice Again!';
 
   @override
-  String get dailyResultDescPassed =>
-      'You successfully wrote the Javanese script with over 85% accuracy.';
+  String dailyResultDescPassed(int percent) {
+    return 'You successfully wrote the Javanese script with over $percent% accuracy.';
+  }
 
   @override
   String get dailyResultDescFailed =>
@@ -561,8 +568,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dailyResultStatusFailed => 'Status: Not Passed';
 
   @override
-  String dailyResultRequirement(int percent) {
-    return 'Accuracy $percent% (Passing requirement: ≥ 85%)';
+  String dailyResultRequirement(int percent, int threshold) {
+    return 'Accuracy $percent% (Passing requirement: ≥ $threshold%)';
   }
 
   @override
@@ -730,7 +737,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsPrivacyPolicyContent =>
-      'JawaLoka respects your privacy. All learning progress, script practice, and user preferences are stored locally on your device.';
+      'JawaLoka stores your display name, language preference, blangkon collection, quiz progress, XP, and Level locally on your device. This demo app does not transmit data to any server, does not maintain real accounts, and does not store passwords.';
 
   @override
   String get settingsClose => 'Close';
@@ -745,7 +752,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAccountNameLabel => 'Username';
 
   @override
-  String get settingsAccountEmailLabel => 'Email';
+  String get settingsAccountLocalNote => 'Local account on this device';
 
   @override
   String get translatorTitle => 'Translator';

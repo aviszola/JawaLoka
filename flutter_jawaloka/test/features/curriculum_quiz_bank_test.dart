@@ -332,6 +332,15 @@ void main() {
         find.text('"Sugeng enjang" tegese selamat pagi ing basa Jawa krama.'),
         findsOneWidget,
       );
+      // Fixed attribution label must be displayed, while sourceReference must NOT be displayed
+      expect(
+        find.text('Materi JawaLoka (draf, belum diverifikasi penutur Jawa)'),
+        findsOneWidget,
+      );
+      expect(
+        find.text(questions.first.sourceReference),
+        findsNothing,
+      );
 
       // Confirm and continue
       await tester.tap(find.text('Lanjut'));

@@ -229,7 +229,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeHeroQuestBadge => 'MISI HARI INI';
 
   @override
-  String get homeHeroQuestTarget => 'Target: ≥85% Presisi';
+  String homeHeroQuestTarget(int percent) {
+    return 'Target: ≥$percent% Presisi';
+  }
 
   @override
   String get homeHeroQuestTitle => 'Aksara \"Ha\" (ꦲ)';
@@ -465,6 +467,10 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get quizQuestionSourceAttribution =>
+      'Materi JawaLoka (draf, belum diverifikasi penutur Jawa)';
+
+  @override
   String get quizCheck => 'Periksa';
 
   @override
@@ -534,8 +540,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get dailyResultCelebrationFailed => 'Ayo Latihan Lagi!';
 
   @override
-  String get dailyResultDescPassed =>
-      'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.';
+  String dailyResultDescPassed(int percent) {
+    return 'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas $percent%.';
+  }
 
   @override
   String get dailyResultDescFailed =>
@@ -557,8 +564,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get dailyResultStatusFailed => 'Status: Belum Lulus';
 
   @override
-  String dailyResultRequirement(int percent) {
-    return 'Kemiripan $percent% (Syarat lulus: ≥ 85%)';
+  String dailyResultRequirement(int percent, int threshold) {
+    return 'Kemiripan $percent% (Syarat lulus: ≥ $threshold%)';
   }
 
   @override
@@ -725,7 +732,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsPrivacyPolicyContent =>
-      'JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.';
+      'Aplikasi JawaLoka menyimpan nama tampilan, pilihan bahasa, koleksi blangkon, progres kuis, XP, dan Level secara lokal di perangkat Anda. Aplikasi ini tidak mengirim data ke server, tidak memiliki akun sungguhan (versi demo), dan tidak menyimpan kata sandi.';
 
   @override
   String get settingsClose => 'Tutup';
@@ -740,7 +747,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsAccountNameLabel => 'Nama Pengguna';
 
   @override
-  String get settingsAccountEmailLabel => 'Email';
+  String get settingsAccountLocalNote => 'Akun lokal pada perangkat ini';
 
   @override
   String get translatorTitle => 'Penerjemah';

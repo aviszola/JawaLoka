@@ -217,9 +217,6 @@ class _SettingsScreenState extends State<SettingsScreen>
 
   // ── Account detail dialog ───────────────────────────────────────────────────
   // DEMO: tanpa backend - akun lokal
-  static const String _mockUserEmail =
-      'dimas.pratama@jawaloka.id';
-
   void _showAccountDialog() {
     final profile = ProfileScope.maybeOf(context);
     final l10n = context.l10n;
@@ -257,19 +254,14 @@ class _SettingsScreenState extends State<SettingsScreen>
                 color: AppColors.ink,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             Text(
-              l10n.settingsAccountEmailLabel,
+              l10n.settingsAccountLocalNote,
               style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
                 color: AppColors.inkSecondary,
               ),
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              _mockUserEmail,
-              style: TextStyle(fontSize: 15, color: AppColors.ink),
             ),
           ],
         ),

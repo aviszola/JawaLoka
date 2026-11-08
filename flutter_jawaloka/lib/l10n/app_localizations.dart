@@ -499,8 +499,8 @@ abstract class AppLocalizations {
   /// Target presisi misi harian
   ///
   /// In id, this message translates to:
-  /// **'Target: ≥85% Presisi'**
-  String get homeHeroQuestTarget;
+  /// **'Target: ≥{percent}% Presisi'**
+  String homeHeroQuestTarget(int percent);
 
   /// Judul aksara misi harian
   ///
@@ -926,6 +926,12 @@ abstract class AppLocalizations {
   /// **'Jawaban: {answer}'**
   String quizAnswerLabel(String answer);
 
+  /// Atribusi sumber tetap pada kartu penjelasan kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Materi JawaLoka (draf, belum diverifikasi penutur Jawa)'**
+  String get quizQuestionSourceAttribution;
+
   /// Tombol periksa jawaban kuis
   ///
   /// In id, this message translates to:
@@ -1055,8 +1061,8 @@ abstract class AppLocalizations {
   /// Keterangan lulus quest aksara
   ///
   /// In id, this message translates to:
-  /// **'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.'**
-  String get dailyResultDescPassed;
+  /// **'Kamu berhasil menulis aksara Jawa dengan kemiripan di atas {percent}%.'**
+  String dailyResultDescPassed(int percent);
 
   /// Keterangan saat presisi belum mencapai target
   ///
@@ -1097,8 +1103,8 @@ abstract class AppLocalizations {
   /// Keterangan skor kemiripan dan ambang kelulusan
   ///
   /// In id, this message translates to:
-  /// **'Kemiripan {percent}% (Syarat lulus: ≥ 85%)'**
-  String dailyResultRequirement(int percent);
+  /// **'Kemiripan {percent}% (Syarat lulus: ≥ {threshold}%)'**
+  String dailyResultRequirement(int percent, int threshold);
 
   /// Tombol lanjut belajar dari hasil quest
   ///
@@ -1397,7 +1403,7 @@ abstract class AppLocalizations {
   /// Teks isi dialog kebijakan privasi
   ///
   /// In id, this message translates to:
-  /// **'JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.'**
+  /// **'Aplikasi JawaLoka menyimpan nama tampilan, pilihan bahasa, koleksi blangkon, progres kuis, XP, dan Level secara lokal di perangkat Anda. Aplikasi ini tidak mengirim data ke server, tidak memiliki akun sungguhan (versi demo), dan tidak menyimpan kata sandi.'**
   String get settingsPrivacyPolicyContent;
 
   /// Tombol tutup dialog
@@ -1424,11 +1430,11 @@ abstract class AppLocalizations {
   /// **'Nama Pengguna'**
   String get settingsAccountNameLabel;
 
-  /// Label email di dialog akun
+  /// Keterangan jenis akun lokal perangkat di dialog akun
   ///
   /// In id, this message translates to:
-  /// **'Email'**
-  String get settingsAccountEmailLabel;
+  /// **'Akun lokal pada perangkat ini'**
+  String get settingsAccountLocalNote;
 
   /// Judul layar penerjemah
   ///

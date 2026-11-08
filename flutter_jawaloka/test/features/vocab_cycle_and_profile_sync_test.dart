@@ -178,8 +178,7 @@ void main() {
         expect(find.text('Detail Akun'), findsOneWidget);
         expect(find.text('Nama Pengguna'), findsOneWidget);
         expect(find.text('Dimas'), findsOneWidget);
-        expect(find.text('Email'), findsOneWidget);
-        expect(find.text('dimas.pratama@jawaloka.id'), findsOneWidget);
+        expect(find.text('Akun lokal pada perangkat ini'), findsOneWidget);
         expect(find.text('Tutup'), findsOneWidget);
 
         // Close dialog

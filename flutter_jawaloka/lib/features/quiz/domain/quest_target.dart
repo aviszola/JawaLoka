@@ -7,6 +7,10 @@ class QuestTarget {
   final String aksaraName;
   final String description;
 
+  /// Ambang batas kelulusan tantangan menulis aksara (Daily Quest).
+  // PERLU KEPUTUSAN: PRD menulis 85%
+  static const double questPassThreshold = 0.70;
+
   const QuestTarget({
     required this.aksaraChar,
     required this.aksaraName,

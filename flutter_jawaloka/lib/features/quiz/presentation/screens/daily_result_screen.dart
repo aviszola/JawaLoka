@@ -4,6 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/progression/reward_summary.dart';
+import '../../domain/quest_target.dart';
 
 // ─────────────────────────────────────────────────────────
 //  SIMILARITY METER PAINTER
@@ -35,7 +36,9 @@ class _SimilarityMeterPainter extends CustomPainter {
     // Active arc
     if (progress > 0) {
       final arcPaint = Paint()
-        ..color = progress >= 0.85 ? AppColors.success : AppColors.amber
+        ..color = progress >= QuestTarget.questPassThreshold
+            ? AppColors.success
+            : AppColors.amber
         ..style = PaintingStyle.stroke
         ..strokeWidth = strokeWidth
         ..strokeCap = StrokeCap.round;
@@ -259,7 +262,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   // ── Celebration Card ───────────────────────────────────
 
   Widget _buildCelebrationCard() {
-    final isPassed = widget.similarity >= 0.85;
+    final isPassed = widget.similarity >= QuestTarget.questPassThreshold;
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -308,7 +311,11 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         ),
         const SizedBox(height: 8),
         Text(
-          isPassed ? l10n.dailyResultDescPassed : l10n.dailyResultDescFailed,
+          isPassed
+              ? l10n.dailyResultDescPassed(
+                  (QuestTarget.questPassThreshold * 100).round(),
+                )
+              : l10n.dailyResultDescFailed,
           style: const TextStyle(
             fontSize: 14,
             color: AppColors.ink,
@@ -391,7 +398,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
   // ── Status Card (Kemiripan & Lulus/Gagal) ──────────────────
 
   Widget _buildQuestStatusCard() {
-    final isPassed = widget.similarity >= 0.85;
+    final isPassed = widget.similarity >= QuestTarget.questPassThreshold;
     final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -437,6 +444,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 Text(
                   l10n.dailyResultRequirement(
                     (widget.similarity * 100).round(),
+                    (QuestTarget.questPassThreshold * 100).round(),
                   ),
                   style: const TextStyle(
                     fontSize: 14,

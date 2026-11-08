@@ -3,6 +3,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
+import '../../../quiz/domain/quest_target.dart';
 
 /// Hero Quest Card with single dark pill button "Mulai Menggambar".
 class HomeHeroQuestCard extends StatelessWidget {
@@ -72,7 +73,9 @@ class HomeHeroQuestCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(99),
                 ),
                 child: Text(
-                  l10n.homeHeroQuestTarget,
+                  l10n.homeHeroQuestTarget(
+                    (QuestTarget.questPassThreshold * 100).round(),
+                  ),
                   style: const TextStyle(
                     color: AppColors.ink,
                     fontSize: 12,

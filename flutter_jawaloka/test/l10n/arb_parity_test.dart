@@ -15,6 +15,7 @@ void main() {
       'learnModuleEtiquetteTitle',
       'learnTagKamus',
       'translatorMockUnavailable',
+      'quizQuestionSourceAttribution',
     };
 
     // Allowed exceptions where Javanese or English text may legitimately match Indonesian
@@ -23,7 +24,6 @@ void main() {
       'langSelectIdSub', // "Bawaan" is acceptable in both ID and JV draft
       'splashAppName', // Brand name
       'authEmailLabel', // International technical term
-      'settingsAccountEmailLabel', // International technical term
       'navHome',
       'navQuest',
       'navQuiz',

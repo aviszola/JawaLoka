@@ -47,7 +47,7 @@ class BlangkonRewards {
     // Yogyakarta selalu terbuka sejak awal
     if (type == BlangkonType.yogyakarta) return true;
 
-    // Pusaka terbuka khusus saat materi aksara selesai (evaluasi Unit 1 lulus)
+    // Pusaka terbuka khusus saat materi aksara selesai (evaluasi Unit 2 lulus)
     // PERLU VALIDASI BUDAYA
     if (type == BlangkonType.pusaka) {
       return hasMasteredAksara;
