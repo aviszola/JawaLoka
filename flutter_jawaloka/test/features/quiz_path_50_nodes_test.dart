@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_jawaloka/core/profile/profile_controller.dart';
+import 'package:flutter_jawaloka/core/profile/profile_preferences.dart';
 import 'package:flutter_jawaloka/features/quiz/domain/quiz_path_models.dart';
 import 'package:flutter_jawaloka/features/quiz/domain/quiz_path_data.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_path_screen.dart';
@@ -95,10 +97,10 @@ void main() {
         );
         expect(finalExamNode.isMilestone, isTrue);
 
-        // Node 3 is a legacy milestone badge (isMilestone true)
-        final badgeNode = QuizPathData.getNodeByNumber(3)!;
-        expect(badgeNode.topicKey, 'lencana');
-        expect(badgeNode.isMilestone, isTrue);
+        // Node 3 is Tanya Kabar (lesson node)
+        final node3 = QuizPathData.getNodeByNumber(3)!;
+        expect(node3.topicKey, 'tanya_kabar');
+        expect(node3.isMilestone, isFalse);
       },
     );
 
@@ -183,7 +185,17 @@ void main() {
     testWidgets('Tapping floating button triggers scroll towards active node', (
       tester,
     ) async {
-      await tester.pumpApp(const QuizPathScreen());
+      final profile = ProfileController(
+        preferences: InMemoryProfilePreferences(
+          initialClearedActivities: {
+            'path_node_u1_n01_salam',
+            'path_node_u1_n02_pamit',
+            'path_node_u1_n03_lencana',
+          },
+        ),
+      );
+      await profile.loadProfile();
+      await tester.pumpApp(const QuizPathScreen(), profileController: profile);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
@@ -194,8 +206,8 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 700));
 
-      // Active node is Node 4 ('Tanya kabar')
-      expect(find.text('Tanya kabar'), findsOneWidget);
+      // Active node is Node 4 ('Perkenalan')
+      expect(find.text('Perkenalan'), findsOneWidget);
     });
 
     testWidgets('Can scroll through the entire 50-node path without overflow', (

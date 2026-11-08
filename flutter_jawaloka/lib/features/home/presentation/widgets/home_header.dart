@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
-import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/profile/profile_scope.dart';
@@ -59,7 +58,7 @@ class HomeHeader extends StatelessWidget {
                         Text(
                           l10n.homeGreetingUser(
                             ProfileScope.maybeOf(context)?.displayName ??
-                                MockUserStats.userName,
+                                'Dimas',
                           ),
                           style: const TextStyle(
                             color: AppColors.ink,
@@ -99,7 +98,9 @@ class HomeHeader extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          l10n.streakDays(MockUserStats.streakDays),
+                          l10n.streakDays(
+                            ProfileScope.maybeOf(context)?.streakDays ?? 5,
+                          ),
                           style: const TextStyle(
                             color: AppColors.ink,
                             fontSize: 14,

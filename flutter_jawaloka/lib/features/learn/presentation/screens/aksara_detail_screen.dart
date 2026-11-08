@@ -451,7 +451,7 @@ class _ExampleWordCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 22,
               color: AppColors.ink,
-              fontFamilyFallback: const ['Noto Sans Javanese'],
+              fontFamilyFallback: const ['NotoSansJavanese', 'Noto Sans Javanese'],
               height: 1.6,
             ),
           ),
@@ -555,7 +555,7 @@ class _SandanganChip extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 20,
                 color: AppColors.ink,
-                fontFamilyFallback: ['Noto Sans Javanese'],
+                fontFamilyFallback: ['NotoSansJavanese', 'Noto Sans Javanese'],
               ),
             ),
           ),

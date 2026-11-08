@@ -74,6 +74,17 @@ class JavaneseCalligraphyPainter extends CustomPainter {
   }
 
   static Path buildPathForAksara(String char, double sx, double sy) {
+    final chars = char.runes.map(String.fromCharCode).toList();
+    if (chars.length > 1) {
+      final scaleFactor = 1.0 / chars.length;
+      final compoundPath = Path();
+      for (int i = 0; i < chars.length; i++) {
+        final subPath = buildPathForAksara(chars[i], sx * scaleFactor, sy);
+        compoundPath.addPath(subPath, Offset(i * 100.0 * sx * scaleFactor, 0));
+      }
+      return compoundPath;
+    }
+
     final Path path = Path();
 
     switch (char) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/app_locales.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
-import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/blangkon_painter.dart';
@@ -217,13 +216,11 @@ class _SettingsScreenState extends State<SettingsScreen>
   }
 
   // ── Account detail dialog ───────────────────────────────────────────────────
-  static const String _mockUserEmail =
-      'dimas.pratama@example.com'; // DATA CONTOH
-
+  // DEMO: tanpa backend - akun lokal
   void _showAccountDialog() {
     final profile = ProfileScope.maybeOf(context);
     final l10n = context.l10n;
-    final name = profile?.displayName ?? MockUserStats.userName;
+    final name = profile?.displayName ?? 'Dimas';
 
     showDialog<void>(
       context: context,
@@ -257,19 +254,14 @@ class _SettingsScreenState extends State<SettingsScreen>
                 color: AppColors.ink,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             Text(
-              l10n.settingsAccountEmailLabel,
+              l10n.settingsAccountLocalNote,
               style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
                 color: AppColors.inkSecondary,
               ),
-            ),
-            const SizedBox(height: 4),
-            const Text(
-              _mockUserEmail,
-              style: TextStyle(fontSize: 15, color: AppColors.ink),
             ),
           ],
         ),
@@ -292,7 +284,7 @@ class _SettingsScreenState extends State<SettingsScreen>
   // ── Header Widget (High Contrast, WCAG AA Compliant) ─────────────────────────
   Widget _buildHeader() {
     final displayName =
-        ProfileScope.maybeOf(context)?.displayName ?? MockUserStats.userName;
+        ProfileScope.maybeOf(context)?.displayName ?? 'Dimas';
     final equippedBlangkon =
         ProfileScope.maybeOf(context)?.equippedBlangkon ??
         BlangkonType.yogyakarta;

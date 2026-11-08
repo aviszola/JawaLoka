@@ -150,7 +150,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               _buildLanguageSelector(),
               const SizedBox(height: 14),
               _buildInputPanel(),
-              const SizedBox(height: 12),
+              const SizedBox(height: 8),
+              _buildPhrasesHint(),
+              const SizedBox(height: 10),
               _buildTranslateButton(),
               const SizedBox(height: 12),
               _buildOutputPanel(),
@@ -286,6 +288,20 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           border: InputBorder.none,
           isDense: true,
           contentPadding: EdgeInsets.zero,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPhrasesHint() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Text(
+        context.l10n.translatorBasicPhrasesHint,
+        style: const TextStyle(
+          fontSize: 12,
+          color: AppColors.inkSecondary,
+          height: 1.35,
         ),
       ),
     );

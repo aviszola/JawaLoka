@@ -795,11 +795,10 @@ void main() {
         await tester.pump(const Duration(milliseconds: 300));
 
         expect(find.text('Quiz Path'), findsOneWidget);
-        expect(find.text('Unit 1: Greetings and Salutations'), findsOneWidget);
+        expect(find.text('Unit 1: Greetings and Initial Etiquette'), findsOneWidget);
         expect(find.text('Greeting'), findsOneWidget);
         expect(find.text('Farewell'), findsOneWidget);
-        expect(find.text('Badge'), findsOneWidget);
-        expect(find.text('Milestone Node'), findsOneWidget);
+        expect(find.text('Ask news'), findsOneWidget);
 
         // Tap active node -> opens QuizBottomSheet
         await tester.tap(find.text('Greeting'));
@@ -814,19 +813,19 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        // Scroll down and tap locked node 'Family'
+        // Scroll down and tap locked node 'Introduction to Hanacaraka'
         await tester.scrollUntilVisible(
-          find.text('Unit 2: Family and Home (Locked)'),
+          find.text('Unit 2: Basic Javanese Script (Legena) (Locked)'),
           100,
         );
-        expect(find.text('Unit 2: Family and Home (Locked)'), findsOneWidget);
-        await tester.scrollUntilVisible(find.text('Family'), 100);
-        await tester.ensureVisible(find.text('Family'));
+        expect(find.text('Unit 2: Basic Javanese Script (Legena) (Locked)'), findsOneWidget);
+        await tester.scrollUntilVisible(find.text('Introduction to Hanacaraka'), 100);
+        await tester.ensureVisible(find.text('Introduction to Hanacaraka'));
         await tester.pump();
-        await tester.tap(find.text('Family'));
+        await tester.tap(find.text('Introduction to Hanacaraka'));
         await tester.pump(); // SnackBar start
         expect(
-          find.text('Family is still locked. Complete previous topics first!'),
+          find.text('Introduction to Hanacaraka is still locked. Complete previous topics first!'),
           findsOneWidget,
         );
       },
@@ -852,11 +851,10 @@ void main() {
         await tester.pump(const Duration(milliseconds: 300));
 
         expect(find.text('Dalan Kuis'), findsOneWidget);
-        expect(find.text('Unit 1: Aruh-aruh lan Salam'), findsOneWidget);
+        expect(find.text('Unit 1: Uluk Salam lan Tata Krama Awal'), findsOneWidget);
         expect(find.text('Salam'), findsOneWidget);
         expect(find.text('Pamit'), findsOneWidget);
-        expect(find.text('Lencana'), findsOneWidget);
-        expect(find.text('Node Tonggak'), findsOneWidget);
+        expect(find.text('Nyuwun kabar'), findsOneWidget);
 
         // Tap active node -> opens QuizBottomSheet
         await tester.tap(find.text('Salam'));
@@ -871,23 +869,23 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        // Scroll down and tap locked node 'Kulawarga'
+        // Scroll down and tap locked node 'Pitepangan Hanacaraka'
         await tester.scrollUntilVisible(
-          find.text('Unit 2: Kulawarga lan Omah (Kakonci)'),
+          find.text('Unit 2: Aksara Jawa Dhasar (Nglegena) (Kakonci)'),
           100,
         );
         expect(
-          find.text('Unit 2: Kulawarga lan Omah (Kakonci)'),
+          find.text('Unit 2: Aksara Jawa Dhasar (Nglegena) (Kakonci)'),
           findsOneWidget,
         );
-        await tester.scrollUntilVisible(find.text('Kulawarga'), 100);
-        await tester.ensureVisible(find.text('Kulawarga'));
+        await tester.scrollUntilVisible(find.text('Pitepangan Hanacaraka'), 100);
+        await tester.ensureVisible(find.text('Pitepangan Hanacaraka'));
         await tester.pump();
-        await tester.tap(find.text('Kulawarga'));
+        await tester.tap(find.text('Pitepangan Hanacaraka'));
         await tester.pump(); // SnackBar start
         expect(
           find.text(
-            'Materi Kulawarga isih kakunci. Rampungna materi sadurunge!',
+            'Materi Pitepangan Hanacaraka isih kakunci. Rampungna materi sadurunge!',
           ),
           findsOneWidget,
         );

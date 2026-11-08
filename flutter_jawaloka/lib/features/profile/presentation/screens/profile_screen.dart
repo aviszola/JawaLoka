@@ -10,7 +10,6 @@ import '../../../../core/profile/profile_scope.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 import 'level_up_screen.dart';
-import '../../../../core/mock/mock_user_stats.dart';
 
 /// JawaLoka - Profile (Profil) Screen.
 /// Pixel-accurate implementation of Stitch Screen #e5a2d70abae2486ebdec67b521794944.
@@ -34,10 +33,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
-  String _displayName = MockUserStats.userName;
+  String _displayName = 'Dimas';
   bool _isEditingName = false;
   final TextEditingController _nameCtrl = TextEditingController(
-    text: MockUserStats.userName,
+    text: 'Dimas',
   );
   String? _nameError;
 
@@ -558,7 +557,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           const SizedBox(width: 4),
                           Text(
                             context.l10n.profileStreakPill(
-                              MockUserStats.streakDays,
+                              ProfileScope.maybeOf(context)?.streakDays ?? 0,
                             ),
                             style: const TextStyle(
                               fontSize: 14,
@@ -595,7 +594,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                           const SizedBox(width: 4),
                           Text(
                             context.l10n.profileQuizzesThisWeek(
-                              MockUserStats.quizzesThisWeek,
+                              ProfileScope.maybeOf(context)?.quizzesThisWeek ??
+                                  0,
                             ),
                             style: const TextStyle(
                               fontSize: 14,
@@ -619,6 +619,12 @@ class _ProfileScreenState extends State<ProfileScreen>
   // ── 3. Section Lencana ───────────────────────────────────────────────────
 
   Widget _buildBadgeSection() {
+    final profile = ProfileScope.maybeOf(context);
+    final userLevel = profile?.userLevel ?? 1;
+    final hasMasteredAksara = profile?.hasMasteredAksara ?? false;
+    final isLevel5Unlocked = userLevel >= 5;
+    final isAksaraUnlocked = hasMasteredAksara;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -703,12 +709,14 @@ class _ProfileScreenState extends State<ProfileScreen>
                       _showToast(context.l10n.profileBadgeStreak30Toast),
                 ),
 
-                // Badge 3: Level 5 (Locked - tap to preview Level Up!)
+                // Badge 3: Level 5
                 _buildBadgeCard(
                   width: cardWidth,
                   title: context.l10n.profileBadgeLevel5Title,
-                  statusLabel: context.l10n.profileBadgeLocked,
-                  isUnlocked: false,
+                  statusLabel: isLevel5Unlocked
+                      ? context.l10n.profileBadgeUnlocked
+                      : context.l10n.profileBadgeLocked,
+                  isUnlocked: isLevel5Unlocked,
                   bgColor: AppColors.pastelMint,
                   icon: Icons.emoji_events_rounded,
                   iconColor: AppColors.pastelMintText,
@@ -717,10 +725,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                     height: 28,
                     style: GununganStyle.goldOutline,
                   ),
-                  badgeHighlight: context.l10n.profileBadgeLevelUpHighlight,
+                  badgeHighlight: isLevel5Unlocked
+                      ? null
+                      : context.l10n.profileBadgeLevelUpHighlight,
                   onTap: () async {
                     HapticFeedback.mediumImpact();
                     final toastMsg = context.l10n.profileBadgeLevel5Toast;
+                    if (isLevel5Unlocked) {
+                      _showToast(toastMsg);
+                      return;
+                    }
                     final result = await Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const LevelUpScreen()),
@@ -738,12 +752,14 @@ class _ProfileScreenState extends State<ProfileScreen>
                   },
                 ),
 
-                // Badge 4: Tamat Aksara (Locked)
+                // Badge 4: Tamat Aksara
                 _buildBadgeCard(
                   width: cardWidth,
                   title: context.l10n.profileBadgeAksaraCompleteTitle,
-                  statusLabel: context.l10n.profileBadgeEasyLevel,
-                  isUnlocked: false,
+                  statusLabel: isAksaraUnlocked
+                      ? context.l10n.profileBadgeUnlocked
+                      : context.l10n.profileBadgeEasyLevel,
+                  isUnlocked: isAksaraUnlocked,
                   bgColor: AppColors.pastelLavender,
                   icon: Icons.auto_stories_rounded,
                   iconColor: AppColors.inkMuted,

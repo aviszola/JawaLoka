@@ -317,10 +317,10 @@ void main() {
         );
         expect(thumbnailFinder, findsOneWidget);
 
-        // Status is passed because similarity >= 0.85
+        // Status is passed because similarity >= 0.70
         expect(find.text('Status: Lulus'), findsOneWidget);
         expect(
-          find.text('Kemiripan 90% (Syarat lulus: ≥ 85%)'),
+          find.text('Kemiripan 90% (Syarat lulus: ≥ 70%)'),
           findsOneWidget,
         );
       },
@@ -341,7 +341,7 @@ void main() {
 
         expect(find.text('Status: Belum Lulus'), findsOneWidget);
         expect(
-          find.text('Kemiripan 45% (Syarat lulus: ≥ 85%)'),
+          find.text('Kemiripan 45% (Syarat lulus: ≥ 70%)'),
           findsOneWidget,
         );
         expect(find.text('Coba Lagi'), findsOneWidget);

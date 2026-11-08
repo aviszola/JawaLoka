@@ -1,4 +1,4 @@
-import '../presentation/screens/quiz_question_screen.dart';
+import 'models/quiz_question.dart';
 
 /// Klasifikasi tingkat kemahiran kuis adaptif JawaLoka.
 enum QuizTier {

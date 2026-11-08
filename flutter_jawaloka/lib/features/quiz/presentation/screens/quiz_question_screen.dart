@@ -5,31 +5,17 @@ import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/progression/reward_summary.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
+import '../../domain/models/quiz_question.dart';
 import '../../domain/quiz_session.dart';
 
-/// Quiz question type enum.
-enum QuestionType { glyphIdentify, textToAksara }
+export '../../domain/models/quiz_question.dart';
 
-/// Model for a single quiz question.
-class QuizQuestion {
-  final QuestionType type;
-  final String prompt; // Fallback or explicit prompt
-  final String?
-  promptKey; // Key for localization: what_glyph, pronunciation, how_to_read, which_pronunciation
-  final String glyph; // Javanese character displayed
-  final List<String> options; // For MCQ
-  final int correctIndex;
-
-  const QuizQuestion({
-    required this.type,
-    this.prompt = '',
-    this.promptKey,
-    required this.glyph,
-    required this.options,
-    required this.correctIndex,
-  });
-
+/// Extension for resolving localized prompts for [QuizQuestion] within the presentation layer.
+extension QuizQuestionPresentationX on QuizQuestion {
   String getPrompt(BuildContext context) {
+    if (prompt.isNotEmpty) {
+      return prompt;
+    }
     switch (promptKey) {
       case 'what_glyph':
         return context.l10n.quizQuestionPromptWhatGlyph;
@@ -40,9 +26,7 @@ class QuizQuestion {
       case 'which_pronunciation':
         return context.l10n.quizQuestionPromptWhichPronunciation;
       default:
-        return prompt.isNotEmpty
-            ? prompt
-            : context.l10n.quizQuestionPromptWhatGlyph;
+        return context.l10n.quizQuestionPromptWhatGlyph;
     }
   }
 }
@@ -53,12 +37,16 @@ class QuizQuestionArgs {
   final String moduleTitle;
   final VoidCallback? onComplete;
   final int? userLevel;
+  final String? activityId;
+  final bool isEvaluation;
 
   const QuizQuestionArgs({
     this.questions,
     this.moduleTitle = 'Aksara Dhasar',
     this.onComplete,
     this.userLevel,
+    this.activityId,
+    this.isEvaluation = false,
   });
 }
 
@@ -67,90 +55,22 @@ class QuizQuestionScreen extends StatefulWidget {
   final List<QuizQuestion> questions;
   final String moduleTitle;
   final VoidCallback? onComplete;
+  final String? activityId;
+  final bool isEvaluation;
 
   /// Jumlah soal per sesi kuis aksara.
-  // DATA CONTOH, TOPIK BELUM SESUAI
   static const int totalQuestionsPerSession = 10;
 
-  // DATA CONTOH, TOPIK BELUM SESUAI
-  static const List<QuizQuestion> defaultQuestions = [
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'what_glyph',
-      glyph: 'ꦲ',
-      options: ['Ha', 'Na', 'Ca', 'Ra'],
-      correctIndex: 0,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'pronunciation',
-      glyph: 'ꦤ',
-      options: ['Ka', 'Da', 'Na', 'Ta'],
-      correctIndex: 2,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'how_to_read',
-      glyph: 'ꦕ',
-      options: ['Sa', 'Wa', 'La', 'Ca'],
-      correctIndex: 3,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'which_pronunciation',
-      glyph: 'ꦫ',
-      options: ['Ra', 'Pa', 'Dha', 'Ja'],
-      correctIndex: 0,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'what_glyph',
-      glyph: 'ꦏ',
-      options: ['Nya', 'Ka', 'Ma', 'Ga'],
-      correctIndex: 1,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'pronunciation',
-      glyph: 'ꦢ',
-      options: ['Ta', 'Sa', 'Da', 'Ba'],
-      correctIndex: 2,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'how_to_read',
-      glyph: 'ꦠ',
-      options: ['Ta', 'Tha', 'Nga', 'La'],
-      correctIndex: 0,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'which_pronunciation',
-      glyph: 'ꦱ',
-      options: ['Wa', 'Sa', 'Ha', 'Ya'],
-      correctIndex: 1,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'what_glyph',
-      glyph: 'ꦮ',
-      options: ['La', 'Pa', 'Ja', 'Wa'],
-      correctIndex: 3,
-    ),
-    QuizQuestion(
-      type: QuestionType.glyphIdentify,
-      promptKey: 'pronunciation',
-      glyph: 'ꦭ',
-      options: ['La', 'Ma', 'Ga', 'Ba'],
-      correctIndex: 0,
-    ),
-  ];
+  /// Kumpulan soal bawaan untuk sesi aksara.
+  static const List<QuizQuestion> defaultQuestions = QuizQuestion.defaultQuestions;
 
   const QuizQuestionScreen({
     super.key,
     this.questions = defaultQuestions,
     this.moduleTitle = 'Aksara Dhasar',
     this.onComplete,
+    this.activityId,
+    this.isEvaluation = false,
   });
 
   @override
@@ -179,6 +99,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     _session = QuizSession(
       questions: widget.questions,
       moduleTitle: widget.moduleTitle,
+      activityId: widget.activityId,
     );
 
     _progressController = AnimationController(
@@ -262,11 +183,13 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
   void didUpdateWidget(covariant QuizQuestionScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.questions != widget.questions ||
-        oldWidget.moduleTitle != widget.moduleTitle) {
+        oldWidget.moduleTitle != widget.moduleTitle ||
+        oldWidget.activityId != widget.activityId) {
       setState(() {
         _session = QuizSession(
           questions: widget.questions,
           moduleTitle: widget.moduleTitle,
+          activityId: widget.activityId,
         );
       });
       _animateProgressTo(0.0);
@@ -344,9 +267,14 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         claimId: _session.sessionId,
         correctAnswers: _session.correctCount,
         isPerfect: _session.correctCount == _session.totalQuestions,
+        scorePercentage: _session.scorePercentage,
+        isEvaluation: widget.isEvaluation,
       );
     }
-    final result = _session.toResult(rewardSummary: summary);
+    final result = _session.toResult(
+      rewardSummary: summary,
+      isEvaluation: widget.isEvaluation,
+    );
     if (!mounted) return;
     Navigator.of(
       context,
@@ -557,18 +485,20 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                _current.glyph,
-                style: const TextStyle(
-                  fontSize: 72,
-                  fontFamily: 'NotoSansJavanese',
-                  color: AppColors.ink,
+            if (_current.glyph.isNotEmpty) ...[
+              const SizedBox(height: 20),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  _current.glyph,
+                  style: const TextStyle(
+                    fontSize: 72,
+                    fontFamily: 'NotoSansJavanese',
+                    color: AppColors.ink,
+                  ),
                 ),
               ),
-            ),
+            ],
           ],
         ),
       ),
@@ -735,6 +665,31 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                   _current.options[_current.correctIndex],
                 ),
                 style: const TextStyle(fontSize: 14, color: Color(0xFFD64545)),
+              ),
+            ],
+            if (_current.explanation.isNotEmpty) ...[
+              const SizedBox(height: 6),
+              Text(
+                _current.explanation,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: _isCorrect
+                      ? const Color(0xFF205530)
+                      : const Color(0xFF8B2020),
+                ),
+              ),
+              const SizedBox(height: 4),
+              // ATRIBUSI SUMBER BELUM DIVERIFIKASI, jangan tampilkan ke pengguna
+              Text(
+                context.l10n.quizQuestionSourceAttribution,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontStyle: FontStyle.italic,
+                  color: _isCorrect
+                      ? const Color(0xFF205530).withValues(alpha: 0.8)
+                      : const Color(0xFF8B2020).withValues(alpha: 0.8),
+                ),
               ),
             ],
             const SizedBox(height: 10),

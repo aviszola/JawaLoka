@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
-import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/progression/reward_summary.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -457,7 +456,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
     );
 
     final profile = ProfileScope.maybeOf(context);
-    final userName = profile?.displayName ?? MockUserStats.userName;
+    final userName = profile?.displayName ?? 'Dimas';
     RewardSummary? summary;
 
     if (profile != null) {

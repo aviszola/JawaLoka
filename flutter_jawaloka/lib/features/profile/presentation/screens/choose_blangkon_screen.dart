@@ -2,60 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../widgets/blangkon_painter.dart';
-
-// ─── Syarat Buka Blangkon ─────────────────────────────────────────────────────
-
-// PERLU VALIDASI BUDAYA
-enum BlangkonUnlockType {
-  initial, // Terpasang awal
-  level, // Mencapai Level tertentu
-  masteryAksara, // Selesai materi aksara
-}
-
-class BlangkonUnlockCondition {
-  final BlangkonUnlockType type;
-  final int? requiredLevel;
-  final String label;
-
-  const BlangkonUnlockCondition.initial()
-    : type = BlangkonUnlockType.initial,
-      requiredLevel = null,
-      label = 'Terpasang awal';
-
-  const BlangkonUnlockCondition.level(int level)
-    : type = BlangkonUnlockType.level,
-      requiredLevel = level,
-      label = 'Level $level';
-
-  const BlangkonUnlockCondition.masteryAksara()
-    : type = BlangkonUnlockType.masteryAksara,
-      requiredLevel = null,
-      label = 'Selesai aksara';
-}
-
-// PERLU KEPUTUSAN
-// PERLU VALIDASI BUDAYA
-const Map<BlangkonType, BlangkonUnlockCondition> blangkonUnlockConditions = {
-  BlangkonType.yogyakarta: BlangkonUnlockCondition.initial(),
-  BlangkonType.surakarta: BlangkonUnlockCondition.level(5),
-  BlangkonType.banyumas: BlangkonUnlockCondition.level(6),
-  BlangkonType.kedu: BlangkonUnlockCondition.level(8),
-  BlangkonType.cirebon: BlangkonUnlockCondition.level(10),
-  BlangkonType.pusaka: BlangkonUnlockCondition.masteryAksara(),
-};
 
 class _BlangkonOption {
   final BlangkonType type;
   final String name;
-  final BlangkonUnlockCondition condition;
 
   const _BlangkonOption({
     required this.type,
     required this.name,
-    required this.condition,
   });
 
   String description(BuildContext context) {
@@ -88,40 +45,17 @@ class ChooseBlangkonScreen extends StatefulWidget {
 class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     with SingleTickerProviderStateMixin {
   int get _currentUserLevel => ProfileScope.maybeOf(context)?.userLevel ?? 1;
-  static const bool _hasMasteredAksara = MockUserStats.hasMasteredAksara;
+  bool get _hasMasteredAksara =>
+      ProfileScope.maybeOf(context)?.hasMasteredAksara ?? false;
 
-  static final List<_BlangkonOption> _options = [
-    _BlangkonOption(
-      type: BlangkonType.yogyakarta,
-      name: 'Blangkon Yogyakarta',
-      condition: blangkonUnlockConditions[BlangkonType.yogyakarta]!,
-    ),
-    _BlangkonOption(
-      type: BlangkonType.surakarta,
-      name: 'Blangkon Surakarta',
-      condition: blangkonUnlockConditions[BlangkonType.surakarta]!,
-    ),
-    _BlangkonOption(
-      type: BlangkonType.banyumas,
-      name: 'Blangkon Banyumas',
-      condition: blangkonUnlockConditions[BlangkonType.banyumas]!,
-    ),
-    _BlangkonOption(
-      type: BlangkonType.kedu,
-      name: 'Blangkon Kedu',
-      condition: blangkonUnlockConditions[BlangkonType.kedu]!,
-    ),
-    _BlangkonOption(
-      type: BlangkonType.cirebon,
-      name: 'Blangkon Cirebon',
-      condition: blangkonUnlockConditions[BlangkonType.cirebon]!,
-    ),
-    _BlangkonOption(
-      type: BlangkonType.pusaka,
-      name: 'Blangkon Pusaka',
-      condition: blangkonUnlockConditions[BlangkonType.pusaka]!,
-    ),
-  ];
+  static final List<_BlangkonOption> _options = BlangkonType.values
+      .map(
+        (t) => _BlangkonOption(
+          type: t,
+          name: BlangkonRewards.getName(t),
+        ),
+      )
+      .toList(growable: false);
 
   BlangkonType _selected = BlangkonType.yogyakarta;
 
@@ -162,14 +96,15 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
   }
 
   bool _isOptionLocked(_BlangkonOption opt) {
-    switch (opt.condition.type) {
-      case BlangkonUnlockType.initial:
-        return false;
-      case BlangkonUnlockType.level:
-        return _currentUserLevel < (opt.condition.requiredLevel ?? 1);
-      case BlangkonUnlockType.masteryAksara:
-        return !_hasMasteredAksara;
+    final profile = ProfileScope.maybeOf(context);
+    if (profile != null) {
+      return !profile.isBlangkonUnlocked(opt.type);
     }
+    return !BlangkonRewards.isUnlocked(
+      opt.type,
+      userLevel: _currentUserLevel,
+      hasMasteredAksara: _hasMasteredAksara,
+    );
   }
 
   void _selectBlangkon(BlangkonType type, bool isLocked) {
@@ -185,19 +120,15 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
   void _showLockedSnackBar(BlangkonType type) {
     final opt = _options.firstWhere((o) => o.type == type);
     final String message;
-    switch (opt.condition.type) {
-      case BlangkonUnlockType.initial:
+    if (type == BlangkonType.pusaka) {
+      message = context.l10n.blangkonToastAksara(opt.name);
+    } else {
+      final reqLevel = BlangkonRewards.requiredLevels[type];
+      if (reqLevel != null) {
+        message = context.l10n.blangkonToastLevel(reqLevel, opt.name);
+      } else {
         message = context.l10n.blangkonToastInitial(opt.name);
-        break;
-      case BlangkonUnlockType.level:
-        message = context.l10n.blangkonToastLevel(
-          opt.condition.requiredLevel ?? 1,
-          opt.name,
-        );
-        break;
-      case BlangkonUnlockType.masteryAksara:
-        message = context.l10n.blangkonToastAksara(opt.name);
-        break;
+      }
     }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -417,21 +348,22 @@ class _BlangkonGridItem extends StatelessWidget {
 
   String _getConditionLabel(
     BuildContext context,
-    BlangkonUnlockCondition condition,
+    BlangkonType type,
   ) {
-    switch (condition.type) {
-      case BlangkonUnlockType.initial:
-        return context.l10n.blangkonInitialUnlock;
-      case BlangkonUnlockType.level:
-        return context.l10n.blangkonLevelRequired(condition.requiredLevel ?? 1);
-      case BlangkonUnlockType.masteryAksara:
-        return context.l10n.blangkonMasteryAksara;
+    if (type == BlangkonType.yogyakarta) {
+      return context.l10n.blangkonInitialUnlock;
     }
+    if (type == BlangkonType.pusaka) {
+      return context.l10n.blangkonMasteryAksara;
+    }
+    final reqLevel = BlangkonRewards.requiredLevels[type] ?? 1;
+    return context.l10n.blangkonLevelRequired(reqLevel);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 220),
@@ -495,7 +427,7 @@ class _BlangkonGridItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
-                        _getConditionLabel(context, option.condition),
+                        _getConditionLabel(context, option.type),
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,

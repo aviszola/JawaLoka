@@ -304,9 +304,15 @@
   "@homeHeroQuestBadge": {
     "description": "Badge kartu misi harian"
   },
-  "homeHeroQuestTarget": "Target: ≥85% Presisi",
+  "homeHeroQuestTarget": "Target: ≥{percent}% Presisi",
   "@homeHeroQuestTarget": {
-    "description": "Target presisi misi harian"
+    "description": "Target presisi misi harian",
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "70"
+      }
+    }
   },
   "homeHeroQuestTitle": "Aksara \"Ha\" (ꦲ)",
   "@homeHeroQuestTitle": {
@@ -520,7 +526,7 @@
       }
     }
   },
-  "quizUnit1Title": "Unit 1: Sapaan dan Salam",
+  "quizUnit1Title": "Unit 1: Sapaan dan Unggah-Ungguh Awal",
   "@quizUnit1Title": {
     "description": "Judul Unit 1 di peta kuis"
   },
@@ -528,11 +534,11 @@
   "@quizUnit1Subtitle": {
     "description": "Subjudul Unit 1 di peta kuis"
   },
-  "quizUnit2Title": "Unit 2: Keluarga dan Rumah (Terkunci)",
+  "quizUnit2Title": "Unit 2: Aksara Jawa Dasar (Legena) (Terkunci)",
   "@quizUnit2Title": {
     "description": "Judul Unit 2 di peta kuis"
   },
-  "quizUnit2Subtitle": "Silsilah keluarga, kerabat, dan lingkungan rumah",
+  "quizUnit2Subtitle": "Pengenalan 20 aksara legena Hanacaraka",
   "@quizUnit2Subtitle": {
     "description": "Subjudul Unit 2 di peta kuis"
   },
@@ -636,6 +642,10 @@
       }
     }
   },
+  "quizQuestionSourceAttribution": "Materi JawaLoka (draf, belum diverifikasi penutur Jawa)",
+  "@quizQuestionSourceAttribution": {
+    "description": "Atribusi sumber tetap pada kartu penjelasan kuis"
+  },
   "quizCheck": "Periksa",
   "@quizCheck": {
     "description": "Tombol periksa jawaban kuis"
@@ -738,9 +748,15 @@
   "@dailyResultCelebrationFailed": {
     "description": "Ucapan penyemangat saat quest belum lulus"
   },
-  "dailyResultDescPassed": "Kamu berhasil menulis aksara Jawa dengan kemiripan di atas 85%.",
+  "dailyResultDescPassed": "Kamu berhasil menulis aksara Jawa dengan kemiripan di atas {percent}%.",
   "@dailyResultDescPassed": {
-    "description": "Keterangan lulus quest aksara"
+    "description": "Keterangan lulus quest aksara",
+    "placeholders": {
+      "percent": {
+        "type": "int",
+        "example": "70"
+      }
+    }
   },
   "dailyResultDescFailed": "Goresanmu hampir tepat. Coba perhatikan proporsi aksara target.",
   "@dailyResultDescFailed": {
@@ -766,13 +782,17 @@
   "@dailyResultStatusFailed": {
     "description": "Status kelulusan quest belum tercapai"
   },
-  "dailyResultRequirement": "Kemiripan {percent}% (Syarat lulus: ≥ 85%)",
+  "dailyResultRequirement": "Kemiripan {percent}% (Syarat lulus: ≥ {threshold}%)",
   "@dailyResultRequirement": {
     "description": "Keterangan skor kemiripan dan ambang kelulusan",
     "placeholders": {
       "percent": {
         "type": "int",
         "example": "92"
+      },
+      "threshold": {
+        "type": "int",
+        "example": "70"
       }
     }
   },
@@ -980,6 +1000,24 @@
   "@levelUpSkipButton": {
     "description": "Tombol lewati pemakaian blangkon saat ini"
   },
+  "levelUpOtherRewardsCount": " (+{count} blangkon lainnya)",
+  "@levelUpOtherRewardsCount": {
+    "description": "Jumlah blangkon tambahan yang terbuka saat lompat level",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "levelUpNoRewardSubtitle": "Selamat! Tingkat pemahaman dan kecakapanmu semakin bertambah.",
+  "@levelUpNoRewardSubtitle": {
+    "description": "Subjudul perayaan naik level tanpa hadiah blangkon"
+  },
+  "levelUpContinueButton": "Lanjutkan",
+  "@levelUpContinueButton": {
+    "description": "Tombol lanjut pada perayaan naik level tanpa hadiah blangkon"
+  },
   "settingsLogout": "Keluar",
   "@settingsLogout": {
     "description": "Label aksi keluar akun di Pengaturan"
@@ -996,7 +1034,7 @@
   "@settingsPrivacyPolicy": {
     "description": "Judul baris kebijakan privasi di Pengaturan"
   },
-  "settingsPrivacyPolicyContent": "JawaLoka menghormati privasi Anda. Seluruh progres belajar, latihan aksara, dan preferensi pengguna disimpan secara lokal di perangkat Anda.",
+  "settingsPrivacyPolicyContent": "Aplikasi JawaLoka menyimpan nama tampilan, pilihan bahasa, koleksi blangkon, progres kuis, XP, dan Level secara lokal di perangkat Anda. Aplikasi ini tidak mengirim data ke server, tidak memiliki akun sungguhan (versi demo), dan tidak menyimpan kata sandi.",
   "@settingsPrivacyPolicyContent": {
     "description": "Teks isi dialog kebijakan privasi"
   },
@@ -1016,9 +1054,9 @@
   "@settingsAccountNameLabel": {
     "description": "Label nama pengguna di dialog akun"
   },
-  "settingsAccountEmailLabel": "Email",
-  "@settingsAccountEmailLabel": {
-    "description": "Label email di dialog akun"
+  "settingsAccountLocalNote": "Akun lokal pada perangkat ini",
+  "@settingsAccountLocalNote": {
+    "description": "Keterangan jenis akun lokal perangkat di dialog akun"
   },
   "translatorTitle": "Penerjemah",
   "@translatorTitle": {
@@ -1031,6 +1069,10 @@
   "translatorInputHint": "Ketik teks...",
   "@translatorInputHint": {
     "description": "Hint kotak input teks penerjemah"
+  },
+  "translatorBasicPhrasesHint": "Contoh frasa dasar yang didukung: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.",
+  "@translatorBasicPhrasesHint": {
+    "description": "Petunjuk satu baris contoh frasa dasar yang didukung penerjemah"
   },
   "translatorButton": "Terjemahkan",
   "@translatorButton": {
@@ -1441,5 +1483,533 @@
   "aksaraDetailExampleHasthaMeaning": "Delapan",
   "@aksaraDetailExampleHasthaMeaning": {
     "description": "Arti contoh kata Hastha pada aksara Ha"
+  },
+  "quizUnit3Title": "Unit 3: Sandhangan dan Pasangan Aksara Jawa (Terkunci)",
+  "@quizUnit3Title": {
+    "description": "Judul Unit 3 di peta kuis"
+  },
+  "quizUnit3Subtitle": "Vokalisasi, konsonan penutup, dan pasangan aksara",
+  "@quizUnit3Subtitle": {
+    "description": "Subjudul Unit 3 di peta kuis"
+  },
+  "quizUnit4Title": "Unit 4: Kosakata dan Tingkatan Bahasa (Terkunci)",
+  "@quizUnit4Title": {
+    "description": "Judul Unit 4 di peta kuis"
+  },
+  "quizUnit4Subtitle": "Tingkatan ngoko, krama lugu, dan krama inggil",
+  "@quizUnit4Subtitle": {
+    "description": "Subjudul Unit 4 di peta kuis"
+  },
+  "quizUnit5Title": "Unit 5: Budaya, Paribasan, dan Kawruh Luhur (Terkunci)",
+  "@quizUnit5Title": {
+    "description": "Judul Unit 5 di peta kuis"
+  },
+  "quizUnit5Subtitle": "Paribasan, filosofi, adat tradisi, dan kawruh luhur Jawa",
+  "@quizUnit5Subtitle": {
+    "description": "Subjudul Unit 5 di peta kuis"
+  },
+  "quizTopicSapaWong": "Menyapa Orang Lain",
+  "@quizTopicSapaWong": {
+    "description": "Topik kuis Menyapa Orang Lain"
+  },
+  "quizTopicSapaWongDesc": "Tata krama menegur dan menyapa orang yang ditemui.",
+  "@quizTopicSapaWongDesc": {
+    "description": "Deskripsi topik kuis Menyapa Orang Lain"
+  },
+  "quizTopicMaturNuwun": "Terima Kasih",
+  "@quizTopicMaturNuwun": {
+    "description": "Topik kuis Terima Kasih"
+  },
+  "quizTopicMaturNuwunDesc": "Ungkapan rasa syukur dan terima kasih yang santun.",
+  "@quizTopicMaturNuwunDesc": {
+    "description": "Deskripsi topik kuis Terima Kasih"
+  },
+  "quizTopicNyuwunPangapunten": "Meminta Maaf",
+  "@quizTopicNyuwunPangapunten": {
+    "description": "Topik kuis Meminta Maaf"
+  },
+  "quizTopicNyuwunPangapuntenDesc": "Ungkapan permohonan maaf dan mengakui kekeliruan.",
+  "@quizTopicNyuwunPangapuntenDesc": {
+    "description": "Deskripsi topik kuis Meminta Maaf"
+  },
+  "quizTopicPercakapanPadinan": "Percakapan Sehari-hari",
+  "@quizTopicPercakapanPadinan": {
+    "description": "Topik kuis Percakapan Sehari-hari"
+  },
+  "quizTopicPercakapanPadinanDesc": "Latihan dialog sapaan sopan dalam kehidupan sehari-hari.",
+  "@quizTopicPercakapanPadinanDesc": {
+    "description": "Deskripsi topik kuis Percakapan Sehari-hari"
+  },
+  "quizTopicEvaluasiUnit1": "Evaluasi Unit 1",
+  "@quizTopicEvaluasiUnit1": {
+    "description": "Topik kuis Evaluasi Unit 1"
+  },
+  "quizTopicEvaluasiUnit1Desc": "Uji komprehensif materi sapaan dan unggah-ungguh awal.",
+  "@quizTopicEvaluasiUnit1Desc": {
+    "description": "Deskripsi topik kuis Evaluasi Unit 1"
+  },
+  "quizTopicPengenalanHanacaraka": "Pengenalan Hanacaraka",
+  "@quizTopicPengenalanHanacaraka": {
+    "description": "Topik kuis Pengenalan Hanacaraka"
+  },
+  "quizTopicPengenalanHanacarakaDesc": "Mengenal asal-usul dan filosofi 20 aksara carakan Jawa.",
+  "@quizTopicPengenalanHanacarakaDesc": {
+    "description": "Deskripsi topik kuis Pengenalan Hanacaraka"
+  },
+  "quizTopicAksaraHanacaraka": "Aksara Ha Na Ca Ra Ka",
+  "@quizTopicAksaraHanacaraka": {
+    "description": "Topik kuis Aksara Ha Na Ca Ra Ka"
+  },
+  "quizTopicAksaraHanacarakaDesc": "Bentuk dan pelafalan aksara Ha, Na, Ca, Ra, Ka.",
+  "@quizTopicAksaraHanacarakaDesc": {
+    "description": "Deskripsi topik kuis Aksara Ha Na Ca Ra Ka"
+  },
+  "quizTopicAksaraDatasawala": "Aksara Da Ta Sa Wa La",
+  "@quizTopicAksaraDatasawala": {
+    "description": "Topik kuis Aksara Da Ta Sa Wa La"
+  },
+  "quizTopicAksaraDatasawalaDesc": "Bentuk dan pelafalan aksara Da, Ta, Sa, Wa, La.",
+  "@quizTopicAksaraDatasawalaDesc": {
+    "description": "Deskripsi topik kuis Aksara Da Ta Sa Wa La"
+  },
+  "quizTopicAksaraPadhajayanya": "Aksara Pa Dha Ja Ya Nya",
+  "@quizTopicAksaraPadhajayanya": {
+    "description": "Topik kuis Aksara Pa Dha Ja Ya Nya"
+  },
+  "quizTopicAksaraPadhajayanyaDesc": "Bentuk dan pelafalan aksara Pa, Dha, Ja, Ya, Nya.",
+  "@quizTopicAksaraPadhajayanyaDesc": {
+    "description": "Deskripsi topik kuis Aksara Pa Dha Ja Ya Nya"
+  },
+  "quizTopicAksaraMagabathanga": "Aksara Ma Ga Ba Tha Nga",
+  "@quizTopicAksaraMagabathanga": {
+    "description": "Topik kuis Aksara Ma Ga Ba Tha Nga"
+  },
+  "quizTopicAksaraMagabathangaDesc": "Bentuk dan pelafalan aksara Ma, Ga, Ba, Tha, Nga.",
+  "@quizTopicAksaraMagabathangaDesc": {
+    "description": "Deskripsi topik kuis Aksara Ma Ga Ba Tha Nga"
+  },
+  "quizTopicMacaAksaraDhasar": "Membaca Aksara Dasar",
+  "@quizTopicMacaAksaraDhasar": {
+    "description": "Topik kuis Membaca Aksara Dasar"
+  },
+  "quizTopicMacaAksaraDhasarDesc": "Latihan membaca kombinasi suku kata terbuka aksara legena.",
+  "@quizTopicMacaAksaraDhasarDesc": {
+    "description": "Deskripsi topik kuis Membaca Aksara Dasar"
+  },
+  "quizTopicNyusunAksaraLegena": "Menyusun Aksara Legena",
+  "@quizTopicNyusunAksaraLegena": {
+    "description": "Topik kuis Menyusun Aksara Legena"
+  },
+  "quizTopicNyusunAksaraLegenaDesc": "Menyusun aksara Jawa legena menjadi kata yang bermakna.",
+  "@quizTopicNyusunAksaraLegenaDesc": {
+    "description": "Deskripsi topik kuis Menyusun Aksara Legena"
+  },
+  "quizTopicNiteniWujudAksara": "Mengenali Bentuk Aksara",
+  "@quizTopicNiteniWujudAksara": {
+    "description": "Topik kuis Mengenali Bentuk Aksara"
+  },
+  "quizTopicNiteniWujudAksaraDesc": "Membedakan bentuk aksara legena yang sekilas mirip.",
+  "@quizTopicNiteniWujudAksaraDesc": {
+    "description": "Deskripsi topik kuis Mengenali Bentuk Aksara"
+  },
+  "quizTopicGladhenMacaLegena": "Latihan Membaca Kata Legena",
+  "@quizTopicGladhenMacaLegena": {
+    "description": "Topik kuis Latihan Membaca Kata Legena"
+  },
+  "quizTopicGladhenMacaLegenaDesc": "Membaca kata dua dan tiga suku kata tanpa sandhangan.",
+  "@quizTopicGladhenMacaLegenaDesc": {
+    "description": "Deskripsi topik kuis Latihan Membaca Kata Legena"
+  },
+  "quizTopicEvaluasiUnit2": "Evaluasi Unit 2",
+  "@quizTopicEvaluasiUnit2": {
+    "description": "Topik kuis Evaluasi Unit 2"
+  },
+  "quizTopicEvaluasiUnit2Desc": "Uji komprehensif penguasaan 20 aksara legena Hanacaraka.",
+  "@quizTopicEvaluasiUnit2Desc": {
+    "description": "Deskripsi topik kuis Evaluasi Unit 2"
+  },
+  "quizTopicSandhanganSwara": "Sandhangan Swara",
+  "@quizTopicSandhanganSwara": {
+    "description": "Topik kuis Sandhangan Swara"
+  },
+  "quizTopicSandhanganSwaraDesc": "Mengubah vokal aksara dengan wulu, suku, taling, dan pepet.",
+  "@quizTopicSandhanganSwaraDesc": {
+    "description": "Deskripsi topik kuis Sandhangan Swara"
+  },
+  "quizTopicSandhanganPanyigeg": "Sandhangan Panyigeg Wanda",
+  "@quizTopicSandhanganPanyigeg": {
+    "description": "Topik kuis Sandhangan Panyigeg Wanda"
+  },
+  "quizTopicSandhanganPanyigegDesc": "Konsonan penutup wignyan, layar, cecak, dan pangkon.",
+  "@quizTopicSandhanganPanyigegDesc": {
+    "description": "Deskripsi topik kuis Sandhangan Panyigeg Wanda"
+  },
+  "quizTopicSandhanganWyanjana": "Sandhangan Wyanjana",
+  "@quizTopicSandhanganWyanjana": {
+    "description": "Topik kuis Sandhangan Wyanjana"
+  },
+  "quizTopicSandhanganWyanjanaDesc": "Sisipan semivokal cakra, keret, dan pengkal pada aksara.",
+  "@quizTopicSandhanganWyanjanaDesc": {
+    "description": "Deskripsi topik kuis Sandhangan Wyanjana"
+  },
+  "quizTopicPengenalanPasangan": "Pengenalan Pasangan",
+  "@quizTopicPengenalanPasangan": {
+    "description": "Topik kuis Pengenalan Pasangan"
+  },
+  "quizTopicPengenalanPasanganDesc": "Fungsi dan cara kerja pasangan dalam mematikan vokal.",
+  "@quizTopicPengenalanPasanganDesc": {
+    "description": "Deskripsi topik kuis Pengenalan Pasangan"
+  },
+  "quizTopicPasanganSejajarGantung": "Pasangan Sejajar & Gantung",
+  "@quizTopicPasanganSejajarGantung": {
+    "description": "Topik kuis Pasangan Sejajar & Gantung"
+  },
+  "quizTopicPasanganSejajarGantungDesc": "Membedakan pasangan yang ditulis sejajar dan menggantung.",
+  "@quizTopicPasanganSejajarGantungDesc": {
+    "description": "Deskripsi topik kuis Pasangan Sejajar & Gantung"
+  },
+  "quizTopicMacaKataSandhangan": "Membaca Kata Bersandhangan",
+  "@quizTopicMacaKataSandhangan": {
+    "description": "Topik kuis Membaca Kata Bersandhangan"
+  },
+  "quizTopicMacaKataSandhanganDesc": "Membaca kosakata yang menggunakan aneka sandhangan swara.",
+  "@quizTopicMacaKataSandhanganDesc": {
+    "description": "Deskripsi topik kuis Membaca Kata Bersandhangan"
+  },
+  "quizTopicNulisKataSederhana": "Menulis Kata Sederhana",
+  "@quizTopicNulisKataSederhana": {
+    "description": "Topik kuis Menulis Kata Sederhana"
+  },
+  "quizTopicNulisKataSederhanaDesc": "Menyusun aksara bersandhangan menjadi kata yang benar.",
+  "@quizTopicNulisKataSederhanaDesc": {
+    "description": "Deskripsi topik kuis Menulis Kata Sederhana"
+  },
+  "quizTopicNiteniLuputNulis": "Mengenali Kesalahan Tulis",
+  "@quizTopicNiteniLuputNulis": {
+    "description": "Topik kuis Mengenali Kesalahan Tulis"
+  },
+  "quizTopicNiteniLuputNulisDesc": "Menemukan dan memperbaiki salah letak sandhangan & pasangan.",
+  "@quizTopicNiteniLuputNulisDesc": {
+    "description": "Deskripsi topik kuis Mengenali Kesalahan Tulis"
+  },
+  "quizTopicGladhenKombinasi": "Latihan Kombinasi",
+  "@quizTopicGladhenKombinasi": {
+    "description": "Topik kuis Latihan Kombinasi"
+  },
+  "quizTopicGladhenKombinasiDesc": "Latihan gabungan sandhangan swara, panyigeg, dan pasangan.",
+  "@quizTopicGladhenKombinasiDesc": {
+    "description": "Deskripsi topik kuis Latihan Kombinasi"
+  },
+  "quizTopicEvaluasiUnit3": "Evaluasi Unit 3",
+  "@quizTopicEvaluasiUnit3": {
+    "description": "Topik kuis Evaluasi Unit 3"
+  },
+  "quizTopicEvaluasiUnit3Desc": "Uji komprehensif aturan sandhangan dan pasangan aksara Jawa.",
+  "@quizTopicEvaluasiUnit3Desc": {
+    "description": "Deskripsi topik kuis Evaluasi Unit 3"
+  },
+  "quizTopicKeluargaLanKerabat": "Keluarga & Kerabat",
+  "@quizTopicKeluargaLanKerabat": {
+    "description": "Topik kuis Keluarga & Kerabat"
+  },
+  "quizTopicKeluargaLanKerabatDesc": "Sebutan silsilah keluarga dalam ragam ngoko dan krama.",
+  "@quizTopicKeluargaLanKerabatDesc": {
+    "description": "Deskripsi topik kuis Keluarga & Kerabat"
+  },
+  "quizTopicOmahLanSakiwatengene": "Rumah & Lingkungan",
+  "@quizTopicOmahLanSakiwatengene": {
+    "description": "Topik kuis Rumah & Lingkungan"
+  },
+  "quizTopicOmahLanSakiwatengeneDesc": "Nama perabot, ruangan rumah, dan lingkungan sekitar.",
+  "@quizTopicOmahLanSakiwatengeneDesc": {
+    "description": "Deskripsi topik kuis Rumah & Lingkungan"
+  },
+  "quizTopicKagiyatanPadinan": "Kegiatan Sehari-hari",
+  "@quizTopicKagiyatanPadinan": {
+    "description": "Topik kuis Kegiatan Sehari-hari"
+  },
+  "quizTopicKagiyatanPadinanDesc": "Kata kerja dan aktivitas harian dalam tataran bahasa.",
+  "@quizTopicKagiyatanPadinanDesc": {
+    "description": "Deskripsi topik kuis Kegiatan Sehari-hari"
+  },
+  "quizTopicNgokoLugu": "Ragam Ngoko Lugu",
+  "@quizTopicNgokoLugu": {
+    "description": "Topik kuis Ragam Ngoko Lugu"
+  },
+  "quizTopicNgokoLuguDesc": "Ciri dan penggunaan bahasa ngoko lugu antarteman akrab.",
+  "@quizTopicNgokoLuguDesc": {
+    "description": "Deskripsi topik kuis Ragam Ngoko Lugu"
+  },
+  "quizTopicNgokoAlus": "Ragam Ngoko Alus",
+  "@quizTopicNgokoAlus": {
+    "description": "Topik kuis Ragam Ngoko Alus"
+  },
+  "quizTopicNgokoAlusDesc": "Sisipan krama inggil dalam kalimat ngoko untuk menghormati.",
+  "@quizTopicNgokoAlusDesc": {
+    "description": "Deskripsi topik kuis Ragam Ngoko Alus"
+  },
+  "quizTopicKramaLugu": "Ragam Krama Lugu",
+  "@quizTopicKramaLugu": {
+    "description": "Topik kuis Ragam Krama Lugu"
+  },
+  "quizTopicKramaLuguDesc": "Bentuk sopan formal netral tanpa pengagungan berlebihan.",
+  "@quizTopicKramaLuguDesc": {
+    "description": "Deskripsi topik kuis Ragam Krama Lugu"
+  },
+  "quizTopicKramaInggil": "Ragam Krama Inggil",
+  "@quizTopicKramaInggil": {
+    "description": "Topik kuis Ragam Krama Inggil"
+  },
+  "quizTopicKramaInggilDesc": "Tingkatan paling tinggi untuk menghormati sesepuh dan tokoh.",
+  "@quizTopicKramaInggilDesc": {
+    "description": "Deskripsi topik kuis Ragam Krama Inggil"
+  },
+  "quizTopicBandhinganTingkatBasa": "Perbandingan Tingkatan Bahasa",
+  "@quizTopicBandhinganTingkatBasa": {
+    "description": "Topik kuis Perbandingan Tingkatan Bahasa"
+  },
+  "quizTopicBandhinganTingkatBasaDesc": "Membandingkan padanan satu kata dalam ngoko, krama, dan inggil.",
+  "@quizTopicBandhinganTingkatBasaDesc": {
+    "description": "Deskripsi topik kuis Perbandingan Tingkatan Bahasa"
+  },
+  "quizTopicWicaraUnggahUngguh": "Percakapan Unggah-Ungguh",
+  "@quizTopicWicaraUnggahUngguh": {
+    "description": "Topik kuis Percakapan Unggah-Ungguh"
+  },
+  "quizTopicWicaraUnggahUngguhDesc": "Menerapkan unggah-ungguh basa dalam simulasi dialog nyata.",
+  "@quizTopicWicaraUnggahUngguhDesc": {
+    "description": "Deskripsi topik kuis Percakapan Unggah-Ungguh"
+  },
+  "quizTopicEvaluasiUnit4": "Evaluasi Unit 4",
+  "@quizTopicEvaluasiUnit4": {
+    "description": "Topik kuis Evaluasi Unit 4"
+  },
+  "quizTopicEvaluasiUnit4Desc": "Uji komprehensif kosakata dan penerapan tingkatan bahasa.",
+  "@quizTopicEvaluasiUnit4Desc": {
+    "description": "Deskripsi topik kuis Evaluasi Unit 4"
+  },
+  "quizTopicAjiningDhiri": "Ajining Dhiri",
+  "@quizTopicAjiningDhiri": {
+    "description": "Topik kuis Ajining Dhiri"
+  },
+  "quizTopicAjiningDhiriDesc": "Filosofi menjaga kehormatan diri melalui tutur kata yang santun.",
+  "@quizTopicAjiningDhiriDesc": {
+    "description": "Deskripsi topik kuis Ajining Dhiri"
+  },
+  "quizTopicUnggahUngguhBasa": "Unggah-Ungguh Basa Jawa",
+  "@quizTopicUnggahUngguhBasa": {
+    "description": "Topik kuis Unggah-Ungguh Basa Jawa"
+  },
+  "quizTopicUnggahUngguhBasaDesc": "Etika kesopanan tindak tanduk dan tata tutur orang Jawa.",
+  "@quizTopicUnggahUngguhBasaDesc": {
+    "description": "Deskripsi topik kuis Unggah-Ungguh Basa Jawa"
+  },
+  "quizTopicParibasanJawa": "Peribahasa & Paribasan",
+  "@quizTopicParibasanJawa": {
+    "description": "Topik kuis Peribahasa & Paribasan"
+  },
+  "quizTopicParibasanJawaDesc": "Makna mendalam ungkapan kiasan, paribasan, dan bebasan Jawa.",
+  "@quizTopicParibasanJawaDesc": {
+    "description": "Deskripsi topik kuis Peribahasa & Paribasan"
+  },
+  "quizTopicFilosofiUrip": "Filosofi Urip Iku Urup",
+  "@quizTopicFilosofiUrip": {
+    "description": "Topik kuis Filosofi Urip Iku Urup"
+  },
+  "quizTopicFilosofiUripDesc": "Makna hidup memberi manfaat bagi sesama dan alam semesta.",
+  "@quizTopicFilosofiUripDesc": {
+    "description": "Deskripsi topik kuis Filosofi Urip Iku Urup"
+  },
+  "quizTopicTradisiPranatan": "Tradisi & Pranatan Jawa",
+  "@quizTopicTradisiPranatan": {
+    "description": "Topik kuis Tradisi & Pranatan Jawa"
+  },
+  "quizTopicTradisiPranatanDesc": "Upacara adat, siklus kehidupan, dan tata krama tradisi Jawa.",
+  "@quizTopicTradisiPranatanDesc": {
+    "description": "Deskripsi topik kuis Tradisi & Pranatan Jawa"
+  },
+  "quizTopicPewayanganPandhawa": "Pewayangan Pandhawa",
+  "@quizTopicPewayanganPandhawa": {
+    "description": "Topik kuis Pewayangan Pandhawa"
+  },
+  "quizTopicPewayanganPandhawaDesc": "Karakter kebajikan tokoh wayang Pandhawa Lima dan nasihat hidup.",
+  "@quizTopicPewayanganPandhawaDesc": {
+    "description": "Deskripsi topik kuis Pewayangan Pandhawa"
+  },
+  "quizTopicTembangDolanan": "Tembang Dolanan & Piwulang",
+  "@quizTopicTembangDolanan": {
+    "description": "Topik kuis Tembang Dolanan & Piwulang"
+  },
+  "quizTopicTembangDolananDesc": "Pesan moral dan budi pekerti dalam tembang dolanan anak Jawa.",
+  "@quizTopicTembangDolananDesc": {
+    "description": "Deskripsi topik kuis Tembang Dolanan & Piwulang"
+  },
+  "quizTopicEtikaBudaya": "Etika & Situasi Budaya",
+  "@quizTopicEtikaBudaya": {
+    "description": "Topik kuis Etika & Situasi Budaya"
+  },
+  "quizTopicEtikaBudayaDesc": "Memilih tindakan dan tutur kata yang tepat di lingkungan budaya.",
+  "@quizTopicEtikaBudayaDesc": {
+    "description": "Deskripsi topik kuis Etika & Situasi Budaya"
+  },
+  "quizTopicKawruhLuhur": "Tantangan Kawruh Luhur",
+  "@quizTopicKawruhLuhur": {
+    "description": "Topik kuis Tantangan Kawruh Luhur"
+  },
+  "quizTopicKawruhLuhurDesc": "Ujian tingkat lanjut memadukan aksara, basa, dan budi pekerti.",
+  "@quizTopicKawruhLuhurDesc": {
+    "description": "Deskripsi topik kuis Tantangan Kawruh Luhur"
+  },
+  "quizTopicEvaluasiAkhir": "Evaluasi Akhir JawaLoka",
+  "@quizTopicEvaluasiAkhir": {
+    "description": "Topik kuis Evaluasi Akhir JawaLoka"
+  },
+  "quizTopicEvaluasiAkhirDesc": "Evaluasi akbar seluruh materi pembelajaran 50 node JawaLoka.",
+  "@quizTopicEvaluasiAkhirDesc": {
+    "description": "Deskripsi topik kuis Evaluasi Akhir JawaLoka"
+  },
+  "quizTopicUngkapanSopan": "Ungkapan Sopan",
+  "@quizTopicUngkapanSopan": {
+    "description": "Topic title or description for quizTopicUngkapanSopan"
+  },
+  "quizTopicUngkapanSopanDesc": "Tata krama sikap badan, subasita, dan trapsila dalam adat Jawa.",
+  "@quizTopicUngkapanSopanDesc": {
+    "description": "Topic title or description for quizTopicUngkapanSopanDesc"
+  },
+  "quizTopicPenggunaanPasangan": "Penggunaan Pasangan",
+  "@quizTopicPenggunaanPasangan": {
+    "description": "Topic title or description for quizTopicPenggunaanPasangan"
+  },
+  "quizTopicPenggunaanPasanganDesc": "Aturan dan latihan penulisan pasangan aksara dalam kata dan kalimat.",
+  "@quizTopicPenggunaanPasanganDesc": {
+    "description": "Topic title or description for quizTopicPenggunaanPasanganDesc"
+  },
+  "quizTopicKosakataPadinan": "Kosakata Sehari-hari",
+  "@quizTopicKosakataPadinan": {
+    "description": "Topic title or description for quizTopicKosakataPadinan"
+  },
+  "quizTopicKosakataPadinanDesc": "Kosakata dasar sehari-hari dan hubungan kekeluargaan Jawa.",
+  "@quizTopicKosakataPadinanDesc": {
+    "description": "Topic title or description for quizTopicKosakataPadinanDesc"
+  },
+  "quizTopicNamaBenda": "Nama Benda",
+  "@quizTopicNamaBenda": {
+    "description": "Topic title or description for quizTopicNamaBenda"
+  },
+  "quizTopicNamaBendaDesc": "Nama benda rumah tangga, bagian rumah Joglo, dan lingkungan sekitar.",
+  "@quizTopicNamaBendaDesc": {
+    "description": "Topic title or description for quizTopicNamaBendaDesc"
+  },
+  "quizTopicNamaKegiatan": "Nama Kegiatan",
+  "@quizTopicNamaKegiatan": {
+    "description": "Topic title or description for quizTopicNamaKegiatan"
+  },
+  "quizTopicNamaKegiatanDesc": "Kata kerja dan aktivitas sehari-hari dalam bahasa Jawa.",
+  "@quizTopicNamaKegiatanDesc": {
+    "description": "Topic title or description for quizTopicNamaKegiatanDesc"
+  },
+  "quizTopicNgoko": "Ngoko",
+  "@quizTopicNgoko": {
+    "description": "Topic title or description for quizTopicNgoko"
+  },
+  "quizTopicNgokoDesc": "Penggunaan dan kosakata ragam Ngoko untuk teman sebaya dan akrab.",
+  "@quizTopicNgokoDesc": {
+    "description": "Topic title or description for quizTopicNgokoDesc"
+  },
+  "quizTopicKrama": "Krama",
+  "@quizTopicKrama": {
+    "description": "Topic title or description for quizTopicKrama"
+  },
+  "quizTopicKramaDesc": "Ragam bahasa Krama halus untuk situasi sopan dan formal.",
+  "@quizTopicKramaDesc": {
+    "description": "Topic title or description for quizTopicKramaDesc"
+  },
+  "quizTopicPerbedaanTingkatanBahasa": "Perbedaan Tingkatan Bahasa",
+  "@quizTopicPerbedaanTingkatanBahasa": {
+    "description": "Topic title or description for quizTopicPerbedaanTingkatanBahasa"
+  },
+  "quizTopicPerbedaanTingkatanBahasaDesc": "Perbandingan padanan kata dalam ragam Ngoko, Krama, dan Krama Inggil.",
+  "@quizTopicPerbedaanTingkatanBahasaDesc": {
+    "description": "Topic title or description for quizTopicPerbedaanTingkatanBahasaDesc"
+  },
+  "quizTopicPercakapanTeman": "Percakapan dengan Teman",
+  "@quizTopicPercakapanTeman": {
+    "description": "Topic title or description for quizTopicPercakapanTeman"
+  },
+  "quizTopicPercakapanTemanDesc": "Latihan percakapan akrab dengan teman menggunakan bahasa Ngoko yang tepat.",
+  "@quizTopicPercakapanTemanDesc": {
+    "description": "Topic title or description for quizTopicPercakapanTemanDesc"
+  },
+  "quizTopicPercakapanDihormati": "Percakapan dengan Orang yang Dihormati",
+  "@quizTopicPercakapanDihormati": {
+    "description": "Topic title or description for quizTopicPercakapanDihormati"
+  },
+  "quizTopicPercakapanDihormatiDesc": "Percakapan santun dengan orang tua, guru, dan sesepuh menggunakan Krama Inggil.",
+  "@quizTopicPercakapanDihormatiDesc": {
+    "description": "Topic title or description for quizTopicPercakapanDihormatiDesc"
+  },
+  "quizTopicTataKramaJawa": "Tata Krama Jawa",
+  "@quizTopicTataKramaJawa": {
+    "description": "Topic title or description for quizTopicTataKramaJawa"
+  },
+  "quizTopicTataKramaJawaDesc": "Prinsip kesopanan, ajining dhiri, dan etika tutur dalam budaya Jawa.",
+  "@quizTopicTataKramaJawaDesc": {
+    "description": "Topic title or description for quizTopicTataKramaJawaDesc"
+  },
+  "quizTopicPeribahasaJawa": "Peribahasa Jawa",
+  "@quizTopicPeribahasaJawa": {
+    "description": "Topic title or description for quizTopicPeribahasaJawa"
+  },
+  "quizTopicPeribahasaJawaDesc": "Nasihat hidup dan kearifan lokal dalam paribasan, bebasan, dan saloka Jawa.",
+  "@quizTopicPeribahasaJawaDesc": {
+    "description": "Topic title or description for quizTopicPeribahasaJawaDesc"
+  },
+  "quizTopicFilosofiKehidupan": "Filosofi Kehidupan Jawa",
+  "@quizTopicFilosofiKehidupan": {
+    "description": "Topic title or description for quizTopicFilosofiKehidupan"
+  },
+  "quizTopicFilosofiKehidupanDesc": "Ajaran filosofis mendalam: Urip Iku Urup dan Memayu Hayuning Bawana.",
+  "@quizTopicFilosofiKehidupanDesc": {
+    "description": "Topic title or description for quizTopicFilosofiKehidupanDesc"
+  },
+  "quizTopicTradisiJawa": "Tradisi Jawa",
+  "@quizTopicTradisiJawa": {
+    "description": "Topic title or description for quizTopicTradisiJawa"
+  },
+  "quizTopicTradisiJawaDesc": "Upacara adat, siklus hidup, dan tradisi warisan leluhur Jawa.",
+  "@quizTopicTradisiJawaDesc": {
+    "description": "Topic title or description for quizTopicTradisiJawaDesc"
+  },
+  "quizTopicBudayaKesenian": "Budaya dan Kesenian",
+  "@quizTopicBudayaKesenian": {
+    "description": "Topic title or description for quizTopicBudayaKesenian"
+  },
+  "quizTopicBudayaKesenianDesc": "Kesenian wayang purwa, gamelan, dan ekspresi budaya tradisi Jawa.",
+  "@quizTopicBudayaKesenianDesc": {
+    "description": "Topic title or description for quizTopicBudayaKesenianDesc"
+  },
+  "quizTopicSituasiPadinan": "Situasi Kehidupan Sehari-hari",
+  "@quizTopicSituasiPadinan": {
+    "description": "Topic title or description for quizTopicSituasiPadinan"
+  },
+  "quizTopicSituasiPadinanDesc": "Penerapan kearifan tembang dolanan dan nilai sosial dalam kehidupan nyata.",
+  "@quizTopicSituasiPadinanDesc": {
+    "description": "Topic title or description for quizTopicSituasiPadinanDesc"
+  },
+  "quizTopicTantanganBudaya": "Tantangan Pemahaman Budaya",
+  "@quizTopicTantanganBudaya": {
+    "description": "Topic title or description for quizTopicTantanganBudaya"
+  },
+  "quizTopicTantanganBudayaDesc": "Ujian pemahaman tepa slira, subasita, dan kepemimpinan berwawasan Jawa.",
+  "@quizTopicTantanganBudayaDesc": {
+    "description": "Topic title or description for quizTopicTantanganBudayaDesc"
+  },
+  "quizTopicTantanganAkhir": "Tantangan Akhir",
+  "@quizTopicTantanganAkhir": {
+    "description": "Topic title or description for quizTopicTantanganAkhir"
+  },
+  "quizTopicTantanganAkhirDesc": "Tantangan puncak memadukan aksara, tataran bahasa, dan kearifan budaya.",
+  "@quizTopicTantanganAkhirDesc": {
+    "description": "Topic title or description for quizTopicTantanganAkhirDesc"
   }
 }
