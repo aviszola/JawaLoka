@@ -122,6 +122,8 @@ class AppRouter {
               questions: questions,
               moduleTitle: args.moduleTitle,
               onComplete: args.onComplete,
+              activityId: args.activityId,
+              isEvaluation: args.isEvaluation,
             ),
             settings: settings,
           );
@@ -192,6 +194,19 @@ class AppRouter {
         return _FadePageRoute(page: const SettingsScreen(), settings: settings);
 
       case AppRouter.levelUp:
+        final args = settings.arguments;
+        if (args is LevelUpArgs) {
+          return _FadePageRoute(
+            page: LevelUpScreen(
+              newLevel: args.newLevel,
+              previousLevel: args.previousLevel,
+              unlockedBlangkons: args.unlockedBlangkons,
+              blangkonName: args.blangkonName,
+              blangkonType: args.blangkonType,
+            ),
+            settings: settings,
+          );
+        }
         return _FadePageRoute(page: const LevelUpScreen(), settings: settings);
 
       default:

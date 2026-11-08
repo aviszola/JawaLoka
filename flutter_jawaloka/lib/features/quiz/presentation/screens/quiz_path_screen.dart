@@ -5,11 +5,10 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
-import '../widgets/quiz_path_painter.dart';
 import '../widgets/quiz_bottom_sheet.dart';
-import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_controller.dart';
 import '../../../../core/profile/profile_scope.dart';
-import '../../domain/adaptive_quiz_bank.dart';
+import '../../domain/curriculum/curriculum_quiz_bank.dart';
 import '../../domain/quiz_path_models.dart';
 import '../../domain/quiz_path_data.dart';
 import 'quiz_question_screen.dart';
@@ -27,12 +26,8 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   late final ScrollController _scrollController;
   late final AnimationController _pulseController;
   late final Animation<double> _pulseAnim;
-  final int _completedQuizzes = MockUserStats.totalCompletedQuizzes;
 
-  int _selectedDifficultyIndex = 0; // 0 = Mudah, 1 = Mahir, 2 = Sangat Mahir
-
-  /// Flat list of 50 curriculum nodes across 5 units.
-  static final List<QuizPathNode> _nodes = QuizPathData.allNodes;
+  int? _selectedDifficultyIndex; // null = auto-select from profile userLevel
 
   @override
   void initState() {
@@ -58,10 +53,18 @@ class _QuizPathScreenState extends State<QuizPathScreen>
   @override
   Widget build(BuildContext context) {
     final jumpLabel = context.l10n.homeContinueQuizButton;
+    final profile = ProfileScope.maybeOf(context);
+    final units = profile != null
+        ? QuizPathData.resolveCurriculum(
+            clearedActivities: profile.clearedActivities,
+            isEvaluationPassed: profile.isEvaluationPassed,
+          )
+        : QuizPathData.units;
+    final nodes = units.expand((u) => u.nodes).toList(growable: false);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F1EB),
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(nodes, profile),
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
@@ -69,8 +72,8 @@ class _QuizPathScreenState extends State<QuizPathScreen>
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             sliver: SliverList(
               delegate: SliverChildBuilderDelegate(
-                (context, index) => _buildPathSection(index),
-                childCount: _nodes.length,
+                (context, index) => _buildPathSection(index, nodes, units),
+                childCount: nodes.length,
               ),
             ),
           ),
@@ -79,7 +82,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: _scrollToActiveNode,
+        onPressed: () => _scrollToActiveNode(nodes),
         backgroundColor: AppColors.amber,
         foregroundColor: AppColors.ink,
         elevation: 3,
@@ -96,14 +99,26 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
+  PreferredSizeWidget _buildAppBar(
+    List<QuizPathNode> nodes,
+    ProfileController? profile,
+  ) {
     final l10n = context.l10n;
     final difficultyLevels = [
       l10n.difficultyMudah,
       l10n.difficultyMahir,
       l10n.difficultySangatMahir,
     ];
-    final completedCountText = l10n.quizCompletedBadge(_completedQuizzes);
+    final completedCount = profile != null
+        ? nodes.where((n) => n.status == NodeStatus.completed).length
+        : 0;
+    final completedCountText = l10n.quizCompletedBadge(completedCount);
+    final activeDifficultyIndex = _selectedDifficultyIndex ??
+        (profile != null
+            ? (profile.userLevel <= 3
+                ? 0
+                : (profile.userLevel <= 6 ? 1 : 2))
+            : 0);
 
     return AppBar(
       backgroundColor: const Color(0xFFF5F1EB),
@@ -155,7 +170,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
           alignment: Alignment.centerLeft,
           child: Row(
             children: List.generate(difficultyLevels.length, (index) {
-              final isSelected = _selectedDifficultyIndex == index;
+              final isSelected = activeDifficultyIndex == index;
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: ChoiceChip(
@@ -292,19 +307,22 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     );
   }
 
-  Widget _buildPathSection(int index) {
-    final node = _nodes[index];
+  Widget _buildPathSection(
+    int index,
+    List<QuizPathNode> nodes,
+    List<QuizUnitData> units,
+  ) {
+    final node = nodes[index];
     final isFirstInUnit = node.indexInUnit == 1;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         // Unit header before the first node of each unit
-        if (isFirstInUnit)
-          _buildUnitHeader(QuizPathData.units[node.unitId - 1]),
+        if (isFirstInUnit) _buildUnitHeader(units[node.unitId - 1]),
 
         // Connector from previous node in the same unit
-        if (!isFirstInUnit) _buildConnector(index),
+        if (!isFirstInUnit) _buildConnector(index, nodes),
 
         // Node with smooth horizontal positioning
         Align(
@@ -315,9 +333,9 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     );
   }
 
-  Widget _buildConnector(int index) {
-    final prev = _nodes[index - 1];
-    final curr = _nodes[index];
+  Widget _buildConnector(int index, List<QuizPathNode> nodes) {
+    final prev = nodes[index - 1];
+    final curr = nodes[index];
     final isLocked = curr.status == NodeStatus.locked;
     final isCompleted = prev.status == NodeStatus.completed;
 
@@ -600,38 +618,60 @@ class _QuizPathScreenState extends State<QuizPathScreen>
       return;
     }
 
+    final profile = ProfileScope.maybeOf(context);
+    final level = profile?.userLevel ?? 1;
+
+    // Map difficulty: use explicitly selected chip if set, else auto-tier by userLevel
+    final activeDifficulty = _selectedDifficultyIndex ??
+        (level <= 3 ? 0 : (level <= 6 ? 1 : 2));
+
+    final difficulty = activeDifficulty == 0
+        ? QuizDifficulty.mudah
+        : (activeDifficulty == 1
+            ? QuizDifficulty.mahir
+            : QuizDifficulty.sangatMahir);
+
+    final questions = CurriculumQuizBank.getQuestionsForNode(
+      node,
+      difficulty: difficulty,
+    );
+
+    final isEvaluation =
+        node.type == QuizNodeType.milestone ||
+        node.type == QuizNodeType.finalExam ||
+        node.topicKey.startsWith('evaluasi_');
+
     QuizBottomSheet.show(
       context,
       unitTitle: node.getUnitTitle(context),
       nodeTitle: localizedTitle,
       quizIndex: node.indexInUnit,
       totalQuizzes: 10,
-      questionCount: 10,
+      questionCount: questions.length,
       topicDescription: node.getLocalizedDescription(context),
       onStart: () {
-        final profile = ProfileScope.maybeOf(context);
-        final level = profile?.userLevel ?? 1;
-        final questions = AdaptiveQuizBank.getQuestionsForLevel(level);
         Navigator.of(context).pushNamed(
           AppRouter.quizQuestion,
           arguments: QuizQuestionArgs(
             questions: questions,
             moduleTitle: localizedTitle,
             userLevel: level,
+            activityId: node.id,
+            isEvaluation: isEvaluation,
           ),
         );
       },
     );
   }
 
-  void _scrollToActiveNode() {
+  void _scrollToActiveNode(List<QuizPathNode> nodes) {
     if (!_scrollController.hasClients) return;
     HapticFeedback.selectionClick();
 
-    final activeIndex = _nodes.indexWhere(
+    final activeIndex = nodes.indexWhere(
       (n) => n.status == NodeStatus.current,
     );
-    final targetIndex = activeIndex != -1 ? activeIndex : 0;
+    final targetIndex = activeIndex != -1 ? activeIndex : nodes.length - 1;
 
     final unitHeadersBefore = (targetIndex / 10).floor() + 1;
     final estimatedOffset =

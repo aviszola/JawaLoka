@@ -805,7 +805,7 @@ abstract class AppLocalizations {
   /// Judul Unit 1 di peta kuis
   ///
   /// In id, this message translates to:
-  /// **'Unit 1: Sapaan dan Salam'**
+  /// **'Unit 1: Sapaan dan Unggah-Ungguh Awal'**
   String get quizUnit1Title;
 
   /// Subjudul Unit 1 di peta kuis
@@ -817,13 +817,13 @@ abstract class AppLocalizations {
   /// Judul Unit 2 di peta kuis
   ///
   /// In id, this message translates to:
-  /// **'Unit 2: Keluarga dan Rumah (Terkunci)'**
+  /// **'Unit 2: Aksara Jawa Dasar (Legena) (Terkunci)'**
   String get quizUnit2Title;
 
   /// Subjudul Unit 2 di peta kuis
   ///
   /// In id, this message translates to:
-  /// **'Silsilah keluarga, kerabat, dan lingkungan rumah'**
+  /// **'Pengenalan 20 aksara legena Hanacaraka'**
   String get quizUnit2Subtitle;
 
   /// Topik kuis Salam
@@ -1352,6 +1352,24 @@ abstract class AppLocalizations {
   /// **'Nanti saja'**
   String get levelUpSkipButton;
 
+  /// Jumlah blangkon tambahan yang terbuka saat lompat level
+  ///
+  /// In id, this message translates to:
+  /// **' (+{count} blangkon lainnya)'**
+  String levelUpOtherRewardsCount(int count);
+
+  /// Subjudul perayaan naik level tanpa hadiah blangkon
+  ///
+  /// In id, this message translates to:
+  /// **'Selamat! Tingkat pemahaman dan kecakapanmu semakin bertambah.'**
+  String get levelUpNoRewardSubtitle;
+
+  /// Tombol lanjut pada perayaan naik level tanpa hadiah blangkon
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get levelUpContinueButton;
+
   /// Label aksi keluar akun di Pengaturan
   ///
   /// In id, this message translates to:
@@ -1429,6 +1447,12 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Ketik teks...'**
   String get translatorInputHint;
+
+  /// Petunjuk satu baris contoh frasa dasar yang didukung penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh frasa dasar yang didukung: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.'**
+  String get translatorBasicPhrasesHint;
 
   /// Tombol jalankan penerjemahan teks
   ///
@@ -1969,6 +1993,798 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Delapan'**
   String get aksaraDetailExampleHasthaMeaning;
+
+  /// Judul Unit 3 di peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Unit 3: Sandhangan dan Pasangan Aksara Jawa (Terkunci)'**
+  String get quizUnit3Title;
+
+  /// Subjudul Unit 3 di peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Vokalisasi, konsonan penutup, dan pasangan aksara'**
+  String get quizUnit3Subtitle;
+
+  /// Judul Unit 4 di peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Unit 4: Kosakata dan Tingkatan Bahasa (Terkunci)'**
+  String get quizUnit4Title;
+
+  /// Subjudul Unit 4 di peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Tingkatan ngoko, krama lugu, dan krama inggil'**
+  String get quizUnit4Subtitle;
+
+  /// Judul Unit 5 di peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Unit 5: Budaya, Paribasan, dan Kawruh Luhur (Terkunci)'**
+  String get quizUnit5Title;
+
+  /// Subjudul Unit 5 di peta kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Paribasan, filosofi, adat tradisi, dan kawruh luhur Jawa'**
+  String get quizUnit5Subtitle;
+
+  /// Topik kuis Menyapa Orang Lain
+  ///
+  /// In id, this message translates to:
+  /// **'Menyapa Orang Lain'**
+  String get quizTopicSapaWong;
+
+  /// Deskripsi topik kuis Menyapa Orang Lain
+  ///
+  /// In id, this message translates to:
+  /// **'Tata krama menegur dan menyapa orang yang ditemui.'**
+  String get quizTopicSapaWongDesc;
+
+  /// Topik kuis Terima Kasih
+  ///
+  /// In id, this message translates to:
+  /// **'Terima Kasih'**
+  String get quizTopicMaturNuwun;
+
+  /// Deskripsi topik kuis Terima Kasih
+  ///
+  /// In id, this message translates to:
+  /// **'Ungkapan rasa syukur dan terima kasih yang santun.'**
+  String get quizTopicMaturNuwunDesc;
+
+  /// Topik kuis Meminta Maaf
+  ///
+  /// In id, this message translates to:
+  /// **'Meminta Maaf'**
+  String get quizTopicNyuwunPangapunten;
+
+  /// Deskripsi topik kuis Meminta Maaf
+  ///
+  /// In id, this message translates to:
+  /// **'Ungkapan permohonan maaf dan mengakui kekeliruan.'**
+  String get quizTopicNyuwunPangapuntenDesc;
+
+  /// Topik kuis Percakapan Sehari-hari
+  ///
+  /// In id, this message translates to:
+  /// **'Percakapan Sehari-hari'**
+  String get quizTopicPercakapanPadinan;
+
+  /// Deskripsi topik kuis Percakapan Sehari-hari
+  ///
+  /// In id, this message translates to:
+  /// **'Latihan dialog sapaan sopan dalam kehidupan sehari-hari.'**
+  String get quizTopicPercakapanPadinanDesc;
+
+  /// Topik kuis Evaluasi Unit 1
+  ///
+  /// In id, this message translates to:
+  /// **'Evaluasi Unit 1'**
+  String get quizTopicEvaluasiUnit1;
+
+  /// Deskripsi topik kuis Evaluasi Unit 1
+  ///
+  /// In id, this message translates to:
+  /// **'Uji komprehensif materi sapaan dan unggah-ungguh awal.'**
+  String get quizTopicEvaluasiUnit1Desc;
+
+  /// Topik kuis Pengenalan Hanacaraka
+  ///
+  /// In id, this message translates to:
+  /// **'Pengenalan Hanacaraka'**
+  String get quizTopicPengenalanHanacaraka;
+
+  /// Deskripsi topik kuis Pengenalan Hanacaraka
+  ///
+  /// In id, this message translates to:
+  /// **'Mengenal asal-usul dan filosofi 20 aksara carakan Jawa.'**
+  String get quizTopicPengenalanHanacarakaDesc;
+
+  /// Topik kuis Aksara Ha Na Ca Ra Ka
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara Ha Na Ca Ra Ka'**
+  String get quizTopicAksaraHanacaraka;
+
+  /// Deskripsi topik kuis Aksara Ha Na Ca Ra Ka
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk dan pelafalan aksara Ha, Na, Ca, Ra, Ka.'**
+  String get quizTopicAksaraHanacarakaDesc;
+
+  /// Topik kuis Aksara Da Ta Sa Wa La
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara Da Ta Sa Wa La'**
+  String get quizTopicAksaraDatasawala;
+
+  /// Deskripsi topik kuis Aksara Da Ta Sa Wa La
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk dan pelafalan aksara Da, Ta, Sa, Wa, La.'**
+  String get quizTopicAksaraDatasawalaDesc;
+
+  /// Topik kuis Aksara Pa Dha Ja Ya Nya
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara Pa Dha Ja Ya Nya'**
+  String get quizTopicAksaraPadhajayanya;
+
+  /// Deskripsi topik kuis Aksara Pa Dha Ja Ya Nya
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk dan pelafalan aksara Pa, Dha, Ja, Ya, Nya.'**
+  String get quizTopicAksaraPadhajayanyaDesc;
+
+  /// Topik kuis Aksara Ma Ga Ba Tha Nga
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara Ma Ga Ba Tha Nga'**
+  String get quizTopicAksaraMagabathanga;
+
+  /// Deskripsi topik kuis Aksara Ma Ga Ba Tha Nga
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk dan pelafalan aksara Ma, Ga, Ba, Tha, Nga.'**
+  String get quizTopicAksaraMagabathangaDesc;
+
+  /// Topik kuis Membaca Aksara Dasar
+  ///
+  /// In id, this message translates to:
+  /// **'Membaca Aksara Dasar'**
+  String get quizTopicMacaAksaraDhasar;
+
+  /// Deskripsi topik kuis Membaca Aksara Dasar
+  ///
+  /// In id, this message translates to:
+  /// **'Latihan membaca kombinasi suku kata terbuka aksara legena.'**
+  String get quizTopicMacaAksaraDhasarDesc;
+
+  /// Topik kuis Menyusun Aksara Legena
+  ///
+  /// In id, this message translates to:
+  /// **'Menyusun Aksara Legena'**
+  String get quizTopicNyusunAksaraLegena;
+
+  /// Deskripsi topik kuis Menyusun Aksara Legena
+  ///
+  /// In id, this message translates to:
+  /// **'Menyusun aksara Jawa legena menjadi kata yang bermakna.'**
+  String get quizTopicNyusunAksaraLegenaDesc;
+
+  /// Topik kuis Mengenali Bentuk Aksara
+  ///
+  /// In id, this message translates to:
+  /// **'Mengenali Bentuk Aksara'**
+  String get quizTopicNiteniWujudAksara;
+
+  /// Deskripsi topik kuis Mengenali Bentuk Aksara
+  ///
+  /// In id, this message translates to:
+  /// **'Membedakan bentuk aksara legena yang sekilas mirip.'**
+  String get quizTopicNiteniWujudAksaraDesc;
+
+  /// Topik kuis Latihan Membaca Kata Legena
+  ///
+  /// In id, this message translates to:
+  /// **'Latihan Membaca Kata Legena'**
+  String get quizTopicGladhenMacaLegena;
+
+  /// Deskripsi topik kuis Latihan Membaca Kata Legena
+  ///
+  /// In id, this message translates to:
+  /// **'Membaca kata dua dan tiga suku kata tanpa sandhangan.'**
+  String get quizTopicGladhenMacaLegenaDesc;
+
+  /// Topik kuis Evaluasi Unit 2
+  ///
+  /// In id, this message translates to:
+  /// **'Evaluasi Unit 2'**
+  String get quizTopicEvaluasiUnit2;
+
+  /// Deskripsi topik kuis Evaluasi Unit 2
+  ///
+  /// In id, this message translates to:
+  /// **'Uji komprehensif penguasaan 20 aksara legena Hanacaraka.'**
+  String get quizTopicEvaluasiUnit2Desc;
+
+  /// Topik kuis Sandhangan Swara
+  ///
+  /// In id, this message translates to:
+  /// **'Sandhangan Swara'**
+  String get quizTopicSandhanganSwara;
+
+  /// Deskripsi topik kuis Sandhangan Swara
+  ///
+  /// In id, this message translates to:
+  /// **'Mengubah vokal aksara dengan wulu, suku, taling, dan pepet.'**
+  String get quizTopicSandhanganSwaraDesc;
+
+  /// Topik kuis Sandhangan Panyigeg Wanda
+  ///
+  /// In id, this message translates to:
+  /// **'Sandhangan Panyigeg Wanda'**
+  String get quizTopicSandhanganPanyigeg;
+
+  /// Deskripsi topik kuis Sandhangan Panyigeg Wanda
+  ///
+  /// In id, this message translates to:
+  /// **'Konsonan penutup wignyan, layar, cecak, dan pangkon.'**
+  String get quizTopicSandhanganPanyigegDesc;
+
+  /// Topik kuis Sandhangan Wyanjana
+  ///
+  /// In id, this message translates to:
+  /// **'Sandhangan Wyanjana'**
+  String get quizTopicSandhanganWyanjana;
+
+  /// Deskripsi topik kuis Sandhangan Wyanjana
+  ///
+  /// In id, this message translates to:
+  /// **'Sisipan semivokal cakra, keret, dan pengkal pada aksara.'**
+  String get quizTopicSandhanganWyanjanaDesc;
+
+  /// Topik kuis Pengenalan Pasangan
+  ///
+  /// In id, this message translates to:
+  /// **'Pengenalan Pasangan'**
+  String get quizTopicPengenalanPasangan;
+
+  /// Deskripsi topik kuis Pengenalan Pasangan
+  ///
+  /// In id, this message translates to:
+  /// **'Fungsi dan cara kerja pasangan dalam mematikan vokal.'**
+  String get quizTopicPengenalanPasanganDesc;
+
+  /// Topik kuis Pasangan Sejajar & Gantung
+  ///
+  /// In id, this message translates to:
+  /// **'Pasangan Sejajar & Gantung'**
+  String get quizTopicPasanganSejajarGantung;
+
+  /// Deskripsi topik kuis Pasangan Sejajar & Gantung
+  ///
+  /// In id, this message translates to:
+  /// **'Membedakan pasangan yang ditulis sejajar dan menggantung.'**
+  String get quizTopicPasanganSejajarGantungDesc;
+
+  /// Topik kuis Membaca Kata Bersandhangan
+  ///
+  /// In id, this message translates to:
+  /// **'Membaca Kata Bersandhangan'**
+  String get quizTopicMacaKataSandhangan;
+
+  /// Deskripsi topik kuis Membaca Kata Bersandhangan
+  ///
+  /// In id, this message translates to:
+  /// **'Membaca kosakata yang menggunakan aneka sandhangan swara.'**
+  String get quizTopicMacaKataSandhanganDesc;
+
+  /// Topik kuis Menulis Kata Sederhana
+  ///
+  /// In id, this message translates to:
+  /// **'Menulis Kata Sederhana'**
+  String get quizTopicNulisKataSederhana;
+
+  /// Deskripsi topik kuis Menulis Kata Sederhana
+  ///
+  /// In id, this message translates to:
+  /// **'Menyusun aksara bersandhangan menjadi kata yang benar.'**
+  String get quizTopicNulisKataSederhanaDesc;
+
+  /// Topik kuis Mengenali Kesalahan Tulis
+  ///
+  /// In id, this message translates to:
+  /// **'Mengenali Kesalahan Tulis'**
+  String get quizTopicNiteniLuputNulis;
+
+  /// Deskripsi topik kuis Mengenali Kesalahan Tulis
+  ///
+  /// In id, this message translates to:
+  /// **'Menemukan dan memperbaiki salah letak sandhangan & pasangan.'**
+  String get quizTopicNiteniLuputNulisDesc;
+
+  /// Topik kuis Latihan Kombinasi
+  ///
+  /// In id, this message translates to:
+  /// **'Latihan Kombinasi'**
+  String get quizTopicGladhenKombinasi;
+
+  /// Deskripsi topik kuis Latihan Kombinasi
+  ///
+  /// In id, this message translates to:
+  /// **'Latihan gabungan sandhangan swara, panyigeg, dan pasangan.'**
+  String get quizTopicGladhenKombinasiDesc;
+
+  /// Topik kuis Evaluasi Unit 3
+  ///
+  /// In id, this message translates to:
+  /// **'Evaluasi Unit 3'**
+  String get quizTopicEvaluasiUnit3;
+
+  /// Deskripsi topik kuis Evaluasi Unit 3
+  ///
+  /// In id, this message translates to:
+  /// **'Uji komprehensif aturan sandhangan dan pasangan aksara Jawa.'**
+  String get quizTopicEvaluasiUnit3Desc;
+
+  /// Topik kuis Keluarga & Kerabat
+  ///
+  /// In id, this message translates to:
+  /// **'Keluarga & Kerabat'**
+  String get quizTopicKeluargaLanKerabat;
+
+  /// Deskripsi topik kuis Keluarga & Kerabat
+  ///
+  /// In id, this message translates to:
+  /// **'Sebutan silsilah keluarga dalam ragam ngoko dan krama.'**
+  String get quizTopicKeluargaLanKerabatDesc;
+
+  /// Topik kuis Rumah & Lingkungan
+  ///
+  /// In id, this message translates to:
+  /// **'Rumah & Lingkungan'**
+  String get quizTopicOmahLanSakiwatengene;
+
+  /// Deskripsi topik kuis Rumah & Lingkungan
+  ///
+  /// In id, this message translates to:
+  /// **'Nama perabot, ruangan rumah, dan lingkungan sekitar.'**
+  String get quizTopicOmahLanSakiwatengeneDesc;
+
+  /// Topik kuis Kegiatan Sehari-hari
+  ///
+  /// In id, this message translates to:
+  /// **'Kegiatan Sehari-hari'**
+  String get quizTopicKagiyatanPadinan;
+
+  /// Deskripsi topik kuis Kegiatan Sehari-hari
+  ///
+  /// In id, this message translates to:
+  /// **'Kata kerja dan aktivitas harian dalam tataran bahasa.'**
+  String get quizTopicKagiyatanPadinanDesc;
+
+  /// Topik kuis Ragam Ngoko Lugu
+  ///
+  /// In id, this message translates to:
+  /// **'Ragam Ngoko Lugu'**
+  String get quizTopicNgokoLugu;
+
+  /// Deskripsi topik kuis Ragam Ngoko Lugu
+  ///
+  /// In id, this message translates to:
+  /// **'Ciri dan penggunaan bahasa ngoko lugu antarteman akrab.'**
+  String get quizTopicNgokoLuguDesc;
+
+  /// Topik kuis Ragam Ngoko Alus
+  ///
+  /// In id, this message translates to:
+  /// **'Ragam Ngoko Alus'**
+  String get quizTopicNgokoAlus;
+
+  /// Deskripsi topik kuis Ragam Ngoko Alus
+  ///
+  /// In id, this message translates to:
+  /// **'Sisipan krama inggil dalam kalimat ngoko untuk menghormati.'**
+  String get quizTopicNgokoAlusDesc;
+
+  /// Topik kuis Ragam Krama Lugu
+  ///
+  /// In id, this message translates to:
+  /// **'Ragam Krama Lugu'**
+  String get quizTopicKramaLugu;
+
+  /// Deskripsi topik kuis Ragam Krama Lugu
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk sopan formal netral tanpa pengagungan berlebihan.'**
+  String get quizTopicKramaLuguDesc;
+
+  /// Topik kuis Ragam Krama Inggil
+  ///
+  /// In id, this message translates to:
+  /// **'Ragam Krama Inggil'**
+  String get quizTopicKramaInggil;
+
+  /// Deskripsi topik kuis Ragam Krama Inggil
+  ///
+  /// In id, this message translates to:
+  /// **'Tingkatan paling tinggi untuk menghormati sesepuh dan tokoh.'**
+  String get quizTopicKramaInggilDesc;
+
+  /// Topik kuis Perbandingan Tingkatan Bahasa
+  ///
+  /// In id, this message translates to:
+  /// **'Perbandingan Tingkatan Bahasa'**
+  String get quizTopicBandhinganTingkatBasa;
+
+  /// Deskripsi topik kuis Perbandingan Tingkatan Bahasa
+  ///
+  /// In id, this message translates to:
+  /// **'Membandingkan padanan satu kata dalam ngoko, krama, dan inggil.'**
+  String get quizTopicBandhinganTingkatBasaDesc;
+
+  /// Topik kuis Percakapan Unggah-Ungguh
+  ///
+  /// In id, this message translates to:
+  /// **'Percakapan Unggah-Ungguh'**
+  String get quizTopicWicaraUnggahUngguh;
+
+  /// Deskripsi topik kuis Percakapan Unggah-Ungguh
+  ///
+  /// In id, this message translates to:
+  /// **'Menerapkan unggah-ungguh basa dalam simulasi dialog nyata.'**
+  String get quizTopicWicaraUnggahUngguhDesc;
+
+  /// Topik kuis Evaluasi Unit 4
+  ///
+  /// In id, this message translates to:
+  /// **'Evaluasi Unit 4'**
+  String get quizTopicEvaluasiUnit4;
+
+  /// Deskripsi topik kuis Evaluasi Unit 4
+  ///
+  /// In id, this message translates to:
+  /// **'Uji komprehensif kosakata dan penerapan tingkatan bahasa.'**
+  String get quizTopicEvaluasiUnit4Desc;
+
+  /// Topik kuis Ajining Dhiri
+  ///
+  /// In id, this message translates to:
+  /// **'Ajining Dhiri'**
+  String get quizTopicAjiningDhiri;
+
+  /// Deskripsi topik kuis Ajining Dhiri
+  ///
+  /// In id, this message translates to:
+  /// **'Filosofi menjaga kehormatan diri melalui tutur kata yang santun.'**
+  String get quizTopicAjiningDhiriDesc;
+
+  /// Topik kuis Unggah-Ungguh Basa Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Unggah-Ungguh Basa Jawa'**
+  String get quizTopicUnggahUngguhBasa;
+
+  /// Deskripsi topik kuis Unggah-Ungguh Basa Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Etika kesopanan tindak tanduk dan tata tutur orang Jawa.'**
+  String get quizTopicUnggahUngguhBasaDesc;
+
+  /// Topik kuis Peribahasa & Paribasan
+  ///
+  /// In id, this message translates to:
+  /// **'Peribahasa & Paribasan'**
+  String get quizTopicParibasanJawa;
+
+  /// Deskripsi topik kuis Peribahasa & Paribasan
+  ///
+  /// In id, this message translates to:
+  /// **'Makna mendalam ungkapan kiasan, paribasan, dan bebasan Jawa.'**
+  String get quizTopicParibasanJawaDesc;
+
+  /// Topik kuis Filosofi Urip Iku Urup
+  ///
+  /// In id, this message translates to:
+  /// **'Filosofi Urip Iku Urup'**
+  String get quizTopicFilosofiUrip;
+
+  /// Deskripsi topik kuis Filosofi Urip Iku Urup
+  ///
+  /// In id, this message translates to:
+  /// **'Makna hidup memberi manfaat bagi sesama dan alam semesta.'**
+  String get quizTopicFilosofiUripDesc;
+
+  /// Topik kuis Tradisi & Pranatan Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Tradisi & Pranatan Jawa'**
+  String get quizTopicTradisiPranatan;
+
+  /// Deskripsi topik kuis Tradisi & Pranatan Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Upacara adat, siklus kehidupan, dan tata krama tradisi Jawa.'**
+  String get quizTopicTradisiPranatanDesc;
+
+  /// Topik kuis Pewayangan Pandhawa
+  ///
+  /// In id, this message translates to:
+  /// **'Pewayangan Pandhawa'**
+  String get quizTopicPewayanganPandhawa;
+
+  /// Deskripsi topik kuis Pewayangan Pandhawa
+  ///
+  /// In id, this message translates to:
+  /// **'Karakter kebajikan tokoh wayang Pandhawa Lima dan nasihat hidup.'**
+  String get quizTopicPewayanganPandhawaDesc;
+
+  /// Topik kuis Tembang Dolanan & Piwulang
+  ///
+  /// In id, this message translates to:
+  /// **'Tembang Dolanan & Piwulang'**
+  String get quizTopicTembangDolanan;
+
+  /// Deskripsi topik kuis Tembang Dolanan & Piwulang
+  ///
+  /// In id, this message translates to:
+  /// **'Pesan moral dan budi pekerti dalam tembang dolanan anak Jawa.'**
+  String get quizTopicTembangDolananDesc;
+
+  /// Topik kuis Etika & Situasi Budaya
+  ///
+  /// In id, this message translates to:
+  /// **'Etika & Situasi Budaya'**
+  String get quizTopicEtikaBudaya;
+
+  /// Deskripsi topik kuis Etika & Situasi Budaya
+  ///
+  /// In id, this message translates to:
+  /// **'Memilih tindakan dan tutur kata yang tepat di lingkungan budaya.'**
+  String get quizTopicEtikaBudayaDesc;
+
+  /// Topik kuis Tantangan Kawruh Luhur
+  ///
+  /// In id, this message translates to:
+  /// **'Tantangan Kawruh Luhur'**
+  String get quizTopicKawruhLuhur;
+
+  /// Deskripsi topik kuis Tantangan Kawruh Luhur
+  ///
+  /// In id, this message translates to:
+  /// **'Ujian tingkat lanjut memadukan aksara, basa, dan budi pekerti.'**
+  String get quizTopicKawruhLuhurDesc;
+
+  /// Topik kuis Evaluasi Akhir JawaLoka
+  ///
+  /// In id, this message translates to:
+  /// **'Evaluasi Akhir JawaLoka'**
+  String get quizTopicEvaluasiAkhir;
+
+  /// Deskripsi topik kuis Evaluasi Akhir JawaLoka
+  ///
+  /// In id, this message translates to:
+  /// **'Evaluasi akbar seluruh materi pembelajaran 50 node JawaLoka.'**
+  String get quizTopicEvaluasiAkhirDesc;
+
+  /// Topic title or description for quizTopicUngkapanSopan
+  ///
+  /// In id, this message translates to:
+  /// **'Ungkapan Sopan'**
+  String get quizTopicUngkapanSopan;
+
+  /// Topic title or description for quizTopicUngkapanSopanDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Tata krama sikap badan, subasita, dan trapsila dalam adat Jawa.'**
+  String get quizTopicUngkapanSopanDesc;
+
+  /// Topic title or description for quizTopicPenggunaanPasangan
+  ///
+  /// In id, this message translates to:
+  /// **'Penggunaan Pasangan'**
+  String get quizTopicPenggunaanPasangan;
+
+  /// Topic title or description for quizTopicPenggunaanPasanganDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Aturan dan latihan penulisan pasangan aksara dalam kata dan kalimat.'**
+  String get quizTopicPenggunaanPasanganDesc;
+
+  /// Topic title or description for quizTopicKosakataPadinan
+  ///
+  /// In id, this message translates to:
+  /// **'Kosakata Sehari-hari'**
+  String get quizTopicKosakataPadinan;
+
+  /// Topic title or description for quizTopicKosakataPadinanDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Kosakata dasar sehari-hari dan hubungan kekeluargaan Jawa.'**
+  String get quizTopicKosakataPadinanDesc;
+
+  /// Topic title or description for quizTopicNamaBenda
+  ///
+  /// In id, this message translates to:
+  /// **'Nama Benda'**
+  String get quizTopicNamaBenda;
+
+  /// Topic title or description for quizTopicNamaBendaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Nama benda rumah tangga, bagian rumah Joglo, dan lingkungan sekitar.'**
+  String get quizTopicNamaBendaDesc;
+
+  /// Topic title or description for quizTopicNamaKegiatan
+  ///
+  /// In id, this message translates to:
+  /// **'Nama Kegiatan'**
+  String get quizTopicNamaKegiatan;
+
+  /// Topic title or description for quizTopicNamaKegiatanDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Kata kerja dan aktivitas sehari-hari dalam bahasa Jawa.'**
+  String get quizTopicNamaKegiatanDesc;
+
+  /// Topic title or description for quizTopicNgoko
+  ///
+  /// In id, this message translates to:
+  /// **'Ngoko'**
+  String get quizTopicNgoko;
+
+  /// Topic title or description for quizTopicNgokoDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Penggunaan dan kosakata ragam Ngoko untuk teman sebaya dan akrab.'**
+  String get quizTopicNgokoDesc;
+
+  /// Topic title or description for quizTopicKrama
+  ///
+  /// In id, this message translates to:
+  /// **'Krama'**
+  String get quizTopicKrama;
+
+  /// Topic title or description for quizTopicKramaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Ragam bahasa Krama halus untuk situasi sopan dan formal.'**
+  String get quizTopicKramaDesc;
+
+  /// Topic title or description for quizTopicPerbedaanTingkatanBahasa
+  ///
+  /// In id, this message translates to:
+  /// **'Perbedaan Tingkatan Bahasa'**
+  String get quizTopicPerbedaanTingkatanBahasa;
+
+  /// Topic title or description for quizTopicPerbedaanTingkatanBahasaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Perbandingan padanan kata dalam ragam Ngoko, Krama, dan Krama Inggil.'**
+  String get quizTopicPerbedaanTingkatanBahasaDesc;
+
+  /// Topic title or description for quizTopicPercakapanTeman
+  ///
+  /// In id, this message translates to:
+  /// **'Percakapan dengan Teman'**
+  String get quizTopicPercakapanTeman;
+
+  /// Topic title or description for quizTopicPercakapanTemanDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Latihan percakapan akrab dengan teman menggunakan bahasa Ngoko yang tepat.'**
+  String get quizTopicPercakapanTemanDesc;
+
+  /// Topic title or description for quizTopicPercakapanDihormati
+  ///
+  /// In id, this message translates to:
+  /// **'Percakapan dengan Orang yang Dihormati'**
+  String get quizTopicPercakapanDihormati;
+
+  /// Topic title or description for quizTopicPercakapanDihormatiDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Percakapan santun dengan orang tua, guru, dan sesepuh menggunakan Krama Inggil.'**
+  String get quizTopicPercakapanDihormatiDesc;
+
+  /// Topic title or description for quizTopicTataKramaJawa
+  ///
+  /// In id, this message translates to:
+  /// **'Tata Krama Jawa'**
+  String get quizTopicTataKramaJawa;
+
+  /// Topic title or description for quizTopicTataKramaJawaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Prinsip kesopanan, ajining dhiri, dan etika tutur dalam budaya Jawa.'**
+  String get quizTopicTataKramaJawaDesc;
+
+  /// Topic title or description for quizTopicPeribahasaJawa
+  ///
+  /// In id, this message translates to:
+  /// **'Peribahasa Jawa'**
+  String get quizTopicPeribahasaJawa;
+
+  /// Topic title or description for quizTopicPeribahasaJawaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Nasihat hidup dan kearifan lokal dalam paribasan, bebasan, dan saloka Jawa.'**
+  String get quizTopicPeribahasaJawaDesc;
+
+  /// Topic title or description for quizTopicFilosofiKehidupan
+  ///
+  /// In id, this message translates to:
+  /// **'Filosofi Kehidupan Jawa'**
+  String get quizTopicFilosofiKehidupan;
+
+  /// Topic title or description for quizTopicFilosofiKehidupanDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Ajaran filosofis mendalam: Urip Iku Urup dan Memayu Hayuning Bawana.'**
+  String get quizTopicFilosofiKehidupanDesc;
+
+  /// Topic title or description for quizTopicTradisiJawa
+  ///
+  /// In id, this message translates to:
+  /// **'Tradisi Jawa'**
+  String get quizTopicTradisiJawa;
+
+  /// Topic title or description for quizTopicTradisiJawaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Upacara adat, siklus hidup, dan tradisi warisan leluhur Jawa.'**
+  String get quizTopicTradisiJawaDesc;
+
+  /// Topic title or description for quizTopicBudayaKesenian
+  ///
+  /// In id, this message translates to:
+  /// **'Budaya dan Kesenian'**
+  String get quizTopicBudayaKesenian;
+
+  /// Topic title or description for quizTopicBudayaKesenianDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Kesenian wayang purwa, gamelan, dan ekspresi budaya tradisi Jawa.'**
+  String get quizTopicBudayaKesenianDesc;
+
+  /// Topic title or description for quizTopicSituasiPadinan
+  ///
+  /// In id, this message translates to:
+  /// **'Situasi Kehidupan Sehari-hari'**
+  String get quizTopicSituasiPadinan;
+
+  /// Topic title or description for quizTopicSituasiPadinanDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Penerapan kearifan tembang dolanan dan nilai sosial dalam kehidupan nyata.'**
+  String get quizTopicSituasiPadinanDesc;
+
+  /// Topic title or description for quizTopicTantanganBudaya
+  ///
+  /// In id, this message translates to:
+  /// **'Tantangan Pemahaman Budaya'**
+  String get quizTopicTantanganBudaya;
+
+  /// Topic title or description for quizTopicTantanganBudayaDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Ujian pemahaman tepa slira, subasita, dan kepemimpinan berwawasan Jawa.'**
+  String get quizTopicTantanganBudayaDesc;
+
+  /// Topic title or description for quizTopicTantanganAkhir
+  ///
+  /// In id, this message translates to:
+  /// **'Tantangan Akhir'**
+  String get quizTopicTantanganAkhir;
+
+  /// Topic title or description for quizTopicTantanganAkhirDesc
+  ///
+  /// In id, this message translates to:
+  /// **'Tantangan puncak memadukan aksara, tataran bahasa, dan kearifan budaya.'**
+  String get quizTopicTantanganAkhirDesc;
 }
 
 class _AppLocalizationsDelegate

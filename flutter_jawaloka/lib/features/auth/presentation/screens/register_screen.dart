@@ -91,18 +91,18 @@ class _RegisterScreenState extends State<RegisterScreen>
     }
 
     final trimmedName = _nameCtrl.text.trim();
+    // DEMO: tanpa backend
+    // Kata sandi TIDAK disimpan di mana pun (buang setelah validasi)
+    _passwordCtrl.clear();
 
     setState(() => _isLoading = true);
     HapticFeedback.mediumImpact();
 
-    // Simulasi request pendaftaran
-    await Future.delayed(const Duration(milliseconds: 1500));
+    // DEMO: tanpa backend - simpan nama langsung ke ProfileController
+    await ProfileScope.maybeOf(context)?.setDisplayName(trimmedName);
 
     if (!mounted) return;
     setState(() => _isLoading = false);
-
-    await ProfileScope.maybeOf(context)?.setDisplayName(trimmedName);
-    if (!mounted) return;
 
     // Navigasi ke beranda dan bersihkan riwayat onboarding/pendaftaran
     Navigator.of(
@@ -363,7 +363,40 @@ class _RegisterScreenState extends State<RegisterScreen>
                           Center(
                             child: GestureDetector(
                               onTap: () {
-                                // TUJUAN BELUM ADA (Jalur 2)
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    title: Text(
+                                      context.l10n.registerPrivacyPolicy,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        color: AppColors.ink,
+                                      ),
+                                    ),
+                                    content: Text(
+                                      context.l10n.settingsPrivacyPolicyContent,
+                                      style: const TextStyle(
+                                        color: AppColors.inkSecondary,
+                                        height: 1.4,
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(ctx),
+                                        child: Text(
+                                          context.l10n.settingsClose,
+                                          style: const TextStyle(
+                                            color: AppColors.ink,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
                               },
                               child: Text.rich(
                                 TextSpan(

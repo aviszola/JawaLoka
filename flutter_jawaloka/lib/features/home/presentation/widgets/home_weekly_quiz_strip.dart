@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
-import '../../../../core/mock/mock_user_stats.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 
 /// 7-day strip displaying quiz completion status for the current week.
@@ -10,6 +10,11 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final profile = ProfileScope.maybeOf(context);
+    final quizzesThisWeek = profile?.quizzesThisWeek ?? 0;
+    final completedDays = profile?.completedQuizDaysOfWeek ?? const <int>[];
+    final streakDays = profile?.streakDays ?? 0;
+
     final dayNames = [
       l10n.dayMon,
       l10n.dayTue,
@@ -60,7 +65,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                 ],
               ),
               Text(
-                l10n.homeWeeklyCompletedCount(MockUserStats.quizzesThisWeek),
+                l10n.homeWeeklyCompletedCount(quizzesThisWeek),
                 style: const TextStyle(
                   color: AppColors.inkSecondary,
                   fontSize: 12,
@@ -76,8 +81,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(7, (i) {
               final dayIndex = i + 1; // 1 = Sen, 7 = Min
-              final isCompleted = MockUserStats.completedQuizDaysOfWeek
-                  .contains(dayIndex);
+              final isCompleted = completedDays.contains(dayIndex);
 
               return Column(
                 children: [
@@ -141,7 +145,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
-                  l10n.homeWeeklyStreakInfo(MockUserStats.streakDays),
+                  l10n.homeWeeklyStreakInfo(streakDays),
                   style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.inkSecondary,

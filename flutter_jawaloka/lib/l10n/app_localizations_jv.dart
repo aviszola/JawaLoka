@@ -393,17 +393,17 @@ class AppLocalizationsJv extends AppLocalizations {
   }
 
   @override
-  String get quizUnit1Title => 'Unit 1: Aruh-aruh lan Salam';
+  String get quizUnit1Title => 'Unit 1: Uluk Salam lan Tata Krama Awal';
 
   @override
-  String get quizUnit1Subtitle => 'Dhasar pirembagan lan tata krama trapsila';
+  String get quizUnit1Subtitle => 'Dhasar pacelathon lan tata krama trapsila';
 
   @override
-  String get quizUnit2Title => 'Unit 2: Kulawarga lan Omah (Kakonci)';
+  String get quizUnit2Title =>
+      'Unit 2: Aksara Jawa Dhasar (Nglegena) (Kakonci)';
 
   @override
-  String get quizUnit2Subtitle =>
-      'Trahing kulawarga, sanak kadang, lan wewengkon omah';
+  String get quizUnit2Subtitle => 'Nepangaken 20 aksara nglegena Hanacaraka';
 
   @override
   String get quizTopicSalam => 'Salam';
@@ -701,6 +701,18 @@ class AppLocalizationsJv extends AppLocalizations {
   String get levelUpSkipButton => 'Mangke rumiyin';
 
   @override
+  String levelUpOtherRewardsCount(int count) {
+    return ' (+$count blangkon sanese)';
+  }
+
+  @override
+  String get levelUpNoRewardSubtitle =>
+      'Sugeng! Kawruh lan seserepan sampeyan sansaya mundhak.';
+
+  @override
+  String get levelUpContinueButton => 'Lajengaken';
+
+  @override
   String get settingsLogout => 'Miyos';
 
   @override
@@ -739,6 +751,10 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get translatorInputHint => 'Serat teks...';
+
+  @override
+  String get translatorBasicPhrasesHint =>
+      'Tuladha frasa dhasar sing kasengkuyung: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.';
 
   @override
   String get translatorButton => 'Jarwakake';
@@ -1050,4 +1066,469 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get aksaraDetailExampleHasthaMeaning => 'Wolu';
+
+  @override
+  String get quizUnit3Title =>
+      'Unit 3: Sandhangan lan Pasangan Aksara Jawa (Kakonci)';
+
+  @override
+  String get quizUnit3Subtitle =>
+      'Vokalisasi, panyigeg wanda, lan pasangan aksara';
+
+  @override
+  String get quizUnit4Title =>
+      'Unit 4: Kosa Tembung lan Undha-Usuk Basa (Kakonci)';
+
+  @override
+  String get quizUnit4Subtitle =>
+      'Undha-usuk ngoko lugu, alus, krama lugu, lan krama inggil';
+
+  @override
+  String get quizUnit5Title =>
+      'Unit 5: Budaya, Paribasan, lan Kawruh Luhur (Kakonci)';
+
+  @override
+  String get quizUnit5Subtitle =>
+      'Paribasan, filosofi, adat tradisi, lan kawruh luhur Jawa';
+
+  @override
+  String get quizTopicSapaWong => 'Aruh-aruh marang Liyan';
+
+  @override
+  String get quizTopicSapaWongDesc =>
+      'Tata krama nyapa lan aruh-aruh marang tiyang sanes.';
+
+  @override
+  String get quizTopicMaturNuwun => 'Matur Nuwun';
+
+  @override
+  String get quizTopicMaturNuwunDesc =>
+      'Atur panuwun lan rasa syukur kanthi trapsila.';
+
+  @override
+  String get quizTopicNyuwunPangapunten => 'Nyuwun Pangapunten';
+
+  @override
+  String get quizTopicNyuwunPangapuntenDesc =>
+      'Atur pangapunten lan ngakoni kaluputan kanthi andhap asor.';
+
+  @override
+  String get quizTopicPercakapanPadinan => 'Pacelathon Padinan';
+
+  @override
+  String get quizTopicPercakapanPadinanDesc =>
+      'Gladhen pacelathon aruh-aruh ing kauripan padinan.';
+
+  @override
+  String get quizTopicEvaluasiUnit1 => 'Pambiji Unit 1';
+
+  @override
+  String get quizTopicEvaluasiUnit1Desc =>
+      'Ujian pepak materi aruh-aruh lan unggah-ungguh awal.';
+
+  @override
+  String get quizTopicPengenalanHanacaraka => 'Pitepangan Hanacaraka';
+
+  @override
+  String get quizTopicPengenalanHanacarakaDesc =>
+      'Tepang kalawan asal-usul lan filosofi 20 aksara Jawa.';
+
+  @override
+  String get quizTopicAksaraHanacaraka => 'Aksara Nglegena Ha Na Ca Ra Ka';
+
+  @override
+  String get quizTopicAksaraHanacarakaDesc =>
+      'Wujud lan unine aksara Ha, Na, Ca, Ra, Ka.';
+
+  @override
+  String get quizTopicAksaraDatasawala => 'Aksara Nglegena Da Ta Sa Wa La';
+
+  @override
+  String get quizTopicAksaraDatasawalaDesc =>
+      'Wujud lan unine aksara Da, Ta, Sa, Wa, La.';
+
+  @override
+  String get quizTopicAksaraPadhajayanya => 'Aksara Nglegena Pa Dha Ja Ya Nya';
+
+  @override
+  String get quizTopicAksaraPadhajayanyaDesc =>
+      'Wujud lan unine aksara Pa, Dha, Ja, Ya, Nya.';
+
+  @override
+  String get quizTopicAksaraMagabathanga => 'Aksara Nglegena Ma Ga Ba Tha Nga';
+
+  @override
+  String get quizTopicAksaraMagabathangaDesc =>
+      'Wujud lan unine aksara Ma, Ga, Ba, Tha, Nga.';
+
+  @override
+  String get quizTopicMacaAksaraDhasar => 'Maca Aksara Dhasar';
+
+  @override
+  String get quizTopicMacaAksaraDhasarDesc =>
+      'Gladhen maca wandane tembung aksara nglegena.';
+
+  @override
+  String get quizTopicNyusunAksaraLegena => 'Ngrantam Aksara Nglegena';
+
+  @override
+  String get quizTopicNyusunAksaraLegenaDesc =>
+      'Ngrantam aksara nglegena dados tembung ingkang mranani.';
+
+  @override
+  String get quizTopicNiteniWujudAksara => 'Niteni Wujuding Aksara';
+
+  @override
+  String get quizTopicNiteniWujudAksaraDesc =>
+      'Mbedakaken wujuding aksara ingkang memper utawi sami.';
+
+  @override
+  String get quizTopicGladhenMacaLegena => 'Gladhen Maca Tembung Nglegena';
+
+  @override
+  String get quizTopicGladhenMacaLegenaDesc =>
+      'Maca tembung rong wanda lan telung wanda tanpa sandhangan.';
+
+  @override
+  String get quizTopicEvaluasiUnit2 => 'Pambiji Unit 2';
+
+  @override
+  String get quizTopicEvaluasiUnit2Desc =>
+      'Ujian pepak panguwasan 20 aksara nglegena Hanacaraka.';
+
+  @override
+  String get quizTopicSandhanganSwara => 'Sandhangan Swara Jawa';
+
+  @override
+  String get quizTopicSandhanganSwaraDesc =>
+      'Ngangge wulu, suku, taling, pepet, lan taling tarung.';
+
+  @override
+  String get quizTopicSandhanganPanyigeg => 'Panyigeging Wanda';
+
+  @override
+  String get quizTopicSandhanganPanyigegDesc =>
+      'Panyigeging wanda wignyan, layar, cecak, lan pangkon.';
+
+  @override
+  String get quizTopicSandhanganWyanjana => 'Sandhangan Wyanjana Jawa';
+
+  @override
+  String get quizTopicSandhanganWyanjanaDesc =>
+      'Seselan wyanjana cakra, keret, lan pengkal ing aksara.';
+
+  @override
+  String get quizTopicPengenalanPasangan => 'Pitepangan Pasangan';
+
+  @override
+  String get quizTopicPengenalanPasanganDesc =>
+      'Guna lan carane pasangan kanggo mateni swara vokal.';
+
+  @override
+  String get quizTopicPasanganSejajarGantung => 'Pasangan Jejer lan Gandhul';
+
+  @override
+  String get quizTopicPasanganSejajarGantungDesc =>
+      'Mbedakaken pasangan ingkang jejer kalawan ingkang gandhul.';
+
+  @override
+  String get quizTopicMacaKataSandhangan => 'Maca Tembung Asandhangan';
+
+  @override
+  String get quizTopicMacaKataSandhanganDesc =>
+      'Maca kosa tembung ingkang migunakaken sandhangan swara.';
+
+  @override
+  String get quizTopicNulisKataSederhana => 'Nulis Tembung Prasaja';
+
+  @override
+  String get quizTopicNulisKataSederhanaDesc =>
+      'Ngrantam aksara asandhangan dados tembung ingkang bener.';
+
+  @override
+  String get quizTopicNiteniLuputNulis => 'Niteni Luputing Panulisan';
+
+  @override
+  String get quizTopicNiteniLuputNulisDesc =>
+      'Manggihaken lan ndandosi luputing dununge sandhangan.';
+
+  @override
+  String get quizTopicGladhenKombinasi => 'Gladhen Kombinasi';
+
+  @override
+  String get quizTopicGladhenKombinasiDesc =>
+      'Gladhen campur sandhangan swara, panyigeg, lan pasangan.';
+
+  @override
+  String get quizTopicEvaluasiUnit3 => 'Pambiji Unit 3';
+
+  @override
+  String get quizTopicEvaluasiUnit3Desc =>
+      'Ujian pepak tata carane sandhangan lan pasangan aksara.';
+
+  @override
+  String get quizTopicKeluargaLanKerabat => 'Kulawarga lan Sanak';
+
+  @override
+  String get quizTopicKeluargaLanKerabatDesc =>
+      'Sebutan trah kulawarga ing tataran ngoko lan krama.';
+
+  @override
+  String get quizTopicOmahLanSakiwatengene => 'Omah lan Lingkungan';
+
+  @override
+  String get quizTopicOmahLanSakiwatengeneDesc =>
+      'Jeneng prabot, ruwangan omah, lan sakiwatengene.';
+
+  @override
+  String get quizTopicKagiyatanPadinan => 'Kagiyatan Padinan';
+
+  @override
+  String get quizTopicKagiyatanPadinanDesc =>
+      'Tembung kriya lan pakaryan padinan ing undha-usuk basa.';
+
+  @override
+  String get quizTopicNgokoLugu => 'Basa Ngoko Lugu';
+
+  @override
+  String get quizTopicNgokoLuguDesc =>
+      'Titikan lan trap-trapane ngoko lugu marang kanca raket.';
+
+  @override
+  String get quizTopicNgokoAlus => 'Basa Ngoko Alus';
+
+  @override
+  String get quizTopicNgokoAlusDesc =>
+      'Campuran tembung krama inggil ing ukara ngoko kanggo ngurmati.';
+
+  @override
+  String get quizTopicKramaLugu => 'Basa Krama Lugu';
+
+  @override
+  String get quizTopicKramaLuguDesc =>
+      'Basa krama formal sedheng tanpa ngunggahake dhiri pribadi.';
+
+  @override
+  String get quizTopicKramaInggil => 'Basa Krama Inggil';
+
+  @override
+  String get quizTopicKramaInggilDesc =>
+      'Tataran basa paling luhur kanggo ngurmati sesepuh lan pinituwa.';
+
+  @override
+  String get quizTopicBandhinganTingkatBasa => 'Bandhingan Undha-Usuk Basa';
+
+  @override
+  String get quizTopicBandhinganTingkatBasaDesc =>
+      'Mbandhingake tembung saemper ing ngoko, krama, lan krama inggil.';
+
+  @override
+  String get quizTopicWicaraUnggahUngguh => 'Pacelathon Unggah-Ungguh';
+
+  @override
+  String get quizTopicWicaraUnggahUngguhDesc =>
+      'Ngetrapake undha-usuk basa ing pacelathon saben dinten.';
+
+  @override
+  String get quizTopicEvaluasiUnit4 => 'Pambiji Unit 4';
+
+  @override
+  String get quizTopicEvaluasiUnit4Desc =>
+      'Ujian pepak kosa tembung lan panraping undha-usuk basa.';
+
+  @override
+  String get quizTopicAjiningDhiri => 'Ajining Dhiri ana ing Lathi';
+
+  @override
+  String get quizTopicAjiningDhiriDesc =>
+      'Wulang wuruk njaga ajining dhiri lumantar wicara kang santun.';
+
+  @override
+  String get quizTopicUnggahUngguhBasa => 'Undha-Usuk Basa Jawa';
+
+  @override
+  String get quizTopicUnggahUngguhBasaDesc =>
+      'Trapsila solah bawa lan tata wicara tiyang Jawa.';
+
+  @override
+  String get quizTopicParibasanJawa => 'Paribasan lan Saloka';
+
+  @override
+  String get quizTopicParibasanJawaDesc =>
+      'Werdi luhur saking bebasan, paribasan, lan saloka Jawa.';
+
+  @override
+  String get quizTopicFilosofiUrip => 'Urip Iku Urup';
+
+  @override
+  String get quizTopicFilosofiUripDesc =>
+      'Pituduh gesang paring paedah dhumateng sesami lan alam.';
+
+  @override
+  String get quizTopicTradisiPranatan => 'Adat lan Pranatan Jawa';
+
+  @override
+  String get quizTopicTradisiPranatanDesc =>
+      'Upacara adat, pranataning gesang, lan tatacara tradisi Jawa.';
+
+  @override
+  String get quizTopicPewayanganPandhawa => 'Karakter Pandhawa Lima';
+
+  @override
+  String get quizTopicPewayanganPandhawaDesc =>
+      'Watak utama paraga Pandhawa Lima lan piwulang kabecikan.';
+
+  @override
+  String get quizTopicTembangDolanan => 'Tembang Dolanan lan Piwulang';
+
+  @override
+  String get quizTopicTembangDolananDesc =>
+      'Piwulang budi pekerti ing tembang dolanan lare Jawa.';
+
+  @override
+  String get quizTopicEtikaBudaya => 'Trap-trapan Etika Budaya';
+
+  @override
+  String get quizTopicEtikaBudayaDesc =>
+      'Milih tindak-tanduk lan tembung sing trep ing bebrayan agung.';
+
+  @override
+  String get quizTopicKawruhLuhur => 'Piwulang Kawruh Luhur';
+
+  @override
+  String get quizTopicKawruhLuhurDesc =>
+      'Ujian tataran inggil nggabungake aksara, basa, lan subasita.';
+
+  @override
+  String get quizTopicEvaluasiAkhir => 'Pambiji Pungkasan JawaLoka';
+
+  @override
+  String get quizTopicEvaluasiAkhirDesc =>
+      'Ujian ageng pungkasan sedaya piwulang 50 node JawaLoka.';
+
+  @override
+  String get quizTopicUngkapanSopan => 'Ukara Sopan';
+
+  @override
+  String get quizTopicUngkapanSopanDesc =>
+      'Tata krama trapsila awak, subasita, lan solah bawa ing adat Jawa.';
+
+  @override
+  String get quizTopicPenggunaanPasangan => 'Panganggoning Pasangan';
+
+  @override
+  String get quizTopicPenggunaanPasanganDesc =>
+      'Paugeran lan gladhen nulis pasangan aksara ing tembung lan ukara.';
+
+  @override
+  String get quizTopicKosakataPadinan => 'Kosakata Padinan';
+
+  @override
+  String get quizTopicKosakataPadinanDesc =>
+      'Tembung-tembung padinan lan paseduluran kulawarga Jawa.';
+
+  @override
+  String get quizTopicNamaBenda => 'Jeneng Barang';
+
+  @override
+  String get quizTopicNamaBendaDesc =>
+      'Jeneng prabot omah, perangan omah Joglo, lan sakiwatengene.';
+
+  @override
+  String get quizTopicNamaKegiatan => 'Jeneng Kagiyatan';
+
+  @override
+  String get quizTopicNamaKegiatanDesc =>
+      'Tembung kriya lan kagiyatan padinan ing basa Jawa.';
+
+  @override
+  String get quizTopicNgoko => 'Ngoko';
+
+  @override
+  String get quizTopicNgokoDesc =>
+      'Panganggoning basa Ngoko marang kanca sebaya lan akrab.';
+
+  @override
+  String get quizTopicKrama => 'Krama';
+
+  @override
+  String get quizTopicKramaDesc =>
+      'Tataran basa Krama alus kanggo kahanan pakurmatan lan resmi.';
+
+  @override
+  String get quizTopicPerbedaanTingkatanBahasa => 'Bedane Tingkatan Basa';
+
+  @override
+  String get quizTopicPerbedaanTingkatanBahasaDesc =>
+      'Mbandhingake tembung ing tataran Ngoko, Krama, lan Krama Inggil.';
+
+  @override
+  String get quizTopicPercakapanTeman => 'Pacelathon karo Kanca';
+
+  @override
+  String get quizTopicPercakapanTemanDesc =>
+      'Gladhen pacelathon akrab karo kanca nggunakake basa Ngoko kang trep.';
+
+  @override
+  String get quizTopicPercakapanDihormati => 'Pacelathon marang Wong Sepuh';
+
+  @override
+  String get quizTopicPercakapanDihormatiDesc =>
+      'Pacelathon trapsila marang tiyang sepuh lan guru nganggo Krama Inggil.';
+
+  @override
+  String get quizTopicTataKramaJawa => 'Subasita Jawa';
+
+  @override
+  String get quizTopicTataKramaJawaDesc =>
+      'Paugeran trapsila, ajining dhiri, lan bebuden luhur ing budaya Jawa.';
+
+  @override
+  String get quizTopicPeribahasaJawa => 'Paribasan Jawa';
+
+  @override
+  String get quizTopicPeribahasaJawaDesc =>
+      'Piwulang urip lan kawruh luhur ing paribasan, bebasan, lan saloka Jawa.';
+
+  @override
+  String get quizTopicFilosofiKehidupan => 'Filosofi Gesang Jawa';
+
+  @override
+  String get quizTopicFilosofiKehidupanDesc =>
+      'Piwulang filosofis: Urip Iku Urup lan Memayu Hayuning Bawana.';
+
+  @override
+  String get quizTopicTradisiJawa => 'Adat Tradisi Jawa';
+
+  @override
+  String get quizTopicTradisiJawaDesc =>
+      'Upacara adat, pranatan gesang, lan tradisi luhur warisan Jawa.';
+
+  @override
+  String get quizTopicBudayaKesenian => 'Kabudayan lan Kesenian';
+
+  @override
+  String get quizTopicBudayaKesenianDesc =>
+      'Kesenian wayang purwa, gamelan, lan kabudayan tradhisional Jawa.';
+
+  @override
+  String get quizTopicSituasiPadinan => 'Kahanan Urip Padinan';
+
+  @override
+  String get quizTopicSituasiPadinanDesc =>
+      'Trap-trapane piwulang tembang dolanan lan budi pekerti ing urip padinan.';
+
+  @override
+  String get quizTopicTantanganBudaya => 'Tantangan Pamawas Budaya';
+
+  @override
+  String get quizTopicTantanganBudayaDesc =>
+      'Gladhen jero bab tepa slira, subasita, lan paugeran kautaman Jawa.';
+
+  @override
+  String get quizTopicTantanganAkhir => 'Tantangan Pungkasan';
+
+  @override
+  String get quizTopicTantanganAkhirDesc =>
+      'Tantangan puncak nggabungake aksara, undha-usuk basa, lan kawruh luhur.';
 }

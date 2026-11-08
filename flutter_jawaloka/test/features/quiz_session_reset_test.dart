@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_jawaloka/core/mock/mock_user_stats.dart';
 import 'package:flutter_jawaloka/core/profile/profile_controller.dart';
 import 'package:flutter_jawaloka/core/profile/profile_preferences.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
@@ -406,8 +405,8 @@ void main() {
         // Verify profileController retained permanent state
         expect(profileController.displayName, 'Bagus');
         expect(profileController.equippedBlangkon, BlangkonType.surakarta);
-        expect(MockUserStats.userLevel, 4);
-        expect(MockUserStats.streakDays, 5);
+        expect(profileController.userLevel, 4);
+        expect(profileController.streakDays, 5);
       },
     );
   });

@@ -179,7 +179,7 @@ void main() {
         expect(find.text('Nama Pengguna'), findsOneWidget);
         expect(find.text('Dimas'), findsOneWidget);
         expect(find.text('Email'), findsOneWidget);
-        expect(find.text('dimas.pratama@example.com'), findsOneWidget);
+        expect(find.text('dimas.pratama@jawaloka.id'), findsOneWidget);
         expect(find.text('Tutup'), findsOneWidget);
 
         // Close dialog

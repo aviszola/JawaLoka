@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/progression/reward_summary.dart';
 
 // ─────────────────────────────────────────────────────────
@@ -140,7 +139,7 @@ class DailyResultArgs {
     required this.similarity,
     required this.userStrokes,
     this.targetAksara = 'ꦲ',
-    this.userName = MockUserStats.userName,
+    this.userName = 'Dimas',
     this.rewardSummary,
   });
 }
@@ -154,7 +153,7 @@ class DailyResultScreen extends StatefulWidget {
 
   const DailyResultScreen({
     super.key,
-    this.userName = MockUserStats.userName,
+    this.userName = 'Dimas',
     this.similarity = 0.92,
     this.userStrokes = const [],
     this.targetAksara = 'ꦲ',

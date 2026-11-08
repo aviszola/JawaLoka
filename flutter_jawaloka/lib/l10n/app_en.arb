@@ -117,10 +117,10 @@
   "difficultySangatMahir": "Advanced",
   "quizPathTitle": "Quiz Path",
   "quizCompletedBadge": "{count} Completed",
-  "quizUnit1Title": "Unit 1: Greetings and Salutations",
-  "quizUnit1Subtitle": "Conversation basics and polite etiquette",
-  "quizUnit2Title": "Unit 2: Family and Home (Locked)",
-  "quizUnit2Subtitle": "Family lineage, relatives, and household environment",
+  "quizUnit1Title": "Unit 1: Greetings and Initial Etiquette",
+  "quizUnit1Subtitle": "Fundamentals of conversation and courteous manners",
+  "quizUnit2Title": "Unit 2: Basic Javanese Script (Legena) (Locked)",
+  "quizUnit2Subtitle": "Introduction to the 20 basic Hanacaraka characters",
   "quizTopicSalam": "Greeting",
   "quizTopicPamit": "Farewell",
   "quizTopicLencana": "Badge",
@@ -208,6 +208,9 @@
   "levelUpAchievementDesc": "Completed 25 script chapters",
   "levelUpEquipButton": "Wear Blangkon",
   "levelUpSkipButton": "Maybe later",
+  "levelUpOtherRewardsCount": " (+{count} other blangkon)",
+  "levelUpNoRewardSubtitle": "Congratulations! Your mastery and proficiency continue to grow.",
+  "levelUpContinueButton": "Continue",
   "settingsLogout": "Log Out",
   "settingsLogoutConfirm": "Are you sure you want to log out?",
   "settingsCancel": "Cancel",
@@ -221,6 +224,7 @@
   "translatorTitle": "Translator",
   "translatorInputLabel": "ENTER TEXT",
   "translatorInputHint": "Type text...",
+  "translatorBasicPhrasesHint": "Supported basic sample phrases: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.",
   "translatorButton": "Translate",
   "translatorTranslating": "Translating...",
   "translatorOutputLabel": "TRANSLATION RESULT",
@@ -310,5 +314,245 @@
   "vocabDetailSentence2Translation": "This house is very big",
   "aksaraDetailExampleHaraMeaning": "Branch",
   "aksaraDetailExampleHawuMeaning": "Stove",
-  "aksaraDetailExampleHasthaMeaning": "Eight"
+  "aksaraDetailExampleHasthaMeaning": "Eight",
+  "quizUnit3Title": "Unit 3: Javanese Diacritics and Subjoined Letters (Locked)",
+  "quizUnit3Subtitle": "Vocalizations, syllable finals, and subjoined letter pairs",
+  "quizUnit4Title": "Unit 4: Vocabulary and Speech Levels (Locked)",
+  "quizUnit4Subtitle": "Speech levels of ngoko, krama lugu, and krama inggil",
+  "quizUnit5Title": "Unit 5: Culture, Proverbs, and Philosophical Wisdom (Locked)",
+  "quizUnit5Subtitle": "Javanese proverbs, philosophy, shadow puppets, and wisdom",
+  "quizTopicSapaWong": "Greeting Others",
+  "quizTopicSapaWongDesc": "Etiquette of greeting and addressing people you meet.",
+  "quizTopicMaturNuwun": "Gratitude",
+  "quizTopicMaturNuwunDesc": "Polite expressions of gratitude and appreciation.",
+  "quizTopicNyuwunPangapunten": "Apologizing",
+  "quizTopicNyuwunPangapuntenDesc": "Humble expressions for apologizing and admitting mistakes.",
+  "quizTopicPercakapanPadinan": "Daily Conversation",
+  "quizTopicPercakapanPadinanDesc": "Practice daily conversational greetings and courtesy.",
+  "quizTopicEvaluasiUnit1": "Unit 1 Evaluation",
+  "quizTopicEvaluasiUnit1Desc": "Comprehensive test on greetings and initial etiquette.",
+  "quizTopicPengenalanHanacaraka": "Introduction to Hanacaraka",
+  "quizTopicPengenalanHanacarakaDesc": "Learn the origin and philosophy of the 20 Javanese characters.",
+  "quizTopicAksaraHanacaraka": "Characters Ha Na Ca Ra Ka",
+  "quizTopicAksaraHanacarakaDesc": "Shapes and phonetics of characters Ha, Na, Ca, Ra, Ka.",
+  "quizTopicAksaraDatasawala": "Characters Da Ta Sa Wa La",
+  "quizTopicAksaraDatasawalaDesc": "Shapes and phonetics of characters Da, Ta, Sa, Wa, La.",
+  "quizTopicAksaraPadhajayanya": "Characters Pa Dha Ja Ya Nya",
+  "quizTopicAksaraPadhajayanyaDesc": "Shapes and phonetics of characters Pa, Dha, Ja, Ya, Nya.",
+  "quizTopicAksaraMagabathanga": "Characters Ma Ga Ba Tha Nga",
+  "quizTopicAksaraMagabathangaDesc": "Shapes and phonetics of characters Ma, Ga, Ba, Tha, Nga.",
+  "quizTopicMacaAksaraDhasar": "Reading Basic Script",
+  "quizTopicMacaAksaraDhasarDesc": "Practice reading basic open-syllable legena words.",
+  "quizTopicNyusunAksaraLegena": "Assembling Legena Script",
+  "quizTopicNyusunAksaraLegenaDesc": "Assemble legena characters into meaningful words.",
+  "quizTopicNiteniWujudAksara": "Recognizing Script Shapes",
+  "quizTopicNiteniWujudAksaraDesc": "Distinguish between similarly shaped legena characters.",
+  "quizTopicGladhenMacaLegena": "Legena Word Reading Drill",
+  "quizTopicGladhenMacaLegenaDesc": "Read two- and three-syllable unvocalized legena words.",
+  "quizTopicEvaluasiUnit2": "Unit 2 Evaluation",
+  "quizTopicEvaluasiUnit2Desc": "Comprehensive test on all 20 basic Hanacaraka characters.",
+  "quizTopicSandhanganSwara": "Vowel Diacritics",
+  "quizTopicSandhanganSwaraDesc": "Modify vowels using wulu, suku, taling, pepet, and taling tarung.",
+  "quizTopicSandhanganPanyigeg": "Syllable Final Diacritics",
+  "quizTopicSandhanganPanyigegDesc": "Syllable-closing diacritics: wignyan, layar, cecak, and pangkon.",
+  "quizTopicSandhanganWyanjana": "Semivowel Diacritics",
+  "quizTopicSandhanganWyanjanaDesc": "Medial semivowels: cakra, keret, and pengkal.",
+  "quizTopicPengenalanPasangan": "Introduction to Pairs",
+  "quizTopicPengenalanPasanganDesc": "Functions and rules of subjoined pairs to mute vowels.",
+  "quizTopicPasanganSejajarGantung": "Aligned & Subjoined Pairs",
+  "quizTopicPasanganSejajarGantungDesc": "Distinguish between aligned and hanging subjoined letters.",
+  "quizTopicMacaKataSandhangan": "Reading Diacritic Words",
+  "quizTopicMacaKataSandhanganDesc": "Read words featuring various vocalic diacritics.",
+  "quizTopicNulisKataSederhana": "Writing Simple Words",
+  "quizTopicNulisKataSederhanaDesc": "Form correctly spelled words using diacritic marks.",
+  "quizTopicNiteniLuputNulis": "Spotting Writing Errors",
+  "quizTopicNiteniLuputNulisDesc": "Identify and fix misplaced diacritics and subjoined pairs.",
+  "quizTopicGladhenKombinasi": "Combined Practice",
+  "quizTopicGladhenKombinasiDesc": "Drills combining vowel marks, final consonants, and pairs.",
+  "quizTopicEvaluasiUnit3": "Unit 3 Evaluation",
+  "quizTopicEvaluasiUnit3Desc": "Comprehensive test on Javanese diacritics and pairs.",
+  "quizTopicKeluargaLanKerabat": "Family & Relatives",
+  "quizTopicKeluargaLanKerabatDesc": "Family lineage terms across ngoko and krama speech levels.",
+  "quizTopicOmahLanSakiwatengene": "Home & Surroundings",
+  "quizTopicOmahLanSakiwatengeneDesc": "Names of household items, rooms, and surroundings.",
+  "quizTopicKagiyatanPadinan": "Daily Activities",
+  "quizTopicKagiyatanPadinanDesc": "Verbs and everyday activities across speech registers.",
+  "quizTopicNgokoLugu": "Ngoko Lugu Level",
+  "quizTopicNgokoLuguDesc": "Characteristics and usage of ngoko lugu among peers.",
+  "quizTopicNgokoAlus": "Ngoko Alus Level",
+  "quizTopicNgokoAlusDesc": "Polite krama inggil inflections mixed into ngoko sentences.",
+  "quizTopicKramaLugu": "Krama Lugu Level",
+  "quizTopicKramaLuguDesc": "Formal polite language used in neutral interpersonal settings.",
+  "quizTopicKramaInggil": "Krama Inggil Level",
+  "quizTopicKramaInggilDesc": "Highest honorific register to address elders and leaders.",
+  "quizTopicBandhinganTingkatBasa": "Speech Register Comparison",
+  "quizTopicBandhinganTingkatBasaDesc": "Compare word counterparts across ngoko, krama, and inggil.",
+  "quizTopicWicaraUnggahUngguh": "Etiquette in Dialogue",
+  "quizTopicWicaraUnggahUngguhDesc": "Apply etiquette registers in real-world dialogue simulations.",
+  "quizTopicEvaluasiUnit4": "Unit 4 Evaluation",
+  "quizTopicEvaluasiUnit4Desc": "Comprehensive test on vocabulary and language levels.",
+  "quizTopicAjiningDhiri": "Dignity Through Speech",
+  "quizTopicAjiningDhiriDesc": "Philosophy of preserving personal dignity through honorable speech.",
+  "quizTopicUnggahUngguhBasa": "Javanese Social Etiquette",
+  "quizTopicUnggahUngguhBasaDesc": "Principles of decorum, humility, and behavior in Javanese society.",
+  "quizTopicParibasanJawa": "Javanese Proverbs",
+  "quizTopicParibasanJawaDesc": "Profound meanings behind traditional Javanese proverbs and idioms.",
+  "quizTopicFilosofiUrip": "Life is to Enlighten",
+  "quizTopicFilosofiUripDesc": "The wisdom of living a life that illuminates and helps others.",
+  "quizTopicTradisiPranatan": "Javanese Customs & Traditions",
+  "quizTopicTradisiPranatanDesc": "Traditional ceremonies, life cycle milestones, and cultural customs.",
+  "quizTopicPewayanganPandhawa": "Pandhava Wayang Lore",
+  "quizTopicPewayanganPandhawaDesc": "Virtues and life lessons of the five Pandhava shadow puppet heroes.",
+  "quizTopicTembangDolanan": "Folk Songs & Moral Teachings",
+  "quizTopicTembangDolananDesc": "Moral values and character-building in traditional Javanese songs.",
+  "quizTopicEtikaBudaya": "Cultural Situational Ethics",
+  "quizTopicEtikaBudayaDesc": "Choosing proper actions and words in cultural and community contexts.",
+  "quizTopicKawruhLuhur": "Higher Wisdom Challenge",
+  "quizTopicKawruhLuhurDesc": "Advanced mastery combining script, linguistic etiquette, and wisdom.",
+  "quizTopicEvaluasiAkhir": "JawaLoka Grand Evaluation",
+  "quizTopicEvaluasiAkhirDesc": "Grand finale comprehensive examination across all 50 JawaLoka nodes.",
+  "quizTopicUngkapanSopan": "Polite Expressions",
+  "@quizTopicUngkapanSopan": {
+    "description": "Topic title or description for quizTopicUngkapanSopan"
+  },
+  "quizTopicUngkapanSopanDesc": "Body language, subasita, and polite manners in Javanese etiquette.",
+  "@quizTopicUngkapanSopanDesc": {
+    "description": "Topic title or description for quizTopicUngkapanSopanDesc"
+  },
+  "quizTopicPenggunaanPasangan": "Using Pasangan",
+  "@quizTopicPenggunaanPasangan": {
+    "description": "Topic title or description for quizTopicPenggunaanPasangan"
+  },
+  "quizTopicPenggunaanPasanganDesc": "Rules and practice of applying pasangan in words and sentences.",
+  "@quizTopicPenggunaanPasanganDesc": {
+    "description": "Topic title or description for quizTopicPenggunaanPasanganDesc"
+  },
+  "quizTopicKosakataPadinan": "Everyday Vocabulary",
+  "@quizTopicKosakataPadinan": {
+    "description": "Topic title or description for quizTopicKosakataPadinan"
+  },
+  "quizTopicKosakataPadinanDesc": "Fundamental everyday vocabulary and family relations in Javanese.",
+  "@quizTopicKosakataPadinanDesc": {
+    "description": "Topic title or description for quizTopicKosakataPadinanDesc"
+  },
+  "quizTopicNamaBenda": "Names of Objects",
+  "@quizTopicNamaBenda": {
+    "description": "Topic title or description for quizTopicNamaBenda"
+  },
+  "quizTopicNamaBendaDesc": "Names of household objects, parts of traditional Joglo house, and environment.",
+  "@quizTopicNamaBendaDesc": {
+    "description": "Topic title or description for quizTopicNamaBendaDesc"
+  },
+  "quizTopicNamaKegiatan": "Names of Activities",
+  "@quizTopicNamaKegiatan": {
+    "description": "Topic title or description for quizTopicNamaKegiatan"
+  },
+  "quizTopicNamaKegiatanDesc": "Action verbs and common everyday activities in Javanese.",
+  "@quizTopicNamaKegiatanDesc": {
+    "description": "Topic title or description for quizTopicNamaKegiatanDesc"
+  },
+  "quizTopicNgoko": "Ngoko",
+  "@quizTopicNgoko": {
+    "description": "Topic title or description for quizTopicNgoko"
+  },
+  "quizTopicNgokoDesc": "Usage and vocabulary of Ngoko for peers and close friends.",
+  "@quizTopicNgokoDesc": {
+    "description": "Topic title or description for quizTopicNgokoDesc"
+  },
+  "quizTopicKrama": "Krama",
+  "@quizTopicKrama": {
+    "description": "Topic title or description for quizTopicKrama"
+  },
+  "quizTopicKramaDesc": "Polite Javanese speech level (Krama) for formal and respectful situations.",
+  "@quizTopicKramaDesc": {
+    "description": "Topic title or description for quizTopicKramaDesc"
+  },
+  "quizTopicPerbedaanTingkatanBahasa": "Speech Level Differences",
+  "@quizTopicPerbedaanTingkatanBahasa": {
+    "description": "Topic title or description for quizTopicPerbedaanTingkatanBahasa"
+  },
+  "quizTopicPerbedaanTingkatanBahasaDesc": "Comparing word forms across Ngoko, Krama, and Krama Inggil.",
+  "@quizTopicPerbedaanTingkatanBahasaDesc": {
+    "description": "Topic title or description for quizTopicPerbedaanTingkatanBahasaDesc"
+  },
+  "quizTopicPercakapanTeman": "Conversation with Friends",
+  "@quizTopicPercakapanTeman": {
+    "description": "Topic title or description for quizTopicPercakapanTeman"
+  },
+  "quizTopicPercakapanTemanDesc": "Interactive dialogs with friends using proper Ngoko speech.",
+  "@quizTopicPercakapanTemanDesc": {
+    "description": "Topic title or description for quizTopicPercakapanTemanDesc"
+  },
+  "quizTopicPercakapanDihormati": "Conversation with Respected Elders",
+  "@quizTopicPercakapanDihormati": {
+    "description": "Topic title or description for quizTopicPercakapanDihormati"
+  },
+  "quizTopicPercakapanDihormatiDesc": "Respectful dialogue with parents, teachers, and elders using Krama Inggil.",
+  "@quizTopicPercakapanDihormatiDesc": {
+    "description": "Topic title or description for quizTopicPercakapanDihormatiDesc"
+  },
+  "quizTopicTataKramaJawa": "Javanese Etiquette",
+  "@quizTopicTataKramaJawa": {
+    "description": "Topic title or description for quizTopicTataKramaJawa"
+  },
+  "quizTopicTataKramaJawaDesc": "Core principles of modesty, speech ethics, and respect in Javanese culture.",
+  "@quizTopicTataKramaJawaDesc": {
+    "description": "Topic title or description for quizTopicTataKramaJawaDesc"
+  },
+  "quizTopicPeribahasaJawa": "Javanese Proverbs",
+  "@quizTopicPeribahasaJawa": {
+    "description": "Topic title or description for quizTopicPeribahasaJawa"
+  },
+  "quizTopicPeribahasaJawaDesc": "Wisdom and life guidance within Javanese proverbs (Paribasan & Saloka).",
+  "@quizTopicPeribahasaJawaDesc": {
+    "description": "Topic title or description for quizTopicPeribahasaJawaDesc"
+  },
+  "quizTopicFilosofiKehidupan": "Philosophy of Life",
+  "@quizTopicFilosofiKehidupan": {
+    "description": "Topic title or description for quizTopicFilosofiKehidupan"
+  },
+  "quizTopicFilosofiKehidupanDesc": "Profound philosophical life lessons: Urip Iku Urup, Memayu Hayuning Bawana.",
+  "@quizTopicFilosofiKehidupanDesc": {
+    "description": "Topic title or description for quizTopicFilosofiKehidupanDesc"
+  },
+  "quizTopicTradisiJawa": "Javanese Traditions",
+  "@quizTopicTradisiJawa": {
+    "description": "Topic title or description for quizTopicTradisiJawa"
+  },
+  "quizTopicTradisiJawaDesc": "Cultural rituals, customs, and ceremonies of the Javanese life cycle.",
+  "@quizTopicTradisiJawaDesc": {
+    "description": "Topic title or description for quizTopicTradisiJawaDesc"
+  },
+  "quizTopicBudayaKesenian": "Culture and Arts",
+  "@quizTopicBudayaKesenian": {
+    "description": "Topic title or description for quizTopicBudayaKesenian"
+  },
+  "quizTopicBudayaKesenianDesc": "Traditional arts, wayang purwa characters, and cultural expressions.",
+  "@quizTopicBudayaKesenianDesc": {
+    "description": "Topic title or description for quizTopicBudayaKesenianDesc"
+  },
+  "quizTopicSituasiPadinan": "Everyday Situations",
+  "@quizTopicSituasiPadinan": {
+    "description": "Topic title or description for quizTopicSituasiPadinan"
+  },
+  "quizTopicSituasiPadinanDesc": "Applying cultural wisdom, tembang dolanan, and social values in daily life.",
+  "@quizTopicSituasiPadinanDesc": {
+    "description": "Topic title or description for quizTopicSituasiPadinanDesc"
+  },
+  "quizTopicTantanganBudaya": "Cultural Understanding Challenge",
+  "@quizTopicTantanganBudaya": {
+    "description": "Topic title or description for quizTopicTantanganBudaya"
+  },
+  "quizTopicTantanganBudayaDesc": "Advanced cultural ethics, empathy, tepa slira, and social awareness challenge.",
+  "@quizTopicTantanganBudayaDesc": {
+    "description": "Topic title or description for quizTopicTantanganBudayaDesc"
+  },
+  "quizTopicTantanganAkhir": "Final Challenge",
+  "@quizTopicTantanganAkhir": {
+    "description": "Topic title or description for quizTopicTantanganAkhir"
+  },
+  "quizTopicTantanganAkhirDesc": "Comprehensive synthesis challenge of Aksara, language levels, and cultural values.",
+  "@quizTopicTantanganAkhirDesc": {
+    "description": "Topic title or description for quizTopicTantanganAkhirDesc"
+  }
 }

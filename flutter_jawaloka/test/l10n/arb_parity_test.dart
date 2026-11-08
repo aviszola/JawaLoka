@@ -49,6 +49,8 @@ void main() {
       'quizTopicSalam',
       'quizTopicPamit',
       'quizTopicLencana',
+      'quizTopicNgoko',
+      'quizTopicKrama',
       'quizOptionSemantics',
       'quizResultAwesome',
       'dailyResultTargetScript',

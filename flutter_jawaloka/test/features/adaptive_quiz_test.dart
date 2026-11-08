@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_jawaloka/core/mock/mock_user_stats.dart';
 import 'package:flutter_jawaloka/core/profile/profile_controller.dart';
 import 'package:flutter_jawaloka/core/profile/profile_preferences.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
@@ -199,12 +198,12 @@ void main() {
   });
 
   group('ProfileController & Preferences UserLevel Integration Tests', () {
-    test('Default user level matches MockUserStats.userLevel (4)', () async {
+    test('Default user level is 4', () async {
       final prefs = InMemoryProfilePreferences();
       final controller = ProfileController(preferences: prefs);
       await controller.loadProfile();
 
-      expect(controller.userLevel, MockUserStats.userLevel);
+      expect(controller.userLevel, 4);
     });
 
     test('setUserLevel persists level and notifies listeners', () async {
@@ -231,15 +230,15 @@ void main() {
       await controller.loadProfile();
 
       await controller.setUserLevel(0);
-      expect(controller.userLevel, MockUserStats.userLevel);
+      expect(controller.userLevel, 4);
 
       await controller.setUserLevel(-5);
-      expect(controller.userLevel, MockUserStats.userLevel);
+      expect(controller.userLevel, 4);
     });
   });
 
   group('Adaptive Quiz Launch & Session Widget Tests', () {
-    testWidgets('User at Level 2 loads Pemula question bank (glyph ꦲ)', (
+    testWidgets('User at Level 2 loads Mudah question bank for node Salam', (
       tester,
     ) async {
       final profile = ProfileController(
@@ -265,15 +264,15 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
-      // Expect Pemula question 1: glyph 'ꦲ' with options 'Ha', 'Na', 'Ca', 'Ra'
-      expect(find.text('ꦲ'), findsOneWidget);
-      expect(find.text('Ha'), findsOneWidget);
-      expect(find.text('Na'), findsOneWidget);
-      expect(find.text('Ca'), findsOneWidget);
-      expect(find.text('Ra'), findsOneWidget);
+      // Expect Mudah question 1: glyph 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ' with options
+      expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
+      expect(find.text('Esuk (pagi)'), findsOneWidget);
+      expect(find.text('Awan (siang)'), findsOneWidget);
+      expect(find.text('Sore'), findsOneWidget);
+      expect(find.text('Wengi (malam)'), findsOneWidget);
     });
 
-    testWidgets('User at Level 5 loads Menengah question bank (glyph ꦲꦶ / Hi)', (
+    testWidgets('User at Level 5 loads Mahir question bank for node Salam', (
       tester,
     ) async {
       final profile = ProfileController(
@@ -297,16 +296,16 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
-      // Expect Menengah question 1: glyph 'ꦲꦶ' with options 'Hi', 'Hu', 'He', 'Ho'
-      expect(find.text('ꦲꦶ'), findsOneWidget);
-      expect(find.text('Hi'), findsOneWidget);
-      expect(find.text('Hu'), findsOneWidget);
-      expect(find.text('He'), findsOneWidget);
-      expect(find.text('Ho'), findsOneWidget);
+      // Expect Mahir question 1: glyph 'ꦱꦶꦪꦁ' with options
+      expect(find.text('ꦱꦶꦪꦁ'), findsOneWidget);
+      expect(find.text('Sugeng sonten, Pak Guru'), findsOneWidget);
+      expect(find.text('Sugeng dalu, Pak Guru'), findsOneWidget);
+      expect(find.text('Sugeng siang, Pak Guru'), findsOneWidget);
+      expect(find.text('Sugeng enjang, Pak Guru'), findsOneWidget);
     });
 
     testWidgets(
-      'User at Level 8 loads Mahir question bank (Unggah-Ungguh question 1)',
+      'User at Level 8 loads Sangat Mahir question bank for node Salam',
       (tester) async {
         final profile = ProfileController(
           preferences: InMemoryProfilePreferences(initialUserLevel: 8),
@@ -329,15 +328,12 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 500));
 
-        // Expect Mahir question 1: prompt about 'Kowe arep mangan apa?'
-        expect(
-          find.text("Ukara 'Kowe arep mangan apa?' kalebu ragam basa apa?"),
-          findsOneWidget,
-        );
-        expect(find.text('Ngoko Lugu'), findsOneWidget);
-        expect(find.text('Ngoko Alus'), findsOneWidget);
-        expect(find.text('Krama Lugu'), findsOneWidget);
-        expect(find.text('Krama Inggil'), findsOneWidget);
+        // Expect Sangat Mahir question 1: glyph 'ꦫꦮꦸꦃ' with options
+        expect(find.text('ꦫꦮꦸꦃ'), findsOneWidget);
+        expect(find.text('Sugeng tindak'), findsOneWidget);
+        expect(find.text('Sugeng kondur'), findsOneWidget);
+        expect(find.text('Sugeng sare'), findsOneWidget);
+        expect(find.text('Sugeng rawuh'), findsOneWidget);
       },
     );
 
@@ -365,8 +361,8 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 500));
 
-        // Active quiz is Pemula (Question 1: 'ꦲ')
-        expect(find.text('ꦲ'), findsOneWidget);
+        // Active quiz is Mudah (Question 1: 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ')
+        expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
 
         // Simulate a background or live level change to Mahir (Level 10)
         await profile.setUserLevel(10);
@@ -375,9 +371,9 @@ void main() {
         // Pump UI to ensure listeners fired
         await tester.pump();
 
-        // Active quiz session must STILL display Pemula question 1 ('ꦲ')
-        expect(find.text('ꦲ'), findsOneWidget);
-        expect(find.text('Ha'), findsOneWidget);
+        // Active quiz session must STILL display ongoing Mudah question 1
+        expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
+        expect(find.text('Esuk (pagi)'), findsOneWidget);
       },
     );
 

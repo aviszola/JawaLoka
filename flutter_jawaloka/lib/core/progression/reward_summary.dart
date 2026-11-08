@@ -1,3 +1,5 @@
+import '../../features/profile/presentation/widgets/blangkon_painter.dart';
+
 /// Classification of learner mastery tier according to JawaLoka progression curve.
 enum ProgressionTier {
   /// Level 1–3: Basic Hanacaraka characters and sound recognition.
@@ -32,6 +34,7 @@ class RewardSummary {
   final bool isFirstClear;
   final String activityId;
   final String claimId;
+  final List<BlangkonType> unlockedBlangkons;
   final String? message;
 
   const RewardSummary({
@@ -44,6 +47,7 @@ class RewardSummary {
     required this.isFirstClear,
     required this.activityId,
     required this.claimId,
+    this.unlockedBlangkons = const [],
     this.message,
   });
 
@@ -64,6 +68,7 @@ class RewardSummary {
       isFirstClear: false,
       activityId: activityId,
       claimId: claimId,
+      unlockedBlangkons: const [],
       message: 'Claim ID already processed.',
     );
   }
@@ -85,6 +90,7 @@ class RewardSummary {
       isFirstClear: false,
       activityId: activityId,
       claimId: claimId,
+      unlockedBlangkons: const [],
       message: 'Daily practice replay cap reached.',
     );
   }

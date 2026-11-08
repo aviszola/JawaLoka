@@ -1,6 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
+import '../../domain/quiz_path_models.dart' show NodeStatus;
+
+export '../../domain/quiz_path_models.dart' show NodeStatus;
 
 /// Represents a single node on the quiz path.
 class PathNode {
@@ -18,8 +21,6 @@ class PathNode {
     this.topicName = '',
   });
 }
-
-enum NodeStatus { completed, current, locked }
 
 /// CustomPainter that draws curved connecting lines between quiz path nodes.
 class QuizPathPainter extends CustomPainter {

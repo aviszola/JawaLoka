@@ -3,10 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
+
+/// Arguments for navigating to [LevelUpScreen].
+class LevelUpArgs {
+  final int newLevel;
+  final int previousLevel;
+  final List<BlangkonType> unlockedBlangkons;
+  final String? blangkonName;
+  final BlangkonType? blangkonType;
+
+  const LevelUpArgs({
+    required this.newLevel,
+    this.previousLevel = 1,
+    this.unlockedBlangkons = const [],
+    this.blangkonName,
+    this.blangkonType,
+  });
+}
 
 /// JawaLoka - Level Up & New Unlock Screen.
 /// Pixel-accurate implementation of Stitch Screen #c515113f3b024dd89f70c06fc8e0ef40.
@@ -22,14 +40,18 @@ import '../widgets/javanese_avatar_widget.dart';
 /// - Primary ink CTA: "Pakai Blangkon" and secondary text link: "Nanti saja"
 class LevelUpScreen extends StatefulWidget {
   final int newLevel;
-  final String blangkonName;
-  final BlangkonType blangkonType;
+  final int previousLevel;
+  final List<BlangkonType> unlockedBlangkons;
+  final String? blangkonName;
+  final BlangkonType? blangkonType;
 
   const LevelUpScreen({
     super.key,
     this.newLevel = 5,
-    this.blangkonName = 'Blangkon Surakarta',
-    this.blangkonType = BlangkonType.surakarta,
+    this.previousLevel = 1,
+    this.unlockedBlangkons = const [],
+    this.blangkonName,
+    this.blangkonType,
   });
 
   static const String routeName = '/level-up';
@@ -134,9 +156,36 @@ class _LevelUpScreenState extends State<LevelUpScreen>
     super.dispose();
   }
 
+  List<BlangkonType> get _rewards {
+    if (widget.unlockedBlangkons.isNotEmpty) {
+      return widget.unlockedBlangkons;
+    }
+    if (widget.blangkonType != null) {
+      return [widget.blangkonType!];
+    }
+    return BlangkonRewards.getNewRewards(widget.previousLevel, widget.newLevel);
+  }
+
+  bool get _hasBlangkonReward => _rewards.isNotEmpty;
+
+  BlangkonType get _highestReward {
+    if (_hasBlangkonReward) {
+      return _rewards.last;
+    }
+    return ProfileScope.maybeOf(context)?.equippedBlangkon ??
+        BlangkonType.yogyakarta;
+  }
+
+  String get _highestRewardName {
+    if (widget.blangkonName != null) {
+      return widget.blangkonName!;
+    }
+    return BlangkonRewards.getName(_highestReward);
+  }
+
   void _onEquipBlangkon() {
     HapticFeedback.heavyImpact();
-    ProfileScope.maybeOf(context)?.setEquippedBlangkon(widget.blangkonType);
+    ProfileScope.maybeOf(context)?.setEquippedBlangkon(_highestReward);
     Navigator.pop(context, true);
   }
 
@@ -298,10 +347,10 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                 ),
               ),
 
-              // Javanese Avatar wearing Surakarta Blangkon
+              // Javanese Avatar wearing highest unlocked blangkon reward
               JavaneseAvatarWidget(
                 size: 130,
-                blangkonType: widget.blangkonType,
+                blangkonType: _highestReward,
                 backgroundColor: const Color(0xFFFFF9E9),
               ),
 
@@ -381,27 +430,47 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           ),
         ),
         const SizedBox(height: 6),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
+        if (_hasBlangkonReward)
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 15,
+                color: AppColors.ink,
+                fontWeight: FontWeight.w500,
+                height: 1.3,
+              ),
+              children: [
+                TextSpan(text: context.l10n.levelUpBlangkonUnlocked),
+                TextSpan(
+                  text: _highestRewardName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.ink,
+                  ),
+                ),
+                if (_rewards.length > 1)
+                  TextSpan(
+                    text: ' ${context.l10n.levelUpOtherRewardsCount(_rewards.length - 1)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.inkMuted,
+                    ),
+                  ),
+              ],
+            ),
+          )
+        else
+          Text(
+            context.l10n.levelUpNoRewardSubtitle,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 15,
               color: AppColors.ink,
               fontWeight: FontWeight.w500,
               height: 1.3,
             ),
-            children: [
-              TextSpan(text: context.l10n.levelUpBlangkonUnlocked),
-              TextSpan(
-                text: widget.blangkonName,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.ink,
-                ),
-              ),
-            ],
           ),
-        ),
       ],
     );
   }
@@ -501,6 +570,37 @@ class _LevelUpScreenState extends State<LevelUpScreen>
   // ── Action Buttons ────────────────────────────────────────────────────────
 
   Widget _buildActionButtons() {
+    if (!_hasBlangkonReward) {
+      return SizedBox(
+        width: double.infinity,
+        height: 56,
+        child: ElevatedButton(
+          onPressed: _onSkip,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.ink,
+            foregroundColor: Colors.white,
+            shape: const StadiumBorder(),
+            elevation: 4,
+            shadowColor: AppColors.ink.withValues(alpha: 0.3),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                context.l10n.levelUpContinueButton,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_forward_rounded, size: 20),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Column(
       children: [
         // Primary Filled Button

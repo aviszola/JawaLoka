@@ -2,50 +2,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../../core/mock/mock_user_stats.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
-import '../../../../core/progression/reward_summary.dart';
+import '../../../profile/presentation/screens/level_up_screen.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
+import '../../domain/models/quiz_result.dart';
 import 'quiz_question_screen.dart';
 
-// ─────────────────────────────────────────────────────────
-//  DATA MODEL
-// ─────────────────────────────────────────────────────────
-
-class QuizResult {
-  final int score;
-  final int maxScore;
-  final int correctCount;
-  final int totalQuestions;
-  final int accuracy; // percentage 0–100
-  final bool isStreakAchievedToday;
-  final int currentStreak;
-  final List<QuizQuestion>? questions;
-  final String? moduleTitle;
-  final RewardSummary? rewardSummary;
-
-  const QuizResult({
-    required this.score,
-    this.maxScore = 100,
-    this.correctCount = 8,
-    this.totalQuestions = 10,
-    required this.accuracy,
-    this.isStreakAchievedToday = true,
-    this.currentStreak = MockUserStats.streakDays,
-    this.questions,
-    this.moduleTitle,
-    this.rewardSummary,
-  });
-
-  double get scoreRatio =>
-      maxScore > 0 ? (score / maxScore).clamp(0.0, 1.0) : 0.0;
-  int get stars => score >= 90
-      ? 3
-      : score >= 70
-      ? 2
-      : 1;
-}
+export '../../domain/models/quiz_result.dart';
 
 // ─────────────────────────────────────────────────────────
 //  CONFETTI PARTICLE
@@ -187,7 +152,7 @@ class QuizResultScreen extends StatefulWidget {
       totalQuestions: 10,
       accuracy: 80,
       isStreakAchievedToday: true,
-      currentStreak: MockUserStats.streakDays,
+      currentStreak: 1,
     ),
   });
 
@@ -566,7 +531,25 @@ class _QuizResultScreenState extends State<QuizResultScreen>
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              final summary = widget.result.rewardSummary;
+              final profile = ProfileScope.maybeOf(context);
+              if (summary != null &&
+                  summary.leveledUp &&
+                  profile != null &&
+                  profile.shouldCelebrateLevel(summary.newLevel)) {
+                await profile.markLevelCelebrated(summary.newLevel);
+                if (!context.mounted) return;
+                await Navigator.of(context).pushNamed(
+                  AppRouter.levelUp,
+                  arguments: LevelUpArgs(
+                    newLevel: summary.newLevel,
+                    previousLevel: summary.previousLevel,
+                    unlockedBlangkons: summary.unlockedBlangkons,
+                  ),
+                );
+              }
+              if (!context.mounted) return;
               if (Navigator.of(context).canPop()) {
                 Navigator.of(context).popUntil(
                   (route) =>
@@ -602,6 +585,8 @@ class _QuizResultScreenState extends State<QuizResultScreen>
                 arguments: QuizQuestionArgs(
                   questions: widget.result.questions,
                   moduleTitle: widget.result.moduleTitle ?? 'Aksara Dhasar',
+                  activityId: widget.result.rewardSummary?.activityId,
+                  isEvaluation: widget.result.isEvaluation,
                 ),
               );
             },

@@ -1,7 +1,7 @@
 import 'dart:math';
 import '../../../core/progression/reward_summary.dart';
-import '../presentation/screens/quiz_question_screen.dart';
-import '../presentation/screens/quiz_result_screen.dart';
+import 'models/quiz_question.dart';
+import 'models/quiz_result.dart';
 
 /// Manages the state, progression, and lifecycle of an active quiz session.
 ///
@@ -107,6 +107,7 @@ class QuizSession {
   QuizResult toResult({
     bool isStreakAchievedToday = true,
     RewardSummary? rewardSummary,
+    bool isEvaluation = false,
   }) {
     return QuizResult(
       score: scorePercentage,
@@ -118,6 +119,7 @@ class QuizSession {
       questions: questions,
       moduleTitle: moduleTitle,
       rewardSummary: rewardSummary,
+      isEvaluation: isEvaluation,
     );
   }
 }

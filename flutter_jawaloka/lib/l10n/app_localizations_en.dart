@@ -394,17 +394,19 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get quizUnit1Title => 'Unit 1: Greetings and Salutations';
+  String get quizUnit1Title => 'Unit 1: Greetings and Initial Etiquette';
 
   @override
-  String get quizUnit1Subtitle => 'Conversation basics and polite etiquette';
+  String get quizUnit1Subtitle =>
+      'Fundamentals of conversation and courteous manners';
 
   @override
-  String get quizUnit2Title => 'Unit 2: Family and Home (Locked)';
+  String get quizUnit2Title =>
+      'Unit 2: Basic Javanese Script (Legena) (Locked)';
 
   @override
   String get quizUnit2Subtitle =>
-      'Family lineage, relatives, and household environment';
+      'Introduction to the 20 basic Hanacaraka characters';
 
   @override
   String get quizTopicSalam => 'Greeting';
@@ -703,6 +705,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get levelUpSkipButton => 'Maybe later';
 
   @override
+  String levelUpOtherRewardsCount(int count) {
+    return ' (+$count other blangkon)';
+  }
+
+  @override
+  String get levelUpNoRewardSubtitle =>
+      'Congratulations! Your mastery and proficiency continue to grow.';
+
+  @override
+  String get levelUpContinueButton => 'Continue';
+
+  @override
   String get settingsLogout => 'Log Out';
 
   @override
@@ -741,6 +755,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get translatorInputHint => 'Type text...';
+
+  @override
+  String get translatorBasicPhrasesHint =>
+      'Supported basic sample phrases: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.';
 
   @override
   String get translatorButton => 'Translate';
@@ -1054,4 +1072,469 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aksaraDetailExampleHasthaMeaning => 'Eight';
+
+  @override
+  String get quizUnit3Title =>
+      'Unit 3: Javanese Diacritics and Subjoined Letters (Locked)';
+
+  @override
+  String get quizUnit3Subtitle =>
+      'Vocalizations, syllable finals, and subjoined letter pairs';
+
+  @override
+  String get quizUnit4Title => 'Unit 4: Vocabulary and Speech Levels (Locked)';
+
+  @override
+  String get quizUnit4Subtitle =>
+      'Speech levels of ngoko, krama lugu, and krama inggil';
+
+  @override
+  String get quizUnit5Title =>
+      'Unit 5: Culture, Proverbs, and Philosophical Wisdom (Locked)';
+
+  @override
+  String get quizUnit5Subtitle =>
+      'Javanese proverbs, philosophy, shadow puppets, and wisdom';
+
+  @override
+  String get quizTopicSapaWong => 'Greeting Others';
+
+  @override
+  String get quizTopicSapaWongDesc =>
+      'Etiquette of greeting and addressing people you meet.';
+
+  @override
+  String get quizTopicMaturNuwun => 'Gratitude';
+
+  @override
+  String get quizTopicMaturNuwunDesc =>
+      'Polite expressions of gratitude and appreciation.';
+
+  @override
+  String get quizTopicNyuwunPangapunten => 'Apologizing';
+
+  @override
+  String get quizTopicNyuwunPangapuntenDesc =>
+      'Humble expressions for apologizing and admitting mistakes.';
+
+  @override
+  String get quizTopicPercakapanPadinan => 'Daily Conversation';
+
+  @override
+  String get quizTopicPercakapanPadinanDesc =>
+      'Practice daily conversational greetings and courtesy.';
+
+  @override
+  String get quizTopicEvaluasiUnit1 => 'Unit 1 Evaluation';
+
+  @override
+  String get quizTopicEvaluasiUnit1Desc =>
+      'Comprehensive test on greetings and initial etiquette.';
+
+  @override
+  String get quizTopicPengenalanHanacaraka => 'Introduction to Hanacaraka';
+
+  @override
+  String get quizTopicPengenalanHanacarakaDesc =>
+      'Learn the origin and philosophy of the 20 Javanese characters.';
+
+  @override
+  String get quizTopicAksaraHanacaraka => 'Characters Ha Na Ca Ra Ka';
+
+  @override
+  String get quizTopicAksaraHanacarakaDesc =>
+      'Shapes and phonetics of characters Ha, Na, Ca, Ra, Ka.';
+
+  @override
+  String get quizTopicAksaraDatasawala => 'Characters Da Ta Sa Wa La';
+
+  @override
+  String get quizTopicAksaraDatasawalaDesc =>
+      'Shapes and phonetics of characters Da, Ta, Sa, Wa, La.';
+
+  @override
+  String get quizTopicAksaraPadhajayanya => 'Characters Pa Dha Ja Ya Nya';
+
+  @override
+  String get quizTopicAksaraPadhajayanyaDesc =>
+      'Shapes and phonetics of characters Pa, Dha, Ja, Ya, Nya.';
+
+  @override
+  String get quizTopicAksaraMagabathanga => 'Characters Ma Ga Ba Tha Nga';
+
+  @override
+  String get quizTopicAksaraMagabathangaDesc =>
+      'Shapes and phonetics of characters Ma, Ga, Ba, Tha, Nga.';
+
+  @override
+  String get quizTopicMacaAksaraDhasar => 'Reading Basic Script';
+
+  @override
+  String get quizTopicMacaAksaraDhasarDesc =>
+      'Practice reading basic open-syllable legena words.';
+
+  @override
+  String get quizTopicNyusunAksaraLegena => 'Assembling Legena Script';
+
+  @override
+  String get quizTopicNyusunAksaraLegenaDesc =>
+      'Assemble legena characters into meaningful words.';
+
+  @override
+  String get quizTopicNiteniWujudAksara => 'Recognizing Script Shapes';
+
+  @override
+  String get quizTopicNiteniWujudAksaraDesc =>
+      'Distinguish between similarly shaped legena characters.';
+
+  @override
+  String get quizTopicGladhenMacaLegena => 'Legena Word Reading Drill';
+
+  @override
+  String get quizTopicGladhenMacaLegenaDesc =>
+      'Read two- and three-syllable unvocalized legena words.';
+
+  @override
+  String get quizTopicEvaluasiUnit2 => 'Unit 2 Evaluation';
+
+  @override
+  String get quizTopicEvaluasiUnit2Desc =>
+      'Comprehensive test on all 20 basic Hanacaraka characters.';
+
+  @override
+  String get quizTopicSandhanganSwara => 'Vowel Diacritics';
+
+  @override
+  String get quizTopicSandhanganSwaraDesc =>
+      'Modify vowels using wulu, suku, taling, pepet, and taling tarung.';
+
+  @override
+  String get quizTopicSandhanganPanyigeg => 'Syllable Final Diacritics';
+
+  @override
+  String get quizTopicSandhanganPanyigegDesc =>
+      'Syllable-closing diacritics: wignyan, layar, cecak, and pangkon.';
+
+  @override
+  String get quizTopicSandhanganWyanjana => 'Semivowel Diacritics';
+
+  @override
+  String get quizTopicSandhanganWyanjanaDesc =>
+      'Medial semivowels: cakra, keret, and pengkal.';
+
+  @override
+  String get quizTopicPengenalanPasangan => 'Introduction to Pairs';
+
+  @override
+  String get quizTopicPengenalanPasanganDesc =>
+      'Functions and rules of subjoined pairs to mute vowels.';
+
+  @override
+  String get quizTopicPasanganSejajarGantung => 'Aligned & Subjoined Pairs';
+
+  @override
+  String get quizTopicPasanganSejajarGantungDesc =>
+      'Distinguish between aligned and hanging subjoined letters.';
+
+  @override
+  String get quizTopicMacaKataSandhangan => 'Reading Diacritic Words';
+
+  @override
+  String get quizTopicMacaKataSandhanganDesc =>
+      'Read words featuring various vocalic diacritics.';
+
+  @override
+  String get quizTopicNulisKataSederhana => 'Writing Simple Words';
+
+  @override
+  String get quizTopicNulisKataSederhanaDesc =>
+      'Form correctly spelled words using diacritic marks.';
+
+  @override
+  String get quizTopicNiteniLuputNulis => 'Spotting Writing Errors';
+
+  @override
+  String get quizTopicNiteniLuputNulisDesc =>
+      'Identify and fix misplaced diacritics and subjoined pairs.';
+
+  @override
+  String get quizTopicGladhenKombinasi => 'Combined Practice';
+
+  @override
+  String get quizTopicGladhenKombinasiDesc =>
+      'Drills combining vowel marks, final consonants, and pairs.';
+
+  @override
+  String get quizTopicEvaluasiUnit3 => 'Unit 3 Evaluation';
+
+  @override
+  String get quizTopicEvaluasiUnit3Desc =>
+      'Comprehensive test on Javanese diacritics and pairs.';
+
+  @override
+  String get quizTopicKeluargaLanKerabat => 'Family & Relatives';
+
+  @override
+  String get quizTopicKeluargaLanKerabatDesc =>
+      'Family lineage terms across ngoko and krama speech levels.';
+
+  @override
+  String get quizTopicOmahLanSakiwatengene => 'Home & Surroundings';
+
+  @override
+  String get quizTopicOmahLanSakiwatengeneDesc =>
+      'Names of household items, rooms, and surroundings.';
+
+  @override
+  String get quizTopicKagiyatanPadinan => 'Daily Activities';
+
+  @override
+  String get quizTopicKagiyatanPadinanDesc =>
+      'Verbs and everyday activities across speech registers.';
+
+  @override
+  String get quizTopicNgokoLugu => 'Ngoko Lugu Level';
+
+  @override
+  String get quizTopicNgokoLuguDesc =>
+      'Characteristics and usage of ngoko lugu among peers.';
+
+  @override
+  String get quizTopicNgokoAlus => 'Ngoko Alus Level';
+
+  @override
+  String get quizTopicNgokoAlusDesc =>
+      'Polite krama inggil inflections mixed into ngoko sentences.';
+
+  @override
+  String get quizTopicKramaLugu => 'Krama Lugu Level';
+
+  @override
+  String get quizTopicKramaLuguDesc =>
+      'Formal polite language used in neutral interpersonal settings.';
+
+  @override
+  String get quizTopicKramaInggil => 'Krama Inggil Level';
+
+  @override
+  String get quizTopicKramaInggilDesc =>
+      'Highest honorific register to address elders and leaders.';
+
+  @override
+  String get quizTopicBandhinganTingkatBasa => 'Speech Register Comparison';
+
+  @override
+  String get quizTopicBandhinganTingkatBasaDesc =>
+      'Compare word counterparts across ngoko, krama, and inggil.';
+
+  @override
+  String get quizTopicWicaraUnggahUngguh => 'Etiquette in Dialogue';
+
+  @override
+  String get quizTopicWicaraUnggahUngguhDesc =>
+      'Apply etiquette registers in real-world dialogue simulations.';
+
+  @override
+  String get quizTopicEvaluasiUnit4 => 'Unit 4 Evaluation';
+
+  @override
+  String get quizTopicEvaluasiUnit4Desc =>
+      'Comprehensive test on vocabulary and language levels.';
+
+  @override
+  String get quizTopicAjiningDhiri => 'Dignity Through Speech';
+
+  @override
+  String get quizTopicAjiningDhiriDesc =>
+      'Philosophy of preserving personal dignity through honorable speech.';
+
+  @override
+  String get quizTopicUnggahUngguhBasa => 'Javanese Social Etiquette';
+
+  @override
+  String get quizTopicUnggahUngguhBasaDesc =>
+      'Principles of decorum, humility, and behavior in Javanese society.';
+
+  @override
+  String get quizTopicParibasanJawa => 'Javanese Proverbs';
+
+  @override
+  String get quizTopicParibasanJawaDesc =>
+      'Profound meanings behind traditional Javanese proverbs and idioms.';
+
+  @override
+  String get quizTopicFilosofiUrip => 'Life is to Enlighten';
+
+  @override
+  String get quizTopicFilosofiUripDesc =>
+      'The wisdom of living a life that illuminates and helps others.';
+
+  @override
+  String get quizTopicTradisiPranatan => 'Javanese Customs & Traditions';
+
+  @override
+  String get quizTopicTradisiPranatanDesc =>
+      'Traditional ceremonies, life cycle milestones, and cultural customs.';
+
+  @override
+  String get quizTopicPewayanganPandhawa => 'Pandhava Wayang Lore';
+
+  @override
+  String get quizTopicPewayanganPandhawaDesc =>
+      'Virtues and life lessons of the five Pandhava shadow puppet heroes.';
+
+  @override
+  String get quizTopicTembangDolanan => 'Folk Songs & Moral Teachings';
+
+  @override
+  String get quizTopicTembangDolananDesc =>
+      'Moral values and character-building in traditional Javanese songs.';
+
+  @override
+  String get quizTopicEtikaBudaya => 'Cultural Situational Ethics';
+
+  @override
+  String get quizTopicEtikaBudayaDesc =>
+      'Choosing proper actions and words in cultural and community contexts.';
+
+  @override
+  String get quizTopicKawruhLuhur => 'Higher Wisdom Challenge';
+
+  @override
+  String get quizTopicKawruhLuhurDesc =>
+      'Advanced mastery combining script, linguistic etiquette, and wisdom.';
+
+  @override
+  String get quizTopicEvaluasiAkhir => 'JawaLoka Grand Evaluation';
+
+  @override
+  String get quizTopicEvaluasiAkhirDesc =>
+      'Grand finale comprehensive examination across all 50 JawaLoka nodes.';
+
+  @override
+  String get quizTopicUngkapanSopan => 'Polite Expressions';
+
+  @override
+  String get quizTopicUngkapanSopanDesc =>
+      'Body language, subasita, and polite manners in Javanese etiquette.';
+
+  @override
+  String get quizTopicPenggunaanPasangan => 'Using Pasangan';
+
+  @override
+  String get quizTopicPenggunaanPasanganDesc =>
+      'Rules and practice of applying pasangan in words and sentences.';
+
+  @override
+  String get quizTopicKosakataPadinan => 'Everyday Vocabulary';
+
+  @override
+  String get quizTopicKosakataPadinanDesc =>
+      'Fundamental everyday vocabulary and family relations in Javanese.';
+
+  @override
+  String get quizTopicNamaBenda => 'Names of Objects';
+
+  @override
+  String get quizTopicNamaBendaDesc =>
+      'Names of household objects, parts of traditional Joglo house, and environment.';
+
+  @override
+  String get quizTopicNamaKegiatan => 'Names of Activities';
+
+  @override
+  String get quizTopicNamaKegiatanDesc =>
+      'Action verbs and common everyday activities in Javanese.';
+
+  @override
+  String get quizTopicNgoko => 'Ngoko';
+
+  @override
+  String get quizTopicNgokoDesc =>
+      'Usage and vocabulary of Ngoko for peers and close friends.';
+
+  @override
+  String get quizTopicKrama => 'Krama';
+
+  @override
+  String get quizTopicKramaDesc =>
+      'Polite Javanese speech level (Krama) for formal and respectful situations.';
+
+  @override
+  String get quizTopicPerbedaanTingkatanBahasa => 'Speech Level Differences';
+
+  @override
+  String get quizTopicPerbedaanTingkatanBahasaDesc =>
+      'Comparing word forms across Ngoko, Krama, and Krama Inggil.';
+
+  @override
+  String get quizTopicPercakapanTeman => 'Conversation with Friends';
+
+  @override
+  String get quizTopicPercakapanTemanDesc =>
+      'Interactive dialogs with friends using proper Ngoko speech.';
+
+  @override
+  String get quizTopicPercakapanDihormati =>
+      'Conversation with Respected Elders';
+
+  @override
+  String get quizTopicPercakapanDihormatiDesc =>
+      'Respectful dialogue with parents, teachers, and elders using Krama Inggil.';
+
+  @override
+  String get quizTopicTataKramaJawa => 'Javanese Etiquette';
+
+  @override
+  String get quizTopicTataKramaJawaDesc =>
+      'Core principles of modesty, speech ethics, and respect in Javanese culture.';
+
+  @override
+  String get quizTopicPeribahasaJawa => 'Javanese Proverbs';
+
+  @override
+  String get quizTopicPeribahasaJawaDesc =>
+      'Wisdom and life guidance within Javanese proverbs (Paribasan & Saloka).';
+
+  @override
+  String get quizTopicFilosofiKehidupan => 'Philosophy of Life';
+
+  @override
+  String get quizTopicFilosofiKehidupanDesc =>
+      'Profound philosophical life lessons: Urip Iku Urup, Memayu Hayuning Bawana.';
+
+  @override
+  String get quizTopicTradisiJawa => 'Javanese Traditions';
+
+  @override
+  String get quizTopicTradisiJawaDesc =>
+      'Cultural rituals, customs, and ceremonies of the Javanese life cycle.';
+
+  @override
+  String get quizTopicBudayaKesenian => 'Culture and Arts';
+
+  @override
+  String get quizTopicBudayaKesenianDesc =>
+      'Traditional arts, wayang purwa characters, and cultural expressions.';
+
+  @override
+  String get quizTopicSituasiPadinan => 'Everyday Situations';
+
+  @override
+  String get quizTopicSituasiPadinanDesc =>
+      'Applying cultural wisdom, tembang dolanan, and social values in daily life.';
+
+  @override
+  String get quizTopicTantanganBudaya => 'Cultural Understanding Challenge';
+
+  @override
+  String get quizTopicTantanganBudayaDesc =>
+      'Advanced cultural ethics, empathy, tepa slira, and social awareness challenge.';
+
+  @override
+  String get quizTopicTantanganAkhir => 'Final Challenge';
+
+  @override
+  String get quizTopicTantanganAkhirDesc =>
+      'Comprehensive synthesis challenge of Aksara, language levels, and cultural values.';
 }

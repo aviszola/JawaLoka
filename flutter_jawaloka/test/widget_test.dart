@@ -152,24 +152,24 @@ void main() {
       expect(find.text('Sangat Mahir'), findsOneWidget);
 
       // Unit 1 topics visible at top
-      expect(find.text('Unit 1: Sapaan dan Salam'), findsOneWidget);
+      expect(find.text('Unit 1: Sapaan dan Unggah-Ungguh Awal'), findsOneWidget);
       expect(find.text('Salam'), findsOneWidget);
       expect(find.text('Pamit'), findsOneWidget);
-      expect(find.text('Lencana'), findsOneWidget);
+      expect(find.text('Tanya kabar'), findsOneWidget);
 
       // Scroll down to see remaining topics in Unit 1 and Unit 2
       await tester.drag(find.byType(CustomScrollView), const Offset(0, -700));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
-      expect(find.text('Tanya kabar'), findsOneWidget);
       expect(find.text('Perkenalan'), findsOneWidget);
+      expect(find.text('Menyapa Orang Lain'), findsOneWidget);
       await tester.scrollUntilVisible(
-        find.text('Unit 2: Keluarga dan Rumah (Terkunci)'),
+        find.text('Unit 2: Aksara Jawa Dasar (Legena) (Terkunci)'),
         200,
       );
       expect(
-        find.text('Unit 2: Keluarga dan Rumah (Terkunci)'),
+        find.text('Unit 2: Aksara Jawa Dasar (Legena) (Terkunci)'),
         findsOneWidget,
       );
     },
