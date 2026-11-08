@@ -54,3 +54,9 @@ qa/**/*.jpg
 
 # Localization artifacts
 l10n_untranslated.json
+
+# Keystore and signing keys
+android/key.properties
+*.jks
+*.keystore
+
