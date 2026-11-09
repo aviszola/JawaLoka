@@ -173,6 +173,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     return AppBar(
       backgroundColor: AppColors.amber,
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
       leading: Semantics(
         label: context.l10n.commonBack,
         button: true,
@@ -188,7 +189,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       ),
       actions: [
         Container(
-          margin: const EdgeInsets.only(right: 14),
+          margin: const EdgeInsets.only(right: 16),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: AppColors.ink.withValues(alpha: 0.12),
@@ -220,7 +221,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE8E1D6)),
+        border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
             color: AppColors.ink.withValues(alpha: 0.06),
@@ -271,7 +272,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
             _options
                 .firstWhere((o) => o.type == _selected)
                 .description(context),
-            style: const TextStyle(fontSize: 14, color: Color(0xFF6B6257)),
+            style: const TextStyle(fontSize: 14, color: AppColors.inkSecondary),
           ),
         ],
       ),
@@ -372,7 +373,7 @@ class _BlangkonGridItem extends StatelessWidget {
           color: isSelected ? AppColors.amberSoft : AppColors.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? AppColors.amber : const Color(0xFFE8E1D6),
+            color: isSelected ? AppColors.amber : AppColors.border,
             width: isSelected ? 2 : 1.5,
           ),
           boxShadow: isSelected

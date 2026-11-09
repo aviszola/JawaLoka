@@ -285,6 +285,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     final shouldExit = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text(dialogContext.l10n.quizExitDialogTitle),
         content: Text(dialogContext.l10n.quizExitDialogMessage),
         actions: [

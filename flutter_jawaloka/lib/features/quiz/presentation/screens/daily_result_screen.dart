@@ -221,12 +221,29 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.ink,
+        surfaceTintColor: Colors.transparent,
+        leading: Semantics(
+          label: context.l10n.commonBack,
+          button: true,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              margin: const EdgeInsets.all(4),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                size: 18,
+                color: AppColors.ink,
+              ),
+            ),
           ),
-          onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           context.l10n.dailyResultTitle,

@@ -7,13 +7,38 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+local.properties
+.idea/
 .DS_Store
 /build
 /captures
+build/
+.dart_tool/
+captures/
 .externalNativeBuild
 
 # AI agent folders
+# Build artifacts and keys
+*.jks
+*.keystore
+key.properties
+android/key.properties
+
+# QA, reports, and internal documentation
+qa/
+docs/*
+!docs/img/
+!docs/img/**
+
+# Environment and lock files
+skills-lock.json
+.env
+.env.*
+
+# AI agent and IDE tooling
+.vscode/
 .claude/
+.agents/
 .gemini/
 .antigravity/
 .agent/

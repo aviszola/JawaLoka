@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/validation/validation_messages.dart';
+import '../../../../core/validation/validation_result.dart';
+import '../../../../core/validation/validators.dart';
 import '../widgets/auth_banner.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/primary_button.dart';
@@ -24,7 +27,6 @@ class _LoginScreenState extends State<LoginScreen>
   final _passwordCtrl = TextEditingController();
 
   bool _isLoading = false;
-  bool _showAuthError = false;
   String? _emailError;
   String? _passwordError;
 
@@ -48,23 +50,28 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Future<void> _login() async {
-    final emailText = _emailCtrl.text.trim();
+    final emailResult = Validators.validateEmail(_emailCtrl.text);
     final passwordText = _passwordCtrl.text;
+    final l10n = context.l10n;
 
     setState(() {
-      _showAuthError = false;
-      _emailError = !emailText.contains('@')
-          ? context.l10n.validationEmailInvalid
-          : null;
+      _emailError = switch (emailResult) {
+        Valid() => null,
+        Invalid(:final error) => ValidationMessages.emailError(l10n, error),
+      };
       _passwordError = passwordText.isEmpty
-          ? context.l10n.validationPasswordEmpty
+          ? l10n.validationPasswordEmpty
           : null;
     });
 
-    if (_emailError != null || _passwordError != null) {
+    if (emailResult.isInvalid || passwordText.isEmpty) {
       HapticFeedback.heavyImpact();
       return;
     }
+
+    // DEMO: tanpa backend, hanya format
+    // Kata sandi TIDAK disimpan di mana pun (buang setelah validasi)
+    _passwordCtrl.clear();
 
     setState(() => _isLoading = true);
     HapticFeedback.mediumImpact();
@@ -75,15 +82,9 @@ class _LoginScreenState extends State<LoginScreen>
     if (!mounted) return;
     setState(() => _isLoading = false);
 
-    // If email is explicitly salah@jawaloka.id, demonstrate error state
-    if (emailText == 'salah@jawaloka.id') {
-      setState(() => _showAuthError = true);
-      HapticFeedback.heavyImpact();
-    } else {
-      Navigator.of(
-        context,
-      ).pushNamedAndRemoveUntil(AppRouter.home, (route) => false);
-    }
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRouter.home, (route) => false);
   }
 
   @override
@@ -184,70 +185,6 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                           const SizedBox(height: 20),
 
-                          // Error banner (jika kredensial salah)
-                          if (_showAuthError)
-                            FadeTransition(
-                              opacity: Tween<double>(begin: 0, end: 1).animate(
-                                CurvedAnimation(
-                                  parent: _entranceCtrl,
-                                  curve: const Interval(0.0, 1.0),
-                                ),
-                              ),
-                              child: Container(
-                                width: double.infinity,
-                                margin: const EdgeInsets.only(bottom: 16),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 12,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.errorLight,
-                                  borderRadius: BorderRadius.circular(16),
-                                  border: Border.all(
-                                    color: AppColors.error.withValues(
-                                      alpha: 0.3,
-                                    ),
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.error_outline_rounded,
-                                      color: AppColors.error,
-                                      size: 20,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      child: Text(
-                                        context
-                                            .l10n
-                                            .loginInvalidCredentialsError,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.error,
-                                        ),
-                                      ),
-                                    ),
-                                    Semantics(
-                                      label: context.l10n.commonCloseError,
-                                      button: true,
-                                      child: GestureDetector(
-                                        onTap: () => setState(
-                                          () => _showAuthError = false,
-                                        ),
-                                        child: const Icon(
-                                          Icons.close_rounded,
-                                          color: AppColors.error,
-                                          size: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
                           // Form fields
                           FadeTransition(
                             opacity: Tween<double>(begin: 0, end: 1).animate(
@@ -276,6 +213,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   CustomTextField(
                                     label: context.l10n.authEmailLabel,
                                     controller: _emailCtrl,
+                                    maxLength: 254,
                                     keyboardType: TextInputType.emailAddress,
                                     errorText: _emailError,
                                     textInputAction: TextInputAction.next,
@@ -301,13 +239,13 @@ class _LoginScreenState extends State<LoginScreen>
                                         : null,
                                     onChanged: (_) => setState(() {
                                       _emailError = null;
-                                      _showAuthError = false;
                                     }),
                                   ),
                                   const SizedBox(height: 14),
                                   CustomTextField(
                                     label: context.l10n.authPasswordLabel,
                                     controller: _passwordCtrl,
+                                    maxLength: 64,
                                     obscureText: true,
                                     showTogglePassword: true,
                                     errorText: _passwordError,
@@ -322,7 +260,6 @@ class _LoginScreenState extends State<LoginScreen>
                                     ),
                                     onChanged: (_) => setState(() {
                                       _passwordError = null;
-                                      _showAuthError = false;
                                     }),
                                     onSubmitted: (_) => _login(),
                                   ),

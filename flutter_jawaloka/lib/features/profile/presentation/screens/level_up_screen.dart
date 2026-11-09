@@ -5,6 +5,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_scope.dart';
+import '../../../../core/presentation/widgets/celebration_confetti_painter.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
@@ -71,7 +72,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
   late final Animation<double> _cardSlide;
   late final Animation<double> _fadeAnim;
 
-  final List<_ConfettiItem> _confetti = [];
+  final List<ConfettiParticle> _confetti = [];
 
   @override
   void initState() {
@@ -135,7 +136,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
 
     for (int i = 0; i < 24; i++) {
       _confetti.add(
-        _ConfettiItem(
+        ConfettiParticle(
           x: rng.nextDouble(),
           yStart: rng.nextDouble(),
           speed: 0.25 + rng.nextDouble() * 0.45,
@@ -211,7 +212,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               animation: _confettiCtrl,
               builder: (context, _) {
                 return CustomPaint(
-                  painter: _CelebrationConfettiPainter(
+                  painter: CelebrationConfettiPainter(
                     particles: _confetti,
                     progress: _confettiCtrl.value,
                   ),
@@ -649,69 +650,5 @@ class _LevelUpScreenState extends State<LevelUpScreen>
         ),
       ],
     );
-  }
-}
-
-// ── Confetti Particle Helper ──────────────────────────────────────────────────
-
-class _ConfettiItem {
-  final double x;
-  final double yStart;
-  final double speed;
-  final double size;
-  final Color color;
-  final bool isCircle;
-  final double rotationSpeed;
-
-  _ConfettiItem({
-    required this.x,
-    required this.yStart,
-    required this.speed,
-    required this.size,
-    required this.color,
-    required this.isCircle,
-    required this.rotationSpeed,
-  });
-}
-
-class _CelebrationConfettiPainter extends CustomPainter {
-  final List<_ConfettiItem> particles;
-  final double progress;
-
-  _CelebrationConfettiPainter({
-    required this.particles,
-    required this.progress,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    for (final p in particles) {
-      final y = ((p.yStart + progress * p.speed) % 1.2) * size.height;
-      final x = p.x * size.width;
-
-      final paint = Paint()..color = p.color.withValues(alpha: 0.85);
-
-      if (p.isCircle) {
-        canvas.drawCircle(Offset(x, y), p.size / 2, paint);
-      } else {
-        canvas.save();
-        canvas.translate(x, y);
-        canvas.rotate(progress * p.rotationSpeed * math.pi);
-        canvas.drawRect(
-          Rect.fromCenter(
-            center: Offset.zero,
-            width: p.size,
-            height: p.size * 0.7,
-          ),
-          paint,
-        );
-        canvas.restore();
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _CelebrationConfettiPainter oldDelegate) {
-    return oldDelegate.progress != progress;
   }
 }

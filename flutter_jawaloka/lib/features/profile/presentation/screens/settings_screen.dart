@@ -49,24 +49,25 @@ class _SettingsScreenState extends State<SettingsScreen>
 
     _headerCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
     );
     _bodyCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 350),
     );
 
     _headerSlide = Tween<Offset>(
-      begin: const Offset(0, -1),
+      begin: const Offset(0, -0.15),
       end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _headerCtrl, curve: Curves.easeOut));
+    ).animate(CurvedAnimation(parent: _headerCtrl, curve: Curves.easeOutCubic));
 
     _bodyFade = Tween<double>(
       begin: 0,
       end: 1,
-    ).animate(CurvedAnimation(parent: _bodyCtrl, curve: Curves.easeIn));
+    ).animate(CurvedAnimation(parent: _bodyCtrl, curve: Curves.easeOutCubic));
 
-    _headerCtrl.forward().then((_) => _bodyCtrl.forward());
+    _headerCtrl.forward();
+    _bodyCtrl.forward();
   }
 
   @override
@@ -288,7 +289,7 @@ class _SettingsScreenState extends State<SettingsScreen>
     final equippedBlangkon =
         ProfileScope.maybeOf(context)?.equippedBlangkon ??
         BlangkonType.yogyakarta;
-    final userFullName = '$displayName Pratama';
+    final userFullName = displayName;
     return SlideTransition(
       position: _headerSlide,
       child: Container(

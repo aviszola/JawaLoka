@@ -4,6 +4,9 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/validation/validation_messages.dart';
+import '../../../../core/validation/validation_result.dart';
+import '../../../../core/validation/validators.dart';
 import '../widgets/auth_banner.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/primary_button.dart';
@@ -51,34 +54,30 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   bool _validateForm() {
-    final name = _nameCtrl.text.trim();
-    final email = _emailCtrl.text.trim();
-    final password = _passwordCtrl.text;
+    final nameResult = Validators.validateDisplayName(_nameCtrl.text);
+    final emailResult = Validators.validateEmail(_emailCtrl.text);
+    final passwordResult = Validators.validatePassword(_passwordCtrl.text);
 
-    String? nameErr;
-    String? emailErr;
-    String? passErr;
-
-    if (name.isEmpty) {
-      nameErr = context.l10n.validationNameRequired;
-    }
-
-    final emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
-    if (email.isEmpty || !emailRegex.hasMatch(email)) {
-      emailErr = context.l10n.validationEmailInvalid;
-    }
-
-    if (password.length < 8) {
-      passErr = context.l10n.validationPasswordMinLength;
-    }
+    final l10n = context.l10n;
 
     setState(() {
-      _nameError = nameErr;
-      _emailError = emailErr;
-      _passwordError = passErr;
+      _nameError = switch (nameResult) {
+        Valid() => null,
+        Invalid(:final error) => ValidationMessages.nameError(l10n, error),
+      };
+      _emailError = switch (emailResult) {
+        Valid() => null,
+        Invalid(:final error) => ValidationMessages.emailError(l10n, error),
+      };
+      _passwordError = switch (passwordResult) {
+        Valid() => null,
+        Invalid(error: PasswordError.empty || PasswordError.tooShort) =>
+          l10n.validationPasswordMinLength,
+        Invalid(:final error) => ValidationMessages.passwordError(l10n, error),
+      };
     });
 
-    return nameErr == null && emailErr == null && passErr == null;
+    return nameResult.isValid && emailResult.isValid && passwordResult.isValid;
   }
 
   Future<void> _register() async {
@@ -90,7 +89,9 @@ class _RegisterScreenState extends State<RegisterScreen>
       return;
     }
 
-    final trimmedName = _nameCtrl.text.trim();
+    final nameResult = Validators.validateDisplayName(_nameCtrl.text);
+    final normalizedName = nameResult.valueOrNull ?? _nameCtrl.text.trim();
+
     // DEMO: tanpa backend
     // Kata sandi TIDAK disimpan di mana pun (buang setelah validasi)
     _passwordCtrl.clear();
@@ -99,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen>
     HapticFeedback.mediumImpact();
 
     // DEMO: tanpa backend - simpan nama langsung ke ProfileController
-    await ProfileScope.maybeOf(context)?.setDisplayName(trimmedName);
+    await ProfileScope.maybeOf(context)?.setDisplayName(normalizedName);
 
     if (!mounted) return;
     setState(() => _isLoading = false);
@@ -240,6 +241,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                   CustomTextField(
                                     label: context.l10n.authFullNameLabel,
                                     controller: _nameCtrl,
+                                    maxLength: 30,
                                     textCapitalization:
                                         TextCapitalization.words,
                                     keyboardType: TextInputType.name,
@@ -263,6 +265,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                   CustomTextField(
                                     label: context.l10n.authEmailLabel,
                                     controller: _emailCtrl,
+                                    maxLength: 254,
                                     keyboardType: TextInputType.emailAddress,
                                     textInputAction: TextInputAction.next,
                                     autofillHints: const [AutofillHints.email],
@@ -296,6 +299,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                   CustomTextField(
                                     label: context.l10n.authPasswordLabel,
                                     controller: _passwordCtrl,
+                                    maxLength: 64,
                                     obscureText: true,
                                     showTogglePassword: true,
                                     textInputAction: TextInputAction.done,

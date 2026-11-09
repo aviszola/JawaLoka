@@ -5,90 +5,13 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
+import '../../../../core/presentation/widgets/celebration_confetti_painter.dart';
 import '../../../profile/presentation/screens/level_up_screen.dart';
 import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../../domain/models/quiz_result.dart';
 import 'quiz_question_screen.dart';
 
 export '../../domain/models/quiz_result.dart';
-
-// ─────────────────────────────────────────────────────────
-//  CONFETTI PARTICLE
-// ─────────────────────────────────────────────────────────
-
-class _ConfettiParticle {
-  final double x; // 0.0 – 1.0 horizontal start
-  final double yStart; // 0.0 – 1.0 vertical start (can be negative)
-  final double speed; // vertical speed multiplier
-  final double size;
-  final Color color;
-  final bool isCircle;
-
-  const _ConfettiParticle({
-    required this.x,
-    required this.yStart,
-    required this.speed,
-    required this.size,
-    required this.color,
-    required this.isCircle,
-  });
-}
-
-// ─────────────────────────────────────────────────────────
-//  CONFETTI PAINTER
-// ─────────────────────────────────────────────────────────
-
-class _ConfettiPainter extends CustomPainter {
-  final double animValue; // 0.0 – 1.0
-  final List<_ConfettiParticle> particles;
-
-  static const List<Color> _confettiColors = [
-    AppColors.amber,
-    AppColors.pastelMint,
-    AppColors.pastelLavender,
-    AppColors.pastelBlush,
-    Colors.white,
-    AppColors.accentOrange,
-  ];
-
-  const _ConfettiPainter({required this.animValue, required this.particles});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    for (final p in particles) {
-      final double y = (p.yStart + animValue * p.speed) % 1.2;
-      final double x = p.x;
-      // fade out near bottom
-      final double opacity = y > 0.8
-          ? (1.0 - (y - 0.8) / 0.4).clamp(0.0, 1.0)
-          : 1.0;
-      if (opacity <= 0) continue;
-
-      final paint = Paint()
-        ..color = p.color.withValues(alpha: opacity * 0.85)
-        ..style = PaintingStyle.fill;
-
-      final cx = x * size.width;
-      final cy = y * size.height;
-
-      if (p.isCircle) {
-        canvas.drawCircle(Offset(cx, cy), p.size / 2, paint);
-      } else {
-        canvas.drawRect(
-          Rect.fromCenter(
-            center: Offset(cx, cy),
-            width: p.size,
-            height: p.size * 0.6,
-          ),
-          paint,
-        );
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_ConfettiPainter old) => old.animValue != animValue;
-}
 
 // ─────────────────────────────────────────────────────────
 //  SCORE RING PAINTER
@@ -164,7 +87,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
     with TickerProviderStateMixin {
   // Confetti animation
   late final AnimationController _confettiController;
-  late final List<_ConfettiParticle> _confettiParticles;
+  late final List<ConfettiParticle> _confettiParticles;
 
   // Score ring animation
   late final AnimationController _ringController;
@@ -191,8 +114,8 @@ class _QuizResultScreenState extends State<QuizResultScreen>
     )..repeat();
 
     _confettiParticles = List.generate(30, (i) {
-      final colors = _ConfettiPainter._confettiColors;
-      return _ConfettiParticle(
+      final colors = CelebrationConfettiPainter.defaultPalette;
+      return ConfettiParticle(
         x: _random.nextDouble(),
         yStart: _random.nextDouble() * -0.5 - 0.1,
         speed: 0.5 + _random.nextDouble() * 0.8,
@@ -292,8 +215,8 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           AnimatedBuilder(
             animation: _confettiController,
             builder: (context, _) => CustomPaint(
-              painter: _ConfettiPainter(
-                animValue: _confettiController.value,
+              painter: CelebrationConfettiPainter(
+                progress: _confettiController.value,
                 particles: _confettiParticles,
               ),
               child: const SizedBox.expand(),

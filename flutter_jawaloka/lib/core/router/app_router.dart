@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_colors.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/language_selection_screen.dart';
 import '../../features/auth/presentation/screens/register_screen.dart';
@@ -91,7 +92,7 @@ class AppRouter {
 
       case AppRouter.vocabularyDetail:
         final raw = settings.arguments;
-        final index = raw is int ? raw : 0;
+        final index = (raw is int && raw >= 0) ? raw : 0;
         return _FadePageRoute(
           page: VocabularyDetailScreen(initialIndex: index),
           settings: settings,
@@ -143,7 +144,7 @@ class AppRouter {
 
       case AppRouter.quizResult:
         final args = settings.arguments;
-        final QuizResult safeResult = args is QuizResult
+        final QuizResult safeResult = (args is QuizResult && args.totalQuestions > 0)
             ? args
             : const QuizResult(
                 score: 0,
@@ -155,7 +156,6 @@ class AppRouter {
               );
         return _FadePageRoute(
           page: QuizResultScreen(result: safeResult),
-
           settings: settings,
         );
 
@@ -168,10 +168,14 @@ class AppRouter {
       case AppRouter.dailyResult:
         final args = settings.arguments;
         if (args is DailyResultArgs) {
+          final safeSimilarity =
+              args.similarity.isNaN || args.similarity.isInfinite
+                  ? 0.0
+                  : args.similarity.clamp(0.0, 1.0);
           return _FadePageRoute(
             page: DailyResultScreen(
               userName: args.userName,
-              similarity: args.similarity,
+              similarity: safeSimilarity,
               userStrokes: args.userStrokes,
               targetAksara: args.targetAksara,
               rewardSummary: args.rewardSummary,
@@ -195,7 +199,10 @@ class AppRouter {
 
       case AppRouter.levelUp:
         final args = settings.arguments;
-        if (args is LevelUpArgs) {
+        if (args is LevelUpArgs &&
+            args.newLevel >= 1 &&
+            args.previousLevel >= 1 &&
+            args.newLevel >= args.previousLevel) {
           return _FadePageRoute(
             page: LevelUpScreen(
               newLevel: args.newLevel,
@@ -240,12 +247,13 @@ class _ErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F1EB),
+      backgroundColor: AppColors.canvas,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFC247),
+        backgroundColor: AppColors.amber,
         title: const Text('Halaman Tidak Ditemukan'),
-        foregroundColor: const Color(0xFF231C14),
+        foregroundColor: AppColors.ink,
         elevation: 0,
+        surfaceTintColor: Colors.transparent,
       ),
       body: Center(
         child: Column(

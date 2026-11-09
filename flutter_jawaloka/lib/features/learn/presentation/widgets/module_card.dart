@@ -12,8 +12,8 @@ class ModuleCardData {
   final IconData? iconData; // Material icon (fallback / accent)
   final Color bgColor;
   final Color iconTextColor;
-  final double progress; // 0.0 – 1.0
-  final String progressLabel; // e.g. "20 aksara"
+  final double? progress; // 0.0 – 1.0 (null if module is an inventory/reference material)
+  final String progressLabel; // e.g. "20 aksara dasar"
   final bool isLocked;
   final String? tag;
   final bool isTool;
@@ -26,7 +26,7 @@ class ModuleCardData {
     this.iconData,
     required this.bgColor,
     this.iconTextColor = AppColors.ink,
-    required this.progress,
+    this.progress,
     required this.progressLabel,
     this.isLocked = false,
     this.tag,
@@ -187,15 +187,15 @@ class _ModuleCardState extends State<ModuleCard>
                               ),
                             ],
                           ),
-                        ] else ...[
-                          // Linear progress + label
+                        ] else if (d.progress != null) ...[
+                          // Real linear progress + percentage
                           Row(
                             children: [
                               Expanded(
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(99),
                                   child: LinearProgressIndicator(
-                                    value: d.isLocked ? 0 : d.progress,
+                                    value: d.isLocked ? 0 : d.progress!,
                                     minHeight: 6,
                                     backgroundColor: AppColors.border,
                                     valueColor: AlwaysStoppedAnimation<Color>(
@@ -210,7 +210,7 @@ class _ModuleCardState extends State<ModuleCard>
                               Text(
                                 d.isLocked
                                     ? '—'
-                                    : '${(d.progress * 100).round()}%',
+                                    : '${(d.progress! * 100).round()}%',
                                 style: const TextStyle(
                                   color: AppColors.inkMuted,
                                   fontSize: 12,
@@ -227,36 +227,61 @@ class _ModuleCardState extends State<ModuleCard>
                               fontSize: 12,
                             ),
                           ),
+                        ] else ...[
+                          // Truthful inventory label row (Reference/Educational content)
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.auto_stories_outlined,
+                                size: 14,
+                                color: AppColors.amberDark,
+                              ),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: Text(
+                                  d.progressLabel,
+                                  style: const TextStyle(
+                                    color: AppColors.inkSecondary,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ],
                     ),
                   ),
 
-                  // Trailing indicator (ring for lessons, arrow badge for tools)
+                  // Trailing indicator (action chevron for reference modules/tools, or ring if real progress is tracked)
                   if (!d.isLocked) ...[
                     const SizedBox(width: 10),
-                    if (d.isTool)
+                    if (d.isTool || d.progress == null)
                       Container(
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color: AppColors.pastelMint.withValues(alpha: 0.5),
+                          color: AppColors.canvas,
                           shape: BoxShape.circle,
+                          border: Border.all(color: AppColors.border),
                         ),
                         child: const Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 14,
-                          color: AppColors.pastelMintText,
+                          color: AppColors.ink,
                         ),
                       )
                     else
                       AnimatedProgressRing(
-                        progress: d.progress,
+                        progress: d.progress!,
                         size: 44,
                         strokeWidth: 5,
                         progressColor: AppColors.amberDark,
                         child: Text(
-                          '${(d.progress * 100).round()}',
+                          '${(d.progress! * 100).round()}',
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,

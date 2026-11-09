@@ -22,6 +22,7 @@ class CustomTextField extends StatefulWidget {
   final int maxLines;
   final TextCapitalization textCapitalization;
   final Iterable<String>? autofillHints;
+  final int? maxLength;
 
   const CustomTextField({
     super.key,
@@ -42,6 +43,7 @@ class CustomTextField extends StatefulWidget {
     this.maxLines = 1,
     this.textCapitalization = TextCapitalization.none,
     this.autofillHints,
+    this.maxLength,
   });
 
   @override
@@ -145,6 +147,10 @@ class _CustomTextFieldState extends State<CustomTextField>
               onFieldSubmitted: widget.onSubmitted,
               autofocus: widget.autofocus,
               maxLines: widget.maxLines,
+              maxLength: widget.maxLength,
+              buildCounter: widget.maxLength != null
+                  ? (context, {required currentLength, required isFocused, required maxLength}) => null
+                  : null,
               style: const TextStyle(
                 color: AppColors.ink,
                 fontSize: 15,

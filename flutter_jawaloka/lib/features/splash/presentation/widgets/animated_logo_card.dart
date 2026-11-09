@@ -18,8 +18,8 @@ class AnimatedLogoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Gentle floating sine wave for floating sensation
-    final double floatOffset = math.sin(floatPhase * math.pi * 2) * 3.5;
+    // Gentle floating sine wave for alive loading sensation
+    final double floatOffset = math.sin(floatPhase * math.pi * 2) * 2.5;
 
     return Transform.translate(
       offset: Offset(0, floatOffset),
@@ -31,24 +31,15 @@ class AnimatedLogoCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: BorderRadius.circular(28),
+            border: Border.all(
+              color: AppColors.amberDark.withValues(alpha: 0.2),
+              width: 1.2,
+            ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.ink.withValues(alpha: 0.14),
-                blurRadius: 32,
-                spreadRadius: 2,
-                offset: const Offset(0, 14),
-              ),
-              BoxShadow(
-                color: AppColors.ink.withValues(alpha: 0.07),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-              // Subtle golden aura border reflection
-              BoxShadow(
-                color: AppColors.amberDark.withValues(alpha: 0.08),
-                blurRadius: 6,
-                spreadRadius: 1,
-                offset: const Offset(0, 1),
+                color: AppColors.ink.withValues(alpha: 0.09),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
               ),
             ],
           ),

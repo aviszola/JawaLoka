@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/validation/validation_messages.dart';
+import '../../../../core/validation/validation_result.dart';
+import '../../../../core/validation/validators.dart';
+import '../../data/offline_dictionary_service.dart';
+import '../../domain/translation_models.dart';
 import '../widgets/translator_panel.dart';
-
-// ─── Data models ──────────────────────────────────────────────────────────────
-
-class _Language {
-  final String name;
-  final String code;
-  const _Language(this.name, this.code);
-}
 
 // ─── Screen ───────────────────────────────────────────────────────────────────
 
 class TranslatorScreen extends StatefulWidget {
-  const TranslatorScreen({super.key});
+  final TranslationService translationService;
+
+  const TranslatorScreen({
+    super.key,
+    this.translationService = const OfflineDictionaryService(),
+  });
 
   @override
   State<TranslatorScreen> createState() => _TranslatorScreenState();
@@ -24,15 +26,22 @@ class TranslatorScreen extends StatefulWidget {
 
 class _TranslatorScreenState extends State<TranslatorScreen>
     with SingleTickerProviderStateMixin {
-  // Languages
-  static const List<_Language> _languages = [
-    _Language('Bahasa Indonesia', 'id'),
-    _Language('Basa Jawa', 'jv'),
-    _Language('English', 'en'),
-  ];
+  TranslationVariant _fromVariant = TranslationVariant.id;
+  TranslationVariant _toVariant = TranslationVariant.jvNgoko;
 
-  int _fromIndex = 0;
-  int _toIndex = 1;
+  String _getLanguageLabel(BuildContext context, TranslationVariant variant) {
+    final l10n = context.l10n;
+    switch (variant) {
+      case TranslationVariant.jvNgoko:
+        return l10n.translatorLangJvNgoko;
+      case TranslationVariant.jvKrama:
+        return l10n.translatorLangJvKrama;
+      case TranslationVariant.id:
+        return l10n.translatorLangId;
+      case TranslationVariant.en:
+        return l10n.translatorLangEn;
+    }
+  }
 
   // Controllers
   final TextEditingController _inputCtrl = TextEditingController();
@@ -79,43 +88,57 @@ class _TranslatorScreenState extends State<TranslatorScreen>
   }
 
   Future<void> _translate() async {
-    final text = _inputCtrl.text.trim();
-    if (text.isEmpty) return;
+    final validation = Validators.validateTranslationInput(_inputCtrl.text);
+    if (validation.isInvalid) {
+      final err = (validation as Invalid<String, TranslationInputError>).error;
+      final msg = ValidationMessages.translationError(context.l10n, err);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(msg),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: AppColors.ink,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    final text = (validation as Valid<String, TranslationInputError>).value;
     setState(() => _isTranslating = true);
 
-    // Simulated translation – replace with real API call
-    await Future.delayed(const Duration(milliseconds: 600));
+    final result = await widget.translationService.translate(
+      text: text,
+      from: _fromVariant,
+      to: _toVariant,
+    );
 
     if (!mounted) return;
-    final result = _mockTranslate(text);
+    final String output = switch (result) {
+      Found(:final text) => text,
+      NotFound() => context.l10n.translatorMockUnavailable,
+    };
 
     setState(() {
       _isTranslating = false;
-      _outputText = result;
+      _outputText = output;
     });
-  }
-
-  // Stub translators – replace with actual backend
-  String _mockTranslate(String text) {
-    final map = {
-      'Halo': 'Sugeng rawuh',
-      'Apa kabar?': 'Pripun kabaripun?',
-      'Matur nuwun': 'Terima kasih',
-      'Sugeng enjing': 'Selamat pagi',
-      'Kula boten mangertos': 'Saya tidak mengerti',
-    };
-    return map[text] ?? context.l10n.translatorMockUnavailable;
   }
 
   Future<void> _swapLanguages() async {
     HapticFeedback.lightImpact();
     await _swapCtrl.forward();
     setState(() {
-      final tmp = _fromIndex;
-      _fromIndex = _toIndex;
-      _toIndex = tmp;
+      final tmp = _fromVariant;
+      _fromVariant = _toVariant;
+      _toVariant = tmp;
+
+      final notFoundText = context.l10n.translatorMockUnavailable;
+      if (_outputText.isNotEmpty && _outputText != notFoundText) {
+        _inputCtrl.text = _outputText;
+      }
       _outputText = '';
-      _inputCtrl.clear();
+      _isTranslating = false;
     });
     _swapCtrl.reset();
   }
@@ -167,6 +190,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     return AppBar(
       backgroundColor: AppColors.amber,
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
       leading: Semantics(
         label: context.l10n.commonBack,
         button: true,
@@ -190,7 +214,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       children: [
         Expanded(
           child: _LanguageChip(
-            label: _languages[_fromIndex].name,
+            label: _getLanguageLabel(context, _fromVariant),
             onTap: () => _showLanguagePicker(isFrom: true),
           ),
         ),
@@ -242,7 +266,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         const SizedBox(width: 10),
         Expanded(
           child: _LanguageChip(
-            label: _languages[_toIndex].name,
+            label: _getLanguageLabel(context, _toVariant),
             onTap: () => _showLanguagePicker(isFrom: false),
           ),
         ),
@@ -255,8 +279,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     return TranslatorPanel(
       isOutput: false,
       label: context.l10n.translatorInputLabel,
-      languageBadge: _languages[_fromIndex].name,
-      characterCount: '$charCount/500',
+      languageBadge: _getLanguageLabel(context, _fromVariant),
+      characterCount: '$charCount/200',
       actions: [
         if (_inputCtrl.text.isNotEmpty)
           _PanelIconButton(
@@ -273,7 +297,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       child: TextField(
         controller: _inputCtrl,
         maxLines: 4,
-        maxLength: 500,
+        maxLength: 200,
         buildCounter:
             (_, {required currentLength, required isFocused, maxLength}) =>
                 null,
@@ -294,10 +318,13 @@ class _TranslatorScreenState extends State<TranslatorScreen>
   }
 
   Widget _buildPhrasesHint() {
+    final examples = widget.translationService
+        .examples(_fromVariant, max: 4)
+        .join(', ');
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Text(
-        context.l10n.translatorBasicPhrasesHint,
+        context.l10n.translatorBasicPhrasesHint(examples),
         style: const TextStyle(
           fontSize: 12,
           color: AppColors.inkSecondary,
@@ -357,7 +384,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     return TranslatorPanel(
       isOutput: true,
       label: context.l10n.translatorOutputLabel,
-      languageBadge: _languages[_toIndex].name,
+      languageBadge: _getLanguageLabel(context, _toVariant),
       actions: [
         _PanelIconButton(
           icon: Icons.copy_rounded,
@@ -410,9 +437,10 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 8),
-            ..._languages.map((lang) {
-              final selectedIndex = isFrom ? _fromIndex : _toIndex;
-              final isSelected = _languages.indexOf(lang) == selectedIndex;
+            ...TranslationVariant.values.map((variant) {
+              final isSelected =
+                  isFrom ? _fromVariant == variant : _toVariant == variant;
+              final label = _getLanguageLabel(context, variant);
               return ListTile(
                 leading: Icon(
                   isSelected
@@ -421,15 +449,23 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                   color: isSelected ? AppColors.amber : const Color(0xFFB0A898),
                 ),
                 title: Text(
-                  lang.name,
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 onTap: () {
                   setState(() {
                     if (isFrom) {
-                      _fromIndex = _languages.indexOf(lang);
+                      if (_toVariant == variant) {
+                        _toVariant = _fromVariant;
+                      }
+                      _fromVariant = variant;
                     } else {
-                      _toIndex = _languages.indexOf(lang);
+                      if (_fromVariant == variant) {
+                        _fromVariant = _toVariant;
+                      }
+                      _toVariant = variant;
                     }
                   });
                   Navigator.pop(ctx);
@@ -476,12 +512,13 @@ class _LanguageChip extends StatelessWidget {
             Flexible(
               child: Text(
                 label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: AppColors.ink,
                 ),
-                overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(width: 4),

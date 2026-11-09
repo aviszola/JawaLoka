@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/profile/presentation/widgets/blangkon_painter.dart';
 import '../progression/progression_engine.dart';
+import '../validation/validators.dart';
+import 'blangkon_rewards.dart';
 
 /// Container for daily practice XP tracking.
 class DailyPracticeRecord {
@@ -26,6 +28,8 @@ abstract class ProfilePreferences {
   static const String keyQuizzesThisWeek = 'profile_quizzes_this_week';
   static const String keyUnlockedBlangkons = 'profile_unlocked_blangkons';
   static const String keyLastCelebratedLevel = 'profile_last_celebrated_level';
+  static const String keyStorageSchemaVersion = 'storage_schema_version';
+  static const int currentSchemaVersion = 1;
 
   /// Loads the currently equipped [BlangkonType], falling back to [BlangkonType.yogyakarta].
   Future<BlangkonType> loadEquippedBlangkon();
@@ -111,13 +115,16 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   @override
   Future<BlangkonType> loadEquippedBlangkon() async {
     try {
+      final unlocked = await loadUnlockedBlangkons();
       final prefs = await _prefsProvider();
-      final raw = prefs.getString(ProfilePreferences.keyEquippedBlangkon);
-      if (raw != null) {
-        return BlangkonType.values.firstWhere(
-          (e) => e.name == raw,
-          orElse: () => BlangkonType.yogyakarta,
-        );
+      final raw = prefs.get(ProfilePreferences.keyEquippedBlangkon);
+      final rawName = Validators.sanitizeStoredString(raw);
+      if (rawName.isNotEmpty) {
+        for (final type in unlocked) {
+          if (type.name == rawName) {
+            return type;
+          }
+        }
       }
       return BlangkonType.yogyakarta;
     } catch (_) {
@@ -139,8 +146,14 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<String> loadDisplayName() async {
     try {
       final prefs = await _prefsProvider();
-      final raw = prefs.getString(ProfilePreferences.keyDisplayName);
-      return (raw != null && raw.trim().isNotEmpty) ? raw : 'Dimas';
+      final raw = prefs.get(ProfilePreferences.keyDisplayName);
+      if (raw is String) {
+        final val = Validators.validateDisplayName(raw);
+        if (val.isValid) {
+          return val.valueOrNull!;
+        }
+      }
+      return 'Dimas';
     } catch (_) {
       return 'Dimas';
     }
@@ -150,7 +163,9 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveDisplayName(String name) async {
     try {
       final prefs = await _prefsProvider();
-      await prefs.setString(ProfilePreferences.keyDisplayName, name);
+      final val = Validators.validateDisplayName(name);
+      final safeName = val.valueOrNull ?? 'Dimas';
+      await prefs.setString(ProfilePreferences.keyDisplayName, safeName);
     } catch (_) {
       // Fallback silently to preserve UI stability
     }
@@ -163,18 +178,18 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
 
       // 1. Direct load if already migrated/saved
       if (prefs.containsKey(ProfilePreferences.keyTotalXP)) {
-        final xp = prefs.getInt(ProfilePreferences.keyTotalXP);
-        return (xp != null && xp >= 0) ? xp : 0;
+        final raw = prefs.get(ProfilePreferences.keyTotalXP);
+        return Validators.sanitizeStoredInt(raw, min: 0, fallback: 0);
       }
 
       // 2. Migration for existing users with saved legacy level
       if (prefs.containsKey(ProfilePreferences.keyUserLevel)) {
-        final legacyLevel = prefs.getInt(ProfilePreferences.keyUserLevel);
-        if (legacyLevel != null && legacyLevel >= 1) {
-          final migratedXP = ProgressionEngine.getBaseXPForLevel(legacyLevel);
-          await prefs.setInt(ProfilePreferences.keyTotalXP, migratedXP);
-          return migratedXP;
-        }
+        final rawLevel = prefs.get(ProfilePreferences.keyUserLevel);
+        final legacyLevel =
+            Validators.sanitizeStoredInt(rawLevel, min: 1, fallback: 1);
+        final migratedXP = ProgressionEngine.getBaseXPForLevel(legacyLevel);
+        await prefs.setInt(ProfilePreferences.keyTotalXP, migratedXP);
+        return migratedXP;
       }
 
       // 3. New user starting fresh: 0 XP and Level 1
@@ -190,7 +205,7 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveTotalXP(int xp) async {
     try {
       final prefs = await _prefsProvider();
-      final safeXp = max(0, xp);
+      final safeXp = Validators.sanitizeStoredInt(xp, min: 0, fallback: 0);
       await prefs.setInt(ProfilePreferences.keyTotalXP, safeXp);
       await prefs.setInt(
         ProfilePreferences.keyUserLevel,
@@ -214,7 +229,7 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   @override
   Future<void> saveUserLevel(int level) async {
     try {
-      final safeLevel = max(1, level);
+      final safeLevel = Validators.sanitizeStoredInt(level, min: 1, fallback: 1);
       final xp = ProgressionEngine.getBaseXPForLevel(safeLevel);
       await saveTotalXP(xp);
     } catch (_) {
@@ -226,8 +241,16 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<Set<String>> loadClearedActivities() async {
     try {
       final prefs = await _prefsProvider();
-      final list = prefs.getStringList(ProfilePreferences.keyClearedActivities);
-      return list != null ? list.toSet() : <String>{};
+      final raw = prefs.get(ProfilePreferences.keyClearedActivities);
+      if (raw is List) {
+        final set = <String>{};
+        for (final item in raw) {
+          final s = Validators.sanitizeStoredString(item);
+          if (s.isNotEmpty) set.add(s);
+        }
+        return set;
+      }
+      return <String>{};
     } catch (_) {
       return <String>{};
     }
@@ -250,8 +273,16 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<Set<String>> loadClaimedSessionIds() async {
     try {
       final prefs = await _prefsProvider();
-      final list = prefs.getStringList(ProfilePreferences.keyClaimedSessionIds);
-      return list != null ? list.toSet() : <String>{};
+      final raw = prefs.get(ProfilePreferences.keyClaimedSessionIds);
+      if (raw is List) {
+        final set = <String>{};
+        for (final item in raw) {
+          final s = Validators.sanitizeStoredString(item);
+          if (s.isNotEmpty) set.add(s);
+        }
+        return set;
+      }
+      return <String>{};
     } catch (_) {
       return <String>{};
     }
@@ -278,10 +309,11 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<DailyPracticeRecord> loadDailyPracticeRecord() async {
     try {
       final prefs = await _prefsProvider();
-      final date =
-          prefs.getString(ProfilePreferences.keyDailyPracticeDate) ?? '';
-      final xp = prefs.getInt(ProfilePreferences.keyDailyPracticeXP) ?? 0;
-      return DailyPracticeRecord(date: date, xp: max(0, xp));
+      final rawDate = prefs.get(ProfilePreferences.keyDailyPracticeDate);
+      final date = Validators.sanitizeStoredDate(rawDate);
+      final rawXP = prefs.get(ProfilePreferences.keyDailyPracticeXP);
+      final xp = Validators.sanitizeStoredInt(rawXP, min: 0, fallback: 0);
+      return DailyPracticeRecord(date: date, xp: xp);
     } catch (_) {
       return const DailyPracticeRecord(date: '', xp: 0);
     }
@@ -291,8 +323,10 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveDailyPracticeRecord(String date, int xp) async {
     try {
       final prefs = await _prefsProvider();
-      await prefs.setString(ProfilePreferences.keyDailyPracticeDate, date);
-      await prefs.setInt(ProfilePreferences.keyDailyPracticeXP, max(0, xp));
+      final cleanDate = Validators.sanitizeStoredDate(date);
+      final cleanXP = Validators.sanitizeStoredInt(xp, min: 0, fallback: 0);
+      await prefs.setString(ProfilePreferences.keyDailyPracticeDate, cleanDate);
+      await prefs.setInt(ProfilePreferences.keyDailyPracticeXP, cleanXP);
     } catch (_) {
       // Fallback silently
     }
@@ -303,10 +337,11 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
     try {
       final prefs = await _prefsProvider();
       if (prefs.containsKey(ProfilePreferences.keyStreakDays)) {
-        return prefs.getInt(ProfilePreferences.keyStreakDays) ?? 0;
+        final raw = prefs.get(ProfilePreferences.keyStreakDays);
+        return Validators.sanitizeStoredInt(raw, min: 0, fallback: 0);
       }
-      final xp = prefs.getInt(ProfilePreferences.keyTotalXP) ?? 0;
-      final level = prefs.getInt(ProfilePreferences.keyUserLevel) ?? 1;
+      final xp = await loadTotalXP();
+      final level = ProgressionEngine.calculateLevel(xp);
       return (xp > 0 || level > 1) ? 5 : 0;
     } catch (_) {
       return 0;
@@ -317,7 +352,8 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveStreakDays(int days) async {
     try {
       final prefs = await _prefsProvider();
-      await prefs.setInt(ProfilePreferences.keyStreakDays, max(0, days));
+      final safe = Validators.sanitizeStoredInt(days, min: 0, fallback: 0);
+      await prefs.setInt(ProfilePreferences.keyStreakDays, safe);
     } catch (_) {}
   }
 
@@ -325,12 +361,22 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<List<int>> loadCompletedQuizDaysOfWeek() async {
     try {
       final prefs = await _prefsProvider();
-      final list = prefs.getStringList(ProfilePreferences.keyCompletedQuizDays);
-      if (list != null) {
-        return list.map((e) => int.tryParse(e) ?? 1).toList();
+      if (prefs.containsKey(ProfilePreferences.keyCompletedQuizDays)) {
+        final raw = prefs.get(ProfilePreferences.keyCompletedQuizDays);
+        if (raw is List) {
+          final days = <int>[];
+          for (final item in raw) {
+            final d =
+                Validators.sanitizeStoredInt(item, min: 1, max: 7, fallback: -1);
+            if (d >= 1 && d <= 7 && !days.contains(d)) {
+              days.add(d);
+            }
+          }
+          return days;
+        }
       }
-      final xp = prefs.getInt(ProfilePreferences.keyTotalXP) ?? 0;
-      final level = prefs.getInt(ProfilePreferences.keyUserLevel) ?? 1;
+      final xp = await loadTotalXP();
+      final level = ProgressionEngine.calculateLevel(xp);
       return (xp > 0 || level > 1) ? [1, 2, 3, 4, 5] : [];
     } catch (_) {
       return [];
@@ -353,10 +399,11 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
     try {
       final prefs = await _prefsProvider();
       if (prefs.containsKey(ProfilePreferences.keyQuizzesThisWeek)) {
-        return prefs.getInt(ProfilePreferences.keyQuizzesThisWeek) ?? 0;
+        final raw = prefs.get(ProfilePreferences.keyQuizzesThisWeek);
+        return Validators.sanitizeStoredInt(raw, min: 0, fallback: 0);
       }
-      final xp = prefs.getInt(ProfilePreferences.keyTotalXP) ?? 0;
-      final level = prefs.getInt(ProfilePreferences.keyUserLevel) ?? 1;
+      final xp = await loadTotalXP();
+      final level = ProgressionEngine.calculateLevel(xp);
       return (xp > 0 || level > 1) ? 8 : 0;
     } catch (_) {
       return 0;
@@ -367,28 +414,32 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveQuizzesThisWeek(int count) async {
     try {
       final prefs = await _prefsProvider();
-      await prefs.setInt(ProfilePreferences.keyQuizzesThisWeek, max(0, count));
+      final safe = Validators.sanitizeStoredInt(count, min: 0, fallback: 0);
+      await prefs.setInt(ProfilePreferences.keyQuizzesThisWeek, safe);
     } catch (_) {}
   }
 
   @override
   Future<Set<BlangkonType>> loadUnlockedBlangkons() async {
     try {
+      final userLevel = await loadUserLevel();
+      final earned = BlangkonRewards.getUnlockedBlangkons(userLevel: userLevel);
+      final result = <BlangkonType>{BlangkonType.yogyakarta, ...earned};
+
       final prefs = await _prefsProvider();
-      final list = prefs.getStringList(ProfilePreferences.keyUnlockedBlangkons);
-      if (list != null && list.isNotEmpty) {
-        final result = <BlangkonType>{BlangkonType.yogyakarta};
-        for (final name in list) {
+      final raw = prefs.get(ProfilePreferences.keyUnlockedBlangkons);
+      if (raw is List) {
+        for (final item in raw) {
+          final name = Validators.sanitizeStoredString(item);
           for (final type in BlangkonType.values) {
-            if (type.name == name) {
+            if (type.name == name && BlangkonRewards.hasRealPainter(type)) {
               result.add(type);
               break;
             }
           }
         }
-        return result;
       }
-      return {BlangkonType.yogyakarta};
+      return result;
     } catch (_) {
       return {BlangkonType.yogyakarta};
     }
@@ -398,7 +449,8 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveUnlockedBlangkons(Set<BlangkonType> blangkons) async {
     try {
       final prefs = await _prefsProvider();
-      final list = blangkons.map((e) => e.name).toList();
+      final set = Set<BlangkonType>.from(blangkons)..add(BlangkonType.yogyakarta);
+      final list = set.map((e) => e.name).toList();
       await prefs.setStringList(ProfilePreferences.keyUnlockedBlangkons, list);
     } catch (_) {}
   }
@@ -406,8 +458,12 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   @override
   Future<int> loadLastCelebratedLevel() async {
     try {
+      final userLevel = await loadUserLevel();
       final prefs = await _prefsProvider();
-      return prefs.getInt(ProfilePreferences.keyLastCelebratedLevel) ?? 1;
+      final raw = prefs.get(ProfilePreferences.keyLastCelebratedLevel);
+      final level =
+          Validators.sanitizeStoredInt(raw, min: 1, max: userLevel, fallback: 1);
+      return level.clamp(1, userLevel);
     } catch (_) {
       return 1;
     }
@@ -417,7 +473,8 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveLastCelebratedLevel(int level) async {
     try {
       final prefs = await _prefsProvider();
-      await prefs.setInt(ProfilePreferences.keyLastCelebratedLevel, max(1, level));
+      final safe = Validators.sanitizeStoredInt(level, min: 1, fallback: 1);
+      await prefs.setInt(ProfilePreferences.keyLastCelebratedLevel, safe);
     } catch (_) {}
   }
 }
@@ -485,12 +542,17 @@ class InMemoryProfilePreferences implements ProfilePreferences {
                : 8),
        _unlockedBlangkons = initialUnlockedBlangkons != null
            ? Set.from(initialUnlockedBlangkons)
-           : {BlangkonType.yogyakarta},
+           : {BlangkonType.yogyakarta, initialBlangkon},
        _lastCelebratedLevel = initialLastCelebratedLevel ??
            (isFreshUser ? 1 : (initialUserLevel ?? 1));
 
   @override
-  Future<BlangkonType> loadEquippedBlangkon() async => _equippedBlangkon;
+  Future<BlangkonType> loadEquippedBlangkon() async {
+    final unlocked = await loadUnlockedBlangkons();
+    return unlocked.contains(_equippedBlangkon)
+        ? _equippedBlangkon
+        : BlangkonType.yogyakarta;
+  }
 
   @override
   Future<void> saveEquippedBlangkon(BlangkonType type) async {
@@ -498,7 +560,10 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   }
 
   @override
-  Future<String> loadDisplayName() async => _displayName;
+  Future<String> loadDisplayName() async {
+    final val = Validators.validateDisplayName(_displayName);
+    return val.valueOrNull ?? 'Dimas';
+  }
 
   @override
   Future<void> saveDisplayName(String name) async {
@@ -597,8 +662,14 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   }
 
   @override
-  Future<Set<BlangkonType>> loadUnlockedBlangkons() async =>
-      Set.from(_unlockedBlangkons);
+  Future<Set<BlangkonType>> loadUnlockedBlangkons() async {
+    final userLevel = await loadUserLevel();
+    final earned = BlangkonRewards.getUnlockedBlangkons(userLevel: userLevel);
+    final set = Set<BlangkonType>.from(_unlockedBlangkons);
+    set.add(BlangkonType.yogyakarta);
+    set.addAll(earned);
+    return set;
+  }
 
   @override
   Future<void> saveUnlockedBlangkons(Set<BlangkonType> blangkons) async {
@@ -607,7 +678,10 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   }
 
   @override
-  Future<int> loadLastCelebratedLevel() async => _lastCelebratedLevel;
+  Future<int> loadLastCelebratedLevel() async {
+    final userLevel = await loadUserLevel();
+    return _lastCelebratedLevel.clamp(1, userLevel);
+  }
 
   @override
   Future<void> saveLastCelebratedLevel(int level) async {

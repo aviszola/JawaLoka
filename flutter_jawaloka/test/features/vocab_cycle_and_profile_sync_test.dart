@@ -177,7 +177,13 @@ void main() {
         // Dialog contents
         expect(find.text('Detail Akun'), findsOneWidget);
         expect(find.text('Nama Pengguna'), findsOneWidget);
-        expect(find.text('Dimas'), findsOneWidget);
+        expect(
+          find.descendant(
+            of: find.byType(AlertDialog),
+            matching: find.text('Dimas'),
+          ),
+          findsOneWidget,
+        );
         expect(find.text('Akun lokal pada perangkat ini'), findsOneWidget);
         expect(find.text('Tutup'), findsOneWidget);
 

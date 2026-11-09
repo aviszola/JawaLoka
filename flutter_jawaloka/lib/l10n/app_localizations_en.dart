@@ -104,6 +104,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validationPasswordEmpty => 'Password cannot be empty';
 
   @override
+  String get validationNameTooShort => 'Name must be at least 2 characters';
+
+  @override
+  String get validationNameTooLong => 'Name cannot exceed 30 characters';
+
+  @override
+  String get validationNameInvalidChars =>
+      'Name can only contain letters, hyphens, and spaces';
+
+  @override
+  String get validationEmailEmpty => 'Email cannot be empty';
+
+  @override
+  String get validationEmailTooLong => 'Email cannot exceed 254 characters';
+
+  @override
+  String get validationPasswordTooLong =>
+      'Password cannot exceed 64 characters';
+
+  @override
+  String get validationPasswordWhitespaceOnly =>
+      'Password cannot contain only spaces';
+
+  @override
+  String get validationTranslationEmpty => 'Translation text cannot be empty';
+
+  @override
+  String get validationTranslationTooLong =>
+      'Translation text cannot exceed 200 characters';
+
+  @override
+  String get validationDrawingEmpty => 'Please draw the character first';
+
+  @override
+  String get validationDrawingTooShort =>
+      'Stroke is too short, please complete the character';
+
+  @override
   String get loginTitle => 'Sign in to your account';
 
   @override
@@ -764,8 +802,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get translatorInputHint => 'Type text...';
 
   @override
-  String get translatorBasicPhrasesHint =>
-      'Supported basic sample phrases: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.';
+  String translatorBasicPhrasesHint(String examples) {
+    return 'Supported basic sample phrases: $examples.';
+  }
 
   @override
   String get translatorButton => 'Translate';
@@ -796,6 +835,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get translatorMockUnavailable => 'Not available in demo version';
+
+  @override
+  String get translatorLangJvNgoko => 'Jawa Ngoko';
+
+  @override
+  String get translatorLangJvKrama => 'Jawa Krama';
+
+  @override
+  String get translatorLangId => 'Indonesia';
+
+  @override
+  String get translatorLangEn => 'English';
 
   @override
   String get aksaraDetailTitle => 'Javanese Script';

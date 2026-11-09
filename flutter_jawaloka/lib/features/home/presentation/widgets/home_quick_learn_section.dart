@@ -18,7 +18,7 @@ class HomeQuickLearnSection extends StatelessWidget {
         subtitle: l10n.homeQuickLearnVocabSub,
         icon: Icons.menu_book_rounded,
         bgColor: AppColors.pastelSand,
-        iconColor: AppColors.amberDark,
+        iconColor: AppColors.ink,
         onTap: () => Navigator.pushNamed(context, AppRouter.vocabularyDetail),
       ),
       _QuickLearnItem(
@@ -26,23 +26,23 @@ class HomeQuickLearnSection extends StatelessWidget {
         subtitle: l10n.homeQuickLearnAksaraSub,
         icon: Icons.edit_note_rounded,
         bgColor: AppColors.amberSoft,
-        iconColor: AppColors.accentOrange,
+        iconColor: AppColors.amberDark,
         onTap: () => Navigator.pushNamed(context, AppRouter.aksaraDetail),
       ),
       _QuickLearnItem(
         title: l10n.homeQuickLearnTranslator,
         subtitle: l10n.homeQuickLearnTranslatorSub,
         icon: Icons.translate_rounded,
-        bgColor: AppColors.pastelMint,
-        iconColor: AppColors.pastelMintText,
+        bgColor: const Color(0xFFEBE6DC),
+        iconColor: AppColors.inkSecondary,
         onTap: () => Navigator.pushNamed(context, AppRouter.translator),
       ),
       _QuickLearnItem(
         title: l10n.homeQuickLearnEtiquette,
         subtitle: l10n.homeQuickLearnEtiquetteSub,
         icon: Icons.record_voice_over_rounded,
-        bgColor: AppColors.pastelLavender,
-        iconColor: AppColors.pastelLavenderText,
+        bgColor: const Color(0xFFF7ECDC),
+        iconColor: const Color(0xFF8C5424),
         onTap: () {
           if (onNavigateTab != null) {
             onNavigateTab!(1); // Belajar tab
@@ -55,8 +55,8 @@ class HomeQuickLearnSection extends StatelessWidget {
         title: l10n.homeQuickLearnProverbs,
         subtitle: l10n.homeQuickLearnProverbsSub,
         icon: Icons.auto_stories_rounded,
-        bgColor: AppColors.pastelBlush,
-        iconColor: AppColors.pastelBlushText,
+        bgColor: const Color(0xFFF3ECE0),
+        iconColor: const Color(0xFF6E563E),
         onTap: () {
           if (onNavigateTab != null) {
             onNavigateTab!(1); // Belajar tab

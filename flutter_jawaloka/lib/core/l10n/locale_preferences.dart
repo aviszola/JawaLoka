@@ -32,8 +32,11 @@ class SharedPrefsLocalePreferences implements LocalePreferences {
   Future<Locale> loadLocale() async {
     try {
       final prefs = await _prefsProvider();
-      final raw = prefs.getString(LocalePreferences.keyLocale);
-      return AppLocales.parse(raw);
+      final raw = prefs.get(LocalePreferences.keyLocale);
+      if (raw is String) {
+        return AppLocales.parse(raw);
+      }
+      return AppLocales.defaultLocale;
     } catch (_) {
       return AppLocales.defaultLocale;
     }
@@ -53,7 +56,10 @@ class SharedPrefsLocalePreferences implements LocalePreferences {
   Future<bool> hasChosenLanguage() async {
     try {
       final prefs = await _prefsProvider();
-      return prefs.getBool(LocalePreferences.keyHasChosenLanguage) ?? false;
+      final val = prefs.get(LocalePreferences.keyHasChosenLanguage);
+      if (val is bool) return val;
+      if (val is String) return val.toLowerCase() == 'true';
+      return false;
     } catch (_) {
       return false;
     }
