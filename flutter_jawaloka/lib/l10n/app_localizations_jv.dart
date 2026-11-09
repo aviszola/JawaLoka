@@ -104,6 +104,43 @@ class AppLocalizationsJv extends AppLocalizations {
   String get validationPasswordEmpty => 'Tembung sandi ora kena kothong';
 
   @override
+  String get validationNameTooShort => 'Nama minimal 2 karakter';
+
+  @override
+  String get validationNameTooLong => 'Nama maksimal 30 karakter';
+
+  @override
+  String get validationNameInvalidChars =>
+      'Nama hanya boleh berisi huruf, tanda hubung, dan spasi';
+
+  @override
+  String get validationEmailEmpty => 'Email tidak boleh kosong';
+
+  @override
+  String get validationEmailTooLong => 'Email maksimal 254 karakter';
+
+  @override
+  String get validationPasswordTooLong => 'Kata sandi maksimal 64 karakter';
+
+  @override
+  String get validationPasswordWhitespaceOnly =>
+      'Kata sandi tidak boleh hanya berisi spasi';
+
+  @override
+  String get validationTranslationEmpty => 'Teks terjemahan tidak boleh kosong';
+
+  @override
+  String get validationTranslationTooLong =>
+      'Teks terjemahan maksimal 200 karakter';
+
+  @override
+  String get validationDrawingEmpty => 'Goreskan aksara terlebih dahulu';
+
+  @override
+  String get validationDrawingTooShort =>
+      'Goresan terlalu pendek, tulis aksara lebih lengkap';
+
+  @override
   String get loginTitle => 'Mlebu menyang akunmu';
 
   @override
@@ -733,7 +770,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get settingsPrivacyPolicyContent =>
-      'Aplikasi JawaLoka nyimpen asma panjenengan, pilihan basa, koleksi blangkon, kemajengan kuis, XP, lan Level kanthi lokal wonten ing piranti panjenengan. Aplikasi demo menika mboten ngintun data dhateng server, mboten gadhah akun saleresipun, lan mboten nyimpen tembung sandi.';
+      'Aplikasi JawaLoka menyimpan nama tampilan, pilihan bahasa, koleksi blangkon, progres kuis, XP, dan Level secara lokal di perangkat Anda. Aplikasi ini tidak mengirim data ke server, tidak memiliki akun sungguhan (versi demo), dan tidak menyimpan kata sandi.';
 
   @override
   String get settingsClose => 'Tutup';
@@ -760,8 +797,9 @@ class AppLocalizationsJv extends AppLocalizations {
   String get translatorInputHint => 'Serat teks...';
 
   @override
-  String get translatorBasicPhrasesHint =>
-      'Tuladha frasa dhasar sing kasengkuyung: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.';
+  String translatorBasicPhrasesHint(String examples) {
+    return 'Contoh frasa dasar yang didukung: $examples.';
+  }
 
   @override
   String get translatorButton => 'Jarwakake';
@@ -793,6 +831,18 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get translatorMockUnavailable => 'Belum tersedia pada versi contoh';
+
+  @override
+  String get translatorLangJvNgoko => 'Jawa Ngoko';
+
+  @override
+  String get translatorLangJvKrama => 'Jawa Krama';
+
+  @override
+  String get translatorLangId => 'Indonesia';
+
+  @override
+  String get translatorLangEn => 'English';
 
   @override
   String get aksaraDetailTitle => 'Aksara Jawa';

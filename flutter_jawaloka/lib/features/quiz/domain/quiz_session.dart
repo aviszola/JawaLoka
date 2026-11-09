@@ -54,6 +54,7 @@ class QuizSession {
   /// Records the user's selected answer choice for the current question.
   void answer(int optionIndex) {
     if (_answered || isCompleted) return;
+    if (optionIndex < 0 || optionIndex > 3) return;
     _selectedOption = optionIndex;
     _answered = true;
     _isCorrect = optionIndex == currentQuestion?.correctIndex;

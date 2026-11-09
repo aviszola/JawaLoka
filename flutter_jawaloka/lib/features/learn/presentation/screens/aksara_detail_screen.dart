@@ -28,26 +28,35 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
     super.initState();
     _entranceCtrl = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 450),
     )..forward();
 
-    _heroScale = Tween<double>(begin: 0.8, end: 1.0).animate(
+    _heroScale = Tween<double>(begin: 0.88, end: 1.0).animate(
       CurvedAnimation(
         parent: _entranceCtrl,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeOutBack),
+        curve: const Interval(0.0, 0.55, curve: Curves.easeOutBack),
       ),
     );
 
     _section1Fade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.35, 0.65)),
+      CurvedAnimation(
+        parent: _entranceCtrl,
+        curve: const Interval(0.20, 0.65, curve: Curves.easeOut),
+      ),
     );
 
     _section2Fade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.5, 0.8)),
+      CurvedAnimation(
+        parent: _entranceCtrl,
+        curve: const Interval(0.40, 0.82, curve: Curves.easeOut),
+      ),
     );
 
     _section3Fade = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _entranceCtrl, curve: const Interval(0.65, 1.0)),
+      CurvedAnimation(
+        parent: _entranceCtrl,
+        curve: const Interval(0.60, 1.0, curve: Curves.easeOut),
+      ),
     );
   }
 

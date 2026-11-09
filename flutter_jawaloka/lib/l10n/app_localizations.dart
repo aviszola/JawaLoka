@@ -262,6 +262,72 @@ abstract class AppLocalizations {
   /// **'Kata sandi tidak boleh kosong'**
   String get validationPasswordEmpty;
 
+  /// Pesan validasi nama terlalu pendek
+  ///
+  /// In id, this message translates to:
+  /// **'Nama minimal 2 karakter'**
+  String get validationNameTooShort;
+
+  /// Pesan validasi nama terlalu panjang
+  ///
+  /// In id, this message translates to:
+  /// **'Nama maksimal 30 karakter'**
+  String get validationNameTooLong;
+
+  /// Pesan validasi nama mengandung karakter tidak valid
+  ///
+  /// In id, this message translates to:
+  /// **'Nama hanya boleh berisi huruf, tanda hubung, dan spasi'**
+  String get validationNameInvalidChars;
+
+  /// Pesan validasi email kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Email tidak boleh kosong'**
+  String get validationEmailEmpty;
+
+  /// Pesan validasi email terlalu panjang
+  ///
+  /// In id, this message translates to:
+  /// **'Email maksimal 254 karakter'**
+  String get validationEmailTooLong;
+
+  /// Pesan validasi kata sandi terlalu panjang
+  ///
+  /// In id, this message translates to:
+  /// **'Kata sandi maksimal 64 karakter'**
+  String get validationPasswordTooLong;
+
+  /// Pesan validasi kata sandi hanya berisi spasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kata sandi tidak boleh hanya berisi spasi'**
+  String get validationPasswordWhitespaceOnly;
+
+  /// Pesan validasi input terjemahan kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Teks terjemahan tidak boleh kosong'**
+  String get validationTranslationEmpty;
+
+  /// Pesan validasi input terjemahan melebihi batas
+  ///
+  /// In id, this message translates to:
+  /// **'Teks terjemahan maksimal 200 karakter'**
+  String get validationTranslationTooLong;
+
+  /// Pesan validasi kanvas gambar kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Goreskan aksara terlebih dahulu'**
+  String get validationDrawingEmpty;
+
+  /// Pesan validasi goresan kanvas terlalu pendek
+  ///
+  /// In id, this message translates to:
+  /// **'Goresan terlalu pendek, tulis aksara lebih lengkap'**
+  String get validationDrawingTooShort;
+
   /// Judul utama halaman login
   ///
   /// In id, this message translates to:
@@ -1457,8 +1523,8 @@ abstract class AppLocalizations {
   /// Petunjuk satu baris contoh frasa dasar yang didukung penerjemah
   ///
   /// In id, this message translates to:
-  /// **'Contoh frasa dasar yang didukung: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.'**
-  String get translatorBasicPhrasesHint;
+  /// **'Contoh frasa dasar yang didukung: {examples}.'**
+  String translatorBasicPhrasesHint(String examples);
 
   /// Tombol jalankan penerjemahan teks
   ///
@@ -1519,6 +1585,30 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Belum tersedia pada versi contoh'**
   String get translatorMockUnavailable;
+
+  /// Nama bahasa pilihan varian Jawa Ngoko pada penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'Jawa Ngoko'**
+  String get translatorLangJvNgoko;
+
+  /// Nama bahasa pilihan varian Jawa Krama pada penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'Jawa Krama'**
+  String get translatorLangJvKrama;
+
+  /// Nama bahasa pilihan varian Indonesia pada penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'Indonesia'**
+  String get translatorLangId;
+
+  /// Nama bahasa pilihan varian English pada penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'English'**
+  String get translatorLangEn;
 
   /// Judul layar detail aksara
   ///

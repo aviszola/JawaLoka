@@ -5,6 +5,9 @@ import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/progression/reward_summary.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/validation/validation_messages.dart';
+import '../../../../core/validation/validation_result.dart';
+import '../../../../core/validation/validators.dart';
 import '../../domain/stroke_similarity_evaluator.dart';
 import '../widgets/drawing_canvas_painter.dart';
 import 'daily_result_screen.dart';
@@ -64,6 +67,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
   /// Points in the current (in-progress) stroke
   List<Offset> _currentStroke = [];
 
+  bool _isEvaluating = false;
   _StrokeSize _selectedSize = _StrokeSize.medium;
 
   List<List<Offset>> get _allStrokes => [
@@ -124,20 +128,51 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       backgroundColor: AppColors.canvas,
       appBar: _buildAppBar(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildInfoCard(),
-              const SizedBox(height: 16),
-              _buildCanvasCard(),
-              const SizedBox(height: 14),
-              _buildControlsRow(),
-              const SizedBox(height: 28),
-              _buildCheckButton(context),
-            ],
-          ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isCompactHeight = constraints.maxHeight < 540;
+
+            if (!isCompactHeight) {
+              // Standard mobile viewport: non-scrolling fixed canvas layout
+              // Drawing gestures never conflict with vertical scrolling.
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _buildInfoCard(),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: Center(
+                        child: _buildCanvasCard(),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildControlsRow(),
+                    const SizedBox(height: 14),
+                    _buildCheckButton(context),
+                  ],
+                ),
+              );
+            }
+
+            // Fallback for extreme low-height or landscape viewports
+            return SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildInfoCard(),
+                  const SizedBox(height: 12),
+                  _buildCanvasCard(),
+                  const SizedBox(height: 12),
+                  _buildControlsRow(),
+                  const SizedBox(height: 14),
+                  _buildCheckButton(context),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
@@ -153,12 +188,24 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       leading: Semantics(
         label: context.l10n.drawingBackSemantics,
         button: true,
-        child: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: AppColors.ink,
+        child: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          behavior: HitTestBehavior.opaque,
+          child: Container(
+            margin: const EdgeInsets.all(4),
+            constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.border),
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18,
+              color: AppColors.ink,
+            ),
           ),
-          onPressed: () => Navigator.pop(context),
         ),
       ),
       title: Text(
@@ -195,15 +242,16 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
 
   Widget _buildInfoCard() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 3),
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -212,37 +260,39 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           Text(
             widget.aksaraChar,
             style: const TextStyle(
-              fontSize: 40,
+              fontSize: 36,
               color: AppColors.amberDark,
               fontFamily: 'NotoSansJavanese',
             ),
           ),
           Container(
             width: 1.5,
-            height: 40,
-            margin: const EdgeInsets.symmetric(horizontal: 16),
+            height: 36,
+            margin: const EdgeInsets.symmetric(horizontal: 14),
             color: AppColors.border,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                widget.aksaraName,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.ink,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.aksaraName,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.ink,
+                  ),
                 ),
-              ),
-              Text(
-                context.l10n.drawingInstruction,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.inkSecondary,
+                Text(
+                  context.l10n.drawingInstruction,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.inkSecondary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -448,44 +498,69 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
   }
 
   void _onCheckDrawing() async {
-    if (_strokes.isEmpty) return;
+    if (_isEvaluating) return;
 
-    final similarity = StrokeSimilarityEvaluator.evaluate(
-      strokes: _strokes,
-      targetAksara: widget.aksaraChar,
-    );
-
-    final profile = ProfileScope.maybeOf(context);
-    final userName = profile?.displayName ?? 'Dimas';
-    RewardSummary? summary;
-
-    if (profile != null) {
-      final activityId = 'drawing_${widget.aksaraChar}';
-      final claimId =
-          'draw_${widget.aksaraChar}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}';
-      summary = await profile.awardDrawingChallengeReward(
-        activityId: activityId,
-        claimId: claimId,
-        similarity: similarity,
+    final validation = Validators.validateQuestStrokes(_strokes);
+    if (validation.isInvalid) {
+      final err =
+          (validation as Invalid<List<List<Offset>>, QuestDrawingError>).error;
+      final msg = ValidationMessages.questDrawingError(context.l10n, err);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(msg),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: AppColors.ink,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          duration: const Duration(seconds: 2),
+        ),
       );
+      return;
     }
 
-    if (!mounted) return;
+    setState(() => _isEvaluating = true);
 
-    final result = await Navigator.pushNamed(
-      context,
-      AppRouter.dailyResult,
-      arguments: DailyResultArgs(
-        similarity: similarity,
-        userStrokes: _strokes.map((s) => List<Offset>.from(s)).toList(),
+    try {
+      final similarity = StrokeSimilarityEvaluator.evaluate(
+        strokes: _strokes,
         targetAksara: widget.aksaraChar,
-        userName: userName,
-        rewardSummary: summary,
-      ),
-    );
+      );
 
-    if (result == true && mounted) {
-      _clearAll();
+      final profile = ProfileScope.maybeOf(context);
+      final userName = profile?.displayName ?? 'Dimas';
+      RewardSummary? summary;
+
+      if (profile != null) {
+        final activityId = 'drawing_${widget.aksaraChar}';
+        final claimId =
+            'draw_${widget.aksaraChar}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}';
+        summary = await profile.awardDrawingChallengeReward(
+          activityId: activityId,
+          claimId: claimId,
+          similarity: similarity,
+        );
+      }
+
+      if (!mounted) return;
+
+      final result = await Navigator.pushNamed(
+        context,
+        AppRouter.dailyResult,
+        arguments: DailyResultArgs(
+          similarity: similarity,
+          userStrokes: _strokes.map((s) => List<Offset>.from(s)).toList(),
+          targetAksara: widget.aksaraChar,
+          userName: userName,
+          rewardSummary: summary,
+        ),
+      );
+
+      if (result == true && mounted) {
+        _clearAll();
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isEvaluating = false);
+      }
     }
   }
 
@@ -496,13 +571,13 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: hasStrokes ? _onCheckDrawing : null,
+        onPressed: (hasStrokes && !_isEvaluating) ? _onCheckDrawing : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.ink,
           foregroundColor: AppColors.amber,
           disabledBackgroundColor: AppColors.border,
           disabledForegroundColor: AppColors.inkMuted,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 14),
           shape: const StadiumBorder(),
           elevation: 0,
         ),

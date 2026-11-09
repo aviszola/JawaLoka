@@ -41,19 +41,19 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 1. Strip Minggu (Hari Kuis Selesai)
-                    const HomeWeeklyQuizStrip(),
-                    const SizedBox(height: 20),
-
-                    // 2. Kartu Hero Misi Hari Ini (Satu Tombol Utama Pill Gelap)
+                    // 1. Primary Action: Kartu Hero Misi Hari Ini (Satu Tombol Utama Pill Gelap)
                     const HomeHeroQuestCard(),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 18),
 
-                    // 3. Kartu Lanjutkan Kuis
+                    // 2. Core Learning Progression: Kartu Lanjutkan Kuis
                     HomeContinueQuizCard(onNavigateTab: onNavigateTab),
+                    const SizedBox(height: 18),
+
+                    // 3. Habit & Consistency: Strip Minggu (Hari Kuis Selesai)
+                    const HomeWeeklyQuizStrip(),
                     const SizedBox(height: 24),
 
-                    // 4. Baris Belajar Cepat
+                    // 4. Discovery: Baris Belajar Cepat
                     HomeQuickLearnSection(onNavigateTab: onNavigateTab),
                     const SizedBox(height: 32),
                   ],

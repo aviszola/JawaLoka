@@ -7,6 +7,9 @@ import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 import '../../../../core/profile/profile_scope.dart';
+import '../../../../core/validation/validation_messages.dart';
+import '../../../../core/validation/validation_result.dart';
+import '../../../../core/validation/validators.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 import 'level_up_screen.dart';
@@ -85,22 +88,27 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void _saveName() {
-    final text = _nameCtrl.text.trim();
-    if (text.isEmpty) {
-      setState(() => _nameError = context.l10n.profileNameEmptyError);
+    final validation = Validators.validateDisplayName(_nameCtrl.text);
+    if (validation.isInvalid) {
+      final err = (validation as Invalid<String, NameError>).error;
+      final msg = ValidationMessages.nameError(context.l10n, err);
+      setState(() => _nameError = msg);
       HapticFeedback.heavyImpact();
       return;
     }
 
+    final normalized = (validation as Valid<String, NameError>).value;
+
     setState(() {
-      _displayName = text;
+      _displayName = normalized;
+      _nameCtrl.text = normalized;
       _nameError = null;
       _isEditingName = false;
     });
 
-    ProfileScope.maybeOf(context)?.setDisplayName(text);
+    ProfileScope.maybeOf(context)?.setDisplayName(normalized);
     HapticFeedback.mediumImpact();
-    _showToast(context.l10n.profileNameSaved(text));
+    _showToast(context.l10n.profileNameSaved(normalized));
   }
 
   void _cancelEditName() {
@@ -258,20 +266,6 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
           ),
 
-          // Soft Top Glow Accent
-          Positioned(
-            top: -20,
-            right: -20,
-            child: Container(
-              width: 140,
-              height: 140,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white.withValues(alpha: 0.15),
-              ),
-            ),
-          ),
-
           // Main Card Content
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 22),
@@ -339,6 +333,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                         child: TextField(
                           controller: _nameCtrl,
                           autofocus: true,
+                          maxLength: 30,
+                          buildCounter: (
+                            context, {
+                            required currentLength,
+                            required isFocused,
+                            required maxLength,
+                          }) => null,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 14,
@@ -798,8 +799,8 @@ class _ProfileScreenState extends State<ProfileScreen>
       onTap: onTap,
       child: Container(
         width: width,
-        height: 110,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        constraints: const BoxConstraints(minHeight: 110),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(20),
@@ -817,7 +818,8 @@ class _ProfileScreenState extends State<ProfileScreen>
           ],
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Circular Icon
             Container(
@@ -838,42 +840,44 @@ class _ProfileScreenState extends State<ProfileScreen>
                     customIconWidget ?? Icon(icon, size: 20, color: iconColor),
               ),
             ),
+            const SizedBox(height: 8),
 
-            Column(
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: isUnlocked ? FontWeight.w800 : FontWeight.w700,
-                    color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
-                  ),
-                  textAlign: TextAlign.center,
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: isUnlocked ? FontWeight.w800 : FontWeight.w700,
+                color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 3),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 6,
+                vertical: 2,
+              ),
+              decoration: BoxDecoration(
+                color: isUnlocked
+                    ? Colors.white.withValues(alpha: 0.85)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                badgeHighlight ?? statusLabel,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: isUnlocked
+                      ? const Color(0xFFD9534F)
+                      : AppColors.inkMuted,
                 ),
-                const SizedBox(height: 2),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 6,
-                    vertical: 1.5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: isUnlocked
-                        ? Colors.white.withValues(alpha: 0.8)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    badgeHighlight ?? statusLabel,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: isUnlocked
-                          ? const Color(0xFFD9534F)
-                          : AppColors.inkMuted,
-                    ),
-                  ),
-                ),
-              ],
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ],
         ),

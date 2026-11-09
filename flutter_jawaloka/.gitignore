@@ -44,13 +44,16 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Additional protections and QA assets
+# Additional protections, QA assets, and documentation
 build/
+windows/
 local.properties
 .flutter-plugins*
-qa/**/screenshots/
-qa/**/*.png
-qa/**/*.jpg
+qa/
+docs/*
+!docs/img/
+!docs/img/**
+skills-lock.json
 
 # Localization artifacts
 l10n_untranslated.json

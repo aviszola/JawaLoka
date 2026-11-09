@@ -124,6 +124,50 @@
   "@validationPasswordEmpty": {
     "description": "Pesan validasi kata sandi wajib diisi"
   },
+  "validationNameTooShort": "Nama minimal 2 karakter",
+  "@validationNameTooShort": {
+    "description": "Pesan validasi nama terlalu pendek"
+  },
+  "validationNameTooLong": "Nama maksimal 30 karakter",
+  "@validationNameTooLong": {
+    "description": "Pesan validasi nama terlalu panjang"
+  },
+  "validationNameInvalidChars": "Nama hanya boleh berisi huruf, tanda hubung, dan spasi",
+  "@validationNameInvalidChars": {
+    "description": "Pesan validasi nama mengandung karakter tidak valid"
+  },
+  "validationEmailEmpty": "Email tidak boleh kosong",
+  "@validationEmailEmpty": {
+    "description": "Pesan validasi email kosong"
+  },
+  "validationEmailTooLong": "Email maksimal 254 karakter",
+  "@validationEmailTooLong": {
+    "description": "Pesan validasi email terlalu panjang"
+  },
+  "validationPasswordTooLong": "Kata sandi maksimal 64 karakter",
+  "@validationPasswordTooLong": {
+    "description": "Pesan validasi kata sandi terlalu panjang"
+  },
+  "validationPasswordWhitespaceOnly": "Kata sandi tidak boleh hanya berisi spasi",
+  "@validationPasswordWhitespaceOnly": {
+    "description": "Pesan validasi kata sandi hanya berisi spasi"
+  },
+  "validationTranslationEmpty": "Teks terjemahan tidak boleh kosong",
+  "@validationTranslationEmpty": {
+    "description": "Pesan validasi input terjemahan kosong"
+  },
+  "validationTranslationTooLong": "Teks terjemahan maksimal 200 karakter",
+  "@validationTranslationTooLong": {
+    "description": "Pesan validasi input terjemahan melebihi batas"
+  },
+  "validationDrawingEmpty": "Goreskan aksara terlebih dahulu",
+  "@validationDrawingEmpty": {
+    "description": "Pesan validasi kanvas gambar kosong"
+  },
+  "validationDrawingTooShort": "Goresan terlalu pendek, tulis aksara lebih lengkap",
+  "@validationDrawingTooShort": {
+    "description": "Pesan validasi goresan kanvas terlalu pendek"
+  },
   "loginTitle": "Masuk ke akunmu",
   "@loginTitle": {
     "description": "Judul utama halaman login"
@@ -1070,9 +1114,14 @@
   "@translatorInputHint": {
     "description": "Hint kotak input teks penerjemah"
   },
-  "translatorBasicPhrasesHint": "Contoh frasa dasar yang didukung: Halo, Apa kabar?, Matur nuwun, Sugeng enjing, Kula boten mangertos.",
+  "translatorBasicPhrasesHint": "Contoh frasa dasar yang didukung: {examples}.",
   "@translatorBasicPhrasesHint": {
-    "description": "Petunjuk satu baris contoh frasa dasar yang didukung penerjemah"
+    "description": "Petunjuk satu baris contoh frasa dasar yang didukung penerjemah",
+    "placeholders": {
+      "examples": {
+        "type": "String"
+      }
+    }
   },
   "translatorButton": "Terjemahkan",
   "@translatorButton": {
@@ -1113,6 +1162,22 @@
   "translatorMockUnavailable": "Belum tersedia pada versi contoh",
   "@translatorMockUnavailable": {
     "description": "Pesan saat teks belum ada di kamus contoh penerjemah"
+  },
+  "translatorLangJvNgoko": "Jawa Ngoko",
+  "@translatorLangJvNgoko": {
+    "description": "Nama bahasa pilihan varian Jawa Ngoko pada penerjemah"
+  },
+  "translatorLangJvKrama": "Jawa Krama",
+  "@translatorLangJvKrama": {
+    "description": "Nama bahasa pilihan varian Jawa Krama pada penerjemah"
+  },
+  "translatorLangId": "Indonesia",
+  "@translatorLangId": {
+    "description": "Nama bahasa pilihan varian Indonesia pada penerjemah"
+  },
+  "translatorLangEn": "English",
+  "@translatorLangEn": {
+    "description": "Nama bahasa pilihan varian English pada penerjemah"
   },
   "aksaraDetailTitle": "Aksara Jawa",
   "@aksaraDetailTitle": {

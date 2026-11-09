@@ -1,4 +1,5 @@
 import 'dart:math';
+import '../../features/quiz/domain/quest_target.dart';
 import 'reward_summary.dart';
 
 /// Pure domain engine managing JawaLoka experience points (XP),
@@ -134,18 +135,26 @@ class ProgressionEngine {
     return baseXP + bonusXP;
   }
 
+  /// Ambang batas bonus penulisan aksara sempurna (+30 XP first clear / +5 XP replay).
+  // PERLU KEPUTUSAN: PRD menulis 85% untuk kelulusan, diimplementasikan sebagai ambang bonus sempurna
+  static const double questBonusThreshold = 0.85;
+
+  /// Ambang batas kelulusan standar penulisan aksara (+15 XP first clear / +3 XP replay).
+  // PERLU KEPUTUSAN: Mengikuti QuestTarget.questPassThreshold (0.70)
+  static const double questPassThreshold = QuestTarget.questPassThreshold;
+
   /// Calculates XP for a drawing challenge based on similarity ratio (0.0 – 1.0).
   ///
-  /// - Similarity < 0.70: 0 XP (no reward).
-  /// - Similarity 0.70 – 0.84: +15 XP (first clear) / +3 XP (replay).
-  /// - Similarity >= 0.85: +30 XP (first clear) / +5 XP (replay).
+  /// - Similarity < questPassThreshold (0.70): 0 XP (no reward).
+  /// - Similarity questPassThreshold – (questBonusThreshold - 0.01): +15 XP (first clear) / +3 XP (replay).
+  /// - Similarity >= questBonusThreshold (0.85): +30 XP (first clear) / +5 XP (replay).
   static int calculateDrawingReward(
     double similarity, {
     required bool isFirstClear,
   }) {
-    if (similarity >= 0.85) {
+    if (similarity >= questBonusThreshold) {
       return isFirstClear ? 30 : 5;
-    } else if (similarity >= 0.70) {
+    } else if (similarity >= questPassThreshold) {
       return isFirstClear ? 15 : 3;
     }
     return 0;

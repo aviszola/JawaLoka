@@ -77,15 +77,19 @@ class _QuizPathScreenState extends State<QuizPathScreen>
               ),
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 100)),
+          const SliverToBoxAdapter(child: SizedBox(height: 120)),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _scrollToActiveNode(nodes),
         backgroundColor: AppColors.amber,
         foregroundColor: AppColors.ink,
         elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(99),
+          side: const BorderSide(color: Color(0xFFECC258), width: 1.5),
+        ),
         icon: const Icon(Icons.navigation_rounded, size: 20),
         label: Text(
           jumpLabel,
@@ -121,8 +125,9 @@ class _QuizPathScreenState extends State<QuizPathScreen>
             : 0);
 
     return AppBar(
-      backgroundColor: const Color(0xFFF5F1EB),
+      backgroundColor: AppColors.canvas,
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
       centerTitle: false,
       automaticallyImplyLeading: false,
       title: Text(

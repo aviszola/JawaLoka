@@ -24,9 +24,9 @@ class HomeHeroQuestCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.amberDark.withValues(alpha: 0.12),
-            blurRadius: 14,
-            offset: const Offset(0, 5),
+            color: AppColors.amberDark.withValues(alpha: 0.08),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -96,14 +96,7 @@ class HomeHeroQuestCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppColors.border),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.amberDark.withValues(alpha: 0.15),
-                      blurRadius: 6,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  border: Border.all(color: AppColors.border, width: 1.5),
                 ),
                 child: const Center(
                   child: CustomPaint(

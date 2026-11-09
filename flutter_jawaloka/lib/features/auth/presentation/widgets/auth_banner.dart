@@ -44,24 +44,7 @@ class AuthBanner extends StatelessWidget {
             // 1. Kawung Batik Pattern Overlay
             Positioned.fill(child: CustomPaint(painter: _KawungMiniPainter())),
 
-            // 2. Ghosted Aksara Watermark (opasitas <= 0.06 di latar kanan)
-            Positioned(
-              right: 12,
-              top: -14,
-              child: Transform.rotate(
-                angle: -0.105,
-                child: Text(
-                  glyphWatermark,
-                  style: TextStyle(
-                    fontSize: 110,
-                    color: AppColors.ink.withValues(alpha: 0.05),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ),
-
-            // 3. Mini Panorama Illustration (Utuh di kanan, tidak terpotong kotak)
+            // 2. Mini Panorama Illustration (Utuh di kanan, tidak terpotong kotak)
             Positioned(
               right: 0,
               top: 0,
@@ -70,7 +53,7 @@ class AuthBanner extends StatelessWidget {
               child: const _MiniLandscapeIllustration(),
             ),
 
-            // 4. Main Content (Badge bila ada + Judul + Subjudul, tidak menimpa ilustrasi)
+            // 3. Main Content (Badge bila ada + Judul + Subjudul, tidak menimpa ilustrasi)
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 14, 110, 14),
               child: Column(
