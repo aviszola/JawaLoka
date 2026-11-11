@@ -42,6 +42,7 @@ abstract class ProfilePreferences {
   static const String keyLastCelebratedLevel = 'profile_last_celebrated_level';
   static const String keyStorageSchemaVersion = 'storage_schema_version';
   static const int currentSchemaVersion = 1;
+  static const String keyLastQuizDate = 'profile_last_quiz_date';
   static const String keyGender = 'profile_user_gender';
   static const String keyAge = 'profile_user_age';
 
@@ -93,6 +94,11 @@ abstract class ProfilePreferences {
   /// Persists streak days count.
   Future<void> saveStreakDays(int days);
 
+  /// Loads the last calendar date when a quiz was completed (YYYY-MM-DD), default ''.
+  Future<String> loadLastQuizDate();
+
+  /// Persists the last calendar date when a quiz was completed.
+  Future<void> saveLastQuizDate(String date);
   /// Loads the days of the week when quizzes were completed (1 = Mon .. 7 = Sun).
   Future<List<int>> loadCompletedQuizDaysOfWeek();
 
@@ -214,6 +220,7 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
         final legacyLevel = Validators.sanitizeStoredInt(
           rawLevel,
           min: 1,
+          max: 100,
           fallback: 1,
         );
         final migratedXP = ProgressionEngine.getBaseXPForLevel(legacyLevel);
@@ -387,6 +394,26 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
       final prefs = await _prefsProvider();
       final safe = Validators.sanitizeStoredInt(days, min: 0, fallback: 0);
       await prefs.setInt(ProfilePreferences.keyStreakDays, safe);
+    } catch (_) {}
+  }
+
+  @override
+  Future<String> loadLastQuizDate() async {
+    try {
+      final prefs = await _prefsProvider();
+      final raw = prefs.get(ProfilePreferences.keyLastQuizDate);
+      return Validators.sanitizeStoredDate(raw);
+    } catch (_) {
+      return '';
+    }
+  }
+
+  @override
+  Future<void> saveLastQuizDate(String date) async {
+    try {
+      final prefs = await _prefsProvider();
+      final safe = Validators.sanitizeStoredDate(date);
+      await prefs.setString(ProfilePreferences.keyLastQuizDate, safe);
     } catch (_) {}
   }
 
@@ -573,6 +600,7 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   String _dailyPracticeDate;
   int _dailyPracticeXP;
   int _streakDays;
+  String _lastQuizDate;
   List<int> _completedQuizDaysOfWeek;
   int _quizzesThisWeek;
   Set<BlangkonType> _unlockedBlangkons;
@@ -592,6 +620,7 @@ class InMemoryProfilePreferences implements ProfilePreferences {
     String initialDailyPracticeDate = '',
     int initialDailyPracticeXP = 0,
     int? initialStreakDays,
+    String initialLastQuizDate = '',
     List<int>? initialCompletedQuizDaysOfWeek,
     int? initialQuizzesThisWeek,
     Set<BlangkonType>? initialUnlockedBlangkons,
@@ -619,6 +648,7 @@ class InMemoryProfilePreferences implements ProfilePreferences {
            (isFreshUser || (initialTotalXP != null && initialTotalXP == 0)
                ? 0
                : 5),
+       _lastQuizDate = initialLastQuizDate,
        _completedQuizDaysOfWeek = initialCompletedQuizDaysOfWeek != null
            ? List.from(initialCompletedQuizDaysOfWeek)
            : (isFreshUser || (initialTotalXP != null && initialTotalXP == 0)
@@ -733,6 +763,14 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   @override
   Future<void> saveStreakDays(int days) async {
     _streakDays = max(0, days);
+  }
+
+  @override
+  Future<String> loadLastQuizDate() async => _lastQuizDate;
+
+  @override
+  Future<void> saveLastQuizDate(String date) async {
+    _lastQuizDate = Validators.sanitizeStoredDate(date);
   }
 
   @override

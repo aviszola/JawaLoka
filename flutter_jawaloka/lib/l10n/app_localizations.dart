@@ -1619,7 +1619,7 @@ abstract class AppLocalizations {
   /// Teks isi dialog kebijakan privasi
   ///
   /// In id, this message translates to:
-  /// **'Aplikasi JawaLoka menyimpan nama tampilan, pilihan bahasa, koleksi blangkon, progres kuis, XP, dan Level secara lokal di perangkat Anda. Aplikasi ini tidak mengirim data ke server, tidak memiliki akun sungguhan (versi demo), dan tidak menyimpan kata sandi.'**
+  /// **'Aplikasi JawaLoka (versi awal) menyimpan nama tampilan, usia, jenis kelamin, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal hanya di perangkat Anda. Data tidak dikirim ke server, tanpa iklan dan analitik. Menghapus data aplikasi atau mencopot pemasangan aplikasi akan menghapus seluruh data tersebut.'**
   String get settingsPrivacyPolicyContent;
 
   /// Tombol tutup dialog

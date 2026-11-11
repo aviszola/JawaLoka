@@ -8,10 +8,9 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties()
-val hasKeystore = keystorePropertiesFile.exists()
-if (hasKeystore) {
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
@@ -39,24 +38,16 @@ android {
 
     signingConfigs {
         create("release") {
-            if (hasKeystore) {
-                keyAlias = keystoreProperties.getProperty("keyAlias")
-                keyPassword = keystoreProperties.getProperty("keyPassword")
-                storeFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
-                storePassword = keystoreProperties.getProperty("storePassword")
-            }
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = keystoreProperties["storeFile"]?.let { file(it as String) }
+            storePassword = keystoreProperties["storePassword"] as String
         }
     }
 
     buildTypes {
         release {
-            if (hasKeystore) {
-                signingConfig = signingConfigs.getByName("release")
-            } else {
-                // Berkas android/key.properties tidak ditemukan.
-                // Rilis jatuh ke kunci debug HANYA agar build lokal tidak gagal.
-                signingConfig = signingConfigs.getByName("debug")
-            }
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(

@@ -855,7 +855,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsPrivacyPolicyContent =>
-      'JawaLoka stores your display name, language preference, blangkon collection, quiz progress, XP, and Level locally on your device. This demo app does not transmit data to any server, does not maintain real accounts, and does not store passwords.';
+      'JawaLoka (early version) stores your display name, age, gender, language preference, blangkon collection, and learning progress locally on your device only. Data is not transmitted to any server, with no ads or analytics. Clearing app data or uninstalling the app will permanently delete all stored data.';
 
   @override
   String get settingsClose => 'Close';

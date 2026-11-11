@@ -27,6 +27,7 @@ class ProfileController extends ChangeNotifier {
   String _dailyPracticeDate = '';
   int _dailyPracticeXP = 0;
   int _streakDays = 0;
+  String _lastQuizDate = '';
   List<int> _completedQuizDaysOfWeek = [];
   int _quizzesThisWeek = 0;
   Set<BlangkonType> _unlockedBlangkons = {BlangkonType.yogyakarta};
@@ -58,6 +59,7 @@ class ProfileController extends ChangeNotifier {
   bool get isInitialized => _isInitialized;
   Set<String> get clearedActivities => Set.unmodifiable(_clearedActivities);
   int get streakDays => _streakDays;
+  String get lastQuizDate => _lastQuizDate;
   List<int> get completedQuizDaysOfWeek =>
       List.unmodifiable(_completedQuizDaysOfWeek);
   int get quizzesThisWeek => _quizzesThisWeek;
@@ -119,6 +121,7 @@ class ProfileController extends ChangeNotifier {
     _dailyPracticeXP = practiceRecord.xp;
 
     _streakDays = await _preferences.loadStreakDays();
+    _lastQuizDate = await _preferences.loadLastQuizDate();
     _completedQuizDaysOfWeek = await _preferences.loadCompletedQuizDaysOfWeek();
     _quizzesThisWeek = await _preferences.loadQuizzesThisWeek();
 
@@ -416,13 +419,39 @@ class ProfileController extends ChangeNotifier {
 
     // DEMO: jam perangkat, bukan waktu server
     if (isQuiz) {
-      final todayWeekday = _nowProvider().weekday;
+      final now = _nowProvider();
+      final todayWeekday = now.weekday;
       if (!_completedQuizDaysOfWeek.contains(todayWeekday)) {
         _completedQuizDaysOfWeek = [..._completedQuizDaysOfWeek, todayWeekday];
       }
       _quizzesThisWeek += 1;
-      if (_streakDays == 0) {
+
+      final todayStr = _getTodayDateString();
+      if (_lastQuizDate.isEmpty) {
         _streakDays = 1;
+        _lastQuizDate = todayStr;
+      } else {
+        final lastDate = DateTime.tryParse(_lastQuizDate);
+        final todayDate = DateTime.tryParse(todayStr);
+        if (lastDate != null && todayDate != null) {
+          final diffDays = todayDate.difference(lastDate).inDays;
+          if (diffDays == 0) {
+            // tanggal sama: streak tidak berubah
+          } else if (diffDays == 1) {
+            // tepat +1 hari: streak + 1
+            _streakDays += 1;
+            _lastQuizDate = todayStr;
+          } else if (diffDays > 1) {
+            // selisih lebih dari 1 hari: reset ke 1
+            _streakDays = 1;
+            _lastQuizDate = todayStr;
+          } else {
+            // tanggal hari ini lebih lama dari tersimpan (jam mundur): tidak berubah
+          }
+        } else {
+          _streakDays = 1;
+          _lastQuizDate = todayStr;
+        }
       }
     }
 
@@ -597,6 +626,7 @@ class ProfileController extends ChangeNotifier {
         _dailyPracticeXP,
       );
       await _preferences.saveStreakDays(_streakDays);
+      await _preferences.saveLastQuizDate(_lastQuizDate);
       await _preferences.saveCompletedQuizDaysOfWeek(_completedQuizDaysOfWeek);
       await _preferences.saveQuizzesThisWeek(_quizzesThisWeek);
       await _preferences.saveUnlockedBlangkons(_unlockedBlangkons);
