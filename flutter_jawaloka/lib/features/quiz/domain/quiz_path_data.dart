@@ -650,37 +650,53 @@ class QuizPathData {
     'path_node_u1_n06_terima_kasih': 'path_node_u1_n06_matur_nuwun',
     'path_node_u1_n07_minta_maaf': 'path_node_u1_n07_nyuwun_pangapunten',
     'path_node_u1_n07_matur_nuwun': 'path_node_u1_n06_matur_nuwun',
-    'path_node_u1_n08_nyuwun_pangapunten': 'path_node_u1_n07_nyuwun_pangapunten',
-    'path_node_u1_n09_pacelathon_padinan': 'path_node_u1_n09_percakapan_padinan',
+    'path_node_u1_n08_nyuwun_pangapunten':
+        'path_node_u1_n07_nyuwun_pangapunten',
+    'path_node_u1_n09_pacelathon_padinan':
+        'path_node_u1_n09_percakapan_padinan',
 
     // -------------------------------------------------------------------------
     // Unit 2: Aksara Jawa Dasar (Legena)
     // -------------------------------------------------------------------------
-    'path_node_u2_n14_pengenalan_carakan': 'path_node_u2_n11_pengenalan_hanacaraka',
+    'path_node_u2_n14_pengenalan_carakan':
+        'path_node_u2_n11_pengenalan_hanacaraka',
     'path_node_u2_n15_aksara_hanacaraka': 'path_node_u2_n12_aksara_hanacaraka',
     'path_node_u2_n16_aksara_datasawala': 'path_node_u2_n13_aksara_datasawala',
-    'path_node_u2_n17_aksara_padhajayanya': 'path_node_u2_n14_aksara_padhajayanya',
-    'path_node_u2_n18_aksara_magabathanga': 'path_node_u2_n15_aksara_magabathanga',
-    'path_node_u2_n19_membaca_kata_dasar': 'path_node_u2_n16_maca_aksara_dhasar',
+    'path_node_u2_n17_aksara_padhajayanya':
+        'path_node_u2_n14_aksara_padhajayanya',
+    'path_node_u2_n18_aksara_magabathanga':
+        'path_node_u2_n15_aksara_magabathanga',
+    'path_node_u2_n19_membaca_kata_dasar':
+        'path_node_u2_n16_maca_aksara_dhasar',
 
     // -------------------------------------------------------------------------
     // Unit 3: Sandhangan dan Pasangan Aksara Jawa
     // -------------------------------------------------------------------------
-    'path_node_u3_n21_sandhangan_swara_i_u': 'path_node_u3_n21_sandhangan_swara',
-    'path_node_u3_n22_sandhangan_swara_e_o': 'path_node_u3_n21_sandhangan_swara',
-    'path_node_u3_n23_sandhangan_panyigeg_h_r': 'path_node_u3_n22_sandhangan_panyigeg',
-    'path_node_u3_n24_sandhangan_panyigeg_ng_pangkon': 'path_node_u3_n22_sandhangan_panyigeg',
-    'path_node_u3_n25_sandhangan_wyanjana': 'path_node_u3_n23_sandhangan_wyanjana',
-    'path_node_u3_n26_membaca_kata_bersandhangan': 'path_node_u3_n26_maca_kata_sandhangan',
-    'path_node_u3_n27_pengenalan_pasangan': 'path_node_u3_n24_pengenalan_pasangan',
-    'path_node_u3_n28_pasangan_sejajar_gantung': 'path_node_u3_n25_penggunaan_pasangan',
-    'path_node_u3_n29_latihan_kombinasi_aksara': 'path_node_u3_n29_gladhen_kombinasi',
+    'path_node_u3_n21_sandhangan_swara_i_u':
+        'path_node_u3_n21_sandhangan_swara',
+    'path_node_u3_n22_sandhangan_swara_e_o':
+        'path_node_u3_n21_sandhangan_swara',
+    'path_node_u3_n23_sandhangan_panyigeg_h_r':
+        'path_node_u3_n22_sandhangan_panyigeg',
+    'path_node_u3_n24_sandhangan_panyigeg_ng_pangkon':
+        'path_node_u3_n22_sandhangan_panyigeg',
+    'path_node_u3_n25_sandhangan_wyanjana':
+        'path_node_u3_n23_sandhangan_wyanjana',
+    'path_node_u3_n26_membaca_kata_bersandhangan':
+        'path_node_u3_n26_maca_kata_sandhangan',
+    'path_node_u3_n27_pengenalan_pasangan':
+        'path_node_u3_n24_pengenalan_pasangan',
+    'path_node_u3_n28_pasangan_sejajar_gantung':
+        'path_node_u3_n25_penggunaan_pasangan',
+    'path_node_u3_n29_latihan_kombinasi_aksara':
+        'path_node_u3_n29_gladhen_kombinasi',
 
     // -------------------------------------------------------------------------
     // Unit 4: Kosakata dan Tingkatan Bahasa (Ngoko dan Krama)
     // -------------------------------------------------------------------------
     'path_node_u4_n31_kosakata_omah': 'path_node_u4_n32_nama_benda',
-    'path_node_u4_n31_keluarga_lan_kerabat': 'path_node_u4_n31_kosakata_padinan',
+    'path_node_u4_n31_keluarga_lan_kerabat':
+        'path_node_u4_n31_kosakata_padinan',
     'path_node_u4_n32_kosakata_kegiatan': 'path_node_u4_n33_nama_kegiatan',
     'path_node_u4_n32_omah_lan_sakiwatengene': 'path_node_u4_n32_nama_benda',
     'path_node_u4_n33_kagiyatan_padinan': 'path_node_u4_n33_nama_kegiatan',
@@ -690,12 +706,17 @@ class QuizPathData {
     'path_node_u4_n35_ngoko_alus': 'path_node_u4_n35_krama',
     'path_node_u4_n35_krama_lugu': 'path_node_u4_n35_krama',
     'path_node_u4_n36_krama_lugu': 'path_node_u4_n36_krama_inggil',
-    'path_node_u4_n37_krama_inggil': 'path_node_u4_n37_perbedaan_tingkatan_bahasa',
-    'path_node_u4_n37_perbandingan_tingkatan': 'path_node_u4_n37_perbedaan_tingkatan_bahasa',
-    'path_node_u4_n38_bandhingan_tingkat_basa': 'path_node_u4_n38_percakapan_teman',
+    'path_node_u4_n37_krama_inggil':
+        'path_node_u4_n37_perbedaan_tingkatan_bahasa',
+    'path_node_u4_n37_perbandingan_tingkatan':
+        'path_node_u4_n37_perbedaan_tingkatan_bahasa',
+    'path_node_u4_n38_bandhingan_tingkat_basa':
+        'path_node_u4_n38_percakapan_teman',
     'path_node_u4_n38_wicara_marang_kanca': 'path_node_u4_n38_percakapan_teman',
-    'path_node_u4_n39_wicara_unggah_ungguh': 'path_node_u4_n39_percakapan_dihormati',
-    'path_node_u4_n39_wicara_marang_sesepuh': 'path_node_u4_n39_percakapan_dihormati',
+    'path_node_u4_n39_wicara_unggah_ungguh':
+        'path_node_u4_n39_percakapan_dihormati',
+    'path_node_u4_n39_wicara_marang_sesepuh':
+        'path_node_u4_n39_percakapan_dihormati',
 
     // -------------------------------------------------------------------------
     // Unit 5: Budaya, Paribasan, dan Kawruh Luhur Jawa
@@ -703,12 +724,14 @@ class QuizPathData {
     'path_node_u5_n41_ajining_dhiri': 'path_node_u5_n41_tata_krama_jawa',
     'path_node_u5_n41_paribasan_lathi': 'path_node_u5_n41_tata_krama_jawa',
     'path_node_u5_n42_filosofi_jawa': 'path_node_u5_n44_filosofi_kehidupan',
-    'path_node_u5_n42_paribasan_urip_urup': 'path_node_u5_n44_filosofi_kehidupan',
+    'path_node_u5_n42_paribasan_urip_urup':
+        'path_node_u5_n44_filosofi_kehidupan',
     'path_node_u5_n43_paribasan_jawa': 'path_node_u5_n43_peribahasa_jawa',
     'path_node_u5_n43_paribasan_jer_basuki': 'path_node_u5_n43_peribahasa_jawa',
     'path_node_u5_n43_tradisi_jawa': 'path_node_u5_n45_tradisi_jawa',
     'path_node_u5_n44_filosofi_urip': 'path_node_u5_n44_filosofi_kehidupan',
-    'path_node_u5_n44_paribasan_rukun_santosa': 'path_node_u5_n43_peribahasa_jawa',
+    'path_node_u5_n44_paribasan_rukun_santosa':
+        'path_node_u5_n43_peribahasa_jawa',
     'path_node_u5_n44_seni_budaya': 'path_node_u5_n46_budaya_kesenian',
     'path_node_u5_n45_kearifan_lokal': 'path_node_u5_n44_filosofi_kehidupan',
     'path_node_u5_n45_tokoh_pandhawa': 'path_node_u5_n46_budaya_kesenian',
@@ -831,7 +854,10 @@ class QuizPathData {
   /// - A SAFE legacy alias mapped to [activityId] is present in [clearedActivities].
   ///
   /// CONDITIONAL and UNSAFE aliases do NOT confer canonical mastery.
-  static bool hasCanonicalMastery(String activityId, Set<String> clearedActivities) {
+  static bool hasCanonicalMastery(
+    String activityId,
+    Set<String> clearedActivities,
+  ) {
     final canonicalId = resolveCanonicalActivityId(activityId);
     if (clearedActivities.contains(canonicalId)) return true;
     for (final entry in legacyActivityAliases.entries) {
@@ -847,7 +873,10 @@ class QuizPathData {
 
   /// Whether [activityId] has any historical completion (safe, conditional, or unsafe)
   /// in [clearedActivities], used to prevent duplicate first-clear XP and support progression.
-  static bool hasHistoricalCompletion(String activityId, Set<String> clearedActivities) {
+  static bool hasHistoricalCompletion(
+    String activityId,
+    Set<String> clearedActivities,
+  ) {
     final canonicalId = resolveCanonicalActivityId(activityId);
     if (clearedActivities.contains(canonicalId)) return true;
     if (clearedActivities.contains(activityId)) return true;
@@ -891,7 +920,8 @@ class QuizPathData {
 
     for (int i = 0; i < baseNodes.length; i++) {
       final baseNode = baseNodes[i];
-      final isEval = baseNode.type == QuizNodeType.milestone ||
+      final isEval =
+          baseNode.type == QuizNodeType.milestone ||
           baseNode.type == QuizNodeType.finalExam ||
           baseNode.topicKey.startsWith('evaluasi_');
 
@@ -919,7 +949,10 @@ class QuizPathData {
           final prevNodeResolved = resolvedNodes[i - 1];
           final prevBaseNode = baseNodes[i - 1];
           final prevCompleted = prevNodeResolved.status == NodeStatus.completed;
-          final prevHistorical = hasHistoricalCompletion(prevBaseNode.id, clearedActivities);
+          final prevHistorical = hasHistoricalCompletion(
+            prevBaseNode.id,
+            clearedActivities,
+          );
           if (prevCompleted || prevHistorical) {
             prereqMet = true;
           }
@@ -948,9 +981,12 @@ class QuizPathData {
         final prevUnitEvalNode = resolvedNodes[u * 10 - 1];
         final bool prevEvalPassed = isEvaluationPassed != null
             ? isEvaluationPassed(prevUnitEvalNode.id)
-            : (clearedActivities.contains('eval_passed:${prevUnitEvalNode.id}') ||
-                clearedActivities.contains(prevUnitEvalNode.id));
-        isUnitLocked = prevUnitEvalNode.status != NodeStatus.completed && !prevEvalPassed;
+            : (clearedActivities.contains(
+                    'eval_passed:${prevUnitEvalNode.id}',
+                  ) ||
+                  clearedActivities.contains(prevUnitEvalNode.id));
+        isUnitLocked =
+            prevUnitEvalNode.status != NodeStatus.completed && !prevEvalPassed;
       }
 
       resolvedUnits.add(

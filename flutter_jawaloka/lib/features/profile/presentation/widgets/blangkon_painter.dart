@@ -998,3 +998,84 @@ class BlangkonPainter extends CustomPainter {
   bool shouldRepaint(BlangkonPainter oldDelegate) =>
       oldDelegate.type != type || oldDelegate.isLocked != isLocked;
 }
+
+/// Mapping aset SVG avatar per BlangkonType.
+/// Putra → avatar dengan blangkon daerah.
+/// Putri → avatar dengan busana daerah yang setara secara kultural.
+/// `kedu` tidak memiliki aset SVG khusus — fallback ke avatar generik.
+extension BlangkonAssets on BlangkonType {
+  /// Path aset SVG avatar putra yang sudah memakai blangkon ini.
+  /// Mengembalikan `null` jika tidak ada aset khusus (fallback ke SVG generik).
+  String? get putraAvatarAsset {
+    switch (this) {
+      case BlangkonType.yogyakarta:
+        return 'assets/images/characters/putra_blangkon/avatar_putra_yogyakarta.svg';
+      case BlangkonType.surakarta:
+        return 'assets/images/characters/putra_blangkon/avatar_putra_surakarta.svg';
+      case BlangkonType.banyumas:
+        return 'assets/images/characters/putra_blangkon/avatar_putra_banyumas.svg';
+      case BlangkonType.cirebon:
+        return 'assets/images/characters/putra_blangkon/avatar_putra_cirebon.svg';
+      case BlangkonType.pusaka:
+        return 'assets/images/characters/putra_blangkon/avatar_putra_pusaka.svg';
+      case BlangkonType.kedu:
+        return null; // belum ada aset khusus
+    }
+  }
+
+  /// Path aset SVG avatar putri dengan busana daerah yang setara kultural.
+  /// Mengembalikan `null` jika tidak ada aset khusus.
+  String? get putriAvatarAsset {
+    switch (this) {
+      case BlangkonType.yogyakarta:
+        return 'assets/images/characters/putri_busana/avatar_putri_kutubaru_yogyakarta.svg';
+      case BlangkonType.surakarta:
+        return 'assets/images/characters/putri_busana/avatar_putri_surakarta.svg';
+      case BlangkonType.banyumas:
+        return 'assets/images/characters/putri_busana/avatar_putri_sunda.svg';
+      case BlangkonType.cirebon:
+        return 'assets/images/characters/putri_busana/avatar_putri_cirebon_mega_mendung.svg';
+      case BlangkonType.pusaka:
+        return 'assets/images/characters/putri_busana/avatar_putri_betawi_encim.svg';
+      case BlangkonType.kedu:
+        return null; // belum ada aset khusus
+    }
+  }
+
+  /// Path aset SVG item/thumbnail standalone (blangkon atau busana) untuk grid pilihan.
+  /// Putra → item_blangkon_*.svg; Putri → item_busana_*.svg.
+  /// Mengembalikan `null` hanya untuk kedu putra (belum ada aset blangkon Kedu).
+  String? itemAsset({required bool isFemale}) {
+    if (isFemale) {
+      switch (this) {
+        case BlangkonType.yogyakarta:
+          return 'assets/images/characters/putri_busana/item_busana_kutubaru_yogyakarta.svg';
+        case BlangkonType.surakarta:
+          return 'assets/images/characters/putri_busana/item_busana_surakarta.svg';
+        case BlangkonType.banyumas:
+          return 'assets/images/characters/putri_busana/item_busana_sunda.svg';
+        case BlangkonType.cirebon:
+          return 'assets/images/characters/putri_busana/item_busana_cirebon_mega_mendung.svg';
+        case BlangkonType.pusaka:
+          return 'assets/images/characters/putri_busana/item_busana_betawi_encim.svg';
+        case BlangkonType.kedu:
+          return 'assets/images/characters/putri_busana/item_busana_kedu.svg';
+      }
+    } else {
+      switch (this) {
+        case BlangkonType.yogyakarta:
+          return 'assets/images/characters/putra_blangkon/item_blangkon_yogyakarta.svg';
+        case BlangkonType.surakarta:
+          return 'assets/images/characters/putra_blangkon/item_blangkon_surakarta.svg';
+        case BlangkonType.banyumas:
+          return 'assets/images/characters/putra_blangkon/item_blangkon_banyumas.svg';
+        case BlangkonType.cirebon:
+          return 'assets/images/characters/putra_blangkon/item_blangkon_cirebon.svg';
+        case BlangkonType.pusaka:
+          return 'assets/images/characters/putra_blangkon/item_blangkon_pusaka.svg';
+        case BlangkonType.kedu:
+          return null;
+      }
+    }
+  }
+}

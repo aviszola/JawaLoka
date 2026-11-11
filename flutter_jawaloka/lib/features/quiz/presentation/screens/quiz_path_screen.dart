@@ -117,11 +117,10 @@ class _QuizPathScreenState extends State<QuizPathScreen>
         ? nodes.where((n) => n.status == NodeStatus.completed).length
         : 0;
     final completedCountText = l10n.quizCompletedBadge(completedCount);
-    final activeDifficultyIndex = _selectedDifficultyIndex ??
+    final activeDifficultyIndex =
+        _selectedDifficultyIndex ??
         (profile != null
-            ? (profile.userLevel <= 3
-                ? 0
-                : (profile.userLevel <= 6 ? 1 : 2))
+            ? (profile.userLevel <= 3 ? 0 : (profile.userLevel <= 6 ? 1 : 2))
             : 0);
 
     return AppBar(
@@ -627,14 +626,14 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     final level = profile?.userLevel ?? 1;
 
     // Map difficulty: use explicitly selected chip if set, else auto-tier by userLevel
-    final activeDifficulty = _selectedDifficultyIndex ??
-        (level <= 3 ? 0 : (level <= 6 ? 1 : 2));
+    final activeDifficulty =
+        _selectedDifficultyIndex ?? (level <= 3 ? 0 : (level <= 6 ? 1 : 2));
 
     final difficulty = activeDifficulty == 0
         ? QuizDifficulty.mudah
         : (activeDifficulty == 1
-            ? QuizDifficulty.mahir
-            : QuizDifficulty.sangatMahir);
+              ? QuizDifficulty.mahir
+              : QuizDifficulty.sangatMahir);
 
     final questions = CurriculumQuizBank.getQuestionsForNode(
       node,
@@ -673,9 +672,7 @@ class _QuizPathScreenState extends State<QuizPathScreen>
     if (!_scrollController.hasClients) return;
     HapticFeedback.selectionClick();
 
-    final activeIndex = nodes.indexWhere(
-      (n) => n.status == NodeStatus.current,
-    );
+    final activeIndex = nodes.indexWhere((n) => n.status == NodeStatus.current);
     final targetIndex = activeIndex != -1 ? activeIndex : nodes.length - 1;
 
     final unitHeadersBefore = (targetIndex / 10).floor() + 1;

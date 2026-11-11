@@ -89,10 +89,11 @@ class ProfileController extends ChangeNotifier {
 
   bool get hasMasteredAksara =>
       isEvaluationPassed('path_node_u2_n20_evaluasi_unit2');
-  int get completedQuizzesCount => QuizPathData.resolveCurriculum(
-        clearedActivities: _clearedActivities,
-        isEvaluationPassed: isEvaluationPassed,
-      )
+  int get completedQuizzesCount =>
+      QuizPathData.resolveCurriculum(
+            clearedActivities: _clearedActivities,
+            isEvaluationPassed: isEvaluationPassed,
+          )
           .expand((u) => u.nodes)
           .where((n) => n.status == NodeStatus.completed)
           .length;
@@ -118,8 +119,7 @@ class ProfileController extends ChangeNotifier {
     _dailyPracticeXP = practiceRecord.xp;
 
     _streakDays = await _preferences.loadStreakDays();
-    _completedQuizDaysOfWeek =
-        await _preferences.loadCompletedQuizDaysOfWeek();
+    _completedQuizDaysOfWeek = await _preferences.loadCompletedQuizDaysOfWeek();
     _quizzesThisWeek = await _preferences.loadQuizzesThisWeek();
 
     _unlockedBlangkons = await _preferences.loadUnlockedBlangkons();

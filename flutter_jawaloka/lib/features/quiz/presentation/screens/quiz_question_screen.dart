@@ -62,7 +62,8 @@ class QuizQuestionScreen extends StatefulWidget {
   static const int totalQuestionsPerSession = 10;
 
   /// Kumpulan soal bawaan untuk sesi aksara.
-  static const List<QuizQuestion> defaultQuestions = QuizQuestion.defaultQuestions;
+  static const List<QuizQuestion> defaultQuestions =
+      QuizQuestion.defaultQuestions;
 
   const QuizQuestionScreen({
     super.key,
@@ -406,7 +407,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                   context.l10n.quizSkip,
                   style: const TextStyle(
                     fontSize: 14,
-                    color: Color(0xFF7A6E60),
+                    color: AppColors.inkSecondary,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -421,7 +422,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                 '${_currentIndex + 1}/${widget.questions.length}',
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF7A6E60),
+                  color: AppColors.inkSecondary,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -481,7 +482,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               _current.getPrompt(context),
               style: const TextStyle(
                 fontSize: 16,
-                color: Color(0xFF7A6E60),
+                color: AppColors.inkSecondary,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
@@ -595,7 +596,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                     fontWeight: FontWeight.w700,
                     color: isSelected
                         ? AppColors.amberDark
-                        : const Color(0xFF7A6E60),
+                        : AppColors.inkSecondary,
                   ),
                 ),
               ),

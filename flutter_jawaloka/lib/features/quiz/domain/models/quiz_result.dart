@@ -35,7 +35,6 @@ class QuizResult {
   int get stars => score >= 90
       ? 3
       : score >= 70
-          ? 2
-          : 1;
+      ? 2
+      : 1;
 }
-

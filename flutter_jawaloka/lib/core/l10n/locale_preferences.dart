@@ -84,8 +84,8 @@ class InMemoryLocalePreferences implements LocalePreferences {
   InMemoryLocalePreferences({
     String? initialLocale,
     bool initialHasChosen = false,
-  })  : _rawLocale = initialLocale,
-        _hasChosen = initialHasChosen;
+  }) : _rawLocale = initialLocale,
+       _hasChosen = initialHasChosen;
 
   @override
   Future<Locale> loadLocale() async {
@@ -112,4 +112,3 @@ class InMemoryLocalePreferences implements LocalePreferences {
     _rawLocale = value;
   }
 }
-

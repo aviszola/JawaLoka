@@ -45,8 +45,9 @@ void main() async {
 
 /// Root widget for JawaLoka: Aplikasi Belajar Bahasa & Aksara Jawa.
 class JawaLokaApp extends StatelessWidget {
-  const JawaLokaApp({super.key});
+  final String initialRoute;
 
+  const JawaLokaApp({super.key, this.initialRoute = AppRouter.getStarted});
   @override
   Widget build(BuildContext context) {
     final controller = LocaleScope.of(context);
@@ -65,7 +66,7 @@ class JawaLokaApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      initialRoute: AppRouter.splash,
+      initialRoute: initialRoute,
       onGenerateRoute: AppRouter.generateRoute,
     );
   }

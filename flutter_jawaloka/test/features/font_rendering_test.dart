@@ -50,8 +50,9 @@ void main() {
           final width = textPainter.width.ceil().clamp(1, 200);
           final height = textPainter.height.ceil().clamp(1, 200);
           final image = await picture.toImage(width, height);
-          final byteData =
-              await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+          final byteData = await image.toByteData(
+            format: ui.ImageByteFormat.rawRgba,
+          );
 
           expect(byteData, isNotNull);
           final bytes = byteData!.buffer.asUint8List();
@@ -72,16 +73,28 @@ void main() {
         }
 
         for (final glyph in glyphs) {
-          expect(inkCounts[glyph]!, greaterThan(0),
-              reason: 'Glyph $glyph must have non-zero ink');
+          expect(
+            inkCounts[glyph]!,
+            greaterThan(0),
+            reason: 'Glyph $glyph must have non-zero ink',
+          );
         }
 
-        expect(masks['ꦲ'], isNot(equals(masks['ꦤ'])),
-            reason: 'ꦲ and ꦤ masks must be distinct');
-        expect(masks['ꦲ'], isNot(equals(masks['ꦒ'])),
-            reason: 'ꦲ and ꦒ masks must be distinct');
-        expect(masks['ꦤ'], isNot(equals(masks['ꦒ'])),
-            reason: 'ꦤ and ꦒ masks must be distinct');
+        expect(
+          masks['ꦲ'],
+          isNot(equals(masks['ꦤ'])),
+          reason: 'ꦲ and ꦤ masks must be distinct',
+        );
+        expect(
+          masks['ꦲ'],
+          isNot(equals(masks['ꦒ'])),
+          reason: 'ꦲ and ꦒ masks must be distinct',
+        );
+        expect(
+          masks['ꦤ'],
+          isNot(equals(masks['ꦒ'])),
+          reason: 'ꦤ and ꦒ masks must be distinct',
+        );
       },
       skip: !fontExists ? 'font belum ditaruh di assets/fonts' : false,
     );

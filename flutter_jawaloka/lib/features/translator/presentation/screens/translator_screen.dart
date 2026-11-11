@@ -97,7 +97,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
           content: Text(msg),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.ink,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           duration: const Duration(seconds: 2),
         ),
       );
@@ -162,7 +164,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F1EB),
+      backgroundColor: AppColors.canvas,
       appBar: _buildAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -188,7 +190,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColors.amber,
+      backgroundColor: AppColors.canvas,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       leading: Semantics(
@@ -199,13 +201,11 @@ class _TranslatorScreenState extends State<TranslatorScreen>
       title: Text(
         context.l10n.translatorTitle,
         style: const TextStyle(
-          color: AppColors.ink,
+          color: Color(0xFF231C14),
           fontWeight: FontWeight.w700,
           fontSize: 18,
         ),
       ),
-      // Kawung texture paint
-      flexibleSpace: CustomPaint(painter: _KawungTexturePainter()),
     );
   }
 
@@ -241,10 +241,7 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppColors.border,
-                      width: 1.5,
-                    ),
+                    border: Border.all(color: AppColors.border, width: 1.5),
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.ink.withValues(alpha: 0.07),
@@ -438,8 +435,9 @@ class _TranslatorScreenState extends State<TranslatorScreen>
             ),
             const SizedBox(height: 8),
             ...TranslationVariant.values.map((variant) {
-              final isSelected =
-                  isFrom ? _fromVariant == variant : _toVariant == variant;
+              final isSelected = isFrom
+                  ? _fromVariant == variant
+                  : _toVariant == variant;
               final label = _getLanguageLabel(context, variant);
               return ListTile(
                 leading: Icon(
@@ -580,30 +578,4 @@ class _PanelIconButton extends StatelessWidget {
       ),
     );
   }
-}
-
-// ─── Kawung texture AppBar painter ───────────────────────────────────────────
-
-class _KawungTexturePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.kawungStroke.withValues(alpha: 0.035)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
-
-    const r = 12.0;
-    for (double x = 0; x < size.width + r * 2; x += r * 2) {
-      for (double y = 0; y < size.height + r * 2; y += r * 2) {
-        final c = Offset(x, y);
-        canvas.drawCircle(c.translate(-r, 0), r, paint);
-        canvas.drawCircle(c.translate(r, 0), r, paint);
-        canvas.drawCircle(c.translate(0, -r), r, paint);
-        canvas.drawCircle(c.translate(0, r), r, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_KawungTexturePainter _) => false;
 }

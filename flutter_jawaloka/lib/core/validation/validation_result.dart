@@ -40,7 +40,8 @@ class Invalid<T, E> extends ValidationResult<T, E> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || (other is Invalid<T, E> && other.error == error);
+      identical(this, other) ||
+      (other is Invalid<T, E> && other.error == error);
 
   @override
   int get hashCode => error.hashCode;
@@ -50,38 +51,16 @@ class Invalid<T, E> extends ValidationResult<T, E> {
 }
 
 /// Domain errors for user display name input.
-enum NameError {
-  empty,
-  tooShort,
-  tooLong,
-  invalidChars,
-}
+enum NameError { empty, tooShort, tooLong, invalidChars }
 
 /// Domain errors for email input.
-enum EmailError {
-  empty,
-  invalidFormat,
-  tooLong,
-}
+enum EmailError { empty, invalidFormat, tooLong }
 
 /// Domain errors for password input.
-enum PasswordError {
-  empty,
-  tooShort,
-  tooLong,
-  whitespaceOnly,
-}
+enum PasswordError { empty, tooShort, tooLong, whitespaceOnly }
 
 /// Domain errors for translator input text.
-enum TranslationInputError {
-  empty,
-  tooLong,
-}
+enum TranslationInputError { empty, tooLong }
 
 /// Domain errors for quest canvas drawing strokes.
-enum QuestDrawingError {
-  empty,
-  tooShort,
-  invalidCoordinates,
-}
-
+enum QuestDrawingError { empty, tooShort, invalidCoordinates }

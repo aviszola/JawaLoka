@@ -210,21 +210,21 @@ class AdaptiveQuizBank {
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Ukara 'Kowe arep mangan apa?' kalebu ragam basa apa?",
-      glyph: 'ꦔꦺꦴꦏꦺꦴ',
+      glyph: '',
       options: ['Ngoko Lugu', 'Ngoko Alus', 'Krama Lugu', 'Krama Inggil'],
       correctIndex: 0,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Ukara 'Panjenengan apa wis dhahar?' kalebu ragam basa apa?",
-      glyph: 'ꦲꦭꦸꦱ꧀',
+      glyph: '',
       options: ['Ngoko Lugu', 'Ngoko Alus', 'Krama Lugu', 'Krama Inggil'],
       correctIndex: 1,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Ukara 'Kula nedha sekul goreng.' kalebu ragam basa apa?",
-      glyph: 'ꦏꦿꦩ',
+      glyph: '',
       options: ['Ngoko Lugu', 'Ngoko Alus', 'Krama Lugu', 'Krama Inggil'],
       correctIndex: 2,
     ),
@@ -232,21 +232,21 @@ class AdaptiveQuizBank {
       type: QuestionType.glyphIdentify,
       prompt:
           "Ukara 'Bapak saweg tindak dhateng kantor.' kalebu ragam basa apa?",
-      glyph: 'ꦲꦶꦁꦒꦶꦭ꧀',
+      glyph: '',
       options: ['Ngoko Lugu', 'Ngoko Alus', 'Krama Lugu', 'Krama Inggil'],
       correctIndex: 3,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Tembung krama inggil kang trep kanggo tembung 'mangan' yaiku...",
-      glyph: 'ꦝꦲꦂ',
+      glyph: '',
       options: ['Dhahar', 'Nedha', 'Ngunjuk', 'Tindak'],
       correctIndex: 0,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Tembung 'omah' iku ngoko. Tembung krama kang trep yaiku...",
-      glyph: 'ꦲꦺꦴꦩꦃ',
+      glyph: '',
       options: ['Sare', 'Griya', 'Sekul', 'Santen'],
       correctIndex: 1,
     ),
@@ -254,14 +254,14 @@ class AdaptiveQuizBank {
       type: QuestionType.glyphIdentify,
       prompt:
           "Salam pakurmatan ing wanci enjang miturut materi translator yaiku...",
-      glyph: 'ꦱꦸꦒꦼꦁ',
+      glyph: '',
       options: ['Sugeng sonten', 'Sugeng dalu', 'Sugeng enjing', 'Matur nuwun'],
       correctIndex: 2,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Ungkapan matur rasa panuwun kanthi basa Jawa yaiku...",
-      glyph: 'ꦤꦸꦮꦸꦤ꧀',
+      glyph: '',
       options: [
         'Nyuwun pangapunten',
         'Sugeng rawuh',
@@ -273,7 +273,7 @@ class AdaptiveQuizBank {
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt: "Ukara pitakon bab kabar kanthi krama alus yaiku...",
-      glyph: 'ꦏꦧꦂ',
+      glyph: '',
       options: [
         'Pripun kabaripun?',
         'Piye kabarmu?',
@@ -286,7 +286,7 @@ class AdaptiveQuizBank {
       type: QuestionType.glyphIdentify,
       prompt:
           "Paribasan 'Ajining dhiri ana ing lathi' ngandhut piwulang bab...",
-      glyph: 'ꦭꦛꦶ',
+      glyph: '',
       options: [
         'Kasugihan bandha',
         'Pakurmatan saka wicara',

@@ -5,8 +5,10 @@ import '../../theme/app_colors.dart';
 enum GununganStyle {
   /// Full royal polychrome (Gold, Deep Ink, Crimson accents, white highlights)
   royal,
+
   /// Monochrome golden outline with subtle fills for badges and cards
   goldOutline,
+
   /// Soft ghost watermark for subtle backgrounds
   watermark,
 }
@@ -70,7 +72,13 @@ class WayangGununganPainter extends CustomPainter {
 
   // ─── Royal Style: Rich Javanese Kraton Colors & Filigree ──────────────────
   void _drawRoyalGunungan(
-      Canvas canvas, double sx, double sy, Path leafPath, double w, double h) {
+    Canvas canvas,
+    double sx,
+    double sy,
+    Path leafPath,
+    double w,
+    double h,
+  ) {
     // Drop shadow
     final shadowPaint = Paint()
       ..color = AppColors.ink.withValues(alpha: 0.18)
@@ -96,11 +104,7 @@ class WayangGununganPainter extends CustomPainter {
       ..shader = LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        colors: [
-          AppColors.amber,
-          AppColors.amberDark,
-          const Color(0xFF8B5A2B),
-        ],
+        colors: [AppColors.amber, AppColors.amberDark, const Color(0xFF8B5A2B)],
       ).createShader(Rect.fromLTWH(0, 0, w, h))
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.4 * sx;
@@ -148,7 +152,13 @@ class WayangGununganPainter extends CustomPainter {
 
   // ─── Gold Outline Style: Refined vector lineart for medals & cards ─────────
   void _drawGoldOutlineGunungan(
-      Canvas canvas, double sx, double sy, Path leafPath, double w, double h) {
+    Canvas canvas,
+    double sx,
+    double sy,
+    Path leafPath,
+    double w,
+    double h,
+  ) {
     // Subtle background tint
     final fillPaint = Paint()
       ..shader = RadialGradient(
@@ -190,13 +200,27 @@ class WayangGununganPainter extends CustomPainter {
       // Left branch
       final bLeft = Path()
         ..moveTo(50 * sx, y + 4 * sy)
-        ..cubicTo(42 * sx, y, (50 * sx) - spread, y - 2 * sy, (50 * sx) - spread - 2 * sx, y - 8 * sy);
+        ..cubicTo(
+          42 * sx,
+          y,
+          (50 * sx) - spread,
+          y - 2 * sy,
+          (50 * sx) - spread - 2 * sx,
+          y - 8 * sy,
+        );
       canvas.drawPath(bLeft, linePaint);
 
       // Right branch
       final bRight = Path()
         ..moveTo(50 * sx, y + 4 * sy)
-        ..cubicTo(58 * sx, y, (50 * sx) + spread, y - 2 * sy, (50 * sx) + spread + 2 * sx, y - 8 * sy);
+        ..cubicTo(
+          58 * sx,
+          y,
+          (50 * sx) + spread,
+          y - 2 * sy,
+          (50 * sx) + spread + 2 * sx,
+          y - 8 * sy,
+        );
       canvas.drawPath(bRight, linePaint);
     }
 
@@ -209,7 +233,12 @@ class WayangGununganPainter extends CustomPainter {
   }
 
   // ─── Watermark Style: Low opacity for card background watermarks ──────────
-  void _drawWatermarkGunungan(Canvas canvas, double sx, double sy, Path leafPath) {
+  void _drawWatermarkGunungan(
+    Canvas canvas,
+    double sx,
+    double sy,
+    Path leafPath,
+  ) {
     final strokePaint = Paint()
       ..color = AppColors.ink.withValues(alpha: 0.05)
       ..style = PaintingStyle.stroke
@@ -225,7 +254,11 @@ class WayangGununganPainter extends CustomPainter {
 
     // Gate
     canvas.drawRect(
-      Rect.fromCenter(center: Offset(50 * sx, 80 * sy), width: 16 * sx, height: 18 * sy),
+      Rect.fromCenter(
+        center: Offset(50 * sx, 80 * sy),
+        width: 16 * sx,
+        height: 18 * sy,
+      ),
       strokePaint,
     );
   }
@@ -328,27 +361,41 @@ class WayangGununganPainter extends CustomPainter {
       final leftBranch = Path()
         ..moveTo(50 * sx, y + 2 * sy)
         ..cubicTo(
-          42 * sx, y,
-          (50 * sx) - (bw * 0.7), y - c,
-          (50 * sx) - bw, y - (c * 1.4),
+          42 * sx,
+          y,
+          (50 * sx) - (bw * 0.7),
+          y - c,
+          (50 * sx) - bw,
+          y - (c * 1.4),
         );
       canvas.drawPath(leftBranch, branchPaint);
 
       // Left leaf tip scroll
-      canvas.drawCircle(Offset((50 * sx) - bw, y - (c * 1.4)), 1.2 * sx, leafPaint);
+      canvas.drawCircle(
+        Offset((50 * sx) - bw, y - (c * 1.4)),
+        1.2 * sx,
+        leafPaint,
+      );
 
       // Right Branch
       final rightBranch = Path()
         ..moveTo(50 * sx, y + 2 * sy)
         ..cubicTo(
-          58 * sx, y,
-          (50 * sx) + (bw * 0.7), y - c,
-          (50 * sx) + bw, y - (c * 1.4),
+          58 * sx,
+          y,
+          (50 * sx) + (bw * 0.7),
+          y - c,
+          (50 * sx) + bw,
+          y - (c * 1.4),
         );
       canvas.drawPath(rightBranch, branchPaint);
 
       // Right leaf tip scroll
-      canvas.drawCircle(Offset((50 * sx) + bw, y - (c * 1.4)), 1.2 * sx, leafPaint);
+      canvas.drawCircle(
+        Offset((50 * sx) + bw, y - (c * 1.4)),
+        1.2 * sx,
+        leafPaint,
+      );
     }
   }
 
@@ -386,14 +433,21 @@ class WayangGununganPainter extends CustomPainter {
       ..close();
 
     final flamePaint = Paint()
-      ..shader = const RadialGradient(
-        colors: [Colors.white, AppColors.amber, AppColors.accentOrange],
-        stops: [0.0, 0.45, 1.0],
-      ).createShader(Rect.fromCircle(center: Offset(50 * sx, 8 * sy), radius: 6 * sx));
+      ..shader =
+          const RadialGradient(
+            colors: [Colors.white, AppColors.amber, AppColors.accentOrange],
+            stops: [0.0, 0.45, 1.0],
+          ).createShader(
+            Rect.fromCircle(center: Offset(50 * sx, 8 * sy), radius: 6 * sx),
+          );
     canvas.drawPath(flamePath, flamePaint);
 
     // Radiant flame star
-    canvas.drawCircle(Offset(50 * sx, 9 * sy), 1.6 * sx, Paint()..color = Colors.white);
+    canvas.drawCircle(
+      Offset(50 * sx, 9 * sy),
+      1.6 * sx,
+      Paint()..color = Colors.white,
+    );
   }
 
   @override
@@ -420,10 +474,7 @@ class WayangGununganWidget extends StatelessWidget {
     return SizedBox(
       width: width,
       height: height,
-      child: CustomPaint(
-        painter: WayangGununganPainter(style: style),
-      ),
+      child: CustomPaint(painter: WayangGununganPainter(style: style)),
     );
   }
 }
-

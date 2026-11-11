@@ -14,11 +14,12 @@ class BlangkonRewards {
   // PERLU VALIDASI BUDAYA
   static const Map<BlangkonType, int?> requiredLevels = {
     BlangkonType.yogyakarta: 1, // Awal (terbuka sejak awal)
-    BlangkonType.surakarta: 5,  // Level 5
-    BlangkonType.banyumas: 6,   // Level 6
-    BlangkonType.kedu: 8,       // Level 8
-    BlangkonType.cirebon: 10,   // Level 10
-    BlangkonType.pusaka: null,  // Khusus: Selesai materi/evaluasi aksara (Mastery Aksara)
+    BlangkonType.surakarta: 5, // Level 5
+    BlangkonType.banyumas: 6, // Level 6
+    BlangkonType.kedu: 8, // Level 8
+    BlangkonType.cirebon: 10, // Level 10
+    BlangkonType.pusaka:
+        null, // Khusus: Selesai materi/evaluasi aksara (Mastery Aksara)
   };
 
   /// Memeriksa apakah tipe blangkon memiliki CustomPainter tersendiri yang digambar sungguhan.
@@ -63,13 +64,15 @@ class BlangkonRewards {
     required int userLevel,
     bool hasMasteredAksara = false,
   }) {
-    return BlangkonType.values.where((type) {
-      return isUnlocked(
-        type,
-        userLevel: userLevel,
-        hasMasteredAksara: hasMasteredAksara,
-      );
-    }).toList(growable: false);
+    return BlangkonType.values
+        .where((type) {
+          return isUnlocked(
+            type,
+            userLevel: userLevel,
+            hasMasteredAksara: hasMasteredAksara,
+          );
+        })
+        .toList(growable: false);
   }
 
   /// Mengembalikan daftar blangkon baru yang terbuka saat naik dari [fromLevel] ke [toLevel].
@@ -90,7 +93,9 @@ class BlangkonRewards {
     }
 
     // Urutkan berdasarkan level persyaratan (reward tertinggi di akhir)
-    rewards.sort((a, b) => (requiredLevels[a] ?? 0).compareTo(requiredLevels[b] ?? 0));
+    rewards.sort(
+      (a, b) => (requiredLevels[a] ?? 0).compareTo(requiredLevels[b] ?? 0),
+    );
     return rewards;
   }
 
@@ -124,4 +129,3 @@ class BlangkonRewards {
     return level != null ? 'Level $level' : 'Terkunci';
   }
 }
-

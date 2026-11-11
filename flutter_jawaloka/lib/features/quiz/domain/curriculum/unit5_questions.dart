@@ -26,10 +26,11 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Unen-unen luhur "Ajining dhiri dumunung ing..." teruse yaiku...',
-      glyph: 'ꦭꦛꦶ',
+      glyph: '',
       options: ['Lathi (ucapan)', 'Busana', 'Dhuwit', 'Rupa'],
       correctIndex: 0,
-      explanation: '"Ajining dhiri dumunung ing lathi" ngemu piwulang supaya njaga lesan lan ucapan.',
+      explanation:
+          '"Ajining dhiri dumunung ing lathi" ngemu piwulang supaya njaga lesan lan ucapan.',
       sourceReference: 'Pepak Basa Jawa: Paribasan Luhur',
     ),
     QuizQuestion(
@@ -38,10 +39,11 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Dene "Ajining raga dumunung ing..." teruse yaiku...',
-      glyph: 'ꦧꦸꦱꦤ',
+      glyph: '',
       options: ['Omah', 'Busana (sandhangan)', 'Kendharaan', 'Panganan'],
       correctIndex: 1,
-      explanation: '"Ajining raga dumunung ing busana" tegese busana kang rapi lan sopan ngreksa kaurmatane awak.',
+      explanation:
+          '"Ajining raga dumunung ing busana" tegese busana kang rapi lan sopan ngreksa kaurmatane awak.',
       sourceReference: 'Pepak Basa Jawa: Paribasan Luhur',
     ),
     QuizQuestion(
@@ -50,10 +52,11 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "lathi" tegese yaiku perangan awak...',
-      glyph: 'ꦭꦛꦶ',
+      glyph: '',
       options: ['Mripat', 'Kuping', 'Lambe / lesan (ucapan)', 'Tangan'],
       correctIndex: 2,
-      explanation: 'Lathi krama inggile lambe, pralambang lesan utawa tetembungan kang diucapake.',
+      explanation:
+          'Lathi krama inggile lambe, pralambang lesan utawa tetembungan kang diucapake.',
       sourceReference: 'Bausastra Jawa: Tembung Lathi',
     ),
     QuizQuestion(
@@ -61,8 +64,9 @@ class Unit5Questions {
       topicKey: 'tata_krama_jawa',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Unen-unen "Ajining awak saka tumindak" ngemu piwulang babagan...',
-      glyph: 'ꦠꦸꦩꦶꦤ꧀ꦢꦏ꧀',
+      prompt:
+          'Unen-unen "Ajining awak saka tumindak" ngemu piwulang babagan...',
+      glyph: '',
       options: [
         'Kaurmataning manungsa katemtokake saka bebudene lan tumindake',
         'Kaurmatan katemtokake saka gedhene bandha lan kasugihane',
@@ -70,7 +74,8 @@ class Unit5Questions {
         'Kaurmatan katemtokake saka endahing rupa lan wernaning kulit',
       ],
       correctIndex: 0,
-      explanation: 'Bebudene lan tumindak kang becik ndadekake wong diajeni ing satengahing bebrayan.',
+      explanation:
+          'Bebudene lan tumindak kang becik ndadekake wong diajeni ing satengahing bebrayan.',
       sourceReference: 'Filsafat Budi Pekerti Jawa',
     ),
     QuizQuestion(
@@ -78,11 +83,18 @@ class Unit5Questions {
       topicKey: 'tata_krama_jawa',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Piwulang babagan njaga omongan supaya ora nglarakake atining liyan selaras karo tembang...',
-      glyph: 'ꦥꦁꦏꦸꦂ',
-      options: ['Serat Wulangreh pupuh Pangkur', 'Gundhul Pacul', 'Cublak Suweng', 'Kincir-kincir'],
+      prompt:
+          'Piwulang babagan njaga omongan supaya ora nglarakake atining liyan selaras karo tembang...',
+      glyph: '',
+      options: [
+        'Serat Wulangreh pupuh Pangkur',
+        'Gundhul Pacul',
+        'Cublak Suweng',
+        'Kincir-kincir',
+      ],
       correctIndex: 0,
-      explanation: 'Ing Serat Wulangreh pupuh Pangkur diwulangake: "Miwah ta ing saben dina, den samya sira anirua...".',
+      explanation:
+          'Ing Serat Wulangreh pupuh Pangkur diwulangake: "Miwah ta ing saben dina, den samya sira anirua...".',
       sourceReference: 'Serat Wulangreh dening Pakubuwana IV',
     ),
     QuizQuestion(
@@ -91,7 +103,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Makna simbolis jarik utawa sinjang tumrap wong Jawa yaiku...',
-      glyph: 'ꦗꦫꦶꦏ꧀',
+      glyph: '',
       options: [
         'Aja gampang serik (meri / drengki)',
         'Kudu tuku jarik anyar terus',
@@ -99,7 +111,8 @@ class Unit5Questions {
         'Ora ana maknane',
       ],
       correctIndex: 0,
-      explanation: 'Jarik dadi kerata basa: "aja gampang serik" (ati kudu jembar, aja gampang meri lan lara ati).',
+      explanation:
+          'Jarik dadi kerata basa: "aja gampang serik" (ati kudu jembar, aja gampang meri lan lara ati).',
       sourceReference: 'Filosofi Busana Jawa Tradhisional',
     ),
 
@@ -112,10 +125,16 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sikap "andhap asor" ing budi pekerti Jawa tegese yaiku...',
-      glyph: 'ꦲꦱꦺꦴꦂ',
-      options: ['Rendah hati lan ora sombong', 'Seneng ngece wong liya', 'Gedhe endhase', 'Wedi marang samubarang'],
+      glyph: '',
+      options: [
+        'Rendah hati lan ora sombong',
+        'Seneng ngece wong liya',
+        'Gedhe endhase',
+        'Wedi marang samubarang',
+      ],
       correctIndex: 0,
-      explanation: 'Andhap asor tegese lembah manah, ngajeni wong liya lan ora adigang adigung adiguna.',
+      explanation:
+          'Andhap asor tegese lembah manah, ngajeni wong liya lan ora adigang adigung adiguna.',
       sourceReference: 'Pepak Basa Jawa: Budi Pekerti',
     ),
     QuizQuestion(
@@ -123,8 +142,9 @@ class Unit5Questions {
       topicKey: 'unggah_ungguh_basa',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika mlaku bebarengan karo wong sepuh, posisine bocah enom kang bener yaiku...',
-      glyph: 'ꦭꦩ꧀ꦥꦃ',
+      prompt:
+          'Nalika mlaku bebarengan karo wong sepuh, posisine bocah enom kang bener yaiku...',
+      glyph: '',
       options: [
         'Mlayu ing ngarep dhewe',
         'Mlaku ing mburine utawa ing sisihe kanthi ngurmati',
@@ -132,7 +152,8 @@ class Unit5Questions {
         'Mlaku karo nyurung wong sepuh',
       ],
       correctIndex: 1,
-      explanation: 'Mlaku ing wingkinge wong sepuh kanthi ngladosi minangka tanda subasita.',
+      explanation:
+          'Mlaku ing wingkinge wong sepuh kanthi ngladosi minangka tanda subasita.',
       sourceReference: 'Subasita Jawa',
     ),
     QuizQuestion(
@@ -141,10 +162,16 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung sesanti "lembah manah" tegese yaiku...',
-      glyph: 'ꦩꦤꦃ',
-      options: ['Ati kang keras', 'Ati kang lara', 'Sabar, sareh, lan jembar dhadhane', 'Ati kang cilik'],
+      glyph: '',
+      options: [
+        'Ati kang keras',
+        'Ati kang lara',
+        'Sabar, sareh, lan jembar dhadhane',
+        'Ati kang cilik',
+      ],
       correctIndex: 2,
-      explanation: 'Lembah manah tegese sabar, sareh, lan tansah ngajeni wong liya.',
+      explanation:
+          'Lembah manah tegese sabar, sareh, lan tansah ngajeni wong liya.',
       sourceReference: 'Bausastra Jawa: Tembung Lembah Manah',
     ),
     QuizQuestion(
@@ -152,8 +179,9 @@ class Unit5Questions {
       topicKey: 'unggah_ungguh_basa',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika diwenehi panganan utawa apa wae dening wong sepuh, trapsilane yaiku...',
-      glyph: 'ꦤꦩ꧀ꦥ',
+      prompt:
+          'Nalika diwenehi panganan utawa apa wae dening wong sepuh, trapsilane yaiku...',
+      glyph: '',
       options: [
         'Nampa nganggo tangan tengen kanthi ngucap matur nuwun',
         'Nampa nganggo tangan kiwa kanthi cepet-cepet mlebu omah',
@@ -161,7 +189,8 @@ class Unit5Questions {
         'Nulak kanthi kasar amarga ngrasa ora butuh pitulungan',
       ],
       correctIndex: 0,
-      explanation: 'Nampa nganggo asta tengen kanthi atur panuwun mujudake watak trapsila.',
+      explanation:
+          'Nampa nganggo asta tengen kanthi atur panuwun mujudake watak trapsila.',
       sourceReference: 'Etika Jawa Padinan',
     ),
     QuizQuestion(
@@ -170,7 +199,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Sikap "empan papan" ing subasita Jawa tegese yaiku...',
-      glyph: 'ꦥꦥꦤ꧀',
+      glyph: '',
       options: [
         'Bisa mapanake dhiri manut wektu, papan panggonan, lan kahanan',
         'Mung gelem manggon ing papan gedhe',
@@ -178,7 +207,8 @@ class Unit5Questions {
         'Nggolek papan jembar kanggo turu',
       ],
       correctIndex: 0,
-      explanation: 'Empan papan yaiku kawicaksanan mangerteni kahanan lan tata krama manut papan panggonan.',
+      explanation:
+          'Empan papan yaiku kawicaksanan mangerteni kahanan lan tata krama manut papan panggonan.',
       sourceReference: 'Filsafat Subasita Jawa',
     ),
     QuizQuestion(
@@ -187,7 +217,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Unen-unen "witing tresna jalaran saka kulina" tegese yaiku...',
-      glyph: 'ꦏꦸꦭꦶꦤ',
+      glyph: '',
       options: [
         'Rasa tresna tuwuh amarga wis asring sesrawungan lan kulina bebarengan',
         'Rasa tresna mung tuwuh amarga ndeleng endahing rupa lan bandha',
@@ -195,7 +225,8 @@ class Unit5Questions {
         'Rasa tresna mung tuwuh nalika kaparingan ganjaran kang akeh',
       ],
       correctIndex: 0,
-      explanation: 'Katresnan lan paseduluran tuwuh amarga asring srawung kanthi becik.',
+      explanation:
+          'Katresnan lan paseduluran tuwuh amarga asring srawung kanthi becik.',
       sourceReference: 'Pepak Basa Jawa: Paribasan',
     ),
 
@@ -208,10 +239,11 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Paribasan "Becik ketitik, ala..." teruse yaiku...',
-      glyph: 'ꦏꦼꦠꦫ',
+      glyph: '',
       options: ['Ketara', 'Ketingal', 'Keliwat', 'Kecampur'],
       correctIndex: 0,
-      explanation: '"Becik ketitik, ala ketara" tegese tumindak becik lan ala bakal konangan ing tembe mburine.',
+      explanation:
+          '"Becik ketitik, ala ketara" tegese tumindak becik lan ala bakal konangan ing tembe mburine.',
       sourceReference: 'Pepak Basa Jawa: Paribasan Jawa',
     ),
     QuizQuestion(
@@ -220,7 +252,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tegese paribasan "Jer basuki mawa beya" yaiku...',
-      glyph: 'ꦧꦺꦪ',
+      glyph: '',
       options: [
         'Saben gegayuhan mbutuhake ragad, pangorbanan, utawa usaha',
         'Kabeh barang kudu gratis',
@@ -228,7 +260,8 @@ class Unit5Questions {
         'Aja gelem mbayar apa-apa',
       ],
       correctIndex: 0,
-      explanation: '"Jer basuki mawa beya" tegese samubarang kekarepan utawa kamulyan mbutuhake wragat lan pangorbanan.',
+      explanation:
+          '"Jer basuki mawa beya" tegese samubarang kekarepan utawa kamulyan mbutuhake wragat lan pangorbanan.',
       sourceReference: 'Pepak Basa Jawa: Paribasan Jawa',
     ),
     QuizQuestion(
@@ -237,7 +270,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Paribasan "Nabok nyilih tangan" ngemu teges tumindak...',
-      glyph: 'ꦠꦔꦤ꧀',
+      glyph: '',
       options: [
         'Nulung kanca kanthi ikhlas',
         'Nindakake piala sarana migunakake wong liya',
@@ -245,7 +278,8 @@ class Unit5Questions {
         'Sregep gotong royong',
       ],
       correctIndex: 1,
-      explanation: '"Nabok nyilih tangan" tegese tumindak ala utawa nyidrani wong kanthi kongkonan wong liya.',
+      explanation:
+          '"Nabok nyilih tangan" tegese tumindak ala utawa nyidrani wong kanthi kongkonan wong liya.',
       sourceReference: 'Pepak Basa Jawa: Paribasan Jawa',
     ),
     QuizQuestion(
@@ -254,7 +288,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Saloka "Kebo nusu gudel" ngemu teges yaiku...',
-      glyph: 'ꦒꦸꦢꦺꦭ꧀',
+      glyph: '',
       options: [
         'Wong tuwa njaluk wuruk (sinau) marang wong enom',
         'Kebo mangan suket ing sawah',
@@ -262,7 +296,8 @@ class Unit5Questions {
         'Wong enom ngurmati wong tuwa',
       ],
       correctIndex: 0,
-      explanation: '"Kebo nusu gudel" tegese wong kang luwih tuwa utawa luwih dhuwur drajate meguru marang wong enom.',
+      explanation:
+          '"Kebo nusu gudel" tegese wong kang luwih tuwa utawa luwih dhuwur drajate meguru marang wong enom.',
       sourceReference: 'Pepak Basa Jawa: Saloka Jawa',
     ),
     QuizQuestion(
@@ -271,7 +306,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Paribasan "Mikul dhuwur mendhem jero" mulangake babagan...',
-      glyph: 'ꦗꦼꦫꦺꦴ',
+      glyph: '',
       options: [
         'Njunjung drajate wong tuwa lan nutupi kekurangane tiyang sepuh',
         'Nggawa beban kang abot banget',
@@ -279,7 +314,8 @@ class Unit5Questions {
         'Pamer kasuksesan marang tangga',
       ],
       correctIndex: 0,
-      explanation: '"Mikul dhuwur mendhem jero" tegese njunjung asmane wong tuwa lan nutupi sakehing kekurangan.',
+      explanation:
+          '"Mikul dhuwur mendhem jero" tegese njunjung asmane wong tuwa lan nutupi sakehing kekurangan.',
       sourceReference: 'Filsafat Moral Jawa',
     ),
     QuizQuestion(
@@ -288,7 +324,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Bebasan "Adigang, adigung, adiguna" tegese ngendel-endelake...',
-      glyph: 'ꦒꦸꦤ',
+      glyph: '',
       options: [
         'Kekuwatane (kijang), gedhene (gajah), lan kepinterane / wisa (ula)',
         'Omahe, mobilane, lan sandhangane',
@@ -296,7 +332,8 @@ class Unit5Questions {
         'Sekolahe, gurune, lan bukune',
       ],
       correctIndex: 0,
-      explanation: 'Adigang (kekuwatan kijang), adigung (panguwasa gajah), adiguna (wisa ula) ngemu watak sombong.',
+      explanation:
+          'Adigang (kekuwatan kijang), adigung (panguwasa gajah), adiguna (wisa ula) ngemu watak sombong.',
       sourceReference: 'Serat Wulangreh pupuh Gambuh',
     ),
 
@@ -309,7 +346,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Falsafah luhur "Urip iku urup" ngemu teges yaiku urip kudu...',
-      glyph: 'ꦲꦸꦫꦸꦥ꧀',
+      glyph: '',
       options: [
         'Menehi pepadhang lan paedah marang sapadha-padha',
         'Kaya geni kang ngobong omah',
@@ -317,7 +354,8 @@ class Unit5Questions {
         'Golek dhuwit sakakeh-akehe',
       ],
       correctIndex: 0,
-      explanation: '"Urip iku urup" tegese urip kita kudu murup (bernyala) menehi manfaat tumrap wong liya.',
+      explanation:
+          '"Urip iku urup" tegese urip kita kudu murup (bernyala) menehi manfaat tumrap wong liya.',
       sourceReference: 'Filosofi Gesang Jawa',
     ),
     QuizQuestion(
@@ -326,7 +364,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Falsafah "Memayu hayuning bawana" ngemu teges...',
-      glyph: 'ꦧꦮꦤ',
+      glyph: '',
       options: [
         'Njaga katentreman, kaselarasan, lan lestari alam semesta',
         'Golek bandha donya saakeh-akehe kanggo kamulyan pribadi',
@@ -334,7 +372,8 @@ class Unit5Questions {
         'Nguasani wewengkon liya supaya dadi bangsa kang kuwasa',
       ],
       correctIndex: 0,
-      explanation: 'Memayu hayuning bawana tegese ngupaya marang kaselametan, kaendahan, lan katentremaning jagad raya.',
+      explanation:
+          'Memayu hayuning bawana tegese ngupaya marang kaselametan, kaendahan, lan katentremaning jagad raya.',
       sourceReference: 'Filsafat Budaya Jawa Kraton',
     ),
     QuizQuestion(
@@ -343,7 +382,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Piwulang "Aja dumeh" ngelingake manungsa supaya ora...',
-      glyph: 'ꦢꦸꦩꦺꦃ',
+      glyph: '',
       options: [
         'Sombong nalika nduweni pangkat, kasugihan, utawa rupa ayu/bagus',
         'Sregep nyambut gawe kanggo nyukupi kaperluwan kulawarga',
@@ -351,7 +390,8 @@ class Unit5Questions {
         'Nindakake ibadah lan dedonga marang Gusti Kang Akarya Jagad',
       ],
       correctIndex: 0,
-      explanation: '"Aja dumeh" (jangan mentang-mentang) mulangake manawa kabeh kamulyan ing donya mung titipan.',
+      explanation:
+          '"Aja dumeh" (jangan mentang-mentang) mulangake manawa kabeh kamulyan ing donya mung titipan.',
       sourceReference: 'Piwulang Luhur Jawa',
     ),
     QuizQuestion(
@@ -360,7 +400,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Falsafah "Sangkan paraning dumadi" ngemu piwulang bab...',
-      glyph: 'ꦱꦁꦏꦤ꧀',
+      glyph: '',
       options: [
         'Asal-usul lan tujuwaning manungsa bali marang Gusti Kang Akarya Jagad',
         'Tata cara golek bathi lan kasugihan donya kanthi cepet',
@@ -368,7 +408,8 @@ class Unit5Questions {
         'Paugeran nulis layang resmi marang sesepuh lan pamarentah',
       ],
       correctIndex: 0,
-      explanation: 'Sangkan paraning dumadi yaiku falsafah spiritual saka ngendi manungsa asale lan menyang ngendi bakal bali.',
+      explanation:
+          'Sangkan paraning dumadi yaiku falsafah spiritual saka ngendi manungsa asale lan menyang ngendi bakal bali.',
       sourceReference: 'Kajawen & Filsafat Ketuhanan',
     ),
     QuizQuestion(
@@ -376,8 +417,9 @@ class Unit5Questions {
       topicKey: 'filosofi_kehidupan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Unen-unen "Alon-alon waton kelakon" asring disalahtegesi males, kamangka makna asline yaiku...',
-      glyph: 'ꦏꦼꦭꦏꦺꦴꦤ꧀',
+      prompt:
+          'Unen-unen "Alon-alon waton kelakon" asring disalahtegesi males, kamangka makna asline yaiku...',
+      glyph: '',
       options: [
         'Nindakake samubarang kanthi ngati-ati, tliti, lan slamet tujuane',
         'Mlaku alon-alon amarga wegah tumandang gawe ing saben dinane',
@@ -385,7 +427,8 @@ class Unit5Questions {
         'Pasrah marang kahanan tanpa nindakake ikhtiyar lan pambudidaya',
       ],
       correctIndex: 0,
-      explanation: 'Makna asline yaiku kehati-hatian, perhitungan mateng, lan ngutamakake kaslametan (safety first).',
+      explanation:
+          'Makna asline yaiku kehati-hatian, perhitungan mateng, lan ngutamakake kaslametan (safety first).',
       sourceReference: 'Filsafat Jawa: Wawasan Gesang',
     ),
     QuizQuestion(
@@ -393,8 +436,9 @@ class Unit5Questions {
       topicKey: 'filosofi_kehidupan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Falsafah kepemimpinan Ki Hajar Dewantara "Ing ngarsa sung tuladha, ing madya mangun karsa, ..." teruse yaiku...',
-      glyph: 'ꦲꦤ꧀ꦢꦪꦤꦶ',
+      prompt:
+          'Falsafah kepemimpinan Ki Hajar Dewantara "Ing ngarsa sung tuladha, ing madya mangun karsa, ..." teruse yaiku...',
+      glyph: '',
       options: [
         'Tut wuri handayani',
         'Jer basuki mawa beya',
@@ -402,7 +446,8 @@ class Unit5Questions {
         'Ajining dhiri lathi',
       ],
       correctIndex: 0,
-      explanation: '"Tut wuri handayani" tegese saka mburi menehi panyengkuyung lan daya kekuwatan.',
+      explanation:
+          '"Tut wuri handayani" tegese saka mburi menehi panyengkuyung lan daya kekuwatan.',
       sourceReference: 'Trilogi Pendidikan Ki Hajar Dewantara',
     ),
 
@@ -414,11 +459,13 @@ class Unit5Questions {
       topicKey: 'tradisi_jawa',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Upacara adat Jawa nalika bayi umur pitung sasi sepisanan ngidak bumi diarani...',
-      glyph: 'ꦱꦶꦠꦺꦤ꧀',
+      prompt:
+          'Upacara adat Jawa nalika bayi umur pitung sasi sepisanan ngidak bumi diarani...',
+      glyph: '',
       options: ['Tedhak siten', 'Mitoni / Tingkeban', 'Siraman', 'Brokohan'],
       correctIndex: 0,
-      explanation: 'Tedhak siten (mudhun lemah) ditindakake nalika bocah umur 7 lapan (udakara 7-8 sasi).',
+      explanation:
+          'Tedhak siten (mudhun lemah) ditindakake nalika bocah umur 7 lapan (udakara 7-8 sasi).',
       sourceReference: 'Pepak Basa Jawa: Upacara Adat Jawa',
     ),
     QuizQuestion(
@@ -426,11 +473,13 @@ class Unit5Questions {
       topicKey: 'tradisi_jawa',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Upacara adat slametan tumrap calon ibu nalika ngandhut pitung sasi diarani...',
-      glyph: 'ꦩꦶꦠꦺꦴꦤꦶ',
+      prompt:
+          'Upacara adat slametan tumrap calon ibu nalika ngandhut pitung sasi diarani...',
+      glyph: '',
       options: ['Tedhak siten', 'Mitoni / Tingkeban', 'Brokohan', 'Sepasaran'],
       correctIndex: 1,
-      explanation: 'Mitoni asale saka tembung pitu (7 sasi kandhutan) kanggo nyuwun kaslametan ibu lan bayi.',
+      explanation:
+          'Mitoni asale saka tembung pitu (7 sasi kandhutan) kanggo nyuwun kaslametan ibu lan bayi.',
       sourceReference: 'Pepak Basa Jawa: Upacara Adat Jawa',
     ),
     QuizQuestion(
@@ -438,8 +487,9 @@ class Unit5Questions {
       topicKey: 'tradisi_jawa',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ing upacara Tedhak Siten, piranti wujud kurungan pitik nglambangake...',
-      glyph: 'ꦏꦸꦫꦸꦔꦤ꧀',
+      prompt:
+          'Ing upacara Tedhak Siten, piranti wujud kurungan pitik nglambangake...',
+      glyph: '',
       options: [
         'Pralambang manawa bocah wis mlebu ing alam bebrayan lan milih dalan uripe',
         'Papan kanggo nglatih bocah supaya bisa ngingu lan nresnani pitik',
@@ -447,7 +497,8 @@ class Unit5Questions {
         'Papan dolanan tradhisional kanggo nylametake bocah saka bebaya',
       ],
       correctIndex: 0,
-      explanation: 'Kurungan pitik nglambangake donya bebrayan ing ngendi bocah bakal milih profesi lan pakaryane.',
+      explanation:
+          'Kurungan pitik nglambangake donya bebrayan ing ngendi bocah bakal milih profesi lan pakaryane.',
       sourceReference: 'Makna Simbolis Tedhak Siten',
     ),
     QuizQuestion(
@@ -455,8 +506,9 @@ class Unit5Questions {
       topicKey: 'tradisi_jawa',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Upacara Sekaten ing Surakarta lan Yogyakarta dianakake kanggo mengeti dina...',
-      glyph: 'ꦱꦼꦏꦠꦺꦤ꧀',
+      prompt:
+          'Upacara Sekaten ing Surakarta lan Yogyakarta dianakake kanggo mengeti dina...',
+      glyph: '',
       options: [
         'Maulid Nabi Muhammad SAW (wiyosane Nabi)',
         'Dina Riyaya Idul Fitri lan Syawalan',
@@ -464,7 +516,8 @@ class Unit5Questions {
         'Upacara Panen Pari lan Wiwitan',
       ],
       correctIndex: 0,
-      explanation: 'Sekaten (saka syahadatain) dianakake saben wulan Mulud kanggo mengeti Maulid Nabi Muhammad SAW.',
+      explanation:
+          'Sekaten (saka syahadatain) dianakake saben wulan Mulud kanggo mengeti Maulid Nabi Muhammad SAW.',
       sourceReference: 'Tradisi Sekaten Kraton Surakarta & Yogyakarta',
     ),
     QuizQuestion(
@@ -472,11 +525,18 @@ class Unit5Questions {
       topicKey: 'tradisi_jawa',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Upacara ngresiki dhusun / desa kanthi donga bebarengan lan pagelaran wayang diarani...',
-      glyph: 'ꦫꦼꦱꦶꦏ꧀',
-      options: ['Bersih Desa / Merti Desa', 'Tedhak Siten', 'Wiwitan', 'Nyadran'],
+      prompt:
+          'Upacara ngresiki dhusun / desa kanthi donga bebarengan lan pagelaran wayang diarani...',
+      glyph: '',
+      options: [
+        'Bersih Desa / Merti Desa',
+        'Tedhak Siten',
+        'Wiwitan',
+        'Nyadran',
+      ],
       correctIndex: 0,
-      explanation: 'Bersih desa utawa merti desa yaiku wujud syukur warga dhusun sawise panen.',
+      explanation:
+          'Bersih desa utawa merti desa yaiku wujud syukur warga dhusun sawise panen.',
       sourceReference: 'Adat Istiadat Jawa',
     ),
     QuizQuestion(
@@ -484,8 +544,9 @@ class Unit5Questions {
       topicKey: 'tradisi_jawa',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Upacara "Siraman" sadurunge ijab kabul penganten ngemu makna pralambang yaiku...',
-      glyph: 'ꦱꦶꦫꦩꦤ꧀',
+      prompt:
+          'Upacara "Siraman" sadurunge ijab kabul penganten ngemu makna pralambang yaiku...',
+      glyph: '',
       options: [
         'Ngresiki raga lan jiwa saka sakehing rereged sadurunge ngambah urip anyar',
         'Adus banyu kembang amarga hawa panas ing mangsa ketiga nggentheng',
@@ -493,7 +554,8 @@ class Unit5Questions {
         'Nindakake dolanan banyu sinambi ngematake swaraning pradangga',
       ],
       correctIndex: 0,
-      explanation: 'Siraman kanthi banyu pitung sumber nglambangake reresik lair lan batin.',
+      explanation:
+          'Siraman kanthi banyu pitung sumber nglambangake reresik lair lan batin.',
       sourceReference: 'Tata Cara Penganten Jawa',
     ),
 
@@ -506,10 +568,11 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Pandhawa lima iku cacahe ana pira?',
-      glyph: 'ꦭꦶꦩ',
+      glyph: '',
       options: ['3 satriya', '5 satriya', '7 satriya', '100 satriya'],
       correctIndex: 1,
-      explanation: 'Pandhawa lima cacahe ana 5 yaiku putrane Prabu Pandhu Dewanata.',
+      explanation:
+          'Pandhawa lima cacahe ana 5 yaiku putrane Prabu Pandhu Dewanata.',
       sourceReference: 'Pepak Basa Jawa: Wayang Purwa',
     ),
     QuizQuestion(
@@ -518,10 +581,16 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Satriya pambarep (nomer 1) ing Pandhawa Lima yaiku...',
-      glyph: 'ꦥꦸꦤ꧀ꦠꦢꦺꦮ',
-      options: ['Puntadewa (Yudhistira)', 'Werkudara (Bima)', 'Janaka (Arjuna)', 'Nakula'],
+      glyph: '',
+      options: [
+        'Puntadewa (Yudhistira)',
+        'Werkudara (Bima)',
+        'Janaka (Arjuna)',
+        'Nakula',
+      ],
       correctIndex: 0,
-      explanation: 'Puntadewa yaiku putra mbarep kang nduweni watak sabar, jujur, lan getih putih.',
+      explanation:
+          'Puntadewa yaiku putra mbarep kang nduweni watak sabar, jujur, lan getih putih.',
       sourceReference: 'Pepak Basa Jawa: Tokoh Pandhawa',
     ),
     QuizQuestion(
@@ -529,11 +598,13 @@ class Unit5Questions {
       topicKey: 'budaya_kesenian',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Satriya nomer loro ing Pandhawa kang gagah prakosa lan satriya ing Jodhipati yaiku...',
-      glyph: 'ꦮꦼꦂꦏꦸꦢꦫ',
+      prompt:
+          'Satriya nomer loro ing Pandhawa kang gagah prakosa lan satriya ing Jodhipati yaiku...',
+      glyph: '',
       options: ['Janaka', 'Werkudara (Bima)', 'Sadewa', 'Puntadewa'],
       correctIndex: 1,
-      explanation: 'Raden Werkudara utawa Bima satriya ing Jodhipati kanthi kuku Pancanaka.',
+      explanation:
+          'Raden Werkudara utawa Bima satriya ing Jodhipati kanthi kuku Pancanaka.',
       sourceReference: 'Pepak Basa Jawa: Tokoh Pandhawa',
     ),
     QuizQuestion(
@@ -541,11 +612,13 @@ class Unit5Questions {
       topicKey: 'budaya_kesenian',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Satriya panengah Pandhawa kang bagus rupane lan satriya ing Madukara yaiku...',
-      glyph: 'ꦗꦤꦏ',
+      prompt:
+          'Satriya panengah Pandhawa kang bagus rupane lan satriya ing Madukara yaiku...',
+      glyph: '',
       options: ['Janaka (Arjuna)', 'Werkudara', 'Puntadewa', 'Nakula'],
       correctIndex: 0,
-      explanation: 'Raden Janaka utawa Arjuna yaiku panengah Pandhawa satriya ing Madukara.',
+      explanation:
+          'Raden Janaka utawa Arjuna yaiku panengah Pandhawa satriya ing Madukara.',
       sourceReference: 'Pepak Basa Jawa: Tokoh Pandhawa',
     ),
     QuizQuestion(
@@ -554,10 +627,16 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Pandhawa kembar kang lair saka Dewi Madrim yaiku...',
-      glyph: 'ꦤꦏꦸꦭ',
-      options: ['Werkudara lan Janaka', 'Puntadewa lan Bima', 'Nakula lan Sadewa', 'Semar lan Gareng'],
+      glyph: '',
+      options: [
+        'Werkudara lan Janaka',
+        'Puntadewa lan Bima',
+        'Nakula lan Sadewa',
+        'Semar lan Gareng',
+      ],
       correctIndex: 2,
-      explanation: 'Nakula (satriya ing Sawojajar) lan Sadewa (satriya ing Bumiretawu) yaiku sedulur kembar.',
+      explanation:
+          'Nakula (satriya ing Sawojajar) lan Sadewa (satriya ing Bumiretawu) yaiku sedulur kembar.',
       sourceReference: 'Mahabharata & Pedalangan Jawa',
     ),
     QuizQuestion(
@@ -565,8 +644,9 @@ class Unit5Questions {
       topicKey: 'budaya_kesenian',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Punakawan cacahe ana 4, urut-urutane saka bapak nganti anak ragil yaiku...',
-      glyph: 'ꦥꦸꦤꦏꦮꦤ꧀',
+      prompt:
+          'Punakawan cacahe ana 4, urut-urutane saka bapak nganti anak ragil yaiku...',
+      glyph: '',
       options: [
         'Semar, Gareng, Petruk, Bagong',
         'Petruk, Gareng, Bagong, Semar',
@@ -574,7 +654,8 @@ class Unit5Questions {
         'Gareng, Semar, Petruk, Bagong',
       ],
       correctIndex: 0,
-      explanation: 'Semar (bapak), Gareng (pambarep), Petruk (panengah), Bagong (ragil).',
+      explanation:
+          'Semar (bapak), Gareng (pambarep), Petruk (panengah), Bagong (ragil).',
       sourceReference: 'Pepak Basa Jawa: Punakawan',
     ),
 
@@ -586,8 +667,9 @@ class Unit5Questions {
       topicKey: 'situasi_padinan',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembang dolanan "Gundhul-gundhul pacul cul, gembelengan..." teruse yaiku...',
-      glyph: 'ꦒꦼꦩ꧀ꦧꦺꦭꦺꦔꦤ꧀',
+      prompt:
+          'Tembang dolanan "Gundhul-gundhul pacul cul, gembelengan..." teruse yaiku...',
+      glyph: '',
       options: [
         'Nyunggi-nyunggi wakul kul, gembelengan',
         'Ayo padha dolanan ing latar',
@@ -595,7 +677,8 @@ class Unit5Questions {
         'Sluku-sluku bathok',
       ],
       correctIndex: 0,
-      explanation: 'Tembang Gundhul-gundhul pacul lanjute: "Nyunggi-nyunggi wakul kul, gembelengan, wakul ngglimpang segane dadi saratar".',
+      explanation:
+          'Tembang Gundhul-gundhul pacul lanjute: "Nyunggi-nyunggi wakul kul, gembelengan, wakul ngglimpang segane dadi saratar".',
       sourceReference: 'Tembang Dolanan Jawa Tradhisional',
     ),
     QuizQuestion(
@@ -604,7 +687,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembang dolanan "Padhang bulan" ngajak bocah-bocah supaya...',
-      glyph: 'ꦧꦸꦭꦤ꧀',
+      glyph: '',
       options: [
         'Ayo kanca dolanan ing njaba latar sinambi mensyukuri rembulan',
         'Ayo padha turu sore ing kamar supaya sesuk ora kawanen tangi',
@@ -612,7 +695,8 @@ class Unit5Questions {
         'Mangan sega liwet bebarengan ing wayah tengah wengi kang sepi',
       ],
       correctIndex: 0,
-      explanation: '"Yo pra kanca dolan ing jaba, padhang wulan padhange kaya rina, rembulane kang ngawe-awe...".',
+      explanation:
+          '"Yo pra kanca dolan ing jaba, padhang wulan padhange kaya rina, rembulane kang ngawe-awe...".',
       sourceReference: 'Tembang Dolanan Jawa Tradhisional',
     ),
     QuizQuestion(
@@ -620,8 +704,9 @@ class Unit5Questions {
       topicKey: 'situasi_padinan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Piwulang luhur ing tembang "Gundhul-gundhul pacul" ditujokake mligi marang...',
-      glyph: 'ꦥꦩꦶꦩ꧀ꦥꦶꦤ꧀',
+      prompt:
+          'Piwulang luhur ing tembang "Gundhul-gundhul pacul" ditujokake mligi marang...',
+      glyph: '',
       options: [
         'Pamimpin supaya ora sombong lan tansah mikirake karaharjane rakyate',
         'Petani ing sawah supaya tansah nggawa pacul nalika mangkat esuk',
@@ -629,7 +714,8 @@ class Unit5Questions {
         'Bocah cilik ing desa supaya sregep dolanan bebarengan ing latar',
       ],
       correctIndex: 0,
-      explanation: 'Wakul ngglimpang segane dadi sak latar nglambangake amanat rakyat kang rusak amarga pamimpin gembelengan (sombong).',
+      explanation:
+          'Wakul ngglimpang segane dadi sak latar nglambangake amanat rakyat kang rusak amarga pamimpin gembelengan (sombong).',
       sourceReference: 'Makna Filosofis Tembang Dolanan Jawa',
     ),
     QuizQuestion(
@@ -638,7 +724,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembang "Cublak-cublak suweng" piranti dolanane nggunakake apa?',
-      glyph: 'ꦱꦸꦮꦺꦁ',
+      glyph: '',
       options: [
         'Krikil utawa suweng cilik kang dioper ing geger bocah',
         'Bal balan plastik kang dimainake ing lapangan amba',
@@ -646,7 +732,8 @@ class Unit5Questions {
         'Tali karet kang dilumpati bocah-bocah ing plataran',
       ],
       correctIndex: 0,
-      explanation: 'Cublak-cublak suweng dimainake kanthi muter krikil ing gegere kanca kang mengkurep.',
+      explanation:
+          'Cublak-cublak suweng dimainake kanthi muter krikil ing gegere kanca kang mengkurep.',
       sourceReference: 'Dolanan Tradhisional Anak Jawa',
     ),
     QuizQuestion(
@@ -654,11 +741,18 @@ class Unit5Questions {
       topicKey: 'situasi_padinan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembang "Menthog-menthog tak kandhani" ngemu piwulang supaya bocah ora duwe sifat...',
-      glyph: 'ꦩꦺꦤ꧀ꦛꦺꦴꦒ꧀',
-      options: ['Males lan wegah tumandang gawe', 'Sregep sinau', 'Pinter nembang', 'Sumeh marang liyan'],
+      prompt:
+          'Tembang "Menthog-menthog tak kandhani" ngemu piwulang supaya bocah ora duwe sifat...',
+      glyph: '',
+      options: [
+        'Males lan wegah tumandang gawe',
+        'Sregep sinau',
+        'Pinter nembang',
+        'Sumeh marang liyan',
+      ],
       correctIndex: 0,
-      explanation: '"Enak-enak ngorok ora nyambut gawe" ngelingake supaya manungsa ora kesranan males kaya menthog.',
+      explanation:
+          '"Enak-enak ngorok ora nyambut gawe" ngelingake supaya manungsa ora kesranan males kaya menthog.',
       sourceReference: 'Piwulang Luhur Tembang Dolanan',
     ),
     QuizQuestion(
@@ -666,8 +760,9 @@ class Unit5Questions {
       topicKey: 'situasi_padinan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembang "Sluku-sluku bathok, bathoke ela-elo" diripta dening para wali kanthi muatan dakwah...',
-      glyph: 'ꦧꦛꦺꦴꦏ꧀',
+      prompt:
+          'Tembang "Sluku-sluku bathok, bathoke ela-elo" diripta dening para wali kanthi muatan dakwah...',
+      glyph: '',
       options: [
         'Ngresiki batin, ngelingi Gusti, lan eling marang sedane manungsa',
         'Golek iwak ing kali bebarengan karo kanca-kanca ing wayah sore',
@@ -675,7 +770,8 @@ class Unit5Questions {
         'Ngguyu banter sasama kanca tanpa mikirake tata krama sesrawungan',
       ],
       correctIndex: 0,
-      explanation: '"Sluku-sluku bathok" ngemu piwulang eling marang pati (bathok/sirah tansah ngucap la ilaha illallah).',
+      explanation:
+          '"Sluku-sluku bathok" ngemu piwulang eling marang pati (bathok/sirah tansah ngucap la ilaha illallah).',
       sourceReference: 'Kidung lan Dakwah Walisanga',
     ),
 
@@ -688,7 +784,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sikap "tepa slira" tegese yaiku...',
-      glyph: 'ꦱ꧀ꦭꦶꦫ',
+      glyph: '',
       options: [
         'Bisa ngrasakake perasaane wong liya lan tansah ngajeni',
         'Seneng pamer kasugihan lan kepinteran marang wong liya',
@@ -696,7 +792,8 @@ class Unit5Questions {
         'Nyingkiri kabeh masalah kanthi ora gelem tetulung maneh',
       ],
       correctIndex: 0,
-      explanation: 'Tepa slira yaiku tenggang rasa, ngukur kahanan nganggo awak dhewe sadurunge tumindak marang liyan.',
+      explanation:
+          'Tepa slira yaiku tenggang rasa, ngukur kahanan nganggo awak dhewe sadurunge tumindak marang liyan.',
       sourceReference: 'Pepak Basa Jawa: Budi Pekerti',
     ),
     QuizQuestion(
@@ -704,8 +801,9 @@ class Unit5Questions {
       topicKey: 'tantangan_budaya',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Yen ana tanggamu lagi nandang lelayu (kesripahan), sikap tepa slira kang bener yaiku...',
-      glyph: 'ꦭꦼꦭꦪꦸ',
+      prompt:
+          'Yen ana tanggamu lagi nandang lelayu (kesripahan), sikap tepa slira kang bener yaiku...',
+      glyph: '',
       options: [
         'Melu nglayat lan aweh pambiyantu kanthi rasa ikhlas',
         'Nonton saka kadohan tanpa melu mbiyantu apa-apa babar pisan',
@@ -713,7 +811,8 @@ class Unit5Questions {
         'Nyalahake kahanan lan ora gelem sapa aruh marang kulawarga',
       ],
       correctIndex: 0,
-      explanation: 'Nalika ana tangga kesripahan, rasa tepa slira diwujudake kanthi nglayat lan paring pambiyantu kanthi ikhlas.',
+      explanation:
+          'Nalika ana tangga kesripahan, rasa tepa slira diwujudake kanthi nglayat lan paring pambiyantu kanthi ikhlas.',
       sourceReference: 'Filsafat Etika Jawa',
     ),
     QuizQuestion(
@@ -722,7 +821,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Sikap "mawas dhiri" tegese yaiku...',
-      glyph: 'ꦣꦶꦫꦶ',
+      glyph: '',
       options: [
         'Mriksa lan ngakoni kaluputane dhiri pribadi sadurunge mbiji wong liya',
         'Tansah nyalahake kahanan lan wong liya nalika nandhang rubeda',
@@ -730,7 +829,8 @@ class Unit5Questions {
         'Ora preduli marang kaluputan kang wus dilakoni ing madyaning bebrayan',
       ],
       correctIndex: 0,
-      explanation: 'Mawas dhiri yaiku mriksa lan ngakoni kaluputaning dhiri pribadi sadurunge nyalahake liyan.',
+      explanation:
+          'Mawas dhiri yaiku mriksa lan ngakoni kaluputaning dhiri pribadi sadurunge nyalahake liyan.',
       sourceReference: 'Filsafat Etika Jawa',
     ),
     QuizQuestion(
@@ -738,8 +838,9 @@ class Unit5Questions {
       topicKey: 'tantangan_budaya',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "guyub rukun" ing masarakat Jawa ditandhani kanthi tumindak...',
-      glyph: 'ꦒꦸꦪꦸꦧ꧀',
+      prompt:
+          'Tembung "guyub rukun" ing masarakat Jawa ditandhani kanthi tumindak...',
+      glyph: '',
       options: [
         'Gotong royong lan tulung-tinulung tanpa pamrih',
         'Tukaran lan padha pasulayan babagan donya brana',
@@ -747,7 +848,8 @@ class Unit5Questions {
         'Golek bathi kanggo awake dhewe tanpa mikirake kanca',
       ],
       correctIndex: 0,
-      explanation: 'Guyub rukun katon ing tradisi sambatan lan gotong royong warga dhusun.',
+      explanation:
+          'Guyub rukun katon ing tradisi sambatan lan gotong royong warga dhusun.',
       sourceReference: 'Tradisi Gotong Royong Jawa',
     ),
     QuizQuestion(
@@ -756,10 +858,11 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Unen-unen "Rukun agawe santosa, crah agawe..." teruse yaiku...',
-      glyph: 'ꦧꦸꦧꦿꦃ',
+      glyph: '',
       options: ['Bubrah', 'Bungah', 'Bagas', 'Berkah'],
       correctIndex: 0,
-      explanation: '"Rukun agawe santosa, crah agawe bubrah" tegese rukun ndadekake kuwat, cecongkrah ndadekake rusak.',
+      explanation:
+          '"Rukun agawe santosa, crah agawe bubrah" tegese rukun ndadekake kuwat, cecongkrah ndadekake rusak.',
       sourceReference: 'Pepak Basa Jawa: Paribasan',
     ),
     QuizQuestion(
@@ -767,8 +870,9 @@ class Unit5Questions {
       topicKey: 'tantangan_budaya',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Prinsip "Ngluruk tanpa bala, menang tanpa ngasorake" mulangake babagan...',
-      glyph: 'ꦩꦼꦤꦁ',
+      prompt:
+          'Prinsip "Ngluruk tanpa bala, menang tanpa ngasorake" mulangake babagan...',
+      glyph: '',
       options: [
         'Ungguling satriya kang bisa ngalahake mungsuh tanpa gawe wirang utawa ngremehake lawane',
         'Ngluruk perang nggunakake prajurit ewonan ing madyaning paprangan ageng',
@@ -776,7 +880,8 @@ class Unit5Questions {
         'Ngasorake mungsuh supaya kabeh wong ngerti menawa awake dhewe paling unggul',
       ],
       correctIndex: 0,
-      explanation: 'Menang tanpa ngasorake tegese nggayuh kaunggulan kanthi njaga ajining dhiri lan kaurmataning liyan.',
+      explanation:
+          'Menang tanpa ngasorake tegese nggayuh kaunggulan kanthi njaga ajining dhiri lan kaurmataning liyan.',
       sourceReference: 'Ajaran Sastrajendra & Kepemimpinan Jawa',
     ),
 
@@ -789,7 +894,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Dasanama tegese yaiku...',
-      glyph: 'ꦢꦱꦤꦩ',
+      glyph: '',
       options: [
         'Tembung pirang-pirang kang nduweni teges padha utawa sinonim',
         'Sepuluh tembung basa Kawi kuna kang angel dingerteni tegese',
@@ -797,7 +902,8 @@ class Unit5Questions {
         'Tembung petungan Jawa kang digunakake kanggo ngetung tanggalan',
       ],
       correctIndex: 0,
-      explanation: 'Dasanama (dasa = 10, nama = jeneng) yaiku sinonim utawa rimbagan tembung kang padha tegese.',
+      explanation:
+          'Dasanama (dasa = 10, nama = jeneng) yaiku sinonim utawa rimbagan tembung kang padha tegese.',
       sourceReference: 'Pepak Basa Jawa: Dasanama',
     ),
     QuizQuestion(
@@ -806,10 +912,16 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Dasanama saka tembung "srengenge" (matahari) yaiku...',
-      glyph: 'ꦱꦸꦂꦪ',
-      options: ['Surya, Bagaskara, Raditya', 'Candra, Rembulan', 'Banyu, Tirta', 'Agni, Geni'],
+      glyph: '',
+      options: [
+        'Surya, Bagaskara, Raditya',
+        'Candra, Rembulan',
+        'Banyu, Tirta',
+        'Agni, Geni',
+      ],
       correctIndex: 0,
-      explanation: 'Srengenge dasanamane surya, bagaskara, raditya, baskara, arka.',
+      explanation:
+          'Srengenge dasanamane surya, bagaskara, raditya, baskara, arka.',
       sourceReference: 'Pepak Basa Jawa: Dasanama',
     ),
     QuizQuestion(
@@ -818,8 +930,13 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Dasanama saka tembung "banyu" yaiku...',
-      glyph: 'ꦠꦶꦂꦠ',
-      options: ['Tirta, Warih, Ranukara', 'Surya, Bagaskara', 'Maruta, Bayu', 'Bawana, Bantala'],
+      glyph: '',
+      options: [
+        'Tirta, Warih, Ranukara',
+        'Surya, Bagaskara',
+        'Maruta, Bayu',
+        'Bawana, Bantala',
+      ],
       correctIndex: 0,
       explanation: 'Banyu dasanamane tirta, warih, ranu, her, sindu.',
       sourceReference: 'Pepak Basa Jawa: Dasanama',
@@ -829,8 +946,9 @@ class Unit5Questions {
       topicKey: 'tantangan_akhir',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung saroja yaiku tembung loro kang tegese meh padha digandheng dadi siji, tuladhane yaiku...',
-      glyph: 'ꦱꦫꦺꦴꦗ',
+      prompt:
+          'Tembung saroja yaiku tembung loro kang tegese meh padha digandheng dadi siji, tuladhane yaiku...',
+      glyph: '',
       options: [
         'Guyub rukun, edi peni, ayem tentrem',
         'Mangan sega, ngombe banyu, turu kepenak',
@@ -838,7 +956,8 @@ class Unit5Questions {
         'Mlaku-mlaku, mlayu-mlayu, ngguyu-ngguyu',
       ],
       correctIndex: 0,
-      explanation: 'Tembung saroja nggandheng rong tembung teges padha kanggo nyanthet teges kang luwih anteb.',
+      explanation:
+          'Tembung saroja nggandheng rong tembung teges padha kanggo nyanthet teges kang luwih anteb.',
       sourceReference: 'Pepak Basa Jawa: Tembung Saroja',
     ),
     QuizQuestion(
@@ -846,11 +965,18 @@ class Unit5Questions {
       topicKey: 'tantangan_akhir',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung entar tegese tembung kiasan (makna konotatif). Tembung "gedhe endhase" tegese...',
-      glyph: 'ꦲꦺꦤ꧀ꦠꦂ',
-      options: ['Sombong utawa umuk', 'Sirah kang kena lelara', 'Wong pinter banget', 'Bocah cilik'],
+      prompt:
+          'Tembung entar tegese tembung kiasan (makna konotatif). Tembung "gedhe endhase" tegese...',
+      glyph: '',
+      options: [
+        'Sombong utawa umuk',
+        'Sirah kang kena lelara',
+        'Wong pinter banget',
+        'Bocah cilik',
+      ],
       correctIndex: 0,
-      explanation: 'Gedhe endhase yaiku tembung entar kang tegese umuk utawa sombong.',
+      explanation:
+          'Gedhe endhase yaiku tembung entar kang tegese umuk utawa sombong.',
       sourceReference: 'Pepak Basa Jawa: Tembung Entar',
     ),
     QuizQuestion(
@@ -858,8 +984,9 @@ class Unit5Questions {
       topicKey: 'tantangan_akhir',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung entar "dawa tangane" ngemu teges yaiku wong kang seneng...',
-      glyph: 'ꦕꦺꦴꦭꦺꦴꦁ',
+      prompt:
+          'Tembung entar "dawa tangane" ngemu teges yaiku wong kang seneng...',
+      glyph: '',
       options: [
         'Colong jupuk (tumindak nyolong duweke liyan)',
         'Menehi pitulungan kanthi ikhlas tanpa pamrih',
@@ -867,7 +994,8 @@ class Unit5Questions {
         'Nggambar sesawangan alam ing buku gambar',
       ],
       correctIndex: 0,
-      explanation: 'Dawa tangane yaiku paribasan/tembung entar tumrap wong kang seneng njupuk barang liyan.',
+      explanation:
+          'Dawa tangane yaiku paribasan/tembung entar tumrap wong kang seneng njupuk barang liyan.',
       sourceReference: 'Bausastra Jawa: Tembung Entar',
     ),
 
@@ -880,8 +1008,13 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi Akhir] Sapaan krama ing wayah esuk yaiku...',
-      glyph: 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ',
-      options: ['Sugeng enjang', 'Sugeng siang', 'Sugeng sonten', 'Sugeng dalu'],
+      glyph: '',
+      options: [
+        'Sugeng enjang',
+        'Sugeng siang',
+        'Sugeng sonten',
+        'Sugeng dalu',
+      ],
       correctIndex: 0,
       explanation: '[Materi Unit 1] "Sugeng enjang" tegese selamat pagi.',
       sourceReference: 'Grand Finale Evaluasi Akhir JawaLoka (Unit 1)',
@@ -892,7 +1025,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi Akhir] Pira cacahe aksara Jawa dhasar (legena)?',
-      glyph: '꧒꧐',
+      glyph: '',
       options: ['18', '20', '24', '26'],
       correctIndex: 1,
       explanation: '[Materi Unit 2] Aksara legena cacahe ana 20 aksara.',
@@ -904,7 +1037,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi Akhir] Sandhangan swara kanggo vokal "u" yaiku...',
-      glyph: 'ꦸ',
+      glyph: '',
       options: ['Wulu', 'Suku', 'Taling', 'Pepet'],
       correctIndex: 1,
       explanation: '[Materi Unit 3] Suku (ꦸ) ngasilake swara vokal u.',
@@ -915,11 +1048,13 @@ class Unit5Questions {
       topicKey: 'evaluasi_akhir',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi Akhir] Tembung "mangan" krama inggile kagem bapak yaiku...',
-      glyph: 'ꦝꦲꦂ',
+      prompt:
+          '[Evaluasi Akhir] Tembung "mangan" krama inggile kagem bapak yaiku...',
+      glyph: '',
       options: ['Nedha', 'Dhahar', 'Ngunjuk', 'Sare'],
       correctIndex: 1,
-      explanation: '[Materi Unit 4] Dhahar minangka krama inggil kagem tiyang sepuh.',
+      explanation:
+          '[Materi Unit 4] Dhahar minangka krama inggil kagem tiyang sepuh.',
       sourceReference: 'Grand Finale Evaluasi Akhir JawaLoka (Unit 4)',
     ),
     QuizQuestion(
@@ -927,8 +1062,9 @@ class Unit5Questions {
       topicKey: 'evaluasi_akhir',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi Akhir] Paribasan "Ajining dhiri dumunung ing..." teruse yaiku...',
-      glyph: 'ꦭꦛꦶ',
+      prompt:
+          '[Evaluasi Akhir] Paribasan "Ajining dhiri dumunung ing..." teruse yaiku...',
+      glyph: '',
       options: ['Busana', 'Lathi', 'Raga', 'Drajat'],
       correctIndex: 1,
       explanation: '[Materi Unit 5] Ajining dhiri dumunung ing lathi (ucapan).',
@@ -940,7 +1076,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi Akhir] Satriya panengah Pandhawa yaiku Raden...',
-      glyph: 'ꦗꦤꦏ',
+      glyph: '',
       options: ['Puntadewa', 'Werkudara', 'Janaka (Arjuna)', 'Sadewa'],
       correctIndex: 2,
       explanation: '[Materi Unit 5] Janaka yaiku panengahing Pandhawa Lima.',
@@ -952,8 +1088,13 @@ class Unit5Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi Akhir] Tembung ꦱꦶꦠꦶꦱꦼꦤꦼꦁꦩꦕ wacane kepriye?',
-      glyph: 'ꦱꦶꦠꦶꦱꦼꦤꦼꦁꦩꦕ',
-      options: ['Siti seneng maca', 'Siti tuku buku', 'Siti menyang pasar', 'Siti sinau nulis'],
+      glyph: '',
+      options: [
+        'Siti seneng maca',
+        'Siti tuku buku',
+        'Siti menyang pasar',
+        'Siti sinau nulis',
+      ],
       correctIndex: 0,
       explanation: '[Materi Unit 3] ꦱꦶꦠꦶ (Siti) ꦱꦼꦤꦼꦁ (seneng) ꦩꦕ (maca).',
       sourceReference: 'Grand Finale Evaluasi Akhir JawaLoka (Unit 3)',
@@ -963,11 +1104,18 @@ class Unit5Questions {
       topicKey: 'evaluasi_akhir',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi Akhir] Nalika masarakat gotong royong njaga katentreman lan kalestarianing alam lingkungan, tumindak iku selaras karo piwulang luhur...',
-      glyph: 'ꦧꦮꦤ',
-      options: ['Memayu hayuning bawana', 'Sura dira jayaningrat', 'Ajining dhiri ing lathi', 'Urip mung mampir ngombe'],
+      prompt:
+          '[Evaluasi Akhir] Nalika masarakat gotong royong njaga katentreman lan kalestarianing alam lingkungan, tumindak iku selaras karo piwulang luhur...',
+      glyph: '',
+      options: [
+        'Memayu hayuning bawana',
+        'Sura dira jayaningrat',
+        'Ajining dhiri ing lathi',
+        'Urip mung mampir ngombe',
+      ],
       correctIndex: 0,
-      explanation: '[Materi Unit 5] Memayu hayuning bawana ngemu teges nindakake pakaryan becik kanggo kalestarianing jagad lan rahayuning bebrayan.',
+      explanation:
+          '[Materi Unit 5] Memayu hayuning bawana ngemu teges nindakake pakaryan becik kanggo kalestarianing jagad lan rahayuning bebrayan.',
       sourceReference: 'Grand Finale Evaluasi Akhir JawaLoka: Falsafah Luhur',
     ),
     QuizQuestion(
@@ -975,11 +1123,13 @@ class Unit5Questions {
       topicKey: 'evaluasi_akhir',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi Akhir] Pasangan aksara kang manggon sejajar ing sisihe yaiku...',
-      glyph: 'ꦲꦱꦥ',
+      prompt:
+          '[Evaluasi Akhir] Pasangan aksara kang manggon sejajar ing sisihe yaiku...',
+      glyph: '',
       options: ['Ha, Sa, Pa', 'Na, Ca, Ra', 'Ka, Da, Ta', 'Ma, Ga, Ba'],
       correctIndex: 0,
-      explanation: '[Materi Unit 3] Pasangan Ha, Sa, lan Pa manggon sejajar ing tengen.',
+      explanation:
+          '[Materi Unit 3] Pasangan Ha, Sa, lan Pa manggon sejajar ing tengen.',
       sourceReference: 'Grand Finale Evaluasi Akhir JawaLoka (Unit 3)',
     ),
     QuizQuestion(
@@ -987,8 +1137,9 @@ class Unit5Questions {
       topicKey: 'evaluasi_akhir',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi Akhir] Paugeran unggah-ungguh basa kang bener tumrap awake dhewe yaiku...',
-      glyph: 'ꦥꦻꦴꦒꦼꦫꦤ꧀',
+      prompt:
+          '[Evaluasi Akhir] Paugeran unggah-ungguh basa kang bener tumrap awake dhewe yaiku...',
+      glyph: '',
       options: [
         'Awake dhewe ora kena ngunggahake dhiri nganggo basa krama inggil',
         'Awake dhewe kudu tansah krama inggil marang sapa wae tanpa wates',
@@ -996,7 +1147,8 @@ class Unit5Questions {
         'Ora kena nggunakake basa Jawa nalika guneman ing pasrawungan resmi',
       ],
       correctIndex: 0,
-      explanation: '[Materi Unit 1 & 4] Awake dhewe tansah ngasorake dhiri, krama inggil mung kagem ngurmati tiyang sanes.',
+      explanation:
+          '[Materi Unit 1 & 4] Awake dhewe tansah ngasorake dhiri, krama inggil mung kagem ngurmati tiyang sanes.',
       sourceReference: 'Grand Finale Evaluasi Akhir JawaLoka (Unit 1 & 4)',
     ),
   ];

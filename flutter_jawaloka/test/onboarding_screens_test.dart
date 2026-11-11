@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
-import 'package:flutter_jawaloka/features/splash/presentation/screens/splash_screen.dart';
+import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/language_selection_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/login_screen.dart';
@@ -9,34 +9,22 @@ import 'package:flutter_jawaloka/features/auth/presentation/widgets/primary_butt
 import 'helpers/pump_app.dart';
 
 void main() {
-  group('Onboarding Screens (Splash, Pilih Bahasa, Daftar)', () {
+  group('Onboarding Screens (Get Started, Pilih Bahasa, Daftar)', () {
     // ─── Test (a): Splash Screen ───────────────────────────────────────────
     testWidgets(
-      'Splash: tidak memuat teks "LOGO" maupun "09:41" dan berpindah ke Pilih Bahasa setelah splashMinDuration',
+      'Get Started: tidak memuat teks "LOGO" maupun "09:41" dan menampilkan brand JawaLoka',
       (WidgetTester tester) async {
         await tester.pumpApp(
-          const SizedBox.shrink(),
-          initialRoute: AppRouter.splash,
-          routes: {
-            AppRouter.splash: (context) => const SplashScreen(),
-            '/language_selection': (context) =>
-                const LanguageSelectionScreen(),
-          },
+          const GetStartedScreen(enableAmbientAnimation: false),
+          initialRoute: AppRouter.getStarted,
           onGenerateRoute: AppRouter.generateRoute,
         );
 
         // Verifikasi tidak ada teks tiruan
         expect(find.text('LOGO'), findsNothing);
         expect(find.text('09:41'), findsNothing);
-        expect(find.byType(SplashScreen), findsOneWidget);
-
-        // Menunggu durasi splash minimum (fake async)
-        await tester.pump(SplashScreen.splashMinDuration);
-        await tester.pump(const Duration(milliseconds: 500));
-        await tester.pumpAndSettle();
-
-        // Berpindah ke Pilih Bahasa
-        expect(find.byType(LanguageSelectionScreen), findsOneWidget);
+        expect(find.byType(GetStartedScreen), findsOneWidget);
+        expect(find.text('JawaLoka'), findsOneWidget);
       },
     );
 

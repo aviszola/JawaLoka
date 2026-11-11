@@ -6,7 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/presentation/widgets/celebration_confetti_painter.dart';
-import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
+import '../../../../core/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 
@@ -452,7 +452,8 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                 ),
                 if (_rewards.length > 1)
                   TextSpan(
-                    text: ' ${context.l10n.levelUpOtherRewardsCount(_rewards.length - 1)}',
+                    text:
+                        ' ${context.l10n.levelUpOtherRewardsCount(_rewards.length - 1)}',
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       color: AppColors.inkMuted,

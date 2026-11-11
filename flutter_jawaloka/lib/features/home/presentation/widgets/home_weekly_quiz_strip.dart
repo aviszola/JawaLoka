@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
-import '../../../../core/theme/app_colors.dart';
 
-/// 7-day strip displaying quiz completion status for the current week.
+/// Strip Kuis Mingguan bernuansa kuning pastel hangat.
+/// Kotak ikon pastel kuning di kiri atas, judul & hitungan, serta 7 lingkaran hari.
 class HomeWeeklyQuizStrip extends StatelessWidget {
   const HomeWeeklyQuizStrip({super.key});
 
@@ -13,7 +13,6 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
     final profile = ProfileScope.maybeOf(context);
     final quizzesThisWeek = profile?.quizzesThisWeek ?? 0;
     final completedDays = profile?.completedQuizDaysOfWeek ?? const <int>[];
-    final streakDays = profile?.streakDays ?? 0;
 
     final dayNames = [
       l10n.dayMon,
@@ -27,15 +26,15 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: AppColors.border),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: AppColors.ink.withValues(alpha: 0.03),
-            blurRadius: 6,
+            color: const Color(0xFF231C14).withValues(alpha: 0.04),
+            blurRadius: 8,
             offset: const Offset(0, 2),
           ),
         ],
@@ -43,116 +42,141 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // ── Baris Atas: Ikon + Judul & Subjudul + Aksi ──
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.calendar_today_rounded,
-                    size: 16,
-                    color: AppColors.amberDark,
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFF3D6),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(
+                    color: const Color(0xFFF4D483).withValues(alpha: 0.4),
+                    width: 1,
                   ),
-                  const SizedBox(width: 8),
+                ),
+                child: const Icon(
+                  Icons.bar_chart_rounded,
+                  color: Color(0xFFB87812),
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.homeWeeklyStripTitle,
+                      style: const TextStyle(
+                        color: Color(0xFF231C14),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      l10n.homeWeeklyCompletedCount(quizzesThisWeek),
+                      style: const TextStyle(
+                        color: Color(0xFF7C6E5E),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 6),
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   Text(
-                    l10n.homeWeeklyStripTitle,
-                    style: const TextStyle(
-                      color: AppColors.ink,
-                      fontSize: 14,
+                    'Lihat',
+                    style: TextStyle(
+                      color: Color(0xFF9E6E1A),
+                      fontSize: 13,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                  SizedBox(width: 2),
+                  Icon(
+                    Icons.arrow_forward_rounded,
+                    size: 14,
+                    color: Color(0xFF9E6E1A),
+                  ),
                 ],
-              ),
-              Text(
-                l10n.homeWeeklyCompletedCount(quizzesThisWeek),
-                style: const TextStyle(
-                  color: AppColors.inkSecondary,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                ),
               ),
             ],
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 16),
 
-          // 7-day circles
+          // ── Baris 7 Lingkaran Hari (Sen - Min) dengan Pembagian Rata ──
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(7, (i) {
               final dayIndex = i + 1; // 1 = Sen, 7 = Min
               final isCompleted = completedDays.contains(dayIndex);
 
-              return Column(
-                children: [
-                  Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: isCompleted
-                          ? AppColors.amber
-                          : const Color(0xFFF0EBE3),
-                      shape: BoxShape.circle,
-                      border: Border.all(
+              return Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
                         color: isCompleted
-                            ? AppColors.amberDark
-                            : AppColors.border,
-                        width: 1.5,
+                            ? const Color(0xFFF5B838)
+                            : const Color(0xFFFBF4E4),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: isCompleted
+                              ? const Color(0xFFDC9E1A)
+                              : const Color(0xFFEEDBB2),
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Center(
+                        child: isCompleted
+                            ? const Icon(
+                                Icons.check_rounded,
+                                size: 17,
+                                color: Colors.white,
+                              )
+                            : Container(
+                                width: 5,
+                                height: 5,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFFC7B38E),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
                       ),
                     ),
-                    child: Center(
-                      child: isCompleted
-                          ? const Icon(
-                              Icons.check_rounded,
-                              size: 18,
-                              color: AppColors.ink,
-                            )
-                          : Container(
-                              width: 6,
-                              height: 6,
-                              decoration: const BoxDecoration(
-                                color: AppColors.inkMuted,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
+                    const SizedBox(height: 6),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        dayNames[i],
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: isCompleted
+                              ? FontWeight.w700
+                              : FontWeight.w500,
+                          color: isCompleted
+                              ? const Color(0xFF231C14)
+                              : const Color(0xFF8A7E70),
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    dayNames[i],
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: isCompleted
-                          ? FontWeight.w700
-                          : FontWeight.w500,
-                      color: isCompleted ? AppColors.ink : AppColors.inkMuted,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }),
-          ),
-          const SizedBox(height: 12),
-          const Divider(height: 1, color: AppColors.border),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const Icon(
-                Icons.info_outline_rounded,
-                size: 14,
-                color: AppColors.inkMuted,
-              ),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  l10n.homeWeeklyStreakInfo(streakDays),
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: AppColors.inkSecondary,
-                  ),
-                ),
-              ),
-            ],
           ),
         ],
       ),

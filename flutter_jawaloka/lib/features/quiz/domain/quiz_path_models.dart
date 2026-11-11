@@ -2,11 +2,7 @@ import 'package:flutter/widgets.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 
 /// Interactive state of a learning path node.
-enum NodeStatus {
-  completed,
-  current,
-  locked,
-}
+enum NodeStatus { completed, current, locked }
 
 /// Supported types of nodes in the JawaLoka learning path.
 enum QuizNodeType {

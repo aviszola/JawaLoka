@@ -382,6 +382,54 @@ abstract class AppLocalizations {
   /// **'Daftar'**
   String get loginRegisterLink;
 
+  /// Pertanyaan tingkat kemahiran belajar di login
+  ///
+  /// In id, this message translates to:
+  /// **'Tingkat Kemampuan Bahasa Jawa'**
+  String get loginQuestionLevelTitle;
+
+  /// Pilihan tingkat pemula
+  ///
+  /// In id, this message translates to:
+  /// **'Pemula (Baru Belajar)'**
+  String get loginLevelBeginner;
+
+  /// Pilihan tingkat menengah
+  ///
+  /// In id, this message translates to:
+  /// **'Menengah (Kosakata Dasar)'**
+  String get loginLevelIntermediate;
+
+  /// Pilihan tingkat mahir
+  ///
+  /// In id, this message translates to:
+  /// **'Mahir (Unggah-ungguh)'**
+  String get loginLevelAdvanced;
+
+  /// Pertanyaan tujuan belajar di login
+  ///
+  /// In id, this message translates to:
+  /// **'Tujuan Utama Belajar'**
+  String get loginQuestionGoalTitle;
+
+  /// Pilihan target belajar aksara Jawa
+  ///
+  /// In id, this message translates to:
+  /// **'Membaca & Menulis Aksara'**
+  String get loginGoalAksara;
+
+  /// Pilihan target belajar percakapan
+  ///
+  /// In id, this message translates to:
+  /// **'Percakapan Sehari-hari'**
+  String get loginGoalConversation;
+
+  /// Pilihan target belajar budaya
+  ///
+  /// In id, this message translates to:
+  /// **'Seni & Tradisi Jawa'**
+  String get loginGoalCulture;
+
   /// Judul utama halaman pendaftaran
   ///
   /// In id, this message translates to:
@@ -429,6 +477,18 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Masuk'**
   String get registerLoginLink;
+
+  /// Tombol untuk melewati pendaftaran dan langsung masuk sebagai tamu
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut sebagai Tamu'**
+  String get authContinueAsGuest;
+
+  /// Tautan alternatif untuk langsung mulai belajar tanpa login
+  ///
+  /// In id, this message translates to:
+  /// **'Lewati & Mulai Belajar'**
+  String get authSkipToLearn;
 
   /// Label tab navigasi Beranda
   ///
@@ -727,7 +787,7 @@ abstract class AppLocalizations {
   /// Subjudul modul aksara Jawa
   ///
   /// In id, this message translates to:
-  /// **'Hanacaraka — 20 aksara dasar, sandhangan & pasangan'**
+  /// **'Hanacaraka: 20 aksara dasar, sandhangan & pasangan'**
   String get learnModuleAksaraSubtitle;
 
   /// Label progres modul aksara Jawa
@@ -1375,6 +1435,96 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Mahakarya tradisi berornamen emas'**
   String get blangkonDescPusaka;
+
+  /// No description provided for @profileChooseBusanaButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Busana'**
+  String get profileChooseBusanaButton;
+
+  /// No description provided for @busanaTitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Busana'**
+  String get busanaTitle;
+
+  /// No description provided for @busanaSaveButton.
+  ///
+  /// In id, this message translates to:
+  /// **'Simpan Pilihan'**
+  String get busanaSaveButton;
+
+  /// No description provided for @busanaDescYogyakarta.
+  ///
+  /// In id, this message translates to:
+  /// **'Elegan, kebaya kutubaru khas Keraton Yogyakarta'**
+  String get busanaDescYogyakarta;
+
+  /// No description provided for @busanaDescSurakarta.
+  ///
+  /// In id, this message translates to:
+  /// **'Anggun, kebaya encim penuh ornamen batik Solo'**
+  String get busanaDescSurakarta;
+
+  /// No description provided for @busanaDescBanyumas.
+  ///
+  /// In id, this message translates to:
+  /// **'Segar, kebaya sunda polos bernuansa pesisiran'**
+  String get busanaDescBanyumas;
+
+  /// No description provided for @busanaDescKedu.
+  ///
+  /// In id, this message translates to:
+  /// **'Sederhana, busana kebaya gaya Kedu'**
+  String get busanaDescKedu;
+
+  /// No description provided for @busanaDescCirebon.
+  ///
+  /// In id, this message translates to:
+  /// **'Dinamis, kebaya bermotif mega mendung pesisir Cirebon'**
+  String get busanaDescCirebon;
+
+  /// No description provided for @busanaDescPusaka.
+  ///
+  /// In id, this message translates to:
+  /// **'Istimewa, kebaya betawi encim bermotif penuh warna'**
+  String get busanaDescPusaka;
+
+  /// No description provided for @busanaNameYogyakarta.
+  ///
+  /// In id, this message translates to:
+  /// **'Kutubaru Yogyakarta'**
+  String get busanaNameYogyakarta;
+
+  /// No description provided for @busanaNameSurakarta.
+  ///
+  /// In id, this message translates to:
+  /// **'Kebaya Surakarta'**
+  String get busanaNameSurakarta;
+
+  /// No description provided for @busanaNameBanyumas.
+  ///
+  /// In id, this message translates to:
+  /// **'Kebaya Sunda'**
+  String get busanaNameBanyumas;
+
+  /// No description provided for @busanaNameKedu.
+  ///
+  /// In id, this message translates to:
+  /// **'Kebaya Kedu'**
+  String get busanaNameKedu;
+
+  /// No description provided for @busanaNameCirebon.
+  ///
+  /// In id, this message translates to:
+  /// **'Mega Mendung Cirebon'**
+  String get busanaNameCirebon;
+
+  /// No description provided for @busanaNamePusaka.
+  ///
+  /// In id, this message translates to:
+  /// **'Betawi Encim'**
+  String get busanaNamePusaka;
 
   /// Mikro tag perayaan naik level
   ///

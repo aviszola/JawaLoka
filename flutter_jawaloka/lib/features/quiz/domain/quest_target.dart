@@ -29,36 +29,12 @@ class QuestTarget {
 
   // DATA CONTOH, terbatas pada huruf berkurva
   static const List<QuestTarget> dailyTargets = [
-    QuestTarget(
-      aksaraChar: 'ꦲ',
-      aksaraName: 'Ha',
-      description: 'Aksara Ha',
-    ),
-    QuestTarget(
-      aksaraChar: 'ꦤ',
-      aksaraName: 'Na',
-      description: 'Aksara Na',
-    ),
-    QuestTarget(
-      aksaraChar: 'ꦕ',
-      aksaraName: 'Ca',
-      description: 'Aksara Ca',
-    ),
-    QuestTarget(
-      aksaraChar: 'ꦫ',
-      aksaraName: 'Ra',
-      description: 'Aksara Ra',
-    ),
-    QuestTarget(
-      aksaraChar: 'ꦏ',
-      aksaraName: 'Ka',
-      description: 'Aksara Ka',
-    ),
-    QuestTarget(
-      aksaraChar: 'ꦗ',
-      aksaraName: 'Ja',
-      description: 'Aksara Ja',
-    ),
+    QuestTarget(aksaraChar: 'ꦲ', aksaraName: 'Ha', description: 'Aksara Ha'),
+    QuestTarget(aksaraChar: 'ꦤ', aksaraName: 'Na', description: 'Aksara Na'),
+    QuestTarget(aksaraChar: 'ꦕ', aksaraName: 'Ca', description: 'Aksara Ca'),
+    QuestTarget(aksaraChar: 'ꦫ', aksaraName: 'Ra', description: 'Aksara Ra'),
+    QuestTarget(aksaraChar: 'ꦏ', aksaraName: 'Ka', description: 'Aksara Ka'),
+    QuestTarget(aksaraChar: 'ꦗ', aksaraName: 'Ja', description: 'Aksara Ja'),
     QuestTarget(
       aksaraChar: 'ꦲꦤ',
       aksaraName: 'Hana',
@@ -103,4 +79,3 @@ class QuestTarget {
     return true;
   }
 }
-

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="66 214 168 290">
+
+  <!-- Bayangan kaki -->
+  <ellipse cx="150" cy="500" rx="70" ry="8" fill="#000" opacity=".08"/>
+
+  <!-- Kaki (kulit) -->
+  <ellipse cx="128" cy="490" rx="19" ry="10" fill="#4A2E18"/>
+  <ellipse cx="172" cy="490" rx="19" ry="10" fill="#4A2E18"/>
+
+  <!-- Badan kebaya - warna dasar hijau tua khas Kedu -->
+  <path d="M102 332C98 400 96 440 96 484H204C204 440 202 400 198 332Z" fill="#2D4A1E"/>
+
+  <!-- Motif lurik vertikal - garis terang di atas hijau tua -->
+  <defs>
+    <clipPath id="badan">
+      <path d="M102 332C98 400 96 440 96 484H204C204 440 202 400 198 332Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Lurik garis vertikal sempit (krem/kuning tanah) -->
+  <g clip-path="url(#badan)" opacity=".75">
+    <line x1="104" y1="332" x2="98"  y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+    <line x1="112" y1="332" x2="106" y2="484" stroke="#A67C3D" stroke-width="1.2"/>
+    <line x1="119" y1="332" x2="113" y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+    <line x1="127" y1="332" x2="121" y2="484" stroke="#A67C3D" stroke-width="1.2"/>
+    <line x1="135" y1="332" x2="129" y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+    <line x1="143" y1="332" x2="137" y2="484" stroke="#A67C3D" stroke-width="1.2"/>
+    <line x1="150" y1="332" x2="150" y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+    <line x1="158" y1="332" x2="158" y2="484" stroke="#A67C3D" stroke-width="1.2"/>
+    <line x1="165" y1="332" x2="167" y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+    <line x1="173" y1="332" x2="175" y2="484" stroke="#A67C3D" stroke-width="1.2"/>
+    <line x1="181" y1="332" x2="183" y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+    <line x1="189" y1="332" x2="191" y2="484" stroke="#A67C3D" stroke-width="1.2"/>
+    <line x1="196" y1="332" x2="200" y2="484" stroke="#D4B96A" stroke-width="2.5"/>
+  </g>
+
+  <!-- Garis aksesori leher kebaya (kerah) -->
+  <path d="M136 332L150 352L164 332" fill="none" stroke="#C8A850" stroke-width="2.2" stroke-linejoin="round"/>
+
+  <!-- Kancing tengah (3 biji) -->
+  <circle cx="150" cy="362" r="3"   fill="#C8A850"/>
+  <circle cx="150" cy="382" r="3"   fill="#C8A850"/>
+  <circle cx="150" cy="402" r="3"   fill="#C8A850"/>
+
+  <!-- Lengan kiri -->
+  <path d="M102 332C88 348 80 372 82 396L96 388C96 370 98 352 102 340Z" fill="#2D4A1E"/>
+  <g clip-path="url(#badan)" opacity=".6">
+    <!-- lurik lengan kiri -->
+  </g>
+  <!-- Ujung lengan kiri (gelang tanah) -->
+  <ellipse cx="84" cy="394" rx="9" ry="5" fill="#8B5E3C" opacity=".9"/>
+
+  <!-- Lengan kanan -->
+  <path d="M198 332C212 348 220 372 218 396L204 388C204 370 202 352 198 340Z" fill="#2D4A1E"/>
+  <!-- Ujung lengan kanan -->
+  <ellipse cx="216" cy="394" rx="9" ry="5" fill="#8B5E3C" opacity=".9"/>
+
+  <!-- Rok bawah lurik - warna kontras coklat tanah dengan garis krem -->
+  <path d="M96 440H204L210 484H90Z" fill="#5C3A1A"/>
+  <g opacity=".65">
+    <line x1="93"  y1="440" x2="92"  y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="104" y1="440" x2="102" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="115" y1="440" x2="113" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="126" y1="440" x2="124" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="137" y1="440" x2="136" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="148" y1="440" x2="148" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="159" y1="440" x2="160" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="170" y1="440" x2="172" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="181" y1="440" x2="184" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="192" y1="440" x2="196" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+    <line x1="203" y1="440" x2="208" y2="484" stroke="#D4B96A" stroke-width="2.2"/>
+  </g>
+  <!-- Batas rok - selendang tipis -->
+  <rect x="90" y="438" width="120" height="5" rx="2" fill="#C8A850" opacity=".85"/>
+
+</svg>

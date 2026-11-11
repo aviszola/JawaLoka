@@ -123,7 +123,7 @@ class QuizBottomSheet extends StatelessWidget {
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Color(0xFF7A6E60),
+              color: AppColors.inkSecondary,
             ),
             textAlign: TextAlign.center,
           ),
@@ -197,7 +197,7 @@ class QuizBottomSheet extends StatelessWidget {
               context.l10n.quizBottomSheetLater,
               style: const TextStyle(
                 fontSize: 14,
-                color: Color(0xFF7A6E60),
+                color: AppColors.inkSecondary,
                 fontWeight: FontWeight.w500,
               ),
             ),

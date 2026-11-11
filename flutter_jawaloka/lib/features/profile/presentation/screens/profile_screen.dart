@@ -3,16 +3,13 @@ import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
-import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
-import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 import '../../../../core/profile/profile_scope.dart';
+import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
 import '../../../../core/validation/validators.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
-import 'level_up_screen.dart';
 
 /// JawaLoka - Profile (Profil) Screen.
 /// Pixel-accurate implementation of Stitch Screen #e5a2d70abae2486ebdec67b521794944.
@@ -38,9 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   String _displayName = 'Dimas';
   bool _isEditingName = false;
-  final TextEditingController _nameCtrl = TextEditingController(
-    text: 'Dimas',
-  );
+  final TextEditingController _nameCtrl = TextEditingController(text: 'Dimas');
   String? _nameError;
 
   BlangkonType _equippedBlangkon = BlangkonType.yogyakarta;
@@ -242,26 +237,29 @@ class _ProfileScreenState extends State<ProfileScreen>
       width: double.infinity,
       constraints: const BoxConstraints(minHeight: 260),
       decoration: BoxDecoration(
-        color: AppColors.amber,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: const Color(0xFFECC258)),
+        color: const Color(0xFFF7D46B),
+        borderRadius: BorderRadius.circular(26),
+        border: Border.all(color: const Color(0xFFEED17B), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: AppColors.amber.withValues(alpha: 0.35),
-            blurRadius: 24,
-            offset: const Offset(0, 10),
+            color: const Color(0xFF231C14).withValues(alpha: 0.04),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Faint Kawung Texture Background (opacity <= 0.04)
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(28),
-              child: RepaintBoundary(
-                child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
+          Positioned(
+            top: -30,
+            right: -30,
+            child: Container(
+              width: 140,
+              height: 140,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                shape: BoxShape.circle,
               ),
             ),
           ),
@@ -316,9 +314,15 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                         const SizedBox(width: 6),
                         const Icon(
+                          Icons.verified_rounded,
+                          size: 18,
+                          color: AppColors.amberDark,
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(
                           Icons.edit_rounded,
                           size: 16,
-                          color: AppColors.ink,
+                          color: AppColors.inkSecondary,
                         ),
                       ],
                     ),
@@ -334,12 +338,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                           controller: _nameCtrl,
                           autofocus: true,
                           maxLength: 30,
-                          buildCounter: (
-                            context, {
-                            required currentLength,
-                            required isFocused,
-                            required maxLength,
-                          }) => null,
+                          buildCounter:
+                              (
+                                context, {
+                                required currentLength,
+                                required isFocused,
+                                required maxLength,
+                              }) => null,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 14,
@@ -453,6 +458,44 @@ class _ProfileScreenState extends State<ProfileScreen>
                   spacing: 8,
                   runSpacing: 8,
                   children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.ink.withValues(alpha: 0.05),
+                            blurRadius: 4,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            ProfileScope.maybeOf(context)?.gender ==
+                                    UserGender.female
+                                ? Icons.face_3_rounded
+                                : Icons.face_rounded,
+                            size: 14,
+                            color: AppColors.amberDark,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            '${ProfileScope.maybeOf(context)?.gender.label ?? "Putra"} • ${ProfileScope.maybeOf(context)?.age ?? 17} Th',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.ink,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 14,
@@ -679,10 +722,8 @@ class _ProfileScreenState extends State<ProfileScreen>
         // Grid of 4 Achievement Badges
         LayoutBuilder(
           builder: (_, constraints) {
-            final cardWidth = (constraints.maxWidth - 20) / 2;
-            return Wrap(
-              spacing: 12,
-              runSpacing: 12,
+            final cardWidth = constraints.maxWidth;
+            return Column(
               children: [
                 // Badge 1: Streak 7 Hari (Unlocked)
                 _buildBadgeCard(
@@ -690,12 +731,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                   title: context.l10n.profileBadgeStreak7Title,
                   statusLabel: context.l10n.profileBadgeUnlocked,
                   isUnlocked: true,
-                  bgColor: AppColors.pastelBlush,
+                  bgColor: const Color(0xFFFFF3D6),
                   icon: Icons.star_rounded,
-                  iconColor: const Color(0xFFF26522),
+                  iconColor: const Color(0xFFB87812),
                   onTap: () =>
                       _showToast(context.l10n.profileBadgeStreak7Toast),
                 ),
+                const SizedBox(height: 12),
 
                 // Badge 2: Streak 30 Hari (Locked)
                 _buildBadgeCard(
@@ -703,14 +745,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                   title: context.l10n.profileBadgeStreak30Title,
                   statusLabel: context.l10n.profileBadgeLocked,
                   isUnlocked: false,
-                  bgColor: AppColors.pastelSand,
+                  bgColor: Colors.white,
                   icon: Icons.lock_rounded,
-                  iconColor: AppColors.inkMuted,
+                  iconColor: const Color(0xFF8A7E70),
                   onTap: () =>
                       _showToast(context.l10n.profileBadgeStreak30Toast),
                 ),
-
-                // Badge 3: Level 5
                 _buildBadgeCard(
                   width: cardWidth,
                   title: context.l10n.profileBadgeLevel5Title,
@@ -718,14 +758,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ? context.l10n.profileBadgeUnlocked
                       : context.l10n.profileBadgeLocked,
                   isUnlocked: isLevel5Unlocked,
-                  bgColor: AppColors.pastelMint,
+                  bgColor: const Color(0xFFFFF3D6),
                   icon: Icons.emoji_events_rounded,
-                  iconColor: AppColors.pastelMintText,
-                  customIconWidget: const WayangGununganWidget(
-                    width: 24,
-                    height: 28,
-                    style: GununganStyle.goldOutline,
-                  ),
+                  iconColor: const Color(0xFFB87812),
                   badgeHighlight: isLevel5Unlocked
                       ? null
                       : context.l10n.profileBadgeLevelUpHighlight,
@@ -736,9 +771,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       _showToast(toastMsg);
                       return;
                     }
-                    final result = await Navigator.push(
+                    final result = await Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(builder: (_) => const LevelUpScreen()),
+                      AppRouter.levelUp,
                     );
                     if (!mounted) return;
                     if (result == true) {
@@ -752,6 +787,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     }
                   },
                 ),
+                const SizedBox(height: 12),
 
                 // Badge 4: Tamat Aksara
                 _buildBadgeCard(
@@ -761,18 +797,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ? context.l10n.profileBadgeUnlocked
                       : context.l10n.profileBadgeEasyLevel,
                   isUnlocked: isAksaraUnlocked,
-                  bgColor: AppColors.pastelLavender,
+                  bgColor: const Color(0xFFFFF3D6),
                   icon: Icons.auto_stories_rounded,
-                  iconColor: AppColors.inkMuted,
-                  customIconWidget: const CustomPaint(
-                    size: Size(22, 22),
-                    painter: JavaneseCalligraphyPainter(
-                      aksara: 'ꦲ',
-                      inkColor: AppColors.inkMuted,
-                      strokeThickness: 3.5,
-                      showInkPools: false,
-                    ),
-                  ),
+                  iconColor: const Color(0xFFB87812),
                   onTap: () => _showToast(context.l10n.profileBadgeAksaraToast),
                 ),
               ],
@@ -799,84 +826,82 @@ class _ProfileScreenState extends State<ProfileScreen>
       onTap: onTap,
       child: Container(
         width: width,
-        constraints: const BoxConstraints(minHeight: 110),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
         decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: isUnlocked
-                ? AppColors.amber.withValues(alpha: 0.5)
-                : AppColors.border,
-          ),
+          color: isUnlocked ? bgColor : Colors.white,
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: AppColors.ink.withValues(alpha: 0.04),
+              color: const Color(0xFF231C14).withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 3),
             ),
           ],
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
           children: [
-            // Circular Icon
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                      color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
+                      letterSpacing: -0.2,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isUnlocked
+                          ? AppColors.surface.withValues(alpha: 0.9)
+                          : const Color(0xFFE2DBD1),
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: Text(
+                      badgeHighlight ?? statusLabel,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 14),
             Container(
-              width: 38,
-              height: 38,
+              width: 52,
+              height: 52,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.surface.withValues(alpha: 0.92),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.ink.withValues(alpha: 0.06),
-                    blurRadius: 6,
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
               child: Center(
                 child:
-                    customIconWidget ?? Icon(icon, size: 20, color: iconColor),
-              ),
-            ),
-            const SizedBox(height: 8),
-
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: isUnlocked ? FontWeight.w800 : FontWeight.w700,
-                color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: 3),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 6,
-                vertical: 2,
-              ),
-              decoration: BoxDecoration(
-                color: isUnlocked
-                    ? Colors.white.withValues(alpha: 0.85)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                badgeHighlight ?? statusLabel,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  color: isUnlocked
-                      ? const Color(0xFFD9534F)
-                      : AppColors.inkMuted,
-                ),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                    customIconWidget ??
+                    Icon(
+                      icon,
+                      size: 24,
+                      color: isUnlocked ? iconColor : AppColors.inkMuted,
+                    ),
               ),
             ),
           ],
@@ -910,7 +935,10 @@ class _ProfileScreenState extends State<ProfileScreen>
           color: AppColors.amber,
         ),
         label: Text(
-          context.l10n.profileChooseBlangkonButton,
+          (ProfileScope.maybeOf(context)?.gender ?? UserGender.male) ==
+                  UserGender.female
+              ? context.l10n.profileChooseBusanaButton
+              : context.l10n.profileChooseBlangkonButton,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w800,

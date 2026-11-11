@@ -2,12 +2,7 @@
 library;
 
 /// Supported translation variants across Javanese, Indonesian, and English.
-enum TranslationVariant {
-  jvNgoko,
-  jvKrama,
-  id,
-  en,
-}
+enum TranslationVariant { jvNgoko, jvKrama, id, en }
 
 /// Sealed result hierarchy for translation outcomes.
 sealed class TranslationResult {
@@ -35,4 +30,3 @@ abstract class TranslationService {
 
   List<String> examples(TranslationVariant from, {int max = 4});
 }
-

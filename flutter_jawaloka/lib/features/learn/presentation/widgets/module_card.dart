@@ -12,7 +12,8 @@ class ModuleCardData {
   final IconData? iconData; // Material icon (fallback / accent)
   final Color bgColor;
   final Color iconTextColor;
-  final double? progress; // 0.0 – 1.0 (null if module is an inventory/reference material)
+  final double?
+  progress; // 0.0 – 1.0 (null if module is an inventory/reference material)
   final String progressLabel; // e.g. "20 aksara dasar"
   final bool isLocked;
   final String? tag;
@@ -209,7 +210,7 @@ class _ModuleCardState extends State<ModuleCard>
                               const SizedBox(width: 10),
                               Text(
                                 d.isLocked
-                                    ? '—'
+                                    ? '-'
                                     : '${(d.progress! * 100).round()}%',
                                 style: const TextStyle(
                                   color: AppColors.inkMuted,

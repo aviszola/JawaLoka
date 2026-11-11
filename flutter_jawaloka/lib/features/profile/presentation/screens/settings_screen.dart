@@ -4,6 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
 
@@ -105,9 +106,10 @@ class _SettingsScreenState extends State<SettingsScreen>
           TextButton(
             onPressed: () {
               Navigator.of(ctx).pop();
-              Navigator.of(
-                context,
-              ).pushNamedAndRemoveUntil('/login', (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                AppRouter.profileSetup,
+                (route) => false,
+              );
             },
             child: Text(
               context.l10n.settingsLogout,
@@ -227,26 +229,23 @@ class _SettingsScreenState extends State<SettingsScreen>
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(
-          l10n.settingsAccountDialogTitle,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.ink,
-          ),
+        title: const Text(
+          'Data Diri & Karakter',
+          style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              l10n.settingsAccountNameLabel,
-              style: const TextStyle(
+            const Text(
+              'Nama Panggilan',
+              style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: AppColors.inkSecondary,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 2),
             Text(
               name,
               style: const TextStyle(
@@ -255,11 +254,29 @@ class _SettingsScreenState extends State<SettingsScreen>
                 color: AppColors.ink,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
+            const Text(
+              'Karakter & Umur',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: AppColors.inkSecondary,
+              ),
+            ),
+            const SizedBox(height: 2),
             Text(
-              l10n.settingsAccountLocalNote,
+              '${profile?.gender.label ?? "Putra"} (${profile?.age ?? 17} Tahun)',
               style: const TextStyle(
-                fontSize: 13,
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: AppColors.ink,
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Data disimpan secara lokal di perangkat tanpa akun & kata sandi.',
+              style: TextStyle(
+                fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: AppColors.inkSecondary,
               ),
@@ -267,6 +284,19 @@ class _SettingsScreenState extends State<SettingsScreen>
           ],
         ),
         actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              Navigator.pushNamed(context, AppRouter.profileSetup);
+            },
+            child: const Text(
+              'Ubah Data',
+              style: TextStyle(
+                color: AppColors.amberDark,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: Text(
@@ -284,8 +314,7 @@ class _SettingsScreenState extends State<SettingsScreen>
 
   // ── Header Widget (High Contrast, WCAG AA Compliant) ─────────────────────────
   Widget _buildHeader() {
-    final displayName =
-        ProfileScope.maybeOf(context)?.displayName ?? 'Dimas';
+    final displayName = ProfileScope.maybeOf(context)?.displayName ?? 'Dimas';
     final equippedBlangkon =
         ProfileScope.maybeOf(context)?.equippedBlangkon ??
         BlangkonType.yogyakarta;
@@ -296,7 +325,11 @@ class _SettingsScreenState extends State<SettingsScreen>
         height: 160,
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: AppColors.amber,
+          gradient: LinearGradient(
+            colors: [Color(0xFFFFF6E5), Color(0xFFFFECC4)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(32),
             bottomRight: Radius.circular(32),

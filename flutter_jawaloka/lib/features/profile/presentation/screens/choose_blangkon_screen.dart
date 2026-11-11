@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/profile/blangkon_rewards.dart';
+import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../widgets/blangkon_painter.dart';
 
@@ -10,12 +12,25 @@ class _BlangkonOption {
   final BlangkonType type;
   final String name;
 
-  const _BlangkonOption({
-    required this.type,
-    required this.name,
-  });
+  const _BlangkonOption({required this.type, required this.name});
 
-  String description(BuildContext context) {
+  String description(BuildContext context, {required bool isFemale}) {
+    if (isFemale) {
+      switch (type) {
+        case BlangkonType.yogyakarta:
+          return context.l10n.busanaDescYogyakarta;
+        case BlangkonType.surakarta:
+          return context.l10n.busanaDescSurakarta;
+        case BlangkonType.banyumas:
+          return context.l10n.busanaDescBanyumas;
+        case BlangkonType.kedu:
+          return context.l10n.busanaDescKedu;
+        case BlangkonType.cirebon:
+          return context.l10n.busanaDescCirebon;
+        case BlangkonType.pusaka:
+          return context.l10n.busanaDescPusaka;
+      }
+    }
     switch (type) {
       case BlangkonType.yogyakarta:
         return context.l10n.blangkonDescYogyakarta;
@@ -33,6 +48,42 @@ class _BlangkonOption {
   }
 }
 
+List<_BlangkonOption> _buildOptions(
+  BuildContext context, {
+  required bool isFemale,
+}) {
+  return BlangkonType.values
+      .map((t) {
+        final String name;
+        if (isFemale) {
+          switch (t) {
+            case BlangkonType.yogyakarta:
+              name = context.l10n.busanaNameYogyakarta;
+              break;
+            case BlangkonType.surakarta:
+              name = context.l10n.busanaNameSurakarta;
+              break;
+            case BlangkonType.banyumas:
+              name = context.l10n.busanaNameBanyumas;
+              break;
+            case BlangkonType.kedu:
+              name = context.l10n.busanaNameKedu;
+              break;
+            case BlangkonType.cirebon:
+              name = context.l10n.busanaNameCirebon;
+              break;
+            case BlangkonType.pusaka:
+              name = context.l10n.busanaNamePusaka;
+              break;
+          }
+        } else {
+          name = BlangkonRewards.getName(t);
+        }
+        return _BlangkonOption(type: t, name: name);
+      })
+      .toList(growable: false);
+}
+
 // ─── Screen ───────────────────────────────────────────────────────────────────
 
 class ChooseBlangkonScreen extends StatefulWidget {
@@ -47,15 +98,11 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
   int get _currentUserLevel => ProfileScope.maybeOf(context)?.userLevel ?? 1;
   bool get _hasMasteredAksara =>
       ProfileScope.maybeOf(context)?.hasMasteredAksara ?? false;
+  bool get _isFemale =>
+      (ProfileScope.maybeOf(context)?.gender ?? UserGender.male) ==
+      UserGender.female;
 
-  static final List<_BlangkonOption> _options = BlangkonType.values
-      .map(
-        (t) => _BlangkonOption(
-          type: t,
-          name: BlangkonRewards.getName(t),
-        ),
-      )
-      .toList(growable: false);
+  late List<_BlangkonOption> _options;
 
   BlangkonType _selected = BlangkonType.yogyakarta;
 
@@ -80,12 +127,12 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    // Rebuild option names setiap kali gender atau locale berubah.
+    _options = _buildOptions(context, isFemale: _isFemale);
     if (!_initializedFromScope) {
       _initializedFromScope = true;
       final equipped = ProfileScope.maybeOf(context)?.equippedBlangkon;
-      if (equipped != null) {
-        _selected = equipped;
-      }
+      if (equipped != null) _selected = equipped;
     }
   }
 
@@ -150,18 +197,24 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F1EB),
+      backgroundColor: AppColors.canvas,
       appBar: _buildAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 24),
           child: Column(
             children: [
-              _buildAvatarPreview(),
+              _buildHeroSection(),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: _buildBlangkonGrid(),
+              ),
               const SizedBox(height: 24),
-              _buildBlangkonGrid(),
-              const SizedBox(height: 28),
-              _buildSaveButton(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: _buildSaveButton(),
+              ),
             ],
           ),
         ),
@@ -169,9 +222,145 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
     );
   }
 
+  // ── Hero Section ─────────────────────────────────────────────────────────
+  Widget _buildHeroSection() {
+    final gender = ProfileScope.maybeOf(context)?.gender ?? UserGender.male;
+    final svgPath = gender == UserGender.female
+        ? _selected.putriAvatarAsset
+        : _selected.putraAvatarAsset;
+    final fallbackSvg = gender == UserGender.female
+        ? 'assets/images/characters/avatar_putri.svg'
+        : 'assets/images/characters/avatar_putra.svg';
+    final opt = _options.firstWhere((o) => o.type == _selected);
+
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(32),
+        bottomRight: Radius.circular(32),
+      ),
+      child: Container(
+        height: 320,
+        width: double.infinity,
+        decoration: const BoxDecoration(color: Color(0xFFF7D46B)),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Soft corner accent — no landscape / gunungan
+            Positioned(
+              top: -40,
+              right: -40,
+              child: Container(
+                width: 180,
+                height: 180,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: -50,
+              left: -30,
+              child: Container(
+                width: 140,
+                height: 140,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF0C0).withValues(alpha: 0.45),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            // Karakter avatar
+            Positioned(
+              bottom: 32,
+              child: ScaleTransition(
+                scale: _avatarScale,
+                child: SvgPicture.asset(
+                  svgPath ?? fallbackSvg,
+                  width: 160,
+                  height: 185,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            // Chip nama + level di atas kiri
+            Positioned(
+              top: 20,
+              right: 20,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 7,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.ink.withValues(alpha: 0.72),
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.auto_awesome_rounded,
+                      size: 13,
+                      color: AppColors.amber,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      opt.name,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // Deskripsi bawah
+            Positioned(
+              bottom: 10,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 32),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 7,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.55),
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      width: 1,
+                    ),
+                  ),
+                  child: Text(
+                    opt.description(context, isFemale: _isFemale),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.ink.withValues(alpha: 0.85),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColors.amber,
+      backgroundColor: const Color(0xFFF7D46B),
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       leading: Semantics(
@@ -180,9 +369,9 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
         child: BackButton(color: AppColors.ink),
       ),
       title: Text(
-        context.l10n.blangkonTitle,
+        _isFemale ? context.l10n.busanaTitle : context.l10n.blangkonTitle,
         style: const TextStyle(
-          color: AppColors.ink,
+          color: Color(0xFF231C14),
           fontWeight: FontWeight.w700,
           fontSize: 18,
         ),
@@ -192,90 +381,30 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           margin: const EdgeInsets.only(right: 16),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: AppColors.ink.withValues(alpha: 0.12),
+            color: const Color(0xFFFEF3D6),
             borderRadius: BorderRadius.circular(100),
+            border: Border.all(color: const Color(0xFFF2D37E)),
           ),
           child: Row(
             children: [
-              const Icon(Icons.shield_outlined, size: 14, color: AppColors.ink),
+              const Icon(
+                Icons.shield_outlined,
+                size: 14,
+                color: Color(0xFF8A5D14),
+              ),
               const SizedBox(width: 4),
               Text(
                 context.l10n.homeLevelPill(_currentUserLevel),
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
-                  color: AppColors.ink,
+                  color: Color(0xFF8A5D14),
                 ),
               ),
             ],
           ),
         ),
       ],
-      flexibleSpace: CustomPaint(painter: _KawungAppBarPainter()),
-    );
-  }
-
-  Widget _buildAvatarPreview() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 24),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.ink.withValues(alpha: 0.06),
-            blurRadius: 16,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          ScaleTransition(
-            scale: _avatarScale,
-            child: SizedBox(
-              width: 120,
-              height: 150,
-              child: Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  Positioned(
-                    bottom: 0,
-                    child: CustomPaint(
-                      size: const Size(120, 120),
-                      painter: _JavaneseCharacterPainter(),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    child: CustomPaint(
-                      size: const Size(90, 70),
-                      painter: BlangkonPainter(type: _selected),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 14),
-          Text(
-            _options.firstWhere((o) => o.type == _selected).name,
-            style: const TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 15,
-              color: AppColors.ink,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            _options
-                .firstWhere((o) => o.type == _selected)
-                .description(context),
-            style: const TextStyle(fontSize: 14, color: AppColors.inkSecondary),
-          ),
-        ],
-      ),
     );
   }
 
@@ -299,6 +428,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           option: opt,
           isLocked: isLocked,
           isSelected: isSelected,
+          isFemale: _isFemale,
           onTap: () => _selectBlangkon(opt.type, isLocked),
         );
       },
@@ -320,7 +450,9 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           ),
         ),
         child: Text(
-          context.l10n.blangkonSaveButton,
+          _isFemale
+              ? context.l10n.busanaSaveButton
+              : context.l10n.blangkonSaveButton,
           style: const TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 16,
@@ -338,31 +470,29 @@ class _BlangkonGridItem extends StatelessWidget {
   final _BlangkonOption option;
   final bool isLocked;
   final bool isSelected;
+  final bool isFemale;
   final VoidCallback onTap;
 
   const _BlangkonGridItem({
     required this.option,
     required this.isLocked,
     required this.isSelected,
+    required this.isFemale,
     required this.onTap,
   });
 
-  String _getConditionLabel(
-    BuildContext context,
-    BlangkonType type,
-  ) {
-    if (type == BlangkonType.yogyakarta) {
+  String _getConditionLabel(BuildContext context, BlangkonType type) {
+    if (type == BlangkonType.yogyakarta)
       return context.l10n.blangkonInitialUnlock;
-    }
-    if (type == BlangkonType.pusaka) {
-      return context.l10n.blangkonMasteryAksara;
-    }
+    if (type == BlangkonType.pusaka) return context.l10n.blangkonMasteryAksara;
     final reqLevel = BlangkonRewards.requiredLevels[type] ?? 1;
     return context.l10n.blangkonLevelRequired(reqLevel);
   }
 
   @override
   Widget build(BuildContext context) {
+    final itemSvg = option.type.itemAsset(isFemale: isFemale);
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
@@ -395,13 +525,49 @@ class _BlangkonGridItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Center(
-                      child: CustomPaint(
-                        size: const Size(70, 55),
-                        painter: BlangkonPainter(
-                          type: option.type,
-                          isLocked: isLocked,
-                        ),
-                      ),
+                      child: itemSvg != null
+                          ? ColorFiltered(
+                              colorFilter: isLocked
+                                  ? const ColorFilter.matrix([
+                                      0.33,
+                                      0.33,
+                                      0.33,
+                                      0,
+                                      0,
+                                      0.33,
+                                      0.33,
+                                      0.33,
+                                      0,
+                                      0,
+                                      0.33,
+                                      0.33,
+                                      0.33,
+                                      0,
+                                      0,
+                                      0,
+                                      0,
+                                      0,
+                                      0.5,
+                                      0,
+                                    ])
+                                  : const ColorFilter.mode(
+                                      Colors.transparent,
+                                      BlendMode.dst,
+                                    ),
+                              child: SvgPicture.asset(
+                                itemSvg,
+                                width: 70,
+                                height: 55,
+                                fit: BoxFit.contain,
+                              ),
+                            )
+                          : CustomPaint(
+                              size: const Size(70, 55),
+                              painter: BlangkonPainter(
+                                type: option.type,
+                                isLocked: isLocked,
+                              ),
+                            ),
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -483,99 +649,4 @@ class _BlangkonGridItem extends StatelessWidget {
       ),
     );
   }
-}
-
-// ─── Javanese character painter (simple avatar body) ─────────────────────────
-
-class _JavaneseCharacterPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final w = size.width;
-    final h = size.height;
-
-    final skinPaint = Paint()..color = const Color(0xFFD4956A);
-    canvas.drawCircle(Offset(w * 0.5, h * 0.22), h * 0.19, skinPaint);
-
-    final bodyPaint = Paint()..color = const Color(0xFF2E5A46);
-    final bodyPath = Path()
-      ..moveTo(w * 0.25, h * 0.42)
-      ..quadraticBezierTo(w * 0.2, h * 0.78, w * 0.18, h * 1.0)
-      ..lineTo(w * 0.82, h * 1.0)
-      ..quadraticBezierTo(w * 0.80, h * 0.78, w * 0.75, h * 0.42)
-      ..quadraticBezierTo(w * 0.5, h * 0.38, w * 0.25, h * 0.42)
-      ..close();
-    canvas.drawPath(bodyPath, bodyPaint);
-
-    canvas.drawRect(
-      Rect.fromLTWH(w * 0.42, h * 0.38, w * 0.16, h * 0.08),
-      skinPaint,
-    );
-
-    final trimPaint = Paint()
-      ..color = AppColors.amber
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-    canvas.drawArc(
-      Rect.fromCenter(
-        center: Offset(w * 0.5, h * 0.44),
-        width: w * 0.46,
-        height: h * 0.14,
-      ),
-      3.3,
-      2.6,
-      false,
-      trimPaint,
-    );
-
-    final eyePaint = Paint()..color = AppColors.ink;
-    canvas.drawOval(
-      Rect.fromCenter(center: Offset(w * 0.42, h * 0.21), width: 5, height: 4),
-      eyePaint,
-    );
-    canvas.drawOval(
-      Rect.fromCenter(center: Offset(w * 0.58, h * 0.21), width: 5, height: 4),
-      eyePaint,
-    );
-
-    final smilePaint = Paint()
-      ..color = AppColors.ink
-      ..strokeWidth = 1.5
-      ..style = PaintingStyle.stroke;
-    canvas.drawArc(
-      Rect.fromCenter(center: Offset(w * 0.5, h * 0.26), width: 14, height: 7),
-      0,
-      3.14,
-      false,
-      smilePaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_JavaneseCharacterPainter _) => false;
-}
-
-// ─── AppBar kawung painter ────────────────────────────────────────────────────
-
-class _KawungAppBarPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.kawungStroke.withValues(alpha: 0.035)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
-
-    const r = 12.0;
-    for (double x = 0; x < size.width + r * 2; x += r * 2) {
-      for (double y = 0; y < size.height + r * 2; y += r * 2) {
-        final c = Offset(x, y);
-        canvas.drawCircle(c.translate(-r, 0), r, paint);
-        canvas.drawCircle(c.translate(r, 0), r, paint);
-        canvas.drawCircle(c.translate(0, -r), r, paint);
-        canvas.drawCircle(c.translate(0, r), r, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_KawungAppBarPainter _) => false;
 }

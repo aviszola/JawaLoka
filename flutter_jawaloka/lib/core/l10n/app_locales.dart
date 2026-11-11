@@ -45,4 +45,3 @@ class AppLocales {
     return defaultLocale;
   }
 }
-

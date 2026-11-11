@@ -29,7 +29,8 @@ class Unit3Questions {
       glyph: 'ꦶ',
       options: ['Wulu', 'Suku', 'Taling', 'Pepet'],
       correctIndex: 0,
-      explanation: 'Wulu (ꦶ) manggon ing ndhuwur aksara kanggo ngasilake vokal "i".',
+      explanation:
+          'Wulu (ꦶ) manggon ing ndhuwur aksara kanggo ngasilake vokal "i".',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Swara',
     ),
     QuizQuestion(
@@ -41,7 +42,8 @@ class Unit3Questions {
       glyph: 'ꦸ',
       options: ['Taling', 'Suku', 'Pepet', 'Wulu'],
       correctIndex: 1,
-      explanation: 'Suku (ꦸ) manggon ing ngisor aksara kanggo ngasilake vokal "u".',
+      explanation:
+          'Suku (ꦸ) manggon ing ngisor aksara kanggo ngasilake vokal "u".',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Swara',
     ),
     QuizQuestion(
@@ -53,7 +55,8 @@ class Unit3Questions {
       glyph: 'ꦺ',
       options: ['Swara u', 'Swara i', 'Swara é / è', 'Swara o'],
       correctIndex: 2,
-      explanation: 'Taling (ꦺ) manggon ing sangarepe aksara kanggo ngasilake swara "é" utawa "è".',
+      explanation:
+          'Taling (ꦺ) manggon ing sangarepe aksara kanggo ngasilake swara "é" utawa "è".',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Swara',
     ),
     QuizQuestion(
@@ -63,9 +66,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Sandhangan pepet (ꦼ) gunane kanggo ngasilake swara apa?',
       glyph: 'ꦼ',
-      options: ['Swara e pepet kaya ing tembung sega', 'Swara a legena kaya ing tembung bata', 'Swara u suku kaya ing tembung sapu', 'Swara i wulu kaya ing tembung pari'],
+      options: [
+        'Swara e pepet kaya ing tembung sega',
+        'Swara a legena kaya ing tembung bata',
+        'Swara u suku kaya ing tembung sapu',
+        'Swara i wulu kaya ing tembung pari',
+      ],
       correctIndex: 0,
-      explanation: 'Pepet (ꦼ) manggon ing ndhuwur aksara ngasilake swara "e" pepet kaya ing "sepet", "sega".',
+      explanation:
+          'Pepet (ꦼ) manggon ing ndhuwur aksara ngasilake swara "e" pepet kaya ing "sepet", "sega".',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Swara',
     ),
     QuizQuestion(
@@ -73,11 +82,18 @@ class Unit3Questions {
       topicKey: 'sandhangan_swara',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Kanggo nulis swara vokal "o", sandhangan kang digunakake yaiku...',
+      prompt:
+          'Kanggo nulis swara vokal "o", sandhangan kang digunakake yaiku...',
       glyph: 'ꦺꦴ',
-      options: ['Taling wae', 'Tarung wae', 'Wulu lan suku', 'Taling-tarung (ꦺ...ꦴ)'],
+      options: [
+        'Taling wae',
+        'Tarung wae',
+        'Wulu lan suku',
+        'Taling-tarung (ꦺ...ꦴ)',
+      ],
       correctIndex: 3,
-      explanation: 'Taling-tarung (ꦺ...ꦴ) ngapit aksara kanggo ngasilake swara "o".',
+      explanation:
+          'Taling-tarung (ꦺ...ꦴ) ngapit aksara kanggo ngasilake swara "o".',
       sourceReference: 'Pedoman Penulisan Sandhangan Swara',
     ),
     QuizQuestion(
@@ -94,7 +110,8 @@ class Unit3Questions {
         '6 werna (wulu, suku, taling, pepet, layar, cecak)',
       ],
       correctIndex: 0,
-      explanation: 'Sandhangan swara ana 5: wulu (i), suku (u), taling (é), pepet (e), lan taling-tarung (o).',
+      explanation:
+          'Sandhangan swara ana 5: wulu (i), suku (u), taling (é), pepet (e), lan taling-tarung (o).',
       sourceReference: 'Paramasastra Jawa',
     ),
 
@@ -110,7 +127,8 @@ class Unit3Questions {
       glyph: 'ꦂ',
       options: ['Konsonan r', 'Konsonan h', 'Konsonan ng', 'Konsonan k'],
       correctIndex: 0,
-      explanation: 'Layar (ꦂ) manggon ing ndhuwur aksara kanggo sigeg konsonan "r" (tuladha: pasar).',
+      explanation:
+          'Layar (ꦂ) manggon ing ndhuwur aksara kanggo sigeg konsonan "r" (tuladha: pasar).',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Panyigeg',
     ),
     QuizQuestion(
@@ -122,7 +140,8 @@ class Unit3Questions {
       glyph: 'ꦁ',
       options: ['Konsonan r', 'Konsonan ng', 'Konsonan h', 'Konsonan s'],
       correctIndex: 1,
-      explanation: 'Cecak (ꦁ) manggon ing ndhuwur aksara minangka sigeg konsonan "ng" (tuladha: wayang).',
+      explanation:
+          'Cecak (ꦁ) manggon ing ndhuwur aksara minangka sigeg konsonan "ng" (tuladha: wayang).',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Panyigeg',
     ),
     QuizQuestion(
@@ -134,7 +153,8 @@ class Unit3Questions {
       glyph: 'ꦃ',
       options: ['Konsonan m', 'Konsonan l', 'Konsonan h', 'Konsonan w'],
       correctIndex: 2,
-      explanation: 'Wignyan (ꦃ) manggon ing mburine aksara minangka sigeg konsonan "h" (tuladha: gajah).',
+      explanation:
+          'Wignyan (ꦃ) manggon ing mburine aksara minangka sigeg konsonan "h" (tuladha: gajah).',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Panyigeg',
     ),
     QuizQuestion(
@@ -151,7 +171,8 @@ class Unit3Questions {
         'Ngganteni aksara legena dadi aksara murda',
       ],
       correctIndex: 0,
-      explanation: 'Pangkon (꧀) kanggo mateni vokal aksara legena dadi konsonan mati ing pungkasan ukara.',
+      explanation:
+          'Pangkon (꧀) kanggo mateni vokal aksara legena dadi konsonan mati ing pungkasan ukara.',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Panyigeg',
     ),
     QuizQuestion(
@@ -168,7 +189,8 @@ class Unit3Questions {
         'Pangkon, pada, adeg-adeg, carik',
       ],
       correctIndex: 2,
-      explanation: 'Sandhangan panyigeg wanda ana 4: wignyan (h), layar (r), cecak (ng), lan pangkon.',
+      explanation:
+          'Sandhangan panyigeg wanda ana 4: wignyan (h), layar (r), cecak (ng), lan pangkon.',
       sourceReference: 'Pedoman Ejaan Jawa',
     ),
     QuizQuestion(
@@ -176,7 +198,8 @@ class Unit3Questions {
       topicKey: 'sandhangan_panyigeg',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Apa sebabe tembung "pasar" ora kena ditulis nganggo aksara ꦫ dipangkon (ꦥꦱꦫ꧀)?',
+      prompt:
+          'Apa sebabe tembung "pasar" ora kena ditulis nganggo aksara ꦫ dipangkon (ꦥꦱꦫ꧀)?',
       glyph: 'ꦥꦱꦂ',
       options: [
         'Amarga wis ana sandhangan layar (ꦂ) minangka panyigeging aksara Ra',
@@ -185,7 +208,8 @@ class Unit3Questions {
         'Amarga aksara Ra kudu ditulis nganggo pasangan Ra ing sangarepe',
       ],
       correctIndex: 0,
-      explanation: 'Cakra (ꦿ) nambahi unine konsonan "ra" ing satengahing wanda (tuladha: ꦥꦿ = pra).',
+      explanation:
+          'Cakra (ꦿ) nambahi unine konsonan "ra" ing satengahing wanda (tuladha: ꦥꦿ = pra).',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Wyanjana',
     ),
     QuizQuestion(
@@ -197,7 +221,8 @@ class Unit3Questions {
       glyph: 'ꦿ',
       options: ['-r-', '-y-', '-w-', '-l-'],
       correctIndex: 0,
-      explanation: 'Sandhangan cakra mènèhi seselan konsonan -r- ing sawijining wanda.',
+      explanation:
+          'Sandhangan cakra mènèhi seselan konsonan -r- ing sawijining wanda.',
       sourceReference: 'Wewaton Panulise Basa Jawa',
     ),
     QuizQuestion(
@@ -209,7 +234,8 @@ class Unit3Questions {
       glyph: 'ꦾ',
       options: ['Seselan -ra-', 'Seselan -ya-', 'Seselan -re-', 'Seselan -ng-'],
       correctIndex: 1,
-      explanation: 'Pengkal (ꦾ) nambahi konsonan "ya" ing satengahing wanda (tuladha: ꦏꦾ = kya).',
+      explanation:
+          'Pengkal (ꦾ) nambahi konsonan "ya" ing satengahing wanda (tuladha: ꦏꦾ = kya).',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Wyanjana',
     ),
     QuizQuestion(
@@ -219,9 +245,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Sandhangan cakra keret (ꦽ) ngganteni seselan apa?',
       glyph: 'ꦽ',
-      options: ['Cakra kawuwuhan wulu', 'Cakra kawuwuhan suku', 'Cakra kawuwuhan pepet (-re pepet)', 'Cakra kawuwuhan layar'],
+      options: [
+        'Cakra kawuwuhan wulu',
+        'Cakra kawuwuhan suku',
+        'Cakra kawuwuhan pepet (-re pepet)',
+        'Cakra kawuwuhan layar',
+      ],
       correctIndex: 2,
-      explanation: 'Cakra keret (ꦽ) ngganteni cakra + pepet kanggo ngasilake swara "re" pepet (tuladha: kreteg).',
+      explanation:
+          'Cakra keret (ꦽ) ngganteni cakra + pepet kanggo ngasilake swara "re" pepet (tuladha: kreteg).',
       sourceReference: 'Pedoman Penulisan Sandhangan Wyanjana',
     ),
     QuizQuestion(
@@ -229,11 +261,13 @@ class Unit3Questions {
       topicKey: 'sandhangan_wyanjana',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "krasa" yen katulis aksara Jawa nggunakake sandhangan...',
+      prompt:
+          'Tembung "krasa" yen katulis aksara Jawa nggunakake sandhangan...',
       glyph: 'ꦏꦿꦱ',
       options: ['Cakra (ꦿ)', 'Pengkal (ꦾ)', 'Wulu (ꦶ)', 'Layar (ꦂ)'],
       correctIndex: 0,
-      explanation: '"Kra" ditulis aksara ka kawuwuhan cakra dadi ꦏꦿ, banjur ꦱ (sa).',
+      explanation:
+          '"Kra" ditulis aksara ka kawuwuhan cakra dadi ꦏꦿ, banjur ꦱ (sa).',
       sourceReference: 'Pedoman Penulisan Sandhangan Wyanjana',
     ),
     QuizQuestion(
@@ -243,9 +277,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "kreteg" ditulis nggunakake sandhangan wyanjana apa?',
       glyph: 'ꦏꦽꦠꦼꦒ꧀',
-      options: ['Cakra wae', 'Cakra lan pepet dhewe-dhewe', 'Cakra keret (ꦽ)', 'Pengkal lan suku'],
+      options: [
+        'Cakra wae',
+        'Cakra lan pepet dhewe-dhewe',
+        'Cakra keret (ꦽ)',
+        'Pengkal lan suku',
+      ],
       correctIndex: 2,
-      explanation: 'Swara "kre" pepet kudu ditulis nganggo cakra keret (ꦏꦽ), ora kena cakra kawuwuhan pepet.',
+      explanation:
+          'Swara "kre" pepet kudu ditulis nganggo cakra keret (ꦏꦽ), ora kena cakra kawuwuhan pepet.',
       sourceReference: 'Paugeran Pasangon Aksara Jawa',
     ),
     QuizQuestion(
@@ -270,7 +310,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Apa fungsi utama pasangan ing panulisan aksara Jawa?',
-      glyph: 'ꦥꦱꦔꦤ꧀',
+      glyph: '',
       options: [
         'Mateni aksara legena sadurunge ing satengahing tembung utawa ukara',
         'Nambahi swara vokal u ing pungkasan wanda aksara legena',
@@ -278,7 +318,8 @@ class Unit3Questions {
         'Ngganteni aksara legena dadi aksara murda utawa aksara swara',
       ],
       correctIndex: 0,
-      explanation: 'Pasangan digunakake kanggo mateni vokal aksara sadurunge tanpa nggunakake pangkon ing tengah.',
+      explanation:
+          'Pasangan digunakake kanggo mateni vokal aksara sadurunge tanpa nggunakake pangkon ing tengah.',
       sourceReference: 'Pepak Basa Jawa: Pasangan Aksara',
     ),
     QuizQuestion(
@@ -287,7 +328,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Pira cacahe pasangan aksara Jawa?',
-      glyph: '꧒꧐',
+      glyph: '',
       options: [
         '20 pasangan (cocog karo cacahe aksara carakan legena)',
         '10 pasangan (mung kanggo aksara kang nduweni sikil)',
@@ -295,7 +336,8 @@ class Unit3Questions {
         '24 pasangan (kacampuran aksara murda lan swara)',
       ],
       correctIndex: 0,
-      explanation: 'Saben aksara legena kang cacahe 20 nduweni pasangan dhewe-dhewe (gancaran 20 pasangan).',
+      explanation:
+          'Saben aksara legena kang cacahe 20 nduweni pasangan dhewe-dhewe (gancaran 20 pasangan).',
       sourceReference: 'Pepak Basa Jawa: Pasangan Aksara',
     ),
     QuizQuestion(
@@ -304,7 +346,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Pangkon (꧀) lumrahe ora kena digunakake ing...',
-      glyph: 'ꦠꦼꦔꦃ',
+      glyph: '',
       options: [
         'Satengahing tembung utawa satengahing ukara lumrah',
         'Pungkasaning ukara sadurunge tandha pada lingsa',
@@ -312,7 +354,8 @@ class Unit3Questions {
         'Wiwasananing angka Jawa ing panulisan tanggalan',
       ],
       correctIndex: 0,
-      explanation: 'Ing tengah tembung/ukara ora kena nganggo pangkon, nanging kudu nggunakake pasangan aksara.',
+      explanation:
+          'Ing tengah tembung/ukara ora kena nganggo pangkon, nanging kudu nggunakake pasangan aksara.',
       sourceReference: 'Paugeran Panyeratan Aksara Jawa',
     ),
     QuizQuestion(
@@ -320,11 +363,13 @@ class Unit3Questions {
       topicKey: 'pengenalan_pasangan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika aksara sigeg ketemu aksara candhake, aksara candhake kasebut ditulis awujud...',
-      glyph: 'ꦱꦶꦒꦼꦒ꧀',
+      prompt:
+          'Nalika aksara sigeg ketemu aksara candhake, aksara candhake kasebut ditulis awujud...',
+      glyph: '',
       options: ['Pasangan', 'Aksara swara', 'Aksara murda', 'Angka'],
       correctIndex: 0,
-      explanation: 'Aksara candhake malih dadi wujud pasangane amarga aksara sadurunge mati.',
+      explanation:
+          'Aksara candhake malih dadi wujud pasangane amarga aksara sadurunge mati.',
       sourceReference: 'Paramasastra Jawa',
     ),
     QuizQuestion(
@@ -333,7 +378,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ing kahanan apa pangkon oleh manggon ing tengah ukara?',
-      glyph: 'ꦏꦺꦴꦩ',
+      glyph: '',
       options: [
         'Nalika dadi gantine tandha koma sauntara utawa ngedohi tumpuk telu',
         'Nalika nulis jeneng kutha utawa jeneng wong kang kinurmatan',
@@ -341,19 +386,23 @@ class Unit3Questions {
         'Babar blas ora ana kahanan kang ngolehake pangkon ing tengah',
       ],
       correctIndex: 0,
-      explanation: 'Pangkon oleh ing tengah minangka tandha pambagi (koma) utawa ngindhari tumpuk telu.',
-      sourceReference: 'Pedoman Umum Pasangon Aksara Jawa (Kongres Bahasa Jawa)',
+      explanation:
+          'Pangkon oleh ing tengah minangka tandha pambagi (koma) utawa ngindhari tumpuk telu.',
+      sourceReference:
+          'Pedoman Umum Pasangon Aksara Jawa (Kongres Bahasa Jawa)',
     ),
     QuizQuestion(
       id: 'u3_n24_q06',
       topicKey: 'pengenalan_pasangan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara Jawa kang wujud pasangane padha persis karo aksara asline yaiku...',
-      glyph: 'ꦫ',
+      prompt:
+          'Aksara Jawa kang wujud pasangane padha persis karo aksara asline yaiku...',
+      glyph: '',
       options: ['Aksara ꦲ', 'Aksara ꦫ (꧀ꦫ)', 'Aksara ꦤ', 'Aksara ꦏ'],
       correctIndex: 1,
-      explanation: 'Pasangan ꦫ wujude padha persis karo aksarane asline, manggon ing ngisor aksara mati.',
+      explanation:
+          'Pasangan ꦫ wujude padha persis karo aksarane asline, manggon ing ngisor aksara mati.',
       sourceReference: 'Tipografi Pasangan Aksara Jawa',
     ),
 
@@ -365,11 +414,13 @@ class Unit3Questions {
       topicKey: 'penggunaan_pasangan',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Pasangan aksara Jawa kang manggon sejajar (ing sisihe) aksara mati yaiku pasangan...',
-      glyph: 'ꦲꦱꦥ',
+      prompt:
+          'Pasangan aksara Jawa kang manggon sejajar (ing sisihe) aksara mati yaiku pasangan...',
+      glyph: '',
       options: ['Ha, Sa, Pa', 'Na, Ca, Ra', 'Da, Ta, La', 'Ma, Ga, Ba'],
       correctIndex: 0,
-      explanation: 'Pasangan kang manggon sejajar ing tengen aksara yaiku pasangan ꦲ (ha), ꦱ (sa), lan ꦥ (pa).',
+      explanation:
+          'Pasangan kang manggon sejajar ing tengen aksara yaiku pasangan ꦲ (ha), ꦱ (sa), lan ꦥ (pa).',
       sourceReference: 'Pepak Basa Jawa: Pasangan Sejajar',
     ),
     QuizQuestion(
@@ -378,10 +429,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Akeh-akehe pasangan aksara Jawa manggone ana ing...',
-      glyph: 'ꦔꦶꦱꦺꦴꦂ',
-      options: ['Ing ndhuwure aksara mati', 'Ing ngisore aksara mati (gantung)', 'Ing jero aksara', 'Ing mburi ukara'],
+      glyph: '',
+      options: [
+        'Ing ndhuwure aksara mati',
+        'Ing ngisore aksara mati (gantung)',
+        'Ing jero aksara',
+        'Ing mburi ukara',
+      ],
       correctIndex: 1,
-      explanation: 'Sebagean gedhe pasangan aksara Jawa manggon gantung ing ngisore aksara kang dipateni.',
+      explanation:
+          'Sebagean gedhe pasangan aksara Jawa manggon gantung ing ngisore aksara kang dipateni.',
       sourceReference: 'Pepak Basa Jawa: Pasangan Gantung',
     ),
     QuizQuestion(
@@ -390,10 +447,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Pasangan ꦥ (pa) yen ditulis manggone ana ing...',
-      glyph: '꧀ꦥ',
-      options: ['Ing ngisor aksara mati', 'Sejajar ing sisih tengene aksara mati', 'Ing ndhuwur aksara mati', 'Ing tengah aksara'],
+      glyph: '',
+      options: [
+        'Ing ngisor aksara mati',
+        'Sejajar ing sisih tengene aksara mati',
+        'Ing ndhuwur aksara mati',
+        'Ing tengah aksara',
+      ],
       correctIndex: 1,
-      explanation: 'Pasangan ꦥ kalebu pasangan sejajar (jejer) bebarengan karo ꦲ lan ꦱ.',
+      explanation:
+          'Pasangan ꦥ kalebu pasangan sejajar (jejer) bebarengan karo ꦲ lan ꦱ.',
       sourceReference: 'Pedoman Penulisan Pasangan',
     ),
     QuizQuestion(
@@ -402,8 +465,13 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Pasangan ꦏ (ka) yen katulis manggone ana ing...',
-      glyph: '꧀ꦏ',
-      options: ['Ing ngisore aksara mati (gantung)', 'Sejajar ing tengen', 'Ing ndhuwur aksara', 'Ing ngarep aksara'],
+      glyph: '',
+      options: [
+        'Ing ngisore aksara mati (gantung)',
+        'Sejajar ing tengen',
+        'Ing ndhuwur aksara',
+        'Ing ngarep aksara',
+      ],
       correctIndex: 0,
       explanation: 'Pasangan ꦏ manggon ing ngisore aksara mati.',
       sourceReference: 'Pedoman Penulisan Pasangan',
@@ -413,8 +481,9 @@ class Unit3Questions {
       topicKey: 'penggunaan_pasangan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Yen pasangan sejajar (kaya pasangan ꦱ) kawuwuhan sandhangan suku (u), manggone suku ana ing...',
-      glyph: '꧀ꦱꦸ',
+      prompt:
+          'Yen pasangan sejajar (kaya pasangan ꦱ) kawuwuhan sandhangan suku (u), manggone suku ana ing...',
+      glyph: '',
       options: [
         'Ing aksara mati sadurunge',
         'Ing ngisor buntute pasangan ꦱ kasebut',
@@ -422,7 +491,8 @@ class Unit3Questions {
         'Pindhah menyang ndhuwur',
       ],
       correctIndex: 1,
-      explanation: 'Sandhangan suku tumrap pasangan sejajar tumemplek ing ngisor buntut pasangane.',
+      explanation:
+          'Sandhangan suku tumrap pasangan sejajar tumemplek ing ngisor buntut pasangane.',
       sourceReference: 'Paugeran Pasangon Aksara Jawa',
     ),
     QuizQuestion(
@@ -430,11 +500,13 @@ class Unit3Questions {
       topicKey: 'penggunaan_pasangan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Pasangan aksara kang ngalami owah-owahan wujud dadi wutuh maneh nalika kawuwuhan sandhangan suku yaiku...',
-      glyph: 'ꦠ',
+      prompt:
+          'Pasangan aksara kang ngalami owah-owahan wujud dadi wutuh maneh nalika kawuwuhan sandhangan suku yaiku...',
+      glyph: '',
       options: ['Pasangan ꦠ lan ꦭ', 'Pasangan ꦲ', 'Pasangan ꦔ', 'Pasangan ꦫ'],
       correctIndex: 0,
-      explanation: 'Pasangan ꦠ lan ꦭ yen oleh sandhangan suku, wujude mbalek wutuh kaya aksarane amarga gandheng suku.',
+      explanation:
+          'Pasangan ꦠ lan ꦭ yen oleh sandhangan suku, wujude mbalek wutuh kaya aksarane amarga gandheng suku.',
       sourceReference: 'Kongres Basa Jawa: Paugeran Sriwedari',
     ),
 
@@ -510,7 +582,8 @@ class Unit3Questions {
       glyph: 'ꦭꦺꦴꦩ꧀ꦧꦺꦴꦏ꧀',
       options: ['Lontong', 'Lombok', 'Lembut', 'Lompat'],
       correctIndex: 1,
-      explanation: 'La taling-tarung (lo) + ma dipasangi ba taling-tarung (mbo) + ka dipangkon (k) = "Lombok".',
+      explanation:
+          'La taling-tarung (lo) + ma dipasangi ba taling-tarung (mbo) + ka dipangkon (k) = "Lombok".',
       sourceReference: 'Sinau Maca Aksara Jawa Kompleks',
     ),
 
@@ -523,10 +596,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.textToAksara,
       prompt: 'Tembung "mangan sega" mbutuhake pasangan aksara apa?',
-      glyph: 'ꦩꦔꦤ꧀ꦱꦼꦒ',
-      options: ['Pasangan sa (꧀ꦱ)', 'Pasangan ma (꧀ꦩ)', 'Pasangan nga (꧀ꦔ)', 'Pasangan ga (꧀ꦒ)'],
+      glyph: '',
+      options: [
+        'Pasangan sa (꧀ꦱ)',
+        'Pasangan ma (꧀ꦩ)',
+        'Pasangan nga (꧀ꦔ)',
+        'Pasangan ga (꧀ꦒ)',
+      ],
       correctIndex: 0,
-      explanation: 'Aksara na mati amarga ketemu tembung "sega", mula aksara sa katulis dadi pasangan ꧀ꦱ.',
+      explanation:
+          'Aksara na mati amarga ketemu tembung "sega", mula aksara sa katulis dadi pasangan ꧀ꦱ.',
       sourceReference: 'Paugeran Nulis Pasangan Aksara',
     ),
     QuizQuestion(
@@ -535,10 +614,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.textToAksara,
       prompt: 'Tembung "tumbuk pari" mbutuhake pasangan aksara apa?',
-      glyph: 'ꦠꦸꦩ꧀ꦧꦸꦏ꧀ꦥꦫꦶ',
-      options: ['Pasangan ba lan pasangan pa', 'Pasangan ta lan ka', 'Pasangan ra lan ma', 'Pasangan nga lan wa'],
+      glyph: '',
+      options: [
+        'Pasangan ba lan pasangan pa',
+        'Pasangan ta lan ka',
+        'Pasangan ra lan ma',
+        'Pasangan nga lan wa',
+      ],
       correctIndex: 0,
-      explanation: '"Tum-buk" mbutuhake pasangan ba (꧀ꦧ), "buk-pa" mbutuhake pasangan pa (꧀ꦥ).',
+      explanation:
+          '"Tum-buk" mbutuhake pasangan ba (꧀ꦧ), "buk-pa" mbutuhake pasangan pa (꧀ꦥ).',
       sourceReference: 'Paugeran Nulis Pasangan Aksara',
     ),
     QuizQuestion(
@@ -547,10 +632,11 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.textToAksara,
       prompt: 'Tembung "anak sapi" yen katulis mawa aksara Jawa yaiku...',
-      glyph: 'ꦲꦤꦏ꧀ꦱꦥꦶ',
+      glyph: '',
       options: ['ꦲꦤꦏ꧀ꦱꦥꦶ', 'ꦲꦤꦏ꧀ꦱꦥ', 'ꦲꦤꦱꦥꦶ', 'ꦲꦤꦏꦱꦥꦶ'],
       correctIndex: 0,
-      explanation: 'Aksara ka dipasangi sa sejajar, banjur pa kawuwuhan wulu (ꦥꦶ) = anak sapi.',
+      explanation:
+          'Aksara ka dipasangi sa sejajar, banjur pa kawuwuhan wulu (ꦥꦶ) = anak sapi.',
       sourceReference: 'Gladhen Nulis Aksara Jawa',
     ),
     QuizQuestion(
@@ -559,10 +645,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.textToAksara,
       prompt: 'Tembung "bapak tindak" mbutuhake pasangan aksara...',
-      glyph: 'ꦠ',
-      options: ['Pasangan ba', 'Pasangan ta (꧀ꦠ)', 'Pasangan da', 'Pasangan ka'],
+      glyph: '',
+      options: [
+        'Pasangan ba',
+        'Pasangan ta (꧀ꦠ)',
+        'Pasangan da',
+        'Pasangan ka',
+      ],
       correctIndex: 1,
-      explanation: 'Konsonan k ing pungkasan tembung "bapak" dipateni kanthi masang aksara ta (꧀ꦠ).',
+      explanation:
+          'Konsonan k ing pungkasan tembung "bapak" dipateni kanthi masang aksara ta (꧀ꦠ).',
       sourceReference: 'Gladhen Nulis Aksara Jawa',
     ),
     QuizQuestion(
@@ -570,8 +662,9 @@ class Unit3Questions {
       topicKey: 'nulis_kata_sederhana',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.textToAksara,
-      prompt: 'Panulisan "adhik tuku" kang bener yaiku aksara ka mati amarga...',
-      glyph: 'ꦠꦸꦏꦸ',
+      prompt:
+          'Panulisan "adhik tuku" kang bener yaiku aksara ka mati amarga...',
+      glyph: '',
       options: [
         'Dipangkon ing tengah tembung',
         'Kawuwuhan layar',
@@ -579,7 +672,8 @@ class Unit3Questions {
         'Dibusak aksara kane',
       ],
       correctIndex: 2,
-      explanation: 'Aksara ka mati amarga dipasangi pasangan ta mawa suku dadi ꧀ꦠꦸ.',
+      explanation:
+          'Aksara ka mati amarga dipasangi pasangan ta mawa suku dadi ꧀ꦠꦸ.',
       sourceReference: 'Tata Tulis Pasangan Aksara Jawa',
     ),
     QuizQuestion(
@@ -588,10 +682,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.textToAksara,
       prompt: 'Ukara "mangan nanas" ngemot pasangan aksara apa?',
-      glyph: 'ꦤ',
-      options: ['Pasangan ma', 'Pasangan na (꧀ꦤ)', 'Pasangan sa', 'Pasangan ga'],
+      glyph: '',
+      options: [
+        'Pasangan ma',
+        'Pasangan na (꧀ꦤ)',
+        'Pasangan sa',
+        'Pasangan ga',
+      ],
       correctIndex: 1,
-      explanation: 'Aksara na ing tembung "mangan" dipateni kanthi pasangan na (꧀ꦤ) saka tembung "nanas".',
+      explanation:
+          'Aksara na ing tembung "mangan" dipateni kanthi pasangan na (꧀ꦤ) saka tembung "nanas".',
       sourceReference: 'Tata Tulis Pasangan Aksara Jawa',
     ),
 
@@ -603,8 +703,9 @@ class Unit3Questions {
       topicKey: 'niteni_luput_nulis',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Kaluputan apa kang asring dumadi nalika wong sinau nulis aksara Jawa?',
-      glyph: '꧀',
+      prompt:
+          'Kaluputan apa kang asring dumadi nalika wong sinau nulis aksara Jawa?',
+      glyph: '',
       options: [
         'Nggunakake sandhangan pangkon ing tengahing tembung',
         'Nggunakake sandhangan wulu ing pungkasane tembung',
@@ -612,7 +713,8 @@ class Unit3Questions {
         'Nambahi sandhangan layar ing aksara kang wis mati',
       ],
       correctIndex: 0,
-      explanation: 'Pangkon ora kena ing tengah ukara, kudu diganti pasangan aksara.',
+      explanation:
+          'Pangkon ora kena ing tengah ukara, kudu diganti pasangan aksara.',
       sourceReference: 'Wawaton Sriwedari: Kaluputan Panyeratan',
     ),
     QuizQuestion(
@@ -620,11 +722,13 @@ class Unit3Questions {
       topicKey: 'niteni_luput_nulis',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Swara "re" pepet ora kena ditulis aksara ra dipepet (ꦫꦼ), nanging kudu ditulis...',
-      glyph: 'ꦉ',
+      prompt:
+          'Swara "re" pepet ora kena ditulis aksara ra dipepet (ꦫꦼ), nanging kudu ditulis...',
+      glyph: '',
       options: ['Pa cerek (ꦉ)', 'Nga lelet (ꦊ)', 'Cakra keret', 'Layar'],
       correctIndex: 0,
-      explanation: 'Swara "re" pepet minangka suku kata mandhiri kudu ditulis nganggo Pa cerek (ꦉ).',
+      explanation:
+          'Swara "re" pepet minangka suku kata mandhiri kudu ditulis nganggo Pa cerek (ꦉ).',
       sourceReference: 'Pepak Basa Jawa: Pa Cerek & Nga Lelet',
     ),
     QuizQuestion(
@@ -633,10 +737,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Semono uga swara "le" pepet kudu ditulis nggunakake...',
-      glyph: 'ꦊ',
-      options: ['La dipepet (ꦭꦼ)', 'Nga lelet (ꦊ)', 'Pa cerek (ꦉ)', 'Cakra keret'],
+      glyph: '',
+      options: [
+        'La dipepet (ꦭꦼ)',
+        'Nga lelet (ꦊ)',
+        'Pa cerek (ꦉ)',
+        'Cakra keret',
+      ],
       correctIndex: 1,
-      explanation: 'Swara "le" pepet kudu ditulis nganggo Nga lelet (ꦊ), ora kena aksara la kawuwuhan pepet.',
+      explanation:
+          'Swara "le" pepet kudu ditulis nganggo Nga lelet (ꦊ), ora kena aksara la kawuwuhan pepet.',
       sourceReference: 'Pepak Basa Jawa: Pa Cerek & Nga Lelet',
     ),
     QuizQuestion(
@@ -644,11 +754,18 @@ class Unit3Questions {
       topicKey: 'niteni_luput_nulis',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Aksara sigeg ing pungkasaning tembung "wayang" kudu ditulis nganggo cecak (ꦁ), ora kena...',
-      glyph: 'ꦔ꧀',
-      options: ['Aksara nga dipangkon (ꦔ꧀)', 'Aksara cecak (ꦁ)', 'Aksara layar (ꦂ)', 'Aksara wignyan (ꦃ)'],
+      prompt:
+          'Aksara sigeg ing pungkasaning tembung "wayang" kudu ditulis nganggo cecak (ꦁ), ora kena...',
+      glyph: '',
+      options: [
+        'Aksara nga dipangkon (ꦔ꧀)',
+        'Aksara cecak (ꦁ)',
+        'Aksara layar (ꦂ)',
+        'Aksara wignyan (ꦃ)',
+      ],
       correctIndex: 0,
-      explanation: 'Konsonan sigeg ng kudu ditulis cecak (ꦁ), dilarang nulis aksara nga mawa pangkon ing mburi.',
+      explanation:
+          'Konsonan sigeg ng kudu ditulis cecak (ꦁ), dilarang nulis aksara nga mawa pangkon ing mburi.',
       sourceReference: 'Paugeran Pasangon Aksara Jawa',
     ),
     QuizQuestion(
@@ -656,8 +773,9 @@ class Unit3Questions {
       topicKey: 'niteni_luput_nulis',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Apa sebabe ora kena ana "pasangan tumpuk telu" ing panulisan aksara Jawa?',
-      glyph: 'ꦠꦸꦩ꧀ꦥꦸꦏ꧀',
+      prompt:
+          'Apa sebabe ora kena ana "pasangan tumpuk telu" ing panulisan aksara Jawa?',
+      glyph: '',
       options: [
         'Amarga ndadekake aksara angel diwaca lan nalisir saka paugeran Sriwedari',
         'Amarga ngentekake papan panyeratan lan boros mangsi ing kertas',
@@ -665,7 +783,8 @@ class Unit3Questions {
         'Amarga paugeran Jawa ora ngidini anane tandha wacan apa wae',
       ],
       correctIndex: 0,
-      explanation: 'Tumpuk telu (aksara mati loro kanthi pasangan dobel) nalisir saka estetika lan paugeran Sriwedari; aksara mati sepisanan kudu dipangkon.',
+      explanation:
+          'Tumpuk telu (aksara mati loro kanthi pasangan dobel) nalisir saka estetika lan paugeran Sriwedari; aksara mati sepisanan kudu dipangkon.',
       sourceReference: 'Wawaton Pasangon Aksara Jawa Sriwedari 1926',
     ),
     QuizQuestion(
@@ -673,8 +792,9 @@ class Unit3Questions {
       topicKey: 'niteni_luput_nulis',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "weruh" yen ditulis aksara wa dipepet lan dilayar (ꦮꦼꦂ) bener utawa luput?',
-      glyph: 'ꦮꦼꦂ',
+      prompt:
+          'Tembung "weruh" yen ditulis aksara wa dipepet lan dilayar (ꦮꦼꦂ) bener utawa luput?',
+      glyph: '',
       options: [
         'Bener, amarga pepet lan layar bisa bebarengan ing dhuwure aksara wa',
         'Luput, kudune aksara ra dipangkon',
@@ -682,7 +802,8 @@ class Unit3Questions {
         'Luput, kudune nganggo cakra',
       ],
       correctIndex: 0,
-      explanation: 'Bener, aksara wa kawuwuhan pepet lan layar manggon bebarengan ing ndhuwur dadi "wer".',
+      explanation:
+          'Bener, aksara wa kawuwuhan pepet lan layar manggon bebarengan ing ndhuwur dadi "wer".',
       sourceReference: 'Paugeran Pasangon Aksara Jawa',
     ),
 
@@ -696,9 +817,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara iki wacane kepriye?',
       glyph: 'ꦱꦶꦠꦶꦱꦼꦤꦼꦁꦩꦕ',
-      options: ['Siti seneng maca', 'Siti seneng nulis', 'Siti tuku buku', 'Siti mangan sega'],
+      options: [
+        'Siti seneng maca',
+        'Siti seneng nulis',
+        'Siti tuku buku',
+        'Siti mangan sega',
+      ],
       correctIndex: 0,
-      explanation: 'ꦱꦶꦠꦶ (Siti) + ꦱꦼꦤꦼꦁ (seneng) + ꦩꦕ (maca) = "Siti seneng maca".',
+      explanation:
+          'ꦱꦶꦠꦶ (Siti) + ꦱꦼꦤꦼꦁ (seneng) + ꦩꦕ (maca) = "Siti seneng maca".',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa',
     ),
     QuizQuestion(
@@ -720,9 +847,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara iki wacane kepriye?',
       glyph: 'ꦲꦶꦧꦸꦠꦸꦩ꧀ꦧꦱ꧀ꦧꦼꦫꦱ꧀',
-      options: ['Ibu tumbas beras', 'Ibu masak sega', 'Ibu tindak pasar', 'Ibu mundhut gula'],
+      options: [
+        'Ibu tumbas beras',
+        'Ibu masak sega',
+        'Ibu tindak pasar',
+        'Ibu mundhut gula',
+      ],
       correctIndex: 0,
-      explanation: 'ꦲꦶꦧꦸ (Ibu) + ꦠꦸꦩ꧀ꦧꦱ꧀ (tumbas) + ꦧꦼꦫꦱ꧀ (beras) = "Ibu tumbas beras".',
+      explanation:
+          'ꦲꦶꦧꦸ (Ibu) + ꦠꦸꦩ꧀ꦧꦱ꧀ (tumbas) + ꦧꦼꦫꦱ꧀ (beras) = "Ibu tumbas beras".',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa',
     ),
     QuizQuestion(
@@ -732,9 +865,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara iki wacane kepriye?',
       glyph: 'ꦏꦸꦕꦶꦁꦥꦸꦠꦶꦃ',
-      options: ['Kucing ireng', 'Kucing putih', 'Kelinci putih', 'Kucing belang'],
+      options: [
+        'Kucing ireng',
+        'Kucing putih',
+        'Kelinci putih',
+        'Kucing belang',
+      ],
       correctIndex: 1,
-      explanation: 'ꦏꦸꦕꦶꦁ (kucing) + ꦥꦸꦠꦶꦃ (putih mawa wignyan) = "kucing putih".',
+      explanation:
+          'ꦏꦸꦕꦶꦁ (kucing) + ꦥꦸꦠꦶꦃ (putih mawa wignyan) = "kucing putih".',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa',
     ),
     QuizQuestion(
@@ -746,7 +885,8 @@ class Unit3Questions {
       glyph: 'ꦏꦿꦺꦠꦥꦸꦭꦁ',
       options: ['Kerta mulih', 'Kréta pulang', 'Kreteg jebol', 'Kraton mulya'],
       correctIndex: 1,
-      explanation: 'ꦏꦿꦺ (kre mawa taling lan cakra) + ꦠ (ta) + ꦥꦸꦭꦁ (pulang) = "kréta pulang".',
+      explanation:
+          'ꦏꦿꦺ (kre mawa taling lan cakra) + ꦠ (ta) + ꦥꦸꦭꦁ (pulang) = "kréta pulang".',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa Kompleks',
     ),
     QuizQuestion(
@@ -756,9 +896,15 @@ class Unit3Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara iki wacane kepriye?',
       glyph: 'ꦚꦩ꧀ꦧꦸꦠ꧀ꦒꦮꦺ',
-      options: ['Nyambut gawe', 'Nandur pari', 'Ngombe wedang', 'Mangkat sekolah'],
+      options: [
+        'Nyambut gawe',
+        'Nandur pari',
+        'Ngombe wedang',
+        'Mangkat sekolah',
+      ],
       correctIndex: 0,
-      explanation: 'ꦚ (nya) + ꦩ (ma dipasangi ba mawa suku: mbu) + ꦠ (ta dipasangi ga: tga) + ꦮꦺ (we taling) = "nyambut gawe".',
+      explanation:
+          'ꦚ (nya) + ꦩ (ma dipasangi ba mawa suku: mbu) + ꦠ (ta dipasangi ga: tga) + ꦮꦺ (we taling) = "nyambut gawe".',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa',
     ),
 
@@ -771,7 +917,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U3] Sandhangan wulu (ꦶ) ngasilake swara apa?',
-      glyph: 'ꦶ',
+      glyph: '',
       options: ['Swara i', 'Swara u', 'Swara e', 'Swara o'],
       correctIndex: 0,
       explanation: 'Wulu ngowahi dadi swara vokal "i".',
@@ -783,7 +929,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U3] Sandhangan suku (ꦸ) ngasilake swara apa?',
-      glyph: 'ꦸ',
+      glyph: '',
       options: ['Swara i', 'Swara u', 'Swara o', 'Swara e'],
       correctIndex: 1,
       explanation: 'Suku manggon ing ngisor ngasilake swara vokal "u".',
@@ -794,8 +940,9 @@ class Unit3Questions {
       topicKey: 'evaluasi_unit3',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U3] Sandhangan layar (ꦂ) minangka panyigeg konsonan apa?',
-      glyph: 'ꦂ',
+      prompt:
+          '[Evaluasi U3] Sandhangan layar (ꦂ) minangka panyigeg konsonan apa?',
+      glyph: '',
       options: ['Konsonan h', 'Konsonan ng', 'Konsonan r', 'Konsonan k'],
       correctIndex: 2,
       explanation: 'Layar mateni dadi konsonan "r".',
@@ -806,8 +953,9 @@ class Unit3Questions {
       topicKey: 'evaluasi_unit3',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U3] Ing ukara "Siti tuku buku", tembung "Siti" lan "buku" nggunakake sandhangan swara awujud...',
-      glyph: 'ꦱꦤ꧀ꦝꦔꦤ꧀',
+      prompt:
+          '[Evaluasi U3] Ing ukara "Siti tuku buku", tembung "Siti" lan "buku" nggunakake sandhangan swara awujud...',
+      glyph: '',
       options: [
         'Wulu (ꦶ) kanggo Siti, lan suku (ꦸ) kanggo buku',
         'Taling (ꦺ) kanggo Siti, lan wulu (ꦶ) kanggo buku',
@@ -815,7 +963,8 @@ class Unit3Questions {
         'Suku (ꦸ) kanggo Siti, lan taling (ꦺ) kanggo buku',
       ],
       correctIndex: 0,
-      explanation: 'Vokal "i" ing tembung Siti mbutuhake sandhangan wulu (ꦶ), dene vokal "u" ing tembung buku nggunakake sandhangan suku (ꦸ).',
+      explanation:
+          'Vokal "i" ing tembung Siti mbutuhake sandhangan wulu (ꦶ), dene vokal "u" ing tembung buku nggunakake sandhangan suku (ꦸ).',
       sourceReference: 'Wewaton Panulise Aksara Jawa 1996',
     ),
     QuizQuestion(
@@ -823,8 +972,9 @@ class Unit3Questions {
       topicKey: 'evaluasi_unit3',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U3] Nalika nulis ukara "Bapak tindak pasar", aksara Jawa kang mbutuhake pasangan aksara yaiku aksara...',
-      glyph: 'ꦥꦱꦔꦤ꧀',
+      prompt:
+          '[Evaluasi U3] Nalika nulis ukara "Bapak tindak pasar", aksara Jawa kang mbutuhake pasangan aksara yaiku aksara...',
+      glyph: '',
       options: [
         'Aksara Pa amarga sawise aksara Ka sigeg (mati) ing tindak',
         'Aksara Ta amarga aksara Ba ing tembung bapak sigeg mati',
@@ -832,7 +982,8 @@ class Unit3Questions {
         'Aksara Sa amarga tembung pasar mbutuhake sandhangan layar',
       ],
       correctIndex: 0,
-      explanation: 'Ing tembung "tindak pasar", aksara Ka ing pungkasan tembung "tindak" sigeg (mati), mula aksara Pa ing tembung "pasar" kudu ditulis nganggo wujud Pasangan Pa (꧀ꦥ).',
+      explanation:
+          'Ing tembung "tindak pasar", aksara Ka ing pungkasan tembung "tindak" sigeg (mati), mula aksara Pa ing tembung "pasar" kudu ditulis nganggo wujud Pasangan Pa (꧀ꦥ).',
       sourceReference: 'Pedoman Pasang Aksara Jawa SKB Tiga Gubernur',
     ),
     QuizQuestion(
@@ -841,7 +992,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U3] Sandhangan cakra (ꦿ) gunane nambah seselan apa?',
-      glyph: 'ꦿ',
+      glyph: '',
       options: ['Seselan -ra-', 'Seselan -ya-', 'Seselan -la-', 'Seselan -wa-'],
       correctIndex: 0,
       explanation: 'Cakra nambah seselan "ra" ing wanda.',
@@ -853,7 +1004,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U3] Pasangan aksara Jawa cacahe ana pira?',
-      glyph: '꧒꧐',
+      glyph: '',
       options: ['18', '20', '24', '15'],
       correctIndex: 1,
       explanation: 'Pasangan aksara cacahe ana 20.',
@@ -864,8 +1015,9 @@ class Unit3Questions {
       topicKey: 'evaluasi_unit3',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U3] Pasangan kang manggon sejajar ing sisihe aksara yaiku...',
-      glyph: 'ꦲꦱꦥ',
+      prompt:
+          '[Evaluasi U3] Pasangan kang manggon sejajar ing sisihe aksara yaiku...',
+      glyph: '',
       options: ['Ha, Sa, Pa', 'Na, Ca, Ra', 'Ka, Da, Ta', 'Ma, Ga, Ba'],
       correctIndex: 0,
       explanation: 'Pasangan sejajar yaiku pasangan Ha, Sa, lan Pa.',
@@ -876,9 +1028,15 @@ class Unit3Questions {
       topicKey: 'evaluasi_unit3',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U3] Swara "re" pepet yen dadi suku kata mandhiri kudu ditulis...',
-      glyph: 'ꦉ',
-      options: ['Ra kawuwuhan pepet', 'Pa cerek (ꦉ)', 'Nga lelet', 'Cakra keret'],
+      prompt:
+          '[Evaluasi U3] Swara "re" pepet yen dadi suku kata mandhiri kudu ditulis...',
+      glyph: '',
+      options: [
+        'Ra kawuwuhan pepet',
+        'Pa cerek (ꦉ)',
+        'Nga lelet',
+        'Cakra keret',
+      ],
       correctIndex: 1,
       explanation: 'Swara re pepet mandhiri kudu ditulis Pa cerek (ꦉ).',
       sourceReference: 'Evaluasi Unit 3 JawaLoka',
@@ -889,7 +1047,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U3] Tembung ꦥꦱꦂ wacane yaiku...',
-      glyph: 'ꦥꦱꦂ',
+      glyph: '',
       options: ['Pasa', 'Pasir', 'Pasar', 'Pari'],
       correctIndex: 2,
       explanation: 'ꦥꦱꦂ diwaca "Pasar".',
