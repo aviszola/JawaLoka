@@ -252,7 +252,7 @@
   "settingsLogoutConfirm": "Are you sure you want to log out?",
   "settingsCancel": "Cancel",
   "settingsPrivacyPolicy": "Privacy Policy",
-  "settingsPrivacyPolicyContent": "JawaLoka stores your display name, language preference, blangkon collection, quiz progress, XP, and Level locally on your device. This demo app does not transmit data to any server, does not maintain real accounts, and does not store passwords.",
+  "settingsPrivacyPolicyContent": "JawaLoka (early version) stores your display name, age, gender, language preference, blangkon collection, and learning progress locally on your device only. Data is not transmitted to any server, with no ads or analytics. Clearing app data or uninstalling the app will permanently delete all stored data.",
   "settingsClose": "Close",
   "settingsAccountRow": "Account",
   "settingsAccountDialogTitle": "Account Details",

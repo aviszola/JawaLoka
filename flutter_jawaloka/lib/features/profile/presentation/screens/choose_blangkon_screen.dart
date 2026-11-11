@@ -482,8 +482,9 @@ class _BlangkonGridItem extends StatelessWidget {
   });
 
   String _getConditionLabel(BuildContext context, BlangkonType type) {
-    if (type == BlangkonType.yogyakarta)
+    if (type == BlangkonType.yogyakarta) {
       return context.l10n.blangkonInitialUnlock;
+    }
     if (type == BlangkonType.pusaka) return context.l10n.blangkonMasteryAksara;
     final reqLevel = BlangkonRewards.requiredLevels[type] ?? 1;
     return context.l10n.blangkonLevelRequired(reqLevel);
