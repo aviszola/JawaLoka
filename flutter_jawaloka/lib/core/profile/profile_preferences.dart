@@ -12,6 +12,17 @@ class DailyPracticeRecord {
 
   const DailyPracticeRecord({required this.date, required this.xp});
 }
+/// Representasi jenis kelamin karakter pengguna (Putra / Putri).
+enum UserGender {
+  male,
+  female;
+
+  String get label => this == UserGender.male ? 'Putra' : 'Putri';
+  String get subtitle => this == UserGender.male
+      ? 'Laki-laki (Surjan & Blangkon)'
+      : 'Perempuan (Kebaya & Sanggul)';
+}
+
 
 /// Abstract storage interface for user profile preferences and progression state.
 abstract class ProfilePreferences {
@@ -30,6 +41,9 @@ abstract class ProfilePreferences {
   static const String keyLastCelebratedLevel = 'profile_last_celebrated_level';
   static const String keyStorageSchemaVersion = 'storage_schema_version';
   static const int currentSchemaVersion = 1;
+  static const String keyGender = 'profile_user_gender';
+  static const String keyAge = 'profile_user_age';
+
 
   /// Loads the currently equipped [BlangkonType], falling back to [BlangkonType.yogyakarta].
   Future<BlangkonType> loadEquippedBlangkon();
@@ -102,6 +116,18 @@ abstract class ProfilePreferences {
 
   /// Persists last celebrated level.
   Future<void> saveLastCelebratedLevel(int level);
+
+  /// Memuat jenis kelamin pengguna, bawaan [UserGender.male].
+  Future<UserGender> loadGender();
+
+  /// Menyimpan jenis kelamin pengguna.
+  Future<void> saveGender(UserGender gender);
+
+  /// Memuat umur pengguna, bawaan 17.
+  Future<int> loadAge();
+
+  /// Menyimpan umur pengguna.
+  Future<void> saveAge(int age);
 }
 
 /// SharedPreferences implementation of [ProfilePreferences].
@@ -477,6 +503,47 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
       await prefs.setInt(ProfilePreferences.keyLastCelebratedLevel, safe);
     } catch (_) {}
   }
+
+  @override
+  Future<UserGender> loadGender() async {
+    try {
+      final prefs = await _prefsProvider();
+      final raw = prefs.getString(ProfilePreferences.keyGender);
+      if (raw == 'female') return UserGender.female;
+      return UserGender.male;
+    } catch (_) {
+      return UserGender.male;
+    }
+  }
+
+  @override
+  Future<void> saveGender(UserGender gender) async {
+    try {
+      final prefs = await _prefsProvider();
+      await prefs.setString(ProfilePreferences.keyGender, gender.name);
+    } catch (_) {}
+  }
+
+  @override
+  Future<int> loadAge() async {
+    try {
+      final prefs = await _prefsProvider();
+      final raw = prefs.getInt(ProfilePreferences.keyAge);
+      if (raw != null && raw >= 1 && raw <= 120) return raw;
+      return 17;
+    } catch (_) {
+      return 17;
+    }
+  }
+
+  @override
+  Future<void> saveAge(int age) async {
+    try {
+      final prefs = await _prefsProvider();
+      final safe = age.clamp(1, 120);
+      await prefs.setInt(ProfilePreferences.keyAge, safe);
+    } catch (_) {}
+  }
 }
 
 /// In-memory mock implementation of [ProfilePreferences] for isolated unit testing.
@@ -495,6 +562,8 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   Set<BlangkonType> _unlockedBlangkons;
   int _lastCelebratedLevel;
 
+  UserGender _gender;
+  int _age;
   InMemoryProfilePreferences({
     BlangkonType initialBlangkon = BlangkonType.yogyakarta,
     String initialDisplayName = 'Dimas',
@@ -511,6 +580,8 @@ class InMemoryProfilePreferences implements ProfilePreferences {
     int? initialQuizzesThisWeek,
     Set<BlangkonType>? initialUnlockedBlangkons,
     int? initialLastCelebratedLevel,
+    UserGender initialGender = UserGender.male,
+    int initialAge = 17,
   }) : _equippedBlangkon = initialBlangkon,
        _displayName = initialDisplayName,
        _totalXP = initialTotalXP,
@@ -544,8 +615,9 @@ class InMemoryProfilePreferences implements ProfilePreferences {
            ? Set.from(initialUnlockedBlangkons)
            : {BlangkonType.yogyakarta, initialBlangkon},
        _lastCelebratedLevel = initialLastCelebratedLevel ??
-           (isFreshUser ? 1 : (initialUserLevel ?? 1));
-
+           (isFreshUser ? 1 : (initialUserLevel ?? 1)),
+       _gender = initialGender,
+       _age = initialAge;
   @override
   Future<BlangkonType> loadEquippedBlangkon() async {
     final unlocked = await loadUnlockedBlangkons();
@@ -686,5 +758,21 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   @override
   Future<void> saveLastCelebratedLevel(int level) async {
     _lastCelebratedLevel = max(1, level);
+  }
+
+  @override
+  Future<UserGender> loadGender() async => _gender;
+
+  @override
+  Future<void> saveGender(UserGender gender) async {
+    _gender = gender;
+  }
+
+  @override
+  Future<int> loadAge() async => _age;
+
+  @override
+  Future<void> saveAge(int age) async {
+    _age = age.clamp(1, 120);
   }
 }

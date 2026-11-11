@@ -19,6 +19,8 @@ class ProfileController extends ChangeNotifier {
   BlangkonType _equippedBlangkon = BlangkonType.yogyakarta;
   // DATA CONTOH: nama bawaan "Dimas" dipakai sampai ada backend
   String _displayName = 'Dimas';
+  UserGender _gender = UserGender.male;
+  int _age = 17;
   int _totalXP = 0;
   Set<String> _clearedActivities = {};
   Set<String> _claimedSessionIds = {};
@@ -46,6 +48,8 @@ class ProfileController extends ChangeNotifier {
 
   BlangkonType get equippedBlangkon => _equippedBlangkon;
   String get displayName => _displayName;
+  UserGender get gender => _gender;
+  int get age => _age;
   int get totalXP => _totalXP;
   int get userLevel => ProgressionEngine.calculateLevel(_totalXP);
   double get levelProgress => ProgressionEngine.getLevelProgress(_totalXP);
@@ -120,6 +124,8 @@ class ProfileController extends ChangeNotifier {
 
     _unlockedBlangkons = await _preferences.loadUnlockedBlangkons();
     _lastCelebratedLevel = await _preferences.loadLastCelebratedLevel();
+    _gender = await _preferences.loadGender();
+    _age = await _preferences.loadAge();
 
     // Pastikan Yogyakarta selalu terbuka
     _unlockedBlangkons.add(BlangkonType.yogyakarta);
@@ -172,6 +178,23 @@ class ProfileController extends ChangeNotifier {
     _displayName = trimmed;
     notifyListeners();
     await _preferences.saveDisplayName(trimmed);
+  }
+
+  /// Updates the user gender (Putra/Putri), persists, and notifies listeners.
+  Future<void> setGender(UserGender gender) async {
+    if (_gender == gender) return;
+    _gender = gender;
+    notifyListeners();
+    await _preferences.saveGender(gender);
+  }
+
+  /// Updates the user age, persists, and notifies listeners.
+  Future<void> setAge(int age) async {
+    final safe = age.clamp(1, 120);
+    if (_age == safe) return;
+    _age = safe;
+    notifyListeners();
+    await _preferences.saveAge(safe);
   }
 
   /// Sets the user proficiency level by aligning total XP with the level's base threshold.

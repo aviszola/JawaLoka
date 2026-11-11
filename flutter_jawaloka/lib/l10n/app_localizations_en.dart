@@ -169,6 +169,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginRegisterLink => 'Sign Up';
 
   @override
+  String get loginQuestionLevelTitle => 'Javanese Proficiency Level';
+
+  @override
+  String get loginLevelBeginner => 'Beginner (New Learner)';
+
+  @override
+  String get loginLevelIntermediate => 'Intermediate (Basic Words)';
+
+  @override
+  String get loginLevelAdvanced => 'Advanced (Fluent Nuances)';
+
+  @override
+  String get loginQuestionGoalTitle => 'Primary Learning Goal';
+
+  @override
+  String get loginGoalAksara => 'Writing & Reading Script';
+
+  @override
+  String get loginGoalConversation => 'Daily Conversation';
+
+  @override
+  String get loginGoalCulture => 'Arts & Traditional Culture';
+
+  @override
   String get registerTitle => 'Create your account';
 
   @override
@@ -192,6 +216,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get registerLoginLink => 'Sign In';
+
+  @override
+  String get authContinueAsGuest => 'Continue as Guest';
+
+  @override
+  String get authSkipToLearn => 'Skip & Start Learning';
 
   @override
   String get navHome => 'Home';
@@ -356,7 +386,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get learnModuleAksaraSubtitle =>
-      'Hanacaraka — 20 basic scripts, diacritics & pairs';
+      'Hanacaraka: 20 basic scripts, diacritics & pairs';
 
   @override
   String get learnModuleAksaraLabel => '20 characters completed';
@@ -722,6 +752,56 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get blangkonDescPusaka =>
       'Traditional masterpiece with gold ornamentation';
+
+  @override
+  String get profileChooseBusanaButton => 'Choose Outfit';
+
+  @override
+  String get busanaTitle => 'Choose Outfit';
+
+  @override
+  String get busanaSaveButton => 'Save Selection';
+
+  @override
+  String get busanaDescYogyakarta =>
+      'Elegant Kutubaru kebaya, Yogyakarta royal style';
+
+  @override
+  String get busanaDescSurakarta =>
+      'Graceful Solo kebaya with batik ornamentation';
+
+  @override
+  String get busanaDescBanyumas =>
+      'Fresh Sundanese plain kebaya with coastal flair';
+
+  @override
+  String get busanaDescKedu => 'Simple Kedu-style kebaya';
+
+  @override
+  String get busanaDescCirebon =>
+      'Dynamic Cirebon Mega Mendung patterned kebaya';
+
+  @override
+  String get busanaDescPusaka =>
+      'Special Betawi Encim kebaya, vibrant and ornate';
+
+  @override
+  String get busanaNameYogyakarta => 'Kutubaru Yogyakarta';
+
+  @override
+  String get busanaNameSurakarta => 'Solo Kebaya';
+
+  @override
+  String get busanaNameBanyumas => 'Sundanese Kebaya';
+
+  @override
+  String get busanaNameKedu => 'Kedu Kebaya';
+
+  @override
+  String get busanaNameCirebon => 'Mega Mendung Cirebon';
+
+  @override
+  String get busanaNamePusaka => 'Betawi Encim';
 
   @override
   String get levelUpMicroTag => 'JAWALOKA ACHIEVEMENT';

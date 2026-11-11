@@ -168,6 +168,30 @@ class AppLocalizationsJv extends AppLocalizations {
   String get loginRegisterLink => 'Ndhaptar';
 
   @override
+  String get loginQuestionLevelTitle => 'Tataran Kawruh Basa Jawa';
+
+  @override
+  String get loginLevelBeginner => 'Pamula (Nembe Sinau)';
+
+  @override
+  String get loginLevelIntermediate => 'Madya (Paham Tembung)';
+
+  @override
+  String get loginLevelAdvanced => 'Linuwih (Lantip Basa)';
+
+  @override
+  String get loginQuestionGoalTitle => 'Tujuwan Utama Sinau';
+
+  @override
+  String get loginGoalAksara => 'Nulis & Maca Hanacaraka';
+
+  @override
+  String get loginGoalConversation => 'Guneman Padinan';
+
+  @override
+  String get loginGoalCulture => 'Kagunan & Kabudayan';
+
+  @override
   String get registerTitle => 'Gawe akunmu';
 
   @override
@@ -191,6 +215,12 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get registerLoginLink => 'Mlebu';
+
+  @override
+  String get authContinueAsGuest => 'Lajeng dados Tamu';
+
+  @override
+  String get authSkipToLearn => 'Lumpati & Wiwit Sinau';
 
   @override
   String get navHome => 'Beranda';
@@ -354,7 +384,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get learnModuleAksaraSubtitle =>
-      'Hanacaraka — 20 aksara dhasar, sandhangan & pasangan';
+      'Hanacaraka: 20 aksara dhasar, sandhangan & pasangan';
 
   @override
   String get learnModuleAksaraLabel => '20 aksara sampun rampung';
@@ -717,6 +747,54 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get blangkonDescPusaka => 'Mahakarya tradisi kanthi ornamen emas';
+
+  @override
+  String get profileChooseBusanaButton => 'Pilih Busana';
+
+  @override
+  String get busanaTitle => 'Pilih Busana';
+
+  @override
+  String get busanaSaveButton => 'Simpen Pilihan';
+
+  @override
+  String get busanaDescYogyakarta =>
+      'Alus, kebaya kutubaru khas Keraton Ngayogyakarta';
+
+  @override
+  String get busanaDescSurakarta =>
+      'Endah, kebaya encim ngagem corak batik Solo';
+
+  @override
+  String get busanaDescBanyumas => 'Seger, kebaya sunda polos pesisiran';
+
+  @override
+  String get busanaDescKedu => 'Prasaja, kebaya gaya Kedu';
+
+  @override
+  String get busanaDescCirebon =>
+      'Dinamis, kebaya corak mega mendung pesisir Cirebon';
+
+  @override
+  String get busanaDescPusaka => 'Mirunggan, kebaya betawi encim warni-warni';
+
+  @override
+  String get busanaNameYogyakarta => 'Kutubaru Ngayogyakarta';
+
+  @override
+  String get busanaNameSurakarta => 'Kebaya Surakarta';
+
+  @override
+  String get busanaNameBanyumas => 'Kebaya Sunda';
+
+  @override
+  String get busanaNameKedu => 'Kebaya Kedu';
+
+  @override
+  String get busanaNameCirebon => 'Mega Mendung Cirebon';
+
+  @override
+  String get busanaNamePusaka => 'Betawi Encim';
 
   @override
   String get levelUpMicroTag => 'PENCAPAIAN JAWALOKA';

@@ -167,6 +167,30 @@ class AppLocalizationsId extends AppLocalizations {
   String get loginRegisterLink => 'Daftar';
 
   @override
+  String get loginQuestionLevelTitle => 'Tingkat Kemampuan Bahasa Jawa';
+
+  @override
+  String get loginLevelBeginner => 'Pemula (Baru Belajar)';
+
+  @override
+  String get loginLevelIntermediate => 'Menengah (Kosakata Dasar)';
+
+  @override
+  String get loginLevelAdvanced => 'Mahir (Unggah-ungguh)';
+
+  @override
+  String get loginQuestionGoalTitle => 'Tujuan Utama Belajar';
+
+  @override
+  String get loginGoalAksara => 'Membaca & Menulis Aksara';
+
+  @override
+  String get loginGoalConversation => 'Percakapan Sehari-hari';
+
+  @override
+  String get loginGoalCulture => 'Seni & Tradisi Jawa';
+
+  @override
   String get registerTitle => 'Buat akunmu';
 
   @override
@@ -190,6 +214,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get registerLoginLink => 'Masuk';
+
+  @override
+  String get authContinueAsGuest => 'Lanjut sebagai Tamu';
+
+  @override
+  String get authSkipToLearn => 'Lewati & Mulai Belajar';
 
   @override
   String get navHome => 'Beranda';
@@ -353,7 +383,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get learnModuleAksaraSubtitle =>
-      'Hanacaraka — 20 aksara dasar, sandhangan & pasangan';
+      'Hanacaraka: 20 aksara dasar, sandhangan & pasangan';
 
   @override
   String get learnModuleAksaraLabel => '20 aksara terselesaikan';
@@ -716,6 +746,56 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get blangkonDescPusaka => 'Mahakarya tradisi berornamen emas';
+
+  @override
+  String get profileChooseBusanaButton => 'Pilih Busana';
+
+  @override
+  String get busanaTitle => 'Pilih Busana';
+
+  @override
+  String get busanaSaveButton => 'Simpan Pilihan';
+
+  @override
+  String get busanaDescYogyakarta =>
+      'Elegan, kebaya kutubaru khas Keraton Yogyakarta';
+
+  @override
+  String get busanaDescSurakarta =>
+      'Anggun, kebaya encim penuh ornamen batik Solo';
+
+  @override
+  String get busanaDescBanyumas =>
+      'Segar, kebaya sunda polos bernuansa pesisiran';
+
+  @override
+  String get busanaDescKedu => 'Sederhana, busana kebaya gaya Kedu';
+
+  @override
+  String get busanaDescCirebon =>
+      'Dinamis, kebaya bermotif mega mendung pesisir Cirebon';
+
+  @override
+  String get busanaDescPusaka =>
+      'Istimewa, kebaya betawi encim bermotif penuh warna';
+
+  @override
+  String get busanaNameYogyakarta => 'Kutubaru Yogyakarta';
+
+  @override
+  String get busanaNameSurakarta => 'Kebaya Surakarta';
+
+  @override
+  String get busanaNameBanyumas => 'Kebaya Sunda';
+
+  @override
+  String get busanaNameKedu => 'Kebaya Kedu';
+
+  @override
+  String get busanaNameCirebon => 'Mega Mendung Cirebon';
+
+  @override
+  String get busanaNamePusaka => 'Betawi Encim';
 
   @override
   String get levelUpMicroTag => 'PENCAPAIAN JAWALOKA';

@@ -488,6 +488,24 @@ void main() {
       },
     );
   });
+  group('Profile Gender & Age Configuration Tests', () {
+    test('User gender and age default correctly and can be updated', () async {
+      final prefs = InMemoryProfilePreferences();
+      final controller = ProfileController(preferences: prefs);
+      await controller.loadProfile();
+
+      expect(controller.gender, equals(UserGender.male));
+      expect(controller.age, equals(17));
+
+      await controller.setGender(UserGender.female);
+      expect(controller.gender, equals(UserGender.female));
+      expect(await prefs.loadGender(), equals(UserGender.female));
+
+      await controller.setAge(21);
+      expect(controller.age, equals(21));
+      expect(await prefs.loadAge(), equals(21));
+    });
+  });
 }
 
 class _FaultyProfilePreferences extends InMemoryProfilePreferences {

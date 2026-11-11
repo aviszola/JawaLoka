@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
-import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/auth/presentation/screens/language_selection_screen.dart';
-import '../../features/auth/presentation/screens/register_screen.dart';
-import '../../features/auth/presentation/screens/login_screen.dart';
+import '../../features/auth/presentation/screens/get_started_screen.dart';
+import '../../features/auth/presentation/screens/profile_setup_screen.dart';
 import '../../features/home/presentation/screens/main_shell_screen.dart';
 import '../../features/learn/presentation/screens/vocabulary_detail_screen.dart';
 import '../../features/learn/presentation/screens/aksara_detail_screen.dart';
@@ -27,8 +26,10 @@ class AppRouter {
   // ═══════════════════════════════════════════════
   //   ROUTE NAMES
   // ═══════════════════════════════════════════════
-  static const String splash = '/';
+  static const String splash = '/splash';
+  static const String getStarted = '/';
   static const String languageSelection = '/language-selection';
+  static const String profileSetup = '/profile-setup';
   static const String register = '/register';
   static const String login = '/login';
   static const String home = '/home';
@@ -52,7 +53,14 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRouter.splash:
-        return _FadePageRoute(page: const SplashScreen(), settings: settings);
+        return _FadePageRoute(page: const GetStartedScreen(), settings: settings);
+
+      case AppRouter.getStarted:
+      case '/get-started':
+        return _FadePageRoute(
+          page: const GetStartedScreen(),
+          settings: settings,
+        );
 
       case AppRouter.languageSelection:
         return _FadePageRoute(
@@ -60,11 +68,10 @@ class AppRouter {
           settings: settings,
         );
 
+      case AppRouter.profileSetup:
       case AppRouter.register:
-        return _FadePageRoute(page: const RegisterScreen(), settings: settings);
-
       case AppRouter.login:
-        return _FadePageRoute(page: const LoginScreen(), settings: settings);
+        return _FadePageRoute(page: const ProfileSetupScreen(), settings: settings);
 
       case AppRouter.home:
         return _FadePageRoute(
@@ -225,19 +232,124 @@ class AppRouter {
   }
 }
 
-// ─── Fade page transition ─────────────────────────────────────────────────────
+// ─── Animated page transitions ────────────────────────────────────────────────
 
-class _FadePageRoute<T> extends PageRouteBuilder<T> {
-  _FadePageRoute({required Widget page, required RouteSettings settings})
-    : super(
-        settings: settings,
-        pageBuilder: (context, animation, secondaryAnimation) => page,
-        transitionsBuilder: (context, anim, secondaryAnimation, child) =>
-            FadeTransition(opacity: anim, child: child),
-        transitionDuration: const Duration(milliseconds: 300),
-      );
+/// Reusable transition builder that combines slide, scale, and fade animations
+/// with depth-layered secondary transitions for receding pages.
+Widget buildJawaLokaTransitions({
+  required Animation<double> animation,
+  required Animation<double> secondaryAnimation,
+  required Widget child,
+}) {
+  final curvedAnimation = CurvedAnimation(
+    parent: animation,
+    curve: Curves.easeOutCubic,
+    reverseCurve: Curves.easeInCubic,
+  );
+
+  final curvedSecondaryAnimation = CurvedAnimation(
+    parent: secondaryAnimation,
+    curve: Curves.easeOutCubic,
+    reverseCurve: Curves.easeInCubic,
+  );
+
+  // Primary enter: Slide from right (8%), scale from 0.96 to 1.0, fade 0 to 1
+  final slideIn = Tween<Offset>(
+    begin: const Offset(0.08, 0.0),
+    end: Offset.zero,
+  ).animate(curvedAnimation);
+
+  final scaleIn = Tween<double>(
+    begin: 0.96,
+    end: 1.0,
+  ).animate(curvedAnimation);
+
+  final fadeIn = Tween<double>(
+    begin: 0.0,
+    end: 1.0,
+  ).animate(curvedAnimation);
+
+  // Secondary exit: Current page slightly slides left (-4%), scales down to 0.98, dims to 0.88
+  final slideOut = Tween<Offset>(
+    begin: Offset.zero,
+    end: const Offset(-0.04, 0.0),
+  ).animate(curvedSecondaryAnimation);
+
+  final scaleOut = Tween<double>(
+    begin: 1.0,
+    end: 0.98,
+  ).animate(curvedSecondaryAnimation);
+
+  final fadeOut = Tween<double>(
+    begin: 1.0,
+    end: 0.88,
+  ).animate(curvedSecondaryAnimation);
+
+  return SlideTransition(
+    position: slideOut,
+    child: ScaleTransition(
+      scale: scaleOut,
+      child: FadeTransition(
+        opacity: fadeOut,
+        child: SlideTransition(
+          position: slideIn,
+          child: ScaleTransition(
+            scale: scaleIn,
+            child: FadeTransition(
+              opacity: fadeIn,
+              child: child,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
+/// Page route builder providing smooth animated page transitions across all routes.
+class JawaLokaPageRoute<T> extends PageRouteBuilder<T> {
+  final Widget page;
+
+  JawaLokaPageRoute({
+    required this.page,
+    required super.settings,
+    Duration duration = const Duration(milliseconds: 380),
+    Duration reverseDuration = const Duration(milliseconds: 320),
+  }) : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionDuration: duration,
+          reverseTransitionDuration: reverseDuration,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              buildJawaLokaTransitions(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
+          ),
+        );
+}
+
+/// PageTransitionsBuilder for MaterialApp theme so all route transitions are animated.
+class JawaLokaPageTransitionsBuilder extends PageTransitionsBuilder {
+  const JawaLokaPageTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return buildJawaLokaTransitions(
+      animation: animation,
+      secondaryAnimation: secondaryAnimation,
+      child: child,
+    );
+  }
+}
+
+/// Backward-compatible alias for route generator
+typedef _FadePageRoute<T> = JawaLokaPageRoute<T>;
 // ─── Error scaffold ───────────────────────────────────────────────────────────
 
 class _ErrorScreen extends StatelessWidget {

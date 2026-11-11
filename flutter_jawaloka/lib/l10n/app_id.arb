@@ -204,6 +204,38 @@
   "@loginRegisterLink": {
     "description": "Tautan navigasi ke halaman pendaftaran"
   },
+  "loginQuestionLevelTitle": "Tingkat Kemampuan Bahasa Jawa",
+  "@loginQuestionLevelTitle": {
+    "description": "Pertanyaan tingkat kemahiran belajar di login"
+  },
+  "loginLevelBeginner": "Pemula (Baru Belajar)",
+  "@loginLevelBeginner": {
+    "description": "Pilihan tingkat pemula"
+  },
+  "loginLevelIntermediate": "Menengah (Kosakata Dasar)",
+  "@loginLevelIntermediate": {
+    "description": "Pilihan tingkat menengah"
+  },
+  "loginLevelAdvanced": "Mahir (Unggah-ungguh)",
+  "@loginLevelAdvanced": {
+    "description": "Pilihan tingkat mahir"
+  },
+  "loginQuestionGoalTitle": "Tujuan Utama Belajar",
+  "@loginQuestionGoalTitle": {
+    "description": "Pertanyaan tujuan belajar di login"
+  },
+  "loginGoalAksara": "Membaca & Menulis Aksara",
+  "@loginGoalAksara": {
+    "description": "Pilihan target belajar aksara Jawa"
+  },
+  "loginGoalConversation": "Percakapan Sehari-hari",
+  "@loginGoalConversation": {
+    "description": "Pilihan target belajar percakapan"
+  },
+  "loginGoalCulture": "Seni & Tradisi Jawa",
+  "@loginGoalCulture": {
+    "description": "Pilihan target belajar budaya"
+  },
   "registerTitle": "Buat akunmu",
   "@registerTitle": {
     "description": "Judul utama halaman pendaftaran"
@@ -235,6 +267,14 @@
   "registerLoginLink": "Masuk",
   "@registerLoginLink": {
     "description": "Tautan navigasi ke halaman masuk"
+  },
+  "authContinueAsGuest": "Lanjut sebagai Tamu",
+  "@authContinueAsGuest": {
+    "description": "Tombol untuk melewati pendaftaran dan langsung masuk sebagai tamu"
+  },
+  "authSkipToLearn": "Lewati & Mulai Belajar",
+  "@authSkipToLearn": {
+    "description": "Tautan alternatif untuk langsung mulai belajar tanpa login"
   },
   "navHome": "Beranda",
   "@navHome": {
@@ -468,7 +508,7 @@
   "@learnModuleAksaraTitle": {
     "description": "Judul modul aksara Jawa"
   },
-  "learnModuleAksaraSubtitle": "Hanacaraka — 20 aksara dasar, sandhangan & pasangan",
+  "learnModuleAksaraSubtitle": "Hanacaraka: 20 aksara dasar, sandhangan & pasangan",
   "@learnModuleAksaraSubtitle": {
     "description": "Subjudul modul aksara Jawa"
   },
@@ -1006,6 +1046,21 @@
   "@blangkonDescPusaka": {
     "description": "Deskripsi ciri khas blangkon gaya Pusaka"
   },
+  "profileChooseBusanaButton": "Pilih Busana",
+  "busanaTitle": "Pilih Busana",
+  "busanaSaveButton": "Simpan Pilihan",
+  "busanaDescYogyakarta": "Elegan, kebaya kutubaru khas Keraton Yogyakarta",
+  "busanaDescSurakarta": "Anggun, kebaya encim penuh ornamen batik Solo",
+  "busanaDescBanyumas": "Segar, kebaya sunda polos bernuansa pesisiran",
+  "busanaDescKedu": "Sederhana, busana kebaya gaya Kedu",
+  "busanaDescCirebon": "Dinamis, kebaya bermotif mega mendung pesisir Cirebon",
+  "busanaDescPusaka": "Istimewa, kebaya betawi encim bermotif penuh warna",
+  "busanaNameYogyakarta": "Kutubaru Yogyakarta",
+  "busanaNameSurakarta": "Kebaya Surakarta",
+  "busanaNameBanyumas": "Kebaya Sunda",
+  "busanaNameKedu": "Kebaya Kedu",
+  "busanaNameCirebon": "Mega Mendung Cirebon",
+  "busanaNamePusaka": "Betawi Encim",
   "levelUpMicroTag": "PENCAPAIAN JAWALOKA",
   "@levelUpMicroTag": {
     "description": "Mikro tag perayaan naik level"

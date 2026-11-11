@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_jawaloka/core/presentation/widgets/javanese_calligraphy_painter.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
+import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/language_selection_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/widgets/primary_button.dart';
@@ -16,14 +17,13 @@ import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_questio
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_result_screen.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/widgets/drawing_canvas_painter.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/widgets/quiz_bottom_sheet.dart';
-import 'package:flutter_jawaloka/features/splash/presentation/screens/splash_screen.dart';
 import '../helpers/pump_app.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets(
-    'End-to-End Main Flow: Splash -> Language -> Register -> Home -> Active Quiz -> Quest Trace -> Quest Result -> Profile -> Settings',
+    'End-to-End Main Flow: Splash -> Get Started (10s) -> Language -> Register -> Home -> Active Quiz -> Quest Trace -> Quest Result -> Profile -> Settings',
     (WidgetTester tester) async {
       // 1. Setup view dimensions so all elements fit comfortably
       tester.view.physicalSize = const Size(800, 1400);
@@ -33,18 +33,19 @@ void main() {
         tester.view.resetDevicePixelRatio();
       });
 
-      // ── STEP 1: SPLASH SCREEN ──────────────────────────────────────────────
+      // ── STEP 1: GET STARTED SCREEN (bisa langsung lanjut tanpa menunggu) ───
       await tester.pumpApp(
-        const SplashScreen(displayDuration: Duration.zero),
+        const GetStartedScreen(enableAmbientAnimation: false),
         onGenerateRoute: AppRouter.generateRoute,
       );
 
-      expect(find.byType(SplashScreen), findsOneWidget);
+      expect(find.byType(GetStartedScreen), findsOneWidget);
 
-      // Advance past splash zero-duration timer and fade transition to LanguageSelectionScreen
-      await tester.pump(const Duration(milliseconds: 50));
+      final getStartedBtn = find.text('Get Started');
+      expect(getStartedBtn, findsOneWidget);
+      await tester.tap(getStartedBtn);
       await tester.pump(const Duration(milliseconds: 500));
-
+      await tester.pumpAndSettle();
       // ── STEP 2: LANGUAGE SELECTION ─────────────────────────────────────────
       expect(find.byType(LanguageSelectionScreen), findsOneWidget);
 
