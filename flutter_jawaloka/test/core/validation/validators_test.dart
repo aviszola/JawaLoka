@@ -6,7 +6,10 @@ void main() {
   group('Validators - Display Name', () {
     test('returns empty error for empty or whitespace-only strings', () {
       expect(Validators.validateDisplayName('').errorOrNull, NameError.empty);
-      expect(Validators.validateDisplayName('   ').errorOrNull, NameError.empty);
+      expect(
+        Validators.validateDisplayName('   ').errorOrNull,
+        NameError.empty,
+      );
       expect(
         Validators.validateDisplayName('\u200B\u200C').errorOrNull,
         NameError.empty,
@@ -14,7 +17,10 @@ void main() {
     });
 
     test('returns tooShort for single-character input', () {
-      expect(Validators.validateDisplayName('A').errorOrNull, NameError.tooShort);
+      expect(
+        Validators.validateDisplayName('A').errorOrNull,
+        NameError.tooShort,
+      );
       expect(
         Validators.validateDisplayName('  B  ').errorOrNull,
         NameError.tooShort,
@@ -44,7 +50,9 @@ void main() {
       expect(normRes.valueOrNull, 'Raden Mas Budi');
 
       // Valid special allowed characters: apostrophe, hyphen, period
-      final allowedSpecial = Validators.validateDisplayName("Dr. Siti-Aminah O'Connor");
+      final allowedSpecial = Validators.validateDisplayName(
+        "Dr. Siti-Aminah O'Connor",
+      );
       expect(allowedSpecial.isValid, isTrue);
       expect(allowedSpecial.valueOrNull, "Dr. Siti-Aminah O'Connor");
 
@@ -82,7 +90,10 @@ void main() {
 
     test('returns tooLong for emails exceeding 254 octets', () {
       final longEmail = '${'a' * 245}@example.com';
-      expect(Validators.validateEmail(longEmail).errorOrNull, EmailError.tooLong);
+      expect(
+        Validators.validateEmail(longEmail).errorOrNull,
+        EmailError.tooLong,
+      );
     });
 
     test('validates valid emails and normalizes domain case', () {
@@ -158,18 +169,21 @@ void main() {
       );
     });
 
-    test('accepts valid passwords and preserves exact spacing without trimming', () {
-      final pass8 = '12345678';
-      expect(Validators.validatePassword(pass8).valueOrNull, pass8);
+    test(
+      'accepts valid passwords and preserves exact spacing without trimming',
+      () {
+        final pass8 = '12345678';
+        expect(Validators.validatePassword(pass8).valueOrNull, pass8);
 
-      final pass64 = 'B' * 64;
-      expect(Validators.validatePassword(pass64).valueOrNull, pass64);
+        final pass64 = 'B' * 64;
+        expect(Validators.validatePassword(pass64).valueOrNull, pass64);
 
-      final spacedPass = ' secret password with spaces ';
-      final res = Validators.validatePassword(spacedPass);
-      expect(res.isValid, isTrue);
-      expect(res.valueOrNull, spacedPass);
-    });
+        final spacedPass = ' secret password with spaces ';
+        final res = Validators.validatePassword(spacedPass);
+        expect(res.isValid, isTrue);
+        expect(res.valueOrNull, spacedPass);
+      },
+    );
   });
 
   group('Validators - Translation Input', () {
@@ -235,7 +249,10 @@ void main() {
         [const Offset(10, 10), const Offset(15, 10)], // distance = 5.0
       ];
       expect(
-        Validators.validateQuestStrokes(shortStroke, minTotalLength: 20.0).errorOrNull,
+        Validators.validateQuestStrokes(
+          shortStroke,
+          minTotalLength: 20.0,
+        ).errorOrNull,
         QuestDrawingError.tooShort,
       );
     });
@@ -244,7 +261,10 @@ void main() {
       final validStroke = [
         [const Offset(10, 10), const Offset(40, 10)], // distance = 30.0
       ];
-      final res = Validators.validateQuestStrokes(validStroke, minTotalLength: 20.0);
+      final res = Validators.validateQuestStrokes(
+        validStroke,
+        minTotalLength: 20.0,
+      );
       expect(res.isValid, isTrue);
       expect(res.valueOrNull, validStroke);
     });
@@ -263,7 +283,10 @@ void main() {
 
     test('sanitizeStoredString trims, checks whitelist, and falls back', () {
       expect(Validators.sanitizeStoredString('  hello  '), 'hello');
-      expect(Validators.sanitizeStoredString(123, fallback: 'default'), 'default');
+      expect(
+        Validators.sanitizeStoredString(123, fallback: 'default'),
+        'default',
+      );
       expect(
         Validators.sanitizeStoredString(
           'surakarta',

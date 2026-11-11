@@ -34,7 +34,9 @@ class TranslatorPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bg = isOutput ? AppColors.amberSoft : AppColors.surface;
-    final border = isOutput ? AppColors.amber.withValues(alpha: 0.35) : AppColors.surface;
+    final border = isOutput
+        ? AppColors.amber.withValues(alpha: 0.35)
+        : AppColors.surface;
 
     return Container(
       decoration: BoxDecoration(
@@ -63,7 +65,9 @@ class TranslatorPanel extends StatelessWidget {
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.6,
-                    color: isOutput ? AppColors.amberDark : const Color(0xFF6B6257),
+                    color: isOutput
+                        ? AppColors.amberDark
+                        : const Color(0xFF6B6257),
                   ),
                 ),
                 const Spacer(),
@@ -113,10 +117,14 @@ class _LanguageBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: isOutput ? AppColors.amber.withValues(alpha: 0.25) : const Color(0xFFF5F1EB),
+        color: isOutput
+            ? AppColors.amber.withValues(alpha: 0.25)
+            : const Color(0xFFF5F1EB),
         borderRadius: BorderRadius.circular(100),
         border: Border.all(
-          color: isOutput ? AppColors.amberDark.withValues(alpha: 0.4) : const Color(0xFFE8E1D6),
+          color: isOutput
+              ? AppColors.amberDark.withValues(alpha: 0.4)
+              : const Color(0xFFE8E1D6),
           width: 1,
         ),
       ),
@@ -151,11 +159,14 @@ class _ShimmerPlaceholderState extends State<ShimmerPlaceholder>
   @override
   void initState() {
     super.initState();
-    _ctrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200))
-      ..repeat();
-    _anim = Tween<double>(begin: -1, end: 2).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut),
-    );
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    )..repeat();
+    _anim = Tween<double>(
+      begin: -1,
+      end: 2,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
   }
 
   @override

@@ -5,7 +5,7 @@ import 'package:flutter_jawaloka/core/l10n/locale_controller.dart';
 import 'package:flutter_jawaloka/core/l10n/locale_preferences.dart';
 import 'package:flutter_jawaloka/core/l10n/locale_scope.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
-import 'package:flutter_jawaloka/features/splash/presentation/screens/splash_screen.dart';
+import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/home/presentation/screens/main_shell_screen.dart';
 import 'package:flutter_jawaloka/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter_jawaloka/features/learn/presentation/screens/learn_hub_screen.dart';
@@ -17,24 +17,21 @@ import 'package:flutter_jawaloka/features/profile/presentation/screens/profile_s
 import 'helpers/pump_app.dart';
 
 void main() {
-  testWidgets('JawaLoka splash screen smoke test', (WidgetTester tester) async {
+  testWidgets('JawaLoka app smoke test', (WidgetTester tester) async {
     final controller = LocaleController(
       preferences: InMemoryLocalePreferences(),
     );
     await controller.loadSavedLocale();
     await tester.pumpWidget(
-      LocaleScope(controller: controller, child: const JawaLokaApp()),
+      LocaleScope(
+        controller: controller,
+        child: const JawaLokaApp(initialRoute: AppRouter.getStarted),
+      ),
     );
 
-    // Verify that the Splash Screen is present.
-    expect(find.byType(SplashScreen), findsOneWidget);
-
-    // Verify brand name and tagline exist.
+    // Verify that the GetStarted Screen is present.
+    expect(find.byType(GetStartedScreen), findsOneWidget);
     expect(find.text('JawaLoka'), findsOneWidget);
-    expect(
-      find.text('Belajar bahasa dan aksara Jawa setiap hari'),
-      findsOneWidget,
-    );
   });
 
   // ─── Test (a): 5 Bottom Navigation items ─────────────────────────────────
@@ -152,7 +149,10 @@ void main() {
       expect(find.text('Sangat Mahir'), findsOneWidget);
 
       // Unit 1 topics visible at top
-      expect(find.text('Unit 1: Sapaan dan Unggah-Ungguh Awal'), findsOneWidget);
+      expect(
+        find.text('Unit 1: Sapaan dan Unggah-Ungguh Awal'),
+        findsOneWidget,
+      );
       expect(find.text('Salam'), findsOneWidget);
       expect(find.text('Pamit'), findsOneWidget);
       expect(find.text('Tanya kabar'), findsOneWidget);

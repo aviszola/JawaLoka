@@ -149,7 +149,12 @@ class _CustomTextFieldState extends State<CustomTextField>
               maxLines: widget.maxLines,
               maxLength: widget.maxLength,
               buildCounter: widget.maxLength != null
-                  ? (context, {required currentLength, required isFocused, required maxLength}) => null
+                  ? (
+                      context, {
+                      required currentLength,
+                      required isFocused,
+                      required maxLength,
+                    }) => null
                   : null,
               style: const TextStyle(
                 color: AppColors.ink,

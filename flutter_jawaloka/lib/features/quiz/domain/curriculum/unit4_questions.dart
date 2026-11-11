@@ -26,7 +26,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sebatan krama inggil tumrap "bapak" yaiku...',
-      glyph: 'ꦫꦩ',
+      glyph: '',
       options: ['Rama', 'Ibu', 'Eyang', 'Kakang'],
       correctIndex: 0,
       explanation: 'Bapak krama inggile yaiku "Rama".',
@@ -37,8 +37,9 @@ class Unit4Questions {
       topicKey: 'kosakata_padinan',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Sebatan tumrap mbakyu kang luwih tuwa ing kulawarga kramane yaiku...',
-      glyph: 'ꦩ꧀ꦧꦏꦾꦸ',
+      prompt:
+          'Sebatan tumrap mbakyu kang luwih tuwa ing kulawarga kramane yaiku...',
+      glyph: '',
       options: ['Adhimas', 'Mbakyu', 'Rayi', 'Kakang'],
       correctIndex: 1,
       explanation: 'Mbakyu yaiku sebatan tumrap sedulur wadon kang luwih tuwa.',
@@ -50,7 +51,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Sebatan krama alus tumrap "adhik" yaiku...',
-      glyph: 'ꦫꦪꦶ',
+      glyph: '',
       options: ['Raka', 'Kakangmas', 'Rayi / Adhimas', 'Paman'],
       correctIndex: 2,
       explanation: 'Adhik krama aluse yaiku "Rayi" utawa "Adhimas".',
@@ -61,8 +62,9 @@ class Unit4Questions {
       topicKey: 'kosakata_padinan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Dene sebatan krama alus tumrap "kakang" (kakak laki-laki) yaiku...',
-      glyph: 'ꦫꦏ',
+      prompt:
+          'Dene sebatan krama alus tumrap "kakang" (kakak laki-laki) yaiku...',
+      glyph: '',
       options: ['Raka / Kangmas', 'Rayi', 'Paman', 'Kemenakan'],
       correctIndex: 0,
       explanation: 'Kakang krama aluse yaiku "Raka" utawa "Kangmas".',
@@ -74,10 +76,16 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Anak pembarep tegese anak nomer pira ing kulawarga?',
-      glyph: 'ꦩ꧀ꦧꦫꦼꦥ꧀',
-      options: ['Anak nomer loro', 'Anak pungkasan', 'Anak nomer telu', 'Anak kapisan'],
+      glyph: '',
+      options: [
+        'Anak nomer loro',
+        'Anak pungkasan',
+        'Anak nomer telu',
+        'Anak kapisan',
+      ],
       correctIndex: 3,
-      explanation: 'Pembarep yaiku anak nomer siji / kapisan, dene ragil yaiku anak wuragil utawa pungkasan.',
+      explanation:
+          'Pembarep yaiku anak nomer siji / kapisan, dene ragil yaiku anak wuragil utawa pungkasan.',
       sourceReference: 'Kawruh Paramasastra Jawa',
     ),
     QuizQuestion(
@@ -85,11 +93,18 @@ class Unit4Questions {
       topicKey: 'kosakata_padinan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Anak ontang-anting tegese kulawarga kasebut mung duwe anak pira?',
-      glyph: 'ꦲꦺꦴꦤ꧀ꦠꦁ',
-      options: ['Anak kembar loro', 'Mung anak siji thil', 'Anak telu lanang kabeh', 'Anak lima wadon kabeh'],
+      prompt:
+          'Anak ontang-anting tegese kulawarga kasebut mung duwe anak pira?',
+      glyph: '',
+      options: [
+        'Anak kembar loro',
+        'Mung anak siji thil',
+        'Anak telu lanang kabeh',
+        'Anak lima wadon kabeh',
+      ],
       correctIndex: 1,
-      explanation: 'Ontang-anting yaiku bocah siji thil tanpa sedulur (anak tunggal).',
+      explanation:
+          'Ontang-anting yaiku bocah siji thil tanpa sedulur (anak tunggal).',
       sourceReference: 'Kamus Basa Jawa Poerwadarminta',
     ),
 
@@ -102,10 +117,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Omah adat tradhisional Jawa kang misuwur yaiku omah...',
-      glyph: 'ꦗꦺꦴꦒ꧀ꦭꦺꦴ',
+      glyph: '',
       options: ['Joglo', 'Gadang', 'Tongkonan', 'Honai'],
       correctIndex: 0,
-      explanation: 'Omah tradhisional Jawa yaiku omah Joglo mawa payon brunjung dhuwur.',
+      explanation:
+          'Omah tradhisional Jawa yaiku omah Joglo mawa payon brunjung dhuwur.',
       sourceReference: 'Arsitektur Omah Jawa Tradisional',
     ),
     QuizQuestion(
@@ -113,11 +129,13 @@ class Unit4Questions {
       topicKey: 'nama_benda',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Perangan omah Joglo ing ngarep dhewe tanpa tembok kanggo nampa tamu diarani...',
-      glyph: 'ꦥꦼꦤ꧀ꦝꦥ',
+      prompt:
+          'Perangan omah Joglo ing ngarep dhewe tanpa tembok kanggo nampa tamu diarani...',
+      glyph: '',
       options: ['Pawon', 'Pendhapa', 'Senthong', 'Gandhok'],
       correctIndex: 1,
-      explanation: 'Pendhapa yaiku ruwangan ing ngarep kang tinarbuka kanggo nampa tamu lan rembugan warga.',
+      explanation:
+          'Pendhapa yaiku ruwangan ing ngarep kang tinarbuka kanggo nampa tamu lan rembugan warga.',
       sourceReference: 'Arsitektur Omah Jawa Tradisional',
     ),
     QuizQuestion(
@@ -125,11 +143,13 @@ class Unit4Questions {
       topicKey: 'nama_benda',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ruwangan omah Joglo ing antarane pendhapa lan dalem ageng diarani...',
-      glyph: 'ꦥꦿꦶꦁꦒꦶꦠꦤ꧀',
+      prompt:
+          'Ruwangan omah Joglo ing antarane pendhapa lan dalem ageng diarani...',
+      glyph: '',
       options: ['Gandhok', 'Regol', 'Pringgitan', 'Pawon'],
       correctIndex: 2,
-      explanation: 'Pringgitan yaiku ruwangan kanggo nggelar wayang (ringgit) utawa nampa tamu mirunggan.',
+      explanation:
+          'Pringgitan yaiku ruwangan kanggo nggelar wayang (ringgit) utawa nampa tamu mirunggan.',
       sourceReference: 'Arsitektur Omah Jawa Tradisional',
     ),
     QuizQuestion(
@@ -138,10 +158,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Kamar senthong ing dalem ageng cacahe ana pira?',
-      glyph: 'ꦱꦼꦤ꧀ꦛꦺꦴꦁ',
+      glyph: '',
       options: ['Telu', 'Loro', 'Papat', 'Lima'],
       correctIndex: 0,
-      explanation: 'Senthong ana 3: kiwa (kamar kulawarga), tengah (pasren/Dewi Sri), tengen (gudhang beras/kamar).',
+      explanation:
+          'Senthong ana 3: kiwa (kamar kulawarga), tengah (pasren/Dewi Sri), tengen (gudhang beras/kamar).',
       sourceReference: 'Arsitektur Omah Jawa Tradisional',
     ),
     QuizQuestion(
@@ -149,8 +170,9 @@ class Unit4Questions {
       topicKey: 'nama_benda',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Saka patang cagak utama kang nyangga payon brunjung joglo diarani saka...',
-      glyph: 'ꦒꦸꦫꦸ',
+      prompt:
+          'Saka patang cagak utama kang nyangga payon brunjung joglo diarani saka...',
+      glyph: '',
       options: ['Saka rawa', 'Saka bentel', 'Saka emper', 'Saka guru'],
       correctIndex: 3,
       explanation: 'Patang cagak utama ing joglo diarani "Saka Guru".',
@@ -162,10 +184,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Pintu gerbang mlebu ing plataran omah Jawa sinebut...',
-      glyph: 'ꦫꦺꦒꦺꦴꦭ꧀',
+      glyph: '',
       options: ['Pawon', 'Regol', 'Gandhok', 'Jeding'],
       correctIndex: 1,
-      explanation: 'Regol yaiku gapura utawa pintu gerbang plataran omah tradhisional.',
+      explanation:
+          'Regol yaiku gapura utawa pintu gerbang plataran omah tradhisional.',
       sourceReference: 'Arsitektur Omah Jawa Tradisional',
     ),
 
@@ -178,10 +201,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "mangan" krama inggile kagem bapak/ibu yaiku...',
-      glyph: 'ꦝꦲꦂ',
+      glyph: '',
       options: ['Dhahar', 'Nedha', 'Ngunjuk', 'Sare'],
       correctIndex: 0,
-      explanation: 'Mangan (ngoko) -> Nedha (krama) -> Dhahar (krama inggil kagem wong tuwa).',
+      explanation:
+          'Mangan (ngoko) -> Nedha (krama) -> Dhahar (krama inggil kagem wong tuwa).',
       sourceReference: 'Pepak Basa Jawa',
     ),
     QuizQuestion(
@@ -190,10 +214,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "ngombe" krama inggile yaiku...',
-      glyph: 'ꦔꦸꦚ꧀ꦗꦸꦏ꧀',
+      glyph: '',
       options: ['Dhahar', 'Ngunjuk', 'Siram', 'Tindak'],
       correctIndex: 1,
-      explanation: 'Ngombe (ngoko) -> Nginum (krama) -> Ngunjuk (krama inggil).',
+      explanation:
+          'Ngombe (ngoko) -> Nginum (krama) -> Ngunjuk (krama inggil).',
       sourceReference: 'Pepak Basa Jawa',
     ),
     QuizQuestion(
@@ -202,10 +227,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "turu" krama inggile yaiku...',
-      glyph: 'ꦱꦫꦺ',
+      glyph: '',
       options: ['Tilem', 'Mlebet', 'Sare', 'Lenggah'],
       correctIndex: 2,
-      explanation: 'Turu (ngoko) -> Tilem (krama kagem piyambak) -> Sare (krama inggil kagem tiyang sanes).',
+      explanation:
+          'Turu (ngoko) -> Tilem (krama kagem piyambak) -> Sare (krama inggil kagem tiyang sanes).',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -214,7 +240,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "adus" krama inggile kagem simbah yaiku...',
-      glyph: 'ꦱꦶꦫꦩ꧀',
+      glyph: '',
       options: ['Siram', 'Adus', 'Kamas', 'Nglangi'],
       correctIndex: 0,
       explanation: 'Adus krama inggile yaiku "Siram".',
@@ -225,11 +251,18 @@ class Unit4Questions {
       topicKey: 'nama_kegiatan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika awake dhewe matur arep mangan, tembung kang bener yaiku...',
-      glyph: 'ꦤꦼꦝ',
-      options: ['Kula badhe dhahar', 'Kula badhe nguntal', 'Kula badhe nedha', 'Kula badhe madhang'],
+      prompt:
+          'Nalika awake dhewe matur arep mangan, tembung kang bener yaiku...',
+      glyph: '',
+      options: [
+        'Kula badhe dhahar',
+        'Kula badhe nguntal',
+        'Kula badhe nedha',
+        'Kula badhe madhang',
+      ],
       correctIndex: 2,
-      explanation: 'Awake dhewe kudu ngasorake dhiri nganggo krama lugu "nedha", ora kena "dhahar".',
+      explanation:
+          'Awake dhewe kudu ngasorake dhiri nganggo krama lugu "nedha", ora kena "dhahar".',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -238,10 +271,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "lunga" krama inggile kagem guru yaiku...',
-      glyph: 'ꦠꦶꦤ꧀ꦢꦏ꧀',
+      glyph: '',
       options: ['Kesah', 'Tindak', 'Mlebu', 'Wangsul'],
       correctIndex: 1,
-      explanation: 'Lunga (ngoko) -> Kesah (krama kagem piyambak) -> Tindak (krama inggil).',
+      explanation:
+          'Lunga (ngoko) -> Kesah (krama kagem piyambak) -> Tindak (krama inggil).',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
 
@@ -254,10 +288,16 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Basa ngoko lugu lumrahe digunakake kanggo guneman marang sapa?',
-      glyph: 'ꦔꦺꦴꦏꦺꦴ',
-      options: ['Kanca sebaya utawa kanca akrab', 'Bapak guru ing kantor sekolah', 'Simbah kakung lan simbah putri', 'Pejabat pamaréntah lan sesepuh'],
+      glyph: '',
+      options: [
+        'Kanca sebaya utawa kanca akrab',
+        'Bapak guru ing kantor sekolah',
+        'Simbah kakung lan simbah putri',
+        'Pejabat pamaréntah lan sesepuh',
+      ],
       correctIndex: 0,
-      explanation: 'Basa ngoko lugu lumrahe kagem kanca sebaya, wong kang luwih enom, utawa wong tuwa marang anak.',
+      explanation:
+          'Basa ngoko lugu lumrahe kagem kanca sebaya, wong kang luwih enom, utawa wong tuwa marang anak.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -266,7 +306,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara ngoko lugu ing ngisor iki yaiku...',
-      glyph: 'ꦏꦺꦴꦮꦺ',
+      glyph: '',
       options: [
         'Kula badhe kesah dhateng peken',
         'Panjenengan badhe tindak pundi?',
@@ -274,7 +314,8 @@ class Unit4Questions {
         'Bapak nembe rawuh saking kantor',
       ],
       correctIndex: 2,
-      explanation: '"Kowe sesuk sida melu apa ora?" murni tetembungan ngoko lugu.',
+      explanation:
+          '"Kowe sesuk sida melu apa ora?" murni tetembungan ngoko lugu.',
       sourceReference: 'Pepak Basa Jawa',
     ),
     QuizQuestion(
@@ -283,7 +324,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ciri utama basa ngoko lugu yaiku...',
-      glyph: 'ꦕꦶꦫꦶ',
+      glyph: '',
       options: [
         'Kabeh tembung awujud ngoko tanpa kacampuran krama inggil',
         'Kabeh tembung awujud krama madya kacampuran krama inggil',
@@ -291,7 +332,8 @@ class Unit4Questions {
         'Tembung sesulih awujud krama dene tembung kriya ngoko',
       ],
       correctIndex: 0,
-      explanation: 'Ngoko lugu nduweni ciri kabeh tembunge awujud ngoko murni tanpa campuran krama inggil.',
+      explanation:
+          'Ngoko lugu nduweni ciri kabeh tembunge awujud ngoko murni tanpa campuran krama inggil.',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -300,10 +342,16 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Sapa kang trep migunakake basa ngoko lugu?',
-      glyph: 'ꦠꦿꦼꦥ꧀',
-      options: ['Murid marang gurune ing sekolah', 'Wong tuwa marang anake dhewe', 'Bocah marang eyang kakunge', 'Warga marang bapak lurah'],
+      glyph: '',
+      options: [
+        'Murid marang gurune ing sekolah',
+        'Wong tuwa marang anake dhewe',
+        'Bocah marang eyang kakunge',
+        'Warga marang bapak lurah',
+      ],
       correctIndex: 1,
-      explanation: 'Wong tuwa marang anak nduweni hak migunakake ngoko lugu amarga luwih tuwa lan raket.',
+      explanation:
+          'Wong tuwa marang anak nduweni hak migunakake ngoko lugu amarga luwih tuwa lan raket.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -311,11 +359,13 @@ class Unit4Questions {
       topicKey: 'ngoko',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika ngomong karo awake dhewe (mbatin), basa kang digunakake yaiku...',
-      glyph: 'ꦧꦠꦶꦤ꧀',
+      prompt:
+          'Nalika ngomong karo awake dhewe (mbatin), basa kang digunakake yaiku...',
+      glyph: '',
       options: ['Ngoko lugu', 'Ngoko alus', 'Krama lugu', 'Krama inggil'],
       correctIndex: 0,
-      explanation: 'Guneman mbatin marang dhiri pribadi lumrahe migunakake ngoko lugu.',
+      explanation:
+          'Guneman mbatin marang dhiri pribadi lumrahe migunakake ngoko lugu.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -323,11 +373,13 @@ class Unit4Questions {
       topicKey: 'ngoko',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara ngoko lugu "Kowe tuku buku ngendi?" tembung "tuku" yen diowahi dadi krama inggil dadi...',
-      glyph: 'ꦩꦸꦤ꧀ꦝꦸꦠ꧀',
+      prompt:
+          'Ukara ngoko lugu "Kowe tuku buku ngendi?" tembung "tuku" yen diowahi dadi krama inggil dadi...',
+      glyph: '',
       options: ['Tumbas', 'Mundhut', 'Nyambut', 'Maringi'],
       correctIndex: 1,
-      explanation: 'Tuku (ngoko) -> Tumbas (krama lugu) -> Mundhut (krama inggil).',
+      explanation:
+          'Tuku (ngoko) -> Tumbas (krama lugu) -> Mundhut (krama inggil).',
       sourceReference: 'Pepak Basa Jawa',
     ),
 
@@ -339,8 +391,9 @@ class Unit4Questions {
       topicKey: 'krama',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Basa krama lugu (madya) tembung-tembunge nggunakake tataran basa...',
-      glyph: 'ꦏꦿꦩ',
+      prompt:
+          'Basa krama lugu (madya) tembung-tembunge nggunakake tataran basa...',
+      glyph: '',
       options: [
         'Krama tanpa kacampuran krama inggil',
         'Ngoko kacampuran krama inggil kabeh',
@@ -348,7 +401,8 @@ class Unit4Questions {
         'Ngoko lugu kang tanpa tata krama',
       ],
       correctIndex: 0,
-      explanation: 'Krama lugu nggunakake tembung-tembung krama biasa (lugu) tanpa leksikon krama inggil.',
+      explanation:
+          'Krama lugu nggunakake tembung-tembung krama biasa (lugu) tanpa leksikon krama inggil.',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -357,7 +411,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "aku" ing basa krama lugu owah dadi...',
-      glyph: 'ꦏꦸꦭ',
+      glyph: '',
       options: ['Kula', 'Dalem', 'Aku', 'Awakipun'],
       correctIndex: 0,
       explanation: 'Aku ing basa krama lugu owah dadi "Kula".',
@@ -369,7 +423,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara krama lugu ing ngisor iki yaiku...',
-      glyph: 'ꦒꦿꦶꦪ',
+      glyph: '',
       options: [
         'Kula badhe kesah dhateng peken',
         'Bapak nembe rawuh saking solo',
@@ -377,7 +431,8 @@ class Unit4Questions {
         'Panjenengan sampun dhahar dereng',
       ],
       correctIndex: 0,
-      explanation: '"Kula badhe kesah dhateng peken" minangka conto ukara krama lugu kang trep.',
+      explanation:
+          '"Kula badhe kesah dhateng peken" minangka conto ukara krama lugu kang trep.',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -386,10 +441,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "omah" krama lugune yaiku...',
-      glyph: 'ꦒꦿꦶꦪ',
+      glyph: '',
       options: ['Griya', 'Dalem', 'Omah', 'Kamar'],
       correctIndex: 0,
-      explanation: 'Omah (ngoko) -> Griya (krama lugu) -> Dalem (krama inggil).',
+      explanation:
+          'Omah (ngoko) -> Griya (krama lugu) -> Dalem (krama inggil).',
       sourceReference: 'Pepak Basa Jawa',
     ),
     QuizQuestion(
@@ -398,7 +454,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Kapan basa krama lugu trep digunakake?',
-      glyph: 'ꦩꦢꦾ',
+      glyph: '',
       options: [
         'Wong kang durung akrab nanging saklevel',
         'Anak cilik marang wong tuwane dhewe',
@@ -406,7 +462,8 @@ class Unit4Questions {
         'Simbah marang putune kang isih cilik',
       ],
       correctIndex: 0,
-      explanation: 'Krama lugu digunakake dening wong kang padha pangkate nanging durung akrab utawa ing kahanan resmi moderat.',
+      explanation:
+          'Krama lugu digunakake dening wong kang padha pangkate nanging durung akrab utawa ing kahanan resmi moderat.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -414,8 +471,9 @@ class Unit4Questions {
       topicKey: 'krama',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara "Kula sampun nedha sekul goreng" bener krama lugu amarga tembung "nedha"...',
-      glyph: 'ꦤꦼꦝ',
+      prompt:
+          'Ukara "Kula sampun nedha sekul goreng" bener krama lugu amarga tembung "nedha"...',
+      glyph: '',
       options: [
         'Mujudake tembung krama lugu kagem awake dhewe',
         'Mujudake tembung krama inggil kagem wong tuwa',
@@ -423,7 +481,8 @@ class Unit4Questions {
         'Mujudake tembung krama alus kagem bapak lurah',
       ],
       correctIndex: 0,
-      explanation: 'Nedha yaiku krama lugu kang trep kanggo awake dhewe, dudu dhahar.',
+      explanation:
+          'Nedha yaiku krama lugu kang trep kanggo awake dhewe, dudu dhahar.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 
@@ -436,7 +495,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Basa krama inggil / krama alus ditujokake kanggo ngurmati sapa?',
-      glyph: 'ꦲꦶꦁꦒꦶꦭ꧀',
+      glyph: '',
       options: [
         'Wong tuwa, guru, utawa sesepuh',
         'Kanca sebaya sakelas kang akrab',
@@ -444,7 +503,8 @@ class Unit4Questions {
         'Awake dhewe nalika matur resmi',
       ],
       correctIndex: 0,
-      explanation: 'Krama inggil/alus tujuane mligi ngurmati wong kang luwih tuwa utawa kinurmatan.',
+      explanation:
+          'Krama inggil/alus tujuane mligi ngurmati wong kang luwih tuwa utawa kinurmatan.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -453,7 +513,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara krama alus kagem bapak yaiku...',
-      glyph: 'ꦫꦮꦸꦃ',
+      glyph: '',
       options: [
         'Bapak nembe rawuh saking kantor',
         'Bapak nembe teka saka kantor',
@@ -470,10 +530,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "tuku" krama aluse yaiku...',
-      glyph: 'ꦩꦸꦤ꧀ꦝꦸꦠ꧀',
+      glyph: '',
       options: ['Mundhut', 'Tumbas', 'Nyuwun', 'Maringi'],
       correctIndex: 0,
-      explanation: 'Tuku (ngoko) -> Tumbas (krama lugu) -> Mundhut (krama inggil).',
+      explanation:
+          'Tuku (ngoko) -> Tumbas (krama lugu) -> Mundhut (krama inggil).',
       sourceReference: 'Pepak Basa Jawa',
     ),
     QuizQuestion(
@@ -482,7 +543,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "lara" krama aluse kagem simbah yaiku...',
-      glyph: 'ꦒꦼꦫꦃ',
+      glyph: '',
       options: ['Gerah', 'Sakit', 'Lara', 'Tilar'],
       correctIndex: 0,
       explanation: 'Lara (ngoko) -> Sakit (krama) -> Gerah (krama inggil).',
@@ -494,7 +555,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Perangan awak "mripat" krama inggile yaiku...',
-      glyph: 'ꦥꦤꦶꦔꦭ꧀',
+      glyph: '',
       options: ['Paningal / Soca', 'Grana', 'Karna', 'Rikma'],
       correctIndex: 0,
       explanation: 'Mripat krama inggile "Paningal" utawa "Soca".',
@@ -506,10 +567,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Dene perangan awak "irung" krama inggile yaiku...',
-      glyph: 'ꦒꦿꦤ',
+      glyph: '',
       options: ['Grana', 'Paningal', 'Karna', 'Waja'],
       correctIndex: 0,
-      explanation: 'Irung krama inggile "Grana". Karna iku kuping, waja iku untu.',
+      explanation:
+          'Irung krama inggile "Grana". Karna iku kuping, waja iku untu.',
       sourceReference: 'Pepak Basa Jawa',
     ),
 
@@ -521,8 +583,9 @@ class Unit4Questions {
       topicKey: 'perbedaan_tingkatan_bahasa',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Urutan undha-usuk tembung "omah" saka ngoko menyang krama lugu lan krama inggil yaiku...',
-      glyph: 'ꦢꦊꦩ꧀',
+      prompt:
+          'Urutan undha-usuk tembung "omah" saka ngoko menyang krama lugu lan krama inggil yaiku...',
+      glyph: '',
       options: [
         'Omah -> Griya -> Dalem',
         'Omah -> Dalem -> Griya',
@@ -530,7 +593,8 @@ class Unit4Questions {
         'Dalem -> Griya -> Omah',
       ],
       correctIndex: 0,
-      explanation: 'Omah (ngoko) -> Griya (krama lugu) -> Dalem (krama inggil).',
+      explanation:
+          'Omah (ngoko) -> Griya (krama lugu) -> Dalem (krama inggil).',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -539,7 +603,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Urutan undha-usuk tembung "mangan" yaiku...',
-      glyph: 'ꦝꦲꦂ',
+      glyph: '',
       options: [
         'Mangan -> Nedha -> Dhahar',
         'Mangan -> Dhahar -> Nedha',
@@ -547,7 +611,8 @@ class Unit4Questions {
         'Dhahar -> Nedha -> Mangan',
       ],
       correctIndex: 0,
-      explanation: 'Mangan (ngoko) -> Nedha (krama kagem awak dhewe) -> Dhahar (krama inggil kagem tiyang sanes).',
+      explanation:
+          'Mangan (ngoko) -> Nedha (krama kagem awak dhewe) -> Dhahar (krama inggil kagem tiyang sanes).',
       sourceReference: 'Pepak Basa Jawa',
     ),
     QuizQuestion(
@@ -556,7 +621,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Urutan undha-usuk tembung "turu" yaiku...',
-      glyph: 'ꦱꦫꦺ',
+      glyph: '',
       options: [
         'Turu -> Tilem -> Sare',
         'Turu -> Sare -> Tilem',
@@ -573,7 +638,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Urutan undha-usuk tembung "mlaku / lunga" yaiku...',
-      glyph: 'ꦠꦶꦤ꧀ꦢꦏ꧀',
+      glyph: '',
       options: [
         'Lunga -> Kesah -> Tindak',
         'Lunga -> Tindak -> Kesah',
@@ -590,7 +655,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Urutan undha-usuk tembung "ngomong / matur" yaiku...',
-      glyph: 'ꦔꦼꦤ꧀ꦢꦶꦏ',
+      glyph: '',
       options: [
         'Ngomong -> Matur -> Ngendika',
         'Ngomong -> Ngendika -> Matur',
@@ -598,7 +663,8 @@ class Unit4Questions {
         'Ngendika -> Matur -> Ngomong',
       ],
       correctIndex: 0,
-      explanation: 'Ngomong (ngoko) -> Matur (krama kagem awake dhewe) -> Ngendika (krama alus kagem tiyang sanes).',
+      explanation:
+          'Ngomong (ngoko) -> Matur (krama kagem awake dhewe) -> Ngendika (krama alus kagem tiyang sanes).',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -607,7 +673,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Urutan undha-usuk tembung "dhuwit" yaiku...',
-      glyph: 'ꦪꦠꦿ',
+      glyph: '',
       options: [
         'Dhuwit -> Arta -> Yatra',
         'Arta -> Dhuwit -> Bathi',
@@ -627,11 +693,13 @@ class Unit4Questions {
       topicKey: 'percakapan_teman',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika omong-omongan santai karo kanca akrab sakelas, basa kang lumrah digunakake yaiku...',
-      glyph: 'ꦏꦚ꧀ꦕ',
+      prompt:
+          'Nalika omong-omongan santai karo kanca akrab sakelas, basa kang lumrah digunakake yaiku...',
+      glyph: '',
       options: ['Ngoko lugu', 'Krama alus', 'Krama inggil', 'Basa kawi'],
       correctIndex: 0,
-      explanation: 'Guneman karo kanca akrab sakelas migunakake basa ngoko lugu amarga raket tanpa alangan formal.',
+      explanation:
+          'Guneman karo kanca akrab sakelas migunakake basa ngoko lugu amarga raket tanpa alangan formal.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -640,10 +708,11 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Basa ngoko alus yaiku basa ngoko kang kacampuran tembung...',
-      glyph: 'ꦲꦭꦸꦱ꧀',
+      glyph: '',
       options: ['Krama inggil', 'Krama desa', 'Basa Indonesia', 'Basa Walanda'],
       correctIndex: 0,
-      explanation: 'Ngoko alus nggunakake dhasar ngoko nanging tembung kriya lan sesulih kanggo wong liya diowahi krama inggil.',
+      explanation:
+          'Ngoko alus nggunakake dhasar ngoko nanging tembung kriya lan sesulih kanggo wong liya diowahi krama inggil.',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -651,11 +720,13 @@ class Unit4Questions {
       topicKey: 'percakapan_teman',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "kowe" ing basa ngoko alus nalika ngajeni kanca akrab diganti dadi...',
-      glyph: 'ꦥꦚ꧀ꦗꦼꦤꦼꦔꦤ꧀',
+      prompt:
+          'Tembung "kowe" ing basa ngoko alus nalika ngajeni kanca akrab diganti dadi...',
+      glyph: '',
       options: ['Panjenengan', 'Sampeyan', 'Kula', 'Dheweke'],
       correctIndex: 0,
-      explanation: 'Ing ngoko alus, sesulih purusa kapindho "kowe" diowahi dadi "Panjenengan".',
+      explanation:
+          'Ing ngoko alus, sesulih purusa kapindho "kowe" diowahi dadi "Panjenengan".',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
     QuizQuestion(
@@ -664,7 +735,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Kapan basa ngoko alus trep digunakake ing sesrawungan kanca?',
-      glyph: 'ꦫꦏꦼꦠ꧀',
+      glyph: '',
       options: [
         'Kanca akrab kang padha ngajeni lan ngurmati',
         'Bocah cilik marang kancane sabarakan dolan',
@@ -672,7 +743,8 @@ class Unit4Questions {
         'Murid marang gurune nalika ana ing kelas',
       ],
       correctIndex: 0,
-      explanation: 'Ngoko alus lumrahe digunakake dening kanca akrab kang padha ngajeni, utawa wong tuwa marang wong luwih enom kang pangkate luwih dhuwur.',
+      explanation:
+          'Ngoko alus lumrahe digunakake dening kanca akrab kang padha ngajeni, utawa wong tuwa marang wong luwih enom kang pangkate luwih dhuwur.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -680,8 +752,9 @@ class Unit4Questions {
       topicKey: 'percakapan_teman',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara pacelathon marang kanca kang nggunakake ngoko alus kanthi trep yaiku...',
-      glyph: 'ꦥꦤ꧀ꦗꦼꦤꦼꦔꦤ꧀',
+      prompt:
+          'Ukara pacelathon marang kanca kang nggunakake ngoko alus kanthi trep yaiku...',
+      glyph: '',
       options: [
         'Panjenengan sesuk apa sida tindak menyang museum?',
         'Kula badhe kesah dhateng museum kaliyan rencang',
@@ -689,7 +762,8 @@ class Unit4Questions {
         'Bapak guru sampun tindak dhateng museum kala wingi',
       ],
       correctIndex: 0,
-      explanation: '"Panjenengan sesuk apa sida tindak" nggabungake tembung ngoko (sesuk, apa, sida) karo krama inggil (panjenengan, tindak).',
+      explanation:
+          '"Panjenengan sesuk apa sida tindak" nggabungake tembung ngoko (sesuk, apa, sida) karo krama inggil (panjenengan, tindak).',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -697,11 +771,13 @@ class Unit4Questions {
       topicKey: 'percakapan_teman',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ater-ater lan panambang (imbuhan) ing basa ngoko alus tetep awujud...',
-      glyph: 'ꦲꦶꦩ꧀ꦧꦸꦃ',
+      prompt:
+          'Ater-ater lan panambang (imbuhan) ing basa ngoko alus tetep awujud...',
+      glyph: '',
       options: ['Ngoko', 'Krama', 'Krama inggil', 'Basa kawi'],
       correctIndex: 0,
-      explanation: 'Ing ngoko alus, imbuhan (ater-ater lan panambang) tetep nganggo wujud ngoko (di-, -ake, -e).',
+      explanation:
+          'Ing ngoko alus, imbuhan (ater-ater lan panambang) tetep nganggo wujud ngoko (di-, -ake, -e).',
       sourceReference: 'Tata Bahasa Jawa Paramasastra',
     ),
 
@@ -714,7 +790,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Paugeran baku unggah-ungguh basa Jawa yaiku: awake dhewe...',
-      glyph: 'ꦥꦻꦴꦒꦼꦂ',
+      glyph: '',
       options: [
         'Ora kena ngunggahake awake dhewe nganggo krama inggil',
         'Kudu tansah nganggo krama inggil kanggo awake dhewe',
@@ -722,7 +798,8 @@ class Unit4Questions {
         'Ora perlu nggatekake sapa sing diajak guneman',
       ],
       correctIndex: 0,
-      explanation: 'Awake dhewe ora kena nggunakake krama inggil, amarga krama inggil mligi kagem ngurmati wong liya.',
+      explanation:
+          'Awake dhewe ora kena nggunakake krama inggil, amarga krama inggil mligi kagem ngurmati wong liya.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -730,11 +807,13 @@ class Unit4Questions {
       topicKey: 'percakapan_dihormati',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara "Kula badhe dhahar rumiyin" luput amarga tembung "dhahar" kudune...',
-      glyph: 'ꦤꦼꦝ',
+      prompt:
+          'Ukara "Kula badhe dhahar rumiyin" luput amarga tembung "dhahar" kudune...',
+      glyph: '',
       options: ['Nedha', 'Dhahar', 'Tilem', 'Sare'],
       correctIndex: 0,
-      explanation: 'Kagem nyatakake mangan awake dhewe marang tiyang sepuh nggunakake krama lugu "nedha", dene "dhahar" kagem tiyang sanes, ora kena "kula badhe dhahar".',
+      explanation:
+          'Kagem nyatakake mangan awake dhewe marang tiyang sepuh nggunakake krama lugu "nedha", dene "dhahar" kagem tiyang sanes, ora kena "kula badhe dhahar".',
       sourceReference: 'Kaluputan Wicara Basa Jawa',
     ),
     QuizQuestion(
@@ -742,11 +821,13 @@ class Unit4Questions {
       topicKey: 'percakapan_dihormati',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara "Bapak nembe tilem wonten kamar" luput amarga tembung "tilem" kudune...',
-      glyph: 'ꦱꦫꦺ',
+      prompt:
+          'Ukara "Bapak nembe tilem wonten kamar" luput amarga tembung "tilem" kudune...',
+      glyph: '',
       options: ['Sare', 'Tilem', 'Turu', 'Lungguh'],
       correctIndex: 0,
-      explanation: 'Kagem bapak (tiyang sepuh) nggunakake krama inggil "sare", dudu "tilem".',
+      explanation:
+          'Kagem bapak (tiyang sepuh) nggunakake krama inggil "sare", dudu "tilem".',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -754,11 +835,18 @@ class Unit4Questions {
       topicKey: 'percakapan_dihormati',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika matur marang bapak guru ing kantor guru, basa kang trep yaiku...',
-      glyph: 'ꦒꦸꦫꦸ',
-      options: ['Krama alus / krama inggil', 'Ngoko lugu', 'Ngoko alus', 'Basa Walanda'],
+      prompt:
+          'Nalika matur marang bapak guru ing kantor guru, basa kang trep yaiku...',
+      glyph: '',
+      options: [
+        'Krama alus / krama inggil',
+        'Ngoko lugu',
+        'Ngoko alus',
+        'Basa Walanda',
+      ],
       correctIndex: 0,
-      explanation: 'Murid marang guru tansah migunakake basa krama alus / inggil minangka tanda bekti.',
+      explanation:
+          'Murid marang guru tansah migunakake basa krama alus / inggil minangka tanda bekti.',
       sourceReference: 'Tata Krama Sekolah',
     ),
     QuizQuestion(
@@ -767,7 +855,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara kang bener trapsilane ing ngisor iki yaiku...',
-      glyph: 'ꦠꦿꦥ꧀ꦱꦶꦭ',
+      glyph: '',
       options: [
         'Kula sampun siram, dene simbah nembe adus',
         'Kula sampun adus, dene simbah nembe siram',
@@ -775,7 +863,8 @@ class Unit4Questions {
         'Kula kaliyan simbah sami-sami adus',
       ],
       correctIndex: 1,
-      explanation: 'Kula adus (ngoko/krama lugu), simbah siram (krama inggil) mujudake unggah-ungguh kang laras.',
+      explanation:
+          'Kula adus (ngoko/krama lugu), simbah siram (krama inggil) mujudake unggah-ungguh kang laras.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -783,11 +872,13 @@ class Unit4Questions {
       topicKey: 'percakapan_dihormati',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '"Pak, kula ... sepedha motor panjenengan." Tembung kang trep tumrap bocah nyilih barang yaiku...',
-      glyph: 'ꦚꦩ꧀ꦥꦶꦭ꧀',
+      prompt:
+          '"Pak, kula ... sepedha motor panjenengan." Tembung kang trep tumrap bocah nyilih barang yaiku...',
+      glyph: '',
       options: ['Nyuwun', 'Mundhut', 'Nyambut / nyampil', 'Maringi'],
       correctIndex: 2,
-      explanation: 'Nyilih krama aluse "nyampil" utawa "nyambut" kagem nyilih barang kanthi trapsila.',
+      explanation:
+          'Nyilih krama aluse "nyampil" utawa "nyambut" kagem nyilih barang kanthi trapsila.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 
@@ -800,7 +891,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U4] Sebatan krama inggil tumrap bapak yaiku...',
-      glyph: 'ꦫꦩ',
+      glyph: '',
       options: ['Rama', 'Ibu', 'Eyang', 'Kakang'],
       correctIndex: 0,
       explanation: 'Bapak krama inggile yaiku Rama.',
@@ -812,7 +903,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U4] Omah adat tradhisional Jawa yaiku omah...',
-      glyph: 'ꦗꦺꦴꦒ꧀ꦭꦺꦴ',
+      glyph: '',
       options: ['Gadang', 'Joglo', 'Tongkonan', 'Panggung'],
       correctIndex: 1,
       explanation: 'Omah adat Jawa arane Joglo.',
@@ -824,7 +915,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U4] Mangan krama inggile kagem wong sepuh yaiku...',
-      glyph: 'ꦝꦲꦂ',
+      glyph: '',
       options: ['Nedha', 'Ngunjuk', 'Dhahar', 'Sare'],
       correctIndex: 2,
       explanation: 'Dhahar yaiku krama inggil saka tembung mangan.',
@@ -836,8 +927,13 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U4] Basa ngoko lugu lumrahe digunakake marang...',
-      glyph: 'ꦱꦼꦧꦪ',
-      options: ['Kanca sebaya utawa kanca akrab', 'Bapak guru ing kantor sekolah', 'Simbah kakung lan simbah putri', 'Pejabat pamaréntah lan sesepuh'],
+      glyph: '',
+      options: [
+        'Kanca sebaya utawa kanca akrab',
+        'Bapak guru ing kantor sekolah',
+        'Simbah kakung lan simbah putri',
+        'Pejabat pamaréntah lan sesepuh',
+      ],
       correctIndex: 0,
       explanation: 'Ngoko lugu kanggo kanca sebaya utawa wong luwih enom.',
       sourceReference: 'Evaluasi Unit 4 JawaLoka',
@@ -847,8 +943,9 @@ class Unit4Questions {
       topicKey: 'evaluasi_unit4',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U4] Tembung "kowe" ing basa ngoko alus diganti dadi...',
-      glyph: 'ꦥꦚ꧀ꦗꦼꦤꦼꦔꦤ꧀',
+      prompt:
+          '[Evaluasi U4] Tembung "kowe" ing basa ngoko alus diganti dadi...',
+      glyph: '',
       options: ['Kula', 'Aku', 'Panjenengan', 'Dheweke'],
       correctIndex: 2,
       explanation: 'Kowe diganti panjenengan ing ngoko alus.',
@@ -859,8 +956,9 @@ class Unit4Questions {
       topicKey: 'evaluasi_unit4',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U4] Nalika Budi (murid SMA) dipuntimbali dening Pak Guru ing ruang guru amarga badhe kaparingan tugas, aturipun Budi ingkang paling trep kanthi unggah-ungguh inggih punika...',
-      glyph: 'ꦠꦿꦥ꧀ꦱꦶꦭ',
+      prompt:
+          '[Evaluasi U4] Nalika Budi (murid SMA) dipuntimbali dening Pak Guru ing ruang guru amarga badhe kaparingan tugas, aturipun Budi ingkang paling trep kanthi unggah-ungguh inggih punika...',
+      glyph: '',
       options: [
         'Kula badhe matur, wonten dhawuh punapa ingkang saged kula lampahi, Pak?',
         'Kula badhe dhahar rumiyin, mangke kula sowan malih dhateng kantor guru.',
@@ -868,7 +966,8 @@ class Unit4Questions {
         'Kula sowan mriki badhe ngutus panjenengan maringi tugas kagem kula.',
       ],
       correctIndex: 0,
-      explanation: 'Murid marang guru wajib migunakake basa krama alus kanthi sikap andhap asor ("wonten dhawuh punapa"), ora kena nganggo ngoko utawa tembung krama inggil kanggo awake dhewe.',
+      explanation:
+          'Murid marang guru wajib migunakake basa krama alus kanthi sikap andhap asor ("wonten dhawuh punapa"), ora kena nganggo ngoko utawa tembung krama inggil kanggo awake dhewe.',
       sourceReference: 'Unggah-Ungguh Wicara Basa Jawa',
     ),
     QuizQuestion(
@@ -876,8 +975,9 @@ class Unit4Questions {
       topicKey: 'evaluasi_unit4',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U4] Ruwangan ing ngarep dhewe omah Joglo kanggo nampa tamu diarani...',
-      glyph: 'ꦥꦼꦤ꧀ꦝꦥ',
+      prompt:
+          '[Evaluasi U4] Ruwangan ing ngarep dhewe omah Joglo kanggo nampa tamu diarani...',
+      glyph: '',
       options: ['Pawon', 'Senthong', 'Gandhok', 'Pendhapa'],
       correctIndex: 3,
       explanation: 'Pendhapa yaiku ruwangan ing ngarep omah joglo.',
@@ -888,11 +988,13 @@ class Unit4Questions {
       topicKey: 'evaluasi_unit4',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U4] Paugeran wicara: awake dhewe ora kena nggunakake tataran basa...',
-      glyph: 'ꦲꦶꦁꦒꦶꦭ꧀',
+      prompt:
+          '[Evaluasi U4] Paugeran wicara: awake dhewe ora kena nggunakake tataran basa...',
+      glyph: '',
       options: ['Krama inggil', 'Krama lugu', 'Ngoko lugu', 'Basa Jawa'],
       correctIndex: 0,
-      explanation: 'Awake dhewe ora kena ngunggahake dhiri nganggo krama inggil.',
+      explanation:
+          'Awake dhewe ora kena ngunggahake dhiri nganggo krama inggil.',
       sourceReference: 'Evaluasi Unit 4 JawaLoka',
     ),
     QuizQuestion(
@@ -900,8 +1002,9 @@ class Unit4Questions {
       topicKey: 'evaluasi_unit4',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U4] Urutan undha-usuk tembung "omah" kang bener yaiku...',
-      glyph: 'ꦲꦺꦴꦩꦃ',
+      prompt:
+          '[Evaluasi U4] Urutan undha-usuk tembung "omah" kang bener yaiku...',
+      glyph: '',
       options: [
         'Omah -> Dalem -> Griya',
         'Omah -> Griya -> Dalem',
@@ -909,7 +1012,8 @@ class Unit4Questions {
         'Dalem -> Griya -> Omah',
       ],
       correctIndex: 1,
-      explanation: 'Omah (ngoko) -> Griya (krama lugu) -> Dalem (krama inggil).',
+      explanation:
+          'Omah (ngoko) -> Griya (krama lugu) -> Dalem (krama inggil).',
       sourceReference: 'Evaluasi Unit 4 JawaLoka',
     ),
     QuizQuestion(
@@ -917,8 +1021,9 @@ class Unit4Questions {
       topicKey: 'evaluasi_unit4',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U4] Patang cagak penyangga utama joglo sinebut saka...',
-      glyph: 'ꦒꦸꦫꦸ',
+      prompt:
+          '[Evaluasi U4] Patang cagak penyangga utama joglo sinebut saka...',
+      glyph: '',
       options: ['Saka rawa', 'Saka bentel', 'Saka guru', 'Saka emper'],
       correctIndex: 2,
       explanation: 'Patang cagak utama joglo diarani Saka Guru.',

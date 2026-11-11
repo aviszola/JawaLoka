@@ -99,4 +99,3 @@ class RewardSummary {
   String toString() =>
       'RewardSummary(xpEarned: $xpEarned, totalXP: $newTotalXP, level: $newLevel, leveledUp: $leveledUp, firstClear: $isFirstClear)';
 }
-

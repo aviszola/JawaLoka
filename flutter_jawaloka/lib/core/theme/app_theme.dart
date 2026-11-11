@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
+import '../router/app_router.dart';
 
 /// Centralized app theme for JawaLoka.
 /// Based on Google Stitch design system: warm amber, ink, Javanese cultural aesthetics.
@@ -20,7 +21,7 @@ class AppTheme {
       ),
       // AppBar
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.amber,
+        backgroundColor: AppColors.canvas,
         foregroundColor: AppColors.ink,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
@@ -93,7 +94,10 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surface,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 18,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: AppColors.border),
@@ -110,7 +114,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: AppColors.error),
         ),
-        labelStyle: const TextStyle(color: AppColors.inkSecondary, fontSize: 14),
+        labelStyle: const TextStyle(
+          color: AppColors.inkSecondary,
+          fontSize: 14,
+        ),
         hintStyle: const TextStyle(color: AppColors.inkMuted, fontSize: 14),
       ),
       // Elevated Button
@@ -175,7 +182,17 @@ class AppTheme {
         shape: const StadiumBorder(),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       ),
+      // Animated Page Transitions for all platforms
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: JawaLokaPageTransitionsBuilder(),
+          TargetPlatform.iOS: JawaLokaPageTransitionsBuilder(),
+          TargetPlatform.windows: JawaLokaPageTransitionsBuilder(),
+          TargetPlatform.macOS: JawaLokaPageTransitionsBuilder(),
+          TargetPlatform.linux: JawaLokaPageTransitionsBuilder(),
+          TargetPlatform.fuchsia: JawaLokaPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 }
-

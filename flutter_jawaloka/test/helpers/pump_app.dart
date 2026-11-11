@@ -25,18 +25,20 @@ extension PumpAppTester on WidgetTester {
     String? initialRoute,
     NavigatorObserver? navigatorObserver,
   }) async {
-    final activeController = controller ??
+    final activeController =
+        controller ??
         LocaleController(
-          preferences: InMemoryLocalePreferences(initialLocale: locale.languageCode),
+          preferences: InMemoryLocalePreferences(
+            initialLocale: locale.languageCode,
+          ),
         );
     if (!activeController.isInitialized) {
       await activeController.loadSavedLocale();
     }
 
-    final activeProfileController = profileController ??
-        ProfileController(
-          preferences: InMemoryProfilePreferences(),
-        );
+    final activeProfileController =
+        profileController ??
+        ProfileController(preferences: InMemoryProfilePreferences());
     if (!activeProfileController.isInitialized) {
       await activeProfileController.loadProfile();
     }
@@ -48,32 +50,31 @@ extension PumpAppTester on WidgetTester {
           controller: activeProfileController,
           child: Builder(
             builder: (context) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: AppTheme.lightTheme,
-              locale: LocaleScope.of(context).locale,
-              supportedLocales: AppLocales.supportedLocales,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                JvMaterialLocalizationsDelegate(),
-                JvCupertinoLocalizationsDelegate(),
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              routes: routes ?? const <String, WidgetBuilder>{},
-              onGenerateRoute: onGenerateRoute,
-              initialRoute: initialRoute,
-              navigatorObservers: navigatorObserver != null
-                  ? [navigatorObserver]
-                  : const <NavigatorObserver>[],
-              home: initialRoute == null ? child : null,
-            );
-          },
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.lightTheme,
+                locale: LocaleScope.of(context).locale,
+                supportedLocales: AppLocales.supportedLocales,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  JvMaterialLocalizationsDelegate(),
+                  JvCupertinoLocalizationsDelegate(),
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                routes: routes ?? const <String, WidgetBuilder>{},
+                onGenerateRoute: onGenerateRoute,
+                initialRoute: initialRoute,
+                navigatorObservers: navigatorObserver != null
+                    ? [navigatorObserver]
+                    : const <NavigatorObserver>[],
+                home: initialRoute == null ? child : null,
+              );
+            },
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
-}
-

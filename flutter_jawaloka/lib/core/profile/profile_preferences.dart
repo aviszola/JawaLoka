@@ -12,6 +12,7 @@ class DailyPracticeRecord {
 
   const DailyPracticeRecord({required this.date, required this.xp});
 }
+
 /// Representasi jenis kelamin karakter pengguna (Putra / Putri).
 enum UserGender {
   male,
@@ -22,7 +23,6 @@ enum UserGender {
       ? 'Laki-laki (Surjan & Blangkon)'
       : 'Perempuan (Kebaya & Sanggul)';
 }
-
 
 /// Abstract storage interface for user profile preferences and progression state.
 abstract class ProfilePreferences {
@@ -35,7 +35,8 @@ abstract class ProfilePreferences {
   static const String keyDailyPracticeDate = 'profile_daily_practice_date';
   static const String keyDailyPracticeXP = 'profile_daily_practice_xp';
   static const String keyStreakDays = 'profile_streak_days';
-  static const String keyCompletedQuizDays = 'profile_completed_quiz_days_of_week';
+  static const String keyCompletedQuizDays =
+      'profile_completed_quiz_days_of_week';
   static const String keyQuizzesThisWeek = 'profile_quizzes_this_week';
   static const String keyUnlockedBlangkons = 'profile_unlocked_blangkons';
   static const String keyLastCelebratedLevel = 'profile_last_celebrated_level';
@@ -43,7 +44,6 @@ abstract class ProfilePreferences {
   static const int currentSchemaVersion = 1;
   static const String keyGender = 'profile_user_gender';
   static const String keyAge = 'profile_user_age';
-
 
   /// Loads the currently equipped [BlangkonType], falling back to [BlangkonType.yogyakarta].
   Future<BlangkonType> loadEquippedBlangkon();
@@ -211,8 +211,11 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
       // 2. Migration for existing users with saved legacy level
       if (prefs.containsKey(ProfilePreferences.keyUserLevel)) {
         final rawLevel = prefs.get(ProfilePreferences.keyUserLevel);
-        final legacyLevel =
-            Validators.sanitizeStoredInt(rawLevel, min: 1, fallback: 1);
+        final legacyLevel = Validators.sanitizeStoredInt(
+          rawLevel,
+          min: 1,
+          fallback: 1,
+        );
         final migratedXP = ProgressionEngine.getBaseXPForLevel(legacyLevel);
         await prefs.setInt(ProfilePreferences.keyTotalXP, migratedXP);
         return migratedXP;
@@ -255,7 +258,11 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   @override
   Future<void> saveUserLevel(int level) async {
     try {
-      final safeLevel = Validators.sanitizeStoredInt(level, min: 1, fallback: 1);
+      final safeLevel = Validators.sanitizeStoredInt(
+        level,
+        min: 1,
+        fallback: 1,
+      );
       final xp = ProgressionEngine.getBaseXPForLevel(safeLevel);
       await saveTotalXP(xp);
     } catch (_) {
@@ -392,8 +399,12 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
         if (raw is List) {
           final days = <int>[];
           for (final item in raw) {
-            final d =
-                Validators.sanitizeStoredInt(item, min: 1, max: 7, fallback: -1);
+            final d = Validators.sanitizeStoredInt(
+              item,
+              min: 1,
+              max: 7,
+              fallback: -1,
+            );
             if (d >= 1 && d <= 7 && !days.contains(d)) {
               days.add(d);
             }
@@ -475,7 +486,8 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
   Future<void> saveUnlockedBlangkons(Set<BlangkonType> blangkons) async {
     try {
       final prefs = await _prefsProvider();
-      final set = Set<BlangkonType>.from(blangkons)..add(BlangkonType.yogyakarta);
+      final set = Set<BlangkonType>.from(blangkons)
+        ..add(BlangkonType.yogyakarta);
       final list = set.map((e) => e.name).toList();
       await prefs.setStringList(ProfilePreferences.keyUnlockedBlangkons, list);
     } catch (_) {}
@@ -487,8 +499,12 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
       final userLevel = await loadUserLevel();
       final prefs = await _prefsProvider();
       final raw = prefs.get(ProfilePreferences.keyLastCelebratedLevel);
-      final level =
-          Validators.sanitizeStoredInt(raw, min: 1, max: userLevel, fallback: 1);
+      final level = Validators.sanitizeStoredInt(
+        raw,
+        min: 1,
+        max: userLevel,
+        fallback: 1,
+      );
       return level.clamp(1, userLevel);
     } catch (_) {
       return 1;
@@ -598,23 +614,26 @@ class InMemoryProfilePreferences implements ProfilePreferences {
            : <String>{},
        _dailyPracticeDate = initialDailyPracticeDate,
        _dailyPracticeXP = initialDailyPracticeXP,
-       _streakDays = initialStreakDays ??
+       _streakDays =
+           initialStreakDays ??
            (isFreshUser || (initialTotalXP != null && initialTotalXP == 0)
                ? 0
                : 5),
        _completedQuizDaysOfWeek = initialCompletedQuizDaysOfWeek != null
            ? List.from(initialCompletedQuizDaysOfWeek)
            : (isFreshUser || (initialTotalXP != null && initialTotalXP == 0)
-               ? <int>[]
-               : <int>[1, 2, 3, 4, 5]),
-       _quizzesThisWeek = initialQuizzesThisWeek ??
+                 ? <int>[]
+                 : <int>[1, 2, 3, 4, 5]),
+       _quizzesThisWeek =
+           initialQuizzesThisWeek ??
            (isFreshUser || (initialTotalXP != null && initialTotalXP == 0)
                ? 0
                : 8),
        _unlockedBlangkons = initialUnlockedBlangkons != null
            ? Set.from(initialUnlockedBlangkons)
            : {BlangkonType.yogyakarta, initialBlangkon},
-       _lastCelebratedLevel = initialLastCelebratedLevel ??
+       _lastCelebratedLevel =
+           initialLastCelebratedLevel ??
            (isFreshUser ? 1 : (initialUserLevel ?? 1)),
        _gender = initialGender,
        _age = initialAge;

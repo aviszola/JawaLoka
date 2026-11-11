@@ -1,9 +1,11 @@
 {
   "lib/core/router/app_router.dart": 3,
+  "lib/features/auth/presentation/screens/get_started_screen.dart": 7,
   "lib/features/auth/presentation/screens/login_screen.dart": 1,
   "lib/features/auth/presentation/screens/register_screen.dart": 0,
   "lib/features/home/presentation/screens/main_shell_screen.dart": 0,
   "lib/features/home/presentation/widgets/home_continue_quiz_card.dart": 0,
+  "lib/features/home/presentation/widgets/home_cultural_wisdom_card.dart": 3,
   "lib/features/home/presentation/widgets/home_header.dart": 0,
   "lib/features/home/presentation/widgets/home_hero_quest_card.dart": 0,
   "lib/features/home/presentation/widgets/home_quick_learn_section.dart": 0,
@@ -22,7 +24,5 @@
   "lib/features/quiz/presentation/screens/quiz_question_screen.dart": 1,
   "lib/features/quiz/presentation/screens/quiz_result_screen.dart": 2,
   "lib/features/quiz/presentation/widgets/quiz_bottom_sheet.dart": 0,
-  "lib/features/splash/presentation/screens/splash_screen.dart": 0,
-  "lib/features/splash/presentation/widgets/animated_loading_dots.dart": 0,
   "lib/features/translator/presentation/screens/translator_screen.dart": 0
 }

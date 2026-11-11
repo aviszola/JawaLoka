@@ -105,7 +105,10 @@ void main() {
         );
 
         expect(summaryFirst.leveledUp, isTrue);
-        expect(summaryFirst.unlockedBlangkons, contains(BlangkonType.surakarta));
+        expect(
+          summaryFirst.unlockedBlangkons,
+          contains(BlangkonType.surakarta),
+        );
 
         // Replay of same quiz gives replay practice XP
         final summaryReplay = await controller.awardQuizSessionReward(
@@ -126,23 +129,50 @@ void main() {
       'Each blangkon unlocks exactly at specified Level threshold and not before',
       () {
         // Yogyakarta: always unlocked from Level 1
-        expect(BlangkonRewards.isUnlocked(BlangkonType.yogyakarta, userLevel: 1), isTrue);
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.yogyakarta, userLevel: 1),
+          isTrue,
+        );
 
         // Surakarta: Level 5
-        expect(BlangkonRewards.isUnlocked(BlangkonType.surakarta, userLevel: 4), isFalse);
-        expect(BlangkonRewards.isUnlocked(BlangkonType.surakarta, userLevel: 5), isTrue);
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.surakarta, userLevel: 4),
+          isFalse,
+        );
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.surakarta, userLevel: 5),
+          isTrue,
+        );
 
         // Banyumas: Level 6
-        expect(BlangkonRewards.isUnlocked(BlangkonType.banyumas, userLevel: 5), isFalse);
-        expect(BlangkonRewards.isUnlocked(BlangkonType.banyumas, userLevel: 6), isTrue);
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.banyumas, userLevel: 5),
+          isFalse,
+        );
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.banyumas, userLevel: 6),
+          isTrue,
+        );
 
         // Kedu: Level 8
-        expect(BlangkonRewards.isUnlocked(BlangkonType.kedu, userLevel: 7), isFalse);
-        expect(BlangkonRewards.isUnlocked(BlangkonType.kedu, userLevel: 8), isTrue);
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.kedu, userLevel: 7),
+          isFalse,
+        );
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.kedu, userLevel: 8),
+          isTrue,
+        );
 
         // Cirebon: Level 10
-        expect(BlangkonRewards.isUnlocked(BlangkonType.cirebon, userLevel: 9), isFalse);
-        expect(BlangkonRewards.isUnlocked(BlangkonType.cirebon, userLevel: 10), isTrue);
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.cirebon, userLevel: 9),
+          isFalse,
+        );
+        expect(
+          BlangkonRewards.isUnlocked(BlangkonType.cirebon, userLevel: 10),
+          isTrue,
+        );
 
         // Pusaka: Selesai materi/evaluasi aksara (Mastery Aksara)
         expect(
@@ -176,34 +206,39 @@ void main() {
       }
     });
 
-    test('BlangkonPainter renders without throwing for all types and lock states', () {
-      final recorder = PictureRecorder();
-      final canvas = Canvas(recorder);
-      const size = Size(100, 80);
+    test(
+      'BlangkonPainter renders without throwing for all types and lock states',
+      () {
+        final recorder = PictureRecorder();
+        final canvas = Canvas(recorder);
+        const size = Size(100, 80);
 
-      for (final type in BlangkonType.values) {
-        final painterUnlocked = BlangkonPainter(type: type, isLocked: false);
-        expect(
-          () => painterUnlocked.paint(canvas, size),
-          returnsNormally,
-          reason: '$type unlocked painter should render cleanly',
-        );
+        for (final type in BlangkonType.values) {
+          final painterUnlocked = BlangkonPainter(type: type, isLocked: false);
+          expect(
+            () => painterUnlocked.paint(canvas, size),
+            returnsNormally,
+            reason: '$type unlocked painter should render cleanly',
+          );
 
-        final painterLocked = BlangkonPainter(type: type, isLocked: true);
-        expect(
-          () => painterLocked.paint(canvas, size),
-          returnsNormally,
-          reason: '$type locked painter should render cleanly',
-        );
-      }
-    });
+          final painterLocked = BlangkonPainter(type: type, isLocked: true);
+          expect(
+            () => painterLocked.paint(canvas, size),
+            returnsNormally,
+            reason: '$type locked painter should render cleanly',
+          );
+        }
+      },
+    );
   });
 
   group('7f. ChooseBlangkonScreen locked and unlocked behavior', () {
     testWidgets(
       'ChooseBlangkonScreen displays locked state and toast for level 4 user',
       (tester) async {
-        final prefs = InMemoryProfilePreferences(initialTotalXP: 650); // Level 4
+        final prefs = InMemoryProfilePreferences(
+          initialTotalXP: 650,
+        ); // Level 4
         final controller = ProfileController(preferences: prefs);
         await controller.loadProfile();
 
@@ -238,7 +273,9 @@ void main() {
           tester.view.resetDevicePixelRatio();
         });
 
-        final prefs = InMemoryProfilePreferences(initialTotalXP: 1050); // Level 5
+        final prefs = InMemoryProfilePreferences(
+          initialTotalXP: 1050,
+        ); // Level 5
         final controller = ProfileController(preferences: prefs);
         await controller.loadProfile();
 
@@ -308,10 +345,7 @@ void main() {
         expect(controller.userLevel, equals(5));
 
         // 1. Home Screen (shows level pill 'L5')
-        await tester.pumpApp(
-          const HomeScreen(),
-          profileController: controller,
-        );
+        await tester.pumpApp(const HomeScreen(), profileController: controller);
         await tester.pumpAndSettle();
         expect(find.text('L5'), findsWidgets);
 

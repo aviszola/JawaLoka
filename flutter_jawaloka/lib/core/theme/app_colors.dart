@@ -4,29 +4,37 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  static const Color amber = Color(0xFFFFC247);       // Primary golden amber
-  static const Color amberDark = Color(0xFFF5A31A);   // Deep warm amber
-  static const Color amberSoft = Color(0xFFFFF1D0);   // Soft warm cream
+  static const Color amber = Color(
+    0xFFF5B838,
+  ); // Warm golden amber (calmed from harsh glare)
+  static const Color amberDark = Color(0xFFE59814); // Deep warm honey amber
+  static const Color amberSoft = Color(0xFFFFF3D6); // Soft calm cream
 
   // ═══════════════════════════════════════════════
   //   TYPOGRAPHY & INK
   // ═══════════════════════════════════════════════
-  static const Color ink = Color(0xFF231C14);         // Deep traditional Javanese ink
-  static const Color inkSecondary = Color(0xFF6B6257);// Secondary text
-  static const Color inkMuted = Color(0xFF8A8074);    // Muted/disabled text
+  static const Color ink = Color(0xFF231C14); // Deep traditional Javanese ink
+  static const Color inkSecondary = Color(0xFF6B6257); // Secondary text
+  static const Color inkMuted = Color(0xFF8A8074); // Muted/disabled text
 
   // ═══════════════════════════════════════════════
   //   SURFACES & BACKGROUNDS
   // ═══════════════════════════════════════════════
-  static const Color surface = Color(0xFFFFFFFF);     // Pure card surface
-  static const Color canvas = Color(0xFFF5F1EB);      // App background (warm linen)
-  static const Color border = Color(0xFFE8E1D6);      // Card borders
+  static const Color surface = Color(0xFFFFFFFF); // Pure card surface
+  static const Color canvas = Color(
+    0xFFFAF6EE,
+  ); // App background (warm pastel yellow linen)
+  static const Color border = Color(0xFFF0E3C5); // Soft pastel card borders
 
   // ═══════════════════════════════════════════════
   //   ACCENTS
   // ═══════════════════════════════════════════════
-  static const Color accentOrange = Color(0xFFF26B2D);// Sunrise radiant orange
-  static const Color kawungStroke = Color(0xFFD99414);// Ochre batik pattern stroke
+  static const Color accentOrange = Color(
+    0xFFE05A1E,
+  ); // Terracotta warm accent (calmed from neon)
+  static const Color kawungStroke = Color(
+    0xFFD99414,
+  ); // Ochre batik pattern stroke
 
   // ═══════════════════════════════════════════════
   //   SEMANTIC COLORS
@@ -86,4 +94,3 @@ class AppColors {
     end: Alignment.bottomRight,
   );
 }
-

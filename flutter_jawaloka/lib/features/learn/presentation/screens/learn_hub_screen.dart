@@ -4,10 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../data/vocab_word.dart';
-import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 import '../widgets/module_card.dart';
-import 'aksara_detail_screen.dart';
-import '../../../translator/presentation/screens/translator_screen.dart';
 
 /// Learning Hub – the main screen for all learning materials in JawaLoka.
 ///
@@ -109,17 +106,11 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
   void _onModuleTap(ModuleCardData data) {
     if (data.id == 'aksara') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const AksaraDetailScreen()),
-      );
+      Navigator.pushNamed(context, AppRouter.aksaraDetail);
     } else if (data.id == 'kosakata') {
       Navigator.pushNamed(context, AppRouter.vocabularyDetail, arguments: 0);
     } else if (data.id == 'penerjemah') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => const TranslatorScreen()),
-      );
+      Navigator.pushNamed(context, AppRouter.translator);
     } else if (data.id == 'unggah_ungguh') {
       _showUnggahUngguhSheet();
     } else if (data.id == 'peribahasa') {
@@ -431,7 +422,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColors.amber,
+      backgroundColor: const Color(0xFFF7D46B),
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       toolbarHeight: 0,
@@ -443,13 +434,19 @@ class _LearnHubScreenState extends State<LearnHubScreen>
     final l10n = context.l10n;
     return Container(
       width: double.infinity,
-      color: AppColors.amber,
+      decoration: const BoxDecoration(color: Color(0xFFF7D46B)),
       child: Stack(
         children: [
-          // Batik kawung texture overlay (opacity 0.035, strictly <= 0.04)
-          Positioned.fill(
-            child: RepaintBoundary(
-              child: CustomPaint(painter: BatikKawungPainter(opacity: 0.035)),
+          Positioned(
+            top: -36,
+            right: -28,
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
 

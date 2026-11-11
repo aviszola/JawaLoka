@@ -16,12 +16,12 @@ class CurriculumQuizBank {
 
   /// Seluruh soal kurikuler dalam aplikasi (320 soal terverifikasi).
   static List<QuizQuestion> get allQuestions => [
-        ...Unit1Questions.allQuestions,
-        ...Unit2Questions.allQuestions,
-        ...Unit3Questions.allQuestions,
-        ...Unit4Questions.allQuestions,
-        ...Unit5Questions.allQuestions,
-      ];
+    ...Unit1Questions.allQuestions,
+    ...Unit2Questions.allQuestions,
+    ...Unit3Questions.allQuestions,
+    ...Unit4Questions.allQuestions,
+    ...Unit5Questions.allQuestions,
+  ];
 
   /// Mengambil daftar soal kuis kurikuler untuk sebuah [QuizPathNode].
   ///
@@ -34,7 +34,8 @@ class CurriculumQuizBank {
     bool strictDifficulty = false,
   }) {
     // 1. Check if node is an evaluation milestone or final exam
-    final isEvaluationNode = node.type == QuizNodeType.milestone ||
+    final isEvaluationNode =
+        node.type == QuizNodeType.milestone ||
         node.type == QuizNodeType.finalExam ||
         node.topicKey.startsWith('evaluasi_');
 
@@ -85,9 +86,12 @@ class CurriculumQuizBank {
 
   /// Mengambil 10 soal evaluasi komprehensif untuk sebuah unit (1–5).
   static List<QuizQuestion> getEvaluationQuestions(int unitId) {
-    final evalTopicKey = unitId == 5 ? 'evaluasi_akhir' : 'evaluasi_unit$unitId';
-    final evalQuestions =
-        allQuestions.where((q) => q.topicKey == evalTopicKey).toList();
+    final evalTopicKey = unitId == 5
+        ? 'evaluasi_akhir'
+        : 'evaluasi_unit$unitId';
+    final evalQuestions = allQuestions
+        .where((q) => q.topicKey == evalTopicKey)
+        .toList();
 
     if (evalQuestions.isNotEmpty) {
       return evalQuestions;
@@ -155,7 +159,8 @@ class CurriculumQuizBank {
       }
     }
 
-    final isValid = duplicateIds.isEmpty &&
+    final isValid =
+        duplicateIds.isEmpty &&
         invalidOptionCounts.isEmpty &&
         invalidIndices.isEmpty &&
         missingExplanations.isEmpty &&

@@ -14,7 +14,7 @@ class LocaleController extends ChangeNotifier {
   bool _isInitialized = false;
 
   LocaleController({LocalePreferences? preferences})
-      : _preferences = preferences ?? SharedPrefsLocalePreferences();
+    : _preferences = preferences ?? SharedPrefsLocalePreferences();
 
   Locale get locale => _locale;
   bool get hasChosenLanguage => _hasChosenLanguage;
@@ -50,4 +50,3 @@ class LocaleController extends ChangeNotifier {
     await _preferences.setHasChosenLanguage(true);
   }
 }
-

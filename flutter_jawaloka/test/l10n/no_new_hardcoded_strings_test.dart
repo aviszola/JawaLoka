@@ -8,7 +8,9 @@ int countHardcodedOccurrences(String content, String relativePath) {
   int count = 0;
 
   // 1. Text(' or Text(" (including const Text(' / const Text("))
-  count += RegExp(r'\b(?:const\s+)?Text\s*\(\s*[\x27\x22]').allMatches(content).length;
+  count += RegExp(
+    r'\b(?:const\s+)?Text\s*\(\s*[\x27\x22]',
+  ).allMatches(content).length;
 
   // 2. SnackBar(content: Text( where string literal might have leading expression
   // Note: if it has literal Text('...'), pattern #1 already counted it.
@@ -27,7 +29,9 @@ int countHardcodedOccurrences(String content, String relativePath) {
   count += RegExp(r'\btooltip\s*:\s*[\x27\x22]').allMatches(content).length;
 
   // 7. Semantics(label: '...' or Semantics(..., label: '...')
-  count += RegExp(r'\bSemantics\s*\([^)]*\blabel\s*:\s*[\x27\x22]').allMatches(content).length;
+  count += RegExp(
+    r'\bSemantics\s*\([^)]*\blabel\s*:\s*[\x27\x22]',
+  ).allMatches(content).length;
 
   // 8. AppStrings usage
   if (!isAppStringsDefinition) {
@@ -52,7 +56,9 @@ Map<String, int> scanDirectoryHardcodedCounts(String projectRoot) {
         final normalizedPath = entity.path.replaceAll('\\', '/');
         if (normalizedPath.contains('/lib/l10n/')) continue;
 
-        final relativePath = normalizedPath.substring(normalizedPath.indexOf('/lib/') + 1);
+        final relativePath = normalizedPath.substring(
+          normalizedPath.indexOf('/lib/') + 1,
+        );
         final content = entity.readAsStringSync();
         final count = countHardcodedOccurrences(content, relativePath);
         if (count > 0) {
@@ -84,7 +90,8 @@ void main() {
       );
     }
 
-    final baselineData = json.decode(baselineFile.readAsStringSync()) as Map<String, dynamic>;
+    final baselineData =
+        json.decode(baselineFile.readAsStringSync()) as Map<String, dynamic>;
     final violations = <String>[];
 
     // Check all scanned files against baseline

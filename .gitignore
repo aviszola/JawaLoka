@@ -56,3 +56,17 @@ skills-lock.json
 key.properties
 .env
 .env.*
+
+# Kotlin sessions and build daemon
+.kotlin/
+android/.kotlin/
+
+# Temporary file patterns
+output.txt
+probe_output.txt
+test_output.txt
+
+# Release artifacts
+release_apks/
+run.bat
+**/android/.kotlin/

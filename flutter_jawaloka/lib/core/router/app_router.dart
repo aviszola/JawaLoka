@@ -53,7 +53,10 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRouter.splash:
-        return _FadePageRoute(page: const GetStartedScreen(), settings: settings);
+        return _FadePageRoute(
+          page: const GetStartedScreen(),
+          settings: settings,
+        );
 
       case AppRouter.getStarted:
       case '/get-started':
@@ -71,7 +74,10 @@ class AppRouter {
       case AppRouter.profileSetup:
       case AppRouter.register:
       case AppRouter.login:
-        return _FadePageRoute(page: const ProfileSetupScreen(), settings: settings);
+        return _FadePageRoute(
+          page: const ProfileSetupScreen(),
+          settings: settings,
+        );
 
       case AppRouter.home:
         return _FadePageRoute(
@@ -151,7 +157,8 @@ class AppRouter {
 
       case AppRouter.quizResult:
         final args = settings.arguments;
-        final QuizResult safeResult = (args is QuizResult && args.totalQuestions > 0)
+        final QuizResult safeResult =
+            (args is QuizResult && args.totalQuestions > 0)
             ? args
             : const QuizResult(
                 score: 0,
@@ -177,8 +184,8 @@ class AppRouter {
         if (args is DailyResultArgs) {
           final safeSimilarity =
               args.similarity.isNaN || args.similarity.isInfinite
-                  ? 0.0
-                  : args.similarity.clamp(0.0, 1.0);
+              ? 0.0
+              : args.similarity.clamp(0.0, 1.0);
           return _FadePageRoute(
             page: DailyResultScreen(
               userName: args.userName,
@@ -259,15 +266,9 @@ Widget buildJawaLokaTransitions({
     end: Offset.zero,
   ).animate(curvedAnimation);
 
-  final scaleIn = Tween<double>(
-    begin: 0.96,
-    end: 1.0,
-  ).animate(curvedAnimation);
+  final scaleIn = Tween<double>(begin: 0.96, end: 1.0).animate(curvedAnimation);
 
-  final fadeIn = Tween<double>(
-    begin: 0.0,
-    end: 1.0,
-  ).animate(curvedAnimation);
+  final fadeIn = Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation);
 
   // Secondary exit: Current page slightly slides left (-4%), scales down to 0.98, dims to 0.88
   final slideOut = Tween<Offset>(
@@ -295,10 +296,7 @@ Widget buildJawaLokaTransitions({
           position: slideIn,
           child: ScaleTransition(
             scale: scaleIn,
-            child: FadeTransition(
-              opacity: fadeIn,
-              child: child,
-            ),
+            child: FadeTransition(opacity: fadeIn, child: child),
           ),
         ),
       ),
@@ -316,16 +314,16 @@ class JawaLokaPageRoute<T> extends PageRouteBuilder<T> {
     Duration duration = const Duration(milliseconds: 380),
     Duration reverseDuration = const Duration(milliseconds: 320),
   }) : super(
-          pageBuilder: (context, animation, secondaryAnimation) => page,
-          transitionDuration: duration,
-          reverseTransitionDuration: reverseDuration,
-          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-              buildJawaLokaTransitions(
-            animation: animation,
-            secondaryAnimation: secondaryAnimation,
-            child: child,
-          ),
-        );
+         pageBuilder: (context, animation, secondaryAnimation) => page,
+         transitionDuration: duration,
+         reverseTransitionDuration: reverseDuration,
+         transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+             buildJawaLokaTransitions(
+               animation: animation,
+               secondaryAnimation: secondaryAnimation,
+               child: child,
+             ),
+       );
 }
 
 /// PageTransitionsBuilder for MaterialApp theme so all route transitions are animated.

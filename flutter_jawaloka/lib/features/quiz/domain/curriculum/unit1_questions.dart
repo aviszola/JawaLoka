@@ -17,7 +17,6 @@ class Unit1Questions {
   Unit1Questions._();
 
   static List<QuizQuestion> get allQuestions => [
-
     // =========================================================================
     // NODE 1: Sapaan Wektu (topicKey: 'salam')
     // =========================================================================
@@ -27,7 +26,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara "Sugeng enjang" diucapake nalika wayah apa?',
-      glyph: 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ',
+      glyph: '',
       options: ['Esuk (pagi)', 'Awan (siang)', 'Sore', 'Wengi (malam)'],
       correctIndex: 0,
       explanation: '"Sugeng enjang" tegese selamat pagi ing basa Jawa krama.',
@@ -39,10 +38,16 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sapaan basa Jawa krama nalika wayah sore yaiku...',
-      glyph: 'ꦱꦺꦴꦫꦺ',
-      options: ['Sugeng enjang', 'Sugeng sonten', 'Sugeng dalu', 'Sugeng siang'],
+      glyph: '',
+      options: [
+        'Sugeng enjang',
+        'Sugeng sonten',
+        'Sugeng dalu',
+        'Sugeng siang',
+      ],
       correctIndex: 1,
-      explanation: 'Sore ing basa Jawa kramane sonten, mula sapaane "Sugeng sonten".',
+      explanation:
+          'Sore ing basa Jawa kramane sonten, mula sapaane "Sugeng sonten".',
       sourceReference: 'Bausastra Jawa: Tembung Sonten',
     ),
     QuizQuestion(
@@ -50,11 +55,18 @@ class Unit1Questions {
       topicKey: 'salam',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika kepethuk Bapak Guru ing wayah awan jam 12.00, sapaan kang laras yaiku...',
-      glyph: 'ꦱꦶꦪꦁ',
-      options: ['Sugeng sonten, Pak Guru', 'Sugeng dalu, Pak Guru', 'Sugeng siang, Pak Guru', 'Sugeng enjang, Pak Guru'],
+      prompt:
+          'Nalika kepethuk Bapak Guru ing wayah awan jam 12.00, sapaan kang laras yaiku...',
+      glyph: '',
+      options: [
+        'Sugeng sonten, Pak Guru',
+        'Sugeng dalu, Pak Guru',
+        'Sugeng siang, Pak Guru',
+        'Sugeng enjang, Pak Guru',
+      ],
       correctIndex: 2,
-      explanation: 'Wayah awan jam 12.00 nggunakake sapaan krama "Sugeng siang".',
+      explanation:
+          'Wayah awan jam 12.00 nggunakake sapaan krama "Sugeng siang".',
       sourceReference: 'Unggah-Ungguh Basa Jawa Padinan',
     ),
     QuizQuestion(
@@ -63,10 +75,16 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara "Sugeng dalu" tegese padha karo sapaan...',
-      glyph: 'ꦢꦭꦸ',
-      options: ['Selamat malam', 'Selamat sore', 'Selamat pagi', 'Selamat datang'],
+      glyph: '',
+      options: [
+        'Selamat malam',
+        'Selamat sore',
+        'Selamat pagi',
+        'Selamat datang',
+      ],
       correctIndex: 0,
-      explanation: 'Tembung "dalu" ing basa Jawa krama tegese wengi utawa malam.',
+      explanation:
+          'Tembung "dalu" ing basa Jawa krama tegese wengi utawa malam.',
       sourceReference: 'Pepak Basa Jawa: Kosakata Wektu',
     ),
     QuizQuestion(
@@ -74,11 +92,18 @@ class Unit1Questions {
       topicKey: 'salam',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Sapaan pakurmatan nalika nampa tamu ing pahargyan resmi Jawa yaiku...',
-      glyph: 'ꦫꦮꦸꦃ',
-      options: ['Sugeng tindak', 'Sugeng kondur', 'Sugeng sare', 'Sugeng rawuh'],
+      prompt:
+          'Sapaan pakurmatan nalika nampa tamu ing pahargyan resmi Jawa yaiku...',
+      glyph: '',
+      options: [
+        'Sugeng tindak',
+        'Sugeng kondur',
+        'Sugeng sare',
+        'Sugeng rawuh',
+      ],
       correctIndex: 3,
-      explanation: '"Sugeng rawuh" tegese selamat datang marang para tamu kanthi pakurmatan inggil.',
+      explanation:
+          '"Sugeng rawuh" tegese selamat datang marang para tamu kanthi pakurmatan inggil.',
       sourceReference: 'Tata Krama Sesorah lan Pahargyan Jawa',
     ),
     QuizQuestion(
@@ -86,11 +111,18 @@ class Unit1Questions {
       topicKey: 'salam',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika ana sedulur budhal lelungan adoh, sapaan pandonga kang trep yaiku...',
-      glyph: 'ꦠꦶꦤ꧀ꦢꦏ꧀',
-      options: ['Sugeng rawuh', 'Sugeng tindak', 'Sugeng siram', 'Sugeng dhahar'],
+      prompt:
+          'Nalika ana sedulur budhal lelungan adoh, sapaan pandonga kang trep yaiku...',
+      glyph: '',
+      options: [
+        'Sugeng rawuh',
+        'Sugeng tindak',
+        'Sugeng siram',
+        'Sugeng dhahar',
+      ],
       correctIndex: 1,
-      explanation: '"Sugeng tindak" diucapake minangka pandonga slamet marang wong kang budhal lelungan.',
+      explanation:
+          '"Sugeng tindak" diucapake minangka pandonga slamet marang wong kang budhal lelungan.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 
@@ -102,8 +134,9 @@ class Unit1Questions {
       topicKey: 'pamit',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Sadurunge mangkat sekolah, ukara pamitan marang bapak lan ibu yaiku...',
-      glyph: 'ꦥꦩꦶꦠ꧀',
+      prompt:
+          'Sadurunge mangkat sekolah, ukara pamitan marang bapak lan ibu yaiku...',
+      glyph: '',
       options: [
         'Kula nyuwun pamit badhe bidhal sekolah',
         'Aku arep dolan dhisik ya',
@@ -111,7 +144,8 @@ class Unit1Questions {
         'Kula badhe sare rumiyin',
       ],
       correctIndex: 0,
-      explanation: 'Pamit sekolah marang wong tuwa nggunakake krama alus: "Kula nyuwun pamit badhe bidhal sekolah".',
+      explanation:
+          'Pamit sekolah marang wong tuwa nggunakake krama alus: "Kula nyuwun pamit badhe bidhal sekolah".',
       sourceReference: 'Subasita lan Tata Krama Jawa',
     ),
     QuizQuestion(
@@ -120,7 +154,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "budhal" kramane yaiku...',
-      glyph: 'ꦧꦶꦝꦭ꧀',
+      glyph: '',
       options: ['Kondur', 'Mlebet', 'Bidhal', 'Wangsul'],
       correctIndex: 2,
       explanation: 'Tembung ngoko "budhal" kramane yaiku "bidhal".',
@@ -131,8 +165,9 @@ class Unit1Questions {
       topicKey: 'pamit',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara pamitan ngoko marang kanca sebaya nalika arep mulih yaiku...',
-      glyph: 'ꦩꦸꦭꦶꦃ',
+      prompt:
+          'Ukara pamitan ngoko marang kanca sebaya nalika arep mulih yaiku...',
+      glyph: '',
       options: [
         'Kula nyuwun lilah badhe wangsul',
         'Aku pamit mulih dhisik ya, kanca',
@@ -140,7 +175,8 @@ class Unit1Questions {
         'Sugeng tindak kanca-kanca',
       ],
       correctIndex: 1,
-      explanation: 'Marang kanca sebaya nggunakake basa ngoko lugu: "Aku pamit mulih dhisik ya, kanca".',
+      explanation:
+          'Marang kanca sebaya nggunakake basa ngoko lugu: "Aku pamit mulih dhisik ya, kanca".',
       sourceReference: 'Pepak Basa Jawa: Pacelathon Ngoko',
     ),
     QuizQuestion(
@@ -148,8 +184,9 @@ class Unit1Questions {
       topicKey: 'pamit',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Sikap badan kang trep nalika nyuwun pamit marang bapak lan ibu yaiku...',
-      glyph: 'ꦱꦭꦶꦩ꧀',
+      prompt:
+          'Sikap badan kang trep nalika nyuwun pamit marang bapak lan ibu yaiku...',
+      glyph: '',
       options: [
         'Sungkeman utawa salim ngambung astane kanthi andhap asor',
         'Mlaku memburi karo ngedhepi mripat',
@@ -157,7 +194,8 @@ class Unit1Questions {
         'Ngadeg jejeg karo tangane sedhakep sombong',
       ],
       correctIndex: 0,
-      explanation: 'Pamit marang tiyang sepuh kanthi salim ngambung asta minangka tandha bekti.',
+      explanation:
+          'Pamit marang tiyang sepuh kanthi salim ngambung asta minangka tandha bekti.',
       sourceReference: 'Tuntunan Subasita Jawa',
     ),
     QuizQuestion(
@@ -165,11 +203,18 @@ class Unit1Questions {
       topicKey: 'pamit',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung krama alus saka "nyuwun pamit" kang asring digunakake ing layang utawa adicara resmi yaiku...',
-      glyph: 'ꦭꦶꦭꦃ',
-      options: ['Nyuwun ganjaran', 'Nyuwun pasugatan', 'Nyuwun sangu', 'Nyuwun lilah palilah'],
+      prompt:
+          'Tembung krama alus saka "nyuwun pamit" kang asring digunakake ing layang utawa adicara resmi yaiku...',
+      glyph: '',
+      options: [
+        'Nyuwun ganjaran',
+        'Nyuwun pasugatan',
+        'Nyuwun sangu',
+        'Nyuwun lilah palilah',
+      ],
       correctIndex: 3,
-      explanation: '"Nyuwun lilah / palilah" ngemu teges nyuwun idi palilah utawa ijin pamit kanthi trapsila.',
+      explanation:
+          '"Nyuwun lilah / palilah" ngemu teges nyuwun idi palilah utawa ijin pamit kanthi trapsila.',
       sourceReference: 'Paramasastra Basa Jawa',
     ),
     QuizQuestion(
@@ -177,8 +222,9 @@ class Unit1Questions {
       topicKey: 'pamit',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Yen simbah arep tindak menyang Surabaya, ukara kang bener diaturake yaiku...',
-      glyph: 'ꦥꦤ꧀ꦢꦺꦴꦔ',
+      prompt:
+          'Yen simbah arep tindak menyang Surabaya, ukara kang bener diaturake yaiku...',
+      glyph: '',
       options: [
         'Simbah, sampeyan mangkat dhewe ya',
         'Simbah, kula ndherekaken pandonga mugi rahayu wilujeng satindakipun',
@@ -186,7 +232,8 @@ class Unit1Questions {
         'Simbah, kowe kapan mulih saka kana?',
       ],
       correctIndex: 1,
-      explanation: 'Marang simbah nggunakake krama alus lan mendoakan kawilujengan tindake.',
+      explanation:
+          'Marang simbah nggunakake krama alus lan mendoakan kawilujengan tindake.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 
@@ -199,8 +246,13 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara takon kabar marang kanca nggunakake basa ngoko yaiku...',
-      glyph: 'ꦥꦶꦪꦺ',
-      options: ['Piye kabare?', 'Kados pundi pawartosipun?', 'Panjenengan pundi?', 'Sinten asmanipun?'],
+      glyph: '',
+      options: [
+        'Piye kabare?',
+        'Kados pundi pawartosipun?',
+        'Panjenengan pundi?',
+        'Sinten asmanipun?',
+      ],
       correctIndex: 0,
       explanation: 'Basa ngoko takon kabar marang kanca yaiku "Piye kabare?".',
       sourceReference: 'Pepak Basa Jawa: Pacelathon Ngoko',
@@ -210,8 +262,9 @@ class Unit1Questions {
       topicKey: 'tanya_kabar',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara takon kabar marang bapak utawa ibu guru nggunakake basa krama yaiku...',
-      glyph: 'ꦥꦮꦂꦠꦺꦴꦱ꧀',
+      prompt:
+          'Ukara takon kabar marang bapak utawa ibu guru nggunakake basa krama yaiku...',
+      glyph: '',
       options: [
         'Piye kabarmu saiki?',
         'Kados pundi pawartosipun Bapak/Ibu?',
@@ -219,7 +272,8 @@ class Unit1Questions {
         'Kabare apik apa ora?',
       ],
       correctIndex: 1,
-      explanation: 'Takon kabar marang guru nggunakake krama alus: "Kados pundi pawartosipun?".',
+      explanation:
+          'Takon kabar marang guru nggunakake krama alus: "Kados pundi pawartosipun?".',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -227,9 +281,15 @@ class Unit1Questions {
       topicKey: 'tanya_kabar',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Yen kancamu takon "Piye kabarmu?", wangsulan ngoko kang lumrah yaiku...',
-      glyph: 'ꦲꦥꦶꦏ꧀',
-      options: ['Kula nembe gerah', 'Mboten ngertos kula', 'Apik-apik wae, kowe piye?', 'Nyuwun sewu mboten saged'],
+      prompt:
+          'Yen kancamu takon "Piye kabarmu?", wangsulan ngoko kang lumrah yaiku...',
+      glyph: '',
+      options: [
+        'Kula nembe gerah',
+        'Mboten ngertos kula',
+        'Apik-apik wae, kowe piye?',
+        'Nyuwun sewu mboten saged',
+      ],
       correctIndex: 2,
       explanation: 'Wangsulan ngoko: "Apik-apik wae, kowe piye?".',
       sourceReference: 'Basa Jawa Sabendina',
@@ -239,8 +299,9 @@ class Unit1Questions {
       topicKey: 'tanya_kabar',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Wangsulan kang trep nalika simbah ndangu "Kabarmu piye le/ndhuk?" yaiku...',
-      glyph: 'ꦥꦔꦺꦱ꧀ꦠꦸ',
+      prompt:
+          'Wangsulan kang trep nalika simbah ndangu "Kabarmu piye le/ndhuk?" yaiku...',
+      glyph: '',
       options: [
         'Pangestunipun Eyang, kula sae-sae kemawon',
         'Apik kok Mbah, santai wae',
@@ -248,7 +309,8 @@ class Unit1Questions {
         'Kowe dhewe piye Mbah?',
       ],
       correctIndex: 0,
-      explanation: 'Mangsuli pitakone wong tuwa kanthi krama: "Pangestunipun, kula sae-sae kemawon".',
+      explanation:
+          'Mangsuli pitakone wong tuwa kanthi krama: "Pangestunipun, kula sae-sae kemawon".',
       sourceReference: 'Tata Krama Pacelathon Jawa',
     ),
     QuizQuestion(
@@ -256,11 +318,18 @@ class Unit1Questions {
       topicKey: 'tanya_kabar',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "pangestu" ing wangsulan takon kabar ngemu teges yaiku...',
-      glyph: 'ꦧꦼꦂꦏꦃ',
-      options: ['Dhuwit sangu', 'Panganan enak', 'Pangapura kaluputan', 'Pandonga berkah restu tiyang sepuh'],
+      prompt:
+          'Tembung "pangestu" ing wangsulan takon kabar ngemu teges yaiku...',
+      glyph: '',
+      options: [
+        'Dhuwit sangu',
+        'Panganan enak',
+        'Pangapura kaluputan',
+        'Pandonga berkah restu tiyang sepuh',
+      ],
       correctIndex: 3,
-      explanation: '"Pangestu" yaiku berkah donga restu saka wong tuwa kang ndadekake slamet lan ayem.',
+      explanation:
+          '"Pangestu" yaiku berkah donga restu saka wong tuwa kang ndadekake slamet lan ayem.',
       sourceReference: 'Bausastra Jawa: Tembung Pangestu',
     ),
     QuizQuestion(
@@ -268,8 +337,9 @@ class Unit1Questions {
       topicKey: 'tanya_kabar',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Yen kahanan lagi lara, wangsulan krama marang kanca sapadha-padha yaiku...',
-      glyph: 'ꦱꦏꦶꦠ꧀',
+      prompt:
+          'Yen kahanan lagi lara, wangsulan krama marang kanca sapadha-padha yaiku...',
+      glyph: '',
       options: [
         'Kula nembe gerah waja',
         'Kula nembe sakit benter (awak panas)',
@@ -277,7 +347,8 @@ class Unit1Questions {
         'Kula nembe seda',
       ],
       correctIndex: 1,
-      explanation: 'Kanggo awake dhewe nggunakake tembung "sakit", ora kena nggunakake tembung "gerah" (krama inggil).',
+      explanation:
+          'Kanggo awake dhewe nggunakake tembung "sakit", ora kena nggunakake tembung "gerah" (krama inggil).',
       sourceReference: 'Paramasastra: Undha-Usuk Basa',
     ),
 
@@ -290,7 +361,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara nepangaken dhiri marang kanca anyar yaiku...',
-      glyph: 'ꦠꦼꦥꦁ',
+      glyph: '',
       options: [
         'Tepangaken, jenengku Budi',
         'Kowe sapa kok wani mrene?',
@@ -298,7 +369,8 @@ class Unit1Questions {
         'Njaluk dhuwite saiki',
       ],
       correctIndex: 0,
-      explanation: 'Nepangaken dhiri marang kanca nggunakake ukara sumeh: "Tepangaken, jenengku Budi".',
+      explanation:
+          'Nepangaken dhiri marang kanca nggunakake ukara sumeh: "Tepangaken, jenengku Budi".',
       sourceReference: 'Pepak Basa Jawa: Pitepangan',
     ),
     QuizQuestion(
@@ -307,7 +379,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "jeneng" krama lugune yaiku...',
-      glyph: 'ꦤꦩꦶ',
+      glyph: '',
       options: ['Asma', 'Nami', 'Griya', 'Kondur'],
       correctIndex: 1,
       explanation: 'Jeneng -> Nami (krama lugu/madya) -> Asma (krama inggil).',
@@ -318,8 +390,9 @@ class Unit1Questions {
       topicKey: 'perkenalan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara nepangaken dhiri kang bener krama ing sangarepe kelas yaiku...',
-      glyph: 'ꦤꦩꦶ',
+      prompt:
+          'Ukara nepangaken dhiri kang bener krama ing sangarepe kelas yaiku...',
+      glyph: '',
       options: [
         'Tepangaken, asma kula Budi',
         'Jeneng kula Budi saking Solo',
@@ -327,7 +400,8 @@ class Unit1Questions {
         'Aku jenenge asma Budi',
       ],
       correctIndex: 2,
-      explanation: 'Kanggo awake dhewe nggunakake "nami kula", ora kena nggunakake "asma kula".',
+      explanation:
+          'Kanggo awake dhewe nggunakake "nami kula", ora kena nggunakake "asma kula".',
       sourceReference: 'Unggah-Ungguh Basa Jawa: Paugeran Asma vs Nami',
     ),
     QuizQuestion(
@@ -336,7 +410,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "asma" iku krama inggil kang panggawene trep tumrap...',
-      glyph: 'ꦲꦱ꧀ꦩ',
+      glyph: '',
       options: [
         'Wong liya kang diajeni utawa luwih sepuh',
         'Awake dhewe nalika nepangaken dhiri',
@@ -344,7 +418,8 @@ class Unit1Questions {
         'Barang-barang piranti omah',
       ],
       correctIndex: 0,
-      explanation: 'Asma minangka tembung krama inggil kanggo ngurmati wong liya (tuladha: "Sinten asmanipun bapak?").',
+      explanation:
+          'Asma minangka tembung krama inggil kanggo ngurmati wong liya (tuladha: "Sinten asmanipun bapak?").',
       sourceReference: 'Pepak Basa Jawa: Tembung Krama Inggil',
     ),
     QuizQuestion(
@@ -352,8 +427,9 @@ class Unit1Questions {
       topicKey: 'perkenalan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara "Kula pitepangan, dalem kula ing Ngayogyakarta" luput amarga tembung "dalem" kudune...',
-      glyph: 'ꦒꦿꦶꦪ',
+      prompt:
+          'Ukara "Kula pitepangan, dalem kula ing Ngayogyakarta" luput amarga tembung "dalem" kudune...',
+      glyph: '',
       options: [
         'Dalem kula piyambak',
         'Omah kula piyambak',
@@ -361,7 +437,8 @@ class Unit1Questions {
         'Pondhok kula piyambak',
       ],
       correctIndex: 2,
-      explanation: 'Omah tumrap awake dhewe yaiku "griya", dene "dalem" kagem tiyang sanes kang kinurmatan.',
+      explanation:
+          'Omah tumrap awake dhewe yaiku "griya", dene "dalem" kagem tiyang sanes kang kinurmatan.',
       sourceReference: 'Paramasastra: Kaluputan Traping Basa',
     ),
     QuizQuestion(
@@ -369,8 +446,9 @@ class Unit1Questions {
       topicKey: 'perkenalan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika takon asmane bapak guru kanthi trapsila, ukara kang laras yaiku...',
-      glyph: 'ꦤ꧀ꦢꦔꦸ',
+      prompt:
+          'Nalika takon asmane bapak guru kanthi trapsila, ukara kang laras yaiku...',
+      glyph: '',
       options: [
         'Pak guru jenenge sapa ta?',
         'Nyuwun sewu, kepareng nyuwun pirsa sinten asmanipun Bapak?',
@@ -378,7 +456,8 @@ class Unit1Questions {
         'Sapa jenengmu Pak guru?',
       ],
       correctIndex: 1,
-      explanation: '"Nyuwun sewu, kepareng nyuwun pirsa sinten asmanipun Bapak?" mujudake basa krama alus kang endah.',
+      explanation:
+          '"Nyuwun sewu, kepareng nyuwun pirsa sinten asmanipun Bapak?" mujudake basa krama alus kang endah.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 
@@ -391,10 +470,11 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sebatan tumrap sedulure wong tuwa kang luwih enom yaiku...',
-      glyph: 'ꦥꦏ꧀ꦭꦶꦏ꧀',
+      glyph: '',
       options: ['Paklik / Bulik', 'Pakdhe / Budhe', 'Simbah', 'Buyut'],
       correctIndex: 0,
-      explanation: 'Paklik (bapak cilik) lan bulik (ibu cilik) yaiku adhine bapak utawa ibu.',
+      explanation:
+          'Paklik (bapak cilik) lan bulik (ibu cilik) yaiku adhine bapak utawa ibu.',
       sourceReference: 'Pepak Basa Jawa: Paseduluran',
     ),
     QuizQuestion(
@@ -403,10 +483,11 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sebatan tumrap sedulure wong tuwa kang luwih tuwa yaiku...',
-      glyph: 'ꦥꦏ꧀ꦝꦺ',
+      glyph: '',
       options: ['Adhik', 'Pakdhe / Budhe', 'Kakang', 'Putu'],
       correctIndex: 1,
-      explanation: 'Pakdhe (bapak gedhe) lan budhe (ibu gedhe) yaiku kangmase utawa mbakyune bapak/ibu.',
+      explanation:
+          'Pakdhe (bapak gedhe) lan budhe (ibu gedhe) yaiku kangmase utawa mbakyune bapak/ibu.',
       sourceReference: 'Pepak Basa Jawa: Paseduluran',
     ),
     QuizQuestion(
@@ -415,10 +496,16 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Sebatan pakurmatan "Eyang Kakung" ditujokake marang...',
-      glyph: 'ꦏꦏꦸꦁ',
-      options: ['Adhik lanang', 'Bapak kandhung', 'Simbah kakung (kakek)', 'Paman'],
+      glyph: '',
+      options: [
+        'Adhik lanang',
+        'Bapak kandhung',
+        'Simbah kakung (kakek)',
+        'Paman',
+      ],
       correctIndex: 2,
-      explanation: 'Eyang kakung yaiku sebutan krama inggil tumrap kakek (simbah kakung).',
+      explanation:
+          'Eyang kakung yaiku sebutan krama inggil tumrap kakek (simbah kakung).',
       sourceReference: 'Bausastra Jawa: Tembung Kakung',
     ),
     QuizQuestion(
@@ -427,10 +514,11 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Dene sebutan tumrap simbah putri yaiku...',
-      glyph: 'ꦥꦸꦠꦿꦶ',
+      glyph: '',
       options: ['Eyang Putri', 'Eyang Kakung', 'Budhe Sepuh', 'Mbokde'],
       correctIndex: 0,
-      explanation: 'Eyang putri yaiku sebutan pakurmatan krama inggil tumrap nenek.',
+      explanation:
+          'Eyang putri yaiku sebutan pakurmatan krama inggil tumrap nenek.',
       sourceReference: 'Bausastra Jawa: Tembung Putri',
     ),
     QuizQuestion(
@@ -439,10 +527,11 @@ class Unit1Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Anake pakdhe utawa paklik tumrap awake dhewe sinebut sedulur...',
-      glyph: 'ꦩꦶꦱꦤꦤ꧀',
+      glyph: '',
       options: ['Mindhoan', 'Kandhung', 'Ipe', 'Misanan (sepupu)'],
       correctIndex: 3,
-      explanation: 'Anake pakdhe/paklik yaiku sedulur misanan utawa sepupu ing basa Jawa.',
+      explanation:
+          'Anake pakdhe/paklik yaiku sedulur misanan utawa sepupu ing basa Jawa.',
       sourceReference: 'Pepak Basa Jawa: Paseduluran Jawa',
     ),
     QuizQuestion(
@@ -450,11 +539,13 @@ class Unit1Questions {
       topicKey: 'sapa_wong',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Sebatan tumrap wong tuwane simbah (generasi sakdhuwure simbah) yaiku...',
-      glyph: 'ꦧꦸꦪꦸꦠ꧀',
+      prompt:
+          'Sebatan tumrap wong tuwane simbah (generasi sakdhuwure simbah) yaiku...',
+      glyph: '',
       options: ['Canggah', 'Buyut', 'Wareng', 'Udeg-udeg'],
       correctIndex: 1,
-      explanation: 'Urut-urutane: Anak -> Wong Tuwa -> Simbah -> Buyut -> Canggah -> Wareng.',
+      explanation:
+          'Urut-urutane: Anak -> Wong Tuwa -> Simbah -> Buyut -> Canggah -> Wareng.',
       sourceReference: 'Pepak Basa Jawa: Tedhak Turun Paseduluran',
     ),
 
@@ -466,11 +557,13 @@ class Unit1Questions {
       topicKey: 'matur_nuwun',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara atur panuwun nalika diwenehi barang utawa pitulungan yaiku...',
-      glyph: 'ꦤꦸꦮꦸꦤ꧀',
+      prompt:
+          'Ukara atur panuwun nalika diwenehi barang utawa pitulungan yaiku...',
+      glyph: '',
       options: ['Matur nuwun', 'Aja lali', 'Nyuwun pamit', 'Nyuwun sangu'],
       correctIndex: 0,
-      explanation: '"Matur nuwun" yaiku ukara atur panuwun standar ing basa Jawa.',
+      explanation:
+          '"Matur nuwun" yaiku ukara atur panuwun standar ing basa Jawa.',
       sourceReference: 'Pepak Basa Jawa: Panuwun',
     ),
     QuizQuestion(
@@ -478,11 +571,18 @@ class Unit1Questions {
       topicKey: 'matur_nuwun',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Wangsulan kang lumrah sawise ana wong ngucap "matur nuwun" yaiku...',
-      glyph: 'ꦱꦩꦶ',
-      options: ['Ora apa-apa', 'Sami-sami', 'Matur nuwun maneh', 'Wis kana lunga'],
+      prompt:
+          'Wangsulan kang lumrah sawise ana wong ngucap "matur nuwun" yaiku...',
+      glyph: '',
+      options: [
+        'Ora apa-apa',
+        'Sami-sami',
+        'Matur nuwun maneh',
+        'Wis kana lunga',
+      ],
       correctIndex: 1,
-      explanation: '"Sami-sami" tegese sama-sama minangka wangsulan atur panuwun.',
+      explanation:
+          '"Sami-sami" tegese sama-sama minangka wangsulan atur panuwun.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -490,8 +590,9 @@ class Unit1Questions {
       topicKey: 'matur_nuwun',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara atur panuwun krama alus marang Bapak Kepala Sekolah yaiku...',
-      glyph: 'ꦱꦔꦼꦠ꧀',
+      prompt:
+          'Ukara atur panuwun krama alus marang Bapak Kepala Sekolah yaiku...',
+      glyph: '',
       options: [
         'Suwun ya Pak Kepala Sekolah',
         'Matur nuwun Mas Kepala Sekolah',
@@ -499,7 +600,8 @@ class Unit1Questions {
         'Kula matur nuwun sanget kagem paring pitedahipun Bapak',
       ],
       correctIndex: 2,
-      explanation: '"Matur nuwun sanget awit sedaya pitedahipun Bapak" mujudake basa krama alus kang trep.',
+      explanation:
+          '"Matur nuwun sanget awit sedaya pitedahipun Bapak" mujudake basa krama alus kang trep.',
       sourceReference: 'Tata Krama Wicara Resmi',
     ),
     QuizQuestion(
@@ -508,8 +610,13 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "suwun" lumrahe dienggo ing tataran basa...',
-      glyph: 'ꦔꦺꦴꦏꦺꦴ',
-      options: ['Ngoko lugu marang kanca akrab', 'Krama alus marang pejabat', 'Krama inggil marang ratu', 'Basa padinan resmi'],
+      glyph: '',
+      options: [
+        'Ngoko lugu marang kanca akrab',
+        'Krama alus marang pejabat',
+        'Krama inggil marang ratu',
+        'Basa padinan resmi',
+      ],
       correctIndex: 0,
       explanation: 'Tembung "suwun" utawa "kesuwun" kalebu basa ngoko akrab.',
       sourceReference: 'Bausastra Jawa: Tembung Suwun',
@@ -519,8 +626,9 @@ class Unit1Questions {
       topicKey: 'matur_nuwun',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Unen-unen Jawa "matur nuwun tanpa pepindhan" ngemu teges yaiku...',
-      glyph: 'ꦥꦼꦥꦶꦤ꧀ꦝꦤ꧀',
+      prompt:
+          'Unen-unen Jawa "matur nuwun tanpa pepindhan" ngemu teges yaiku...',
+      glyph: '',
       options: [
         'Matur nuwun amarga ora ana panganan',
         'Matur nuwun amarga kepeksa',
@@ -528,7 +636,8 @@ class Unit1Questions {
         'Atur panuwun kang tanpa timbang utawa tanpa upama',
       ],
       correctIndex: 3,
-      explanation: '"Tanpa pepindhan" tegese ora ana tandhinge utawa tiada tara agunge.',
+      explanation:
+          '"Tanpa pepindhan" tegese ora ana tandhinge utawa tiada tara agunge.',
       sourceReference: 'Pepak Basa Jawa: Tembung Saroja & Paribasan',
     ),
     QuizQuestion(
@@ -536,8 +645,9 @@ class Unit1Questions {
       topicKey: 'matur_nuwun',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ing adicara pahargyan, panitia ngaturake panuwun marang para rawuh kanthi ukara...',
-      glyph: 'ꦏꦫꦮꦸꦲꦤ꧀',
+      prompt:
+          'Ing adicara pahargyan, panitia ngaturake panuwun marang para rawuh kanthi ukara...',
+      glyph: '',
       options: [
         'Panitia ngaturake agunging panuwun awit rawuh panjenengan sedaya',
         'Wis rampung mangga padha bubar',
@@ -545,7 +655,8 @@ class Unit1Questions {
         'Kula nyuwun pamit dhisik para tamu',
       ],
       correctIndex: 0,
-      explanation: '"Agunging panuwun awit rawuh panjenengan sedaya" mujudake pambagyaharja resmi.',
+      explanation:
+          '"Agunging panuwun awit rawuh panjenengan sedaya" mujudake pambagyaharja resmi.',
       sourceReference: 'Kridhamartana Sesorah Jawa',
     ),
 
@@ -558,8 +669,13 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara nyuwun pangapura kanthi basa krama yaiku...',
-      glyph: 'ꦥꦔꦥꦸꦤ꧀ꦠꦼꦤ꧀',
-      options: ['Nyuwun pangapunten', 'Sepurane wae', 'Aja nesu', 'Kowe sing salah'],
+      glyph: '',
+      options: [
+        'Nyuwun pangapunten',
+        'Sepurane wae',
+        'Aja nesu',
+        'Kowe sing salah',
+      ],
       correctIndex: 0,
       explanation: 'Nyuwun pangapura kanthi krama yaiku "Nyuwun pangapunten".',
       sourceReference: 'Pepak Basa Jawa: Pangapunten',
@@ -570,10 +686,16 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Dene ukara nyuwun pangapura marang kanca sebaya yaiku...',
-      glyph: 'ꦱꦼꦥꦸꦫ',
-      options: ['Nyuwun dhuwit', 'Sepurane ya', 'Kula nyuwun sewu', 'Panjenengan lepat'],
+      glyph: '',
+      options: [
+        'Nyuwun dhuwit',
+        'Sepurane ya',
+        'Kula nyuwun sewu',
+        'Panjenengan lepat',
+      ],
       correctIndex: 1,
-      explanation: 'Marang kanca sebaya nggunakake ngoko: "Sepurane ya" utawa "Njaluk ngapura ya".',
+      explanation:
+          'Marang kanca sebaya nggunakake ngoko: "Sepurane ya" utawa "Njaluk ngapura ya".',
       sourceReference: 'Basa Jawa Sabendina',
     ),
     QuizQuestion(
@@ -581,8 +703,9 @@ class Unit1Questions {
       topicKey: 'nyuwun_pangapunten',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Ukara sungkeman nalika riyaya kang nyuwun pangapura kanthi jero yaiku...',
-      glyph: 'ꦥꦔꦏ꧀ꦱꦩꦶ',
+      prompt:
+          'Ukara sungkeman nalika riyaya kang nyuwun pangapura kanthi jero yaiku...',
+      glyph: '',
       options: [
         'Kula nyuwun sangu riyaya',
         'Kula nyuwun jajan klepon',
@@ -590,7 +713,8 @@ class Unit1Questions {
         'Kula nyuwun pamit mboten mampir',
       ],
       correctIndex: 2,
-      explanation: '"Gunging samodra pangaksami" tegese pangapura kang jembar kaya jembaring samodra.',
+      explanation:
+          '"Gunging samodra pangaksami" tegese pangapura kang jembar kaya jembaring samodra.',
       sourceReference: 'Tata Cara Sungkeman Jawa',
     ),
     QuizQuestion(
@@ -599,10 +723,11 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "pangaksami" tegese padha karo...',
-      glyph: 'ꦲꦏ꧀ꦱꦩ',
+      glyph: '',
       options: ['Pangapura', 'Panganan', 'Panggonan', 'Pangestu'],
       correctIndex: 0,
-      explanation: 'Pangaksami / aksama tegese pangapura ing basa Jawa krama alus.',
+      explanation:
+          'Pangaksami / aksama tegese pangapura ing basa Jawa krama alus.',
       sourceReference: 'Bausastra Jawa: Tembung Aksami',
     ),
     QuizQuestion(
@@ -610,11 +735,13 @@ class Unit1Questions {
       topicKey: 'nyuwun_pangapunten',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "kalepatan" ing ukara nyuwun pangapunten asale saka tembung lingga...',
-      glyph: 'ꦭꦼꦥꦠ꧀',
+      prompt:
+          'Tembung "kalepatan" ing ukara nyuwun pangapunten asale saka tembung lingga...',
+      glyph: '',
       options: ['Kelingan', 'Lepen', 'Lepat (salah)', 'Lepatir'],
       correctIndex: 2,
-      explanation: 'Tembung lingga "lepat" (krama saka luput/salah) kawuwuhan wuwuhan ka-an dadi kalepatan.',
+      explanation:
+          'Tembung lingga "lepat" (krama saka luput/salah) kawuwuhan wuwuhan ka-an dadi kalepatan.',
       sourceReference: 'Paramasastra Basa Jawa: Rimbag Tembung',
     ),
     QuizQuestion(
@@ -622,8 +749,9 @@ class Unit1Questions {
       topicKey: 'nyuwun_pangapunten',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Wangsulan kang laras nalika ana kanca nyuwun pangapura kanthi ikhlas yaiku...',
-      glyph: 'ꦊꦒꦮ',
+      prompt:
+          'Wangsulan kang laras nalika ana kanca nyuwun pangapura kanthi ikhlas yaiku...',
+      glyph: '',
       options: [
         'Ora bakal tak ngapura salawase',
         'Iya, padha-padha dadi wong salah',
@@ -631,7 +759,8 @@ class Unit1Questions {
         'Kudu mbayar dhuwit dhisik',
       ],
       correctIndex: 2,
-      explanation: 'Sikap legawa lan jembar dhadha paring pangapura mujudake budi pekerti luhur Jawa.',
+      explanation:
+          'Sikap legawa lan jembar dhadha paring pangapura mujudake budi pekerti luhur Jawa.',
       sourceReference: 'Budi Pekerti Jawa',
     ),
 
@@ -643,11 +772,18 @@ class Unit1Questions {
       topicKey: 'ungkapan_sopan',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika mlaku ing ngarepe wong sepuh kang lagi lungguh, ukarane yaiku...',
-      glyph: 'ꦭꦁꦏꦸꦁ',
-      options: ['Matur nuwun', 'Awas dalanku', 'Ndherek langkung', 'Nyuwun arta'],
+      prompt:
+          'Nalika mlaku ing ngarepe wong sepuh kang lagi lungguh, ukarane yaiku...',
+      glyph: '',
+      options: [
+        'Matur nuwun',
+        'Awas dalanku',
+        'Ndherek langkung',
+        'Nyuwun arta',
+      ],
       correctIndex: 2,
-      explanation: '"Ndherek langkung" diucapake nalika liwat ing ngarepe tiyang sepuh.',
+      explanation:
+          '"Ndherek langkung" diucapake nalika liwat ing ngarepe tiyang sepuh.',
       sourceReference: 'Subasita lan Tata Krama Jawa',
     ),
     QuizQuestion(
@@ -656,7 +792,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Sikap awak nalika ngucap "ndherek langkung" yaiku...',
-      glyph: 'ꦧꦸꦁꦏꦸꦏ꧀',
+      glyph: '',
       options: [
         'Mbungkukake awak sethithik lan tangan nuding mudhun',
         'Mlaku jejeg karo ndhangak',
@@ -664,7 +800,8 @@ class Unit1Questions {
         'Mencolot ngliwati sikile wong tuwa',
       ],
       correctIndex: 0,
-      explanation: 'Awak mbungkukake sethithik minangka tandha ngurmati wong kang luwih sepuh.',
+      explanation:
+          'Awak mbungkukake sethithik minangka tandha ngurmati wong kang luwih sepuh.',
       sourceReference: 'Pepak Basa Jawa: Subasita',
     ),
     QuizQuestion(
@@ -673,7 +810,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Sikap tangan "ngapurancang" tegese yaiku...',
-      glyph: 'ꦔꦥꦸꦫꦚ꧀ꦕꦁ',
+      glyph: '',
       options: [
         'Tangan loro mlebu sak clana',
         'Tangan tengen nyekel tangan kiwa ing sangarepe puser/weteng',
@@ -681,7 +818,8 @@ class Unit1Questions {
         'Tangan loro diunggahake ing dhuwur sirah',
       ],
       correctIndex: 1,
-      explanation: 'Ngapurancang yaiku posisi tangan tengen nyekel tangan kiwa ing ngarep weteng minangka trapsila Jawa.',
+      explanation:
+          'Ngapurancang yaiku posisi tangan tengen nyekel tangan kiwa ing ngarep weteng minangka trapsila Jawa.',
       sourceReference: 'Bausastra Jawa: Tembung Ngapurancang',
     ),
     QuizQuestion(
@@ -689,11 +827,18 @@ class Unit1Questions {
       topicKey: 'ungkapan_sopan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika nampa barang saka wong liya, tangan kang becik digunakake yaiku...',
-      glyph: 'ꦠꦼꦔꦼꦤ꧀',
-      options: ['Tangan kiwa', 'Sikil tengen', 'Tangan loro karo noleh', 'Tangan tengen kanthi sopan'],
+      prompt:
+          'Nalika nampa barang saka wong liya, tangan kang becik digunakake yaiku...',
+      glyph: '',
+      options: [
+        'Tangan kiwa',
+        'Sikil tengen',
+        'Tangan loro karo noleh',
+        'Tangan tengen kanthi sopan',
+      ],
       correctIndex: 3,
-      explanation: 'Menehi utawa nampa barang kudu nggunakake tangan tengen kanthi trapsila.',
+      explanation:
+          'Menehi utawa nampa barang kudu nggunakake tangan tengen kanthi trapsila.',
       sourceReference: 'Etika Jawa Padinan',
     ),
     QuizQuestion(
@@ -701,11 +846,18 @@ class Unit1Questions {
       topicKey: 'ungkapan_sopan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Sikap trapsila Jawa nalika lungguh ing joglo utawa pasewakan kraton tumrap priya diarani...',
-      glyph: 'ꦱꦶꦭ',
-      options: ['Sila tumpang utawa sila pambeng', 'Jengkeng mentheng-mentheng', 'Ongkang-ongkang sikil', 'Sluku selonjoran'],
+      prompt:
+          'Sikap trapsila Jawa nalika lungguh ing joglo utawa pasewakan kraton tumrap priya diarani...',
+      glyph: '',
+      options: [
+        'Sila tumpang utawa sila pambeng',
+        'Jengkeng mentheng-mentheng',
+        'Ongkang-ongkang sikil',
+        'Sluku selonjoran',
+      ],
       correctIndex: 0,
-      explanation: 'Lungguh sila kanthi rapet lan trapsila minangka tata krama lungguh priya Jawa.',
+      explanation:
+          'Lungguh sila kanthi rapet lan trapsila minangka tata krama lungguh priya Jawa.',
       sourceReference: 'Tata Krama Kraton Surakarta & Yogyakarta',
     ),
     QuizQuestion(
@@ -713,11 +865,18 @@ class Unit1Questions {
       topicKey: 'ungkapan_sopan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Dene tata carane lungguh tumrap wanita Jawa nalika ana ing adicara resmi diarani...',
-      glyph: 'ꦠꦶꦩ꧀ꦥꦸꦃ',
-      options: ['Selonjoran bebas', 'Timpuh utawa emprok', 'Sila panggung', 'Ngadeg jejeg terus'],
+      prompt:
+          'Dene tata carane lungguh tumrap wanita Jawa nalika ana ing adicara resmi diarani...',
+      glyph: '',
+      options: [
+        'Selonjoran bebas',
+        'Timpuh utawa emprok',
+        'Sila panggung',
+        'Ngadeg jejeg terus',
+      ],
       correctIndex: 1,
-      explanation: 'Wanita Jawa lumrahe lungguh timpuh kanthi ngempukake dhengkul minangka tandha subasita.',
+      explanation:
+          'Wanita Jawa lumrahe lungguh timpuh kanthi ngempukake dhengkul minangka tandha subasita.',
       sourceReference: 'Tata Krama Kraton Surakarta & Yogyakarta',
     ),
 
@@ -730,7 +889,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Nalika mertamu ing omahe wong liya, sadurunge mlebu kudu...',
-      glyph: 'ꦱꦭꦩ꧀',
+      glyph: '',
       options: [
         'Nuthuk lawang kanthi alus lan ngucap salam',
         'Langsung mbukak lawang lan mlayu mlebu',
@@ -738,7 +897,8 @@ class Unit1Questions {
         'Nglincak-lincak ing latar omah',
       ],
       correctIndex: 0,
-      explanation: 'Tata krama mertamu yaiku nuthuk lawang alus lan uluk salam.',
+      explanation:
+          'Tata krama mertamu yaiku nuthuk lawang alus lan uluk salam.',
       sourceReference: 'Tata Krama Mertamu Jawa',
     ),
     QuizQuestion(
@@ -746,8 +906,9 @@ class Unit1Questions {
       topicKey: 'percakapan_padinan',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika disuguhi omben-omben dening sing duwe omah, tumindak kang becik yaiku...',
-      glyph: 'ꦔꦸꦚ꧀ꦗꦸꦏ꧀',
+      prompt:
+          'Nalika disuguhi omben-omben dening sing duwe omah, tumindak kang becik yaiku...',
+      glyph: '',
       options: [
         'Langsung ngombe nganti entek sakdurunge diaturi',
         'Ngenteni diaturi sumangga ngunjuk, banjur ngucap matur nuwun',
@@ -755,7 +916,8 @@ class Unit1Questions {
         'Nyuntak wedang ing meja',
       ],
       correctIndex: 1,
-      explanation: 'Ngombe pasugatan sawise diaturi "sumangga dipununjuk" minangka subasita tamu.',
+      explanation:
+          'Ngombe pasugatan sawise diaturi "sumangga dipununjuk" minangka subasita tamu.',
       sourceReference: 'Subasita Jawa',
     ),
     QuizQuestion(
@@ -763,8 +925,9 @@ class Unit1Questions {
       topicKey: 'percakapan_padinan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Nalika ana tamu rawuh ing omah, sing duwe omah lumrahe nyapa kanthi ukara...',
-      glyph: 'ꦱꦸꦩꦁꦒ',
+      prompt:
+          'Nalika ana tamu rawuh ing omah, sing duwe omah lumrahe nyapa kanthi ukara...',
+      glyph: '',
       options: [
         'Arep ngapa mrene?',
         'Omahe lagi rame, sesuk wae',
@@ -772,7 +935,8 @@ class Unit1Questions {
         'Aja mlebu dhisik',
       ],
       correctIndex: 2,
-      explanation: '"Sugeng rawuh, sumangga pinarak" tegese selamat datang, silakan duduk.',
+      explanation:
+          '"Sugeng rawuh, sumangga pinarak" tegese selamat datang, silakan duduk.',
       sourceReference: 'Tata Krama Nampi Tamu',
     ),
     QuizQuestion(
@@ -780,8 +944,9 @@ class Unit1Questions {
       topicKey: 'percakapan_padinan',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Yen arep takon dalan marang wong ing pinggir dalan, ukara pambuka kang becik yaiku...',
-      glyph: 'ꦱꦺꦮꦸ',
+      prompt:
+          'Yen arep takon dalan marang wong ing pinggir dalan, ukara pambuka kang becik yaiku...',
+      glyph: '',
       options: [
         'Nyuwun sewu, kepareng nyuwun pirsa dalan dhateng stasiun pundi nggih?',
         'Hei kowe, tulung tuduhna dalan menyang stasiun saiki!',
@@ -789,7 +954,8 @@ class Unit1Questions {
         'Ayo cepet tuduhna dalan stasiun amarga aku selak telat!',
       ],
       correctIndex: 0,
-      explanation: '"Nyuwun sewu, kepareng nyuwun pirsa..." mujudake sapaan takon kang trapsila.',
+      explanation:
+          '"Nyuwun sewu, kepareng nyuwun pirsa..." mujudake sapaan takon kang trapsila.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
     QuizQuestion(
@@ -797,11 +963,13 @@ class Unit1Questions {
       topicKey: 'percakapan_padinan',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tembung "pinarak" ing ukara "sumangga pinarak" tegese yaiku krama alus saka...',
-      glyph: 'ꦥꦶꦤꦫꦏ꧀',
+      prompt:
+          'Tembung "pinarak" ing ukara "sumangga pinarak" tegese yaiku krama alus saka...',
+      glyph: '',
       options: ['Mangan', 'Lunga', 'Turu', 'Lungguh'],
       correctIndex: 3,
-      explanation: 'Lungguh (ngoko) -> Lenggah (krama) -> Pinarak (krama inggil).',
+      explanation:
+          'Lungguh (ngoko) -> Lenggah (krama) -> Pinarak (krama inggil).',
       sourceReference: 'Bausastra Jawa: Tembung Lenggah & Pinarak',
     ),
     QuizQuestion(
@@ -810,7 +978,7 @@ class Unit1Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Nalika melu guneman wong tuwa, bocah enom prayogane ora kena...',
-      glyph: 'ꦚꦼꦭꦠꦸ',
+      glyph: '',
       options: [
         'Ngrungokake kanthi tlesih lan lungguh trapsila',
         'Matur nggunakake basa krama alus nalika ditimbali',
@@ -831,8 +999,13 @@ class Unit1Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U1] Sapaan krama ing wayah esuk yaiku...',
-      glyph: 'ꦲꦺꦚ꧀ꦗꦁ',
-      options: ['Sugeng enjang', 'Sugeng dalu', 'Sugeng siang', 'Sugeng sonten'],
+      glyph: '',
+      options: [
+        'Sugeng enjang',
+        'Sugeng dalu',
+        'Sugeng siang',
+        'Sugeng sonten',
+      ],
       correctIndex: 0,
       explanation: 'Esuk kramane enjang, mula sapaane "Sugeng enjang".',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
@@ -842,11 +1015,13 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Sadurunge budhal sekolah, bocah kudu nyuwun ... marang wong tuwa.',
-      glyph: 'ꦥꦩꦶꦠ꧀',
+      prompt:
+          '[Evaluasi U1] Sadurunge budhal sekolah, bocah kudu nyuwun ... marang wong tuwa.',
+      glyph: '',
       options: ['Panganan', 'Pamit', 'Hadiah', 'Sepeda'],
       correctIndex: 1,
-      explanation: 'Nyuwun pamit lan donga restu marang tiyang sepuh sadurunge mangkat sekolah.',
+      explanation:
+          'Nyuwun pamit lan donga restu marang tiyang sepuh sadurunge mangkat sekolah.',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
     ),
     QuizQuestion(
@@ -854,9 +1029,15 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Nalika mlaku ing ngarepe wong sepuh, ukarane yaiku...',
-      glyph: 'ꦭꦁꦏꦸꦁ',
-      options: ['Matur nuwun', 'Kula mboten ngertos', 'Ndherek langkung', 'Nyuwun arta'],
+      prompt:
+          '[Evaluasi U1] Nalika mlaku ing ngarepe wong sepuh, ukarane yaiku...',
+      glyph: '',
+      options: [
+        'Matur nuwun',
+        'Kula mboten ngertos',
+        'Ndherek langkung',
+        'Nyuwun arta',
+      ],
       correctIndex: 2,
       explanation: '"Ndherek langkung" sinambi mbungkukake awak.',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
@@ -866,8 +1047,9 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Takon kabar marang guru nggunakake basa krama alus yaiku...',
-      glyph: 'ꦥꦮꦂꦠꦺꦴꦱ꧀',
+      prompt:
+          '[Evaluasi U1] Takon kabar marang guru nggunakake basa krama alus yaiku...',
+      glyph: '',
       options: [
         'Piye kabarmu saiki, kanca?',
         'Kados pundi pawartosipun Bapak/Ibu?',
@@ -875,7 +1057,8 @@ class Unit1Questions {
         'Kepriye kahanane awake dhewe?',
       ],
       correctIndex: 1,
-      explanation: '"Kados pundi pawartosipun?" mujudake pitakonan kabar krama alus.',
+      explanation:
+          '"Kados pundi pawartosipun?" mujudake pitakonan kabar krama alus.',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
     ),
     QuizQuestion(
@@ -883,11 +1066,13 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] "Tepangaken, ... kula Danang." Tembung kang trep yaiku...',
-      glyph: 'ꦤꦩꦶ',
+      prompt:
+          '[Evaluasi U1] "Tepangaken, ... kula Danang." Tembung kang trep yaiku...',
+      glyph: '',
       options: ['Asma', 'Jenengku', 'Griya', 'Nami'],
       correctIndex: 3,
-      explanation: 'Tumrap awake dhewe nggunakake krama lugu "nami", dudu "asma".',
+      explanation:
+          'Tumrap awake dhewe nggunakake krama lugu "nami", dudu "asma".',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
     ),
     QuizQuestion(
@@ -895,8 +1080,9 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Kangmase bapak utawa ibu tumrap awake dhewe sinebut...',
-      glyph: 'ꦥꦏ꧀ꦝꦺ',
+      prompt:
+          '[Evaluasi U1] Kangmase bapak utawa ibu tumrap awake dhewe sinebut...',
+      glyph: '',
       options: ['Pakdhe', 'Paklik', 'Kakang', 'Adhimas'],
       correctIndex: 0,
       explanation: 'Kangmase tiyang sepuh sinebut Pakdhe (bapak gedhe).',
@@ -907,8 +1093,9 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Wangsulan kang trep sawise ana wong ngucap "Matur nuwun" yaiku...',
-      glyph: 'ꦱꦩꦶ',
+      prompt:
+          '[Evaluasi U1] Wangsulan kang trep sawise ana wong ngucap "Matur nuwun" yaiku...',
+      glyph: '',
       options: ['Nyuwun pamit', 'Sami-sami', 'Aja takon', 'Ora apa-apa'],
       correctIndex: 1,
       explanation: '"Sami-sami" minangka wangsulan atur panuwun.',
@@ -919,8 +1106,9 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Nalika riyaya, ukara nyuwun pangapura kanthi jembaring ati yaiku...',
-      glyph: 'ꦥꦔꦏ꧀ꦱꦩꦶ',
+      prompt:
+          '[Evaluasi U1] Nalika riyaya, ukara nyuwun pangapura kanthi jembaring ati yaiku...',
+      glyph: '',
       options: [
         'Kula nyuwun sangu riyaya',
         'Kula nyuwun dhuwit anyar',
@@ -928,7 +1116,8 @@ class Unit1Questions {
         'Kula mboten salah kok',
       ],
       correctIndex: 2,
-      explanation: '"Gunging samodra pangaksami" tegese pangapunten kang jembar tanpa wates.',
+      explanation:
+          '"Gunging samodra pangaksami" tegese pangapunten kang jembar tanpa wates.',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
     ),
     QuizQuestion(
@@ -936,8 +1125,9 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] Posisi tangan tengen nyekel tangan kiwa ing ngarep weteng sinebut...',
-      glyph: 'ꦔꦥꦸꦫꦚ꧀ꦕꦁ',
+      prompt:
+          '[Evaluasi U1] Posisi tangan tengen nyekel tangan kiwa ing ngarep weteng sinebut...',
+      glyph: '',
       options: ['Ngapurancang', 'Sedhakep', 'Malangkerik', 'Jengkeng'],
       correctIndex: 0,
       explanation: 'Ngapurancang yaiku trapsila tangan Jawa ngurmati sesama.',
@@ -948,11 +1138,13 @@ class Unit1Questions {
       topicKey: 'evaluasi_unit1',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U1] "Sumangga pinarak." Tembung pinarak tegese krama aluse...',
-      glyph: 'ꦥꦶꦤꦫꦏ꧀',
+      prompt:
+          '[Evaluasi U1] "Sumangga pinarak." Tembung pinarak tegese krama aluse...',
+      glyph: '',
       options: ['Mangan', 'Mlebu', 'Lungguh', 'Turu'],
       correctIndex: 2,
-      explanation: 'Pinarak tegese lenggah utawa lungguh ing tataran krama inggil.',
+      explanation:
+          'Pinarak tegese lenggah utawa lungguh ing tataran krama inggil.',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
     ),
   ];

@@ -233,7 +233,10 @@ class _HeroWordCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 100,
                 color: AppColors.ink.withValues(alpha: 0.05),
-                fontFamilyFallback: const ['NotoSansJavanese', 'Noto Sans Javanese'],
+                fontFamilyFallback: const [
+                  'NotoSansJavanese',
+                  'Noto Sans Javanese',
+                ],
               ),
             ),
           ),
@@ -261,7 +264,10 @@ class _HeroWordCard extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 30,
                       color: AppColors.inkSecondary,
-                      fontFamilyFallback: ['NotoSansJavanese', 'Noto Sans Javanese'],
+                      fontFamilyFallback: [
+                        'NotoSansJavanese',
+                        'Noto Sans Javanese',
+                      ],
                       height: 1.4,
                     ),
                   ),
@@ -571,7 +577,10 @@ class _ExampleSentenceCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColors.inkSecondary,
-                    fontFamilyFallback: const ['NotoSansJavanese', 'Noto Sans Javanese'],
+                    fontFamilyFallback: const [
+                      'NotoSansJavanese',
+                      'Noto Sans Javanese',
+                    ],
                   ),
                 ),
                 const SizedBox(height: 4),

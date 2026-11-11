@@ -26,7 +26,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Pira cacahe aksara Jawa legena (aksara dhasar)?',
-      glyph: '꧒꧐',
+      glyph: '',
       options: ['18 aksara', '20 aksara', '26 aksara', '30 aksara'],
       correctIndex: 1,
       explanation: 'Aksara Jawa dhasar (legena/nglegena) cacahe ana 20 aksara.',
@@ -38,7 +38,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: 'Aksara "legena" tegese yaiku aksara kang...',
-      glyph: 'ꦊꦒꦼꦤ',
+      glyph: '',
       options: [
         'Aksara mati tanpa swara',
         'Aksara kang durung kawuwuhan sandhangan (wentehan)',
@@ -46,7 +46,8 @@ class Unit2Questions {
         'Aksara angka Jawa',
       ],
       correctIndex: 1,
-      explanation: 'Aksara legena yaiku aksara dhasar kang isih wenteh mawa swara vokal [a] utawa [ɔ].',
+      explanation:
+          'Aksara legena yaiku aksara dhasar kang isih wenteh mawa swara vokal [a] utawa [ɔ].',
       sourceReference: 'Pedoman Penulisan Aksara Jawa',
     ),
     QuizQuestion(
@@ -54,11 +55,18 @@ class Unit2Questions {
       topicKey: 'pengenalan_hanacaraka',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Tokoh ratu kang ngripta aksara Jawa miturut carita rakyat yaiku...',
-      glyph: 'ꦲꦗꦶꦱꦏ',
-      options: ['Raden Wijaya', 'Sultan Agung', 'Prabu Anglingdarma', 'Prabu Ajisaka'],
+      prompt:
+          'Tokoh ratu kang ngripta aksara Jawa miturut carita rakyat yaiku...',
+      glyph: '',
+      options: [
+        'Raden Wijaya',
+        'Sultan Agung',
+        'Prabu Anglingdarma',
+        'Prabu Ajisaka',
+      ],
       correctIndex: 3,
-      explanation: 'Aksara Jawa dianggit dening Prabu Ajisaka kanggo mengeti lelabuhane abdine.',
+      explanation:
+          'Aksara Jawa dianggit dening Prabu Ajisaka kanggo mengeti lelabuhane abdine.',
       sourceReference: 'Cariyos Ajisaka & Sajarah Jawa',
     ),
     QuizQuestion(
@@ -66,11 +74,18 @@ class Unit2Questions {
       topicKey: 'pengenalan_hanacaraka',
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Jeneng loro punggawane Ajisaka kang setya nganti tumekaning pati yaiku...',
-      glyph: 'ꦥꦸꦁꦒꦮ',
-      options: ['Dora lan Sembada', 'Petruk lan Gareng', 'Togog lan Bilung', 'Semar lan Bagong'],
+      prompt:
+          'Jeneng loro punggawane Ajisaka kang setya nganti tumekaning pati yaiku...',
+      glyph: '',
+      options: [
+        'Dora lan Sembada',
+        'Petruk lan Gareng',
+        'Togog lan Bilung',
+        'Semar lan Bagong',
+      ],
       correctIndex: 0,
-      explanation: 'Dora lan Sembada padha setyane ngugemi dhawuhe bendarane nganti loro-lorone pralaya.',
+      explanation:
+          'Dora lan Sembada padha setyane ngugemi dhawuhe bendarane nganti loro-lorone pralaya.',
       sourceReference: 'Babad Medhangkamulan',
     ),
     QuizQuestion(
@@ -79,7 +94,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Makna filosofis saka baris "Magabathanga" yaiku...',
-      glyph: 'ꦩꦒꦧꦛꦔ',
+      glyph: '',
       options: [
         'Padha-padha nduweni kasekten',
         'Padha dadi bathang (mati bebarengan)',
@@ -87,7 +102,8 @@ class Unit2Questions {
         'Padha pradondi rebutan keris',
       ],
       correctIndex: 1,
-      explanation: 'Maga-ba-tha-nga tegese "padha dadi bathang" (mati bebarengan) amarga setya marang janjine.',
+      explanation:
+          'Maga-ba-tha-nga tegese "padha dadi bathang" (mati bebarengan) amarga setya marang janjine.',
       sourceReference: 'Filsafat Hanacaraka & Sastra Jawa',
     ),
     QuizQuestion(
@@ -96,7 +112,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Makna filosofis saka baris "Datasawala" yaiku...',
-      glyph: 'ꦢꦠꦱꦮꦭ',
+      glyph: '',
       options: [
         'Padha pasulayan / pradondi (ora gelem ngalah)',
         'Ana utusan padha teka',
@@ -104,7 +120,8 @@ class Unit2Questions {
         'Padha sekti mandraguna',
       ],
       correctIndex: 0,
-      explanation: 'Data-sa-wala tegese "padha pradondi / padha padudon" amarga saben abdi nyekel amanat bendarane.',
+      explanation:
+          'Data-sa-wala tegese "padha pradondi / padha padudon" amarga saben abdi nyekel amanat bendarane.',
       sourceReference: 'Filsafat Hanacaraka',
     ),
 
@@ -120,7 +137,8 @@ class Unit2Questions {
       glyph: 'ꦲ',
       options: ['Ha', 'Na', 'Ca', 'Ra'],
       correctIndex: 0,
-      explanation: 'Aksara ꦲ yaiku aksara kapisan ing Hanacaraka kanthi uni "Ha".',
+      explanation:
+          'Aksara ꦲ yaiku aksara kapisan ing Hanacaraka kanthi uni "Ha".',
       sourceReference: 'Pepak Basa Jawa: Aksara Legena Baris 1',
     ),
     QuizQuestion(
@@ -294,7 +312,8 @@ class Unit2Questions {
       glyph: 'ꦝ',
       options: ['Pa', 'Dha (retrofleks)', 'Nya', 'Ja'],
       correctIndex: 1,
-      explanation: 'Aksara ꦝ unine "Dha" retrofleks (ilat nekuk munggah menyang langit-langit cangkem).',
+      explanation:
+          'Aksara ꦝ unine "Dha" retrofleks (ilat nekuk munggah menyang langit-langit cangkem).',
       sourceReference: 'Pepak Basa Jawa: Aksara Baris 3',
     ),
     QuizQuestion(
@@ -504,7 +523,8 @@ class Unit2Questions {
       glyph: 'ꦝꦝ',
       options: ['Dada (dental)', 'Dhadha (retrofleks)', 'Mama', 'Rara'],
       correctIndex: 1,
-      explanation: 'ꦝ (dha) + ꦝ (dha) diwaca "dhadha" kanthi swara cethak/retrofleks.',
+      explanation:
+          'ꦝ (dha) + ꦝ (dha) diwaca "dhadha" kanthi swara cethak/retrofleks.',
       sourceReference: 'Sinau Maca Aksara Jawa: Dental vs Retrofleks',
     ),
 
@@ -564,7 +584,8 @@ class Unit2Questions {
       topicKey: 'nyusun_aksara_legena',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.textToAksara,
-      prompt: 'Tembung latin "nagapaha" (3 suku kata) yen katulis aksara Jawa yaiku...',
+      prompt:
+          'Tembung latin "nagapaha" (3 suku kata) yen katulis aksara Jawa yaiku...',
       glyph: 'ꦤꦒꦥꦲ',
       options: ['ꦤꦩꦥꦲ', 'ꦤꦒꦧꦲ', 'ꦤꦒꦥꦭ', 'ꦤꦒꦥꦲ'],
       correctIndex: 3,
@@ -601,7 +622,8 @@ class Unit2Questions {
         'Aksara ꦲ nduweni pancingan tengen, dene ꦭ nduweni weteng mlendung',
       ],
       correctIndex: 0,
-      explanation: 'Aksara ꦲ nduweni telung perangan tegak, dene ꦭ wujude luwih ringkes.',
+      explanation:
+          'Aksara ꦲ nduweni telung perangan tegak, dene ꦭ wujude luwih ringkes.',
       sourceReference: 'Karakteristik Tipografi Aksara Jawa',
     ),
     QuizQuestion(
@@ -618,7 +640,8 @@ class Unit2Questions {
         'Titik loro ing tengah',
       ],
       correctIndex: 1,
-      explanation: 'Aksara ꦱ (sa) katon kaya ꦤ (na) nanging ana lekukan/cempad ing wetengane.',
+      explanation:
+          'Aksara ꦱ (sa) katon kaya ꦤ (na) nanging ana lekukan/cempad ing wetengane.',
       sourceReference: 'Wujud Aksara Jawa',
     ),
     QuizQuestion(
@@ -635,7 +658,8 @@ class Unit2Questions {
         'Aksara ꦢ nduweni bunderan sirah dene ꦫ nduweni buntut pancingan',
       ],
       correctIndex: 2,
-      explanation: 'Aksara ꦢ lan ꦫ mirip, nanging ꦢ nduweni sikil mlengkung mantep ing sisih tengen.',
+      explanation:
+          'Aksara ꦢ lan ꦫ mirip, nanging ꦢ nduweni sikil mlengkung mantep ing sisih tengen.',
       sourceReference: 'Paugeran Maca Aksara Jawa',
     ),
     QuizQuestion(
@@ -652,7 +676,8 @@ class Unit2Questions {
         'Aksara ꦥ ora bisa kawuwuhan sandhangan',
       ],
       correctIndex: 0,
-      explanation: 'Aksara ꦥ mung lekukan loro, dene ꦪ nduweni telung lekukan gelombang.',
+      explanation:
+          'Aksara ꦥ mung lekukan loro, dene ꦪ nduweni telung lekukan gelombang.',
       sourceReference: 'Tipografi Aksara Jawa',
     ),
     QuizQuestion(
@@ -662,9 +687,15 @@ class Unit2Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Aksara ꦛ (tha) lan ꦝ (dha) kalorone kalebu konsonan...',
       glyph: 'ꦛꦝ',
-      options: ['Dental (untu)', 'Bilabial (lambe)', 'Velar (gorokan)', 'Retrofleks (ilat tekuk munggah)'],
+      options: [
+        'Dental (untu)',
+        'Bilabial (lambe)',
+        'Velar (gorokan)',
+        'Retrofleks (ilat tekuk munggah)',
+      ],
       correctIndex: 3,
-      explanation: 'ꦛ lan ꦝ kalorone minangka swara retrofleks Jawa kang ilate menthang munggah.',
+      explanation:
+          'ꦛ lan ꦝ kalorone minangka swara retrofleks Jawa kang ilate menthang munggah.',
       sourceReference: 'Fonologi Basa Jawa',
     ),
     QuizQuestion(
@@ -681,7 +712,8 @@ class Unit2Questions {
         'Aksara ꦚ lan ꦧ nduweni wujud padha tanpa ana bedane babar pisan',
       ],
       correctIndex: 1,
-      explanation: 'Aksara ꦚ nduweni cagak mburi kanthi lekukan mantep beda karo ꦧ.',
+      explanation:
+          'Aksara ꦚ nduweni cagak mburi kanthi lekukan mantep beda karo ꦧ.',
       sourceReference: 'Karakteristik Aksara Jawa',
     ),
 
@@ -770,7 +802,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Aksara Jawa dhasar cacahe ana pira?',
-      glyph: '꧒꧐',
+      glyph: '',
       options: ['20 aksara', '18 aksara', '24 aksara', '26 aksara'],
       correctIndex: 0,
       explanation: 'Aksara legena cacahe ana 20 aksara.',
@@ -782,7 +814,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Aksara kapisan ing Hanacaraka yaiku...',
-      glyph: 'ꦲ',
+      glyph: '',
       options: ['Na', 'Ha', 'Ca', 'Ka'],
       correctIndex: 1,
       explanation: 'Aksara kapisan yaiku ꦲ (Ha).',
@@ -794,7 +826,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Aksara iki unine apa?',
-      glyph: 'ꦏ',
+      glyph: '',
       options: ['Ra', 'Ca', 'Ka', 'Ta'],
       correctIndex: 2,
       explanation: 'Aksara ꦏ unine "Ka".',
@@ -806,7 +838,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Aksara iki unine apa?',
-      glyph: 'ꦱ',
+      glyph: '',
       options: ['Da', 'Sa', 'Wa', 'La'],
       correctIndex: 1,
       explanation: 'Aksara ꦱ unine "Sa".',
@@ -818,7 +850,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Aksara iki unine apa?',
-      glyph: 'ꦪ',
+      glyph: '',
       options: ['Ya', 'Pa', 'Dha', 'Ja'],
       correctIndex: 0,
       explanation: 'Aksara ꦪ unine "Ya".',
@@ -830,7 +862,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Aksara iki unine apa?',
-      glyph: 'ꦔ',
+      glyph: '',
       options: ['Ma', 'Ga', 'Ba', 'Nga'],
       correctIndex: 3,
       explanation: 'Aksara ꦔ unine "Nga".',
@@ -842,7 +874,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Tembung ꦲꦤ wacane yaiku...',
-      glyph: 'ꦲꦤ',
+      glyph: '',
       options: ['Hana', 'Kaca', 'Rasa', 'Pada'],
       correctIndex: 0,
       explanation: 'ꦲꦤ diwaca "hana".',
@@ -854,7 +886,7 @@ class Unit2Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: '[Evaluasi U2] Tembung ꦧꦠ wacane yaiku...',
-      glyph: 'ꦧꦠ',
+      glyph: '',
       options: ['Mata', 'Bata', 'Dada', 'Kaca'],
       correctIndex: 1,
       explanation: 'ꦧꦠ diwaca "bata".',
@@ -865,8 +897,9 @@ class Unit2Questions {
       topicKey: 'evaluasi_unit2',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U2] Pasangan aksara retrofleks (ilat tekuk) ing baris kapapat yaiku...',
-      glyph: 'ꦛ',
+      prompt:
+          '[Evaluasi U2] Pasangan aksara retrofleks (ilat tekuk) ing baris kapapat yaiku...',
+      glyph: '',
       options: ['Ta', 'Da', 'Tha', 'Sa'],
       correctIndex: 2,
       explanation: 'Aksara ꦛ yaiku swara retrofleks "Tha".',
@@ -877,11 +910,18 @@ class Unit2Questions {
       topicKey: 'evaluasi_unit2',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: '[Evaluasi U2] Sapa jenenge abdi Ajisaka kang padha pralaya amarga setya?',
-      glyph: 'ꦢꦺꦴꦫ',
-      options: ['Petruk lan Gareng', 'Togog lan Bilung', 'Dora lan Sembada', 'Semar lan Bagong'],
+      prompt:
+          '[Evaluasi U2] Sapa jenenge abdi Ajisaka kang padha pralaya amarga setya?',
+      glyph: '',
+      options: [
+        'Petruk lan Gareng',
+        'Togog lan Bilung',
+        'Dora lan Sembada',
+        'Semar lan Bagong',
+      ],
       correctIndex: 2,
-      explanation: 'Dora lan Sembada padha setyane ngugemi amanat keris pusaka.',
+      explanation:
+          'Dora lan Sembada padha setyane ngugemi amanat keris pusaka.',
       sourceReference: 'Evaluasi Unit 2 JawaLoka',
     ),
   ];

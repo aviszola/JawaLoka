@@ -32,15 +32,43 @@ class MainShellScreen extends StatefulWidget {
   State<MainShellScreen> createState() => _MainShellScreenState();
 }
 
-class _MainShellScreenState extends State<MainShellScreen> {
+class _MainShellScreenState extends State<MainShellScreen>
+    with SingleTickerProviderStateMixin {
   late int _selectedTab;
   final Set<int> _loadedPageIndices = {};
+
+  late final AnimationController _tabTransitionCtrl;
+  late final Animation<double> _tabFadeAnimation;
+  late final Animation<Offset> _tabSlideAnimation;
 
   @override
   void initState() {
     super.initState();
     _selectedTab = widget.initialIndex;
     _loadedPageIndices.add(_pageIndexFromTab(_selectedTab));
+
+    _tabTransitionCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 280),
+      value: 1.0,
+    );
+    _tabFadeAnimation = CurvedAnimation(
+      parent: _tabTransitionCtrl,
+      curve: Curves.easeOutCubic,
+    );
+    _tabSlideAnimation =
+        Tween<Offset>(begin: const Offset(0.04, 0.0), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _tabTransitionCtrl,
+            curve: Curves.easeOutCubic,
+          ),
+        );
+  }
+
+  @override
+  void dispose() {
+    _tabTransitionCtrl.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,6 +87,9 @@ class _MainShellScreenState extends State<MainShellScreen> {
       // Quest: center action button that opens full-screen drawing canvas without changing tab index
       Navigator.pushNamed(context, AppRouter.drawingCanvas);
       return;
+    }
+    if (_selectedTab != index) {
+      _tabTransitionCtrl.forward(from: 0.0);
     }
     setState(() {
       _selectedTab = index;
@@ -92,6 +123,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
         if (didPop) return;
         // In tabs other than Beranda, back button returns to Beranda first
         if (_selectedTab != 0) {
+          _tabTransitionCtrl.forward(from: 0.0);
           setState(() {
             _selectedTab = 0;
             _loadedPageIndices.add(0);
@@ -100,41 +132,47 @@ class _MainShellScreenState extends State<MainShellScreen> {
       },
       child: Scaffold(
         backgroundColor: AppColors.canvas,
-        body: IndexedStack(
-          index: activePageIndex,
-          children: [
-            // Page 0: Beranda
-            TickerMode(
-              enabled: activePageIndex == 0,
-              child: _loadedPageIndices.contains(0)
-                  ? HomeScreen(onNavigateTab: _onTabSelected)
-                  : const SizedBox.shrink(),
-            ),
+        body: FadeTransition(
+          opacity: _tabFadeAnimation,
+          child: SlideTransition(
+            position: _tabSlideAnimation,
+            child: IndexedStack(
+              index: activePageIndex,
+              children: [
+                // Page 0: Beranda
+                TickerMode(
+                  enabled: activePageIndex == 0,
+                  child: _loadedPageIndices.contains(0)
+                      ? HomeScreen(onNavigateTab: _onTabSelected)
+                      : const SizedBox.shrink(),
+                ),
 
-            // Page 1: Belajar
-            TickerMode(
-              enabled: activePageIndex == 1,
-              child: _loadedPageIndices.contains(1)
-                  ? const LearnHubScreen()
-                  : const SizedBox.shrink(),
-            ),
+                // Page 1: Belajar
+                TickerMode(
+                  enabled: activePageIndex == 1,
+                  child: _loadedPageIndices.contains(1)
+                      ? const LearnHubScreen()
+                      : const SizedBox.shrink(),
+                ),
 
-            // Page 2: Kuis
-            TickerMode(
-              enabled: activePageIndex == 2,
-              child: _loadedPageIndices.contains(2)
-                  ? const QuizPathScreen()
-                  : const SizedBox.shrink(),
-            ),
+                // Page 2: Kuis
+                TickerMode(
+                  enabled: activePageIndex == 2,
+                  child: _loadedPageIndices.contains(2)
+                      ? const QuizPathScreen()
+                      : const SizedBox.shrink(),
+                ),
 
-            // Page 3: Profil
-            TickerMode(
-              enabled: activePageIndex == 3,
-              child: _loadedPageIndices.contains(3)
-                  ? const ProfileScreen()
-                  : const SizedBox.shrink(),
+                // Page 3: Profil
+                TickerMode(
+                  enabled: activePageIndex == 3,
+                  child: _loadedPageIndices.contains(3)
+                      ? const ProfileScreen()
+                      : const SizedBox.shrink(),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
         bottomNavigationBar: _buildBottomNav(),
       ),
@@ -142,20 +180,25 @@ class _MainShellScreenState extends State<MainShellScreen> {
   }
 
   Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.surface,
-        border: Border(top: BorderSide(color: AppColors.border, width: 1)),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x12231C14),
-            blurRadius: 16,
-            offset: Offset(0, -4),
+    return SafeArea(
+      top: false,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(32),
+          border: Border.all(
+            color: AppColors.border.withValues(alpha: 0.8),
+            width: 1.2,
           ),
-        ],
-      ),
-      child: SafeArea(
-        top: false,
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.ink.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: SizedBox(
           height: 64,
           child: Row(
@@ -181,7 +224,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
                 ),
               ),
 
-              // 2. Quest: Central Elevated 56 px amber button with pen icon
+              // 2. Quest: Central Elevated 54 px amber button with pen icon
               Expanded(child: _buildCenterQuestButton(context.l10n.navQuest)),
 
               // 3. Kuis
@@ -222,15 +265,19 @@ class _MainShellScreenState extends State<MainShellScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              width: 56,
-              height: 56,
+              width: 54,
+              height: 54,
               decoration: BoxDecoration(
-                color: AppColors.amber,
+                gradient: const LinearGradient(
+                  colors: [AppColors.amber, AppColors.accentOrange],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 3),
+                border: Border.all(color: Colors.white, width: 2.5),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.amberDark.withValues(alpha: 0.38),
+                    color: AppColors.accentOrange.withValues(alpha: 0.40),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -238,7 +285,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
               ),
               child: const Icon(
                 Icons.edit_rounded,
-                color: AppColors.ink,
+                color: Colors.white,
                 size: 26,
               ),
             ),
@@ -246,7 +293,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
             Text(
               questLabel,
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: FontWeight.w700,
                 color: AppColors.ink,
               ),
@@ -265,7 +312,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
     required String label,
   }) {
     final isSelected = _selectedTab == index;
-    final color = isSelected ? AppColors.accentOrange : AppColors.inkMuted;
+    final color = isSelected ? AppColors.accentOrange : AppColors.inkSecondary;
 
     return InkWell(
       onTap: () => _onTabSelected(index),
@@ -275,12 +322,12 @@ class _MainShellScreenState extends State<MainShellScreen> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(isSelected ? activeIcon : icon, color: color, size: 24),
-          const SizedBox(height: 3),
+          Icon(isSelected ? activeIcon : icon, color: color, size: 22),
+          const SizedBox(height: 2),
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
               color: color,
             ),

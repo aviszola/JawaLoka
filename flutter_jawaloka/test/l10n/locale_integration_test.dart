@@ -23,7 +23,7 @@ import 'package:flutter_jawaloka/features/quiz/presentation/screens/drawing_canv
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_path_screen.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_question_screen.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_result_screen.dart';
-import 'package:flutter_jawaloka/features/splash/presentation/screens/splash_screen.dart';
+import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/translator/presentation/screens/translator_screen.dart';
 import 'package:flutter_jawaloka/l10n/app_localizations.dart';
 
@@ -290,34 +290,32 @@ void main() {
   );
 
   group('Fase 4 - Gelombang 1: Multi-language Screen Content (id, jv, en)', () {
-    testWidgets(
-      'SplashScreen renders localized tagline in all three languages',
-      (tester) async {
-        for (final (locale, expectedTagline) in [
-          (const Locale('id'), 'Belajar bahasa dan aksara Jawa setiap hari'),
-          (const Locale('jv'), 'Sinau basa lan aksara Jawa saben dina'),
-          (const Locale('en'), 'Learn Javanese language and script every day'),
-        ]) {
-          final storage = InMemoryLocalePreferences(
-            initialLocale: locale.languageCode,
-          );
-          final controller = LocaleController(preferences: storage);
-          await controller.loadSavedLocale();
+    testWidgets('GetStartedScreen renders brand name in all three languages', (
+      tester,
+    ) async {
+      for (final locale in [
+        const Locale('id'),
+        const Locale('jv'),
+        const Locale('en'),
+      ]) {
+        final storage = InMemoryLocalePreferences(
+          initialLocale: locale.languageCode,
+        );
+        final controller = LocaleController(preferences: storage);
+        await controller.loadSavedLocale();
 
-          await tester.pumpWidget(
-            buildTestableApp(
-              controller: controller,
-              child: const SplashScreen(autoNavigate: false),
-            ),
-          );
-          await tester.pump();
-          await tester.pump(const Duration(milliseconds: 900));
+        await tester.pumpWidget(
+          buildTestableApp(
+            controller: controller,
+            child: const GetStartedScreen(enableAmbientAnimation: false),
+          ),
+        );
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 900));
 
-          expect(find.text('JawaLoka'), findsOneWidget);
-          expect(find.text(expectedTagline), findsOneWidget);
-        }
-      },
-    );
+        expect(find.text('JawaLoka'), findsOneWidget);
+      }
+    });
 
     testWidgets('LoginScreen renders localized texts in all three languages', (
       tester,
@@ -483,7 +481,7 @@ void main() {
           final scaleLabel = scaler == TextScaler.noScaling ? '1.0' : '1.3';
 
           testWidgets(
-            'SplashScreen renders cleanly without exception (scale: $scaleLabel, locale: ${locale.languageCode})',
+            'GetStartedScreen renders cleanly without exception (scale: $scaleLabel, locale: ${locale.languageCode})',
             (tester) async {
               final storage = InMemoryLocalePreferences(
                 initialLocale: locale.languageCode,
@@ -495,7 +493,7 @@ void main() {
                 buildTestableApp(
                   controller: controller,
                   textScaler: scaler,
-                  child: const SplashScreen(autoNavigate: false),
+                  child: const GetStartedScreen(enableAmbientAnimation: false),
                 ),
               );
               await tester.pump();
@@ -795,7 +793,10 @@ void main() {
         await tester.pump(const Duration(milliseconds: 300));
 
         expect(find.text('Quiz Path'), findsOneWidget);
-        expect(find.text('Unit 1: Greetings and Initial Etiquette'), findsOneWidget);
+        expect(
+          find.text('Unit 1: Greetings and Initial Etiquette'),
+          findsOneWidget,
+        );
         expect(find.text('Greeting'), findsOneWidget);
         expect(find.text('Farewell'), findsOneWidget);
         expect(find.text('Ask news'), findsOneWidget);
@@ -818,14 +819,22 @@ void main() {
           find.text('Unit 2: Basic Javanese Script (Legena) (Locked)'),
           100,
         );
-        expect(find.text('Unit 2: Basic Javanese Script (Legena) (Locked)'), findsOneWidget);
-        await tester.scrollUntilVisible(find.text('Introduction to Hanacaraka'), 100);
+        expect(
+          find.text('Unit 2: Basic Javanese Script (Legena) (Locked)'),
+          findsOneWidget,
+        );
+        await tester.scrollUntilVisible(
+          find.text('Introduction to Hanacaraka'),
+          100,
+        );
         await tester.ensureVisible(find.text('Introduction to Hanacaraka'));
         await tester.pump();
         await tester.tap(find.text('Introduction to Hanacaraka'));
         await tester.pump(); // SnackBar start
         expect(
-          find.text('Introduction to Hanacaraka is still locked. Complete previous topics first!'),
+          find.text(
+            'Introduction to Hanacaraka is still locked. Complete previous topics first!',
+          ),
           findsOneWidget,
         );
       },
@@ -851,7 +860,10 @@ void main() {
         await tester.pump(const Duration(milliseconds: 300));
 
         expect(find.text('Dalan Kuis'), findsOneWidget);
-        expect(find.text('Unit 1: Uluk Salam lan Tata Krama Awal'), findsOneWidget);
+        expect(
+          find.text('Unit 1: Uluk Salam lan Tata Krama Awal'),
+          findsOneWidget,
+        );
         expect(find.text('Salam'), findsOneWidget);
         expect(find.text('Pamit'), findsOneWidget);
         expect(find.text('Nyuwun kabar'), findsOneWidget);
@@ -878,7 +890,10 @@ void main() {
           find.text('Unit 2: Aksara Jawa Dhasar (Nglegena) (Kakonci)'),
           findsOneWidget,
         );
-        await tester.scrollUntilVisible(find.text('Pitepangan Hanacaraka'), 100);
+        await tester.scrollUntilVisible(
+          find.text('Pitepangan Hanacaraka'),
+          100,
+        );
         await tester.ensureVisible(find.text('Pitepangan Hanacaraka'));
         await tester.pump();
         await tester.tap(find.text('Pitepangan Hanacaraka'));

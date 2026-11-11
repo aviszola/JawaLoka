@@ -153,9 +153,8 @@ class Validators {
 
   /// Validates and normalizes translator input text.
   /// Strips control characters, trims whitespace, and limits length to 200 characters.
-  static ValidationResult<String, TranslationInputError> validateTranslationInput(
-    String raw,
-  ) {
+  static ValidationResult<String, TranslationInputError>
+  validateTranslationInput(String raw) {
     final cleaned = raw.replaceAll(_controlAndZeroWidth, '').trim();
 
     if (cleaned.isEmpty) {
@@ -175,7 +174,8 @@ class Validators {
 
   /// Validates canvas drawing strokes before evaluating similarity.
   /// Rejects empty submissions, NaN/Infinite coordinates, and sub-threshold strokes.
-  static ValidationResult<List<List<Offset>>, QuestDrawingError> validateQuestStrokes(
+  static ValidationResult<List<List<Offset>>, QuestDrawingError>
+  validateQuestStrokes(
     List<List<Offset>> strokes, {
     // PERLU KEPUTUSAN: Ambang batas goresan minimum (20.0 logical pixels)
     double minTotalLength = 20.0,
@@ -191,7 +191,10 @@ class Validators {
       if (stroke.isEmpty) continue;
       for (int i = 0; i < stroke.length; i++) {
         final pt = stroke[i];
-        if (pt.dx.isNaN || pt.dx.isInfinite || pt.dy.isNaN || pt.dy.isInfinite) {
+        if (pt.dx.isNaN ||
+            pt.dx.isInfinite ||
+            pt.dy.isNaN ||
+            pt.dy.isInfinite) {
           return const Invalid(QuestDrawingError.invalidCoordinates);
         }
         pointCount++;

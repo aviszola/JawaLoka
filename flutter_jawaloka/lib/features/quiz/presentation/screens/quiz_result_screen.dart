@@ -7,7 +7,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
 import '../../../../core/presentation/widgets/celebration_confetti_painter.dart';
 import '../../../profile/presentation/screens/level_up_screen.dart';
-import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
+import '../../../../core/presentation/widgets/batik_kawung_painter.dart';
 import '../../domain/models/quiz_result.dart';
 import 'quiz_question_screen.dart';
 

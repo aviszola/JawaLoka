@@ -64,29 +64,29 @@ class PrimaryButton extends StatelessWidget {
                   ),
                 )
               : customChild ??
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (leadingIcon != null) ...[
-                        Icon(leadingIcon, size: 20),
-                        const SizedBox(width: 8),
-                      ],
-                      Text(
-                        label,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: textColor,
-                          letterSpacing: 0.1,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (leadingIcon != null) ...[
+                          Icon(leadingIcon, size: 20),
+                          const SizedBox(width: 8),
+                        ],
+                        Text(
+                          label,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: textColor,
+                            letterSpacing: 0.1,
+                          ),
                         ),
-                      ),
-                      if (trailingIcon != null) ...[
-                        const SizedBox(width: 8),
-                        Icon(trailingIcon, size: 20),
+                        if (trailingIcon != null) ...[
+                          const SizedBox(width: 8),
+                          Icon(trailingIcon, size: 20),
+                        ],
                       ],
-                    ],
-                  ),
+                    ),
         ),
       ),
     );
@@ -143,4 +143,3 @@ class SecondaryButton extends StatelessWidget {
     );
   }
 }
-

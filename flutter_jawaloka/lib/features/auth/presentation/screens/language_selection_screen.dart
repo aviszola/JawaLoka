@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 import '../widgets/primary_button.dart';
 
 /// JawaLoka Language Selection Screen.
@@ -91,7 +92,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
     HapticFeedback.mediumImpact();
     final controller = LocaleScope.maybeOf(context);
     controller?.markLanguageChosen();
-    Navigator.of(context).pushNamed('/register');
+    Navigator.of(context).pushNamed(AppRouter.profileSetup);
+  }
+
+  void _skipToHome() {
+    HapticFeedback.mediumImpact();
+    final controller = LocaleScope.maybeOf(context);
+    controller?.markLanguageChosen();
+    Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
   }
 
   @override
@@ -254,10 +262,32 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                   top: false,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
-                    child: PrimaryButton(
-                      label: continueButtonText,
-                      onPressed: _proceed,
-                      trailingIcon: Icons.arrow_forward_rounded,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        PrimaryButton(
+                          label: continueButtonText,
+                          onPressed: _proceed,
+                          trailingIcon: Icons.arrow_forward_rounded,
+                        ),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: _skipToHome,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 6),
+                            child: Text(
+                              l10n.authSkipToLearn,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.inkSecondary,
+                                decoration: TextDecoration.underline,
+                                decorationColor: AppColors.amberDark,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

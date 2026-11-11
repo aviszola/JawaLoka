@@ -16,7 +16,10 @@ class LocaleScope extends InheritedNotifier<LocaleController> {
   /// Throws an assertion error in debug mode if [LocaleScope] is not found.
   static LocaleController of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<LocaleScope>();
-    assert(scope != null, 'No LocaleScope found in BuildContext. Ensure MaterialApp is wrapped with LocaleScope.');
+    assert(
+      scope != null,
+      'No LocaleScope found in BuildContext. Ensure MaterialApp is wrapped with LocaleScope.',
+    );
     return scope!.notifier!;
   }
 
@@ -26,4 +29,3 @@ class LocaleScope extends InheritedNotifier<LocaleController> {
     return scope?.notifier;
   }
 }
-

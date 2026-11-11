@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
-import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../quiz/domain/curriculum/curriculum_quiz_bank.dart';
 import '../../../quiz/domain/quiz_path_data.dart';
@@ -9,7 +8,8 @@ import '../../../quiz/domain/quiz_path_models.dart';
 import '../../../quiz/presentation/screens/quiz_question_screen.dart';
 import '../../../quiz/presentation/widgets/quiz_bottom_sheet.dart';
 
-/// Card "Lanjutkan Kuis" showing current quiz path progress and difficulty level.
+/// Kartu "Lanjutkan Kuis" bersih & bernuansa kuning pastel hangat.
+/// Ikon pastel kuning di kiri, judul & progres node aktif, panah di kanan.
 class HomeContinueQuizCard extends StatelessWidget {
   final void Function(int tabIndex)? onNavigateTab;
 
@@ -31,11 +31,13 @@ class HomeContinueQuizCard extends StatelessWidget {
       orElse: () =>
           nodes.isNotEmpty ? nodes.first : QuizPathData.units.first.nodes.first,
     );
-    final completedCount =
-        nodes.where((n) => n.status == NodeStatus.completed).length;
+    final completedCount = nodes
+        .where((n) => n.status == NodeStatus.completed)
+        .length;
     final totalCount = nodes.length;
-    final progressValue =
-        totalCount > 0 ? (completedCount / totalCount).clamp(0.0, 1.0) : 0.0;
+    final progressValue = totalCount > 0
+        ? (completedCount / totalCount).clamp(0.0, 1.0)
+        : 0.0;
 
     void openActiveNode() {
       final level = profile?.userLevel ?? 1;
@@ -83,118 +85,100 @@ class HomeContinueQuizCard extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: Container(
         width: double.infinity,
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.ink.withValues(alpha: 0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF231C14).withValues(alpha: 0.04),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            // Ikon Kotak Bulat Lembut Bernuansa Kuning Pastel
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF3D6),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: const Color(0xFFF4D483).withValues(alpha: 0.4),
+                  width: 1,
+                ),
+              ),
+              child: const Icon(
+                Icons.menu_book_rounded,
+                color: Color(0xFFB87812),
+                size: 22,
+              ),
+            ),
+            const SizedBox(width: 14),
+
+            // Konten Teks & Progres
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Icons.quiz_rounded,
-                    size: 18,
-                    color: AppColors.amberDark,
-                  ),
-                  const SizedBox(width: 8),
                   Text(
                     l10n.homeContinueQuizTitle,
                     style: const TextStyle(
-                      color: AppColors.ink,
+                      color: Color(0xFF231C14),
                       fontSize: 15,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                ],
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: AppColors.pastelSand,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: AppColors.amberDark.withValues(alpha: 0.3),
-                  ),
-                ),
-                child: Text(
-                  l10n.homeContinueQuizLevel,
-                  style: const TextStyle(
-                    color: AppColors.amberDark,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            activeNode.getLocalizedTitle(context),
-            style: const TextStyle(
-              color: AppColors.ink,
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            l10n.homeContinueQuizProgress(completedCount),
-            style: const TextStyle(color: AppColors.inkSecondary, fontSize: 12),
-          ),
-          const SizedBox(height: 10),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(99),
-            child: LinearProgressIndicator(
-              value: progressValue,
-              minHeight: 7,
-              backgroundColor: const Color(0xFFEBE5DC),
-              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.amberDark),
-            ),
-          ),
-          const SizedBox(height: 14),
-          InkWell(
-            onTap: openActiveNode,
-            borderRadius: BorderRadius.circular(12),
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                  const SizedBox(height: 3),
                   Text(
-                    l10n.homeContinueQuizButton,
+                    activeNode.getLocalizedTitle(context),
                     style: const TextStyle(
-                      color: AppColors.ink,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF7C6E5E),
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: LinearProgressIndicator(
+                      value: progressValue,
+                      minHeight: 5,
+                      backgroundColor: const Color(0xFFF6ECD8),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        Color(0xFFF5B838),
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 6),
-                  const Icon(
-                    Icons.arrow_forward_rounded,
-                    size: 16,
-                    color: AppColors.ink,
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.homeContinueQuizProgress(completedCount),
+                    style: const TextStyle(
+                      color: Color(0xFF8A7E70),
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: 10),
+
+            // Panah Arah
+            const Icon(
+              Icons.arrow_forward_rounded,
+              size: 18,
+              color: Color(0xFF9E6E1A),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
   }
 }

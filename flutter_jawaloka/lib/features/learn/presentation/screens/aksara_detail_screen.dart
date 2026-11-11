@@ -3,7 +3,6 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
-import '../../../splash/presentation/widgets/batik_kawung_painter.dart';
 
 /// JawaLoka Aksara Jawa Detail Screen
 /// Shows a full breakdown of an aksara character: pronunciation, example words,
@@ -216,30 +215,30 @@ class _AksaraHeroCard extends StatelessWidget {
       height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: AppColors.border),
+        color: const Color(0xFFF7D46B),
+        borderRadius: BorderRadius.circular(26),
+        border: Border.all(color: const Color(0xFFEED17B), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: AppColors.ink.withValues(alpha: 0.08),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
+            color: const Color(0xFF231C14).withValues(alpha: 0.04),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
           ),
         ],
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFFFFF8EE), Color(0xFFFFF1D0), Color(0xFFF5E9C8)],
-          stops: [0.0, 0.5, 1.0],
-        ),
       ),
       child: Stack(
         children: [
-          // Subtle Kawung Batik Watermark on hero card
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(28),
-              child: CustomPaint(painter: BatikKawungPainter(opacity: 0.04)),
+          // Soft corner accent (Home hero benchmark)
+          Positioned(
+            top: -30,
+            right: -30,
+            child: Container(
+              width: 140,
+              height: 140,
+              decoration: BoxDecoration(
+                color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
 
@@ -258,18 +257,21 @@ class _AksaraHeroCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Circular amber background with aksara
                 Container(
                   width: 110,
                   height: 110,
-                  decoration: const BoxDecoration(
-                    color: AppColors.amber,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.92),
                     shape: BoxShape.circle,
+                    border: Border.all(
+                      color: const Color(0xFFEED07C).withValues(alpha: 0.6),
+                      width: 1.2,
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: Color(0x40FFC247),
-                        blurRadius: 20,
-                        offset: Offset(0, 6),
+                        color: const Color(0xFF231C14).withValues(alpha: 0.04),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),
@@ -286,25 +288,21 @@ class _AksaraHeroCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-
-                // Latin name
                 const Text(
                   'Ha',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w800,
-                    color: AppColors.ink,
+                    color: Color(0xFF231C14),
                     letterSpacing: -0.5,
                   ),
                 ),
                 const SizedBox(height: 2),
-
-                // Pronunciation
                 const Text(
                   '/hɑ/',
                   style: TextStyle(
                     fontSize: 16,
-                    color: AppColors.inkSecondary,
+                    color: Color(0xFF85580C),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -460,7 +458,10 @@ class _ExampleWordCard extends StatelessWidget {
             style: TextStyle(
               fontSize: 22,
               color: AppColors.ink,
-              fontFamilyFallback: const ['NotoSansJavanese', 'Noto Sans Javanese'],
+              fontFamilyFallback: const [
+                'NotoSansJavanese',
+                'Noto Sans Javanese',
+              ],
               height: 1.6,
             ),
           ),

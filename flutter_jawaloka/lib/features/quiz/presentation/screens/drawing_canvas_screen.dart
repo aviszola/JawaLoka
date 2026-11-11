@@ -142,11 +142,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                   children: [
                     _buildInfoCard(),
                     const SizedBox(height: 12),
-                    Expanded(
-                      child: Center(
-                        child: _buildCanvasCard(),
-                      ),
-                    ),
+                    Expanded(child: Center(child: _buildCanvasCard())),
                     const SizedBox(height: 12),
                     _buildControlsRow(),
                     const SizedBox(height: 14),
@@ -510,7 +506,9 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           content: Text(msg),
           behavior: SnackBarBehavior.floating,
           backgroundColor: AppColors.ink,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           duration: const Duration(seconds: 2),
         ),
       );

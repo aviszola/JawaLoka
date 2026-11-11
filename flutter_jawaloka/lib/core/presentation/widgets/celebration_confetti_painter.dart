@@ -5,12 +5,14 @@ import '../../theme/app_colors.dart';
 /// Single particle model for celebratory floating confetti.
 class ConfettiParticle {
   final double x; // Normalized 0.0 – 1.0 horizontal position
-  final double yStart; // Normalized vertical start (can be negative for staggered entry)
+  final double
+  yStart; // Normalized vertical start (can be negative for staggered entry)
   final double speed; // Vertical speed multiplier
   final double size; // Particle diameter / width
   final Color color;
   final bool isCircle;
-  final double rotationSpeed; // Multiplier for rotation, 0.0 for static orientation
+  final double
+  rotationSpeed; // Multiplier for rotation, 0.0 for static orientation
 
   const ConfettiParticle({
     required this.x,
@@ -97,4 +99,3 @@ class CelebrationConfettiPainter extends CustomPainter {
     return oldDelegate.progress != progress;
   }
 }
-

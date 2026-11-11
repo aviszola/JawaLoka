@@ -111,6 +111,20 @@ class _RegisterScreenState extends State<RegisterScreen>
     ).pushNamedAndRemoveUntil(AppRouter.home, (route) => false);
   }
 
+  Future<void> _continueAsGuest() async {
+    HapticFeedback.mediumImpact();
+    final inputName = _nameCtrl.text.trim();
+    if (inputName.isNotEmpty) {
+      final nameResult = Validators.validateDisplayName(inputName);
+      final normalizedName = nameResult.valueOrNull ?? inputName;
+      await ProfileScope.maybeOf(context)?.setDisplayName(normalizedName);
+    }
+    if (!mounted) return;
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRouter.home, (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -361,6 +375,44 @@ class _RegisterScreenState extends State<RegisterScreen>
                             label: context.l10n.registerButton,
                             onPressed: _isLoading ? null : _register,
                             isLoading: _isLoading,
+                          ),
+                          const SizedBox(height: 12),
+
+                          // Tombol Lanjut sebagai Tamu (Zero-Friction Guest Mode)
+                          OutlinedButton(
+                            onPressed: _isLoading ? null : _continueAsGuest,
+                            style: OutlinedButton.styleFrom(
+                              minimumSize: const Size.fromHeight(50),
+                              side: const BorderSide(
+                                color: AppColors.border,
+                                width: 1.2,
+                              ),
+                              shape: const StadiumBorder(),
+                              foregroundColor: AppColors.ink,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    context.l10n.authContinueAsGuest,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppColors.ink,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                const Icon(
+                                  Icons.arrow_forward_rounded,
+                                  size: 18,
+                                  color: AppColors.inkSecondary,
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(height: 16),
 

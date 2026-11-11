@@ -55,4 +55,3 @@ class AppLocalizationDelegates {
     GlobalWidgetsLocalizations.delegate,
   ];
 }
-

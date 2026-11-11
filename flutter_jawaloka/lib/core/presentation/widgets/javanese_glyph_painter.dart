@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 /// Renders the authentic calligraphic Aksara Jawa glyph "ꦗ" (Ja).
 ///
@@ -127,4 +127,3 @@ class JavaneseGlyphWidget extends StatelessWidget {
     );
   }
 }
-

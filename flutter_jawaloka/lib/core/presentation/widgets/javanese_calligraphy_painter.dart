@@ -7,7 +7,8 @@ import '../../theme/app_colors.dart';
 /// Designed to provide flawless vector calligraphy of Aksara Jawa without
 /// relying on system fonts or generic approximations.
 class JavaneseCalligraphyPainter extends CustomPainter {
-  final String aksara; // e.g. "ꦲ" (Ha), "ꦤ" (Na), "ꦕ" (Ca), "ꦫ" (Ra), "ꦏ" (Ka), "ꦗ" (Ja)
+  final String
+  aksara; // e.g. "ꦲ" (Ha), "ꦤ" (Na), "ꦕ" (Ca), "ꦫ" (Ra), "ꦏ" (Ka), "ꦗ" (Ja)
   final Color inkColor;
   final double strokeThickness;
   final bool showInkPools; // Simulated ink pooling at stroke ends
@@ -165,23 +166,49 @@ class JavaneseCalligraphyPainter extends CustomPainter {
     return path;
   }
 
-  void _drawInkPools(Canvas canvas, String char, double sx, double sy, Color color) {
+  void _drawInkPools(
+    Canvas canvas,
+    String char,
+    double sx,
+    double sy,
+    Color color,
+  ) {
     final poolPaint = Paint()..color = color;
     // Characteristic calligraphic foot serifs
     switch (char) {
       case 'ꦲ':
       case 'ha':
       case 'Ha':
-        canvas.drawCircle(Offset(24 * sx, 76 * sy), strokeThickness * 0.7 * sx, poolPaint);
-        canvas.drawCircle(Offset(42 * sx, 76 * sy), strokeThickness * 0.6 * sx, poolPaint);
-        canvas.drawCircle(Offset(84 * sx, 76 * sy), strokeThickness * 0.7 * sx, poolPaint);
+        canvas.drawCircle(
+          Offset(24 * sx, 76 * sy),
+          strokeThickness * 0.7 * sx,
+          poolPaint,
+        );
+        canvas.drawCircle(
+          Offset(42 * sx, 76 * sy),
+          strokeThickness * 0.6 * sx,
+          poolPaint,
+        );
+        canvas.drawCircle(
+          Offset(84 * sx, 76 * sy),
+          strokeThickness * 0.7 * sx,
+          poolPaint,
+        );
         break;
       case 'ꦗ':
       case 'ja':
       case 'Ja':
       default:
-        canvas.drawCircle(Offset(22 * sx, 75 * sy), strokeThickness * 0.7 * sx, poolPaint);
-        canvas.drawCircle(Offset(85 * sx, 74 * sy), strokeThickness * 0.6 * sx, poolPaint);
+        canvas.drawCircle(
+          Offset(22 * sx, 75 * sy),
+          strokeThickness * 0.7 * sx,
+          poolPaint,
+        );
+        canvas.drawCircle(
+          Offset(85 * sx, 74 * sy),
+          strokeThickness * 0.6 * sx,
+          poolPaint,
+        );
         break;
     }
   }
@@ -194,4 +221,3 @@ class JavaneseCalligraphyPainter extends CustomPainter {
         oldDelegate.progress != progress;
   }
 }
-
