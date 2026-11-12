@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
+import '../../../quiz/domain/quest_target.dart';
 
 /// JawaLoka Aksara Jawa Detail Screen
 /// Shows a full breakdown of an aksara character: pronunciation, example words,
@@ -275,14 +275,22 @@ class _AksaraHeroCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: const Center(
-                    child: CustomPaint(
-                      size: Size(76, 76),
-                      painter: JavaneseCalligraphyPainter(
-                        aksara: 'ꦲ',
-                        inkColor: AppColors.ink,
-                        strokeThickness: 5.5,
-                        showInkPools: true,
+                  child: Center(
+                    child: SizedBox(
+                      width: 76,
+                      height: 76,
+                      child: Center(
+                        child: Text(
+                          QuestTarget.hanacarakaAll
+                              .firstWhere((t) => t.glyphKey == 'ha')
+                              .aksaraChar,
+                          style: const TextStyle(
+                            fontFamily: 'NotoSansJavanese',
+                            fontSize: 46,
+                            color: AppColors.ink,
+                            height: 1.0,
+                          ),
+                        ),
                       ),
                     ),
                   ),

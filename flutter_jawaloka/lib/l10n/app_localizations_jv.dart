@@ -256,7 +256,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String homeLevelPill(int level) {
-    return 'L$level';
+    return 'Level $level';
   }
 
   @override
@@ -1666,4 +1666,108 @@ class AppLocalizationsJv extends AppLocalizations {
   @override
   String get quizTopicTantanganAkhirDesc =>
       'Tantangan puncak nggabungake aksara, undha-usuk basa, lan kawruh luhur.';
+
+  @override
+  String get profileSetupBadgeTag => 'PROFIL PANGANGGO';
+
+  @override
+  String get profileSetupTitle => 'Isi Data Dhiri';
+
+  @override
+  String get profileSetupSubtitle =>
+      'Pilih karakter lan atur identitas sinaumu.';
+
+  @override
+  String get profileSetupCharacterMaleBadge =>
+      'Karakter Putra (Surjan lan Blangkon)';
+
+  @override
+  String get profileSetupCharacterFemaleBadge =>
+      'Karakter Putri (Kebaya lan Sanggul)';
+
+  @override
+  String get profileSetupSelectCharacter => 'Pilih Karakter';
+
+  @override
+  String get profileSetupMaleTitle => 'Putra';
+
+  @override
+  String get profileSetupMaleSubtitle => 'Kakung';
+
+  @override
+  String get profileSetupFemaleTitle => 'Putri';
+
+  @override
+  String get profileSetupFemaleSubtitle => 'Estri';
+
+  @override
+  String get profileSetupNicknameLabel => 'Jeneng Celukan';
+
+  @override
+  String get profileSetupNicknameHint => 'Tuladha: Budi, Siti, Raden';
+
+  @override
+  String get profileSetupAgeLabel => 'Umur';
+
+  @override
+  String profileSetupAgeYears(int age) {
+    return '$age Taun';
+  }
+
+  @override
+  String profileSetupAgeChip(int age) {
+    return '$age th';
+  }
+
+  @override
+  String get profileSetupLocalNotice =>
+      'Data mung kasimpen ing piranti iki tanpa perlu akun lan sandi.';
+
+  @override
+  String get profileSetupPrimaryButton => 'Wiwiti Petualangan';
+
+  @override
+  String get profileSetupSkipButton => 'Liwati lan Mlebu Cepet';
+
+  @override
+  String get profileSetupDefaultGuestName => 'Siswa Jawa';
+
+  @override
+  String get settingsProfileDialogTitle => 'Data Dhiri lan Karakter';
+
+  @override
+  String get settingsProfileDialogNickname => 'Jeneng Celukan';
+
+  @override
+  String get settingsProfileDialogCharacterAge => 'Karakter lan Umur';
+
+  @override
+  String settingsProfileDialogCharacterAgeValue(String genderLabel, int age) {
+    return '$genderLabel ($age Taun)';
+  }
+
+  @override
+  String get settingsProfileDialogLocalNote =>
+      'Data kasimpen ing piranti tanpa akun lan tembung sandi.';
+
+  @override
+  String get settingsProfileDialogEditButton => 'Owahi Data';
+
+  @override
+  String get drawingChooseAksaraButton => 'Pilih aksara';
+
+  @override
+  String get drawingPickerTitle => 'Pilih Aksara Dhasar';
+
+  @override
+  String get drawingPickerSubtitle =>
+      'Pilih salah siji aksara kanggo gladhen nulis.';
+
+  @override
+  String get drawingPickerLockedLabel => 'Durung cumawis';
+
+  @override
+  String drawingPickerLockedToast(String name) {
+    return 'Aksara $name durung cumawis kanggo gladhen nulis.';
+  }
 }

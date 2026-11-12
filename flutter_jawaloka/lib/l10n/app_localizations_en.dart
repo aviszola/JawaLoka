@@ -257,7 +257,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String homeLevelPill(int level) {
-    return 'L$level';
+    return 'Level $level';
   }
 
   @override
@@ -1675,4 +1675,108 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get quizTopicTantanganAkhirDesc =>
       'Comprehensive synthesis challenge of Aksara, language levels, and cultural values.';
+
+  @override
+  String get profileSetupBadgeTag => 'USER PROFILE';
+
+  @override
+  String get profileSetupTitle => 'Fill Personal Data';
+
+  @override
+  String get profileSetupSubtitle =>
+      'Choose your character and set your learning identity.';
+
+  @override
+  String get profileSetupCharacterMaleBadge =>
+      'Putra Character (Surjan & Blangkon)';
+
+  @override
+  String get profileSetupCharacterFemaleBadge =>
+      'Putri Character (Kebaya & Sanggul)';
+
+  @override
+  String get profileSetupSelectCharacter => 'Choose Character';
+
+  @override
+  String get profileSetupMaleTitle => 'Putra';
+
+  @override
+  String get profileSetupMaleSubtitle => 'Male';
+
+  @override
+  String get profileSetupFemaleTitle => 'Putri';
+
+  @override
+  String get profileSetupFemaleSubtitle => 'Female';
+
+  @override
+  String get profileSetupNicknameLabel => 'Nickname';
+
+  @override
+  String get profileSetupNicknameHint => 'Example: Budi, Siti, Raden';
+
+  @override
+  String get profileSetupAgeLabel => 'Age';
+
+  @override
+  String profileSetupAgeYears(int age) {
+    return '$age Years';
+  }
+
+  @override
+  String profileSetupAgeChip(int age) {
+    return '$age yr';
+  }
+
+  @override
+  String get profileSetupLocalNotice =>
+      'Data is saved locally on your device only without an account & password.';
+
+  @override
+  String get profileSetupPrimaryButton => 'Start Adventure';
+
+  @override
+  String get profileSetupSkipButton => 'Skip & Quick Enter';
+
+  @override
+  String get profileSetupDefaultGuestName => 'Javanese Learner';
+
+  @override
+  String get settingsProfileDialogTitle => 'Profile & Character';
+
+  @override
+  String get settingsProfileDialogNickname => 'Nickname';
+
+  @override
+  String get settingsProfileDialogCharacterAge => 'Character & Age';
+
+  @override
+  String settingsProfileDialogCharacterAgeValue(String genderLabel, int age) {
+    return '$genderLabel ($age Years)';
+  }
+
+  @override
+  String get settingsProfileDialogLocalNote =>
+      'Data is stored locally on the device without an account or password.';
+
+  @override
+  String get settingsProfileDialogEditButton => 'Edit Data';
+
+  @override
+  String get drawingChooseAksaraButton => 'Choose script';
+
+  @override
+  String get drawingPickerTitle => 'Choose Basic Script';
+
+  @override
+  String get drawingPickerSubtitle =>
+      'Select one of the available scripts to practice writing.';
+
+  @override
+  String get drawingPickerLockedLabel => 'Coming soon';
+
+  @override
+  String drawingPickerLockedToast(String name) {
+    return 'Script $name is not available for writing practice yet.';
+  }
 }

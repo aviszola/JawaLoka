@@ -553,7 +553,7 @@ abstract class AppLocalizations {
   /// Label pill level di samping avatar Beranda
   ///
   /// In id, this message translates to:
-  /// **'L{level}'**
+  /// **'Level {level}'**
   String homeLevelPill(int level);
 
   /// Judul strip mingguan kuis di Beranda
@@ -3031,6 +3031,186 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Tantangan puncak memadukan aksara, tataran bahasa, dan kearifan budaya.'**
   String get quizTopicTantanganAkhirDesc;
+
+  /// Label micro-tag di atas judul halaman pengaturan profil
+  ///
+  /// In id, this message translates to:
+  /// **'PROFIL PENGGUNA'**
+  String get profileSetupBadgeTag;
+
+  /// Judul layar pengaturan profil
+  ///
+  /// In id, this message translates to:
+  /// **'Isi Data Diri'**
+  String get profileSetupTitle;
+
+  /// Subjudul layar pengaturan profil
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih karakter dan atur identitas belajarmu.'**
+  String get profileSetupSubtitle;
+
+  /// Badge karakter putra
+  ///
+  /// In id, this message translates to:
+  /// **'Karakter Putra (Surjan & Blangkon)'**
+  String get profileSetupCharacterMaleBadge;
+
+  /// Badge karakter putri
+  ///
+  /// In id, this message translates to:
+  /// **'Karakter Putri (Kebaya & Sanggul)'**
+  String get profileSetupCharacterFemaleBadge;
+
+  /// Label bagian pilih karakter
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Karakter'**
+  String get profileSetupSelectCharacter;
+
+  /// Judul kartu karakter putra
+  ///
+  /// In id, this message translates to:
+  /// **'Putra'**
+  String get profileSetupMaleTitle;
+
+  /// Subjudul kartu karakter putra
+  ///
+  /// In id, this message translates to:
+  /// **'Laki-laki'**
+  String get profileSetupMaleSubtitle;
+
+  /// Judul kartu karakter putri
+  ///
+  /// In id, this message translates to:
+  /// **'Putri'**
+  String get profileSetupFemaleTitle;
+
+  /// Subjudul kartu karakter putri
+  ///
+  /// In id, this message translates to:
+  /// **'Perempuan'**
+  String get profileSetupFemaleSubtitle;
+
+  /// Label field nama panggilan
+  ///
+  /// In id, this message translates to:
+  /// **'Nama Panggilan'**
+  String get profileSetupNicknameLabel;
+
+  /// Hint field nama panggilan
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh: Budi, Siti, Raden'**
+  String get profileSetupNicknameHint;
+
+  /// Label umur di pengaturan profil
+  ///
+  /// In id, this message translates to:
+  /// **'Umur'**
+  String get profileSetupAgeLabel;
+
+  /// Tampilan umur dalam tahun
+  ///
+  /// In id, this message translates to:
+  /// **'{age} Tahun'**
+  String profileSetupAgeYears(int age);
+
+  /// Chip pilihan umur cepat
+  ///
+  /// In id, this message translates to:
+  /// **'{age} th'**
+  String profileSetupAgeChip(int age);
+
+  /// Pemberitahuan penyimpanan lokal di layar profil
+  ///
+  /// In id, this message translates to:
+  /// **'Data hanya tersimpan secara lokal di perangkatmu tanpa perlu akun & sandi.'**
+  String get profileSetupLocalNotice;
+
+  /// Tombol utama simpan profil
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai Petualangan'**
+  String get profileSetupPrimaryButton;
+
+  /// Tombol lewati pengaturan profil
+  ///
+  /// In id, this message translates to:
+  /// **'Lewati & Masuk Cepat'**
+  String get profileSetupSkipButton;
+
+  /// Nama default jika pengguna melewati pengisian nama
+  ///
+  /// In id, this message translates to:
+  /// **'Siswa Jawa'**
+  String get profileSetupDefaultGuestName;
+
+  /// Judul dialog data diri di Pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'Data Diri & Karakter'**
+  String get settingsProfileDialogTitle;
+
+  /// Label nama panggilan di dialog Pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'Nama Panggilan'**
+  String get settingsProfileDialogNickname;
+
+  /// Label karakter dan umur di dialog Pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'Karakter & Umur'**
+  String get settingsProfileDialogCharacterAge;
+
+  /// Nilai karakter dan umur di dialog Pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'{genderLabel} ({age} Tahun)'**
+  String settingsProfileDialogCharacterAgeValue(String genderLabel, int age);
+
+  /// Catatan lokal di dialog data diri Pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'Data disimpan secara lokal di perangkat tanpa akun & kata sandi.'**
+  String get settingsProfileDialogLocalNote;
+
+  /// Tombol ubah data di dialog Pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah Data'**
+  String get settingsProfileDialogEditButton;
+
+  /// Label tombol pemilih daftar 20 aksara di kanvas gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih aksara'**
+  String get drawingChooseAksaraButton;
+
+  /// Judul sheet pemilih 20 aksara dasar
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih Aksara Dasar'**
+  String get drawingPickerTitle;
+
+  /// Subjudul sheet pemilih 20 aksara dasar
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih salah satu aksara yang tersedia untuk berlatih menulis.'**
+  String get drawingPickerSubtitle;
+
+  /// Label singkat aksara yang belum memiliki data kurva
+  ///
+  /// In id, this message translates to:
+  /// **'Segera hadir'**
+  String get drawingPickerLockedLabel;
+
+  /// Pesan saat mengetuk aksara yang terkunci di pemilih
+  ///
+  /// In id, this message translates to:
+  /// **'Aksara {name} belum tersedia untuk latihan menulis.'**
+  String drawingPickerLockedToast(String name);
 }
 
 class _AppLocalizationsDelegate

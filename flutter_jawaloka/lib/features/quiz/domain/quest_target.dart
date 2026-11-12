@@ -27,6 +27,46 @@ class QuestTarget {
     'ꦗ', // Ja
   };
 
+  /// Seluruh 20 aksara dasar (Hanacaraka) sebagai sumber tunggal data quest.
+  /// Semua huruf kini terbuka dan dirender seragam dari font NotoSansJavanese.
+  static const List<QuestTarget> hanacarakaAll = [
+    QuestTarget(aksaraChar: 'ꦲ', aksaraName: 'Ha', description: 'Aksara Ha'),
+    QuestTarget(aksaraChar: 'ꦤ', aksaraName: 'Na', description: 'Aksara Na'),
+    QuestTarget(aksaraChar: 'ꦕ', aksaraName: 'Ca', description: 'Aksara Ca'),
+    QuestTarget(aksaraChar: 'ꦫ', aksaraName: 'Ra', description: 'Aksara Ra'),
+    QuestTarget(aksaraChar: 'ꦏ', aksaraName: 'Ka', description: 'Aksara Ka'),
+    QuestTarget(aksaraChar: 'ꦢ', aksaraName: 'Da', description: 'Aksara Da'),
+    QuestTarget(aksaraChar: 'ꦠ', aksaraName: 'Ta', description: 'Aksara Ta'),
+    QuestTarget(aksaraChar: 'ꦱ', aksaraName: 'Sa', description: 'Aksara Sa'),
+    QuestTarget(aksaraChar: 'ꦮ', aksaraName: 'Wa', description: 'Aksara Wa'),
+    QuestTarget(aksaraChar: 'ꦭ', aksaraName: 'La', description: 'Aksara La'),
+    QuestTarget(aksaraChar: 'ꦥ', aksaraName: 'Pa', description: 'Aksara Pa'),
+    QuestTarget(aksaraChar: 'ꦝ', aksaraName: 'Dha', description: 'Aksara Dha'),
+    QuestTarget(aksaraChar: 'ꦗ', aksaraName: 'Ja', description: 'Aksara Ja'),
+    QuestTarget(aksaraChar: 'ꦪ', aksaraName: 'Ya', description: 'Aksara Ya'),
+    QuestTarget(aksaraChar: 'ꦚ', aksaraName: 'Nya', description: 'Aksara Nya'),
+    QuestTarget(aksaraChar: 'ꦩ', aksaraName: 'Ma', description: 'Aksara Ma'),
+    QuestTarget(aksaraChar: 'ꦒ', aksaraName: 'Ga', description: 'Aksara Ga'),
+    QuestTarget(aksaraChar: 'ꦧ', aksaraName: 'Ba', description: 'Aksara Ba'),
+    QuestTarget(aksaraChar: 'ꦛ', aksaraName: 'Tha', description: 'Aksara Tha'),
+    QuestTarget(aksaraChar: 'ꦔ', aksaraName: 'Nga', description: 'Aksara Nga'),
+  ];
+
+  String get glyphKey => aksaraName.toLowerCase();
+
+  /// Semua 20 aksara dapat dipilih karena garis bantu dan penilaian
+  /// berbasis topeng piksel dari font `NotoSansJavanese`.
+  bool get isSelectable => true;
+  static QuestTarget byChar(String char) {
+    return hanacarakaAll.firstWhere(
+      (t) => t.aksaraChar == char,
+      orElse: () => QuestTarget(
+        aksaraChar: char,
+        aksaraName: char,
+        description: 'Aksara $char',
+      ),
+    );
+  }
   // DATA CONTOH, terbatas pada huruf berkurva
   static const List<QuestTarget> dailyTargets = [
     QuestTarget(aksaraChar: 'ꦲ', aksaraName: 'Ha', description: 'Aksara Ha'),

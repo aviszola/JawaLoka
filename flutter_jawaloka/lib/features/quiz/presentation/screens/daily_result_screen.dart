@@ -609,7 +609,7 @@ class _DrawingPanel extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 48,
                       color: AppColors.ink,
-                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoSansJavanese',
                     ),
                   ),
           ),

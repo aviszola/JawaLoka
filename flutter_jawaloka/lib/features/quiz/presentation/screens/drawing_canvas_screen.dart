@@ -8,6 +8,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
 import '../../../../core/validation/validators.dart';
+import '../../domain/quest_target.dart';
 import '../../domain/stroke_similarity_evaluator.dart';
 import '../widgets/drawing_canvas_painter.dart';
 import 'daily_result_screen.dart';
@@ -61,6 +62,9 @@ class DrawingCanvasScreen extends StatefulWidget {
 }
 
 class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
+  /// Target aksara aktif dari sumber tunggal [QuestTarget].
+  late QuestTarget _activeTarget;
+
   /// All completed strokes
   final List<List<Offset>> _strokes = [];
 
@@ -70,6 +74,11 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
   bool _isEvaluating = false;
   _StrokeSize _selectedSize = _StrokeSize.medium;
 
+  @override
+  void initState() {
+    super.initState();
+    _activeTarget = QuestTarget.byChar(widget.aksaraChar);
+  }
   List<List<Offset>> get _allStrokes => [
     ..._strokes,
     if (_currentStroke.isNotEmpty) _currentStroke,
@@ -111,11 +120,139 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
     });
   }
 
+  void _selectTarget(QuestTarget target) {
+    if (_activeTarget.aksaraChar != target.aksaraChar) {
+      setState(() {
+        _activeTarget = target;
+        _strokes.clear();
+        _currentStroke = [];
+      });
+    }
+    Navigator.of(context).pop();
+  }
+
+  void _showAksaraPicker() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: AppColors.surface,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) {
+        final l10n = ctx.l10n;
+        return SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: AppColors.border,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  l10n.drawingPickerTitle,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.ink,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  l10n.drawingPickerSubtitle,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.inkSecondary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: QuestTarget.hanacarakaAll.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 0.78,
+                  ),
+                  itemBuilder: (_, index) {
+                    final target = QuestTarget.hanacarakaAll[index];
+                    final isSelected =
+                        _activeTarget.aksaraChar == target.aksaraChar;
+
+                    return GestureDetector(
+                      key: Key('aksara_picker_item_${target.aksaraName}'),
+                      onTap: () => _selectTarget(target),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? AppColors.amberSoft
+                              : AppColors.canvas,
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: isSelected
+                                ? AppColors.amberDark
+                                : AppColors.border,
+                            width: isSelected ? 2.0 : 1.0,
+                          ),
+                        ),
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                target.aksaraChar,
+                                style: const TextStyle(
+                                  fontFamily: 'NotoSansJavanese',
+                                  fontSize: 22,
+                                  color: AppColors.ink,
+                                ),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                target.aksaraName,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: isSelected
+                                      ? FontWeight.w800
+                                      : FontWeight.w600,
+                                  color: isSelected
+                                      ? AppColors.amberDark
+                                      : AppColors.inkSecondary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void didUpdateWidget(covariant DrawingCanvasScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.aksaraChar != widget.aksaraChar ||
         oldWidget.aksaraName != widget.aksaraName) {
+      _activeTarget = QuestTarget.byChar(widget.aksaraChar);
       _clearAll();
     }
   }
@@ -222,7 +359,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            widget.aksaraName,
+            _activeTarget.aksaraName,
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -254,11 +391,13 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       child: Row(
         children: [
           Text(
-            widget.aksaraChar,
+            _activeTarget.aksaraChar,
+            key: const Key('quest_header_aksara_glyph'),
             style: const TextStyle(
               fontSize: 36,
               color: AppColors.amberDark,
               fontFamily: 'NotoSansJavanese',
+              height: 1.1,
             ),
           ),
           Container(
@@ -273,7 +412,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  widget.aksaraName,
+                  _activeTarget.aksaraName,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -288,6 +427,38 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                   ),
                 ),
               ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          GestureDetector(
+            key: const Key('open_aksara_picker_button'),
+            onTap: _showAksaraPicker,
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              decoration: BoxDecoration(
+                color: AppColors.amberSoft,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.grid_view_rounded,
+                    size: 15,
+                    color: AppColors.amberDark,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    context.l10n.drawingChooseAksaraButton,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.amberDark,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -330,7 +501,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                       painter: DrawingCanvasPainter(
                         strokes: _allStrokes,
                         strokeWidth: _selectedSize.width,
-                        targetAksara: widget.aksaraChar,
+                        targetAksara: _activeTarget.aksaraChar,
                       ),
                       child: const SizedBox.expand(),
                     ),
@@ -515,22 +686,22 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       return;
     }
 
+    final profile = ProfileScope.maybeOf(context);
+    final userName = profile?.displayName ?? 'Dimas';
     setState(() => _isEvaluating = true);
 
     try {
-      final similarity = StrokeSimilarityEvaluator.evaluate(
+      final similarity = await StrokeSimilarityEvaluator.evaluateWithFontMask(
         strokes: _strokes,
-        targetAksara: widget.aksaraChar,
+        targetAksara: _activeTarget.aksaraChar,
       );
 
-      final profile = ProfileScope.maybeOf(context);
-      final userName = profile?.displayName ?? 'Dimas';
       RewardSummary? summary;
 
       if (profile != null) {
-        final activityId = 'drawing_${widget.aksaraChar}';
+        final activityId = 'drawing_${_activeTarget.aksaraChar}';
         final claimId =
-            'draw_${widget.aksaraChar}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}';
+            'draw_${_activeTarget.aksaraChar}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}';
         summary = await profile.awardDrawingChallengeReward(
           activityId: activityId,
           claimId: claimId,
@@ -546,7 +717,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
         arguments: DailyResultArgs(
           similarity: similarity,
           userStrokes: _strokes.map((s) => List<Offset>.from(s)).toList(),
-          targetAksara: widget.aksaraChar,
+          targetAksara: _activeTarget.aksaraChar,
           userName: userName,
           rewardSummary: summary,
         ),
@@ -579,10 +750,19 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           shape: const StadiumBorder(),
           elevation: 0,
         ),
-        child: Text(
-          context.l10n.drawingCheckButton,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+        child: _isEvaluating
+            ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.amber),
+                ),
+              )
+            : Text(
+                context.l10n.drawingCheckButton,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
       ),
     );
   }

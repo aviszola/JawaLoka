@@ -1,15 +1,341 @@
 import 'dart:math' as math;
-import 'dart:ui';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'package:flutter/material.dart';
 import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
+import '../../../../core/validation/validators.dart';
 
-/// Evaluator comparing user handwritten strokes against authentic Aksara Jawa vector paths.
-///
-/// Uses deterministic geometric curve matching with aspect ratio preservation,
-/// Gaussian distance decay for coverage and precision, spatial grid distribution,
-/// and stroke length penalty.
+/// Kumpulan parameter konstan yang mengatur penilaian berbasis topeng piksel.
+class PixelMaskEvaluatorConfig {
+  PixelMaskEvaluatorConfig._();
+
+  /// Ukuran kanvas virtual normalisasi (piksel x piksel) untuk mencocokkan topeng font vs goresan.
+  static const int maskSize = 96;
+
+  /// Padding tepi saat memetakan bounding box huruf & goresan ke ruang topeng [maskSize].
+  static const double maskPadding = 8.0;
+
+  /// Ambang nilai alpha (0..255) agar piksel font dianggap sebagai tinta aksara.
+  static const int alphaThreshold = 25;
+
+  /// Ketebalan pena normalisasi untuk merasterisasi goresan pengguna ke kanvas topeng.
+  static const double userStrokeMaskWidth = 3.5;
+
+  /// Toleransi jarak (piksel dalam ruang [maskSize]) agar piksel huruf & goresan dianggap dekat.
+  static const double distanceTolerancePx = 2.5;
+
+  /// Ambang minimal rasio cakupan piksel huruf oleh goresan (coverage >= 0.75).
+  static const double minCoverageThreshold = 0.75;
+
+  /// Ambang minimal rasio ketepatan piksel goresan terhadap huruf (precision >= 0.75).
+  static const double minPrecisionThreshold = 0.75;
+
+  /// Batas toleransi perbedaan rasio aspek lebar/tinggi sebelum penalti diterapkan.
+  static const double maxFreeAspectRatioDiff = 1.30;
+}
 class StrokeSimilarityEvaluator {
   StrokeSimilarityEvaluator._();
 
+  static final Map<String, List<Offset>> _fontMaskPointsCache = {};
+  static final Map<String, double> _fontAspectRatioCache = {};
+  static final Set<String> _unavailableRasterizerKeys = {};
+
+  /// Memanaskan cache topeng piksel untuk [targetAksara] (berguna saat layar atau huruf dibuka).
+  static Future<void> prewarmFontMask(
+    String targetAksara, {
+    int maskSize = PixelMaskEvaluatorConfig.maskSize,
+  }) async {
+    await extractNormalizedFontMaskPoints(targetAksara, maskSize: maskSize);
+  }
+
+  /// Merender karakter [targetAksara] dengan font `NotoSansJavanese` lewat [ui.PictureRecorder]
+  static Future<List<Offset>> extractNormalizedFontMaskPoints(
+    String targetAksara, {
+    int maskSize = PixelMaskEvaluatorConfig.maskSize,
+  }) async {
+    final cacheKey = '$targetAksara@$maskSize';
+    final cached = _fontMaskPointsCache[cacheKey];
+    if (cached != null) return cached;
+    if (_unavailableRasterizerKeys.contains(cacheKey)) return const [];
+
+    try {
+      final result = await _extractPointsFromFont(targetAksara, maskSize)
+          .timeout(const Duration(seconds: 5));
+      if (result.points.isNotEmpty) {
+        _fontMaskPointsCache[cacheKey] = result.points;
+        _fontAspectRatioCache[cacheKey] = result.aspectRatio;
+        return result.points;
+      }
+    } catch (_) {
+      // Timeout jika dipanggil di FakeAsync testWidgets tanpa rasterizer thread aktif
+      _unavailableRasterizerKeys.add(cacheKey);
+    }
+    return const [];
+  }
+
+  static Future<({List<Offset> points, double aspectRatio})> _extractPointsFromFont(
+    String targetAksara,
+    int maskSize,
+  ) async {
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: targetAksara,
+        style: TextStyle(
+          fontFamily: 'NotoSansJavanese',
+          fontSize: maskSize * 0.72,
+          color: Colors.black,
+          height: 1.0,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+
+    final renderW = math.max(1, textPainter.width.ceil());
+    final renderH = math.max(1, textPainter.height.ceil());
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+    textPainter.paint(canvas, Offset.zero);
+    final picture = recorder.endRecording();
+    final image = await picture.toImage(renderW, renderH);
+    final byteData = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+    image.dispose();
+    picture.dispose();
+
+    if (byteData == null) return (points: const <Offset>[], aspectRatio: 1.0);
+    final bytes = byteData.buffer.asUint8List();
+
+    final rawPoints = <Offset>[];
+    for (int y = 0; y < renderH; y++) {
+      for (int x = 0; x < renderW; x++) {
+        final alpha = bytes[(y * renderW + x) * 4 + 3];
+        if (alpha > PixelMaskEvaluatorConfig.alphaThreshold) {
+          rawPoints.add(Offset(x.toDouble(), y.toDouble()));
+        }
+      }
+    }
+    if (rawPoints.isEmpty) return (points: const <Offset>[], aspectRatio: 1.0);
+
+    final box = _computeBoundingBox(rawPoints);
+    final maxDim = math.max(box.width, box.height);
+    if (maxDim <= 0) return (points: const <Offset>[], aspectRatio: 1.0);
+    final aspectRatio = box.width / math.max(1.0, box.height);
+
+    final targetInner = maskSize - 2 * PixelMaskEvaluatorConfig.maskPadding;
+    final scale = targetInner / maxDim;
+    final cx = maskSize / 2.0;
+    final cy = maskSize / 2.0;
+
+    // Deduplikasi ke grid [maskSize x maskSize] setelah normalisasi skala & geser
+    final occupied = Uint8List(maskSize * maskSize);
+    final normalized = <Offset>[];
+    for (final p in rawPoints) {
+      final nx = (cx + (p.dx - box.center.dx) * scale).round().clamp(0, maskSize - 1);
+      final ny = (cy + (p.dy - box.center.dy) * scale).round().clamp(0, maskSize - 1);
+      final idx = ny * maskSize + nx;
+      if (occupied[idx] == 0) {
+        occupied[idx] = 1;
+        normalized.add(Offset(nx.toDouble(), ny.toDouble()));
+      }
+    }
+
+    return (points: normalized, aspectRatio: aspectRatio);
+  }
+
+  /// Mengevaluasi kecocokan goresan pengguna terhadap topeng piksel huruf [targetAksara]
+  /// dari font `NotoSansJavanese` dengan normalisasi geser dan skala.
+  /// Mengembalikan skor `[0.0, 1.0]`. Tidak mempedulikan urutan goresan.
+  static Future<double> evaluateWithFontMask({
+    required List<List<Offset>> strokes,
+    required String targetAksara,
+  }) async {
+    if (Validators.validateQuestStrokes(strokes).isInvalid) return 0.0;
+
+    final targetPoints = await extractNormalizedFontMaskPoints(targetAksara);
+    if (targetPoints.isEmpty) return 0.0;
+
+    // Kumpulkan seluruh titik goresan (tanpa memperhatikan urutan goresan)
+    final allUserPoints = <Offset>[];
+    for (final stroke in strokes) {
+      allUserPoints.addAll(stroke);
+    }
+    if (allUserPoints.length < 2) return 0.0;
+
+    final userBox = _computeBoundingBox(allUserPoints);
+    final userMaxDim = math.max(userBox.width, userBox.height);
+    if (userMaxDim < 8.0) return 0.05;
+
+    final maskSize = PixelMaskEvaluatorConfig.maskSize;
+    final targetInner = maskSize - 2 * PixelMaskEvaluatorConfig.maskPadding;
+    final scale = targetInner / userMaxDim;
+    final cx = maskSize / 2.0;
+    final cy = maskSize / 2.0;
+    // Rasterisasi goresan pengguna langsung di Dart ke kanvas topeng virtual
+    final userGrid = Uint8List(maskSize * maskSize);
+    final userPoints = <Offset>[];
+    final radius = PixelMaskEvaluatorConfig.userStrokeMaskWidth / 2.0;
+    final radiusSq = radius * radius;
+
+    for (final stroke in strokes) {
+      if (stroke.isEmpty) continue;
+      for (int i = 0; i < stroke.length; i++) {
+        final p1 = stroke[i];
+        final nx1 = cx + (p1.dx - userBox.center.dx) * scale;
+        final ny1 = cy + (p1.dy - userBox.center.dy) * scale;
+
+        if (i == 0 && stroke.length == 1) {
+          _rasterizeCircleToGrid(userGrid, maskSize, nx1, ny1, radius, radiusSq, userPoints);
+        } else if (i > 0) {
+          final p0 = stroke[i - 1];
+          final nx0 = cx + (p0.dx - userBox.center.dx) * scale;
+          final ny0 = cy + (p0.dy - userBox.center.dy) * scale;
+          _rasterizeSegmentToGrid(userGrid, maskSize, nx0, ny0, nx1, ny1, radius, radiusSq, userPoints);
+        }
+      }
+    }
+    if (userPoints.isEmpty) return 0.0;
+    final targetGrid = Uint8List(maskSize * maskSize);
+    for (final tp in targetPoints) {
+      targetGrid[tp.dy.toInt() * maskSize + tp.dx.toInt()] = 1;
+    }
+
+    final tol = PixelMaskEvaluatorConfig.distanceTolerancePx.ceil();
+    final tolSq = PixelMaskEvaluatorConfig.distanceTolerancePx *
+        PixelMaskEvaluatorConfig.distanceTolerancePx;
+
+    bool hasNeighbor(Uint8List grid, int px, int py) {
+      final minX = math.max(0, px - tol);
+      final maxX = math.min(maskSize - 1, px + tol);
+      final minY = math.max(0, py - tol);
+      final maxY = math.min(maskSize - 1, py + tol);
+      for (int y = minY; y <= maxY; y++) {
+        final dy = y - py;
+        final rowOffset = y * maskSize;
+        for (int x = minX; x <= maxX; x++) {
+          if (grid[rowOffset + x] == 1) {
+            final dx = x - px;
+            if (dx * dx + dy * dy <= tolSq) return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    int coveredTarget = 0;
+    for (final tp in targetPoints) {
+      if (hasNeighbor(userGrid, tp.dx.toInt(), tp.dy.toInt())) {
+        coveredTarget++;
+      }
+    }
+    final coverage = coveredTarget / targetPoints.length;
+
+    int matchedUser = 0;
+    for (final up in userPoints) {
+      if (hasNeighbor(targetGrid, up.dx.toInt(), up.dy.toInt())) {
+        matchedUser++;
+      }
+    }
+    final precision = matchedUser / userPoints.length;
+
+    // Jika salah satu di bawah ambang minimum, skor tetap di bawah questPassThreshold (0.70)
+    double f1 = (2 * coverage * precision) / (coverage + precision);
+
+    // Penalti proporsional jika rasio aspek lebar/tinggi jauh menyimpang dari glyph font
+    final cacheKey = '$targetAksara@$maskSize';
+    final targetAspect = _fontAspectRatioCache[cacheKey] ?? 1.0;
+    final userAspect = userBox.width / math.max(1.0, userBox.height);
+    final aspectDiff = math.max(targetAspect, userAspect) /
+        math.max(0.01, math.min(targetAspect, userAspect));
+    if (aspectDiff > PixelMaskEvaluatorConfig.maxFreeAspectRatioDiff) {
+      final excess = aspectDiff - PixelMaskEvaluatorConfig.maxFreeAspectRatioDiff;
+      final penalty = (1.0 - excess * 0.45).clamp(0.4, 1.0);
+      f1 *= penalty;
+    }
+
+    if (coverage < PixelMaskEvaluatorConfig.minCoverageThreshold ||
+        precision < PixelMaskEvaluatorConfig.minPrecisionThreshold) {
+      final capped = math.min(f1, 0.65);
+      return (capped * 100.0).roundToDouble() / 100.0;
+    }
+    return (f1 * 100.0).roundToDouble() / 100.0;
+  }
+
+  static void _rasterizeCircleToGrid(
+    Uint8List grid,
+    int maskSize,
+    double cx,
+    double cy,
+    double radius,
+    double radiusSq,
+    List<Offset> outPoints,
+  ) {
+    final minX = (cx - radius).floor().clamp(0, maskSize - 1);
+    final maxX = (cx + radius).ceil().clamp(0, maskSize - 1);
+    final minY = (cy - radius).floor().clamp(0, maskSize - 1);
+    final maxY = (cy + radius).ceil().clamp(0, maskSize - 1);
+
+    for (int y = minY; y <= maxY; y++) {
+      final dy = y - cy;
+      final rowOffset = y * maskSize;
+      for (int x = minX; x <= maxX; x++) {
+        final dx = x - cx;
+        if (dx * dx + dy * dy <= radiusSq) {
+          final idx = rowOffset + x;
+          if (grid[idx] == 0) {
+            grid[idx] = 1;
+            outPoints.add(Offset(x.toDouble(), y.toDouble()));
+          }
+        }
+      }
+    }
+  }
+
+  static void _rasterizeSegmentToGrid(
+    Uint8List grid,
+    int maskSize,
+    double x0,
+    double y0,
+    double x1,
+    double y1,
+    double radius,
+    double radiusSq,
+    List<Offset> outPoints,
+  ) {
+    final minX = (math.min(x0, x1) - radius).floor().clamp(0, maskSize - 1);
+    final maxX = (math.max(x0, x1) + radius).ceil().clamp(0, maskSize - 1);
+    final minY = (math.min(y0, y1) - radius).floor().clamp(0, maskSize - 1);
+    final maxY = (math.max(y0, y1) + radius).ceil().clamp(0, maskSize - 1);
+
+    final segDx = x1 - x0;
+    final segDy = y1 - y0;
+    final lenSq = segDx * segDx + segDy * segDy;
+
+    for (int y = minY; y <= maxY; y++) {
+      final rowOffset = y * maskSize;
+      for (int x = minX; x <= maxX; x++) {
+        double distSq;
+        if (lenSq == 0) {
+          final dx = x - x0;
+          final dy = y - y0;
+          distSq = dx * dx + dy * dy;
+        } else {
+          final t = (((x - x0) * segDx + (y - y0) * segDy) / lenSq).clamp(0.0, 1.0);
+          final projX = x0 + t * segDx;
+          final projY = y0 + t * segDy;
+          final dx = x - projX;
+          final dy = y - projY;
+          distSq = dx * dx + dy * dy;
+        }
+
+        if (distSq <= radiusSq) {
+          final idx = rowOffset + x;
+          if (grid[idx] == 0) {
+            grid[idx] = 1;
+            outPoints.add(Offset(x.toDouble(), y.toDouble()));
+          }
+        }
+      }
+    }
+  }
   /// Evaluates similarity between user [strokes] and [targetAksara] path.
   ///
   /// Returns a normalized score between 0.0 and 1.0 (e.g. 0.90 = 90%).

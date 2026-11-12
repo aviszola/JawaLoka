@@ -185,9 +185,8 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 400));
 
-        // Initially Level 1 ("L1" in HomeHeader)
-        expect(find.text('L1'), findsOneWidget);
-
+        // Initially Level 1 ("Level 1" in HomeHeader)
+        expect(find.text('Level 1'), findsOneWidget);
         // Award 150 XP -> User levels up to Level 2
         await profileController.awardReward(
           activityId: 'level_jump',
@@ -198,8 +197,8 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 400));
 
-        // HomeHeader automatically updates to L2
-        expect(find.text('L2'), findsOneWidget);
+        // HomeHeader automatically updates to Level 2
+        expect(find.text('Level 2'), findsOneWidget);
       },
     );
 

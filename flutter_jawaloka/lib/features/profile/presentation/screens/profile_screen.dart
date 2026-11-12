@@ -4,6 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/profile/profile_scope.dart';
+import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
@@ -759,32 +760,24 @@ class _ProfileScreenState extends State<ProfileScreen>
                       : context.l10n.profileBadgeLocked,
                   isUnlocked: isLevel5Unlocked,
                   bgColor: const Color(0xFFFFF3D6),
-                  icon: Icons.emoji_events_rounded,
-                  iconColor: const Color(0xFFB87812),
-                  badgeHighlight: isLevel5Unlocked
-                      ? null
-                      : context.l10n.profileBadgeLevelUpHighlight,
-                  onTap: () async {
+                  icon: isLevel5Unlocked
+                      ? Icons.emoji_events_rounded
+                      : Icons.lock_rounded,
+                  iconColor: isLevel5Unlocked
+                      ? const Color(0xFFB87812)
+                      : const Color(0xFF8A7E70),
+                  onTap: () {
                     HapticFeedback.mediumImpact();
-                    final toastMsg = context.l10n.profileBadgeLevel5Toast;
                     if (isLevel5Unlocked) {
-                      _showToast(toastMsg);
+                      _showToast(context.l10n.profileBadgeLevel5Toast);
                       return;
                     }
-                    final result = await Navigator.pushNamed(
-                      context,
-                      AppRouter.levelUp,
+                    _showToast(
+                      context.l10n.blangkonToastLevel(
+                        5,
+                        BlangkonRewards.getName(BlangkonType.surakarta),
+                      ),
                     );
-                    if (!mounted) return;
-                    if (result == true) {
-                      setState(
-                        () => _equippedBlangkon = BlangkonType.surakarta,
-                      );
-                      ProfileScope.maybeOf(
-                        context,
-                      )?.setEquippedBlangkon(BlangkonType.surakarta);
-                      _showToast(toastMsg);
-                    }
                   },
                 ),
                 const SizedBox(height: 12),
