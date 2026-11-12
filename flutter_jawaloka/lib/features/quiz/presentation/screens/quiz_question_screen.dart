@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
+import '../../../../core/presentation/widgets/app_dialog.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/progression/reward_summary.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
+import 'package:flutter_jawaloka/core/theme/app_icons.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
 import '../../domain/models/quiz_question.dart';
 import '../../domain/quiz_session.dart';
@@ -158,9 +160,9 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         color: [
           AppColors.amber,
           AppColors.amberDark,
-          const Color(0xFF3E9B5F),
-          const Color(0xFFDDD7F6),
-          Colors.white,
+          AppColors.success,
+          AppColors.pastelLavender,
+          AppColors.surface,
         ][rng.nextInt(5)],
         size: 6 + rng.nextDouble() * 6,
         speedX: (rng.nextDouble() - 0.5) * 0.6,
@@ -283,27 +285,16 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
   }
 
   Future<void> _onClosePressed() async {
-    final shouldExit = await showDialog<bool>(
+    final shouldExit = await showAppDialog<bool>(
       context: context,
-      builder: (dialogContext) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(dialogContext.l10n.quizExitDialogTitle),
-        content: Text(dialogContext.l10n.quizExitDialogMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(dialogContext.l10n.quizExitDialogCancel),
-          ),
-          ElevatedButton(
-            onPressed: () => Navigator.of(dialogContext).pop(true),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.error,
-              foregroundColor: Colors.white,
-            ),
-            child: Text(dialogContext.l10n.quizExitDialogConfirm),
-          ),
-        ],
-      ),
+      tone: AppDialogTone.warning,
+      icon: AppIcons.info,
+      title: context.l10n.quizExitDialogTitle,
+      message: context.l10n.quizExitDialogMessage,
+      primaryLabel: context.l10n.quizExitDialogCancel,
+      onPrimary: () => Navigator.of(context, rootNavigator: true).pop(false),
+      secondaryLabel: context.l10n.quizExitDialogConfirm,
+      onSecondary: () => Navigator.of(context, rootNavigator: true).pop(true),
     );
 
     if (shouldExit == true && mounted) {
@@ -319,7 +310,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         if (!didPop) _onClosePressed();
       },
       child: Scaffold(
-        backgroundColor: const Color(0xFFF5F1EB),
+        backgroundColor: AppColors.canvas,
         body: SafeArea(
           child: Stack(
             children: [
@@ -391,7 +382,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                     ),
                     alignment: Alignment.center,
                     child: const Icon(
-                      Icons.close_rounded,
+                      AppIcons.close,
                       color: AppColors.ink,
                       size: 24,
                     ),
@@ -405,11 +396,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                 onTap: _skip,
                 child: Text(
                   context.l10n.quizSkip,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: AppColors.inkSecondary,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ],
@@ -420,11 +407,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               const SizedBox(width: 36),
               Text(
                 '${_currentIndex + 1}/${widget.questions.length}',
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.inkSecondary,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
           ),
@@ -444,7 +427,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
           child: LinearProgressIndicator(
             value: value,
             minHeight: 10,
-            backgroundColor: const Color(0xFFE8E1D6),
+            backgroundColor: AppColors.border,
             valueColor: const AlwaysStoppedAnimation<Color>(AppColors.amber),
           ),
         );
@@ -467,10 +450,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: const Color(0xFFE8E1D6)),
-          boxShadow: const [
+          border: Border.all(color: AppColors.border),
+          boxShadow: [
             BoxShadow(
-              color: Color(0x0A000000),
+              color: AppColors.ink.withValues(alpha: 0.04),
               blurRadius: 12,
               offset: Offset(0, 4),
             ),
@@ -480,8 +463,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
           children: [
             Text(
               _current.getPrompt(context),
-              style: const TextStyle(
-                fontSize: 16,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: AppColors.inkSecondary,
                 fontWeight: FontWeight.w500,
               ),
@@ -489,14 +471,16 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
             ),
             if (_current.glyph.isNotEmpty) ...[
               const SizedBox(height: 20),
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  _current.glyph,
-                  style: const TextStyle(
-                    fontSize: 72,
-                    fontFamily: 'NotoSansJavanese',
-                    color: AppColors.ink,
+              SizedBox(
+                height: 84,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    _current.glyph,
+                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                      fontFamily: 'NotoSansJavanese',
+                      color: AppColors.ink,
+                    ),
                   ),
                 ),
               ),
@@ -533,14 +517,14 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
       borderColor = AppColors.success;
       textColor = AppColors.successText;
       trailingIcon = const Icon(
-        Icons.check_circle_rounded,
+        AppIcons.checkCircle,
         color: AppColors.success,
       );
     } else if (isWrong) {
       bgColor = AppColors.errorLight;
       borderColor = AppColors.error;
       textColor = AppColors.error;
-      trailingIcon = const Icon(Icons.cancel_rounded, color: AppColors.error);
+      trailingIcon = const Icon(AppIcons.cancel, color: AppColors.error);
     } else if (isSelected) {
       bgColor = AppColors.amberSoft;
       borderColor = AppColors.amber;
@@ -568,11 +552,11 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               color: borderColor,
               width: isCorrect || isWrong ? 2 : 1.5,
             ),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: Color(0x08000000),
+                color: AppColors.ink.withValues(alpha: 0.03),
                 blurRadius: 4,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
@@ -586,13 +570,12 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                   shape: BoxShape.circle,
                   color: isSelected
                       ? AppColors.amberDark.withValues(alpha: 0.15)
-                      : const Color(0xFFF0EAE1),
+                      : AppColors.surfaceWarm,
                 ),
                 alignment: Alignment.center,
                 child: Text(
                   String.fromCharCode(65 + index),
-                  style: TextStyle(
-                    fontSize: 14,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: isSelected
                         ? AppColors.amberDark
@@ -603,8 +586,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               Expanded(
                 child: Text(
                   _current.options[index],
-                  style: TextStyle(
-                    fontSize: 15,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: textColor,
                   ),
@@ -628,14 +610,14 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
       padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
       decoration: BoxDecoration(
         color: _answered
-            ? (_isCorrect ? const Color(0xFFDCEBD2) : const Color(0xFFFFEAEA))
-            : const Color(0xFFF5F1EB),
-        border: const Border(top: BorderSide(color: Color(0xFFE8E1D6))),
-        boxShadow: const [
+            ? (_isCorrect ? AppColors.successLight : AppColors.errorLight)
+            : AppColors.canvas,
+        border: const Border(top: BorderSide(color: AppColors.border)),
+        boxShadow: [
           BoxShadow(
-            color: Color(0x10000000),
+            color: AppColors.ink.withValues(alpha: 0.06),
             blurRadius: 16,
-            offset: Offset(0, -4),
+            offset: const Offset(0, -4),
           ),
         ],
       ),
@@ -650,12 +632,8 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                   _isCorrect
                       ? context.l10n.quizCorrect
                       : context.l10n.quizIncorrect,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: _isCorrect
-                        ? const Color(0xFF2A6E40)
-                        : const Color(0xFFD64545),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: _isCorrect ? AppColors.success : AppColors.error,
                   ),
                 ),
               ],
@@ -666,31 +644,26 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                 context.l10n.quizAnswerLabel(
                   _current.options[_current.correctIndex],
                 ),
-                style: const TextStyle(fontSize: 14, color: Color(0xFFD64545)),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.error),
               ),
             ],
             if (_current.explanation.isNotEmpty) ...[
               const SizedBox(height: 6),
               Text(
                 _current.explanation,
-                style: TextStyle(
-                  fontSize: 13,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: _isCorrect
-                      ? const Color(0xFF205530)
-                      : const Color(0xFF8B2020),
+                  color: _isCorrect ? AppColors.success : AppColors.error,
                 ),
               ),
               const SizedBox(height: 4),
               // ATRIBUSI SUMBER BELUM DIVERIFIKASI, jangan tampilkan ke pengguna
               Text(
                 context.l10n.quizQuestionSourceAttribution,
-                style: TextStyle(
-                  fontSize: 11,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
                   fontStyle: FontStyle.italic,
-                  color: _isCorrect
-                      ? const Color(0xFF205530).withValues(alpha: 0.8)
-                      : const Color(0xFF8B2020).withValues(alpha: 0.8),
+                  color: _isCorrect ? AppColors.success : AppColors.error,
                 ),
               ),
             ],
@@ -703,11 +676,13 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
               onPressed: _answered ? _onConfirm : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: _answered
-                    ? (_isCorrect ? const Color(0xFF3E9B5F) : AppColors.amber)
-                    : const Color(0xFFD4CAB8),
-                foregroundColor: Colors.white,
-                disabledBackgroundColor: const Color(0xFFD4CAB8),
-                disabledForegroundColor: const Color(0xFFA09688),
+                    ? (_isCorrect ? AppColors.success : AppColors.amber)
+                    : AppColors.border,
+                foregroundColor: _answered
+                    ? (_isCorrect ? AppColors.surface : AppColors.ink)
+                    : AppColors.inkMuted,
+                disabledBackgroundColor: AppColors.border,
+                disabledForegroundColor: AppColors.inkMuted,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(28),
                 ),
@@ -719,9 +694,10 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
                           ? context.l10n.quizContinue
                           : context.l10n.quizFinish)
                     : context.l10n.quizCheck,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: _answered
+                      ? (_isCorrect ? AppColors.surface : AppColors.ink)
+                      : AppColors.inkMuted,
                 ),
               ),
             ),
