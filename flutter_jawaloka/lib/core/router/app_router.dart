@@ -213,23 +213,53 @@ class AppRouter {
 
       case AppRouter.levelUp:
         final args = settings.arguments;
-        if (args is LevelUpArgs &&
-            args.newLevel >= 1 &&
-            args.previousLevel >= 1 &&
-            args.newLevel >= args.previousLevel) {
-          return _FadePageRoute(
-            page: LevelUpScreen(
-              newLevel: args.newLevel,
-              previousLevel: args.previousLevel,
-              unlockedBlangkons: args.unlockedBlangkons,
-              blangkonName: args.blangkonName,
-              blangkonType: args.blangkonType,
-            ),
-            settings: settings,
-          );
-        }
-        return _FadePageRoute(page: const LevelUpScreen(), settings: settings);
-
+        return _FadePageRoute(
+          page: Builder(
+            builder: (context) {
+              final profile = ProfileScope.maybeOf(context);
+              final currentLevel = profile?.userLevel;
+              if (args is LevelUpArgs) {
+                final isValidArgs =
+                    args.newLevel >= 1 &&
+                    args.previousLevel >= 1 &&
+                    args.newLevel >= args.previousLevel;
+                final isAllowedLevel =
+                    currentLevel == null || args.newLevel <= currentLevel;
+                if (isValidArgs && isAllowedLevel) {
+                  return LevelUpScreen(
+                    newLevel: args.newLevel,
+                    previousLevel: args.previousLevel,
+                    unlockedBlangkons: args.unlockedBlangkons,
+                    blangkonName: args.blangkonName,
+                    blangkonType: args.blangkonType,
+                  );
+                }
+                // Tolak perayaan jika level melebihi level pemain sekarang atau argumen tidak sah
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (context.mounted && Navigator.of(context).canPop()) {
+                    Navigator.of(context).pop(false);
+                  }
+                });
+                return const SizedBox.shrink();
+              }
+              // Jika dipanggil tanpa LevelUpArgs, tolak jika level belum mencapai 2 (atau fallback default Level 5 tidak terpenuhi)
+              final safeLevel = currentLevel ?? 1;
+              if (safeLevel < 5) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (context.mounted && Navigator.of(context).canPop()) {
+                    Navigator.of(context).pop(false);
+                  }
+                });
+                return const SizedBox.shrink();
+              }
+              return LevelUpScreen(
+                newLevel: safeLevel,
+                previousLevel: safeLevel - 1,
+              );
+            },
+          ),
+          settings: settings,
+        );
       default:
         return _FadePageRoute(
           page: _ErrorScreen(routeName: settings.name ?? 'Unknown'),

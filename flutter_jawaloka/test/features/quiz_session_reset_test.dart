@@ -366,9 +366,10 @@ void main() {
         await tester.ensureVisible(checkButton);
         await tester.pump();
         await tester.tap(checkButton);
-        await tester.pump();
-        await tester.pump(const Duration(milliseconds: 600));
-
+        await tester.runAsync(() async {
+          await Future<void>.delayed(const Duration(milliseconds: 200));
+        });
+        await tester.pumpAndSettle();
         expect(find.byType(DailyResultScreen), findsOneWidget);
 
         // Tap Coba Lagi on DailyResultScreen
@@ -376,9 +377,7 @@ void main() {
         await tester.ensureVisible(retryButton);
         await tester.pump();
         await tester.tap(retryButton);
-        await tester.pump();
-        await tester.pump(const Duration(milliseconds: 600));
-
+        await tester.pumpAndSettle();
         // Back on DrawingCanvasScreen and strokes are completely cleared
         expect(find.byType(DrawingCanvasScreen), findsOneWidget);
         expect(find.text('Goresan: 0'), findsOneWidget);

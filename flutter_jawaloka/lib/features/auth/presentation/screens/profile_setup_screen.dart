@@ -138,10 +138,12 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
 
   Future<void> _skipAndProceed() async {
     HapticFeedback.mediumImpact();
+    final l10n = context.l10n;
     final profile = ProfileScope.maybeOf(context);
     if (profile != null) {
       final inputName = _nameCtrl.text.trim();
-      final finalName = inputName.isNotEmpty ? inputName : 'Siswa Jawa';
+      final finalName =
+          inputName.isNotEmpty ? inputName : l10n.profileSetupDefaultGuestName;
       await profile.setDisplayName(finalName);
       await profile.setGender(_selectedGender);
       await profile.setAge(_selectedAge);
@@ -155,8 +157,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
-      backgroundColor: AppColors.canvas,
       body: SafeArea(
         child: FadeTransition(
           opacity: _fadeAnim,
@@ -180,10 +182,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       color: AppColors.ink.withValues(alpha: 0.06),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: const Text(
-                      'PROFIL PENGGUNA',
+                    child: Text(
+                      l10n.profileSetupBadgeTag,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w800,
                         color: AppColors.inkSecondary,
@@ -192,10 +194,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     ),
                   ),
                   const SizedBox(height: 4),
-                  const Text(
-                    'Isi Data Diri',
+                  Text(
+                    l10n.profileSetupTitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w800,
                       color: AppColors.ink,
@@ -203,10 +205,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     ),
                   ),
                   const SizedBox(height: 6),
-                  const Text(
-                    'Pilih karakter dan atur identitas belajarmu.',
+                  Text(
+                    l10n.profileSetupSubtitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: AppColors.inkSecondary,
                       fontWeight: FontWeight.w500,
@@ -253,8 +255,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     ),
                     child: Text(
                       _selectedGender == UserGender.male
-                          ? 'Karakter Putra (Surjan & Blangkon)'
-                          : 'Karakter Putri (Kebaya & Sanggul)',
+                          ? l10n.profileSetupCharacterMaleBadge
+                          : l10n.profileSetupCharacterFemaleBadge,
                       style: const TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
@@ -265,11 +267,11 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   const SizedBox(height: 24),
 
                   // ── Pilihan Gender (Putra vs Putri) ──
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Pilih Karakter',
-                      style: TextStyle(
+                      l10n.profileSetupSelectCharacter,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                         color: AppColors.ink,
@@ -283,8 +285,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       Expanded(
                         child: _buildGenderCard(
                           gender: UserGender.male,
-                          title: 'Putra',
-                          subtitle: 'Laki-laki',
+                          title: l10n.profileSetupMaleTitle,
+                          subtitle: l10n.profileSetupMaleSubtitle,
                           icon: Icons.face_rounded,
                         ),
                       ),
@@ -293,8 +295,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       Expanded(
                         child: _buildGenderCard(
                           gender: UserGender.female,
-                          title: 'Putri',
-                          subtitle: 'Perempuan',
+                          title: l10n.profileSetupFemaleTitle,
+                          subtitle: l10n.profileSetupFemaleSubtitle,
                           icon: Icons.face_3_rounded,
                         ),
                       ),
@@ -304,8 +306,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
 
                   // ── Input Nama Panggilan ──
                   CustomTextField(
-                    label: 'Nama Panggilan',
-                    hint: 'Contoh: Budi, Siti, Raden',
+                    label: l10n.profileSetupNicknameLabel,
+                    hint: l10n.profileSetupNicknameHint,
                     controller: _nameCtrl,
                     errorText: _nameError,
                     prefixIcon: const Icon(
@@ -341,16 +343,16 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Umur',
-                              style: TextStyle(
+                            Text(
+                              l10n.profileSetupAgeLabel,
+                              style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w700,
                                 color: AppColors.ink,
                               ),
                             ),
                             Text(
-                              '$_selectedAge Tahun',
+                              l10n.profileSetupAgeYears(_selectedAge),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w800,
@@ -372,7 +374,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                               width: 110,
                               alignment: Alignment.center,
                               child: Text(
-                                '$_selectedAge',
+                                _selectedAge.toString(),
                                 style: const TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w900,
@@ -414,7 +416,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                                   ),
                                 ),
                                 child: Text(
-                                  '$age th',
+                                  l10n.profileSetupAgeChip(age),
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: isSelected
@@ -445,17 +447,17 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: Row(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.verified_user_outlined,
                           size: 18,
                           color: AppColors.inkSecondary,
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'Data hanya tersimpan secara lokal di perangkatmu tanpa perlu akun & sandi.',
-                            style: TextStyle(
+                            l10n.profileSetupLocalNotice,
+                            style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.inkSecondary,
                               fontWeight: FontWeight.w500,
@@ -470,7 +472,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
 
                   // ── Tombol Aksi Utama: Mulai Petualangan ──
                   PrimaryButton(
-                    label: 'Mulai Petualangan',
+                    label: l10n.profileSetupPrimaryButton,
                     isLoading: _isLoading,
                     trailingIcon: Icons.arrow_forward_rounded,
                     onPressed: _saveAndProceed,
@@ -484,9 +486,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       foregroundColor: AppColors.inkSecondary,
                       padding: const EdgeInsets.symmetric(vertical: 10),
                     ),
-                    child: const Text(
-                      'Lewati & Masuk Cepat',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.profileSetupSkipButton,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         decoration: TextDecoration.underline,

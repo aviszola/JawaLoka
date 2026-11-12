@@ -34,8 +34,7 @@ void main() {
       // 1. Verify Header
       expect(find.byType(HomeHeader), findsOneWidget);
       expect(find.text('Halo, Dimas!'), findsOneWidget);
-      expect(find.text('L4'), findsOneWidget);
-
+      expect(find.text('Level 4'), findsOneWidget);
       // 2. Verify Hero Quest Card
       expect(find.byType(HomeHeroQuestCard), findsOneWidget);
       expect(

@@ -347,8 +347,7 @@ void main() {
         // 1. Home Screen (shows level pill 'L5')
         await tester.pumpApp(const HomeScreen(), profileController: controller);
         await tester.pumpAndSettle();
-        expect(find.text('L5'), findsWidgets);
-
+        expect(find.text('Level 5'), findsWidgets);
         // 2. Profile Screen (shows level pill 'Lv 5')
         await tester.pumpApp(
           const ProfileScreen(),
@@ -363,7 +362,7 @@ void main() {
           profileController: controller,
         );
         await tester.pumpAndSettle();
-        expect(find.text('L5'), findsWidgets);
+        expect(find.text('Level 5'), findsWidgets);
       },
     );
   });

@@ -255,7 +255,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String homeLevelPill(int level) {
-    return 'L$level';
+    return 'Level $level';
   }
 
   @override
@@ -1670,4 +1670,108 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get quizTopicTantanganAkhirDesc =>
       'Tantangan puncak memadukan aksara, tataran bahasa, dan kearifan budaya.';
+
+  @override
+  String get profileSetupBadgeTag => 'PROFIL PENGGUNA';
+
+  @override
+  String get profileSetupTitle => 'Isi Data Diri';
+
+  @override
+  String get profileSetupSubtitle =>
+      'Pilih karakter dan atur identitas belajarmu.';
+
+  @override
+  String get profileSetupCharacterMaleBadge =>
+      'Karakter Putra (Surjan & Blangkon)';
+
+  @override
+  String get profileSetupCharacterFemaleBadge =>
+      'Karakter Putri (Kebaya & Sanggul)';
+
+  @override
+  String get profileSetupSelectCharacter => 'Pilih Karakter';
+
+  @override
+  String get profileSetupMaleTitle => 'Putra';
+
+  @override
+  String get profileSetupMaleSubtitle => 'Laki-laki';
+
+  @override
+  String get profileSetupFemaleTitle => 'Putri';
+
+  @override
+  String get profileSetupFemaleSubtitle => 'Perempuan';
+
+  @override
+  String get profileSetupNicknameLabel => 'Nama Panggilan';
+
+  @override
+  String get profileSetupNicknameHint => 'Contoh: Budi, Siti, Raden';
+
+  @override
+  String get profileSetupAgeLabel => 'Umur';
+
+  @override
+  String profileSetupAgeYears(int age) {
+    return '$age Tahun';
+  }
+
+  @override
+  String profileSetupAgeChip(int age) {
+    return '$age th';
+  }
+
+  @override
+  String get profileSetupLocalNotice =>
+      'Data hanya tersimpan secara lokal di perangkatmu tanpa perlu akun & sandi.';
+
+  @override
+  String get profileSetupPrimaryButton => 'Mulai Petualangan';
+
+  @override
+  String get profileSetupSkipButton => 'Lewati & Masuk Cepat';
+
+  @override
+  String get profileSetupDefaultGuestName => 'Siswa Jawa';
+
+  @override
+  String get settingsProfileDialogTitle => 'Data Diri & Karakter';
+
+  @override
+  String get settingsProfileDialogNickname => 'Nama Panggilan';
+
+  @override
+  String get settingsProfileDialogCharacterAge => 'Karakter & Umur';
+
+  @override
+  String settingsProfileDialogCharacterAgeValue(String genderLabel, int age) {
+    return '$genderLabel ($age Tahun)';
+  }
+
+  @override
+  String get settingsProfileDialogLocalNote =>
+      'Data disimpan secara lokal di perangkat tanpa akun & kata sandi.';
+
+  @override
+  String get settingsProfileDialogEditButton => 'Ubah Data';
+
+  @override
+  String get drawingChooseAksaraButton => 'Pilih aksara';
+
+  @override
+  String get drawingPickerTitle => 'Pilih Aksara Dasar';
+
+  @override
+  String get drawingPickerSubtitle =>
+      'Pilih salah satu aksara yang tersedia untuk berlatih menulis.';
+
+  @override
+  String get drawingPickerLockedLabel => 'Segera hadir';
+
+  @override
+  String drawingPickerLockedToast(String name) {
+    return 'Aksara $name belum tersedia untuk latihan menulis.';
+  }
 }

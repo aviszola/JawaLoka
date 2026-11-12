@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/presentation/widgets/javanese_calligraphy_painter.dart';
 
 /// Calligraphic Drawing Canvas Painter for JawaLoka.
 ///
@@ -124,21 +123,25 @@ class DrawingCanvasPainter extends CustomPainter {
   // ─── Ghost Reference Aksara ───────────────────────────────────────────────
   void _drawGhostReference(Canvas canvas, Size size) {
     final ghostSize = math.min(size.width, size.height) * 0.65;
-    final left = (size.width - ghostSize) / 2;
-    final top = (size.height - ghostSize) / 2;
+    final textPainter = TextPainter(
+      text: TextSpan(
+        text: targetAksara,
+        style: TextStyle(
+          fontFamily: 'NotoSansJavanese',
+          fontSize: ghostSize * 0.68,
+          color: AppColors.amber.withValues(alpha: ghostOpacity),
+          height: 1.0,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.center,
+    )..layout();
 
-    canvas.save();
-    canvas.translate(left, top);
-
-    final ghostPainter = JavaneseCalligraphyPainter(
-      aksara: targetAksara,
-      inkColor: AppColors.amber.withValues(alpha: ghostOpacity),
-      strokeThickness: 5.5,
-      showInkPools: false,
+    final offset = Offset(
+      (size.width - textPainter.width) / 2,
+      (size.height - textPainter.height) / 2,
     );
-    ghostPainter.paint(canvas, Size(ghostSize, ghostSize));
-
-    canvas.restore();
+    textPainter.paint(canvas, offset);
   }
 
   // ─── Calligraphic Ink Engine (Kalam Aksara) ───────────────────────────────

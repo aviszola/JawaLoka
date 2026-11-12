@@ -322,7 +322,7 @@
       }
     }
   },
-  "homeLevelPill": "L{level}",
+  "homeLevelPill": "Level {level}",
   "@homeLevelPill": {
     "description": "Label pill level di samping avatar Beranda",
     "placeholders": {
@@ -2131,5 +2131,153 @@
   "quizTopicTantanganAkhirDesc": "Tantangan puncak memadukan aksara, tataran bahasa, dan kearifan budaya.",
   "@quizTopicTantanganAkhirDesc": {
     "description": "Topic title or description for quizTopicTantanganAkhirDesc"
+  },
+  "profileSetupBadgeTag": "PROFIL PENGGUNA",
+  "@profileSetupBadgeTag": {
+    "description": "Label micro-tag di atas judul halaman pengaturan profil"
+  },
+  "profileSetupTitle": "Isi Data Diri",
+  "@profileSetupTitle": {
+    "description": "Judul layar pengaturan profil"
+  },
+  "profileSetupSubtitle": "Pilih karakter dan atur identitas belajarmu.",
+  "@profileSetupSubtitle": {
+    "description": "Subjudul layar pengaturan profil"
+  },
+  "profileSetupCharacterMaleBadge": "Karakter Putra (Surjan & Blangkon)",
+  "@profileSetupCharacterMaleBadge": {
+    "description": "Badge karakter putra"
+  },
+  "profileSetupCharacterFemaleBadge": "Karakter Putri (Kebaya & Sanggul)",
+  "@profileSetupCharacterFemaleBadge": {
+    "description": "Badge karakter putri"
+  },
+  "profileSetupSelectCharacter": "Pilih Karakter",
+  "@profileSetupSelectCharacter": {
+    "description": "Label bagian pilih karakter"
+  },
+  "profileSetupMaleTitle": "Putra",
+  "@profileSetupMaleTitle": {
+    "description": "Judul kartu karakter putra"
+  },
+  "profileSetupMaleSubtitle": "Laki-laki",
+  "@profileSetupMaleSubtitle": {
+    "description": "Subjudul kartu karakter putra"
+  },
+  "profileSetupFemaleTitle": "Putri",
+  "@profileSetupFemaleTitle": {
+    "description": "Judul kartu karakter putri"
+  },
+  "profileSetupFemaleSubtitle": "Perempuan",
+  "@profileSetupFemaleSubtitle": {
+    "description": "Subjudul kartu karakter putri"
+  },
+  "profileSetupNicknameLabel": "Nama Panggilan",
+  "@profileSetupNicknameLabel": {
+    "description": "Label field nama panggilan"
+  },
+  "profileSetupNicknameHint": "Contoh: Budi, Siti, Raden",
+  "@profileSetupNicknameHint": {
+    "description": "Hint field nama panggilan"
+  },
+  "profileSetupAgeLabel": "Umur",
+  "@profileSetupAgeLabel": {
+    "description": "Label umur di pengaturan profil"
+  },
+  "profileSetupAgeYears": "{age} Tahun",
+  "@profileSetupAgeYears": {
+    "description": "Tampilan umur dalam tahun",
+    "placeholders": {
+      "age": {
+        "type": "int",
+        "example": "17"
+      }
+    }
+  },
+  "profileSetupAgeChip": "{age} th",
+  "@profileSetupAgeChip": {
+    "description": "Chip pilihan umur cepat",
+    "placeholders": {
+      "age": {
+        "type": "int",
+        "example": "17"
+      }
+    }
+  },
+  "profileSetupLocalNotice": "Data hanya tersimpan secara lokal di perangkatmu tanpa perlu akun & sandi.",
+  "@profileSetupLocalNotice": {
+    "description": "Pemberitahuan penyimpanan lokal di layar profil"
+  },
+  "profileSetupPrimaryButton": "Mulai Petualangan",
+  "@profileSetupPrimaryButton": {
+    "description": "Tombol utama simpan profil"
+  },
+  "profileSetupSkipButton": "Lewati & Masuk Cepat",
+  "@profileSetupSkipButton": {
+    "description": "Tombol lewati pengaturan profil"
+  },
+  "profileSetupDefaultGuestName": "Siswa Jawa",
+  "@profileSetupDefaultGuestName": {
+    "description": "Nama default jika pengguna melewati pengisian nama"
+  },
+  "settingsProfileDialogTitle": "Data Diri & Karakter",
+  "@settingsProfileDialogTitle": {
+    "description": "Judul dialog data diri di Pengaturan"
+  },
+  "settingsProfileDialogNickname": "Nama Panggilan",
+  "@settingsProfileDialogNickname": {
+    "description": "Label nama panggilan di dialog Pengaturan"
+  },
+  "settingsProfileDialogCharacterAge": "Karakter & Umur",
+  "@settingsProfileDialogCharacterAge": {
+    "description": "Label karakter dan umur di dialog Pengaturan"
+  },
+  "settingsProfileDialogCharacterAgeValue": "{genderLabel} ({age} Tahun)",
+  "@settingsProfileDialogCharacterAgeValue": {
+    "description": "Nilai karakter dan umur di dialog Pengaturan",
+    "placeholders": {
+      "genderLabel": {
+        "type": "String",
+        "example": "Putra"
+      },
+      "age": {
+        "type": "int",
+        "example": "17"
+      }
+    }
+  },
+  "settingsProfileDialogLocalNote": "Data disimpan secara lokal di perangkat tanpa akun & kata sandi.",
+  "@settingsProfileDialogLocalNote": {
+    "description": "Catatan lokal di dialog data diri Pengaturan"
+  },
+  "settingsProfileDialogEditButton": "Ubah Data",
+  "@settingsProfileDialogEditButton": {
+    "description": "Tombol ubah data di dialog Pengaturan"
+  },
+  "drawingChooseAksaraButton": "Pilih aksara",
+  "@drawingChooseAksaraButton": {
+    "description": "Label tombol pemilih daftar 20 aksara di kanvas gambar"
+  },
+  "drawingPickerTitle": "Pilih Aksara Dasar",
+  "@drawingPickerTitle": {
+    "description": "Judul sheet pemilih 20 aksara dasar"
+  },
+  "drawingPickerSubtitle": "Pilih salah satu aksara yang tersedia untuk berlatih menulis.",
+  "@drawingPickerSubtitle": {
+    "description": "Subjudul sheet pemilih 20 aksara dasar"
+  },
+  "drawingPickerLockedLabel": "Segera hadir",
+  "@drawingPickerLockedLabel": {
+    "description": "Label singkat aksara yang belum memiliki data kurva"
+  },
+  "drawingPickerLockedToast": "Aksara {name} belum tersedia untuk latihan menulis.",
+  "@drawingPickerLockedToast": {
+    "description": "Pesan saat mengetuk aksara yang terkunci di pemilih",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Da"
+      }
+    }
   }
 }

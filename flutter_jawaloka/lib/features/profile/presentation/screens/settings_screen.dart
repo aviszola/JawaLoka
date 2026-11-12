@@ -3,6 +3,7 @@ import '../../../../core/l10n/app_locales.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/profile/profile_scope.dart';
+import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/blangkon_painter.dart';
@@ -224,22 +225,29 @@ class _SettingsScreenState extends State<SettingsScreen>
     final profile = ProfileScope.maybeOf(context);
     final l10n = context.l10n;
     final name = profile?.displayName ?? 'Dimas';
+    final gender = profile?.gender ?? UserGender.male;
+    final genderLabel = gender == UserGender.female
+        ? l10n.profileSetupFemaleTitle
+        : l10n.profileSetupMaleTitle;
 
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text(
-          'Data Diri & Karakter',
-          style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.ink),
+        title: Text(
+          l10n.settingsProfileDialogTitle,
+          style: const TextStyle(
+            fontWeight: FontWeight.w700,
+            color: AppColors.ink,
+          ),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Nama Panggilan',
-              style: TextStyle(
+            Text(
+              l10n.settingsProfileDialogNickname,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: AppColors.inkSecondary,
@@ -255,9 +263,9 @@ class _SettingsScreenState extends State<SettingsScreen>
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Karakter & Umur',
-              style: TextStyle(
+            Text(
+              l10n.settingsProfileDialogCharacterAge,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 color: AppColors.inkSecondary,
@@ -265,7 +273,10 @@ class _SettingsScreenState extends State<SettingsScreen>
             ),
             const SizedBox(height: 2),
             Text(
-              '${profile?.gender.label ?? "Putra"} (${profile?.age ?? 17} Tahun)',
+              l10n.settingsProfileDialogCharacterAgeValue(
+                genderLabel,
+                profile?.age ?? 17,
+              ),
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
@@ -273,9 +284,9 @@ class _SettingsScreenState extends State<SettingsScreen>
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
-              'Data disimpan secara lokal di perangkat tanpa akun & kata sandi.',
-              style: TextStyle(
+            Text(
+              l10n.settingsProfileDialogLocalNote,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: AppColors.inkSecondary,
@@ -289,9 +300,9 @@ class _SettingsScreenState extends State<SettingsScreen>
               Navigator.pop(ctx);
               Navigator.pushNamed(context, AppRouter.profileSetup);
             },
-            child: const Text(
-              'Ubah Data',
-              style: TextStyle(
+            child: Text(
+              l10n.settingsProfileDialogEditButton,
+              style: const TextStyle(
                 color: AppColors.amberDark,
                 fontWeight: FontWeight.w700,
               ),
