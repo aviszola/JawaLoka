@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import 'blangkon_painter.dart';
 import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/profile/profile_scope.dart';
@@ -26,7 +27,7 @@ class JavaneseAvatarWidget extends StatelessWidget {
     this.showEditButton = false,
     this.onEditTap,
     this.progress,
-    this.backgroundColor = const Color(0xFFFFF9E9),
+    this.backgroundColor = AppColors.surfaceWarm,
   });
 
   @override
@@ -113,7 +114,7 @@ class JavaneseAvatarWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFE0D5C3), width: 1.5),
+                border: Border.all(color: AppColors.border, width: 1.5),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.ink.withValues(alpha: 0.15),
@@ -123,7 +124,7 @@ class JavaneseAvatarWidget extends StatelessWidget {
                 ],
               ),
               child: const Icon(
-                Icons.edit_rounded,
+                AppIcons.edit,
                 size: 14,
                 color: AppColors.ink,
               ),

@@ -4,6 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/progression/reward_summary.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
@@ -161,17 +162,13 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 const SizedBox(height: 16),
                 Text(
                   l10n.drawingPickerTitle,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.ink,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 4),
                 Text(
                   l10n.drawingPickerSubtitle,
-                  style: const TextStyle(
-                    fontSize: 13,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w500,
                     color: AppColors.inkSecondary,
                   ),
                 ),
@@ -213,19 +210,16 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                             children: [
                               Text(
                                 target.aksaraChar,
-                                style: const TextStyle(
+                                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                                   fontFamily: 'NotoSansJavanese',
-                                  fontSize: 22,
-                                  color: AppColors.ink,
                                 ),
                               ),
                               const SizedBox(height: 2),
                               Text(
                                 target.aksaraName,
-                                style: TextStyle(
-                                  fontSize: 11,
+                                style: Theme.of(context).textTheme.labelMedium?.copyWith(
                                   fontWeight: isSelected
-                                      ? FontWeight.w800
+                                      ? FontWeight.w700
                                       : FontWeight.w600,
                                   color: isSelected
                                       ? AppColors.amberDark
@@ -334,7 +328,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               border: Border.all(color: AppColors.border),
             ),
             child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
+              AppIcons.back,
               size: 18,
               color: AppColors.ink,
             ),
@@ -343,11 +337,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       ),
       title: Text(
         context.l10n.drawingTitle,
-        style: const TextStyle(
-          color: AppColors.ink,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       centerTitle: true,
       actions: [
@@ -360,9 +350,8 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           ),
           child: Text(
             _activeTarget.aksaraName,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w700,
               color: AppColors.amberDark,
             ),
           ),
@@ -393,8 +382,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
           Text(
             _activeTarget.aksaraChar,
             key: const Key('quest_header_aksara_glyph'),
-            style: const TextStyle(
-              fontSize: 36,
+            style: Theme.of(context).textTheme.displayLarge?.copyWith(
               color: AppColors.amberDark,
               fontFamily: 'NotoSansJavanese',
               height: 1.1,
@@ -413,16 +401,12 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               children: [
                 Text(
                   _activeTarget.aksaraName,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.ink,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 Text(
                   context.l10n.drawingInstruction,
-                  style: const TextStyle(
-                    fontSize: 13,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w500,
                     color: AppColors.inkSecondary,
                   ),
                 ),
@@ -444,15 +428,14 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(
-                    Icons.grid_view_rounded,
+                    AppIcons.chooseScript,
                     size: 15,
                     color: AppColors.amberDark,
                   ),
                   const SizedBox(width: 6),
                   Text(
                     context.l10n.drawingChooseAksaraButton,
-                    style: const TextStyle(
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.amberDark,
                     ),
@@ -524,11 +507,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                   ),
                   child: Text(
                     context.l10n.drawingStrokeCount(_strokes.length),
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.inkSecondary,
-                    ),
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
               ),
@@ -551,7 +530,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
             button: true,
             child: OutlinedButton.icon(
               onPressed: _strokes.isEmpty ? null : _clearAll,
-              icon: const Icon(Icons.delete_outline_rounded, size: 18),
+              icon: const Icon(AppIcons.delete, size: 18),
               label: Text(context.l10n.drawingClearAll),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.error,
@@ -566,8 +545,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                textStyle: const TextStyle(
-                  fontSize: 14,
+                textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -584,7 +562,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
             button: true,
             child: OutlinedButton.icon(
               onPressed: _strokes.isEmpty ? null : _undoLastStroke,
-              icon: const Icon(Icons.undo_rounded, size: 18),
+              icon: const Icon(AppIcons.undo, size: 18),
               label: Text(context.l10n.drawingUndo),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.inkSecondary,
@@ -601,8 +579,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                textStyle: const TextStyle(
-                  fontSize: 14,
+                textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -761,7 +738,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
               )
             : Text(
                 context.l10n.drawingCheckButton,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.amber),
               ),
       ),
     );

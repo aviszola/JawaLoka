@@ -70,3 +70,12 @@ test_output.txt
 release_apks/
 run.bat
 **/android/.kotlin/
+
+# Certificates, keys, and credentials
+*.pem
+google-services.json
+service-account*.json
+
+# Package outputs
+*.aab
+*.apk

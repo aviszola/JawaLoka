@@ -1,55 +1,54 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/router/app_router.dart';
-import '../../../quiz/domain/quest_target.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 
-/// Kartu Misi Aktif — desain bersih & elegan berlatar kuning pastel hangat
-/// sesuai referensi visual iPhone 16. Tulisan berkontras tinggi dan sangat mudah dibaca.
+/// Kartu Misi Aktif — disederhanakan untuk anak kecil:
+/// label "Misi Hari Ini", aksara target besar, judul pendek,
+/// lencana +30 XP, bar progres bersegmen + "3/5", dan tombol "Mulai".
 class HomeHeroQuestCard extends StatelessWidget {
   const HomeHeroQuestCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final textTheme = Theme.of(context).textTheme;
 
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF7D46B),
-        borderRadius: BorderRadius.circular(26),
+        color: AppColors.primaryAmber,
+        borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF9E6E1A).withValues(alpha: 0.12),
-            blurRadius: 18,
+            color: AppColors.primaryDark.withValues(alpha: 0.14),
+            blurRadius: 16,
             offset: const Offset(0, 6),
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(26),
+        borderRadius: BorderRadius.circular(24),
         child: Stack(
           children: [
-            // Bentuk aksen lingkaran halus di pojok kanan atas (sesuai referensi)
             Positioned(
               right: -30,
               top: -30,
               child: Container(
-                width: 140,
-                height: 140,
+                width: 130,
+                height: 130,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                  color: AppColors.surfaceWarm.withValues(alpha: 0.55),
                 ),
               ),
             ),
-
-            // Konten Utama
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ── Baris Atas: Label Misi & Target ──
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -62,17 +61,16 @@ class HomeHeroQuestCard extends StatelessWidget {
                               height: 6,
                               decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFB57D18),
+                                color: AppColors.primaryDark,
                               ),
                             ),
                             const SizedBox(width: 6),
                             Flexible(
                               child: Text(
                                 l10n.homeHeroQuestBadge.toUpperCase(),
-                                style: const TextStyle(
-                                  color: Color(0xFF85580C),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w800,
+                                style: textTheme.labelMedium?.copyWith(
+                                  color: AppColors.ink,
+                                  fontWeight: FontWeight.w700,
                                   letterSpacing: 0.8,
                                 ),
                                 maxLines: 1,
@@ -83,114 +81,117 @@ class HomeHeroQuestCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Flexible(
-                        child: Text(
-                          l10n.homeHeroQuestTarget(
-                            (QuestTarget.questPassThreshold * 100).round(),
-                          ),
-                          style: const TextStyle(
-                            color: Color(0xFF85580C),
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.end,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-
-                  // ── Judul Utama Misi (Jelas & Kontras Tinggi) ──
-                  Text(
-                    l10n.homeHeroQuestTitle,
-                    style: const TextStyle(
-                      color: Color(0xFF231C14),
-                      fontSize: 23,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: -0.3,
-                      height: 1.25,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // ── Baris Tag Chips (Kapsul Putih Bersih) ──
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 6,
-                    children: [
-                      _buildPillTag('Aksara Jawa'),
-                      _buildPillTag('ꦲ (Ha)'),
-                      _buildPillTag('+30 XP'),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-
-                  // ── Informasi Progres & Kategori ──
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Expanded(
+                        decoration: BoxDecoration(
+                          color: AppColors.surface.withValues(alpha: 0.92),
+                          borderRadius: BorderRadius.circular(99),
+                          border: Border.all(color: AppColors.border),
+                        ),
                         child: Text(
-                          '3 dari 5 aksara selesai',
-                          style: TextStyle(
-                            color: Color(0xFF332612),
-                            fontSize: 12,
+                          '+30 XP',
+                          style: textTheme.labelMedium?.copyWith(
+                            color: AppColors.ink,
                             fontWeight: FontWeight.w700,
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'Aksara Legena',
-                        style: TextStyle(
-                          color: const Color(0xFF7C5410),
-                          fontSize: 12,
-                          decoration: TextDecoration.underline,
-                          decorationColor: const Color(0xFF7C5410),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-
-                  // ── Segmented Progress Bar ──
+                  const SizedBox(height: 10),
                   Row(
-                    children: List.generate(5, (index) {
-                      final isFilled = index < 3;
-                      return Expanded(
-                        child: Container(
-                          height: 6,
-                          margin: EdgeInsets.only(right: index < 4 ? 6 : 0),
-                          decoration: BoxDecoration(
-                            color: isFilled
-                                ? const Color(0xFFDE9516)
-                                : const Color(0xFFEFE0A8),
-                            borderRadius: BorderRadius.circular(3),
+                    children: [
+                      Container(
+                        width: 64,
+                        height: 64,
+                        decoration: BoxDecoration(
+                          color: AppColors.surfaceWarm,
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(
+                            color: AppColors.primaryDark.withValues(alpha: 0.25),
                           ),
                         ),
-                      );
-                    }),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'ꦲ',
+                          style: textTheme.displayLarge?.copyWith(
+                            fontFamily: 'NotoSansJavanese',
+                            color: AppColors.ink,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.homeHeroQuestTitle,
+                              style: textTheme.headlineLarge?.copyWith(
+                                color: AppColors.ink,
+                                letterSpacing: -0.3,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    children: List.generate(5, (index) {
+                                      final isFilled = index < 3;
+                                      return Expanded(
+                                        child: Container(
+                                          height: 7,
+                                          margin: EdgeInsets.only(
+                                            right: index < 4 ? 5 : 0,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: isFilled
+                                                ? AppColors.primaryDark
+                                                : AppColors.surfaceWarm
+                                                      .withValues(alpha: 0.8),
+                                            borderRadius: BorderRadius.circular(
+                                              4,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  l10n.homeHeroQuestProgressRatio(3, 5),
+                                  style: textTheme.labelLarge?.copyWith(
+                                    color: AppColors.ink,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 20),
-
-                  // ── Tombol Putih Penuh (Kontras Maksimal) ──
+                  const SizedBox(height: 14),
                   SizedBox(
                     width: double.infinity,
-                    height: 48,
+                    height: 44,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(context, AppRouter.drawingCanvas);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: const Color(0xFF231C14),
+                        backgroundColor: AppColors.surface,
+                        foregroundColor: AppColors.ink,
                         elevation: 0,
                         side: const BorderSide(
-                          color: Color(0xFFEED17B),
+                          color: AppColors.border,
                           width: 1.2,
                         ),
                         shape: const StadiumBorder(),
@@ -202,11 +203,10 @@ class HomeHeroQuestCard extends StatelessWidget {
                         children: [
                           Flexible(
                             child: Text(
-                              l10n.homeHeroQuestButton,
-                              style: const TextStyle(
-                                color: Color(0xFF231C14),
-                                fontSize: 15,
-                                fontWeight: FontWeight.w800,
+                              l10n.quizPathBannerStart,
+                              style: textTheme.titleMedium?.copyWith(
+                                color: AppColors.ink,
+                                fontWeight: FontWeight.w700,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -214,9 +214,9 @@ class HomeHeroQuestCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 8),
                           const Icon(
-                            Icons.arrow_forward_rounded,
+                            AppIcons.forward,
                             size: 16,
-                            color: Color(0xFF231C14),
+                            color: AppColors.ink,
                           ),
                         ],
                       ),
@@ -226,28 +226,6 @@ class HomeHeroQuestCard extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPillTag(String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.92),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color(0xFFEED07C).withValues(alpha: 0.6),
-          width: 1,
-        ),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Color(0xFF2A2012),
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
         ),
       ),
     );

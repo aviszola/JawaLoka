@@ -75,4 +75,10 @@ test_output.txt
 # Release artifacts
 release_apks/
 run.bat
+dart_defines.json
+*.pem
+google-services.json
+service-account*.json
+*.aab
+*.apk
 

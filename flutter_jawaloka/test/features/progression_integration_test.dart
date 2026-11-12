@@ -163,7 +163,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 400));
 
-        expect(find.text('+30 XP (Misi Selesai)'), findsOneWidget);
+        expect(find.text('+30 XP (Latihan Selesai)'), findsOneWidget);
       },
     );
 

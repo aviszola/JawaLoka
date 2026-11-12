@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
+import '../../../../core/presentation/widgets/app_dialog.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
@@ -265,7 +267,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
                                       child: Icon(
-                                        Icons.person_outline,
+                                        AppIcons.person,
                                         color: AppColors.inkSecondary,
                                         size: 20,
                                       ),
@@ -287,7 +289,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
                                       child: Icon(
-                                        Icons.email_outlined,
+                                        AppIcons.email,
                                         color: AppColors.inkSecondary,
                                         size: 20,
                                       ),
@@ -298,7 +300,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                         ? const Padding(
                                             padding: EdgeInsets.all(14),
                                             child: Icon(
-                                              Icons.check_circle_rounded,
+                                              AppIcons.checkCircle,
                                               color: AppColors.success,
                                               size: 20,
                                             ),
@@ -324,7 +326,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
                                       child: Icon(
-                                        Icons.lock_outline,
+                                        AppIcons.password,
                                         color: AppColors.inkSecondary,
                                         size: 20,
                                       ),
@@ -342,7 +344,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                     child: Row(
                                       children: [
                                         const Icon(
-                                          Icons.info_outline,
+                                          AppIcons.info,
                                           size: 14,
                                           color: AppColors.amberDark,
                                         ),
@@ -407,7 +409,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                                 ),
                                 const SizedBox(width: 8),
                                 const Icon(
-                                  Icons.arrow_forward_rounded,
+                                  AppIcons.forward,
                                   size: 18,
                                   color: AppColors.inkSecondary,
                                 ),
@@ -419,39 +421,27 @@ class _RegisterScreenState extends State<RegisterScreen>
                           Center(
                             child: GestureDetector(
                               onTap: () {
-                                showDialog<void>(
+                                showAppDialog<void>(
                                   context: context,
-                                  builder: (ctx) => AlertDialog(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    title: Text(
-                                      context.l10n.registerPrivacyPolicy,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        color: AppColors.ink,
-                                      ),
-                                    ),
-                                    content: Text(
-                                      context.l10n.settingsPrivacyPolicyContent,
-                                      style: const TextStyle(
-                                        color: AppColors.inkSecondary,
-                                        height: 1.4,
-                                      ),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(ctx),
-                                        child: Text(
-                                          context.l10n.settingsClose,
-                                          style: const TextStyle(
-                                            color: AppColors.ink,
-                                            fontWeight: FontWeight.w700,
-                                          ),
+                                  tone: AppDialogTone.info,
+                                  icon: AppIcons.privacy,
+                                  title: context.l10n.registerPrivacyPolicy,
+                                  customContent: ConstrainedBox(
+                                    constraints: const BoxConstraints(maxHeight: 220),
+                                    child: SingleChildScrollView(
+                                      child: Text(
+                                        context.l10n.settingsPrivacyPolicyContent,
+                                        textAlign: TextAlign.center,
+                                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                          color: AppColors.inkSecondary,
+                                          height: 1.4,
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
+                                  primaryLabel: context.l10n.settingsClose,
+                                  onPrimary: () =>
+                                      Navigator.of(context, rootNavigator: true).pop(),
                                 );
                               },
                               child: Text.rich(
@@ -540,7 +530,7 @@ class _BackButton extends StatelessWidget {
             border: Border.all(color: AppColors.border),
           ),
           child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
+            AppIcons.back,
             size: 18,
             color: AppColors.ink,
           ),

@@ -505,13 +505,13 @@ abstract class AppLocalizations {
   /// Label tombol tengah Misi/Quest
   ///
   /// In id, this message translates to:
-  /// **'Misi'**
+  /// **'Latihan'**
   String get navQuest;
 
   /// Label tab navigasi Kuis
   ///
   /// In id, this message translates to:
-  /// **'Kuis'**
+  /// **'Misi'**
   String get navQuiz;
 
   /// Label tab navigasi Profil
@@ -559,19 +559,19 @@ abstract class AppLocalizations {
   /// Judul strip mingguan kuis di Beranda
   ///
   /// In id, this message translates to:
-  /// **'Aktivitas Kuis Minggu Ini'**
+  /// **'Aktivitas Misi Minggu Ini'**
   String get homeWeeklyStripTitle;
 
   /// Jumlah kuis selesai minggu ini
   ///
   /// In id, this message translates to:
-  /// **'{count} kuis selesai'**
+  /// **'{count} misi selesai'**
   String homeWeeklyCompletedCount(int count);
 
   /// Pesan info streak pada strip mingguan
   ///
   /// In id, this message translates to:
-  /// **'Streak kuis {count} hari aktif. Selesaikan kuis harian untuk menjaga streak.'**
+  /// **'Streak misi {count} hari aktif. Selesaikan misi harian untuk menjaga streak.'**
   String homeWeeklyStreakInfo(int count);
 
   /// Singkatan hari Senin
@@ -619,7 +619,7 @@ abstract class AppLocalizations {
   /// Badge kartu misi harian
   ///
   /// In id, this message translates to:
-  /// **'MISI HARI INI'**
+  /// **'LATIHAN HARI INI'**
   String get homeHeroQuestBadge;
 
   /// Target presisi misi harian
@@ -649,7 +649,7 @@ abstract class AppLocalizations {
   /// Judul kartu lanjutkan kuis di Beranda
   ///
   /// In id, this message translates to:
-  /// **'Lanjutkan Kuis'**
+  /// **'Lanjutkan Misi'**
   String get homeContinueQuizTitle;
 
   /// Label tingkat kesulitan di kartu lanjutkan kuis
@@ -667,13 +667,13 @@ abstract class AppLocalizations {
   /// Progres bab terselesaikan di kartu lanjutkan kuis
   ///
   /// In id, this message translates to:
-  /// **'{completed} dari 10 bab kuis terselesaikan'**
+  /// **'{completed} dari 10 bab misi terselesaikan'**
   String homeContinueQuizProgress(int completed);
 
   /// Tombol menuju jalur kuis di Beranda
   ///
   /// In id, this message translates to:
-  /// **'Buka Jalur Kuis'**
+  /// **'Buka Jalur Misi'**
   String get homeContinueQuizButton;
 
   /// Judul bagian belajar cepat di Beranda
@@ -919,7 +919,7 @@ abstract class AppLocalizations {
   /// Judul layar jalur peta kuis
   ///
   /// In id, this message translates to:
-  /// **'Jalur Kuis'**
+  /// **'Jalur Misi'**
   String get quizPathTitle;
 
   /// Lencana jumlah kuis selesai di AppBar
@@ -1003,7 +1003,7 @@ abstract class AppLocalizations {
   /// Keterangan kuis di bottom sheet konfirmasi kuis
   ///
   /// In id, this message translates to:
-  /// **'Kuis {quizIndex} dari {totalQuizzes} · {questionCount} soal'**
+  /// **'Misi {quizIndex} dari {totalQuizzes} · {questionCount} soal'**
   String quizBottomSheetProgress(
     int quizIndex,
     int totalQuizzes,
@@ -1013,7 +1013,7 @@ abstract class AppLocalizations {
   /// Tombol mulai kuis pada bottom sheet
   ///
   /// In id, this message translates to:
-  /// **'Mulai Kuis'**
+  /// **'Mulai Misi'**
   String get quizBottomSheetStart;
 
   /// Tombol tunda kuis pada bottom sheet
@@ -1085,7 +1085,7 @@ abstract class AppLocalizations {
   /// Banner streak aktif di layar hasil kuis
   ///
   /// In id, this message translates to:
-  /// **'Streak kuis aktif: {days} hari'**
+  /// **'Streak misi aktif: {days} hari'**
   String quizResultStreakBanner(int days);
 
   /// Label statistik jumlah soal benar
@@ -1115,7 +1115,7 @@ abstract class AppLocalizations {
   /// Tombol ulangi kuis di layar hasil kuis
   ///
   /// In id, this message translates to:
-  /// **'Ulangi kuis'**
+  /// **'Ulangi misi'**
   String get quizResultRetry;
 
   /// Judul layar latihan menulis aksara
@@ -1163,7 +1163,7 @@ abstract class AppLocalizations {
   /// Judul layar hasil misi harian
   ///
   /// In id, this message translates to:
-  /// **'Hasil Misi'**
+  /// **'Hasil Latihan'**
   String get dailyResultTitle;
 
   /// Label meter kemiripan tulisan
@@ -1295,7 +1295,7 @@ abstract class AppLocalizations {
   /// Pill jumlah kuis minggu ini di Profil
   ///
   /// In id, this message translates to:
-  /// **'{count} Kuis Minggu Ini'**
+  /// **'{count} Misi Minggu Ini'**
   String profileQuizzesThisWeek(int count);
 
   /// Judul bagian koleksi lencana di Profil
@@ -1619,7 +1619,7 @@ abstract class AppLocalizations {
   /// Teks isi dialog kebijakan privasi
   ///
   /// In id, this message translates to:
-  /// **'Aplikasi JawaLoka (versi awal) menyimpan nama tampilan, usia, jenis kelamin, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal hanya di perangkat Anda. Data tidak dikirim ke server, tanpa iklan dan analitik. Menghapus data aplikasi atau mencopot pemasangan aplikasi akan menghapus seluruh data tersebut.'**
+  /// **'Aplikasi JawaLoka (versi awal) menyimpan data profil, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal di perangkat Anda. Penerjemah offline tidak mengirim data ke luar perangkat. Hanya jika Anda menekan tombol \"Terjemahkan dengan AI\", teks yang diketik dikirim ke Google Gemini untuk diterjemahkan. Aplikasi ini tidak memuat iklan maupun analitik. Menghapus data aplikasi atau mencopot pemasangan akan menghapus seluruh data lokal tersebut.'**
   String get settingsPrivacyPolicyContent;
 
   /// Tombol tutup dialog
@@ -1841,7 +1841,7 @@ abstract class AppLocalizations {
   /// Tombol aksi mulai kuis pada detail aksara
   ///
   /// In id, this message translates to:
-  /// **'Mulai Kuis'**
+  /// **'Mulai Misi'**
   String get aksaraDetailQuizButton;
 
   /// Judul layar detail kosa kata
@@ -2033,13 +2033,13 @@ abstract class AppLocalizations {
   /// Judul dialog keluar kuis
   ///
   /// In id, this message translates to:
-  /// **'Keluar dari Kuis?'**
+  /// **'Keluar dari Misi?'**
   String get quizExitDialogTitle;
 
   /// Pesan peringatan dialog keluar kuis
   ///
   /// In id, this message translates to:
-  /// **'Progres kuis saat ini tidak akan disimpan.'**
+  /// **'Progres misi saat ini tidak akan disimpan.'**
   String get quizExitDialogMessage;
 
   /// Tombol konfirmasi keluar kuis
@@ -2051,7 +2051,7 @@ abstract class AppLocalizations {
   /// Tombol batal keluar kuis
   ///
   /// In id, this message translates to:
-  /// **'Lanjutkan'**
+  /// **'Lanjutkan misi'**
   String get quizExitDialogCancel;
 
   /// Judul bottom sheet penggunaan bahasa dan unggah-ungguh
@@ -3211,6 +3211,168 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Aksara {name} belum tersedia untuk latihan menulis.'**
   String drawingPickerLockedToast(String name);
+
+  /// Opsi deteksi otomatis bahasa asal pada penerjemah
+  ///
+  /// In id, this message translates to:
+  /// **'Otomatis'**
+  String get translatorLangAuto;
+
+  /// Tombol sekunder untuk menerjemahkan teks memakai AI
+  ///
+  /// In id, this message translates to:
+  /// **'Terjemahkan dengan AI'**
+  String get translatorAiButton;
+
+  /// Catatan singkat privasi di bawah tombol Terjemahkan dengan AI
+  ///
+  /// In id, this message translates to:
+  /// **'Teks yang kamu ketik dikirim ke Google Gemini.'**
+  String get translatorAiPrivacyNotice;
+
+  /// Pemberitahuan saat kunci API AI tidak dikonfigurasi pada build
+  ///
+  /// In id, this message translates to:
+  /// **'Fitur AI belum diaktifkan'**
+  String get translatorAiDisabledNotice;
+
+  /// Label peringatan pada hasil terjemahan yang dihasilkan AI
+  ///
+  /// In id, this message translates to:
+  /// **'Terjemahan AI (perkiraan), belum diperiksa penutur Jawa'**
+  String get translatorAiResultLabel;
+
+  /// Informasi bahasa sumber yang terdeteksi AI dan tingkat keyakinan
+  ///
+  /// In id, this message translates to:
+  /// **'Terdeteksi: {language} • Keyakinan: {confidence}'**
+  String translatorAiResultMeta(String language, String confidence);
+
+  /// Label saat AI tidak dapat memastikan bahasa sumber
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak diketahui'**
+  String get translatorAiDetectedUnknown;
+
+  /// Tingkat keyakinan AI tinggi
+  ///
+  /// In id, this message translates to:
+  /// **'Tinggi'**
+  String get translatorAiConfidenceHigh;
+
+  /// Tingkat keyakinan AI sedang
+  ///
+  /// In id, this message translates to:
+  /// **'Sedang'**
+  String get translatorAiConfidenceMedium;
+
+  /// Tingkat keyakinan AI rendah
+  ///
+  /// In id, this message translates to:
+  /// **'Rendah'**
+  String get translatorAiConfidenceLow;
+
+  /// Pesan saat bahasa sumber yang terdeteksi AI sama dengan bahasa tujuan
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa sumber dan tujuan sama'**
+  String get translatorAiErrorSameLanguage;
+
+  /// Pesan galat saat perangkat tidak terhubung ke internet
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak ada koneksi internet. Coba lagi nanti atau gunakan kamus offline.'**
+  String get translatorAiErrorNoInternet;
+
+  /// Pesan galat saat autentikasi API AI ditolak (401/403)
+  ///
+  /// In id, this message translates to:
+  /// **'Kunci API AI tidak valid atau ditolak (401/403).'**
+  String get translatorAiErrorInvalidKey;
+
+  /// Pesan galat saat batas kuota API AI tercapai (429)
+  ///
+  /// In id, this message translates to:
+  /// **'Kuota permintaan AI tercapai (429). Coba lagi nanti.'**
+  String get translatorAiErrorQuota;
+
+  /// Pesan galat saat permintaan AI melebihi batas waktu
+  ///
+  /// In id, this message translates to:
+  /// **'Permintaan AI melebihi batas waktu 15 detik.'**
+  String get translatorAiErrorTimeout;
+
+  /// Pesan galat saat respons AI kosong atau diblokir
+  ///
+  /// In id, this message translates to:
+  /// **'Respons AI kosong atau diblokir oleh filter keamanan.'**
+  String get translatorAiErrorBlockedOrEmpty;
+
+  /// Pesan galat umum saat respons atau permintaan AI gagal
+  ///
+  /// In id, this message translates to:
+  /// **'Terjemahan AI gagal diproses. Coba lagi atau gunakan kamus offline.'**
+  String get translatorAiErrorOther;
+
+  /// Subjudul blok streak: jumlah kuis selesai minggu ini
+  ///
+  /// In id, this message translates to:
+  /// **'{count} misi selesai minggu ini'**
+  String homeStreakBlockSubtitle(int count);
+
+  /// Judul banner lanjutkan kuis di atas daftar node jalur kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan Misi'**
+  String get quizPathBannerTitle;
+
+  /// Teks progres di banner lanjutkan kuis
+  ///
+  /// In id, this message translates to:
+  /// **'{completed} dari {total} node selesai'**
+  String quizPathBannerProgress(int completed, int total);
+
+  /// Tombol mulai di banner lanjutkan kuis
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai'**
+  String get quizPathBannerStart;
+
+  /// Label zona 1 — node 1-10 [masih draf, belum divalidasi ahli]
+  ///
+  /// In id, this message translates to:
+  /// **'Kediri'**
+  String get kratonZone1Label;
+
+  /// Label zona 2 — node 11-20 [masih draf, belum divalidasi ahli]
+  ///
+  /// In id, this message translates to:
+  /// **'Singosari'**
+  String get kratonZone2Label;
+
+  /// Label zona 3 — node 21-30 [masih draf, belum divalidasi ahli]
+  ///
+  /// In id, this message translates to:
+  /// **'Majapahit'**
+  String get kratonZone3Label;
+
+  /// Label zona 4 — node 31-40 [masih draf, belum divalidasi ahli]
+  ///
+  /// In id, this message translates to:
+  /// **'Demak'**
+  String get kratonZone4Label;
+
+  /// Label zona 5 — node 41-50 [masih draf, belum divalidasi ahli]
+  ///
+  /// In id, this message translates to:
+  /// **'Mataram Islam'**
+  String get kratonZone5Label;
+
+  /// Rasio progres misi harian
+  ///
+  /// In id, this message translates to:
+  /// **'{done}/{total}'**
+  String homeHeroQuestProgressRatio(int done, int total);
 }
 
 class _AppLocalizationsDelegate

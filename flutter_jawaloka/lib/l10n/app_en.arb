@@ -67,8 +67,8 @@
   "authSkipToLearn": "Skip & Start Learning",
   "navHome": "Home",
   "navLearn": "Learn",
-  "navQuest": "Quest",
-  "navQuiz": "Quiz",
+  "navQuest": "Practice",
+  "navQuiz": "Mission",
   "navProfile": "Profile",
   "homeGreetingMorning": "Good morning",
   "homeGreetingAfternoon": "Good afternoon",
@@ -76,9 +76,9 @@
   "homeGreetingNight": "Good night",
   "homeGreetingUser": "Hello, {name}!",
   "homeLevelPill": "Level {level}",
-  "homeWeeklyStripTitle": "This Week's Quiz Activity",
-  "homeWeeklyCompletedCount": "{count} quizzes completed",
-  "homeWeeklyStreakInfo": "Quiz streak active for {count} days. Complete daily quizzes to maintain streak.",
+  "homeWeeklyStripTitle": "This Week's Mission Activity",
+  "homeWeeklyCompletedCount": "{count} missions completed",
+  "homeWeeklyStreakInfo": "Mission streak active for {count} days. Complete daily missions to maintain streak.",
   "dayMon": "Mon",
   "dayTue": "Tue",
   "dayWed": "Wed",
@@ -86,16 +86,16 @@
   "dayFri": "Fri",
   "daySat": "Sat",
   "daySun": "Sun",
-  "homeHeroQuestBadge": "TODAY'S QUEST",
+  "homeHeroQuestBadge": "TODAY'S PRACTICE",
   "homeHeroQuestTarget": "Target: ≥{percent}% Precision",
   "homeHeroQuestTitle": "Aksara \"Ha\" (ꦲ)",
   "homeHeroQuestDesc": "Write the first basic Hanacaraka character with accurate strokes.",
   "homeHeroQuestButton": "Start Drawing",
-  "homeContinueQuizTitle": "Continue Quiz",
+  "homeContinueQuizTitle": "Continue Mission",
   "homeContinueQuizLevel": "Level: Intermediate",
   "homeContinueQuizNode": "Node 4: Script Ra (ꦫ)",
-  "homeContinueQuizProgress": "{completed} of 10 quiz chapters completed",
-  "homeContinueQuizButton": "Open Quiz Path",
+  "homeContinueQuizProgress": "{completed} of 10 mission chapters completed",
+  "homeContinueQuizButton": "Open Mission Path",
   "homeQuickLearnTitle": "Quick Learn",
   "homeQuickLearnSubtitle": "Short Topics",
   "homeQuickLearnVocab": "Vocabulary",
@@ -136,7 +136,7 @@
   "difficultyMudah": "Easy",
   "difficultyMahir": "Intermediate",
   "difficultySangatMahir": "Advanced",
-  "quizPathTitle": "Quiz Path",
+  "quizPathTitle": "Mission Path",
   "quizCompletedBadge": "{count} Completed",
   "quizUnit1Title": "Unit 1: Greetings and Initial Etiquette",
   "quizUnit1Subtitle": "Fundamentals of conversation and courteous manners",
@@ -150,8 +150,8 @@
   "quizTopicKeluarga": "Family",
   "quizTopicRumah": "House",
   "quizTopicKerabat": "Relatives",
-  "quizBottomSheetProgress": "Quiz {quizIndex} of {totalQuizzes} · {questionCount} questions",
-  "quizBottomSheetStart": "Start Quiz",
+  "quizBottomSheetProgress": "Mission {quizIndex} of {totalQuizzes} · {questionCount} questions",
+  "quizBottomSheetStart": "Start Mission",
   "quizBottomSheetLater": "Maybe later",
   "quizComboCount": "{count} Correct!",
   "quizOptionSemantics": "Option {letter}: {option}",
@@ -163,12 +163,12 @@
   "quizContinue": "Next",
   "quizFinish": "Finish",
   "quizResultAwesome": "Awesome!",
-  "quizResultStreakBanner": "Active quiz streak: {days} days",
+  "quizResultStreakBanner": "Active mission streak: {days} days",
   "quizResultCorrectAnswers": "Correct Answers",
   "quizResultTime": "Time",
   "quizResultAccuracy": "Accuracy",
   "quizResultBackHome": "Back to Home",
-  "quizResultRetry": "Retry quiz",
+  "quizResultRetry": "Retry mission",
   "drawingTitle": "Writing Practice",
   "drawingBackSemantics": "Back",
   "drawingInstruction": "Write this script!",
@@ -176,7 +176,7 @@
   "drawingClearAll": "Clear All",
   "drawingUndo": "Undo",
   "drawingCheckButton": "Check Writing",
-  "dailyResultTitle": "Quest Result",
+  "dailyResultTitle": "Practice Result",
   "dailyResultSimilarityLabel": "Similarity",
   "dailyResultCelebrationPassed": "Great job, {name}!",
   "dailyResultCelebrationFailed": "Let's Practice Again!",
@@ -198,7 +198,7 @@
   "profileCancelEdit": "Cancel",
   "profileLevelPill": "Lv {level}",
   "profileStreakPill": "Streak {days} days",
-  "profileQuizzesThisWeek": "{count} Quizzes This Week",
+  "profileQuizzesThisWeek": "{count} Missions This Week",
   "profileBadgeTitle": "Badges",
   "profileBadgeOpenCount": "1 / 4 Unlocked",
   "profileBadgeCollection": "Achievement Collection",
@@ -252,7 +252,7 @@
   "settingsLogoutConfirm": "Are you sure you want to log out?",
   "settingsCancel": "Cancel",
   "settingsPrivacyPolicy": "Privacy Policy",
-  "settingsPrivacyPolicyContent": "JawaLoka (early version) stores your display name, age, gender, language preference, blangkon collection, and learning progress locally on your device only. Data is not transmitted to any server, with no ads or analytics. Clearing app data or uninstalling the app will permanently delete all stored data.",
+  "settingsPrivacyPolicyContent": "JawaLoka (early version) stores your profile data, language preference, blangkon collection, and learning progress locally on your device. The offline translator does not send any data off your device. Only when you tap \"Translate with AI\" is the text you type sent to Google Gemini for translation. This app contains no ads or analytics. Clearing app data or uninstalling the app will permanently delete all local data.",
   "settingsClose": "Close",
   "settingsAccountRow": "Account",
   "settingsAccountDialogTitle": "Account Details",
@@ -289,7 +289,7 @@
   "aksaraDetailStep3Title": "Finish with tail",
   "aksaraDetailStep3Desc": "End with a short tail line curving inward.",
   "aksaraDetailWritingButton": "Writing Practice",
-  "aksaraDetailQuizButton": "Start Quiz",
+  "aksaraDetailQuizButton": "Start Mission",
   "vocabDetailTitle": "Vocabulary",
   "vocabDetailTag": "Easy",
   "vocabDetailMeaningHeader": "Meaning & Levels",
@@ -321,10 +321,10 @@
   "quizQuestionPromptWhichPronunciation": "Which is the pronunciation for the character below?",
   "quizSkip": "Skip",
   "quizCloseSemantics": "Close",
-  "quizExitDialogTitle": "Exit Quiz?",
-  "quizExitDialogMessage": "Current quiz progress will not be saved.",
+  "quizExitDialogTitle": "Exit Mission?",
+  "quizExitDialogMessage": "Current mission progress will not be saved.",
   "quizExitDialogConfirm": "Exit",
-  "quizExitDialogCancel": "Continue",
+  "quizExitDialogCancel": "Continue mission",
   "learnUnggahSheetTitle": "Language Usage",
   "learnUnggahSheetSubtitle": "Levels of Javanese speech according to etiquette and politeness.",
   "learnUnggahNgokoLuguTitle": "1. Ngoko Lugu",
@@ -625,5 +625,83 @@
   "drawingPickerTitle": "Choose Basic Script",
   "drawingPickerSubtitle": "Select one of the available scripts to practice writing.",
   "drawingPickerLockedLabel": "Coming soon",
-  "drawingPickerLockedToast": "Script {name} is not available for writing practice yet."
+  "drawingPickerLockedToast": "Script {name} is not available for writing practice yet.",
+  "translatorLangAuto": "Auto",
+  "translatorAiButton": "Translate with AI",
+  "translatorAiPrivacyNotice": "Text you type is sent to Google Gemini.",
+  "translatorAiDisabledNotice": "AI feature is not enabled yet",
+  "translatorAiResultLabel": "AI translation (estimate), not yet verified by a Javanese speaker",
+  "translatorAiResultMeta": "Detected: {language} • Confidence: {confidence}",
+  "translatorAiDetectedUnknown": "Unknown",
+  "translatorAiConfidenceHigh": "High",
+  "translatorAiConfidenceMedium": "Medium",
+  "translatorAiConfidenceLow": "Low",
+  "translatorAiErrorSameLanguage": "Source and target languages are the same",
+  "translatorAiErrorNoInternet": "No internet connection. Try again later or use the offline dictionary.",
+  "translatorAiErrorInvalidKey": "AI API key is invalid or rejected (401/403).",
+  "translatorAiErrorQuota": "AI request quota exceeded (429). Please try again later.",
+  "translatorAiErrorTimeout": "AI request timed out after 15 seconds.",
+  "translatorAiErrorBlockedOrEmpty": "AI response was empty or blocked by safety filters.",
+  "translatorAiErrorOther": "Failed to process AI translation. Try again or use the offline dictionary.",
+  "homeStreakBlockSubtitle": "{count} missions completed this week",
+  "@homeStreakBlockSubtitle": {
+    "description": "Streak block subtitle: quizzes completed this week",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPathBannerTitle": "Continue Mission",
+  "@quizPathBannerTitle": {
+    "description": "Title of continue quiz banner above node list"
+  },
+  "quizPathBannerProgress": "{completed} of {total} nodes done",
+  "@quizPathBannerProgress": {
+    "description": "Progress text in continue quiz banner",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPathBannerStart": "Start",
+  "@quizPathBannerStart": {
+    "description": "Start button in continue quiz banner"
+  },
+  "kratonZone1Label": "Kediri",
+  "@kratonZone1Label": {
+    "description": "Zone 1 label — nodes 1-10 [draft]"
+  },
+  "kratonZone2Label": "Singosari",
+  "@kratonZone2Label": {
+    "description": "Zone 2 label — nodes 11-20 [draft]"
+  },
+  "kratonZone3Label": "Majapahit",
+  "@kratonZone3Label": {
+    "description": "Zone 3 label — nodes 21-30 [draft]"
+  },
+  "kratonZone4Label": "Demak",
+  "@kratonZone4Label": {
+    "description": "Zone 4 label — nodes 31-40 [draft]"
+  },
+  "kratonZone5Label": "Mataram Islam",
+  "@kratonZone5Label": {
+    "description": "Zone 5 label — nodes 41-50 [draft]"
+  },
+  "homeHeroQuestProgressRatio": "{done}/{total}",
+  "@homeHeroQuestProgressRatio": {
+    "description": "Daily quest progress ratio",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

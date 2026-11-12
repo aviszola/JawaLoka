@@ -399,23 +399,25 @@ class _ErrorScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'ꦗ',
-              style: TextStyle(fontSize: 72, color: Color(0xFF231C14)),
+            SizedBox(
+              height: 76,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(
+                  'ꦗ',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+              ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Rute tidak ditemukan',
-              style: TextStyle(
-                color: Color(0xFF231C14),
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 8),
             Text(
               routeName,
-              style: const TextStyle(color: Color(0xFF6B6257), fontSize: 14),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

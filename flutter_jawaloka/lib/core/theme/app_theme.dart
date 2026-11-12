@@ -12,12 +12,31 @@ class AppTheme {
       useMaterial3: true,
       fontFamily: 'PlusJakartaSans',
       scaffoldBackgroundColor: AppColors.canvas,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.amber,
+      colorScheme: const ColorScheme(
+        brightness: Brightness.light,
         primary: AppColors.amber,
-        secondary: AppColors.accentOrange,
+        onPrimary: AppColors.ink,
+        primaryContainer: AppColors.surfaceWarm,
+        onPrimaryContainer: AppColors.primaryDark,
+        secondary: AppColors.accentOrangeText,
+        onSecondary: AppColors.surface,
+        secondaryContainer: AppColors.surfaceWarm,
+        onSecondaryContainer: AppColors.primaryDark,
+        tertiary: AppColors.primaryDark,
+        onTertiary: AppColors.surface,
         surface: AppColors.surface,
+        onSurface: AppColors.ink,
+        surfaceContainerHighest: AppColors.canvas,
+        onSurfaceVariant: AppColors.inkSecondary,
+        outline: AppColors.border,
+        outlineVariant: AppColors.border,
         error: AppColors.error,
+        onError: AppColors.surface,
+        shadow: AppColors.ink,
+        scrim: AppColors.ink,
+        inverseSurface: AppColors.ink,
+        onInverseSurface: AppColors.surface,
+        inversePrimary: AppColors.primaryAmber,
       ),
       // AppBar
       appBarTheme: const AppBarTheme(
@@ -37,9 +56,9 @@ class AppTheme {
       textTheme: const TextTheme(
         displayLarge: TextStyle(
           color: AppColors.ink,
-          fontSize: 36,
-          fontWeight: FontWeight.w800,
-          letterSpacing: -1.0,
+          fontSize: 32,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.5,
         ),
         displayMedium: TextStyle(
           color: AppColors.ink,
@@ -56,6 +75,7 @@ class AppTheme {
           color: AppColors.ink,
           fontSize: 20,
           fontWeight: FontWeight.w700,
+          letterSpacing: -0.3,
         ),
         titleLarge: TextStyle(
           color: AppColors.ink,
@@ -65,29 +85,35 @@ class AppTheme {
         titleMedium: TextStyle(
           color: AppColors.ink,
           fontSize: 16,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700,
         ),
         bodyLarge: TextStyle(
           color: AppColors.ink,
-          fontSize: 16,
+          fontSize: 15,
           fontWeight: FontWeight.w500,
         ),
         bodyMedium: TextStyle(
           color: AppColors.inkSecondary,
           fontSize: 14,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
         ),
         labelLarge: TextStyle(
           color: AppColors.ink,
-          fontSize: 16,
+          fontSize: 13,
           fontWeight: FontWeight.w700,
           letterSpacing: 0.1,
         ),
-        labelSmall: TextStyle(
-          color: AppColors.inkMuted,
+        labelMedium: TextStyle(
+          color: AppColors.inkSecondary,
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          letterSpacing: 0.8,
+          letterSpacing: 0.3,
+        ),
+        labelSmall: TextStyle(
+          color: AppColors.inkMuted,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
         ),
       ),
       // Input Decoration
@@ -163,11 +189,44 @@ class AppTheme {
       ),
       // Bottom Navigation Bar
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
-        selectedItemColor: AppColors.accentOrange,
+        backgroundColor: AppColors.surface,
+        selectedItemColor: AppColors.accentOrangeText,
         unselectedItemColor: AppColors.inkMuted,
         type: BottomNavigationBarType.fixed,
         elevation: 0,
+      ),
+      // Dialog, BottomSheet & SnackBar
+      dialogTheme: DialogThemeData(
+        backgroundColor: AppColors.surface,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.surface,
+        surfaceTintColor: Colors.transparent,
+      ),
+      snackBarTheme: SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.ink,
+        contentTextStyle: const TextStyle(
+          color: AppColors.surface,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.primaryDark,
+          textStyle: const TextStyle(fontWeight: FontWeight.w700),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.ink,
+          side: const BorderSide(color: AppColors.border, width: 1.5),
+          shape: const StadiumBorder(),
+        ),
       ),
       // Chip
       chipTheme: ChipThemeData(

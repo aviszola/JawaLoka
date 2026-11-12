@@ -5,6 +5,7 @@ import 'package:flutter_jawaloka/core/profile/profile_preferences.dart';
 import 'package:flutter_jawaloka/features/quiz/domain/quiz_path_models.dart';
 import 'package:flutter_jawaloka/features/quiz/domain/quiz_path_data.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/quiz_path_screen.dart';
+import 'package:flutter_jawaloka/features/quiz/presentation/widgets/temple_zone_background.dart';
 import '../helpers/pump_app.dart';
 
 void main() {
@@ -170,7 +171,7 @@ void main() {
   });
 
   group('QuizPathScreen Widget & 50-Node Layout Tests', () {
-    testWidgets('Renders QuizPathScreen with floating jump button', (
+    testWidgets('Renders QuizPathScreen with continue banner, Kediri temple zone, and no difficulty chips or mini map', (
       tester,
     ) async {
       await tester.pumpApp(const QuizPathScreen());
@@ -178,11 +179,21 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
 
       expect(find.byType(QuizPathScreen), findsOneWidget);
-      expect(find.byType(FloatingActionButton), findsOneWidget);
+      expect(find.byType(FloatingActionButton), findsNothing);
+      expect(find.byType(ChoiceChip), findsNothing);
+      expect(find.text('Lanjutkan Misi'), findsOneWidget);
+      expect(find.text('Mulai'), findsOneWidget);
+      expect(find.text('Kediri'), findsOneWidget);
+      expect(
+        find.byWidgetPredicate(
+          (w) => w is CustomPaint && w.painter is TempleZoneBackgroundPainter,
+        ),
+        findsWidgets,
+      );
       expect(find.byIcon(Icons.navigation_rounded), findsOneWidget);
     });
 
-    testWidgets('Tapping floating button triggers scroll towards active node', (
+    testWidgets('Tapping continue banner scrolls towards active node and Mulai opens sheet', (
       tester,
     ) async {
       final profile = ProfileController(
@@ -202,12 +213,21 @@ void main() {
       final scrollFinder = find.byType(CustomScrollView);
       expect(scrollFinder, findsOneWidget);
 
-      await tester.tap(find.byType(FloatingActionButton));
+      await tester.tap(find.text('Lanjutkan Misi'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 700));
 
       // Active node is Node 4 ('Perkenalan')
       expect(find.text('Perkenalan'), findsOneWidget);
+
+      // Scroll back up to banner and tap Mulai -> opens QuizBottomSheet
+      await tester.drag(scrollFinder, const Offset(0, 600));
+      await tester.pump(const Duration(milliseconds: 300));
+      await tester.tap(find.text('Mulai'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+
+      expect(find.text('Mulai Misi'), findsOneWidget);
     });
 
     testWidgets('Can scroll through the entire 50-node path without overflow', (

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,7 @@ import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
 import '../../../../core/validation/validators.dart';
@@ -33,7 +35,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
   int _selectedAge = 17;
   String? _nameError;
   bool _isLoading = false;
-
+  Timer? _holdTimer;
+  int _holdTicks = 0;
   late final AnimationController _entranceCtrl;
   late final Animation<double> _fadeAnim;
   late final Animation<Offset> _slideAnim;
@@ -72,6 +75,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
 
   @override
   void dispose() {
+    _holdTimer?.cancel();
     _entranceCtrl.dispose();
     _nameCtrl.dispose();
     _ageCtrl.dispose();
@@ -85,12 +89,36 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
   }
 
   void _setAge(int age) {
-    final safe = age.clamp(6, 99);
+    final safe = age.clamp(1, 120);
     HapticFeedback.lightImpact();
     setState(() {
       _selectedAge = safe;
       _ageCtrl.text = '$safe';
     });
+  }
+
+  void _startAgeHold(int delta) {
+    _holdTimer?.cancel();
+    _holdTicks = 0;
+    _scheduleNextHoldTick(delta);
+  }
+
+  void _scheduleNextHoldTick(int delta) {
+    final delayMs = (_holdTicks < 5)
+        ? 180
+        : (_holdTicks < 12 ? 100 : 55);
+    _holdTimer = Timer(Duration(milliseconds: delayMs), () {
+      if (!mounted) return;
+      _holdTicks++;
+      _setAge(_selectedAge + delta);
+      _scheduleNextHoldTick(delta);
+    });
+  }
+
+  void _stopAgeHold() {
+    _holdTimer?.cancel();
+    _holdTimer = null;
+    _holdTicks = 0;
   }
 
   Future<void> _saveAndProceed() async {
@@ -126,6 +154,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
       await profile.setDisplayName(normalizedName);
       await profile.setGender(_selectedGender);
       await profile.setAge(_selectedAge);
+      await profile.markSetupCompleted();
     }
 
     if (!mounted) return;
@@ -147,6 +176,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
       await profile.setDisplayName(finalName);
       await profile.setGender(_selectedGender);
       await profile.setAge(_selectedAge);
+      await profile.markSetupCompleted();
     }
 
     if (!mounted) return;
@@ -185,9 +215,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     child: Text(
                       l10n.profileSetupBadgeTag,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w800,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
                         color: AppColors.inkSecondary,
                         letterSpacing: 1.5,
                       ),
@@ -197,10 +226,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   Text(
                     l10n.profileSetupTitle,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.ink,
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       letterSpacing: -0.5,
                     ),
                   ),
@@ -208,11 +234,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   Text(
                     l10n.profileSetupSubtitle,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: AppColors.inkSecondary,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 22),
 
@@ -233,7 +255,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       child: JavaneseAvatarWidget(
                         size: 110,
                         gender: _selectedGender,
-                        backgroundColor: const Color(0xFFFFF7E6),
+                        backgroundColor: AppColors.surfaceWarm,
                       ),
                     ),
                   ),
@@ -257,11 +279,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       _selectedGender == UserGender.male
                           ? l10n.profileSetupCharacterMaleBadge
                           : l10n.profileSetupCharacterFemaleBadge,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.ink,
-                      ),
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -271,10 +289,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     alignment: Alignment.centerLeft,
                     child: Text(
                       l10n.profileSetupSelectCharacter,
-                      style: const TextStyle(
-                        fontSize: 15,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w700,
-                        color: AppColors.ink,
                       ),
                     ),
                   ),
@@ -287,7 +303,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                           gender: UserGender.male,
                           title: l10n.profileSetupMaleTitle,
                           subtitle: l10n.profileSetupMaleSubtitle,
-                          icon: Icons.face_rounded,
+                          icon: AppIcons.genderMale,
                         ),
                       ),
                       const SizedBox(width: 14),
@@ -297,7 +313,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                           gender: UserGender.female,
                           title: l10n.profileSetupFemaleTitle,
                           subtitle: l10n.profileSetupFemaleSubtitle,
-                          icon: Icons.face_3_rounded,
+                          icon: AppIcons.genderFemale,
                         ),
                       ),
                     ],
@@ -311,7 +327,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     controller: _nameCtrl,
                     errorText: _nameError,
                     prefixIcon: const Icon(
-                      Icons.person_outline_rounded,
+                      AppIcons.person,
                       color: AppColors.inkSecondary,
                       size: 22,
                     ),
@@ -323,10 +339,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.surface,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: const Color(0xFFE8DFCE),
+                        color: AppColors.border,
                         width: 1.2,
                       ),
                       boxShadow: [
@@ -345,17 +361,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                           children: [
                             Text(
                               l10n.profileSetupAgeLabel,
-                              style: const TextStyle(
-                                fontSize: 15,
+                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: AppColors.ink,
                               ),
                             ),
                             Text(
                               l10n.profileSetupAgeYears(_selectedAge),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w800,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                 color: AppColors.amberDark,
                               ),
                             ),
@@ -367,69 +379,28 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             _buildStepperButton(
-                              icon: Icons.remove_rounded,
+                              icon: AppIcons.remove,
+                              semanticLabel: '−',
                               onTap: () => _setAge(_selectedAge - 1),
+                              onHoldStart: () => _startAgeHold(-1),
+                              onHoldEnd: _stopAgeHold,
                             ),
                             Container(
                               width: 110,
                               alignment: Alignment.center,
                               child: Text(
                                 _selectedAge.toString(),
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w900,
-                                  color: AppColors.ink,
-                                ),
+                                style: Theme.of(context).textTheme.displayMedium,
                               ),
                             ),
                             _buildStepperButton(
-                              icon: Icons.add_rounded,
+                              icon: AppIcons.add,
+                              semanticLabel: '+',
                               onTap: () => _setAge(_selectedAge + 1),
+                              onHoldStart: () => _startAgeHold(1),
+                              onHoldEnd: _stopAgeHold,
                             ),
                           ],
-                        ),
-                        const SizedBox(height: 12),
-                        // Quick age chips
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 6,
-                          alignment: WrapAlignment.center,
-                          children: [10, 15, 17, 20, 25].map((age) {
-                            final isSelected = _selectedAge == age;
-                            return GestureDetector(
-                              onTap: () => _setAge(age),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 6,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: isSelected
-                                      ? AppColors.ink
-                                      : AppColors.canvas,
-                                  borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(
-                                    color: isSelected
-                                        ? AppColors.ink
-                                        : const Color(0xFFDDD3C2),
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Text(
-                                  l10n.profileSetupAgeChip(age),
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: isSelected
-                                        ? FontWeight.w700
-                                        : FontWeight.w600,
-                                    color: isSelected
-                                        ? Colors.white
-                                        : AppColors.inkSecondary,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }).toList(),
                         ),
                       ],
                     ),
@@ -443,13 +414,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF3ECE0),
+                      color: AppColors.surfaceWarm,
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: Row(
                       children: [
                         const Icon(
-                          Icons.verified_user_outlined,
+                          AppIcons.verifiedUser,
                           size: 18,
                           color: AppColors.inkSecondary,
                         ),
@@ -457,8 +428,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                         Expanded(
                           child: Text(
                             l10n.profileSetupLocalNotice,
-                            style: const TextStyle(
-                              fontSize: 12,
+                            style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: AppColors.inkSecondary,
                               fontWeight: FontWeight.w500,
                               height: 1.3,
@@ -474,7 +444,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   PrimaryButton(
                     label: l10n.profileSetupPrimaryButton,
                     isLoading: _isLoading,
-                    trailingIcon: Icons.arrow_forward_rounded,
+                    trailingIcon: AppIcons.forward,
                     onPressed: _saveAndProceed,
                   ),
                   const SizedBox(height: 12),
@@ -488,8 +458,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     ),
                     child: Text(
                       l10n.profileSetupSkipButton,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                         decoration: TextDecoration.underline,
                       ),
@@ -519,10 +488,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFFFF9EE) : Colors.white,
+          color: isSelected ? AppColors.surfaceWarm : AppColors.surface,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: isSelected ? AppColors.amberDark : const Color(0xFFE2D7C5),
+            color: isSelected ? AppColors.amberDark : AppColors.border,
             width: isSelected ? 2.2 : 1.2,
           ),
           boxShadow: isSelected
@@ -551,7 +520,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                 border: Border.all(
                   color: isSelected
                       ? AppColors.amberDark
-                      : const Color(0xFFE2D7C5),
+                      : AppColors.border,
                   width: 1.5,
                 ),
               ),
@@ -571,9 +540,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
                       color: isSelected
                           ? AppColors.ink
                           : AppColors.inkSecondary,
@@ -581,8 +549,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   ),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                       color: isSelected
                           ? AppColors.inkSecondary
@@ -594,7 +561,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
             ),
             if (isSelected)
               const Icon(
-                Icons.check_circle_rounded,
+                AppIcons.checkCircle,
                 color: AppColors.amberDark,
                 size: 20,
               ),
@@ -606,19 +573,30 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
 
   Widget _buildStepperButton({
     required IconData icon,
+    required String semanticLabel,
     required VoidCallback onTap,
+    required VoidCallback onHoldStart,
+    required VoidCallback onHoldEnd,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: const Color(0xFFF0E7D8),
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: const Color(0xFFDDD2C0), width: 1),
+    return Semantics(
+      button: true,
+      label: semanticLabel,
+      child: GestureDetector(
+        onTap: onTap,
+        onLongPressStart: (_) => onHoldStart(),
+        onLongPressEnd: (_) => onHoldEnd(),
+        onLongPressCancel: onHoldEnd,
+        behavior: HitTestBehavior.opaque,
+        child: Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            color: AppColors.surfaceWarm,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: AppColors.border, width: 1),
+          ),
+          child: Icon(icon, color: AppColors.ink, size: 22),
         ),
-        child: Icon(icon, color: AppColors.ink, size: 22),
       ),
     );
   }

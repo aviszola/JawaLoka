@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 
 /// Quick learning shortcuts row on HomeScreen.
@@ -12,40 +13,33 @@ class HomeQuickLearnSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final textTheme = Theme.of(context).textTheme;
     final items = [
       _QuickLearnItem(
         title: l10n.homeQuickLearnVocab,
-        subtitle: l10n.homeQuickLearnVocabSub,
-        icon: Icons.menu_book_rounded,
-        bgColor: AppColors.pastelSand,
-        iconColor: AppColors.ink,
+        icon: AppIcons.vocab,
+        tone: AppIconTone.sand,
         onTap: () => Navigator.pushNamed(context, AppRouter.vocabularyDetail),
       ),
       _QuickLearnItem(
         title: l10n.homeQuickLearnAksara,
-        subtitle: l10n.homeQuickLearnAksaraSub,
-        icon: Icons.edit_note_rounded,
-        bgColor: AppColors.amberSoft,
-        iconColor: AppColors.amberDark,
+        iconGlyph: 'ꦲ',
+        tone: AppIconTone.warm,
         onTap: () => Navigator.pushNamed(context, AppRouter.aksaraDetail),
       ),
       _QuickLearnItem(
         title: l10n.homeQuickLearnTranslator,
-        subtitle: l10n.homeQuickLearnTranslatorSub,
-        icon: Icons.translate_rounded,
-        bgColor: const Color(0xFFEBE6DC),
-        iconColor: AppColors.inkSecondary,
+        icon: AppIcons.translator,
+        tone: AppIconTone.success,
         onTap: () => Navigator.pushNamed(context, AppRouter.translator),
       ),
       _QuickLearnItem(
         title: l10n.homeQuickLearnEtiquette,
-        subtitle: l10n.homeQuickLearnEtiquetteSub,
-        icon: Icons.record_voice_over_rounded,
-        bgColor: const Color(0xFFF7ECDC),
-        iconColor: const Color(0xFF8C5424),
+        icon: AppIcons.etiquette,
+        tone: AppIconTone.warm,
         onTap: () {
           if (onNavigateTab != null) {
-            onNavigateTab!(1); // Belajar tab
+            onNavigateTab!(1);
           } else {
             Navigator.pushNamed(context, AppRouter.learnHub);
           }
@@ -53,13 +47,11 @@ class HomeQuickLearnSection extends StatelessWidget {
       ),
       _QuickLearnItem(
         title: l10n.homeQuickLearnProverbs,
-        subtitle: l10n.homeQuickLearnProverbsSub,
-        icon: Icons.auto_stories_rounded,
-        bgColor: const Color(0xFFF3ECE0),
-        iconColor: const Color(0xFF6E563E),
+        icon: AppIcons.proverbs,
+        tone: AppIconTone.sand,
         onTap: () {
           if (onNavigateTab != null) {
-            onNavigateTab!(1); // Belajar tab
+            onNavigateTab!(1);
           } else {
             Navigator.pushNamed(context, AppRouter.learnHub);
           }
@@ -76,42 +68,32 @@ class HomeQuickLearnSection extends StatelessWidget {
             Expanded(
               child: Text(
                 l10n.homeQuickLearnTitle,
-                style: const TextStyle(
+                style: textTheme.titleMedium?.copyWith(
                   color: AppColors.ink,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.w700,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(width: 8),
-            Text(
-              l10n.homeQuickLearnSubtitle,
-              style: const TextStyle(
-                color: AppColors.inkSecondary,
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
         SizedBox(
-          height: 112,
+          height: 84,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             itemCount: items.length,
-            separatorBuilder: (context, index) => const SizedBox(width: 12),
+            separatorBuilder: (context, index) => const SizedBox(width: 10),
             itemBuilder: (context, i) {
               final it = items[i];
               return GestureDetector(
                 onTap: it.onTap,
                 child: Container(
-                  width: 120,
+                  width: 108,
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
+                    horizontal: 10,
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
@@ -131,29 +113,35 @@ class HomeQuickLearnSection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(5),
+                        width: 30,
+                        height: 30,
                         decoration: BoxDecoration(
-                          color: it.bgColor,
+                          color: it.tone.backgroundColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Icon(it.icon, size: 18, color: it.iconColor),
+                        alignment: Alignment.center,
+                        child: it.iconGlyph != null
+                            ? Text(
+                                it.iconGlyph!,
+                                style: textTheme.bodyLarge?.copyWith(
+                                  fontFamily: 'NotoSansJavanese',
+                                  fontWeight: FontWeight.w700,
+                                  color: it.tone.iconColor,
+                                  height: 1.1,
+                                ),
+                              )
+                            : Icon(
+                                it.icon,
+                                size: 18,
+                                color: it.tone.iconColor,
+                              ),
                       ),
                       const SizedBox(height: 6),
                       Text(
                         it.title,
-                        style: const TextStyle(
+                        style: textTheme.labelMedium?.copyWith(
                           color: AppColors.ink,
-                          fontSize: 12,
                           fontWeight: FontWeight.w700,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        it.subtitle,
-                        style: const TextStyle(
-                          color: AppColors.inkSecondary,
-                          fontSize: 12,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -172,18 +160,16 @@ class HomeQuickLearnSection extends StatelessWidget {
 
 class _QuickLearnItem {
   final String title;
-  final String subtitle;
-  final IconData icon;
-  final Color bgColor;
-  final Color iconColor;
+  final IconData? icon;
+  final String? iconGlyph;
+  final AppIconTone tone;
   final VoidCallback onTap;
 
   const _QuickLearnItem({
     required this.title,
-    required this.subtitle,
-    required this.icon,
-    required this.bgColor,
-    required this.iconColor,
+    this.icon,
+    this.iconGlyph,
+    required this.tone,
     required this.onTap,
   });
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/progression/reward_summary.dart';
 import '../../domain/quest_target.dart';
@@ -238,7 +239,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                 border: Border.all(color: AppColors.border),
               ),
               child: const Icon(
-                Icons.arrow_back_ios_new_rounded,
+                AppIcons.back,
                 size: 18,
                 color: AppColors.ink,
               ),
@@ -247,11 +248,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         ),
         title: Text(
           context.l10n.dailyResultTitle,
-          style: const TextStyle(
-            color: AppColors.ink,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         centerTitle: true,
       ),
@@ -285,8 +282,8 @@ class _DailyResultScreenState extends State<DailyResultScreen>
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: isPassed
-              ? [AppColors.amber, AppColors.amberDark]
-              : [const Color(0xFFE8E1D6), const Color(0xFFD4C7B5)],
+              ? [AppColors.primaryAmber, AppColors.surfaceWarm]
+              : [AppColors.border, AppColors.pastelSand],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -320,11 +317,9 @@ class _DailyResultScreenState extends State<DailyResultScreen>
           isPassed
               ? l10n.dailyResultCelebrationPassed(widget.userName)
               : l10n.dailyResultCelebrationFailed,
-          style: const TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: AppColors.ink,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(height: 8),
         Text(
@@ -333,8 +328,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                   (QuestTarget.questPassThreshold * 100).round(),
                 )
               : l10n.dailyResultDescFailed,
-          style: const TextStyle(
-            fontSize: 14,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: AppColors.ink,
             height: 1.4,
           ),
@@ -381,11 +375,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         children: [
           Text(
             l10n.dailyResultComparison,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: AppColors.ink,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 16),
           Row(
@@ -437,7 +427,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
               color: isPassed ? AppColors.success : AppColors.inkMuted,
             ),
             child: Icon(
-              isPassed ? Icons.check_rounded : Icons.replay_rounded,
+              isPassed ? AppIcons.check : AppIcons.refresh,
               color: Colors.white,
               size: 24,
             ),
@@ -451,11 +441,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                   isPassed
                       ? l10n.dailyResultStatusPassed
                       : l10n.dailyResultStatusFailed,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.ink,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 4),
                 Text(
@@ -463,10 +449,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                     (widget.similarity * 100).round(),
                     (QuestTarget.questPassThreshold * 100).round(),
                   ),
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: AppColors.inkSecondary,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 if (widget.rewardSummary != null &&
                     widget.rewardSummary!.xpEarned > 0) ...[
@@ -481,9 +464,8 @@ class _DailyResultScreenState extends State<DailyResultScreen>
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      '+${widget.rewardSummary!.xpEarned} XP (${widget.rewardSummary!.isFirstClear ? 'Misi Selesai' : 'Latihan'})',
-                      style: const TextStyle(
-                        fontSize: 12,
+                      '+${widget.rewardSummary!.xpEarned} XP (${widget.rewardSummary!.isFirstClear ? 'Latihan Selesai' : 'Latihan'})',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColors.ink,
                       ),
@@ -527,7 +509,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
             ),
             child: Text(
               l10n.dailyResultContinueLearning,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.amber),
             ),
           ),
         ),
@@ -544,7 +526,7 @@ class _DailyResultScreenState extends State<DailyResultScreen>
             ),
             child: Text(
               l10n.dailyResultTryAgain,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
         ),
@@ -574,8 +556,7 @@ class _DrawingPanel extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 14,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontWeight: FontWeight.w600,
             color: AppColors.inkSecondary,
           ),
@@ -606,8 +587,7 @@ class _DrawingPanel extends StatelessWidget {
                         ))
                 : Text(
                     targetChar,
-                    style: const TextStyle(
-                      fontSize: 48,
+                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
                       color: AppColors.ink,
                       fontFamily: 'NotoSansJavanese',
                     ),

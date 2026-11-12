@@ -284,11 +284,11 @@
   "@navLearn": {
     "description": "Label tab navigasi Belajar"
   },
-  "navQuest": "Misi",
+  "navQuest": "Latihan",
   "@navQuest": {
     "description": "Label tombol tengah Misi/Quest"
   },
-  "navQuiz": "Kuis",
+  "navQuiz": "Misi",
   "@navQuiz": {
     "description": "Label tab navigasi Kuis"
   },
@@ -332,11 +332,11 @@
       }
     }
   },
-  "homeWeeklyStripTitle": "Aktivitas Kuis Minggu Ini",
+  "homeWeeklyStripTitle": "Aktivitas Misi Minggu Ini",
   "@homeWeeklyStripTitle": {
     "description": "Judul strip mingguan kuis di Beranda"
   },
-  "homeWeeklyCompletedCount": "{count} kuis selesai",
+  "homeWeeklyCompletedCount": "{count} misi selesai",
   "@homeWeeklyCompletedCount": {
     "description": "Jumlah kuis selesai minggu ini",
     "placeholders": {
@@ -346,7 +346,7 @@
       }
     }
   },
-  "homeWeeklyStreakInfo": "Streak kuis {count} hari aktif. Selesaikan kuis harian untuk menjaga streak.",
+  "homeWeeklyStreakInfo": "Streak misi {count} hari aktif. Selesaikan misi harian untuk menjaga streak.",
   "@homeWeeklyStreakInfo": {
     "description": "Pesan info streak pada strip mingguan",
     "placeholders": {
@@ -384,7 +384,7 @@
   "@daySun": {
     "description": "Singkatan hari Minggu"
   },
-  "homeHeroQuestBadge": "MISI HARI INI",
+  "homeHeroQuestBadge": "LATIHAN HARI INI",
   "@homeHeroQuestBadge": {
     "description": "Badge kartu misi harian"
   },
@@ -410,7 +410,7 @@
   "@homeHeroQuestButton": {
     "description": "Tombol aksi mulai menggambar di kartu hero"
   },
-  "homeContinueQuizTitle": "Lanjutkan Kuis",
+  "homeContinueQuizTitle": "Lanjutkan Misi",
   "@homeContinueQuizTitle": {
     "description": "Judul kartu lanjutkan kuis di Beranda"
   },
@@ -422,7 +422,7 @@
   "@homeContinueQuizNode": {
     "description": "Subjudul bab kuis aktif di kartu lanjutkan kuis"
   },
-  "homeContinueQuizProgress": "{completed} dari 10 bab kuis terselesaikan",
+  "homeContinueQuizProgress": "{completed} dari 10 bab misi terselesaikan",
   "@homeContinueQuizProgress": {
     "description": "Progres bab terselesaikan di kartu lanjutkan kuis",
     "placeholders": {
@@ -432,7 +432,7 @@
       }
     }
   },
-  "homeContinueQuizButton": "Buka Jalur Kuis",
+  "homeContinueQuizButton": "Buka Jalur Misi",
   "@homeContinueQuizButton": {
     "description": "Tombol menuju jalur kuis di Beranda"
   },
@@ -596,7 +596,7 @@
   "@difficultySangatMahir": {
     "description": "Label tingkat kesulitan sangat mahir"
   },
-  "quizPathTitle": "Jalur Kuis",
+  "quizPathTitle": "Jalur Misi",
   "@quizPathTitle": {
     "description": "Judul layar jalur peta kuis"
   },
@@ -658,7 +658,7 @@
   "@quizTopicKerabat": {
     "description": "Topik kuis Kerabat"
   },
-  "quizBottomSheetProgress": "Kuis {quizIndex} dari {totalQuizzes} · {questionCount} soal",
+  "quizBottomSheetProgress": "Misi {quizIndex} dari {totalQuizzes} · {questionCount} soal",
   "@quizBottomSheetProgress": {
     "description": "Keterangan kuis di bottom sheet konfirmasi kuis",
     "placeholders": {
@@ -676,7 +676,7 @@
       }
     }
   },
-  "quizBottomSheetStart": "Mulai Kuis",
+  "quizBottomSheetStart": "Mulai Misi",
   "@quizBottomSheetStart": {
     "description": "Tombol mulai kuis pada bottom sheet"
   },
@@ -746,7 +746,7 @@
   "@quizResultAwesome": {
     "description": "Judul kemenangan pada layar hasil kuis"
   },
-  "quizResultStreakBanner": "Streak kuis aktif: {days} hari",
+  "quizResultStreakBanner": "Streak misi aktif: {days} hari",
   "@quizResultStreakBanner": {
     "description": "Banner streak aktif di layar hasil kuis",
     "placeholders": {
@@ -772,7 +772,7 @@
   "@quizResultBackHome": {
     "description": "Tombol kembali ke Beranda dari hasil kuis"
   },
-  "quizResultRetry": "Ulangi kuis",
+  "quizResultRetry": "Ulangi misi",
   "@quizResultRetry": {
     "description": "Tombol ulangi kuis di layar hasil kuis"
   },
@@ -810,7 +810,7 @@
   "@drawingCheckButton": {
     "description": "Tombol periksa tulisan aksara pada kanvas"
   },
-  "dailyResultTitle": "Hasil Misi",
+  "dailyResultTitle": "Hasil Latihan",
   "@dailyResultTitle": {
     "description": "Judul layar hasil misi harian"
   },
@@ -938,7 +938,7 @@
       }
     }
   },
-  "profileQuizzesThisWeek": "{count} Kuis Minggu Ini",
+  "profileQuizzesThisWeek": "{count} Misi Minggu Ini",
   "@profileQuizzesThisWeek": {
     "description": "Pill jumlah kuis minggu ini di Profil",
     "placeholders": {
@@ -1133,7 +1133,7 @@
   "@settingsPrivacyPolicy": {
     "description": "Judul baris kebijakan privasi di Pengaturan"
   },
-  "settingsPrivacyPolicyContent": "Aplikasi JawaLoka (versi awal) menyimpan nama tampilan, usia, jenis kelamin, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal hanya di perangkat Anda. Data tidak dikirim ke server, tanpa iklan dan analitik. Menghapus data aplikasi atau mencopot pemasangan aplikasi akan menghapus seluruh data tersebut.",
+  "settingsPrivacyPolicyContent": "Aplikasi JawaLoka (versi awal) menyimpan data profil, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal di perangkat Anda. Penerjemah offline tidak mengirim data ke luar perangkat. Hanya jika Anda menekan tombol \"Terjemahkan dengan AI\", teks yang diketik dikirim ke Google Gemini untuk diterjemahkan. Aplikasi ini tidak memuat iklan maupun analitik. Menghapus data aplikasi atau mencopot pemasangan akan menghapus seluruh data lokal tersebut.",
   "@settingsPrivacyPolicyContent": {
     "description": "Teks isi dialog kebijakan privasi"
   },
@@ -1286,7 +1286,7 @@
   "@aksaraDetailWritingButton": {
     "description": "Tombol aksi latihan menulis pada detail aksara"
   },
-  "aksaraDetailQuizButton": "Mulai Kuis",
+  "aksaraDetailQuizButton": "Mulai Misi",
   "@aksaraDetailQuizButton": {
     "description": "Tombol aksi mulai kuis pada detail aksara"
   },
@@ -1458,11 +1458,11 @@
   "@quizCloseSemantics": {
     "description": "Semantik tombol tutup kuis"
   },
-  "quizExitDialogTitle": "Keluar dari Kuis?",
+  "quizExitDialogTitle": "Keluar dari Misi?",
   "@quizExitDialogTitle": {
     "description": "Judul dialog keluar kuis"
   },
-  "quizExitDialogMessage": "Progres kuis saat ini tidak akan disimpan.",
+  "quizExitDialogMessage": "Progres misi saat ini tidak akan disimpan.",
   "@quizExitDialogMessage": {
     "description": "Pesan peringatan dialog keluar kuis"
   },
@@ -1470,7 +1470,7 @@
   "@quizExitDialogConfirm": {
     "description": "Tombol konfirmasi keluar kuis"
   },
-  "quizExitDialogCancel": "Lanjutkan",
+  "quizExitDialogCancel": "Lanjutkan misi",
   "@quizExitDialogCancel": {
     "description": "Tombol batal keluar kuis"
   },
@@ -2277,6 +2277,145 @@
       "name": {
         "type": "String",
         "example": "Da"
+      }
+    }
+  },
+  "translatorLangAuto": "Otomatis",
+  "@translatorLangAuto": {
+    "description": "Opsi deteksi otomatis bahasa asal pada penerjemah"
+  },
+  "translatorAiButton": "Terjemahkan dengan AI",
+  "@translatorAiButton": {
+    "description": "Tombol sekunder untuk menerjemahkan teks memakai AI"
+  },
+  "translatorAiPrivacyNotice": "Teks yang kamu ketik dikirim ke Google Gemini.",
+  "@translatorAiPrivacyNotice": {
+    "description": "Catatan singkat privasi di bawah tombol Terjemahkan dengan AI"
+  },
+  "translatorAiDisabledNotice": "Fitur AI belum diaktifkan",
+  "@translatorAiDisabledNotice": {
+    "description": "Pemberitahuan saat kunci API AI tidak dikonfigurasi pada build"
+  },
+  "translatorAiResultLabel": "Terjemahan AI (perkiraan), belum diperiksa penutur Jawa",
+  "@translatorAiResultLabel": {
+    "description": "Label peringatan pada hasil terjemahan yang dihasilkan AI"
+  },
+  "translatorAiResultMeta": "Terdeteksi: {language} • Keyakinan: {confidence}",
+  "@translatorAiResultMeta": {
+    "description": "Informasi bahasa sumber yang terdeteksi AI dan tingkat keyakinan",
+    "placeholders": {
+      "language": {
+        "type": "String",
+        "example": "Indonesia"
+      },
+      "confidence": {
+        "type": "String",
+        "example": "Tinggi"
+      }
+    }
+  },
+  "translatorAiDetectedUnknown": "Tidak diketahui",
+  "@translatorAiDetectedUnknown": {
+    "description": "Label saat AI tidak dapat memastikan bahasa sumber"
+  },
+  "translatorAiConfidenceHigh": "Tinggi",
+  "@translatorAiConfidenceHigh": {
+    "description": "Tingkat keyakinan AI tinggi"
+  },
+  "translatorAiConfidenceMedium": "Sedang",
+  "@translatorAiConfidenceMedium": {
+    "description": "Tingkat keyakinan AI sedang"
+  },
+  "translatorAiConfidenceLow": "Rendah",
+  "@translatorAiConfidenceLow": {
+    "description": "Tingkat keyakinan AI rendah"
+  },
+  "translatorAiErrorSameLanguage": "Bahasa sumber dan tujuan sama",
+  "@translatorAiErrorSameLanguage": {
+    "description": "Pesan saat bahasa sumber yang terdeteksi AI sama dengan bahasa tujuan"
+  },
+  "translatorAiErrorNoInternet": "Tidak ada koneksi internet. Coba lagi nanti atau gunakan kamus offline.",
+  "@translatorAiErrorNoInternet": {
+    "description": "Pesan galat saat perangkat tidak terhubung ke internet"
+  },
+  "translatorAiErrorInvalidKey": "Kunci API AI tidak valid atau ditolak (401/403).",
+  "@translatorAiErrorInvalidKey": {
+    "description": "Pesan galat saat autentikasi API AI ditolak (401/403)"
+  },
+  "translatorAiErrorQuota": "Kuota permintaan AI tercapai (429). Coba lagi nanti.",
+  "@translatorAiErrorQuota": {
+    "description": "Pesan galat saat batas kuota API AI tercapai (429)"
+  },
+  "translatorAiErrorTimeout": "Permintaan AI melebihi batas waktu 15 detik.",
+  "@translatorAiErrorTimeout": {
+    "description": "Pesan galat saat permintaan AI melebihi batas waktu"
+  },
+  "translatorAiErrorBlockedOrEmpty": "Respons AI kosong atau diblokir oleh filter keamanan.",
+  "@translatorAiErrorBlockedOrEmpty": {
+    "description": "Pesan galat saat respons AI kosong atau diblokir"
+  },
+  "translatorAiErrorOther": "Terjemahan AI gagal diproses. Coba lagi atau gunakan kamus offline.",
+  "@translatorAiErrorOther": {
+    "description": "Pesan galat umum saat respons atau permintaan AI gagal"
+  },
+  "homeStreakBlockSubtitle": "{count} misi selesai minggu ini",
+  "@homeStreakBlockSubtitle": {
+    "description": "Subjudul blok streak: jumlah kuis selesai minggu ini",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPathBannerTitle": "Lanjutkan Misi",
+  "@quizPathBannerTitle": {
+    "description": "Judul banner lanjutkan kuis di atas daftar node jalur kuis"
+  },
+  "quizPathBannerProgress": "{completed} dari {total} node selesai",
+  "@quizPathBannerProgress": {
+    "description": "Teks progres di banner lanjutkan kuis",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPathBannerStart": "Mulai",
+  "@quizPathBannerStart": {
+    "description": "Tombol mulai di banner lanjutkan kuis"
+  },
+  "kratonZone1Label": "Kediri",
+  "@kratonZone1Label": {
+    "description": "Label zona 1 — node 1-10 [masih draf, belum divalidasi ahli]"
+  },
+  "kratonZone2Label": "Singosari",
+  "@kratonZone2Label": {
+    "description": "Label zona 2 — node 11-20 [masih draf, belum divalidasi ahli]"
+  },
+  "kratonZone3Label": "Majapahit",
+  "@kratonZone3Label": {
+    "description": "Label zona 3 — node 21-30 [masih draf, belum divalidasi ahli]"
+  },
+  "kratonZone4Label": "Demak",
+  "@kratonZone4Label": {
+    "description": "Label zona 4 — node 31-40 [masih draf, belum divalidasi ahli]"
+  },
+  "kratonZone5Label": "Mataram Islam",
+  "@kratonZone5Label": {
+    "description": "Label zona 5 — node 41-50 [masih draf, belum divalidasi ahli]"
+  },
+  "homeHeroQuestProgressRatio": "{done}/{total}",
+  "@homeHeroQuestProgressRatio": {
+    "description": "Rasio progres misi harian",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
       }
     }
   }

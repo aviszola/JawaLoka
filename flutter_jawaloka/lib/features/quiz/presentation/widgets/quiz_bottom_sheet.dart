@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import 'package:flutter_jawaloka/core/theme/app_colors.dart';
+import 'package:flutter_jawaloka/core/theme/app_icons.dart';
 
 /// Modal bottom sheet shown before starting a quiz module.
 class QuizBottomSheet extends StatelessWidget {
@@ -56,7 +57,7 @@ class QuizBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFFFDF9F3),
+        color: AppColors.surface,
         borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
       padding: EdgeInsets.only(
@@ -73,7 +74,7 @@ class QuizBottomSheet extends StatelessWidget {
             width: 40,
             height: 4,
             decoration: BoxDecoration(
-              color: const Color(0xFFD4CAB8),
+              color: AppColors.border,
               borderRadius: BorderRadius.circular(2),
             ),
           ),
@@ -83,7 +84,7 @@ class QuizBottomSheet extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF4D6),
+              color: AppColors.surfaceWarm,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: AppColors.amberDark.withValues(alpha: 0.3),
@@ -91,8 +92,7 @@ class QuizBottomSheet extends StatelessWidget {
             ),
             child: Text(
               unitTitle,
-              style: const TextStyle(
-                fontSize: 12,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: AppColors.amberDark,
               ),
@@ -103,10 +103,7 @@ class QuizBottomSheet extends StatelessWidget {
           // Judul Node
           Text(
             nodeTitle,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: AppColors.ink,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
               letterSpacing: -0.5,
             ),
             textAlign: TextAlign.center,
@@ -120,8 +117,7 @@ class QuizBottomSheet extends StatelessWidget {
               totalQuizzes,
               questionCount,
             ),
-            style: const TextStyle(
-              fontSize: 14,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w500,
               color: AppColors.inkSecondary,
             ),
@@ -134,15 +130,15 @@ class QuizBottomSheet extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFF5F1EB),
+              color: AppColors.canvas,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFE8E1D6)),
+              border: Border.all(color: AppColors.border),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Icon(
-                  Icons.info_outline_rounded,
+                  AppIcons.info,
                   color: AppColors.amberDark,
                   size: 22,
                 ),
@@ -150,8 +146,7 @@ class QuizBottomSheet extends StatelessWidget {
                 Expanded(
                   child: Text(
                     topicDescription,
-                    style: const TextStyle(
-                      fontSize: 14,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: AppColors.ink,
                       height: 1.4,
                     ),
@@ -181,10 +176,7 @@ class QuizBottomSheet extends StatelessWidget {
               ),
               child: Text(
                 context.l10n.quizBottomSheetStart,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
           ),
@@ -195,8 +187,7 @@ class QuizBottomSheet extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
             child: Text(
               context.l10n.quizBottomSheetLater,
-              style: const TextStyle(
-                fontSize: 14,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.inkSecondary,
                 fontWeight: FontWeight.w500,
               ),

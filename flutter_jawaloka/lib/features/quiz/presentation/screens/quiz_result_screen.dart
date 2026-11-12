@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/presentation/widgets/wayang_gunungan_painter.dart';
@@ -286,11 +287,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           // Title
           Text(
             context.l10n.quizResultAwesome,
-            style: const TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: AppColors.ink,
-            ),
+            style: Theme.of(context).textTheme.displayMedium,
           ),
 
           const SizedBox(height: 28),
@@ -303,7 +300,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFF4D6),
+                color: AppColors.surfaceWarm,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: AppColors.amberDark.withValues(alpha: 0.3),
@@ -313,8 +310,8 @@ class _QuizResultScreenState extends State<QuizResultScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(
-                    Icons.local_fire_department_rounded,
-                    color: Color(0xFFF26B2D),
+                    AppIcons.streak,
+                    color: AppColors.accentOrange,
                     size: 22,
                   ),
                   const SizedBox(width: 8),
@@ -322,8 +319,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
                     context.l10n.quizResultStreakBanner(
                       widget.result.currentStreak,
                     ),
-                    style: const TextStyle(
-                      fontSize: 14,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.amberDark,
                     ),
@@ -386,16 +382,16 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               children: [
                 Text(
                   '${widget.result.score}',
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
+                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
                     color: AppColors.ink,
                     height: 1,
                   ),
                 ),
-                const Text(
+                Text(
                   '/100',
-                  style: TextStyle(fontSize: 20, color: AppColors.inkMuted),
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    color: AppColors.inkMuted,
+                  ),
                 ),
               ],
             ),
@@ -410,13 +406,14 @@ class _QuizResultScreenState extends State<QuizResultScreen>
       children: [
         Text(
           label,
-          style: const TextStyle(fontSize: 15, color: AppColors.inkSecondary),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: AppColors.inkSecondary,
+          ),
         ),
         const Spacer(),
         Text(
           value,
-          style: TextStyle(
-            fontSize: 15,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.w700,
             color: valueColor,
           ),
@@ -434,7 +431,7 @@ class _QuizResultScreenState extends State<QuizResultScreen>
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Icon(
-              Icons.star_rounded,
+              AppIcons.star,
               color: i < widget.result.stars
                   ? AppColors.amber
                   : AppColors.border,
@@ -491,7 +488,9 @@ class _QuizResultScreenState extends State<QuizResultScreen>
             ),
             child: Text(
               context.l10n.quizResultBackHome,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppColors.amber,
+              ),
             ),
           ),
         ),
@@ -514,14 +513,15 @@ class _QuizResultScreenState extends State<QuizResultScreen>
               );
             },
             style: OutlinedButton.styleFrom(
-              foregroundColor: AppColors.surface,
+              backgroundColor: AppColors.surfaceWarm,
+              foregroundColor: AppColors.ink,
               side: const BorderSide(color: AppColors.surface, width: 2),
               padding: const EdgeInsets.symmetric(vertical: 16),
               shape: const StadiumBorder(),
             ),
             child: Text(
               context.l10n.quizResultRetry,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ),

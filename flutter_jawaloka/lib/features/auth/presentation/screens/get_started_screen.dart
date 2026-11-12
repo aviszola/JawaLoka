@@ -3,8 +3,11 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../core/router/app_router.dart';
+import '../../../../core/l10n/locale_scope.dart';
+import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
+import '../../../../core/router/app_router.dart';
 import '../widgets/get_started_brand_mark.dart';
 import '../widgets/get_started_illustration_painter.dart';
 
@@ -143,6 +146,19 @@ class _GetStartedScreenState extends State<GetStartedScreen>
     HapticFeedback.mediumImpact();
     if (widget.onGetStarted != null) {
       widget.onGetStarted!();
+      return;
+    }
+
+    final profile = ProfileScope.maybeOf(context);
+    final locale = LocaleScope.maybeOf(context);
+    if (profile != null &&
+        locale != null &&
+        profile.isSetupCompleted &&
+        locale.hasChosenLanguage) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        AppRouter.home,
+        (route) => false,
+      );
       return;
     }
 
@@ -421,7 +437,7 @@ class _GetStartedScreenState extends State<GetStartedScreen>
                                 ),
                                 SizedBox(width: 8),
                                 Icon(
-                                  Icons.arrow_forward_rounded,
+                                  AppIcons.forward,
                                   size: 20,
                                   color: Colors.white,
                                 ),
@@ -506,7 +522,7 @@ class _GetStartedScreenState extends State<GetStartedScreen>
             mainAxisSize: MainAxisSize.min,
             children: const [
               Icon(
-                Icons.info_outline_rounded,
+                AppIcons.info,
                 size: 16,
                 color: AppColors.inkMuted,
               ),

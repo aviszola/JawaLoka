@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_colors.dart';
 
 /// Clean pastel-yellow auth banner (Home design benchmark).
 
@@ -21,18 +22,19 @@ class AuthBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return ClipRRect(
       borderRadius: BorderRadius.circular(26),
       child: Container(
         width: double.infinity,
         height: height,
         decoration: BoxDecoration(
-          color: const Color(0xFFF7D46B),
+          color: AppColors.primaryAmber,
           borderRadius: BorderRadius.circular(26),
-          border: Border.all(color: const Color(0xFFEED17B), width: 1.2),
+          border: Border.all(color: AppColors.border, width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF231C14).withValues(alpha: 0.04),
+              color: AppColors.ink.withValues(alpha: 0.04),
               blurRadius: 16,
               offset: const Offset(0, 4),
             ),
@@ -47,8 +49,7 @@ class AuthBanner extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
-                  shape: BoxShape.circle,
+                  color: AppColors.surfaceWarm.withValues(alpha: 0.55),
                 ),
               ),
             ),
@@ -61,21 +62,19 @@ class AuthBanner extends StatelessWidget {
                   width: 52,
                   height: 52,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFFF3D6),
+                    color: AppColors.surfaceWarm,
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: const Color(0xFFF4D483).withValues(alpha: 0.4),
+                      color: AppColors.border,
                     ),
                   ),
                   child: Center(
                     child: Text(
                       glyphWatermark,
-                      style: const TextStyle(
+                      style: textTheme.headlineLarge?.copyWith(
                         fontFamily: 'NotoSansJavanese',
-                        fontSize: 22,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFFB87812),
-                        height: 1,
+                        color: AppColors.primaryDark,
                       ),
                     ),
                   ),
@@ -95,10 +94,10 @@ class AuthBanner extends StatelessWidget {
                         vertical: 3,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.92),
+                        color: AppColors.surface.withValues(alpha: 0.92),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: const Color(0xFFEED07C).withValues(alpha: 0.6),
+                          color: AppColors.border,
                         ),
                       ),
                       child: Row(
@@ -108,7 +107,7 @@ class AuthBanner extends StatelessWidget {
                             width: 6,
                             height: 6,
                             decoration: const BoxDecoration(
-                              color: Color(0xFFB57D18),
+                              color: AppColors.primaryDark,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -118,10 +117,9 @@ class AuthBanner extends StatelessWidget {
                               badgeLabel!.toUpperCase(),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 11,
+                              style: textTheme.labelMedium?.copyWith(
                                 fontWeight: FontWeight.w700,
-                                color: Color(0xFF85580C),
+                                color: AppColors.primaryDark,
                                 letterSpacing: 0.8,
                               ),
                             ),
@@ -135,10 +133,9 @@ class AuthBanner extends StatelessWidget {
                     title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFF231C14),
+                    style: textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.ink,
                       height: 1.2,
                       letterSpacing: -0.3,
                     ),
@@ -148,10 +145,9 @@ class AuthBanner extends StatelessWidget {
                     subtitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
+                    style: textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF7C5410),
+                      color: AppColors.ink,
                     ),
                   ),
                 ],

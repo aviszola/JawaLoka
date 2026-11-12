@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// Reusable text input field with animated floating label for JawaLoka.
 /// Matches Google Stitch design spec: 56px height, 20px radius, white surface.
@@ -194,8 +195,8 @@ class _CustomTextFieldState extends State<CustomTextField>
                             padding: const EdgeInsets.all(14),
                             child: Icon(
                               _obscured
-                                  ? Icons.visibility_outlined
-                                  : Icons.visibility_off_outlined,
+                                  ? AppIcons.visibility
+                                  : AppIcons.visibilityOff,
                               color: AppColors.inkSecondary,
                               size: 20,
                             ),
@@ -251,7 +252,7 @@ class _CustomTextFieldState extends State<CustomTextField>
                 child: Row(
                   children: [
                     const Icon(
-                      Icons.error_outline,
+                      AppIcons.error,
                       size: 14,
                       color: AppColors.error,
                     ),

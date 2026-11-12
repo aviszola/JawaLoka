@@ -423,8 +423,8 @@ void main() {
 
         expect(find.byType(QuizResultScreen), findsOneWidget);
 
-        // Tap 'Ulangi kuis' (Retry)
-        final retryFinder = find.text('Ulangi kuis');
+        // Tap 'Ulangi misi' (Retry)
+        final retryFinder = find.text('Ulangi misi');
         expect(retryFinder, findsOneWidget);
         await tester.ensureVisible(retryFinder);
         await tester.pump();

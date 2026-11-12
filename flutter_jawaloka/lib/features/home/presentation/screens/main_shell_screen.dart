@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import 'home_screen.dart';
 import '../../../learn/presentation/screens/learn_hub_screen.dart';
@@ -208,8 +209,8 @@ class _MainShellScreenState extends State<MainShellScreen>
               Expanded(
                 child: _buildNavItem(
                   index: 0,
-                  icon: Icons.home_outlined,
-                  activeIcon: Icons.home_rounded,
+                  icon: AppIcons.navHome,
+                  activeIcon: AppIcons.navHomeActive,
                   label: context.l10n.navHome,
                 ),
               ),
@@ -218,21 +219,21 @@ class _MainShellScreenState extends State<MainShellScreen>
               Expanded(
                 child: _buildNavItem(
                   index: 1,
-                  icon: Icons.menu_book_outlined,
-                  activeIcon: Icons.menu_book_rounded,
+                  icon: AppIcons.navLearn,
+                  activeIcon: AppIcons.navLearnActive,
                   label: context.l10n.navLearn,
                 ),
               ),
 
-              // 2. Quest: Central Elevated 54 px amber button with pen icon
+              // 2. Latihan: Central Elevated 54 px amber button with pen icon
               Expanded(child: _buildCenterQuestButton(context.l10n.navQuest)),
 
-              // 3. Kuis
+              // 3. Misi
               Expanded(
                 child: _buildNavItem(
                   index: 3,
-                  icon: Icons.quiz_outlined,
-                  activeIcon: Icons.quiz_rounded,
+                  icon: AppIcons.navMission,
+                  activeIcon: AppIcons.navMissionActive,
                   label: context.l10n.navQuiz,
                 ),
               ),
@@ -241,8 +242,8 @@ class _MainShellScreenState extends State<MainShellScreen>
               Expanded(
                 child: _buildNavItem(
                   index: 4,
-                  icon: Icons.person_outline_rounded,
-                  activeIcon: Icons.person_rounded,
+                  icon: AppIcons.navProfile,
+                  activeIcon: AppIcons.navProfileActive,
                   label: context.l10n.navProfile,
                 ),
               ),
@@ -274,7 +275,7 @@ class _MainShellScreenState extends State<MainShellScreen>
                   end: Alignment.bottomRight,
                 ),
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 2.5),
+                border: Border.all(color: AppColors.surface, width: 2.5),
                 boxShadow: [
                   BoxShadow(
                     color: AppColors.accentOrange.withValues(alpha: 0.40),
@@ -284,16 +285,15 @@ class _MainShellScreenState extends State<MainShellScreen>
                 ],
               ),
               child: const Icon(
-                Icons.edit_rounded,
-                color: Colors.white,
+                AppIcons.navPractice,
+                color: AppColors.ink,
                 size: 26,
               ),
             ),
             const SizedBox(height: 2),
             Text(
               questLabel,
-              style: const TextStyle(
-                fontSize: 11,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: AppColors.ink,
               ),
@@ -312,7 +312,9 @@ class _MainShellScreenState extends State<MainShellScreen>
     required String label,
   }) {
     final isSelected = _selectedTab == index;
-    final color = isSelected ? AppColors.accentOrange : AppColors.inkSecondary;
+    final color = isSelected
+        ? AppColors.accentOrangeText
+        : AppColors.inkSecondary;
 
     return InkWell(
       onTap: () => _onTabSelected(index),
@@ -322,12 +324,16 @@ class _MainShellScreenState extends State<MainShellScreen>
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(isSelected ? activeIcon : icon, color: color, size: 22),
+          AnimatedScale(
+            scale: isSelected ? 1.12 : 1.0,
+            duration: const Duration(milliseconds: 180),
+            curve: Curves.easeOut,
+            child: Icon(isSelected ? activeIcon : icon, color: color, size: 22),
+          ),
           const SizedBox(height: 2),
           Text(
             label,
-            style: TextStyle(
-              fontSize: 11,
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
               fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
               color: color,
             ),

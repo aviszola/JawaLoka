@@ -649,7 +649,7 @@ void main() {
       expect(find.text('Tuladha Tembung'), findsOneWidget);
       expect(find.text('Carane Nulis'), findsOneWidget);
       expect(find.text('Gladhen Nulis'), findsOneWidget);
-      expect(find.text('Miwiti Kuis'), findsOneWidget);
+      expect(find.text('Miwiti Misi'), findsOneWidget);
     });
 
     testWidgets(
@@ -729,16 +729,20 @@ void main() {
       // Navigation tabs in English
       expect(find.text('Home'), findsOneWidget);
       expect(find.text('Learn'), findsOneWidget);
-      expect(find.text('Quest'), findsOneWidget);
-      expect(find.text('Quiz'), findsOneWidget);
+      expect(find.text('Practice'), findsOneWidget);
+      expect(find.text('Mission'), findsOneWidget);
       expect(find.text('Profile'), findsOneWidget);
 
       // Home Header & widgets in English
       expect(find.text('Hello, Dimas!'), findsOneWidget);
-      expect(find.text("TODAY'S QUEST"), findsOneWidget);
-      expect(find.text('Start Drawing'), findsOneWidget);
-      expect(find.text('Continue Quiz'), findsOneWidget);
+      expect(find.text("TODAY'S PRACTICE"), findsOneWidget);
+      expect(find.text('Start'), findsWidgets);
       expect(find.text('Quick Learn'), findsOneWidget);
+      expect(find.text('Continue Mission'), findsNothing);
+      await tester.tap(find.text('Mission'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.text('Continue Mission'), findsOneWidget);
     });
 
     testWidgets(
@@ -761,15 +765,19 @@ void main() {
 
         expect(find.text('Beranda'), findsOneWidget);
         expect(find.text('Belajar'), findsOneWidget);
+        expect(find.text('Latihan'), findsOneWidget);
         expect(find.text('Misi'), findsOneWidget);
-        expect(find.text('Kuis'), findsOneWidget);
         expect(find.text('Profil'), findsOneWidget);
 
         expect(find.text('Halo, Dimas!'), findsOneWidget);
-        expect(find.text('MISI HARI INI'), findsOneWidget);
-        expect(find.text('Mulai Menggambar'), findsOneWidget);
-        expect(find.text('Lanjutkan Kuis'), findsOneWidget);
+        expect(find.text('LATIHAN HARI INI'), findsOneWidget);
+        expect(find.text('Mulai'), findsWidgets);
         expect(find.text('Belajar Cepat'), findsOneWidget);
+        expect(find.text('Lanjutkan Misi'), findsNothing);
+        await tester.tap(find.text('Misi'));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 300));
+        expect(find.text('Lanjutkan Misi'), findsOneWidget);
       },
     );
 
@@ -792,7 +800,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        expect(find.text('Quiz Path'), findsOneWidget);
+        expect(find.text('Mission Path'), findsOneWidget);
         expect(
           find.text('Unit 1: Greetings and Initial Etiquette'),
           findsOneWidget,
@@ -806,7 +814,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        expect(find.text('Start Quiz'), findsOneWidget);
+        expect(find.text('Start Mission'), findsOneWidget);
         expect(find.text('Maybe later'), findsOneWidget);
 
         // Close bottom sheet
@@ -859,7 +867,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        expect(find.text('Dalan Kuis'), findsOneWidget);
+        expect(find.text('Dalan Misi'), findsOneWidget);
         expect(
           find.text('Unit 1: Uluk Salam lan Tata Krama Awal'),
           findsOneWidget,
@@ -873,7 +881,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        expect(find.text('Miwiti Kuis'), findsOneWidget);
+        expect(find.text('Miwiti Misi'), findsOneWidget);
         expect(find.text('Mangke rumiyin'), findsOneWidget);
 
         // Close bottom sheet
@@ -933,18 +941,18 @@ void main() {
         await tester.tap(find.byIcon(Icons.close_rounded));
         await tester.pumpAndSettle();
 
-        expect(find.text('Exit Quiz?'), findsOneWidget);
+        expect(find.text('Exit Mission?'), findsOneWidget);
         expect(
-          find.text('Current quiz progress will not be saved.'),
+          find.text('Current mission progress will not be saved.'),
           findsOneWidget,
         );
         expect(find.text('Exit'), findsOneWidget);
-        expect(find.text('Continue'), findsOneWidget);
+        expect(find.text('Continue mission'), findsOneWidget);
 
         // Dismiss dialog
-        await tester.tap(find.text('Continue'));
+        await tester.tap(find.text('Continue mission'));
         await tester.pumpAndSettle();
-        expect(find.text('Exit Quiz?'), findsNothing);
+        expect(find.text('Exit Mission?'), findsNothing);
 
         // Switch to Javanese
         await controller.setLocale(const Locale('jv'));
@@ -957,13 +965,13 @@ void main() {
         await tester.tap(find.byIcon(Icons.close_rounded));
         await tester.pumpAndSettle();
 
-        expect(find.text('Metu saka Kuis?'), findsOneWidget);
+        expect(find.text('Metu saka Misi?'), findsOneWidget);
         expect(
-          find.text('Progres kuis iki ora bakal disimpen.'),
+          find.text('Progres misi iki ora bakal disimpen.'),
           findsOneWidget,
         );
         expect(find.text('Metu'), findsOneWidget);
-        expect(find.text('Banjurake'), findsOneWidget);
+        expect(find.text('Banjurake misi'), findsOneWidget);
       },
     );
 
@@ -989,7 +997,7 @@ void main() {
         // English Result UI
         expect(find.text('Awesome!'), findsOneWidget);
         expect(find.text('Back to Home'), findsOneWidget);
-        expect(find.text('Retry quiz'), findsOneWidget);
+        expect(find.text('Retry mission'), findsOneWidget);
         expect(find.text('Correct Answers'), findsOneWidget);
         expect(find.text('Accuracy'), findsOneWidget);
 
@@ -1000,7 +1008,7 @@ void main() {
 
         expect(find.text('Luar Biasa!'), findsOneWidget);
         expect(find.text('Wangsul dhateng Beranda'), findsOneWidget);
-        expect(find.text('Baleni kuis'), findsOneWidget);
+        expect(find.text('Baleni misi'), findsOneWidget);
         expect(find.text('Pitakenan Leres'), findsOneWidget);
         expect(find.text('Katelitian'), findsOneWidget);
 
@@ -1011,7 +1019,7 @@ void main() {
 
         expect(find.text('Luar Biasa!'), findsOneWidget);
         expect(find.text('Kembali ke Beranda'), findsOneWidget);
-        expect(find.text('Ulangi kuis'), findsOneWidget);
+        expect(find.text('Ulangi misi'), findsOneWidget);
         expect(find.text('Soal Benar'), findsOneWidget);
       },
     );
@@ -1196,11 +1204,10 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 700));
 
-        // Tap on Penggunaan Bahasa module card subtitle to open bottom sheet
-        await tester.ensureVisible(
-          find.text('Unggah-ungguh & tata krama ragam wicara'),
-        );
-        await tester.tap(find.text('Unggah-ungguh & tata krama ragam wicara'));
+        // Tap on Penggunaan Bahasa module card title to open bottom sheet
+        final etiquetteFinder = find.text('Penggunaan Bahasa');
+        await tester.ensureVisible(etiquetteFinder);
+        await tester.tap(etiquetteFinder);
         await tester.pumpAndSettle();
 
         expect(find.text('Penggunaan Bahasa'), findsWidgets);
@@ -1212,12 +1219,9 @@ void main() {
         await tester.pumpAndSettle();
 
         // Open Peribahasa sheet
-        await tester.ensureVisible(
-          find.text('Paribasan, bebasan, lan saloka warisan Jawa'),
-        );
-        await tester.tap(
-          find.text('Paribasan, bebasan, lan saloka warisan Jawa'),
-        );
+        final proverbFinder = find.text('Peribahasa & Saloka');
+        await tester.ensureVisible(proverbFinder);
+        await tester.tap(proverbFinder);
         await tester.pumpAndSettle();
 
         expect(find.text('Peribahasa & Saloka Jawa'), findsOneWidget);
@@ -1318,7 +1322,7 @@ void main() {
           expect(find.text('Tungku'), findsOneWidget);
           expect(find.text('Delapan'), findsOneWidget);
           expect(find.text('Latihan Menulis'), findsOneWidget);
-          expect(find.text('Mulai Kuis'), findsOneWidget);
+          expect(find.text('Mulai Misi'), findsOneWidget);
 
           // Switch to Javanese (jv)
           await controller.setLocale(const Locale('jv'));
@@ -1331,7 +1335,7 @@ void main() {
           expect(find.text('Pawon / Hawu'), findsOneWidget);
           expect(find.text('Wolu'), findsOneWidget);
           expect(find.text('Gladhen Nulis'), findsOneWidget);
-          expect(find.text('Miwiti Kuis'), findsOneWidget);
+          expect(find.text('Miwiti Misi'), findsOneWidget);
 
           // Switch to English (en)
           await controller.setLocale(const Locale('en'));
@@ -1344,7 +1348,7 @@ void main() {
           expect(find.text('Stove'), findsOneWidget);
           expect(find.text('Eight'), findsOneWidget);
           expect(find.text('Writing Practice'), findsOneWidget);
-          expect(find.text('Start Quiz'), findsOneWidget);
+          expect(find.text('Start Mission'), findsOneWidget);
         },
       );
 
@@ -1510,7 +1514,7 @@ void main() {
         await tester.pump(const Duration(milliseconds: 1600));
 
         // ID assertions
-        expect(find.text('Hasil Misi'), findsOneWidget);
+        expect(find.text('Hasil Latihan'), findsOneWidget);
         expect(find.text('Perbandingan Tulisan'), findsOneWidget);
         expect(find.text('Tulisanmu'), findsOneWidget);
         expect(find.text('Aksara Target'), findsOneWidget);
@@ -1522,7 +1526,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 1600));
 
-        expect(find.text('Asil Misi'), findsOneWidget);
+        expect(find.text('Asil Gladhen'), findsOneWidget);
         expect(find.text('Pabandhingan Tulisan'), findsOneWidget);
         expect(find.text('Seratan panjenengan'), findsOneWidget);
         expect(find.text('Aksara Target'), findsOneWidget);
@@ -1534,7 +1538,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 1600));
 
-        expect(find.text('Quest Result'), findsOneWidget);
+        expect(find.text('Practice Result'), findsOneWidget);
         expect(find.text('Writing Comparison'), findsOneWidget);
         expect(find.text('Your Writing'), findsOneWidget);
         expect(find.text('Target Script'), findsOneWidget);

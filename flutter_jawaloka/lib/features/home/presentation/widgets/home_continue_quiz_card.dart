@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../quiz/domain/curriculum/curriculum_quiz_bank.dart';
 import '../../../quiz/domain/quiz_path_data.dart';
 import '../../../quiz/domain/quiz_path_models.dart';
@@ -18,6 +20,7 @@ class HomeContinueQuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final textTheme = Theme.of(context).textTheme;
     final profile = ProfileScope.maybeOf(context);
     final units = profile != null
         ? QuizPathData.resolveCurriculum(
@@ -87,12 +90,12 @@ class HomeContinueQuizCard extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.surface,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
+          border: Border.all(color: AppColors.border, width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF231C14).withValues(alpha: 0.04),
+              color: AppColors.ink.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 2),
             ),
@@ -105,16 +108,16 @@ class HomeContinueQuizCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: const Color(0xFFFFF3D6),
+                color: AppColors.surfaceWarm,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: const Color(0xFFF4D483).withValues(alpha: 0.4),
+                  color: AppColors.border,
                   width: 1,
                 ),
               ),
               child: const Icon(
-                Icons.menu_book_rounded,
-                color: Color(0xFFB87812),
+                AppIcons.proverbs,
+                color: AppColors.primaryDark,
                 size: 22,
               ),
             ),
@@ -127,18 +130,16 @@ class HomeContinueQuizCard extends StatelessWidget {
                 children: [
                   Text(
                     l10n.homeContinueQuizTitle,
-                    style: const TextStyle(
-                      color: Color(0xFF231C14),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800,
+                    style: textTheme.bodyLarge?.copyWith(
+                      color: AppColors.ink,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(height: 3),
                   Text(
                     activeNode.getLocalizedTitle(context),
-                    style: const TextStyle(
-                      color: Color(0xFF7C6E5E),
-                      fontSize: 13,
+                    style: textTheme.labelLarge?.copyWith(
+                      color: AppColors.inkSecondary,
                       fontWeight: FontWeight.w500,
                     ),
                     maxLines: 1,
@@ -150,18 +151,17 @@ class HomeContinueQuizCard extends StatelessWidget {
                     child: LinearProgressIndicator(
                       value: progressValue,
                       minHeight: 5,
-                      backgroundColor: const Color(0xFFF6ECD8),
+                      backgroundColor: AppColors.border,
                       valueColor: const AlwaysStoppedAnimation<Color>(
-                        Color(0xFFF5B838),
+                        AppColors.primaryAmber,
                       ),
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     l10n.homeContinueQuizProgress(completedCount),
-                    style: const TextStyle(
-                      color: Color(0xFF8A7E70),
-                      fontSize: 11,
+                    style: textTheme.labelMedium?.copyWith(
+                      color: AppColors.inkSecondary,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -172,9 +172,9 @@ class HomeContinueQuizCard extends StatelessWidget {
 
             // Panah Arah
             const Icon(
-              Icons.arrow_forward_rounded,
+              AppIcons.forward,
               size: 18,
-              color: Color(0xFF9E6E1A),
+              color: AppColors.primaryDark,
             ),
           ],
         ),

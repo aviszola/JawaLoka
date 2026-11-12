@@ -4,6 +4,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
 import '../../../../core/validation/validators.dart';
@@ -241,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     prefixIcon: const Padding(
                                       padding: EdgeInsets.all(14),
                                       child: Icon(
-                                        Icons.person_outline_rounded,
+                                        AppIcons.person,
                                         color: AppColors.inkSecondary,
                                         size: 20,
                                       ),
@@ -269,7 +270,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     children: [
                                       _PreferenceChip(
                                         label: context.l10n.loginLevelBeginner,
-                                        icon: Icons.eco_rounded,
+                                        icon: AppIcons.levelBeginner,
                                         isSelected: _selectedLevel == 1,
                                         onTap: () =>
                                             setState(() => _selectedLevel = 1),
@@ -277,14 +278,14 @@ class _LoginScreenState extends State<LoginScreen>
                                       _PreferenceChip(
                                         label:
                                             context.l10n.loginLevelIntermediate,
-                                        icon: Icons.auto_stories_rounded,
+                                        icon: AppIcons.levelIntermediate,
                                         isSelected: _selectedLevel == 4,
                                         onTap: () =>
                                             setState(() => _selectedLevel = 4),
                                       ),
                                       _PreferenceChip(
                                         label: context.l10n.loginLevelAdvanced,
-                                        icon: Icons.military_tech_rounded,
+                                        icon: AppIcons.levelAdvanced,
                                         isSelected: _selectedLevel == 7,
                                         onTap: () =>
                                             setState(() => _selectedLevel = 7),
@@ -309,7 +310,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     children: [
                                       _PreferenceChip(
                                         label: context.l10n.loginGoalAksara,
-                                        icon: Icons.edit_note_rounded,
+                                        icon: AppIcons.writingSteps,
                                         isSelected: _selectedGoalIndex == 0,
                                         onTap: () => setState(
                                           () => _selectedGoalIndex = 0,
@@ -318,7 +319,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       _PreferenceChip(
                                         label:
                                             context.l10n.loginGoalConversation,
-                                        icon: Icons.forum_rounded,
+                                        icon: AppIcons.goalConversation,
                                         isSelected: _selectedGoalIndex == 1,
                                         onTap: () => setState(
                                           () => _selectedGoalIndex = 1,
@@ -326,7 +327,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       ),
                                       _PreferenceChip(
                                         label: context.l10n.loginGoalCulture,
-                                        icon: Icons.theater_comedy_rounded,
+                                        icon: AppIcons.goalCulture,
                                         isSelected: _selectedGoalIndex == 2,
                                         onTap: () => setState(
                                           () => _selectedGoalIndex = 2,
@@ -390,7 +391,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       ),
                                       const SizedBox(width: 8),
                                       const Icon(
-                                        Icons.arrow_forward_rounded,
+                                        AppIcons.forward,
                                         size: 18,
                                         color: AppColors.inkSecondary,
                                       ),
@@ -480,7 +481,7 @@ class _BackButton extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: const Icon(
-            Icons.arrow_back_ios_new_rounded,
+            AppIcons.back,
             size: 18,
             color: AppColors.ink,
           ),
