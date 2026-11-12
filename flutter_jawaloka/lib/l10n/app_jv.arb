@@ -67,8 +67,8 @@
   "authSkipToLearn": "Lumpati & Wiwit Sinau",
   "navHome": "Beranda",
   "navLearn": "Sinau",
-  "navQuest": "Misi",
-  "navQuiz": "Kuis",
+  "navQuest": "Gladhen",
+  "navQuiz": "Misi",
   "navProfile": "Profil",
   "homeGreetingMorning": "Sugeng enjang",
   "homeGreetingAfternoon": "Sugeng siang",
@@ -76,9 +76,9 @@
   "homeGreetingNight": "Sugeng dalu",
   "homeGreetingUser": "Sugeng rawuh, {name}!",
   "homeLevelPill": "Level {level}",
-  "homeWeeklyStripTitle": "Aktivitas Kuis Minggu Iki",
-  "homeWeeklyCompletedCount": "{count} kuis rampung",
-  "homeWeeklyStreakInfo": "Streak kuis {count} dina aktif. Rampungake kuis saben dina kanggo njaga streak.",
+  "homeWeeklyStripTitle": "Aktivitas Misi Minggu Iki",
+  "homeWeeklyCompletedCount": "{count} misi rampung",
+  "homeWeeklyStreakInfo": "Streak misi {count} dina aktif. Rampungake misi saben dina kanggo njaga streak.",
   "dayMon": "Sen",
   "dayTue": "Sel",
   "dayWed": "Reb",
@@ -86,16 +86,16 @@
   "dayFri": "Jum",
   "daySat": "Sep",
   "daySun": "Nga",
-  "homeHeroQuestBadge": "MISI DINA IKI",
+  "homeHeroQuestBadge": "GLADHEN DINA IKI",
   "homeHeroQuestTarget": "Target: ≥{percent}% Presisi",
   "homeHeroQuestTitle": "Aksara \"Ha\" (ꦲ)",
   "homeHeroQuestDesc": "Serat aksara dhasar kapisan Hanacaraka kanthi lerese coretan.",
   "homeHeroQuestButton": "Miwiti Nggambar",
-  "homeContinueQuizTitle": "Nglajengaken Kuis",
+  "homeContinueQuizTitle": "Nglajengaken Misi",
   "homeContinueQuizLevel": "Tataran: Wasis",
   "homeContinueQuizNode": "Node 4: Aksara Ra (ꦫ)",
-  "homeContinueQuizProgress": "{completed} saking 10 bab kuis sampun rampung",
-  "homeContinueQuizButton": "Bikak Dalan Kuis",
+  "homeContinueQuizProgress": "{completed} saking 10 bab misi sampun rampung",
+  "homeContinueQuizButton": "Bikak Dalan Misi",
   "homeQuickLearnTitle": "Sinau Cepet",
   "homeQuickLearnSubtitle": "Topik Ringkes",
   "homeQuickLearnVocab": "Kosa Tembung",
@@ -136,7 +136,7 @@
   "difficultyMudah": "Gampang",
   "difficultyMahir": "Wasis",
   "difficultySangatMahir": "Linuwih",
-  "quizPathTitle": "Dalan Kuis",
+  "quizPathTitle": "Dalan Misi",
   "quizCompletedBadge": "{count} Rampung",
   "quizUnit1Title": "Unit 1: Uluk Salam lan Tata Krama Awal",
   "quizUnit1Subtitle": "Dhasar pacelathon lan tata krama trapsila",
@@ -150,8 +150,8 @@
   "quizTopicKeluarga": "Kulawarga",
   "quizTopicRumah": "Omah",
   "quizTopicKerabat": "Sanak Kadang",
-  "quizBottomSheetProgress": "Kuis {quizIndex} saking {totalQuizzes} · {questionCount} pitakenan",
-  "quizBottomSheetStart": "Miwiti Kuis",
+  "quizBottomSheetProgress": "Misi {quizIndex} saking {totalQuizzes} · {questionCount} pitakenan",
+  "quizBottomSheetStart": "Miwiti Misi",
   "quizBottomSheetLater": "Mangke rumiyin",
   "quizComboCount": "{count} Leres!",
   "quizOptionSemantics": "Pilihan {letter}: {option}",
@@ -163,12 +163,12 @@
   "quizContinue": "Lajeng",
   "quizFinish": "Rampung",
   "quizResultAwesome": "Luar Biasa!",
-  "quizResultStreakBanner": "Streak kuis aktif: {days} dina",
+  "quizResultStreakBanner": "Streak misi aktif: {days} dina",
   "quizResultCorrectAnswers": "Pitakenan Leres",
   "quizResultTime": "Wekdal",
   "quizResultAccuracy": "Katelitian",
   "quizResultBackHome": "Wangsul dhateng Beranda",
-  "quizResultRetry": "Baleni kuis",
+  "quizResultRetry": "Baleni misi",
   "drawingTitle": "Gladhen Nulis",
   "drawingBackSemantics": "Wangsul",
   "drawingInstruction": "Serat aksara punika!",
@@ -176,7 +176,7 @@
   "drawingClearAll": "Busek Kabeh",
   "drawingUndo": "Wurung",
   "drawingCheckButton": "Priksa Tulisan",
-  "dailyResultTitle": "Asil Misi",
+  "dailyResultTitle": "Asil Gladhen",
   "dailyResultSimilarityLabel": "Kamiripan",
   "dailyResultCelebrationPassed": "Saestu sae, {name}!",
   "dailyResultCelebrationFailed": "Sumangga Gladhen Malih!",
@@ -198,7 +198,7 @@
   "profileCancelEdit": "Wurung",
   "profileLevelPill": "Lv {level}",
   "profileStreakPill": "Streak {days} dina",
-  "profileQuizzesThisWeek": "{count} Kuis Minggu Iki",
+  "profileQuizzesThisWeek": "{count} Misi Minggu Iki",
   "profileBadgeTitle": "Lencana",
   "profileBadgeOpenCount": "1 / 4 Binuka",
   "profileBadgeCollection": "Koleksi Prestasi",
@@ -252,7 +252,7 @@
   "settingsLogoutConfirm": "Saestu badhe miyos?",
   "settingsCancel": "Wurung",
   "settingsPrivacyPolicy": "Kawicaksanan Privasi",
-  "settingsPrivacyPolicyContent": "Aplikasi JawaLoka (versi awal) menyimpan nama tampilan, usia, jenis kelamin, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal hanya di perangkat Anda. Data tidak dikirim ke server, tanpa iklan dan analitik. Menghapus data aplikasi atau mencopot pemasangan aplikasi akan menghapus seluruh data tersebut.",
+  "settingsPrivacyPolicyContent": "Aplikasi JawaLoka (versi awal) menyimpan data profil, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal di perangkat Anda. Penerjemah offline tidak mengirim data ke luar perangkat. Hanya jika Anda menekan tombol \"Terjemahkan dengan AI\", teks yang diketik dikirim ke Google Gemini untuk diterjemahkan. Aplikasi ini tidak memuat iklan maupun analitik. Menghapus data aplikasi atau mencopot pemasangan akan menghapus seluruh data lokal tersebut.",
   "settingsClose": "Tutup",
   "settingsAccountRow": "Akun",
   "settingsAccountDialogTitle": "Rerincen Akun",
@@ -289,7 +289,7 @@
   "aksaraDetailStep3Title": "Tutup kanthi buntut",
   "aksaraDetailStep3Desc": "Pungkasi kanthi garis buntut cendhak ingkang mlengkung mlebet.",
   "aksaraDetailWritingButton": "Gladhen Nulis",
-  "aksaraDetailQuizButton": "Miwiti Kuis",
+  "aksaraDetailQuizButton": "Miwiti Misi",
   "vocabDetailTitle": "Kosa Tembung",
   "vocabDetailTag": "Gampang",
   "vocabDetailMeaningHeader": "Teges & Tataran",
@@ -321,10 +321,10 @@
   "quizQuestionPromptWhichPronunciation": "Endi pamacane aksara ing ngisor iki?",
   "quizSkip": "Liwati",
   "quizCloseSemantics": "Tutup",
-  "quizExitDialogTitle": "Metu saka Kuis?",
-  "quizExitDialogMessage": "Progres kuis iki ora bakal disimpen.",
+  "quizExitDialogTitle": "Metu saka Misi?",
+  "quizExitDialogMessage": "Progres misi iki ora bakal disimpen.",
   "quizExitDialogConfirm": "Metu",
-  "quizExitDialogCancel": "Banjurake",
+  "quizExitDialogCancel": "Banjurake misi",
   "learnUnggahSheetTitle": "Panganggoning Basa",
   "learnUnggahSheetSubtitle": "Tingkatan ragam basa Jawa miturut trapsila lan unggah-ungguh.",
   "learnUnggahNgokoLuguTitle": "1. Basa Ngoko Lugu",
@@ -625,5 +625,83 @@
   "drawingPickerTitle": "Pilih Aksara Dhasar",
   "drawingPickerSubtitle": "Pilih salah siji aksara kanggo gladhen nulis.",
   "drawingPickerLockedLabel": "Durung cumawis",
-  "drawingPickerLockedToast": "Aksara {name} durung cumawis kanggo gladhen nulis."
+  "drawingPickerLockedToast": "Aksara {name} durung cumawis kanggo gladhen nulis.",
+  "translatorLangAuto": "Otomatis",
+  "translatorAiButton": "Terjemahkan dengan AI",
+  "translatorAiPrivacyNotice": "Teks yang kamu ketik dikirim ke Google Gemini.",
+  "translatorAiDisabledNotice": "Fitur AI belum diaktifkan",
+  "translatorAiResultLabel": "Terjemahan AI (perkiraan), belum diperiksa penutur Jawa",
+  "translatorAiResultMeta": "Terdeteksi: {language} • Keyakinan: {confidence}",
+  "translatorAiDetectedUnknown": "Tidak diketahui",
+  "translatorAiConfidenceHigh": "Tinggi",
+  "translatorAiConfidenceMedium": "Sedang",
+  "translatorAiConfidenceLow": "Rendah",
+  "translatorAiErrorSameLanguage": "Bahasa sumber dan tujuan sama",
+  "translatorAiErrorNoInternet": "Tidak ada koneksi internet. Coba lagi nanti atau gunakan kamus offline.",
+  "translatorAiErrorInvalidKey": "Kunci API AI tidak valid atau ditolak (401/403).",
+  "translatorAiErrorQuota": "Kuota permintaan AI tercapai (429). Coba lagi nanti.",
+  "translatorAiErrorTimeout": "Permintaan AI melebihi batas waktu 15 detik.",
+  "translatorAiErrorBlockedOrEmpty": "Respons AI kosong atau diblokir oleh filter keamanan.",
+  "translatorAiErrorOther": "Terjemahan AI gagal diproses. Coba lagi atau gunakan kamus offline.",
+  "homeStreakBlockSubtitle": "{count} misi rampung minggu iki",
+  "@homeStreakBlockSubtitle": {
+    "description": "Subjudul blok streak: jumlah kuis rampung minggu iki",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPathBannerTitle": "Nglajengaken Misi",
+  "@quizPathBannerTitle": {
+    "description": "Irah-irahan banner nglajengaken kuis ing sandhuwure dhaptar node"
+  },
+  "quizPathBannerProgress": "{completed} saking {total} node sampun rampung",
+  "@quizPathBannerProgress": {
+    "description": "Teks kemajuan ing banner nglajengaken kuis",
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "quizPathBannerStart": "Wiwit",
+  "@quizPathBannerStart": {
+    "description": "Tombol wiwit ing banner nglajengaken kuis"
+  },
+  "kratonZone1Label": "Kediri",
+  "@kratonZone1Label": {
+    "description": "Label zona 1 — node 1-10 [draf]"
+  },
+  "kratonZone2Label": "Singosari",
+  "@kratonZone2Label": {
+    "description": "Label zona 2 — node 11-20 [draf]"
+  },
+  "kratonZone3Label": "Majapahit",
+  "@kratonZone3Label": {
+    "description": "Label zona 3 — node 21-30 [draf]"
+  },
+  "kratonZone4Label": "Demak",
+  "@kratonZone4Label": {
+    "description": "Label zona 4 — node 31-40 [draf]"
+  },
+  "kratonZone5Label": "Mataram Islam",
+  "@kratonZone5Label": {
+    "description": "Label zona 5 — node 41-50 [draf]"
+  },
+  "homeHeroQuestProgressRatio": "{done}/{total}",
+  "@homeHeroQuestProgressRatio": {
+    "description": "Rasio kemajuan misi saben dina",
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }
