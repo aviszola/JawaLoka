@@ -32,6 +32,7 @@ class ProfileController extends ChangeNotifier {
   int _quizzesThisWeek = 0;
   Set<BlangkonType> _unlockedBlangkons = {BlangkonType.yogyakarta};
   int _lastCelebratedLevel = 1;
+  bool _isSetupCompleted = false;
   bool _isInitialized = false;
 
   // Serialized persistence task queue to eliminate race conditions
@@ -56,6 +57,7 @@ class ProfileController extends ChangeNotifier {
   double get levelProgress => ProgressionEngine.getLevelProgress(_totalXP);
   int get xpToNextLevel => ProgressionEngine.getXpToNextLevel(_totalXP);
   ProgressionTier get tier => ProgressionEngine.getTier(userLevel);
+  bool get isSetupCompleted => _isSetupCompleted;
   bool get isInitialized => _isInitialized;
   Set<String> get clearedActivities => Set.unmodifiable(_clearedActivities);
   int get streakDays => _streakDays;
@@ -129,6 +131,7 @@ class ProfileController extends ChangeNotifier {
     _lastCelebratedLevel = await _preferences.loadLastCelebratedLevel();
     _gender = await _preferences.loadGender();
     _age = await _preferences.loadAge();
+    _isSetupCompleted = await _preferences.loadSetupCompleted();
 
     // Pastikan Yogyakarta selalu terbuka
     _unlockedBlangkons.add(BlangkonType.yogyakarta);
@@ -160,6 +163,22 @@ class ProfileController extends ChangeNotifier {
 
     _isInitialized = true;
     notifyListeners();
+  }
+
+  /// Menandai bahwa pengguna telah menyelesaikan onboarding setup profil.
+  Future<void> markSetupCompleted() async {
+    if (_isSetupCompleted) return;
+    _isSetupCompleted = true;
+    notifyListeners();
+    await _preferences.saveSetupCompleted(true);
+  }
+
+  /// Mereset flag setup selesai (mis. saat pengguna memilih Keluar ke onboarding).
+  Future<void> resetSetupCompleted() async {
+    if (!_isSetupCompleted) return;
+    _isSetupCompleted = false;
+    notifyListeners();
+    await _preferences.saveSetupCompleted(false);
   }
 
   /// Updates the equipped blangkon, persists choice, and notifies listeners.

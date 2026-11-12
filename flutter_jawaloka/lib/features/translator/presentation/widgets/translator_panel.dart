@@ -21,6 +21,9 @@ class TranslatorPanel extends StatelessWidget {
   /// Character counter string – only shown on input panel
   final String? characterCount;
 
+  /// Whether to show language badge inside panel header
+  final bool showLanguageBadge;
+
   const TranslatorPanel({
     super.key,
     required this.isOutput,
@@ -29,20 +32,21 @@ class TranslatorPanel extends StatelessWidget {
     required this.child,
     this.actions,
     this.characterCount,
+    this.showLanguageBadge = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final bg = isOutput ? AppColors.amberSoft : AppColors.surface;
     final border = isOutput
-        ? AppColors.amber.withValues(alpha: 0.35)
-        : AppColors.surface;
+        ? AppColors.primaryAmber.withValues(alpha: 0.45)
+        : AppColors.border;
 
     return Container(
       decoration: BoxDecoration(
         color: bg,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: border, width: 1.5),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: border, width: 1.2),
         boxShadow: [
           BoxShadow(
             color: AppColors.ink.withValues(alpha: 0.06),
@@ -61,17 +65,17 @@ class TranslatorPanel extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: TextStyle(
-                    fontSize: 12,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.6,
                     color: isOutput
                         ? AppColors.amberDark
-                        : const Color(0xFF6B6257),
+                        : AppColors.inkSecondary,
                   ),
                 ),
                 const Spacer(),
-                _LanguageBadge(label: languageBadge, isOutput: isOutput),
+                if (showLanguageBadge)
+                  _LanguageBadge(label: languageBadge, isOutput: isOutput),
               ],
             ),
           ),
@@ -84,19 +88,18 @@ class TranslatorPanel extends StatelessWidget {
 
           // Bottom row: char counter + actions
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 8, 10),
+            padding: const EdgeInsets.fromLTRB(16, 0, 12, 10),
             child: Row(
               children: [
+                ...?actions,
+                const Spacer(),
                 if (characterCount != null)
                   Text(
                     characterCount!,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Color(0xFF6B6257),
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: AppColors.inkSecondary,
                     ),
                   ),
-                const Spacer(),
-                ...?actions,
               ],
             ),
           ),
@@ -119,12 +122,12 @@ class _LanguageBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: isOutput
             ? AppColors.amber.withValues(alpha: 0.25)
-            : const Color(0xFFF5F1EB),
+            : AppColors.canvas,
         borderRadius: BorderRadius.circular(100),
         border: Border.all(
           color: isOutput
               ? AppColors.amberDark.withValues(alpha: 0.4)
-              : const Color(0xFFE8E1D6),
+              : AppColors.border,
           width: 1,
         ),
       ),
@@ -132,10 +135,9 @@ class _LanguageBadge extends StatelessWidget {
         label,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          fontSize: 12,
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
           fontWeight: FontWeight.w600,
-          color: isOutput ? AppColors.amberDark : const Color(0xFF6B6257),
+          color: isOutput ? AppColors.amberDark : AppColors.inkSecondary,
         ),
       ),
     );
@@ -188,9 +190,9 @@ class _ShimmerPlaceholderState extends State<ShimmerPlaceholder>
               begin: Alignment(_anim.value - 1, 0),
               end: Alignment(_anim.value, 0),
               colors: const [
-                Color(0xFFE8E1D6),
-                Color(0xFFF5F1EB),
-                Color(0xFFE8E1D6),
+                AppColors.border,
+                AppColors.canvas,
+                AppColors.border,
               ],
             ),
           ),

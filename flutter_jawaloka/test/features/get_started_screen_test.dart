@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_jawaloka/core/l10n/locale_controller.dart';
+import 'package:flutter_jawaloka/core/l10n/locale_preferences.dart';
+import 'package:flutter_jawaloka/core/profile/profile_controller.dart';
+import 'package:flutter_jawaloka/core/profile/profile_preferences.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/widgets/get_started_brand_mark.dart';
@@ -229,6 +233,86 @@ void main() {
         expect(find.byType(FadeTransition), findsWidgets);
 
         await tester.pumpAndSettle();
+      },
+    );
+
+    testWidgets(
+      'Butir 2: first-run (isSetupCompleted=false) navigates to LanguageSelection',
+      (tester) async {
+        final localeCtrl = LocaleController(
+          preferences: InMemoryLocalePreferences(initialHasChosen: false),
+        );
+        await localeCtrl.loadSavedLocale();
+        final profileCtrl = ProfileController(
+          preferences: InMemoryProfilePreferences(initialSetupCompleted: false),
+        );
+        await profileCtrl.loadProfile();
+        String? destination;
+
+        await tester.pumpApp(
+          const GetStartedScreen(enableAmbientAnimation: false),
+          controller: localeCtrl,
+          profileController: profileCtrl,
+          onGenerateRoute: (settings) {
+            destination = settings.name;
+            return MaterialPageRoute(
+              builder: (_) => Scaffold(body: Text('Dest: ${settings.name}')),
+              settings: settings,
+            );
+          },
+        );
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text('Get Started'));
+        await tester.pumpAndSettle();
+        expect(destination, AppRouter.languageSelection);
+      },
+    );
+
+    testWidgets(
+      'Butir 2: returning user (isSetupCompleted=true & hasChosenLanguage=true) goes directly to /home',
+      (tester) async {
+        final localeCtrl = LocaleController(
+          preferences: InMemoryLocalePreferences(initialHasChosen: true),
+        );
+        await localeCtrl.loadSavedLocale();
+        final profileCtrl = ProfileController(
+          preferences: InMemoryProfilePreferences(initialSetupCompleted: true),
+        );
+        await profileCtrl.loadProfile();
+        String? destination;
+
+        await tester.pumpApp(
+          const GetStartedScreen(enableAmbientAnimation: false),
+          controller: localeCtrl,
+          profileController: profileCtrl,
+          onGenerateRoute: (settings) {
+            destination = settings.name;
+            return MaterialPageRoute(
+              builder: (_) => Scaffold(body: Text('Dest: ${settings.name}')),
+              settings: settings,
+            );
+          },
+        );
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text('Get Started'));
+        await tester.pumpAndSettle();
+        expect(destination, AppRouter.home);
+      },
+    );
+
+    testWidgets(
+      'Butir 4: resetSetupCompleted sets isSetupCompleted back to false',
+      (tester) async {
+        final prefs = InMemoryProfilePreferences(initialSetupCompleted: true);
+        final profileCtrl = ProfileController(preferences: prefs);
+        await profileCtrl.loadProfile();
+        expect(profileCtrl.isSetupCompleted, isTrue);
+
+        await profileCtrl.resetSetupCompleted();
+        expect(profileCtrl.isSetupCompleted, isFalse);
+        expect(await prefs.loadSetupCompleted(), isFalse);
       },
     );
   });

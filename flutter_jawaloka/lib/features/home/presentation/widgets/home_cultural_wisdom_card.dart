@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 
 /// Interactive cultural wisdom card displaying daily Javanese proverbs (Paribasan)
 /// with authentic Aksara script, transliteration, and philosophical commentary.
@@ -53,13 +54,14 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
   @override
   Widget build(BuildContext context) {
     final current = _proverbs[_currentIndex];
+    final textTheme = Theme.of(context).textTheme;
 
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
+        border: Border.all(color: AppColors.border, width: 1.2),
         boxShadow: [
           BoxShadow(
             color: AppColors.ink.withValues(alpha: 0.05),
@@ -83,29 +85,28 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFF3D6),
+                      color: AppColors.surfaceWarm,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: const Color(0xFFF4D483).withValues(alpha: 0.4),
+                        color: AppColors.border,
                       ),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.auto_awesome,
+                        const Icon(
+                          AppIcons.sparkle,
                           size: 12,
-                          color: Color(0xFFB87812),
+                          color: AppColors.primaryDark,
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Flexible(
                           child: Text(
                             'MUTIARA PIWULANG',
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w800,
+                            style: textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
                               letterSpacing: 0.8,
-                              color: Color(0xFFB87812),
+                              color: AppColors.primaryDark,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -117,9 +118,9 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                 ),
                 IconButton(
                   icon: const Icon(
-                    Icons.refresh_rounded,
+                    AppIcons.refresh,
                     size: 18,
-                    color: Color(0xFF7C6E5E),
+                    color: AppColors.inkSecondary,
                   ),
                   onPressed: _nextProverb,
                   tooltip: 'Ganti Piwulang',
@@ -134,12 +135,11 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                 child: Text(
                   current.aksara,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: textTheme.headlineLarge?.copyWith(
                     fontFamily: 'NotoSansJavanese',
-                    fontSize: 26,
                     height: 1.4,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF231C14),
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.ink,
                   ),
                 ),
               ),
@@ -148,12 +148,10 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
             Center(
               child: Text(
                 '“${current.latin}”',
-                style: const TextStyle(
-                  fontFamily: 'PlusJakartaSans',
-                  fontSize: 15,
+                style: textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.italic,
-                  color: Color(0xFF85580C),
+                  color: AppColors.primaryDark,
                 ),
               ),
             ),
@@ -161,10 +159,12 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
             Text(
               current.meaning,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 12,
+              maxLines: _isExpanded ? null : 1,
+              overflow: _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
+              style: textTheme.labelMedium?.copyWith(
                 height: 1.4,
-                color: Color(0xFF7C6E5E),
+                color: AppColors.inkSecondary,
+                fontWeight: FontWeight.w500,
               ),
             ),
             if (_isExpanded) ...[
@@ -173,28 +173,27 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFAF6EE),
+                  color: AppColors.canvas,
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: const Color(0xFFF0E3C5)),
+                  border: Border.all(color: AppColors.border),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       current.source,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF85580C),
+                      style: textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primaryDark,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       current.context,
-                      style: const TextStyle(
-                        fontSize: 11,
+                      style: textTheme.labelMedium?.copyWith(
                         height: 1.45,
-                        color: Color(0xFF231C14),
+                        color: AppColors.ink,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -217,10 +216,8 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                       _isExpanded
                           ? 'Tutup Makna Luhur'
                           : 'Waca Makna Luhur & Sumber',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF8A7E70),
+                      style: textTheme.labelMedium?.copyWith(
+                        color: AppColors.inkMuted,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -228,10 +225,10 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                   ),
                   Icon(
                     _isExpanded
-                        ? Icons.keyboard_arrow_up_rounded
-                        : Icons.keyboard_arrow_down_rounded,
+                        ? AppIcons.expandLess
+                        : AppIcons.expandMore,
                     size: 16,
-                    color: const Color(0xFF8A7E70),
+                    color: AppColors.inkMuted,
                   ),
                 ],
               ),

@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../widgets/home_header.dart';
-import '../widgets/home_weekly_quiz_strip.dart';
+import '../widgets/home_streak_block.dart';
 import '../widgets/home_hero_quest_card.dart';
-import '../widgets/home_continue_quiz_card.dart';
 import '../widgets/home_quick_learn_section.dart';
+import '../widgets/home_weekly_quiz_strip.dart';
 import '../widgets/home_cultural_wisdom_card.dart';
 
 /// Beranda (Home) Screen JawaLoka.
 ///
-/// Desain bersih & modern bernuansa kuning pastel hangat (kuning janur/pare anom)
-/// sesuai referensi visual iPhone 16. Seluruh tulisan berkontras tinggi dan mudah dibaca:
-/// 1. Header (Avatar, Sapaan & Nama, Level, Kapsul Streak).
-/// 2. Kartu Misi Aktif Kuning Pastel (Aksara Misi, Tag Chips, Segmented Progress, Tombol Putih).
-/// 3. Kartu Lanjutkan Kuis (Ikon Pastel Kuning, Node Aktif, Progres).
-/// 4. Kuis Minggu Ini (7 Lingkaran Hari).
-/// 5. Mutiara Piwulang Jawa.
-/// 6. Baris Belajar Cepat.
+/// Urutan ringkas (Tahap B):
+/// 1. Header (Avatar, Sapaan & Nama, Level pill).
+/// 2. Blok Streak besar (angka hari `displayLarge`, ikon api `accentOrange`, 1 baris jumlah kuis).
+/// 3. Kartu Misi Hari Ini (`HomeHeroQuestCard`).
+/// 4. Seksi Belajar Cepat (`HomeQuickLearnSection`, ikon + judul saja).
+/// 5. Aktivitas Minggu Ini (`HomeWeeklyQuizStrip`, 7 lingkaran hari).
+/// 6. Mutiara Piwulang Jawa (`HomeCulturalWisdomCard`, ringkas di paling bawah).
 class HomeScreen extends StatelessWidget {
   final void Function(int tabIndex)? onNavigateTab;
 
@@ -35,33 +34,33 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header bersih tanpa ilustrasi rumit
+              // Header bersih tanpa kapsul streak
               HomeHeader(onNavigateTab: onNavigateTab),
 
-              // Konten Beranda
+              // Konten Beranda sesuai urutan baru
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 20, 32),
+                padding: const EdgeInsets.fromLTRB(20, 6, 20, 28),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 1. Kartu Hero Misi Aktif (Kuning Pastel Hangat)
+                    // 1. Blok Streak Besar Baru
+                    HomeStreakBlock(onNavigateTab: onNavigateTab),
+                    const SizedBox(height: 12),
+
+                    // 2. Kartu Misi Hari Ini
                     const HomeHeroQuestCard(),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 14),
 
-                    // 2. Progres Belajar: Lanjutkan Kuis (Card Putih Ikon Pastel)
-                    HomeContinueQuizCard(onNavigateTab: onNavigateTab),
-                    const SizedBox(height: 16),
-
-                    // 3. Kebiasaan Belajar: Kuis Minggu Ini (7 Lingkaran Hari)
-                    const HomeWeeklyQuizStrip(),
-                    const SizedBox(height: 24),
-
-                    // 4. Sentuhan Budaya: Mutiara Piwulang Jawa
-                    const HomeCulturalWisdomCard(),
-                    const SizedBox(height: 24),
-
-                    // 5. Belajar Cepat: Modul Ringkas
+                    // 3. Belajar Cepat (menggantikan Lanjutkan Kuis)
                     HomeQuickLearnSection(onNavigateTab: onNavigateTab),
+                    const SizedBox(height: 16),
+
+                    // 4. Aktivitas Minggu Ini (7 Lingkaran Hari)
+                    const HomeWeeklyQuizStrip(),
+                    const SizedBox(height: 16),
+
+                    // 5. Mutiara Piwulang Jawa (ringkas, paling bawah)
+                    const HomeCulturalWisdomCard(),
                   ],
                 ),
               ),

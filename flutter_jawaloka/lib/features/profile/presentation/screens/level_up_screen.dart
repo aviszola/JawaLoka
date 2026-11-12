@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/presentation/widgets/celebration_confetti_painter.dart';
@@ -127,10 +128,10 @@ class _LevelUpScreenState extends State<LevelUpScreen>
   void _initConfetti() {
     final rng = math.Random(42);
     final colors = [
-      const Color(0xFFF6D5CE), // Soft blush
-      const Color(0xFFDDD7F6), // Soft lavender
-      const Color(0xFFFFDDB5), // Soft orange/peach
-      Colors.white,
+      AppColors.pastelBlush,
+      AppColors.pastelLavender,
+      AppColors.surfaceWarm,
+      AppColors.surface,
       AppColors.amberDark,
     ];
 
@@ -284,9 +285,8 @@ class _LevelUpScreenState extends State<LevelUpScreen>
       ),
       child: Text(
         context.l10n.levelUpMicroTag,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w800,
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w700,
           color: AppColors.ink,
           letterSpacing: 1.2,
         ),
@@ -352,7 +352,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               JavaneseAvatarWidget(
                 size: 130,
                 blangkonType: _highestReward,
-                backgroundColor: const Color(0xFFFFF9E9),
+                backgroundColor: AppColors.surfaceWarm,
               ),
 
               // Sparkle Star Accents
@@ -366,7 +366,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.auto_awesome_rounded,
+                    AppIcons.sparkle,
                     size: 16,
                     color: AppColors.amberDark,
                   ),
@@ -396,17 +396,14 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(
-                        Icons.star_rounded,
+                        AppIcons.star,
                         size: 18,
                         color: AppColors.amberDark,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         context.l10n.profileLevelPill(widget.newLevel),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          color: AppColors.ink,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           letterSpacing: -0.3,
                         ),
                       ),
@@ -423,10 +420,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
         // Headline Celebration Text
         Text(
           context.l10n.levelUpTitle(widget.newLevel),
-          style: const TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-            color: AppColors.ink,
+          style: Theme.of(context).textTheme.displayLarge?.copyWith(
             letterSpacing: -0.5,
           ),
         ),
@@ -435,26 +429,22 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              style: const TextStyle(
-                fontSize: 15,
-                color: AppColors.ink,
-                fontWeight: FontWeight.w500,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 height: 1.3,
               ),
               children: [
                 TextSpan(text: context.l10n.levelUpBlangkonUnlocked),
                 TextSpan(
                   text: _highestRewardName,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.ink,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 if (_rewards.length > 1)
                   TextSpan(
                     text:
                         ' ${context.l10n.levelUpOtherRewardsCount(_rewards.length - 1)}',
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: AppColors.inkMuted,
                     ),
@@ -466,10 +456,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           Text(
             context.l10n.levelUpNoRewardSubtitle,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 15,
-              color: AppColors.ink,
-              fontWeight: FontWeight.w500,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               height: 1.3,
             ),
           ),
@@ -506,7 +493,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               border: Border.all(color: AppColors.amber.withValues(alpha: 0.5)),
             ),
             child: const Icon(
-              Icons.emoji_events_rounded,
+              AppIcons.trophy,
               size: 26,
               color: AppColors.amberDark,
             ),
@@ -520,8 +507,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               children: [
                 Text(
                   context.l10n.levelUpBadgeCategory,
-                  style: const TextStyle(
-                    fontSize: 12,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.inkMuted,
                     letterSpacing: 1.0,
@@ -530,18 +516,12 @@ class _LevelUpScreenState extends State<LevelUpScreen>
                 const SizedBox(height: 2),
                 Text(
                   context.l10n.levelUpAchievementTitle,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.ink,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 2),
                 Text(
                   context.l10n.levelUpAchievementDesc,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: AppColors.inkMuted,
                   ),
                 ),
@@ -559,7 +539,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               border: Border.all(color: AppColors.border),
             ),
             child: const Icon(
-              Icons.verified_rounded,
+              AppIcons.verified,
               size: 18,
               color: AppColors.ink,
             ),
@@ -590,13 +570,12 @@ class _LevelUpScreenState extends State<LevelUpScreen>
             children: [
               Text(
                 context.l10n.levelUpContinueButton,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(width: 8),
-              const Icon(Icons.arrow_forward_rounded, size: 20),
+              const Icon(AppIcons.forward, size: 20),
             ],
           ),
         ),
@@ -623,13 +602,12 @@ class _LevelUpScreenState extends State<LevelUpScreen>
               children: [
                 Text(
                   context.l10n.levelUpEquipButton,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward_rounded, size: 20),
+                const Icon(AppIcons.forward, size: 20),
               ],
             ),
           ),
@@ -642,8 +620,7 @@ class _LevelUpScreenState extends State<LevelUpScreen>
           onPressed: _onSkip,
           child: Text(
             context.l10n.levelUpSkipButton,
-            style: const TextStyle(
-              fontSize: 14,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w600,
               color: AppColors.inkSecondary,
             ),

@@ -2,6 +2,7 @@ import '../../../../core/profile/profile_scope.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../data/vocab_word.dart';
 import '../widgets/module_card.dart';
@@ -35,8 +36,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         title: l10n.learnModuleAksaraTitle,
         subtitle: l10n.learnModuleAksaraSubtitle,
         iconGlyph: 'ꦲ',
-        bgColor: AppColors.amberSoft,
-        iconTextColor: AppColors.amberDark,
+        bgColor: AppIconTone.warm.backgroundColor,
+        iconTextColor: AppIconTone.warm.iconColor,
         progressLabel: l10n.learnModuleAksaraLabel,
         tag: l10n.learnTagAksara,
       ),
@@ -44,9 +45,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         id: 'kosakata',
         title: l10n.learnModuleVocabTitle,
         subtitle: l10n.learnModuleVocabSubtitle,
-        iconData: Icons.menu_book_rounded,
-        bgColor: AppColors.pastelSand,
-        iconTextColor: AppColors.ink,
+        iconData: AppIcons.vocab,
+        bgColor: AppIconTone.sand.backgroundColor,
+        iconTextColor: AppIconTone.sand.iconColor,
         progressLabel: l10n.learnModuleVocabLabel,
         tag: l10n.learnTagKamus,
       ),
@@ -54,9 +55,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         id: 'penerjemah',
         title: l10n.learnModuleTranslatorTitle,
         subtitle: l10n.learnModuleTranslatorSubtitle,
-        iconData: Icons.translate_rounded,
-        bgColor: const Color(0xFFEBE6DC),
-        iconTextColor: AppColors.inkSecondary,
+        iconData: AppIcons.translator,
+        bgColor: AppIconTone.success.backgroundColor,
+        iconTextColor: AppIconTone.success.iconColor,
         progressLabel: l10n.learnModuleTranslatorLabel,
         tag: l10n.learnTagUtilitas,
         isTool: true,
@@ -65,9 +66,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         id: 'unggah_ungguh',
         title: l10n.learnModuleEtiquetteTitle,
         subtitle: l10n.learnModuleEtiquetteSubtitle,
-        iconData: Icons.record_voice_over_rounded,
-        bgColor: const Color(0xFFF7ECDC),
-        iconTextColor: const Color(0xFF8C5424),
+        iconData: AppIcons.etiquette,
+        bgColor: AppIconTone.warm.backgroundColor,
+        iconTextColor: AppIconTone.warm.iconColor,
         progressLabel: l10n.learnModuleEtiquetteLabel,
         tag: l10n.learnTagWicara,
       ),
@@ -75,9 +76,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         id: 'peribahasa',
         title: l10n.learnModuleProverbsTitle,
         subtitle: l10n.learnModuleProverbsSubtitle,
-        iconData: Icons.auto_stories_rounded,
-        bgColor: const Color(0xFFF3ECE0),
-        iconTextColor: const Color(0xFF6E563E),
+        iconData: AppIcons.proverbs,
+        bgColor: AppIconTone.sand.backgroundColor,
+        iconTextColor: AppIconTone.sand.iconColor,
         progressLabel: l10n.learnModuleProverbsLabel,
         tag: l10n.learnTagSastra,
       ),
@@ -152,19 +153,12 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const SizedBox(height: 16),
                   Text(
                     sheetL10n.learnUnggahSheetTitle,
-                    style: const TextStyle(
-                      color: AppColors.ink,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 6),
                   Text(
                     sheetL10n.learnUnggahSheetSubtitle,
-                    style: const TextStyle(
-                      color: AppColors.inkSecondary,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 20),
                   _buildUnggahCard(
@@ -221,18 +215,14 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         children: [
           Text(
             title,
-            style: const TextStyle(
-              color: AppColors.ink,
-              fontSize: 15,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(height: 6),
           Text(
             desc,
-            style: const TextStyle(
-              color: AppColors.inkSecondary,
-              fontSize: 14,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               height: 1.3,
             ),
           ),
@@ -245,11 +235,9 @@ class _LearnHubScreenState extends State<LearnHubScreen>
             ),
             child: Text(
               context.l10n.learnUnggahExamplePrefix(example),
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: AppColors.ink,
-                fontSize: 12,
                 fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w600,
               ),
             ),
           ),
@@ -309,19 +297,12 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const SizedBox(height: 16),
                   Text(
                     l10n.learnPeribahasaSheetTitle,
-                    style: const TextStyle(
-                      color: AppColors.ink,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 6),
                   Text(
                     l10n.learnPeribahasaSheetSubtitle,
-                    style: const TextStyle(
-                      color: AppColors.inkSecondary,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 20),
                   ...proverbs.map(
@@ -338,18 +319,16 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                         children: [
                           Text(
                             p['jawa']!,
-                            style: const TextStyle(
-                              color: AppColors.ink,
-                              fontSize: 14,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w700,
+                              color: AppColors.ink,
                             ),
                           ),
                           const SizedBox(height: 6),
                           Text(
                             p['arti']!,
-                            style: const TextStyle(
-                              color: AppColors.inkSecondary,
-                              fontSize: 12,
+                            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.w500,
                               height: 1.3,
                             ),
                           ),
@@ -394,7 +373,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   // Module section (Aksara, Kosa Kata, Penerjemah, Penggunaan Bahasa, Peribahasa)
                   _buildSectionHeader(
                     context.l10n.learnSectionModules,
-                    Icons.auto_stories_rounded,
+                    AppIcons.proverbs,
                   ),
                   const SizedBox(height: 14),
                   ..._getModules(context).map(
@@ -406,7 +385,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   // Tembung Dina Iki carousel
                   _buildSectionHeader(
                     context.l10n.learnSectionDailyWord,
-                    Icons.translate_rounded,
+                    AppIcons.translator,
                   ),
                   const SizedBox(height: 14),
                   _buildWordCarousel(),
@@ -422,7 +401,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: const Color(0xFFF7D46B),
+      backgroundColor: AppColors.primaryAmber,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       toolbarHeight: 0,
@@ -434,7 +413,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
     final l10n = context.l10n;
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(color: Color(0xFFF7D46B)),
+      decoration: const BoxDecoration(color: AppColors.primaryAmber),
       child: Stack(
         children: [
           Positioned(
@@ -444,7 +423,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
               width: 150,
               height: 150,
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                color: AppColors.surfaceWarm.withValues(alpha: 0.55),
                 shape: BoxShape.circle,
               ),
             ),
@@ -464,19 +443,15 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                         children: [
                           Text(
                             l10n.learnHeaderTitle,
-                            style: const TextStyle(
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: AppColors.ink,
-                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           const SizedBox(height: 2),
                           Text(
                             l10n.learnHeaderSubtitle,
-                            style: const TextStyle(
-                              color: AppColors.ink,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w800,
+                            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                               letterSpacing: -0.4,
                             ),
                           ),
@@ -500,9 +475,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                       l10n.profileLevelPill(
                         ProfileScope.maybeOf(context)?.userLevel ?? 1,
                       ),
-                      style: const TextStyle(
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppColors.ink,
-                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -520,10 +494,10 @@ class _LearnHubScreenState extends State<LearnHubScreen>
     final l10n = context.l10n;
     final actions = [
       _QuickAction(
-        icon: Icons.menu_book_rounded,
+        icon: AppIcons.vocab,
         label: l10n.learnTagKamus,
-        color: AppColors.pastelSand,
-        iconColor: AppColors.amberDark,
+        color: AppIconTone.sand.backgroundColor,
+        iconColor: AppIconTone.sand.iconColor,
         onTap: () => Navigator.pushNamed(
           context,
           AppRouter.vocabularyDetail,
@@ -531,17 +505,17 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         ),
       ),
       _QuickAction(
-        icon: Icons.edit_note_rounded,
+        icon: AppIcons.navPractice,
         label: l10n.learnTagAksara,
-        color: AppColors.amberSoft,
-        iconColor: AppColors.accentOrange,
+        color: AppIconTone.warm.backgroundColor,
+        iconColor: AppIconTone.warm.iconColor,
         onTap: () => Navigator.pushNamed(context, AppRouter.aksaraDetail),
       ),
       _QuickAction(
-        icon: Icons.translate_rounded,
+        icon: AppIcons.translator,
         label: l10n.translatorTitle,
-        color: AppColors.pastelMint,
-        iconColor: AppColors.pastelMintText,
+        color: AppIconTone.success.backgroundColor,
+        iconColor: AppIconTone.success.iconColor,
         onTap: () => Navigator.pushNamed(context, AppRouter.translator),
       ),
     ];
@@ -569,11 +543,7 @@ class _LearnHubScreenState extends State<LearnHubScreen>
         const SizedBox(width: 8),
         Text(
           title,
-          style: const TextStyle(
-            color: AppColors.ink,
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ],
     );
@@ -626,9 +596,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                     ),
                     child: Text(
                       w.level,
-                      style: const TextStyle(
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppColors.amberDark,
-                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -636,18 +605,13 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const SizedBox(height: 6),
                   Text(
                     w.javanese,
-                    style: const TextStyle(
-                      color: AppColors.ink,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 2),
                   Text(
                     w.aksara,
-                    style: const TextStyle(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: AppColors.amberDark,
-                      fontSize: 15,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -655,9 +619,8 @@ class _LearnHubScreenState extends State<LearnHubScreen>
                   const Spacer(),
                   Text(
                     w.meaning(context),
-                    style: const TextStyle(
-                      color: AppColors.inkSecondary,
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -714,9 +677,8 @@ class _QuickActionCard extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               action.label,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: action.iconColor,
-                fontSize: 12,
                 fontWeight: FontWeight.w700,
               ),
             ),

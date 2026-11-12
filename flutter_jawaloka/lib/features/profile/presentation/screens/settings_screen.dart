@@ -4,7 +4,9 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/profile/profile_preferences.dart';
+import '../../../../core/presentation/widgets/app_dialog.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/blangkon_painter.dart';
 import '../widgets/javanese_avatar_widget.dart';
@@ -81,47 +83,24 @@ class _SettingsScreenState extends State<SettingsScreen>
 
   // ── Logout confirmation dialog ──────────────────────────────────────────────
   void _showLogoutDialog() {
-    showDialog<void>(
+    showAppDialog<void>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(
-          context.l10n.settingsLogout,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.ink,
-          ),
-        ),
-        content: Text(
-          context.l10n.settingsLogoutConfirm,
-          style: const TextStyle(color: AppColors.inkSecondary),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(),
-            child: Text(
-              context.l10n.settingsCancel,
-              style: const TextStyle(color: AppColors.inkSecondary),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(ctx).pop();
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                AppRouter.profileSetup,
-                (route) => false,
-              );
-            },
-            child: Text(
-              context.l10n.settingsLogout,
-              style: const TextStyle(
-                color: AppColors.error,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ],
-      ),
+      tone: AppDialogTone.destructive,
+      icon: AppIcons.logout,
+      title: context.l10n.settingsLogout,
+      message: context.l10n.settingsLogoutConfirm,
+      primaryLabel: context.l10n.settingsLogout,
+      onPrimary: () async {
+        Navigator.of(context, rootNavigator: true).pop();
+        await ProfileScope.maybeOf(context)?.resetSetupCompleted();
+        if (!mounted) return;
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          AppRouter.profileSetup,
+          (route) => false,
+        );
+      },
+      secondaryLabel: context.l10n.settingsCancel,
+      onSecondary: () => Navigator.of(context, rootNavigator: true).pop(),
     );
   }
 
@@ -130,16 +109,20 @@ class _SettingsScreenState extends State<SettingsScreen>
     final controller = LocaleScope.of(context);
     final dialogTitle = context.l10n.settingsLanguageDialogTitle;
 
-    showDialog<void>(
+    showGeneralDialog<void>(
       context: context,
-      builder: (ctx) => SimpleDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      barrierDismissible: true,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: AppColors.ink.withValues(alpha: 0.45),
+      transitionDuration: const Duration(milliseconds: 180),
+      pageBuilder: (ctx, animation, secondaryAnimation) => SimpleDialog(
+        backgroundColor: AppColors.surface,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: Text(
           dialogTitle,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.ink,
-          ),
+          textAlign: TextAlign.center,
+          style: Theme.of(ctx).textTheme.titleLarge,
         ),
         children: [
           SimpleDialogOption(
@@ -151,7 +134,7 @@ class _SettingsScreenState extends State<SettingsScreen>
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Text(
                 AppLocales.endonymOf('jv'),
-                style: const TextStyle(fontSize: 15, color: AppColors.ink),
+                style: Theme.of(ctx).textTheme.bodyLarge?.copyWith(color: AppColors.ink),
               ),
             ),
           ),
@@ -164,7 +147,7 @@ class _SettingsScreenState extends State<SettingsScreen>
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Text(
                 AppLocales.endonymOf('id'),
-                style: const TextStyle(fontSize: 15, color: AppColors.ink),
+                style: Theme.of(ctx).textTheme.bodyLarge?.copyWith(color: AppColors.ink),
               ),
             ),
           ),
@@ -177,45 +160,47 @@ class _SettingsScreenState extends State<SettingsScreen>
               padding: const EdgeInsets.symmetric(vertical: 6),
               child: Text(
                 AppLocales.endonymOf('en'),
-                style: const TextStyle(fontSize: 15, color: AppColors.ink),
+                style: Theme.of(ctx).textTheme.bodyLarge?.copyWith(color: AppColors.ink),
               ),
             ),
           ),
         ],
       ),
+      transitionBuilder: (ctx, animation, secondaryAnimation, child) {
+        final curved = CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+        return FadeTransition(
+          opacity: curved,
+          child: ScaleTransition(
+            scale: Tween<double>(begin: 0.92, end: 1.0).animate(curved),
+            child: child,
+          ),
+        );
+      },
     );
   }
 
   // ── Privacy policy dialog ───────────────────────────────────────────────────
   void _showPrivacyPolicyDialog() {
-    showDialog<void>(
+    showAppDialog<void>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(
-          context.l10n.settingsPrivacyPolicy,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.ink,
-          ),
-        ),
-        content: Text(
-          context.l10n.settingsPrivacyPolicyContent,
-          style: const TextStyle(color: AppColors.inkSecondary, height: 1.4),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(
-              context.l10n.settingsClose,
-              style: const TextStyle(
-                color: AppColors.ink,
-                fontWeight: FontWeight.w700,
-              ),
+      tone: AppDialogTone.info,
+      icon: AppIcons.privacy,
+      title: context.l10n.settingsPrivacyPolicy,
+      customContent: ConstrainedBox(
+        constraints: const BoxConstraints(maxHeight: 220),
+        child: SingleChildScrollView(
+          child: Text(
+            context.l10n.settingsPrivacyPolicyContent,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: AppColors.inkSecondary,
+              height: 1.4,
             ),
           ),
-        ],
+        ),
       ),
+      primaryLabel: context.l10n.settingsClose,
+      onPrimary: () => Navigator.of(context, rootNavigator: true).pop(),
     );
   }
 
@@ -230,96 +215,64 @@ class _SettingsScreenState extends State<SettingsScreen>
         ? l10n.profileSetupFemaleTitle
         : l10n.profileSetupMaleTitle;
 
-    showDialog<void>(
+    showAppDialog<void>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: Text(
-          l10n.settingsProfileDialogTitle,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            color: AppColors.ink,
-          ),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.settingsProfileDialogNickname,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: AppColors.inkSecondary,
-              ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              name,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: AppColors.ink,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              l10n.settingsProfileDialogCharacterAge,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: AppColors.inkSecondary,
-              ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              l10n.settingsProfileDialogCharacterAgeValue(
-                genderLabel,
-                profile?.age ?? 17,
-              ),
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: AppColors.ink,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              l10n.settingsProfileDialogLocalNote,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: AppColors.inkSecondary,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(ctx);
-              Navigator.pushNamed(context, AppRouter.profileSetup);
-            },
-            child: Text(
-              l10n.settingsProfileDialogEditButton,
-              style: const TextStyle(
-                color: AppColors.amberDark,
-                fontWeight: FontWeight.w700,
-              ),
+      tone: AppDialogTone.info,
+      icon: AppIcons.person,
+      title: l10n.settingsProfileDialogTitle,
+      customContent: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            l10n.settingsProfileDialogNickname,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: AppColors.inkSecondary,
             ),
           ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(
-              l10n.settingsClose,
-              style: const TextStyle(
-                color: AppColors.ink,
-                fontWeight: FontWeight.w700,
-              ),
+          const SizedBox(height: 2),
+          Text(
+            name,
+            style: Theme.of(context).textTheme.headlineMedium,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l10n.settingsProfileDialogCharacterAge,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: AppColors.inkSecondary,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            l10n.settingsProfileDialogCharacterAgeValue(
+              genderLabel,
+              profile?.age ?? 17,
+            ),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+              color: AppColors.ink,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            l10n.settingsProfileDialogLocalNote,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: AppColors.inkSecondary,
             ),
           ),
         ],
       ),
+      primaryLabel: l10n.settingsClose,
+      onPrimary: () => Navigator.of(context, rootNavigator: true).pop(),
+      secondaryLabel: l10n.settingsProfileDialogEditButton,
+      onSecondary: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushNamed(context, AppRouter.profileSetup);
+      },
     );
   }
 
@@ -337,7 +290,7 @@ class _SettingsScreenState extends State<SettingsScreen>
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFFFF6E5), Color(0xFFFFECC4)],
+            colors: [AppColors.surfaceWarm, AppColors.canvas],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -368,7 +321,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                       ),
                       alignment: Alignment.center,
                       child: const Icon(
-                        Icons.arrow_back_ios_new_rounded,
+                        AppIcons.back,
                         size: 18,
                         color: AppColors.ink,
                       ),
@@ -387,20 +340,16 @@ class _SettingsScreenState extends State<SettingsScreen>
                     children: [
                       Text(
                         userFullName,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.ink,
-                          letterSpacing: -0.3,
-                        ),
+                        style: Theme.of(context).textTheme.headlineMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       const SizedBox(height: 4),
                       Text(
                         context.l10n.homeLevelPill(
                           ProfileScope.maybeOf(context)?.userLevel ?? 1,
                         ),
-                        style: const TextStyle(
-                          fontSize: 14,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                           color: AppColors.inkSecondary,
                         ),
@@ -418,7 +367,7 @@ class _SettingsScreenState extends State<SettingsScreen>
 
   // ── Body Widget ─────────────────────────────────────────────────────────────
   Widget _buildBody() {
-    const chevron = Icon(Icons.chevron_right, color: AppColors.inkMuted);
+    const chevron = Icon(AppIcons.chevronRight, color: AppColors.inkMuted);
 
     return FadeTransition(
       opacity: _bodyFade,
@@ -434,7 +383,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                   vertical: 4,
                 ),
                 leading: const Icon(
-                  Icons.person_outline_rounded,
+                  AppIcons.person,
                   color: AppColors.ink,
                 ),
                 title: Text(
@@ -464,7 +413,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                       vertical: 4,
                     ),
                     leading: const Icon(
-                      Icons.language_rounded,
+                      AppIcons.language,
                       color: AppColors.ink,
                     ),
                     title: Text(
@@ -479,14 +428,13 @@ class _SettingsScreenState extends State<SettingsScreen>
                       children: [
                         Text(
                           activeLanguageName,
-                          style: const TextStyle(
+                          style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
                             color: AppColors.inkSecondary,
-                            fontSize: 14,
                           ),
                         ),
                         const SizedBox(width: 4),
                         const Icon(
-                          Icons.chevron_right,
+                          AppIcons.chevronRight,
                           color: AppColors.inkMuted,
                         ),
                       ],
@@ -504,7 +452,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                   vertical: 4,
                 ),
                 leading: const Icon(
-                  Icons.privacy_tip_outlined,
+                  AppIcons.privacy,
                   color: AppColors.ink,
                 ),
                 title: Text(
@@ -526,7 +474,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                   vertical: 4,
                 ),
                 leading: const Icon(
-                  Icons.logout_rounded,
+                  AppIcons.logout,
                   color: AppColors.error,
                 ),
                 title: Text(

@@ -123,7 +123,79 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(profileController.displayName, 'Siswa Jawa');
+      expect(profileController.isSetupCompleted, isTrue);
       expect(destination, AppRouter.home);
+    });
+
+    testWidgets(
+      'Butir 2: Ubah Data preserves isSetupCompleted and does not reset setup flag',
+      (tester) async {
+        final profilePrefs = InMemoryProfilePreferences(
+          initialDisplayName: 'Raka',
+          initialSetupCompleted: true,
+        );
+        final profileController = ProfileController(preferences: profilePrefs);
+        await profileController.loadProfile();
+        expect(profileController.isSetupCompleted, isTrue);
+
+        await tester.pumpApp(
+          const ProfileSetupScreen(),
+          profileController: profileController,
+          onGenerateRoute: (settings) => MaterialPageRoute(
+            builder: (_) => Scaffold(body: Text('Dest: ${settings.name}')),
+            settings: settings,
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        final submitBtn = find.text('Mulai Petualangan');
+        await tester.ensureVisible(submitBtn);
+        await tester.tap(submitBtn);
+        await tester.pumpAndSettle();
+
+        expect(profileController.isSetupCompleted, isTrue);
+        expect(await profilePrefs.loadSetupCompleted(), isTrue);
+      },
+    );
+
+    testWidgets('age uses only stepper − / + (>=48dp) with no quick age chips', (
+      tester,
+    ) async {
+      final profilePrefs = InMemoryProfilePreferences();
+      final profileController = ProfileController(preferences: profilePrefs);
+      await profileController.loadProfile();
+
+      await tester.pumpApp(
+        const ProfileSetupScreen(),
+        profileController: profileController,
+      );
+      await tester.pumpAndSettle();
+
+      // 5 quick chips must be removed
+      for (final chipAge in [10, 15, 20, 25]) {
+        expect(find.text('$chipAge th'), findsNothing);
+      }
+
+      // Touch targets >= 48x48 dp
+      final minusBtn = find.byIcon(Icons.remove_rounded);
+      final plusBtn = find.byIcon(Icons.add_rounded);
+      expect(minusBtn, findsOneWidget);
+      expect(plusBtn, findsOneWidget);
+      expect(tester.getSize(find.bySemanticsLabel('−')).width, greaterThanOrEqualTo(48));
+      expect(tester.getSize(find.bySemanticsLabel('−')).height, greaterThanOrEqualTo(48));
+      expect(tester.getSize(find.bySemanticsLabel('+')).width, greaterThanOrEqualTo(48));
+      expect(tester.getSize(find.bySemanticsLabel('+')).height, greaterThanOrEqualTo(48));
+
+      // Increment & decrement
+      expect(find.text('17'), findsOneWidget);
+      await tester.ensureVisible(plusBtn);
+      await tester.tap(plusBtn);
+      await tester.pumpAndSettle();
+      expect(find.text('18'), findsOneWidget);
+
+      await tester.tap(minusBtn);
+      await tester.pumpAndSettle();
+      expect(find.text('17'), findsOneWidget);
     });
   });
 }

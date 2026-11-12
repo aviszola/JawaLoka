@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../quiz/domain/quest_target.dart';
 
@@ -160,7 +161,7 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
               border: Border.all(color: AppColors.border),
             ),
             child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
+              AppIcons.back,
               size: 18,
               color: AppColors.ink,
             ),
@@ -172,10 +173,7 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
         children: [
           Text(
             context.l10n.aksaraDetailTitle,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
-              color: AppColors.ink,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
               letterSpacing: -0.3,
             ),
           ),
@@ -188,8 +186,7 @@ class _AksaraDetailScreenState extends State<AksaraDetailScreen>
             ),
             child: Text(
               context.l10n.aksaraDetailTag,
-              style: const TextStyle(
-                fontSize: 12,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: AppColors.amberDark,
               ),
@@ -215,13 +212,12 @@ class _AksaraHeroCard extends StatelessWidget {
       height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFF7D46B),
+        color: AppColors.primaryAmber,
         borderRadius: BorderRadius.circular(26),
-        border: Border.all(color: const Color(0xFFEED17B), width: 1.2),
+        border: Border.all(color: AppColors.border, width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF231C14).withValues(alpha: 0.04),
-            blurRadius: 16,
+            color: AppColors.ink.withValues(alpha: 0.04),
             offset: const Offset(0, 4),
           ),
         ],
@@ -236,7 +232,7 @@ class _AksaraHeroCard extends StatelessWidget {
               width: 140,
               height: 140,
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                color: AppColors.surfaceWarm.withValues(alpha: 0.55),
                 shape: BoxShape.circle,
               ),
             ),
@@ -261,16 +257,15 @@ class _AksaraHeroCard extends StatelessWidget {
                   width: 110,
                   height: 110,
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.92),
+                    color: AppColors.surface.withValues(alpha: 0.92),
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: const Color(0xFFEED07C).withValues(alpha: 0.6),
+                      color: AppColors.border,
                       width: 1.2,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF231C14).withValues(alpha: 0.04),
-                        blurRadius: 12,
+                        color: AppColors.ink.withValues(alpha: 0.04),
                         offset: const Offset(0, 4),
                       ),
                     ],
@@ -284,10 +279,8 @@ class _AksaraHeroCard extends StatelessWidget {
                           QuestTarget.hanacarakaAll
                               .firstWhere((t) => t.glyphKey == 'ha')
                               .aksaraChar,
-                          style: const TextStyle(
+                          style: Theme.of(context).textTheme.displayLarge?.copyWith(
                             fontFamily: 'NotoSansJavanese',
-                            fontSize: 46,
-                            color: AppColors.ink,
                             height: 1.0,
                           ),
                         ),
@@ -296,21 +289,18 @@ class _AksaraHeroCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const Text(
+                Text(
                   'Ha',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF231C14),
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    color: AppColors.ink,
                     letterSpacing: -0.5,
                   ),
                 ),
                 const SizedBox(height: 2),
-                const Text(
+                Text(
                   '/hɑ/',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFF85580C),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: AppColors.ink,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -397,7 +387,7 @@ class _ContohKataSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SectionHeader(
-          icon: Icons.text_fields_rounded,
+          icon: AppIcons.exampleText,
           label: context.l10n.aksaraDetailExampleHeader,
         ),
         const SizedBox(height: 12),
@@ -463,9 +453,7 @@ class _ExampleWordCard extends StatelessWidget {
         children: [
           Text(
             aksara,
-            style: TextStyle(
-              fontSize: 22,
-              color: AppColors.ink,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
               fontFamilyFallback: const [
                 'NotoSansJavanese',
                 'Noto Sans Javanese',
@@ -476,8 +464,7 @@ class _ExampleWordCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             latin,
-            style: const TextStyle(
-              fontSize: 14,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w700,
               color: AppColors.ink,
             ),
@@ -485,7 +472,9 @@ class _ExampleWordCard extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             meaning,
-            style: const TextStyle(fontSize: 12, color: AppColors.inkMuted),
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              color: AppColors.inkMuted,
+            ),
           ),
         ],
       ),
@@ -515,13 +504,15 @@ class _SandanganSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SectionHeader(
-          icon: Icons.tune_rounded,
+          icon: AppIcons.sandangan,
           label: context.l10n.aksaraDetailSandanganHeader,
         ),
         const SizedBox(height: 4),
         Text(
           context.l10n.aksaraDetailSandanganSubtitle,
-          style: const TextStyle(fontSize: 12, color: AppColors.inkMuted),
+          style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: AppColors.inkMuted,
+          ),
         ),
         const SizedBox(height: 12),
         SizedBox(
@@ -570,18 +561,18 @@ class _SandanganChip extends StatelessWidget {
           Flexible(
             child: Text(
               data.combined,
-              style: const TextStyle(
-                fontSize: 20,
-                color: AppColors.ink,
-                fontFamilyFallback: ['NotoSansJavanese', 'Noto Sans Javanese'],
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontFamilyFallback: const [
+                  'NotoSansJavanese',
+                  'Noto Sans Javanese',
+                ],
               ),
             ),
           ),
           const SizedBox(height: 2),
           Text(
             data.result,
-            style: const TextStyle(
-              fontSize: 12,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.w700,
               color: AppColors.amberDark,
             ),
@@ -605,7 +596,7 @@ class _CaraMenulisSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SectionHeader(
-          icon: Icons.edit_note_rounded,
+          icon: AppIcons.writingSteps,
           label: context.l10n.aksaraDetailWritingHeader,
         ),
         const SizedBox(height: 12),
@@ -664,8 +655,7 @@ class _WritingStepCard extends StatelessWidget {
             child: Center(
               child: Text(
                 '$step',
-                style: const TextStyle(
-                  fontSize: 14,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
@@ -679,8 +669,7 @@ class _WritingStepCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: AppColors.ink,
                   ),
@@ -688,9 +677,8 @@ class _WritingStepCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   description,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: AppColors.inkSecondary,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
                     height: 1.4,
                   ),
                 ),
@@ -729,10 +717,8 @@ class _SectionHeader extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 15,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.w700,
-            color: AppColors.ink,
             letterSpacing: -0.2,
           ),
         ),
@@ -784,15 +770,14 @@ class _BottomButtons extends StatelessWidget {
                   children: [
                     Text(
                       context.l10n.aksaraDetailWritingButton,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
                     ),
                     const SizedBox(width: 6),
                     const Icon(
-                      Icons.edit_rounded,
+                      AppIcons.edit,
                       color: Colors.white,
                       size: 16,
                     ),
@@ -819,15 +804,14 @@ class _BottomButtons extends StatelessWidget {
                   children: [
                     Text(
                       context.l10n.aksaraDetailQuizButton,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColors.amberDark,
                       ),
                     ),
                     const SizedBox(width: 6),
                     const Icon(
-                      Icons.track_changes_rounded,
+                      AppIcons.practiceTarget,
                       color: AppColors.amberDark,
                       size: 16,
                     ),

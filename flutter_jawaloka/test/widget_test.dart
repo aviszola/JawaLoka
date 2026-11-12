@@ -36,7 +36,7 @@ void main() {
 
   // ─── Test (a): 5 Bottom Navigation items ─────────────────────────────────
   testWidgets(
-    'Bottom nav has exactly 5 items labeled Beranda, Belajar, Misi, Kuis, Profil',
+    'Bottom nav has exactly 5 items labeled Beranda, Belajar, Latihan, Misi, Profil',
     (WidgetTester tester) async {
       await tester.pumpApp(const MainShellScreen());
       await tester.pump();
@@ -44,8 +44,8 @@ void main() {
 
       expect(find.text('Beranda'), findsOneWidget);
       expect(find.text('Belajar'), findsOneWidget);
+      expect(find.text('Latihan'), findsOneWidget);
       expect(find.text('Misi'), findsOneWidget);
-      expect(find.text('Kuis'), findsOneWidget);
       expect(find.text('Profil'), findsOneWidget);
     },
   );
@@ -67,9 +67,8 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
     expect(find.byType(LearnHubScreen), findsOneWidget);
 
-    // Tap Kuis
-    await tester.tap(find.text('Kuis'));
-    await tester.pump();
+    // Tap Misi
+    await tester.tap(find.text('Misi'));
     await tester.pump(const Duration(milliseconds: 300));
     expect(find.byType(QuizPathScreen), findsOneWidget);
 
@@ -101,8 +100,8 @@ void main() {
     // Verify initially on Beranda
     expect(find.byType(HomeScreen), findsOneWidget);
 
-    // Tap Misi (Quest) button
-    await tester.tap(find.text('Misi'));
+    // Tap Latihan (practice) button
+    await tester.tap(find.text('Latihan'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
@@ -137,17 +136,14 @@ void main() {
 
   // ─── Test (e): Quiz Path displays 3 Tingkat chips and unit topics ──────────
   testWidgets(
-    'QuizPathScreen displays Tingkat chips (Mudah, Mahir, Sangat Mahir) and unit topics',
+    'QuizPathScreen displays unit topics without difficulty chips',
     (WidgetTester tester) async {
       await tester.pumpApp(const QuizPathScreen());
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
-      // 3 difficulty chips with default Mudah
-      expect(find.text('Mudah'), findsOneWidget);
-      expect(find.text('Mahir'), findsOneWidget);
-      expect(find.text('Sangat Mahir'), findsOneWidget);
-
+      // Difficulty chips removed (Butir 5)
+      expect(find.byType(ChoiceChip), findsNothing);
       // Unit 1 topics visible at top
       expect(
         find.text('Unit 1: Sapaan dan Unggah-Ungguh Awal'),
@@ -215,9 +211,9 @@ void main() {
 
       expect(find.text('90'), findsOneWidget);
       expect(find.text('9/10'), findsOneWidget);
-      expect(find.text('Streak kuis aktif: 5 hari'), findsOneWidget);
+      expect(find.text('Streak misi aktif: 5 hari'), findsOneWidget);
       expect(find.text('Kembali ke Beranda'), findsOneWidget);
-      expect(find.text('Ulangi kuis'), findsOneWidget);
+      expect(find.text('Ulangi misi'), findsOneWidget);
 
       // Verify passing threshold is NOT displayed
       expect(find.textContaining('Target'), findsNothing);
@@ -261,7 +257,7 @@ void main() {
       // Navigated to QuizResultScreen
       expect(find.byType(QuizResultScreen), findsOneWidget);
       expect(find.text('Kembali ke Beranda'), findsOneWidget);
-      expect(find.text('Ulangi kuis'), findsOneWidget);
+      expect(find.text('Ulangi misi'), findsOneWidget);
     },
   );
 
@@ -283,7 +279,7 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
-      expect(find.text('Streak kuis aktif: 5 hari'), findsOneWidget);
+      expect(find.text('Streak misi aktif: 5 hari'), findsOneWidget);
 
       // When isStreakAchievedToday is false
       const notAchievedResult = QuizResult(
@@ -299,7 +295,7 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
-      expect(find.text('Streak kuis aktif: 5 hari'), findsNothing);
+      expect(find.text('Streak misi aktif: 5 hari'), findsNothing);
     },
   );
 }

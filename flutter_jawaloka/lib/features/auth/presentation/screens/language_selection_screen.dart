@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/l10n/locale_scope.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../widgets/primary_button.dart';
 
@@ -30,16 +31,16 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
       name: 'Basa Jawa',
       sub: 'Javanese',
       avatar: 'ꦗ',
-      avatarBg: AppColors.pastelSand,
-      avatarBorder: Color(0xFFE4D7C0),
+      avatarBg: AppColors.primaryAmber,
+      avatarBorder: AppColors.primaryDark,
     ),
     _LanguageOption(
       code: 'id',
       name: 'Bahasa Indonesia',
       sub: 'Default',
       avatar: 'ID',
-      avatarBg: Color(0xFFFFE3A6),
-      avatarBorder: Color(0xFFF5CD78),
+      avatarBg: AppColors.primaryAmber,
+      avatarBorder: AppColors.primaryDark,
       isJavaneseGlyph: false,
     ),
     _LanguageOption(
@@ -47,8 +48,8 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
       name: 'English',
       sub: 'For learners worldwide',
       avatar: 'EN',
-      avatarBg: AppColors.pastelLavender,
-      avatarBorder: Color(0xFFCEC6EE),
+      avatarBg: AppColors.primaryAmber,
+      avatarBorder: AppColors.primaryDark,
       isJavaneseGlyph: false,
     ),
   ];
@@ -163,9 +164,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                                   titleText,
                                   style: theme.textTheme.displayMedium
                                       ?.copyWith(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w700,
-                                        color: AppColors.ink,
                                         letterSpacing: -0.5,
                                         height: 1.2,
                                       ),
@@ -174,9 +172,6 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                                 Text(
                                   subtitleText,
                                   style: theme.textTheme.bodyMedium?.copyWith(
-                                    fontSize: 14,
-                                    color: AppColors.inkSecondary,
-                                    fontWeight: FontWeight.w500,
                                     letterSpacing: 0.1,
                                   ),
                                 ),
@@ -244,11 +239,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                             child: Text(
                               hintText,
                               textAlign: TextAlign.center,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                fontSize: 14,
-                                color: AppColors.inkSecondary,
-                                fontWeight: FontWeight.w500,
-                              ),
+                              style: theme.textTheme.bodyMedium,
                             ),
                           ),
                         ),
@@ -268,7 +259,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                         PrimaryButton(
                           label: continueButtonText,
                           onPressed: _proceed,
-                          trailingIcon: Icons.arrow_forward_rounded,
+                          trailingIcon: AppIcons.forward,
                         ),
                         const SizedBox(height: 10),
                         GestureDetector(
@@ -277,8 +268,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen>
                             padding: const EdgeInsets.symmetric(vertical: 6),
                             child: Text(
                               l10n.authSkipToLearn,
-                              style: const TextStyle(
-                                fontSize: 14,
+                              style: theme.textTheme.bodyMedium?.copyWith(
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.inkSecondary,
                                 decoration: TextDecoration.underline,
@@ -398,10 +388,12 @@ class _LanguageCardState extends State<_LanguageCard>
                   child: Center(
                     child: Text(
                       widget.option.avatar,
-                      style: TextStyle(
-                        fontSize: widget.option.isJavaneseGlyph ? 22 : 16,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColors.ink,
+                        fontFamily: widget.option.isJavaneseGlyph
+                            ? 'NotoSansJavanese'
+                            : null,
                       ),
                     ),
                   ),
@@ -415,20 +407,16 @@ class _LanguageCardState extends State<_LanguageCard>
                     children: [
                       Text(
                         widget.option.name,
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: widget.isSelected
                               ? FontWeight.w700
                               : FontWeight.w600,
-                          color: AppColors.ink,
                         ),
                       ),
                       const SizedBox(height: 2),
                       Text(
                         widget.option.sub,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: AppColors.inkSecondary,
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -454,7 +442,7 @@ class _LanguageCardState extends State<_LanguageCard>
                   ),
                   child: widget.isSelected
                       ? const Icon(
-                          Icons.check_rounded,
+                          AppIcons.check,
                           size: 14,
                           color: AppColors.ink,
                         )

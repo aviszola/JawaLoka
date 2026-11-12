@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/profile/blangkon_rewards.dart';
@@ -121,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       SnackBar(
         content: Text(
           message,
-          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         behavior: SnackBarBehavior.floating,
         backgroundColor: AppColors.ink,
@@ -183,10 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         children: [
           Text(
             context.l10n.profileTitle,
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w800,
-              color: AppColors.ink,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
               letterSpacing: -0.5,
             ),
           ),
@@ -218,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ],
                   ),
                   child: const Icon(
-                    Icons.settings_outlined,
+                    AppIcons.settings,
                     size: 21,
                     color: AppColors.ink,
                   ),
@@ -238,12 +236,12 @@ class _ProfileScreenState extends State<ProfileScreen>
       width: double.infinity,
       constraints: const BoxConstraints(minHeight: 260),
       decoration: BoxDecoration(
-        color: const Color(0xFFF7D46B),
+        color: AppColors.primaryAmber,
         borderRadius: BorderRadius.circular(26),
-        border: Border.all(color: const Color(0xFFEED17B), width: 1.2),
+        border: Border.all(color: AppColors.border, width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF231C14).withValues(alpha: 0.04),
+            color: AppColors.ink.withValues(alpha: 0.04),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -259,7 +257,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               width: 140,
               height: 140,
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                color: AppColors.surfaceWarm.withValues(alpha: 0.55),
                 shape: BoxShape.circle,
               ),
             ),
@@ -304,24 +302,23 @@ class _ProfileScreenState extends State<ProfileScreen>
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          _displayName,
-                          style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.ink,
-                            letterSpacing: -0.3,
+                        Flexible(
+                          child: Text(
+                            _displayName,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const SizedBox(width: 6),
                         const Icon(
-                          Icons.verified_rounded,
+                          AppIcons.verified,
                           size: 18,
                           color: AppColors.amberDark,
                         ),
                         const SizedBox(width: 4),
                         const Icon(
-                          Icons.edit_rounded,
+                          AppIcons.edit,
                           size: 16,
                           color: AppColors.inkSecondary,
                         ),
@@ -347,8 +344,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                 required maxLength,
                               }) => null,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 14,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w700,
                             color: AppColors.ink,
                           ),
@@ -398,9 +394,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             alignment: Alignment.center,
                             child: Text(
                               context.l10n.profileSaveName,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
+                              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                 color: Colors.white,
                               ),
                             ),
@@ -426,10 +420,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                             alignment: Alignment.center,
                             child: Text(
                               context.l10n.profileCancelEdit,
-                              style: const TextStyle(
-                                fontSize: 13,
+                              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                                 fontWeight: FontWeight.w600,
-                                color: AppColors.ink,
                               ),
                             ),
                           ),
@@ -442,8 +434,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       padding: const EdgeInsets.only(top: 6),
                       child: Text(
                         _nameError!,
-                        style: const TextStyle(
-                          fontSize: 12,
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: AppColors.error,
                         ),
@@ -480,17 +471,16 @@ class _ProfileScreenState extends State<ProfileScreen>
                           Icon(
                             ProfileScope.maybeOf(context)?.gender ==
                                     UserGender.female
-                                ? Icons.face_3_rounded
-                                : Icons.face_rounded,
+                                ? AppIcons.genderFemale
+                                : AppIcons.genderMale,
                             size: 14,
                             color: AppColors.amberDark,
                           ),
                           const SizedBox(width: 6),
                           Text(
                             '${ProfileScope.maybeOf(context)?.gender.label ?? "Putra"} • ${ProfileScope.maybeOf(context)?.age ?? 17} Th',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
                               color: AppColors.ink,
                             ),
                           ),
@@ -516,7 +506,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Icon(
-                            Icons.circle,
+                            AppIcons.dot,
                             size: 8,
                             color: AppColors.amberDark,
                           ),
@@ -525,9 +515,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                             context.l10n.profileLevelPill(
                               ProfileScope.maybeOf(context)?.userLevel ?? 1,
                             ),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
                               color: AppColors.ink,
                             ),
                           ),
@@ -557,16 +546,15 @@ class _ProfileScreenState extends State<ProfileScreen>
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               const Icon(
-                                Icons.auto_awesome_rounded,
+                                AppIcons.xp,
                                 size: 14,
                                 color: AppColors.amberDark,
                               ),
                               const SizedBox(width: 6),
                               Text(
                                 xpText,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.w700,
                                   color: AppColors.ink,
                                 ),
                               ),
@@ -595,18 +583,17 @@ class _ProfileScreenState extends State<ProfileScreen>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Icon(
-                            Icons.local_fire_department_rounded,
+                            AppIcons.streak,
                             size: 16,
-                            color: Color(0xFFF26522),
+                            color: AppColors.accentOrange,
                           ),
                           const SizedBox(width: 4),
                           Text(
                             context.l10n.profileStreakPill(
                               ProfileScope.maybeOf(context)?.streakDays ?? 0,
                             ),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
                               color: AppColors.ink,
                             ),
                           ),
@@ -632,7 +619,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Icon(
-                            Icons.quiz_outlined,
+                            AppIcons.missionCount,
                             size: 16,
                             color: AppColors.amberDark,
                           ),
@@ -642,9 +629,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                               ProfileScope.maybeOf(context)?.quizzesThisWeek ??
                                   0,
                             ),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w800,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
                               color: AppColors.ink,
                             ),
                           ),
@@ -681,11 +667,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               children: [
                 Text(
                   context.l10n.profileBadgeTitle,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: AppColors.ink,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(width: 8),
                 Container(
@@ -699,8 +681,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
                   child: Text(
                     context.l10n.profileBadgeOpenCount,
-                    style: const TextStyle(
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: AppColors.inkMuted,
                     ),
@@ -710,9 +691,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
             Text(
               context.l10n.profileBadgeCollection,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
                 color: AppColors.inkMuted,
               ),
             ),
@@ -732,9 +711,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                   title: context.l10n.profileBadgeStreak7Title,
                   statusLabel: context.l10n.profileBadgeUnlocked,
                   isUnlocked: true,
-                  bgColor: const Color(0xFFFFF3D6),
-                  icon: Icons.star_rounded,
-                  iconColor: const Color(0xFFB87812),
+                  bgColor: AppColors.surfaceWarm,
+                  icon: AppIcons.star,
+                  iconColor: AppColors.primaryDark,
                   onTap: () =>
                       _showToast(context.l10n.profileBadgeStreak7Toast),
                 ),
@@ -747,8 +726,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                   statusLabel: context.l10n.profileBadgeLocked,
                   isUnlocked: false,
                   bgColor: Colors.white,
-                  icon: Icons.lock_rounded,
-                  iconColor: const Color(0xFF8A7E70),
+                  icon: AppIcons.lock,
+                  iconColor: AppColors.inkMuted,
                   onTap: () =>
                       _showToast(context.l10n.profileBadgeStreak30Toast),
                 ),
@@ -759,13 +738,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ? context.l10n.profileBadgeUnlocked
                       : context.l10n.profileBadgeLocked,
                   isUnlocked: isLevel5Unlocked,
-                  bgColor: const Color(0xFFFFF3D6),
+                  bgColor: AppColors.surfaceWarm,
                   icon: isLevel5Unlocked
-                      ? Icons.emoji_events_rounded
-                      : Icons.lock_rounded,
+                      ? AppIcons.trophy
+                      : AppIcons.lock,
                   iconColor: isLevel5Unlocked
-                      ? const Color(0xFFB87812)
-                      : const Color(0xFF8A7E70),
+                      ? AppColors.primaryDark
+                      : AppColors.inkMuted,
                   onTap: () {
                     HapticFeedback.mediumImpact();
                     if (isLevel5Unlocked) {
@@ -790,9 +769,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ? context.l10n.profileBadgeUnlocked
                       : context.l10n.profileBadgeEasyLevel,
                   isUnlocked: isAksaraUnlocked,
-                  bgColor: const Color(0xFFFFF3D6),
-                  icon: Icons.auto_stories_rounded,
-                  iconColor: const Color(0xFFB87812),
+                  bgColor: AppColors.surfaceWarm,
+                  icon: AppIcons.proverbs,
+                  iconColor: AppColors.primaryDark,
                   onTap: () => _showToast(context.l10n.profileBadgeAksaraToast),
                 ),
               ],
@@ -823,10 +802,10 @@ class _ProfileScreenState extends State<ProfileScreen>
         decoration: BoxDecoration(
           color: isUnlocked ? bgColor : Colors.white,
           borderRadius: BorderRadius.circular(22),
-          border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
+          border: Border.all(color: AppColors.border, width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF231C14).withValues(alpha: 0.04),
+              color: AppColors.ink.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 3),
             ),
@@ -841,9 +820,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w800,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
                       color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
                       letterSpacing: -0.2,
                     ),
@@ -857,13 +835,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                     decoration: BoxDecoration(
                       color: isUnlocked
                           ? AppColors.surface.withValues(alpha: 0.9)
-                          : const Color(0xFFE2DBD1),
+                          : AppColors.border,
                       borderRadius: BorderRadius.circular(99),
                     ),
                     child: Text(
                       badgeHighlight ?? statusLabel,
-                      style: TextStyle(
-                        fontSize: 12,
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: isUnlocked ? AppColors.ink : AppColors.inkMuted,
                       ),
@@ -923,7 +900,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           }
         },
         icon: const Icon(
-          Icons.style_outlined,
+          AppIcons.blangkonStyle,
           size: 20,
           color: AppColors.amber,
         ),
@@ -932,9 +909,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   UserGender.female
               ? context.l10n.profileChooseBusanaButton
               : context.l10n.profileChooseBlangkonButton,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w800,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
             color: Colors.white,
           ),
         ),

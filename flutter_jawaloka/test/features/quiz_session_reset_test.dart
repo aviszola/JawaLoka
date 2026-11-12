@@ -178,10 +178,10 @@ void main() {
         await tester.pumpAndSettle();
 
         // Exit dialog appears
-        expect(find.text('Keluar dari Kuis?'), findsOneWidget);
+        expect(find.text('Keluar dari Misi?'), findsOneWidget);
 
         // Cancel keeps user on Question 2
-        await tester.tap(find.text('Lanjutkan'));
+        await tester.tap(find.text('Lanjutkan misi'));
         await tester.pumpAndSettle();
         expect(find.text('ꦤ'), findsOneWidget);
 
@@ -246,10 +246,10 @@ void main() {
         await tester.pump(const Duration(milliseconds: 1600));
 
         expect(find.byType(QuizResultScreen), findsOneWidget);
-        expect(find.text('Ulangi kuis'), findsOneWidget);
+        expect(find.text('Ulangi misi'), findsOneWidget);
 
         // Tap Retry
-        final retryButton = find.text('Ulangi kuis');
+        final retryButton = find.text('Ulangi misi');
         await tester.ensureVisible(retryButton);
         await tester.pump();
         await tester.tap(retryButton);

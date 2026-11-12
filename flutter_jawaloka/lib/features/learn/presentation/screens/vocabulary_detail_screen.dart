@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../data/vocab_word.dart';
 
@@ -157,7 +158,7 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
               border: Border.all(color: AppColors.border),
             ),
             child: const Icon(
-              Icons.arrow_back_ios_new_rounded,
+              AppIcons.back,
               size: 18,
               color: AppColors.ink,
             ),
@@ -179,15 +180,14 @@ class _VocabularyDetailScreenState extends State<VocabularyDetailScreen>
           margin: const EdgeInsets.only(right: 16, top: 10, bottom: 10),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
           decoration: BoxDecoration(
-            color: AppColors.pastelMint,
-            borderRadius: BorderRadius.circular(20),
+            color: AppColors.primaryAmber,
+            borderRadius: BorderRadius.circular(99),
           ),
           child: Text(
             context.l10n.vocabDetailTag,
-            style: const TextStyle(
-              fontSize: 12,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
               fontWeight: FontWeight.w700,
-              color: AppColors.pastelMintText,
+              color: AppColors.ink,
             ),
           ),
         ),
@@ -351,23 +351,23 @@ class _MaknaSection extends StatelessWidget {
           badgeText: 'ID',
           language: context.l10n.vocabDetailLangId,
           value: word.indonesian,
-          backgroundColor: AppColors.pastelMint,
-          textColor: AppColors.pastelMintText,
+          backgroundColor: AppColors.surfaceWarm,
+          textColor: AppColors.ink,
         ),
         const SizedBox(height: 10),
         _MeaningCard(
           badgeText: 'EN',
           language: context.l10n.vocabDetailLangEn,
           value: word.english,
-          backgroundColor: AppColors.pastelLavender,
-          textColor: AppColors.pastelLavenderText,
+          backgroundColor: AppColors.surfaceWarm,
+          textColor: AppColors.ink,
         ),
         const SizedBox(height: 10),
         _MeaningCard(
           badgeText: 'ꦗꦮ',
           language: context.l10n.vocabDetailLangJv,
           value: word.javanese,
-          backgroundColor: AppColors.pastelSand,
+          backgroundColor: AppColors.surfaceWarm,
           textColor: AppColors.ink,
           isJavanese: true,
         ),
@@ -406,23 +406,19 @@ class _MeaningCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 36,
-            height: 36,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.6),
-              shape: BoxShape.circle,
+              color: AppColors.primaryAmber,
+              borderRadius: BorderRadius.circular(99),
             ),
-            child: Center(
-              child: Text(
-                badgeText,
-                style: TextStyle(
-                  fontSize: isJavanese ? 14 : 12,
-                  fontWeight: FontWeight.w800,
-                  color: textColor,
-                  fontFamilyFallback: isJavanese
-                      ? const ['NotoSansJavanese', 'Noto Sans Javanese']
-                      : null,
-                ),
+            child: Text(
+              badgeText,
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: AppColors.ink,
+                fontFamilyFallback: isJavanese
+                    ? const ['NotoSansJavanese', 'Noto Sans Javanese']
+                    : null,
               ),
             ),
           ),
@@ -433,19 +429,15 @@ class _MeaningCard extends StatelessWidget {
               children: [
                 Text(
                   language,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: textColor.withValues(alpha: 0.7),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: textColor.withValues(alpha: 0.75),
                     letterSpacing: 0.3,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   value,
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: textColor,
                   ),
                 ),
@@ -473,7 +465,7 @@ class _ContohKalimatSection extends StatelessWidget {
         Row(
           children: [
             const Icon(
-              Icons.chat_bubble_outline_rounded,
+              AppIcons.exampleChat,
               size: 16,
               color: AppColors.inkSecondary,
             ),
@@ -657,7 +649,7 @@ class _BottomActions extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   const Icon(
-                    Icons.arrow_forward_rounded,
+                    AppIcons.forward,
                     color: Colors.white,
                     size: 18,
                   ),
@@ -687,8 +679,8 @@ class _BottomActions extends StatelessWidget {
                 children: [
                   Icon(
                     isFavorite
-                        ? Icons.favorite_rounded
-                        : Icons.favorite_border_rounded,
+                        ? AppIcons.favorite
+                        : AppIcons.favoriteOutline,
                     color: isFavorite
                         ? AppColors.amberDark
                         : AppColors.inkSecondary,

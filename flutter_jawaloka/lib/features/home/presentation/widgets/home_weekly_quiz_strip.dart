@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
-
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 /// Strip Kuis Mingguan bernuansa kuning pastel hangat.
 /// Kotak ikon pastel kuning di kiri atas, judul & hitungan, serta 7 lingkaran hari.
 class HomeWeeklyQuizStrip extends StatelessWidget {
@@ -10,6 +11,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final textTheme = Theme.of(context).textTheme;
     final profile = ProfileScope.maybeOf(context);
     final quizzesThisWeek = profile?.quizzesThisWeek ?? 0;
     final completedDays = profile?.completedQuizDaysOfWeek ?? const <int>[];
@@ -28,12 +30,12 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0xFFF0E3C5), width: 1.2),
+        border: Border.all(color: AppColors.border, width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF231C14).withValues(alpha: 0.04),
+            color: AppColors.ink.withValues(alpha: 0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -49,16 +51,16 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFF3D6),
+                  color: AppColors.surfaceWarm,
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
-                    color: const Color(0xFFF4D483).withValues(alpha: 0.4),
+                    color: AppColors.border,
                     width: 1,
                   ),
                 ),
                 child: const Icon(
-                  Icons.bar_chart_rounded,
-                  color: Color(0xFFB87812),
+                  AppIcons.weeklyActivity,
+                  color: AppColors.primaryDark,
                   size: 22,
                 ),
               ),
@@ -69,10 +71,9 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                   children: [
                     Text(
                       l10n.homeWeeklyStripTitle,
-                      style: const TextStyle(
-                        color: Color(0xFF231C14),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w800,
+                      style: textTheme.bodyLarge?.copyWith(
+                        color: AppColors.ink,
+                        fontWeight: FontWeight.w700,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -80,9 +81,8 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       l10n.homeWeeklyCompletedCount(quizzesThisWeek),
-                      style: const TextStyle(
-                        color: Color(0xFF7C6E5E),
-                        fontSize: 12,
+                      style: textTheme.labelMedium?.copyWith(
+                        color: AppColors.inkSecondary,
                         fontWeight: FontWeight.w500,
                       ),
                       maxLines: 1,
@@ -92,22 +92,20 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 6),
-              const Row(
+              Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'Lihat',
-                    style: TextStyle(
-                      color: Color(0xFF9E6E1A),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
+                    style: textTheme.labelLarge?.copyWith(
+                      color: AppColors.primaryDark,
                     ),
                   ),
-                  SizedBox(width: 2),
-                  Icon(
-                    Icons.arrow_forward_rounded,
+                  const SizedBox(width: 2),
+                  const Icon(
+                    AppIcons.forward,
                     size: 14,
-                    color: Color(0xFF9E6E1A),
+                    color: AppColors.primaryDark,
                   ),
                 ],
               ),
@@ -130,28 +128,28 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                       height: 34,
                       decoration: BoxDecoration(
                         color: isCompleted
-                            ? const Color(0xFFF5B838)
-                            : const Color(0xFFFBF4E4),
+                            ? AppColors.primaryAmber
+                            : AppColors.surfaceWarm,
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: isCompleted
-                              ? const Color(0xFFDC9E1A)
-                              : const Color(0xFFEEDBB2),
+                              ? AppColors.primaryDark
+                              : AppColors.border,
                           width: 1.5,
                         ),
                       ),
                       child: Center(
                         child: isCompleted
                             ? const Icon(
-                                Icons.check_rounded,
+                                AppIcons.check,
                                 size: 17,
-                                color: Colors.white,
+                                color: AppColors.ink,
                               )
                             : Container(
                                 width: 5,
                                 height: 5,
                                 decoration: const BoxDecoration(
-                                  color: Color(0xFFC7B38E),
+                                  color: AppColors.inkMuted,
                                   shape: BoxShape.circle,
                                 ),
                               ),
@@ -162,14 +160,13 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                       fit: BoxFit.scaleDown,
                       child: Text(
                         dayNames[i],
-                        style: TextStyle(
-                          fontSize: 11,
+                        style: textTheme.labelMedium?.copyWith(
                           fontWeight: isCompleted
                               ? FontWeight.w700
                               : FontWeight.w500,
                           color: isCompleted
-                              ? const Color(0xFF231C14)
-                              : const Color(0xFF8A7E70),
+                              ? AppColors.ink
+                              : AppColors.inkSecondary,
                         ),
                       ),
                     ),

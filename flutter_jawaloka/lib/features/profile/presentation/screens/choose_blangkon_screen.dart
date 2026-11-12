@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_icons.dart';
 import '../../../../core/profile/blangkon_rewards.dart';
 import '../../../../core/profile/profile_preferences.dart';
 import '../../../../core/profile/profile_scope.dart';
@@ -241,7 +242,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       child: Container(
         height: 320,
         width: double.infinity,
-        decoration: const BoxDecoration(color: Color(0xFFF7D46B)),
+        decoration: const BoxDecoration(color: AppColors.primaryAmber),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -253,7 +254,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
                 width: 180,
                 height: 180,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFEF0C0).withValues(alpha: 0.65),
+                  color: AppColors.surfaceWarm.withValues(alpha: 0.55),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -265,7 +266,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
                 width: 140,
                 height: 140,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFEF0C0).withValues(alpha: 0.45),
+                  color: AppColors.surfaceWarm.withValues(alpha: 0.45),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -300,17 +301,15 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const Icon(
-                      Icons.auto_awesome_rounded,
+                      AppIcons.sparkle,
                       size: 13,
                       color: AppColors.amber,
                     ),
                     const SizedBox(width: 5),
                     Text(
                       opt.name,
-                      style: const TextStyle(
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
                         letterSpacing: 0.2,
                       ),
                     ),
@@ -343,9 +342,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: AppColors.ink.withValues(alpha: 0.85),
                     ),
                   ),
@@ -360,7 +357,7 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: const Color(0xFFF7D46B),
+      backgroundColor: AppColors.primaryAmber,
       elevation: 0,
       surfaceTintColor: Colors.transparent,
       leading: Semantics(
@@ -370,35 +367,30 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
       ),
       title: Text(
         _isFemale ? context.l10n.busanaTitle : context.l10n.blangkonTitle,
-        style: const TextStyle(
-          color: Color(0xFF231C14),
-          fontWeight: FontWeight.w700,
-          fontSize: 18,
-        ),
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 16),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: const Color(0xFFFEF3D6),
+            color: AppColors.surfaceWarm,
             borderRadius: BorderRadius.circular(100),
-            border: Border.all(color: const Color(0xFFF2D37E)),
+            border: Border.all(color: AppColors.border),
           ),
           child: Row(
             children: [
               const Icon(
-                Icons.shield_outlined,
+                AppIcons.shield,
                 size: 14,
-                color: Color(0xFF8A5D14),
+                color: AppColors.primaryDark,
               ),
               const SizedBox(width: 4),
               Text(
                 context.l10n.homeLevelPill(_currentUserLevel),
-                style: const TextStyle(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                  color: Color(0xFF8A5D14),
+                  color: AppColors.primaryDark,
                 ),
               ),
             ],
@@ -453,9 +445,8 @@ class _ChooseBlangkonScreenState extends State<ChooseBlangkonScreen>
           _isFemale
               ? context.l10n.busanaSaveButton
               : context.l10n.blangkonSaveButton,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            color: AppColors.amber,
             letterSpacing: 0.3,
           ),
         ),
@@ -575,10 +566,9 @@ class _BlangkonGridItem extends StatelessWidget {
                   Text(
                     option.name,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w700,
-                      color: isLocked ? const Color(0xFFB0A898) : AppColors.ink,
+                      color: isLocked ? AppColors.inkMuted : AppColors.ink,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -591,15 +581,14 @@ class _BlangkonGridItem extends StatelessWidget {
                         vertical: 2,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF5F1EB),
+                        color: AppColors.canvas,
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
                         _getConditionLabel(context, option.type),
-                        style: const TextStyle(
-                          fontSize: 12,
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF6B6257),
+                          color: AppColors.inkSecondary,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -621,7 +610,7 @@ class _BlangkonGridItem extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.check_rounded,
+                    AppIcons.check,
                     size: 12,
                     color: AppColors.ink,
                   ),
@@ -635,11 +624,11 @@ class _BlangkonGridItem extends StatelessWidget {
                   width: 18,
                   height: 18,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF6B6257).withValues(alpha: 0.8),
+                    color: AppColors.inkSecondary.withValues(alpha: 0.8),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
-                    Icons.lock_rounded,
+                    AppIcons.lock,
                     size: 10,
                     color: Colors.white,
                   ),

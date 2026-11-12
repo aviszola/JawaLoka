@@ -45,6 +45,7 @@ abstract class ProfilePreferences {
   static const String keyLastQuizDate = 'profile_last_quiz_date';
   static const String keyGender = 'profile_user_gender';
   static const String keyAge = 'profile_user_age';
+  static const String keySetupCompleted = 'profile_setup_completed';
 
   /// Loads the currently equipped [BlangkonType], falling back to [BlangkonType.yogyakarta].
   Future<BlangkonType> loadEquippedBlangkon();
@@ -132,8 +133,13 @@ abstract class ProfilePreferences {
   /// Memuat umur pengguna, bawaan 17.
   Future<int> loadAge();
 
-  /// Menyimpan umur pengguna.
   Future<void> saveAge(int age);
+
+  /// Memeriksa apakah pengguna sudah menyelesaikan onboarding setup profil.
+  Future<bool> loadSetupCompleted();
+
+  /// Menyimpan status penyelesaian onboarding setup profil.
+  Future<void> saveSetupCompleted(bool completed);
 }
 
 /// SharedPreferences implementation of [ProfilePreferences].
@@ -587,6 +593,26 @@ class SharedPrefsProfilePreferences implements ProfilePreferences {
       await prefs.setInt(ProfilePreferences.keyAge, safe);
     } catch (_) {}
   }
+
+  @override
+  Future<bool> loadSetupCompleted() async {
+    try {
+      final prefs = await _prefsProvider();
+      final raw = prefs.get(ProfilePreferences.keySetupCompleted);
+      if (raw is bool) return raw;
+      return false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  @override
+  Future<void> saveSetupCompleted(bool completed) async {
+    try {
+      final prefs = await _prefsProvider();
+      await prefs.setBool(ProfilePreferences.keySetupCompleted, completed);
+    } catch (_) {}
+  }
 }
 
 /// In-memory mock implementation of [ProfilePreferences] for isolated unit testing.
@@ -608,6 +634,7 @@ class InMemoryProfilePreferences implements ProfilePreferences {
 
   UserGender _gender;
   int _age;
+  bool _setupCompleted;
   InMemoryProfilePreferences({
     BlangkonType initialBlangkon = BlangkonType.yogyakarta,
     String initialDisplayName = 'Dimas',
@@ -627,6 +654,7 @@ class InMemoryProfilePreferences implements ProfilePreferences {
     int? initialLastCelebratedLevel,
     UserGender initialGender = UserGender.male,
     int initialAge = 17,
+    bool initialSetupCompleted = false,
   }) : _equippedBlangkon = initialBlangkon,
        _displayName = initialDisplayName,
        _totalXP = initialTotalXP,
@@ -666,7 +694,8 @@ class InMemoryProfilePreferences implements ProfilePreferences {
            initialLastCelebratedLevel ??
            (isFreshUser ? 1 : (initialUserLevel ?? 1)),
        _gender = initialGender,
-       _age = initialAge;
+       _age = initialAge,
+       _setupCompleted = initialSetupCompleted;
   @override
   Future<BlangkonType> loadEquippedBlangkon() async {
     final unlocked = await loadUnlockedBlangkons();
@@ -831,5 +860,13 @@ class InMemoryProfilePreferences implements ProfilePreferences {
   @override
   Future<void> saveAge(int age) async {
     _age = age.clamp(1, 120);
+  }
+
+  @override
+  Future<bool> loadSetupCompleted() async => _setupCompleted;
+
+  @override
+  Future<void> saveSetupCompleted(bool completed) async {
+    _setupCompleted = completed;
   }
 }
