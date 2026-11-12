@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  static const Color amber = Color(
-    0xFFF5B838,
-  ); // Warm golden amber (calmed from harsh glare)
-  static const Color amberDark = Color(0xFFE59814); // Deep warm honey amber
-  static const Color amberSoft = Color(0xFFFFF3D6); // Soft calm cream
+  static const Color primaryAmber = Color(0xFFF5B838); // Warm golden amber
+  static const Color primaryDark = Color(0xFF85580C); // Deep warm ochre amber (WCAG AA compliant)
+  static const Color amber = primaryAmber; // Backward compatibility
+  static const Color amberDark = primaryDark; // Backward compatibility
+  static const Color surfaceWarm = Color(0xFFFFF4D6); // Warm soft cream tint
+  static const Color amberSoft = surfaceWarm; // Backward compatibility
 
   // ═══════════════════════════════════════════════
   //   TYPOGRAPHY & INK
   // ═══════════════════════════════════════════════
   static const Color ink = Color(0xFF231C14); // Deep traditional Javanese ink
   static const Color inkSecondary = Color(0xFF6B6257); // Secondary text
-  static const Color inkMuted = Color(0xFF8A8074); // Muted/disabled text
+  static const Color inkMuted = Color(0xFF736A5E); // Muted text (WCAG AA compliant >= 4.5:1 on white)
 
   // ═══════════════════════════════════════════════
   //   SURFACES & BACKGROUNDS
@@ -29,21 +30,18 @@ class AppColors {
   // ═══════════════════════════════════════════════
   //   ACCENTS
   // ═══════════════════════════════════════════════
-  static const Color accentOrange = Color(
-    0xFFE05A1E,
-  ); // Terracotta warm accent (calmed from neon)
-  static const Color kawungStroke = Color(
-    0xFFD99414,
-  ); // Ochre batik pattern stroke
+  static const Color accentOrange = Color(0xFFE05A1E); // Terracotta accent (large text/icons)
+  static const Color accentOrangeText = Color(0xFFA84410); // Terracotta for text (WCAG AA compliant)
+  static const Color kawungStroke = Color(0xFF85580C); // Ochre batik pattern stroke
 
   // ═══════════════════════════════════════════════
   //   SEMANTIC COLORS
   // ═══════════════════════════════════════════════
-  static const Color error = Color(0xFFD64545);
+  static const Color error = Color(0xFFC92A2A);
   static const Color errorLight = Color(0xFFFDE8E8);
-  static const Color success = Color(0xFF3E9B5F);
+  static const Color success = Color(0xFF2D6A4F);
   static const Color successLight = Color(0xFFDCEBD2);
-  static const Color successText = Color(0xFF2D5A27);
+  static const Color successText = Color(0xFF2D6A4F);
 
   // ═══════════════════════════════════════════════
   //   PASTEL PALETTE (for badges & cards)

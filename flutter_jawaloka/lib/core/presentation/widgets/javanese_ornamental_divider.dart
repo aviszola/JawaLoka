@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
+import '../../theme/app_icons.dart';
 
 /// Authentic Javanese ornamental divider featuring traditional typography marks
 /// (Pada Adeg-adeg ꧋ and Pada Lungsi ꧉) flanked by fine ochre filigree rules.
@@ -43,7 +44,7 @@ class JavaneseOrnamentalDivider extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.diamond_rounded, size: 8, color: effectiveColor),
+                Icon(AppIcons.diamond, size: 8, color: effectiveColor),
                 const SizedBox(width: 6),
                 Text(
                   glyph,
@@ -55,7 +56,7 @@ class JavaneseOrnamentalDivider extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 6),
-                Icon(Icons.diamond_rounded, size: 8, color: effectiveColor),
+                Icon(AppIcons.diamond, size: 8, color: effectiveColor),
               ],
             ),
           ),
