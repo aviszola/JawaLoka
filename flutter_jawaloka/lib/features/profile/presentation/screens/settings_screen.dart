@@ -467,6 +467,25 @@ class _SettingsScreenState extends State<SettingsScreen>
               ),
               const Divider(height: 1, indent: 56, color: AppColors.border),
 
+              // 5. Kredit kamus
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
+                leading: const Icon(
+                  AppIcons.info,
+                  color: AppColors.inkMuted,
+                ),
+                title: Text(
+                  context.l10n.settingsDataCredit,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppColors.inkMuted,
+                      ),
+                ),
+                trailing: chevron,
+              ),
+
               // 4. Keluar
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(

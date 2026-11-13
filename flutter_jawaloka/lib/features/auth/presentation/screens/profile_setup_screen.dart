@@ -12,7 +12,6 @@ import '../../../../core/validation/validation_messages.dart';
 import '../../../../core/validation/validation_result.dart';
 import '../../../../core/validation/validators.dart';
 import '../../../profile/presentation/widgets/javanese_avatar_widget.dart';
-import '../widgets/custom_text_field.dart';
 import '../widgets/primary_button.dart';
 
 /// JawaLoka Profile Setup Screen (Pengaturan Data Diri & Karakter).
@@ -321,16 +320,11 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                   const SizedBox(height: 22),
 
                   // ── Input Nama Panggilan ──
-                  CustomTextField(
+                  _NicknameInputField(
                     label: l10n.profileSetupNicknameLabel,
                     hint: l10n.profileSetupNicknameHint,
                     controller: _nameCtrl,
                     errorText: _nameError,
-                    prefixIcon: const Icon(
-                      AppIcons.person,
-                      color: AppColors.inkSecondary,
-                      size: 22,
-                    ),
                     textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 18),
@@ -359,12 +353,15 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              l10n.profileSetupAgeLabel,
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                fontWeight: FontWeight.w700,
+                            Flexible(
+                              child: Text(
+                                l10n.profileSetupAgeLabel,
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
+                            const SizedBox(width: 8),
                             Text(
                               l10n.profileSetupAgeYears(_selectedAge),
                               style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -446,6 +443,26 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
                     isLoading: _isLoading,
                     trailingIcon: AppIcons.forward,
                     onPressed: _saveAndProceed,
+                    customChild: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            l10n.profileSetupPrimaryButton,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.2,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Icon(AppIcons.forward, size: 20),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 12),
 
@@ -597,6 +614,208 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen>
           ),
           child: Icon(icon, color: AppColors.ink, size: 22),
         ),
+      ),
+    );
+  }
+}
+// ─── Input Kolom Nama Panggilan Khusus (Ukuran Disesuaikan) ─────────────────
+class _NicknameInputField extends StatefulWidget {
+  final String label;
+  final String? hint;
+  final TextEditingController controller;
+  final String? errorText;
+  final TextInputAction textInputAction;
+
+  const _NicknameInputField({
+    required this.label,
+    this.hint,
+    required this.controller,
+    this.errorText,
+    this.textInputAction = TextInputAction.next,
+  });
+
+  @override
+  State<_NicknameInputField> createState() => _NicknameInputFieldState();
+}
+
+class _NicknameInputFieldState extends State<_NicknameInputField>
+    with SingleTickerProviderStateMixin {
+  late final FocusNode _focusNode;
+  late final AnimationController _shakeController;
+  late final Animation<Offset> _shakeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+
+    _shakeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _shakeAnimation =
+        Tween<Offset>(begin: Offset.zero, end: const Offset(0.02, 0)).animate(
+      CurvedAnimation(parent: _shakeController, curve: Curves.elasticIn),
+    );
+  }
+
+  void _onFocusChange() {
+    setState(() {});
+  }
+
+  @override
+  void didUpdateWidget(covariant _NicknameInputField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.errorText != null &&
+        widget.errorText != oldWidget.errorText &&
+        widget.errorText!.isNotEmpty) {
+      _shakeController.forward(from: 0.0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+    _shakeController.dispose();
+    super.dispose();
+  }
+
+  bool get _hasContent => widget.controller.text.isNotEmpty;
+  bool get _isFocused => _focusNode.hasFocus;
+  bool get _hasError =>
+      widget.errorText != null && widget.errorText!.isNotEmpty;
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _shakeAnimation,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            constraints: const BoxConstraints(minHeight: 56),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: _isFocused
+                  ? [
+                      BoxShadow(
+                        color: AppColors.amber.withValues(alpha: 0.2),
+                        blurRadius: 12,
+                        spreadRadius: 1,
+                      ),
+                    ]
+                  : _hasError
+                  ? [
+                      BoxShadow(
+                        color: AppColors.error.withValues(alpha: 0.15),
+                        blurRadius: 8,
+                      ),
+                    ]
+                  : [],
+            ),
+            child: TextFormField(
+              controller: widget.controller,
+              focusNode: _focusNode,
+              textCapitalization: TextCapitalization.words,
+              textInputAction: widget.textInputAction,
+              onChanged: (val) {
+                setState(() {});
+              },
+              style: const TextStyle(
+                color: AppColors.ink,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+              decoration: InputDecoration(
+                labelText: widget.label,
+                hintText: widget.hint,
+                floatingLabelBehavior: FloatingLabelBehavior.auto,
+                labelStyle: TextStyle(
+                  color: _hasError
+                      ? AppColors.error
+                      : _isFocused
+                      ? AppColors.ink
+                      : AppColors.inkSecondary,
+                  fontSize: 17,
+                  fontWeight: _isFocused || _hasContent
+                      ? FontWeight.w600
+                      : FontWeight.w500,
+                ),
+                floatingLabelStyle: TextStyle(
+                  color: _hasError ? AppColors.error : AppColors.ink,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+                prefixIcon: const Icon(
+                  AppIcons.person,
+                  color: AppColors.inkSecondary,
+                  size: 24,
+                ),
+                filled: true,
+                fillColor: AppColors.surface,
+                isDense: false,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 16,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(color: AppColors.border),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(color: AppColors.border),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(
+                    color: AppColors.amber,
+                    width: 2,
+                  ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(color: AppColors.error),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(
+                    color: AppColors.error,
+                    width: 2,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if (_hasError)
+            Padding(
+              padding: const EdgeInsets.only(top: 6, left: 16),
+              child: Row(
+                children: [
+                  const Icon(
+                    AppIcons.error,
+                    size: 14,
+                    color: AppColors.error,
+                  ),
+                  const SizedBox(width: 4),
+                  Expanded(
+                    child: Text(
+                      widget.errorText!,
+                      style: const TextStyle(
+                        color: AppColors.error,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        ],
       ),
     );
   }

@@ -29,6 +29,7 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - assets/images/
     - assets/images/characters/
     - assets/images/characters/putra_blangkon/
     - assets/images/characters/putri_busana/
