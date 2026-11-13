@@ -113,7 +113,7 @@ void main() {
       'quizExitDialogMessage',
       'quizExitDialogCancel',
       'dailyResultTitle',
-      'profileQuizzesThisWeek',
+      'settingsDataCredit',
     };
 
     // Allowed exceptions where Javanese or English text may legitimately match Indonesian

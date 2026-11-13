@@ -858,6 +858,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'JawaLoka (early version) stores your profile data, language preference, blangkon collection, and learning progress locally on your device. The offline translator does not send any data off your device. Only when you tap \"Translate with AI\" is the text you type sent to Google Gemini for translation. This app contains no ads or analytics. Clearing app data or uninstalling the app will permanently delete all local data.';
 
   @override
+  String get settingsDataCredit =>
+      'Kamus: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa, Narolis, Prayanta; CC BY 4.0). Some entries have been adapted.';
+
+  @override
   String get settingsClose => 'Close';
 
   @override

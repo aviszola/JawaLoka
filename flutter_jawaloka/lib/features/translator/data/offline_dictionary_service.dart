@@ -21,7 +21,7 @@ import '../domain/translation_models.dart';
 class OfflineDictionaryService implements TranslationService {
   final List<TranslationEntry> entries;
 
-  const OfflineDictionaryService({this.entries = kTranslationEntries});
+  const OfflineDictionaryService({this.entries = kAllTranslationEntries});
 
   // ─── Normalisasi ─────────────────────────────────────────────────────────
 

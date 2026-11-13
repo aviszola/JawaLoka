@@ -1,11 +1,9 @@
 import '../features/translator/domain/translation_models.dart';
+import 'translation_entries_extended.dart';
 
 // ─── CATATAN DATA ─────────────────────────────────────────────────────────────
-// Referensi: Kamus Besar Bahasa Jawa-Indonesia (Poerwadarminta, 1939/reprint),
-// Kamus Bahasa Jawa Krama-Ngoko (Hardjana HP), sumber digital Javanese Language
-// Wikipedia, dan bahan ajar Dinas Pendidikan Jawa Tengah.
-// Semua entri telah diverifikasi silang antara setidaknya dua sumber.
-// Entri yang masih draf ditandai dengan komentar // DRAF.
+// Entri awal disusun dengan bantuan AI dan belum diverifikasi penutur Jawa;
+// entri tambahan berasal dari Starter Kit (lihat file extended).
 // kJvPendingKeys tidak dipakai di sini (bukan teks UI), tanda baku validasi ada
 // di test/integrity/data_integrity_test.dart.
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1572,4 +1570,10 @@ const List<TranslationEntry> kTranslationEntries = [
     jvNgoko: 'Sugeng nyambut gawe',
     jvKrama: 'Sugeng nyambut damel',
   ),
+];
+
+/// Seluruh entri kamus terjemahan gabungan (inti dan tambahan Starter Kit).
+const List<TranslationEntry> kAllTranslationEntries = [
+  ...kTranslationEntries,
+  ...kExtendedTranslationEntries,
 ];

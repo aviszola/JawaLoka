@@ -1137,6 +1137,10 @@
   "@settingsPrivacyPolicyContent": {
     "description": "Teks isi dialog kebijakan privasi"
   },
+  "settingsDataCredit": "Kamus: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa, Narolis, Prayanta; CC BY 4.0). Sebagian entri disesuaikan.",
+  "@settingsDataCredit": {
+    "description": "Teks kredit sumber kamus di layar Pengaturan"
+  },
   "settingsClose": "Tutup",
   "@settingsClose": {
     "description": "Tombol tutup dialog"
