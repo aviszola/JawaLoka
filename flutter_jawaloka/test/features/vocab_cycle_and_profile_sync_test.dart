@@ -174,24 +174,23 @@ void main() {
         await tester.tap(accountRow);
         await tester.pumpAndSettle();
 
-        // Dialog contents
-        expect(find.text('Detail Akun'), findsOneWidget);
-        expect(find.text('Nama Pengguna'), findsOneWidget);
+        // Dialog contents (local profile dialog)
+        expect(find.text('Data Diri & Karakter'), findsOneWidget);
+        expect(find.text('Nama Panggilan'), findsOneWidget);
+        expect(find.text('Dimas'), findsWidgets);
         expect(
-          find.descendant(
-            of: find.byType(AlertDialog),
-            matching: find.text('Dimas'),
+          find.text(
+            'Data disimpan secara lokal di perangkat tanpa akun & kata sandi.',
           ),
           findsOneWidget,
         );
-        expect(find.text('Akun lokal pada perangkat ini'), findsOneWidget);
         expect(find.text('Tutup'), findsOneWidget);
 
         // Close dialog
         await tester.tap(find.text('Tutup'));
         await tester.pumpAndSettle();
 
-        expect(find.text('Detail Akun'), findsNothing);
+        expect(find.text('Data Diri & Karakter'), findsNothing);
       },
     );
 

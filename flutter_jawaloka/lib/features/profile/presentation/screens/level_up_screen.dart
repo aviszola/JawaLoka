@@ -224,42 +224,57 @@ class _LevelUpScreenState extends State<LevelUpScreen>
 
           // 3. Main Content Area
           SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Top Micro-Pill
-                  FadeTransition(
-                    opacity: _fadeAnim,
-                    child: _buildTopMicroTag(),
-                  ),
-
-                  // Center Hero Section: Halo, Avatar, Level Pill & Headlines
-                  _buildCenterHero(),
-
-                  // Bottom Unlocked Achievement Card & Action Buttons
-                  FadeTransition(
-                    opacity: _fadeAnim,
-                    child: AnimatedBuilder(
-                      animation: _cardSlide,
-                      builder: (context, child) {
-                        return Transform.translate(
-                          offset: Offset(0, _cardSlide.value),
-                          child: child,
-                        );
-                      },
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.maxHeight,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 16,
+                      ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          _buildAchievementCard(),
-                          const SizedBox(height: 24),
-                          _buildActionButtons(),
+                          // Top Micro-Pill
+                          FadeTransition(
+                            opacity: _fadeAnim,
+                            child: _buildTopMicroTag(),
+                          ),
+
+                          // Center Hero Section: Halo, Avatar, Level Pill & Headlines
+                          _buildCenterHero(),
+
+                          // Bottom Unlocked Achievement Card & Action Buttons
+                          FadeTransition(
+                            opacity: _fadeAnim,
+                            child: AnimatedBuilder(
+                              animation: _cardSlide,
+                              builder: (context, child) {
+                                return Transform.translate(
+                                  offset: Offset(0, _cardSlide.value),
+                                  child: child,
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  _buildAchievementCard(),
+                                  const SizedBox(height: 24),
+                                  _buildActionButtons(),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                ],
-              ),
+                );
+              },
             ),
           ),
         ],

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_jawaloka/core/presentation/widgets/javanese_calligraphy_painter.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
+import 'package:flutter_jawaloka/core/theme/app_icons.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/language_selection_screen.dart';
-import 'package:flutter_jawaloka/features/auth/presentation/screens/register_screen.dart';
+import 'package:flutter_jawaloka/features/auth/presentation/screens/profile_setup_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/widgets/primary_button.dart';
 import 'package:flutter_jawaloka/features/home/presentation/screens/home_screen.dart';
-import 'package:flutter_jawaloka/features/home/presentation/widgets/home_continue_quiz_card.dart';
 import 'package:flutter_jawaloka/features/profile/presentation/screens/profile_screen.dart';
 import 'package:flutter_jawaloka/features/profile/presentation/screens/settings_screen.dart';
 import 'package:flutter_jawaloka/features/quiz/presentation/screens/daily_result_screen.dart';
@@ -58,26 +58,25 @@ void main() {
       await tester.tap(langContinueBtn);
       await tester.pumpAndSettle();
 
-      // ── STEP 3: REGISTER SCREEN ────────────────────────────────────────────
-      expect(find.byType(RegisterScreen), findsOneWidget);
+      // ── STEP 3: PROFILE SETUP SCREEN ───────────────────────────────────────
+      expect(find.byType(ProfileSetupScreen), findsOneWidget);
 
       final textFields = find.byType(TextField);
-      expect(textFields, findsNWidgets(3));
+      expect(textFields, findsOneWidget);
 
-      // Fill in user credentials
+      // Fill in nickname
       const testName = 'Dewi Lestari';
-      await tester.enterText(textFields.at(0), testName); // Nama Lengkap
-      await tester.enterText(textFields.at(1), 'dewi@jawaloka.id'); // Email
-      await tester.enterText(textFields.at(2), 'rahasia123'); // Password
+      await tester.enterText(textFields.first, testName);
       await tester.pump();
 
-      // Tap Register PrimaryButton
-      final registerBtn = find.descendant(
-        of: find.byType(RegisterScreen),
+      // Tap ProfileSetup PrimaryButton
+      final continueBtn = find.descendant(
+        of: find.byType(ProfileSetupScreen),
         matching: find.byType(PrimaryButton),
       );
-      expect(registerBtn, findsOneWidget);
-      await tester.tap(registerBtn);
+      expect(continueBtn, findsOneWidget);
+      await tester.ensureVisible(continueBtn);
+      await tester.tap(continueBtn);
       await tester.pumpAndSettle();
 
       // ── STEP 4: HOME SCREEN (BERANDA) ──────────────────────────────────────
@@ -86,11 +85,14 @@ void main() {
       // Verify user display name appears on the Home dashboard
       expect(find.textContaining(testName), findsWidgets);
 
-      // Tap "Lanjutkan Kuis" card
-      final continueQuizCard = find.byType(HomeContinueQuizCard);
-      expect(continueQuizCard, findsOneWidget);
-      await tester.tap(continueQuizCard);
-      await tester.pumpAndSettle();
+      // Navigate to Misi (QuizPathScreen) via bottom navigation and open node Salam
+      await tester.tap(find.text('Misi').last);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+
+      await tester.tap(find.text('Salam'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
 
       // Verify QuizBottomSheet opens
       expect(find.byType(QuizBottomSheet), findsOneWidget);
@@ -141,14 +143,19 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
+      // Switch back to Beranda tab if currently on QuizPathScreen
+      if (find.byType(HomeScreen).evaluate().isEmpty) {
+        await tester.tap(find.text('Beranda'));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 500));
+      }
+
       // Returned to HomeScreen
       expect(find.byType(HomeScreen), findsOneWidget);
 
       // ── STEP 6: QUEST (DRAWING CANVAS SCREEN) ──────────────────────────────
-      // Tap center action button with pen icon (size 26 in amber circle)
-      final questCenterBtn = find.byWidgetPredicate(
-        (w) => w is Icon && w.icon == Icons.edit_rounded && w.size == 26,
-      );
+      // Tap center action button ('Latihan')
+      final questCenterBtn = find.text('Latihan');
       expect(questCenterBtn, findsOneWidget);
       await tester.tap(questCenterBtn);
       await tester.pumpAndSettle();
@@ -209,6 +216,9 @@ void main() {
       expect(checkDrawingBtn, findsOneWidget);
       await tester.tap(checkDrawingBtn);
       await tester.pump();
+      // evaluateWithFontMask times out after 5s in FakeAsync (no rasterizer thread)
+      // and falls back cleanly to geometric StrokeSimilarityEvaluator.evaluate.
+      await tester.pump(const Duration(seconds: 6));
       await tester.pump(const Duration(milliseconds: 600));
 
       // ── STEP 7: QUEST RESULT (DAILY RESULT SCREEN) ─────────────────────────
@@ -228,7 +238,7 @@ void main() {
       expect(find.byType(HomeScreen), findsOneWidget);
 
       // Tap Profile tab in bottom navigation bar
-      final profileTab = find.byIcon(Icons.person_outline_rounded);
+      final profileTab = find.text('Profil');
       expect(profileTab, findsOneWidget);
       await tester.tap(profileTab);
       await tester.pumpAndSettle();
@@ -239,7 +249,7 @@ void main() {
 
       // ── STEP 9: SETTINGS SCREEN ────────────────────────────────────────────
       // Tap settings gear icon button
-      final settingsGearBtn = find.byIcon(Icons.settings_outlined);
+      final settingsGearBtn = find.byIcon(AppIcons.settings);
       expect(settingsGearBtn, findsOneWidget);
       await tester.tap(settingsGearBtn);
       await tester.pumpAndSettle();

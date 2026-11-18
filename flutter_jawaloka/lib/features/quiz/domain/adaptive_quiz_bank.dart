@@ -175,28 +175,28 @@ class AdaptiveQuizBank {
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Kosakata punapa ingkang kaserat ing aksara punika?',
+      prompt: 'Tembung punapa ingkang kaserat ing aksara punika?',
       glyph: 'ꦲꦺꦴꦩꦃ',
       options: ['Omah', 'Banyu', 'Lemah', 'Segara'],
       correctIndex: 0,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Kosakata punapa ingkang kaserat ing aksara punika?',
-      glyph: 'ꦧꦤꦾꦸ',
+      prompt: 'Tembung punapa ingkang kaserat ing aksara punika?',
+      glyph: 'ꦧꦚꦸ',
       options: ['Langit', 'Banyu', 'Segara', 'Omah'],
       correctIndex: 1,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Kosakata punapa ingkang kaserat ing aksara punika?',
+      prompt: 'Tembung punapa ingkang kaserat ing aksara punika?',
       glyph: 'ꦱꦼꦒꦫ',
       options: ['Lemah', 'Langit', 'Segara', 'Hara'],
       correctIndex: 2,
     ),
     QuizQuestion(
       type: QuestionType.glyphIdentify,
-      prompt: 'Kosakata punapa ingkang kaserat ing aksara punika?',
+      prompt: 'Tembung punapa ingkang kaserat ing aksara punika?',
       glyph: 'ꦭꦼꦩꦃ',
       options: ['Banyu', 'Omah', 'Hawu', 'Lemah'],
       correctIndex: 3,
@@ -253,7 +253,7 @@ class AdaptiveQuizBank {
     QuizQuestion(
       type: QuestionType.glyphIdentify,
       prompt:
-          "Salam pakurmatan ing wanci enjang miturut materi translator yaiku...",
+          "Salam pakurmatan ing wanci enjing (enjang) yaiku...",
       glyph: '',
       options: ['Sugeng sonten', 'Sugeng dalu', 'Sugeng enjing', 'Matur nuwun'],
       correctIndex: 2,
@@ -275,7 +275,7 @@ class AdaptiveQuizBank {
       prompt: "Ukara pitakon bab kabar kanthi krama alus yaiku...",
       glyph: '',
       options: [
-        'Pripun kabaripun?',
+        'Kados pundi kabaripun?',
         'Piye kabarmu?',
         'Kowe nang ngendi?',
         'Sapa jenengmu?',

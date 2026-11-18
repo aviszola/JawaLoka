@@ -483,7 +483,7 @@ class _ContohKalimatSection extends StatelessWidget {
         const SizedBox(height: 12),
         _ExampleSentenceCard(
           javanese: 'Omahku ana ing desa',
-          aksara: 'ꦲꦺꦴꦩꦃꦏꦸꦲꦤꦆꦁꦢꦺꦱ',
+          aksara: 'ꦲꦺꦴꦩꦃꦏꦸꦲꦤꦲꦶꦁꦢꦺꦱ',
           translation: context.l10n.vocabDetailSentence1Translation,
           index: 1,
         ),

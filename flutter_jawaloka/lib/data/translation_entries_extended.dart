@@ -1,22 +1,30 @@
 import 'translation_entries.dart';
 
 // ─── EXTENDED TRANSLATION ENTRIES ──────────────────────────────────────────
-// Sumber: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa,
-// Narolis, Prayanta, 2018, Mendeley Data, DOI 10.17632/y3hstv4bfn.2, lisensi CC BY 4.0).
+// Sumber 1: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa,
+//   Narolis, Prayanta, 2018, Mendeley Data, DOI 10.17632/y3hstv4bfn.2, lisensi CC BY 4.0).
+// Sumber 2: Krama Ngoko Jawa — LorthGyu/indonesian-krama-ngoko (Hugging Face,
+//   lisensi MIT, 9 entri terkurasi).
 // Perubahan yang dibuat:
 //   - Pemetaan kramaalus ke jvKrama (kramainggil disimpan di berkas tinjauan)
 //   - Tambahan padanan bahasa Inggris (en) satu padanan pemula bentuk dasar
-//   - Penyaringan integritas (tanda-baca, arti-ganda, keunikan, non-bentrok)
-// Status: DRAF: belum diverifikasi penutur Jawa
+//   - Penyaringan integritas (tanda-baca, arti-ganda, keunikan 4-arah, non-bentrok)
+// Status: DRAF: sebagian besar belum diverifikasi penutur Jawa
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// Entri kamus terjemahan tambahan dari dataset Starter Kit.
+/// Entri kamus terjemahan tambahan berlisensi terbuka (CC BY 4.0 & MIT).
 const List<TranslationEntry> kExtendedTranslationEntries = [
   TranslationEntry(
     id: 'Ada',
     en: 'Exist',
     jvNgoko: 'Ono',
     jvKrama: 'Wonten',
+  ),
+  TranslationEntry(
+    id: 'Adapun',
+    en: 'As for',
+    jvNgoko: 'Ana dene',
+    jvKrama: 'Wondene',
   ),
   TranslationEntry(
     id: 'Agama',
@@ -41,6 +49,7 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Eyebrow',
     jvNgoko: 'Alis',
     jvKrama: 'Alis',
+    jvKramaInggil: 'Imba',
   ),
   TranslationEntry(
     id: 'Almari',
@@ -53,6 +62,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Charity',
     jvNgoko: 'Derma',
     jvKrama: 'Derma',
+  ),
+  TranslationEntry(
+    id: 'Ambil',
+    en: 'Take away',
+    jvNgoko: 'Jupuk',
+    jvKrama: 'Pendhet',
   ),
   TranslationEntry(
     id: 'Ampun',
@@ -73,6 +88,24 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Segawon',
   ),
   TranslationEntry(
+    id: 'Antara',
+    en: 'Between',
+    jvNgoko: 'Antara',
+    jvKrama: 'Antawis',
+  ),
+  TranslationEntry(
+    id: 'Arti',
+    en: 'Meaning',
+    jvNgoko: 'Surasa',
+    jvKrama: 'Suraos',
+  ),
+  TranslationEntry(
+    id: 'Asalkan',
+    en: 'Provided that',
+    jvNgoko: 'Angger',
+    jvKrama: 'Uger',
+  ),
+  TranslationEntry(
     id: 'Babi hutan',
     en: 'Boar',
     jvNgoko: 'Celeng',
@@ -81,7 +114,7 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
   TranslationEntry(
     id: 'Bacaan',
     en: 'Reading',
-    jvNgoko: 'Waosan',
+    jvNgoko: 'Wacan',
     jvKrama: 'Waosan',
   ),
   TranslationEntry(
@@ -89,6 +122,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Body',
     jvNgoko: 'Awak',
     jvKrama: 'Badan',
+    jvKramaInggil: 'Salira',
+  ),
+  TranslationEntry(
+    id: 'Bagian depan',
+    en: 'Front side',
+    jvNgoko: 'Ngarepan',
+    jvKrama: 'Ngajengan',
   ),
   TranslationEntry(
     id: 'Bahaya',
@@ -169,6 +209,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Ambet',
   ),
   TranslationEntry(
+    id: 'Bau-bauan',
+    en: 'Fragrances',
+    jvNgoko: 'Ambon-ambon',
+    jvKrama: 'Ambet-ambetan',
+  ),
+  TranslationEntry(
     id: 'Bawa',
     en: 'Bring',
     jvNgoko: 'Gawa',
@@ -193,6 +239,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Epahan',
   ),
   TranslationEntry(
+    id: 'Beda',
+    en: 'Different',
+    jvNgoko: 'Beda',
+    jvKrama: 'Benten',
+  ),
+  TranslationEntry(
     id: 'Bedak',
     en: 'Powder',
     jvNgoko: 'Boreh',
@@ -209,6 +261,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Trace',
     jvNgoko: 'Lawasan',
     jvKrama: 'Lamen',
+  ),
+  TranslationEntry(
+    id: 'Belakang',
+    en: 'Behind',
+    jvNgoko: 'Buri',
+    jvKrama: 'Wingking',
   ),
   TranslationEntry(
     id: 'Benang',
@@ -229,10 +287,34 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Wantun',
   ),
   TranslationEntry(
+    id: 'Beras',
+    en: 'Uncooked rice',
+    jvNgoko: 'Beras',
+    jvKrama: 'Uwos',
+  ),
+  TranslationEntry(
+    id: 'Berat',
+    en: 'Heavy',
+    jvNgoko: 'Abot',
+    jvKrama: 'Awrat',
+  ),
+  TranslationEntry(
     id: 'Berbakti',
     en: 'Devote',
     jvNgoko: 'Ngabekti',
     jvKrama: 'Ngabekti',
+  ),
+  TranslationEntry(
+    id: 'Berbaring-baring',
+    en: 'Lie down',
+    jvNgoko: 'Turon',
+    jvKrama: 'Tileman',
+  ),
+  TranslationEntry(
+    id: 'Berbulan-bulan',
+    en: 'For months',
+    jvNgoko: 'Sasen-sasen',
+    jvKrama: 'Wewulanan',
   ),
   TranslationEntry(
     id: 'Berburu',
@@ -253,16 +335,46 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Gegujengan',
   ),
   TranslationEntry(
+    id: 'Bercelana',
+    en: 'Wear trousers',
+    jvNgoko: 'Kathokan',
+    jvKrama: 'Suwalan',
+  ),
+  TranslationEntry(
+    id: 'Berganti-ganti',
+    en: 'Take turns',
+    jvNgoko: 'Salin-salin',
+    jvKrama: 'Gantos-gantos',
+  ),
+  TranslationEntry(
     id: 'Bergembira',
     en: 'Rejoice',
     jvNgoko: 'Bungah-bungah',
     jvKrama: 'Bingah-bingah',
   ),
   TranslationEntry(
+    id: 'Bergerak',
+    en: 'Move around',
+    jvNgoko: 'Obah',
+    jvKrama: 'Ebah',
+  ),
+  TranslationEntry(
     id: 'Bergilir',
     en: 'Alternate',
     jvNgoko: 'Gantenan',
     jvKrama: 'Gentosan',
+  ),
+  TranslationEntry(
+    id: 'Berhadapan',
+    en: 'Face to face',
+    jvNgoko: 'Adhep-adhepan',
+    jvKrama: 'Ajeng-ajengan',
+  ),
+  TranslationEntry(
+    id: 'Berhati-hati',
+    en: 'Be careful',
+    jvNgoko: 'Ngati-ati',
+    jvKrama: 'Ngatos-ngatos',
   ),
   TranslationEntry(
     id: 'Berhias',
@@ -289,6 +401,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Wongsal-wangsul',
   ),
   TranslationEntry(
+    id: 'Berkata',
+    en: 'Utter',
+    jvNgoko: 'Kandha',
+    jvKrama: 'Criyos',
+  ),
+  TranslationEntry(
+    id: 'Berkedai',
+    en: 'Run a stall',
+    jvNgoko: 'Marung',
+    jvKrama: 'Mande',
+  ),
+  TranslationEntry(
     id: 'Berkenalan',
     en: 'Acquaint',
     jvNgoko: 'Tetepungan',
@@ -299,6 +423,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Gather',
     jvNgoko: 'Nglumpuk',
     jvKrama: 'Nglempak',
+  ),
+  TranslationEntry(
+    id: 'Berkumur',
+    en: 'Rinse mouth',
+    jvNgoko: 'Kekemon',
+    jvKrama: 'Kekemon',
   ),
   TranslationEntry(
     id: 'Berkunjung',
@@ -313,6 +443,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Nyipeng',
   ),
   TranslationEntry(
+    id: 'Bermanja',
+    en: 'Act spoiled',
+    jvNgoko: 'Ngadi-gadi',
+    jvKrama: 'Ngadi-gadi',
+  ),
+  TranslationEntry(
     id: 'Bermusuhan',
     en: 'Hostile',
     jvNgoko: 'Mungsuhan',
@@ -325,21 +461,53 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Pengaos',
   ),
   TranslationEntry(
+    id: 'Berobat',
+    en: 'Seek treatment',
+    jvNgoko: 'Jejamu',
+    jvKrama: 'Jejampi',
+  ),
+  TranslationEntry(
+    id: 'Bersalin',
+    en: 'Give birth',
+    jvNgoko: 'Manak',
+    jvKrama: 'Gadhah Lare',
+  ),
+  TranslationEntry(
     id: 'Bersama',
     en: 'Together',
     jvNgoko: 'Bareng',
     jvKrama: 'Sareng',
   ),
   TranslationEntry(
+    id: 'Berselimut',
+    en: 'Use a blanket',
+    jvNgoko: 'Kemulan',
+    jvKrama: 'Kemulan',
+  ),
+  TranslationEntry(
+    id: 'Bersisir',
+    en: 'Comb hair',
+    jvNgoko: 'Jungkatan',
+    jvKrama: 'Seratan',
+  ),
+  TranslationEntry(
+    id: 'Bersuara',
+    en: 'Make a sound',
+    jvNgoko: 'Muni',
+    jvKrama: 'Mungel',
+  ),
+  TranslationEntry(
     id: 'Bertanya',
     en: 'Ask',
     jvNgoko: 'Takon',
     jvKrama: 'Taken',
+    jvKramaInggil: 'Ndangu',
+    jvKramaAndhap: 'Nyuwun pirsa',
   ),
   TranslationEntry(
     id: 'Bertelur',
     en: 'Lay',
-    jvNgoko: 'Ngendheg',
+    jvNgoko: 'Ngendhog',
     jvKrama: 'Nigan',
   ),
   TranslationEntry(
@@ -353,6 +521,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Iron',
     jvNgoko: 'Wesi',
     jvKrama: 'Tosan',
+  ),
+  TranslationEntry(
+    id: 'Besok pagi',
+    en: 'Tomorrow morning',
+    jvNgoko: 'Sesuk esuk',
+    jvKrama: 'Benjang enjang',
   ),
   TranslationEntry(
     id: 'Biar',
@@ -371,6 +545,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Lip',
     jvNgoko: 'Lambe',
     jvKrama: 'Lambe',
+    jvKramaInggil: 'Lathi',
+  ),
+  TranslationEntry(
+    id: 'Bicara',
+    en: 'Converse',
+    jvNgoko: 'Omong',
+    jvKrama: 'Ginem',
   ),
   TranslationEntry(
     id: 'Bilangan',
@@ -383,6 +564,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Boil',
     jvNgoko: 'Wudun',
     jvKrama: 'Wudun',
+  ),
+  TranslationEntry(
+    id: 'Bodoh',
+    en: 'Foolish',
+    jvNgoko: 'Bodho',
+    jvKrama: 'Bodho',
   ),
   TranslationEntry(
     id: 'Bohong',
@@ -407,6 +594,24 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Defecate',
     jvNgoko: 'Ngising',
     jvKrama: 'Bebucal',
+  ),
+  TranslationEntry(
+    id: 'Bubaran',
+    en: 'Dispersal',
+    jvNgoko: 'Budhalan',
+    jvKrama: 'Bidhalan',
+  ),
+  TranslationEntry(
+    id: 'Bukan',
+    en: 'Not that',
+    jvNgoko: 'Dudu',
+    jvKrama: 'Sanes',
+  ),
+  TranslationEntry(
+    id: 'Buluh',
+    en: 'Bamboo reed',
+    jvNgoko: 'Wuluh',
+    jvKrama: 'Welah',
   ),
   TranslationEntry(
     id: 'Bunyi',
@@ -461,12 +666,25 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Kiss',
     jvNgoko: 'Ambung',
     jvKrama: 'Ambung',
+    jvKramaInggil: 'Aras',
   ),
   TranslationEntry(
     id: 'Coba',
     en: 'Try',
-    jvNgoko: 'Cobi',
+    jvNgoko: 'Coba',
     jvKrama: 'Cobi',
+  ),
+  TranslationEntry(
+    id: 'Cukup',
+    en: 'Enough',
+    jvNgoko: 'Cukup',
+    jvKrama: 'Cekap',
+  ),
+  TranslationEntry(
+    id: 'Cukupan',
+    en: 'Adequate',
+    jvNgoko: 'Sedhengan',
+    jvKrama: 'Cekapan',
   ),
   TranslationEntry(
     id: 'Cukur',
@@ -479,6 +697,7 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Chest',
     jvNgoko: 'Dhadha',
     jvKrama: 'Dhadha',
+    jvKramaInggil: 'Jaja',
   ),
   TranslationEntry(
     id: 'Dagang',
@@ -497,6 +716,19 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Forehead',
     jvNgoko: 'Bathuk',
     jvKrama: 'Bathuk',
+    jvKramaInggil: 'Palarapan',
+  ),
+  TranslationEntry(
+    id: 'Dahulu',
+    en: 'Formerly',
+    jvNgoko: 'Biyen',
+    jvKrama: 'Rumiyin',
+  ),
+  TranslationEntry(
+    id: 'Dahulunya',
+    en: 'In the past',
+    jvNgoko: 'Mbiyene',
+    jvKrama: 'Rumiyinipun',
   ),
   TranslationEntry(
     id: 'Dalam',
@@ -532,13 +764,25 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     id: 'Dewasa',
     en: 'Adult',
     jvNgoko: 'Wis umur',
-    jvKrama: 'Wis umur',
+    jvKrama: 'Sampun umur',
   ),
   TranslationEntry(
     id: 'Di bawah',
     en: 'Below',
     jvNgoko: 'Ngisor',
     jvKrama: 'Ngandhap',
+  ),
+  TranslationEntry(
+    id: 'Di luar',
+    en: 'Outdoors',
+    jvNgoko: 'Njaba',
+    jvKrama: 'Njawi',
+  ),
+  TranslationEntry(
+    id: 'Diakui',
+    en: 'Acknowledged',
+    jvNgoko: 'Diaku',
+    jvKrama: 'Dipunaken',
   ),
   TranslationEntry(
     id: 'Diam',
@@ -551,6 +795,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Surrounded',
     jvNgoko: 'Kepung',
     jvKrama: 'Kepang',
+  ),
+  TranslationEntry(
+    id: 'Diperintah',
+    en: 'Ordered',
+    jvNgoko: 'Diabani',
+    jvKrama: 'Dipun abani',
   ),
   TranslationEntry(
     id: 'Dua puluh lima',
@@ -567,7 +817,7 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
   TranslationEntry(
     id: 'Duga',
     en: 'Guess',
-    jvNgoko: 'Dugi',
+    jvNgoko: 'Duga',
     jvKrama: 'Dugi',
   ),
   TranslationEntry(
@@ -581,6 +831,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Delicious',
     jvNgoko: 'Enak',
     jvKrama: 'Eca',
+  ),
+  TranslationEntry(
+    id: 'Enak perasaan',
+    en: 'Comfortable',
+    jvNgoko: 'Kepenak',
+    jvKrama: 'Sekeca',
   ),
   TranslationEntry(
     id: 'Gamelan',
@@ -637,10 +893,23 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Telas',
   ),
   TranslationEntry(
+    id: 'Halangan',
+    en: 'Obstacle',
+    jvNgoko: 'Alangan',
+    jvKrama: 'Pambengan',
+  ),
+  TranslationEntry(
     id: 'Halus',
     en: 'Smooth',
     jvNgoko: 'Lembut',
     jvKrama: 'Lembat',
+  ),
+  TranslationEntry(
+    id: 'Hamil',
+    en: 'Pregnant',
+    jvNgoko: 'Meteng',
+    jvKrama: 'Mbobot',
+    jvKramaInggil: 'Ngarbini',
   ),
   TranslationEntry(
     id: 'Hantu',
@@ -649,10 +918,22 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Memedos',
   ),
   TranslationEntry(
+    id: 'Hanya',
+    en: 'Merely',
+    jvNgoko: 'Bae',
+    jvKrama: 'Kemawon',
+  ),
+  TranslationEntry(
     id: 'Hapal',
     en: 'Memorize',
     jvNgoko: 'Apal',
     jvKrama: 'Apal',
+  ),
+  TranslationEntry(
+    id: 'Hapalan',
+    en: 'Memorization',
+    jvNgoko: 'Apalan',
+    jvKrama: 'Apalan',
   ),
   TranslationEntry(
     id: 'Hari',
@@ -671,6 +952,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Daily',
     jvNgoko: 'Padinan',
     jvKrama: 'Padintenan',
+  ),
+  TranslationEntry(
+    id: 'Hati',
+    en: 'Inner heart',
+    jvNgoko: 'Ati',
+    jvKrama: 'Manah',
+    jvKramaInggil: 'Penggalih',
   ),
   TranslationEntry(
     id: 'Hati-hati',
@@ -763,6 +1051,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Kembangan',
   ),
   TranslationEntry(
+    id: 'Jadi',
+    en: 'Turn into',
+    jvNgoko: 'Dadi',
+    jvKrama: 'Dados',
+  ),
+  TranslationEntry(
     id: 'Jaga',
     en: 'Guard',
     jvNgoko: 'Jaga',
@@ -787,6 +1081,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Jam',
   ),
   TranslationEntry(
+    id: 'Jamuan',
+    en: 'Banquet',
+    jvNgoko: 'Suguhan',
+    jvKrama: 'Segahan',
+  ),
+  TranslationEntry(
+    id: 'Jangan berkata',
+    en: 'Do not speak',
+    jvNgoko: 'Aja ngomong',
+    jvKrama: 'Ampun matur',
+  ),
+  TranslationEntry(
     id: 'Janggut',
     en: 'Beard',
     jvNgoko: 'Jenggot',
@@ -803,6 +1109,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Male',
     jvNgoko: 'Lanangan',
     jvKrama: 'Jaleran',
+  ),
+  TranslationEntry(
+    id: 'Jarik',
+    en: 'Batik cloth',
+    jvNgoko: 'Bebed',
+    jvKrama: 'Bebed',
   ),
   TranslationEntry(
     id: 'Jarum',
@@ -865,6 +1177,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Sinjang',
   ),
   TranslationEntry(
+    id: 'Kain wanita',
+    en: 'Traditional wrap skirt',
+    jvNgoko: 'Tapih',
+    jvKrama: 'Tapih',
+  ),
+  TranslationEntry(
+    id: 'Kalah',
+    en: 'Be defeated',
+    jvNgoko: 'Kalah',
+    jvKrama: 'Kawon',
+  ),
+  TranslationEntry(
     id: 'Kalung',
     en: 'Necklace',
     jvNgoko: 'Kalung',
@@ -889,6 +1213,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Emah-emah',
   ),
   TranslationEntry(
+    id: 'Kayu jati',
+    en: 'Teak wood',
+    jvNgoko: 'Kayu jati',
+    jvKrama: 'Kajeng jatos',
+  ),
+  TranslationEntry(
     id: 'Keadaan',
     en: 'Condition',
     jvNgoko: 'Kahanan',
@@ -899,6 +1229,24 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Goodness',
     jvNgoko: 'Kebecikan',
     jvKrama: 'Kasaenan',
+  ),
+  TranslationEntry(
+    id: 'Kebakaran',
+    en: 'Fire disaster',
+    jvNgoko: 'Kobongan',
+    jvKrama: 'Kabesmen',
+  ),
+  TranslationEntry(
+    id: 'Kebanyakan',
+    en: 'Too many',
+    jvNgoko: 'Kakehan',
+    jvKrama: 'Kekathahen',
+  ),
+  TranslationEntry(
+    id: 'Kebatinan',
+    en: 'Spirituality',
+    jvNgoko: 'Kebatinan',
+    jvKrama: 'Kebatosan',
   ),
   TranslationEntry(
     id: 'Keberatan',
@@ -931,6 +1279,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Kedhatengan',
   ),
   TranslationEntry(
+    id: 'Kedinginan',
+    en: 'Freezing',
+    jvNgoko: 'Kadhemen',
+    jvKrama: 'Kasrepen',
+  ),
+  TranslationEntry(
     id: 'Keduanya',
     en: 'Both',
     jvNgoko: 'Karo-karone',
@@ -943,10 +1297,29 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Keluron',
   ),
   TranslationEntry(
+    id: 'Kehabisan',
+    en: 'Run out of',
+    jvNgoko: 'Kentekan',
+    jvKrama: 'Ketelasan',
+  ),
+  TranslationEntry(
+    id: 'Kehendak',
+    en: 'Desire',
+    jvNgoko: 'Karep',
+    jvKrama: 'Kajeng',
+    jvKramaInggil: 'Kersa',
+  ),
+  TranslationEntry(
     id: 'Kehilangan',
     en: 'Loss',
     jvNgoko: 'Kelangan',
     jvKrama: 'Kecalan',
+  ),
+  TranslationEntry(
+    id: 'Kehujanan',
+    en: 'Caught in rain',
+    jvNgoko: 'Kodanan',
+    jvKrama: 'Kejawahan',
   ),
   TranslationEntry(
     id: 'Kejar',
@@ -973,6 +1346,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Kelangkungan',
   ),
   TranslationEntry(
+    id: 'Kelewat',
+    en: 'Too far',
+    jvNgoko: 'Keliwat',
+    jvKrama: 'Kelangkung',
+  ),
+  TranslationEntry(
     id: 'Kelihatan',
     en: 'Visible',
     jvNgoko: 'Ketok',
@@ -983,6 +1362,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Exit',
     jvNgoko: 'Metu',
     jvKrama: 'Medal',
+  ),
+  TranslationEntry(
+    id: 'Kemalaman',
+    en: 'Caught by nightfall',
+    jvNgoko: 'Kewengen',
+    jvKrama: 'Kedalon',
   ),
   TranslationEntry(
     id: 'Kemasukan',
@@ -1001,6 +1386,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Generosity',
     jvNgoko: 'Kemurahan',
     jvKrama: 'Kemirahan',
+  ),
+  TranslationEntry(
+    id: 'Kenal',
+    en: 'Be acquainted',
+    jvNgoko: 'Tepung',
+    jvKrama: 'Tepang',
   ),
   TranslationEntry(
     id: 'Kencing',
@@ -1027,6 +1418,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Kepangan',
   ),
   TranslationEntry(
+    id: 'Kentara',
+    en: 'Noticeable',
+    jvNgoko: 'Ketara',
+    jvKrama: 'Ketawis',
+  ),
+  TranslationEntry(
+    id: 'Kenyang',
+    en: 'Satiated',
+    jvNgoko: 'Wareg',
+    jvKrama: 'Tuwuk',
+  ),
+  TranslationEntry(
     id: 'Kepercayaan',
     en: 'Trust',
     jvNgoko: 'Piandel',
@@ -1043,6 +1446,7 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Sweat',
     jvNgoko: 'Kringet',
     jvKrama: 'Kringet',
+    jvKramaInggil: 'Riwe',
   ),
   TranslationEntry(
     id: 'Keris',
@@ -1075,10 +1479,28 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Remenan',
   ),
   TranslationEntry(
+    id: 'Kesiangan',
+    en: 'Overslept',
+    jvNgoko: 'Kawanen',
+    jvKrama: 'Kesiangan',
+  ),
+  TranslationEntry(
     id: 'Ketahuan',
     en: 'Discovered',
     jvNgoko: 'Kangerten',
     jvKrama: 'Kangertosan',
+  ),
+  TranslationEntry(
+    id: 'Keterlaluan',
+    en: 'Excessive',
+    jvNgoko: 'Kebangeten',
+    jvKrama: 'Kesangeten',
+  ),
+  TranslationEntry(
+    id: 'Ketika',
+    en: 'At the time',
+    jvNgoko: 'Dhek',
+    jvKrama: 'Kala',
   ),
   TranslationEntry(
     id: 'Khitan',
@@ -1091,6 +1513,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Estimate',
     jvNgoko: 'Kira',
     jvKrama: 'Kinten',
+  ),
+  TranslationEntry(
+    id: 'Kira-kira',
+    en: 'Approximately',
+    jvNgoko: 'Kira-kira',
+    jvKrama: 'Kinten-kinten',
   ),
   TranslationEntry(
     id: 'Kirim',
@@ -1129,6 +1557,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Rawis',
   ),
   TranslationEntry(
+    id: 'Kumpul',
+    en: 'Assemble',
+    jvNgoko: 'Kumpul',
+    jvKrama: 'Kempal',
+  ),
+  TranslationEntry(
     id: 'Kumpulan',
     en: 'Collection',
     jvNgoko: 'Klumpukan',
@@ -1145,6 +1579,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Thin',
     jvNgoko: 'Gering',
     jvKrama: 'Kera',
+  ),
+  TranslationEntry(
+    id: 'Kutu rambut',
+    en: 'Head lice',
+    jvNgoko: 'Tumo',
+    jvKrama: 'Tumo',
+  ),
+  TranslationEntry(
+    id: 'Lahir batin',
+    en: 'Body and soul',
+    jvNgoko: 'Lair batin',
+    jvKrama: 'Lair batos',
   ),
   TranslationEntry(
     id: 'Lain-lain',
@@ -1165,10 +1611,23 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Dangu-dangu',
   ),
   TranslationEntry(
+    id: 'Lauk',
+    en: 'Side dish',
+    jvNgoko: 'Lawuh',
+    jvKrama: 'Lawuh',
+  ),
+  TranslationEntry(
     id: 'Leher',
     en: 'Neck',
     jvNgoko: 'Gulu',
     jvKrama: 'Gulu',
+    jvKramaInggil: 'Jangga',
+  ),
+  TranslationEntry(
+    id: 'Letak',
+    en: 'Position',
+    jvNgoko: 'Dokok',
+    jvKrama: 'Dekek',
   ),
   TranslationEntry(
     id: 'Lewat',
@@ -1181,6 +1640,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Outside',
     jvNgoko: 'Jaba',
     jvKrama: 'Jawi',
+  ),
+  TranslationEntry(
+    id: 'Luas',
+    en: 'Wide',
+    jvNgoko: 'Amba',
+    jvKrama: 'Wiyar',
   ),
   TranslationEntry(
     id: 'Ludah',
@@ -1213,6 +1678,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Maben',
   ),
   TranslationEntry(
+    id: 'Main',
+    en: 'Hang out',
+    jvNgoko: 'Dolan',
+    jvKrama: 'Dolan',
+  ),
+  TranslationEntry(
+    id: 'Maju',
+    en: 'Advance',
+    jvNgoko: 'Maju',
+    jvKrama: 'Majeng',
+  ),
+  TranslationEntry(
     id: 'Maka',
     en: 'Then',
     jvNgoko: 'Mula',
@@ -1229,12 +1706,20 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Shy',
     jvNgoko: 'Isin',
     jvKrama: 'Lingsem',
+    jvKramaLugu: 'Isin',
   ),
   TranslationEntry(
     id: 'Mandi',
     en: 'Bathe',
     jvNgoko: 'Adus',
     jvKrama: 'Adus',
+    jvKramaInggil: 'Siram',
+  ),
+  TranslationEntry(
+    id: 'Mandi jamas',
+    en: 'Hair wash',
+    jvNgoko: 'Kramas',
+    jvKrama: 'Kramas',
   ),
   TranslationEntry(
     id: 'Manja',
@@ -1243,10 +1728,22 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Adi-adi',
   ),
   TranslationEntry(
+    id: 'Marah',
+    en: 'Angry',
+    jvNgoko: 'Nesu',
+    jvKrama: 'Srengen',
+  ),
+  TranslationEntry(
     id: 'Marah-marah',
     en: 'Rage',
     jvNgoko: 'Muring-muring',
     jvKrama: 'Muring-muring',
+  ),
+  TranslationEntry(
+    id: 'Mari',
+    en: 'Come on',
+    jvNgoko: 'Ayo',
+    jvKrama: 'Mangga',
   ),
   TranslationEntry(
     id: 'Masa muda',
@@ -1265,6 +1762,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Each',
     jvNgoko: 'Nyeparo',
     jvKrama: 'Nyepalih',
+  ),
+  TranslationEntry(
+    id: 'Masuk',
+    en: 'Enter',
+    jvNgoko: 'Mlebu',
+    jvKrama: 'Mlebet',
   ),
   TranslationEntry(
     id: 'Matahari terbenam',
@@ -1309,10 +1812,28 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Ngangge',
   ),
   TranslationEntry(
+    id: 'Memalukan',
+    en: 'Shameful',
+    jvNgoko: 'Ngisin-isini',
+    jvKrama: 'Ngelingsemi',
+  ),
+  TranslationEntry(
     id: 'Memanggil',
     en: 'Summon',
     jvNgoko: 'Ngundang',
     jvKrama: 'Nimbali',
+  ),
+  TranslationEntry(
+    id: 'Memarahi',
+    en: 'Scold',
+    jvNgoko: 'Nesoni',
+    jvKrama: 'Nyrengeni',
+  ),
+  TranslationEntry(
+    id: 'Membacakan',
+    en: 'Read aloud',
+    jvNgoko: 'Macakake',
+    jvKrama: 'Maosaken',
   ),
   TranslationEntry(
     id: 'Membagi dua',
@@ -1321,16 +1842,53 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Malih',
   ),
   TranslationEntry(
+    id: 'Membahayakan',
+    en: 'Endanger',
+    jvNgoko: 'Mutawatiri',
+    jvKrama: 'Mutawatosi',
+  ),
+  TranslationEntry(
+    id: 'Membajak',
+    en: 'Plow field',
+    jvNgoko: 'Mluku',
+    jvKrama: 'Mlujeng',
+  ),
+  TranslationEntry(
+    id: 'Membatalkan',
+    en: 'Call off',
+    jvNgoko: 'Murungake',
+    jvKrama: 'Nyandekaken',
+  ),
+  TranslationEntry(
     id: 'Membawa',
     en: 'Carry',
     jvNgoko: 'Nggawa',
     jvKrama: 'Mbekta',
+    jvKramaInggil: 'Ngasta',
+  ),
+  TranslationEntry(
+    id: 'Membelakang',
+    en: 'Turn away',
+    jvNgoko: 'Mungkur',
+    jvKrama: 'Mengker',
+  ),
+  TranslationEntry(
+    id: 'Memberatkan',
+    en: 'Burden',
+    jvNgoko: 'Ngabot-aboti',
+    jvKrama: 'Ngawrat-awrati',
   ),
   TranslationEntry(
     id: 'Memberitahukan',
     en: 'Inform',
     jvNgoko: 'Tuduh',
     jvKrama: 'Tedah',
+  ),
+  TranslationEntry(
+    id: 'Membuat',
+    en: 'Create',
+    jvNgoko: 'Gawe',
+    jvKrama: 'Damel',
   ),
   TranslationEntry(
     id: 'Membuat lama',
@@ -1345,6 +1903,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Mejahi',
   ),
   TranslationEntry(
+    id: 'Memegang',
+    en: 'Grasping',
+    jvNgoko: 'Nyekel',
+    jvKrama: 'Nyepeng',
+  ),
+  TranslationEntry(
+    id: 'Memelihara',
+    en: 'Raise',
+    jvNgoko: 'Ngingu',
+    jvKrama: 'Ngingah',
+  ),
+  TranslationEntry(
     id: 'Memerintah',
     en: 'Govern',
     jvNgoko: 'Ngabani',
@@ -1355,6 +1925,29 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Massage',
     jvNgoko: 'Dadah',
     jvKrama: 'Dadah',
+  ),
+  TranslationEntry(
+    id: 'Memikir',
+    en: 'Ponder',
+    jvNgoko: 'Mbatin',
+    jvKrama: 'Mbatos',
+  ),
+  TranslationEntry(
+    id: 'Meminjam',
+    en: 'Borrow',
+    jvNgoko: 'Nyilih',
+    jvKrama: 'Nyambut',
+    jvKramaInggil: 'Ngampil',
+    jvKramaAndhap: 'Ngampil',
+  ),
+  TranslationEntry(
+    id: 'Meminta',
+    en: 'Ask for',
+    jvNgoko: 'Njaluk',
+    jvKrama: 'Nyuwun',
+    jvKramaLugu: 'Nyuwun',
+    jvKramaInggil: 'Mundhut',
+    jvKramaAndhap: 'Nyuwun',
   ),
   TranslationEntry(
     id: 'Memperdalam',
@@ -1387,6 +1980,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Mewahi',
   ),
   TranslationEntry(
+    id: 'Menampakkan diri',
+    en: 'Show oneself',
+    jvNgoko: 'Ngetara',
+    jvKrama: 'Ngetawis',
+  ),
+  TranslationEntry(
+    id: 'Menanak nasi',
+    en: 'Steam rice',
+    jvNgoko: 'Adang',
+    jvKrama: 'Bethak',
+  ),
+  TranslationEntry(
     id: 'Menang',
     en: 'Win',
     jvNgoko: 'Menang',
@@ -1411,10 +2016,34 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Tangis',
   ),
   TranslationEntry(
+    id: 'Menari',
+    en: 'Perform dance',
+    jvNgoko: 'Njoged',
+    jvKrama: 'Njoged',
+  ),
+  TranslationEntry(
+    id: 'Menawar',
+    en: 'Haggle',
+    jvNgoko: 'Nganyang',
+    jvKrama: 'Ngawis',
+  ),
+  TranslationEntry(
+    id: 'Mencari-cari',
+    en: 'Search around',
+    jvNgoko: 'Golek-golek',
+    jvKrama: 'Pados-pados',
+  ),
+  TranslationEntry(
     id: 'Mencintai',
     en: 'Love',
     jvNgoko: 'Nyenengi',
     jvKrama: 'Ngremeni',
+  ),
+  TranslationEntry(
+    id: 'Mencium',
+    en: 'Sniff',
+    jvNgoko: 'Ngambu',
+    jvKrama: 'Ngambet',
   ),
   TranslationEntry(
     id: 'Mencuri',
@@ -1447,6 +2076,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Gegujeng',
   ),
   TranslationEntry(
+    id: 'Mengabdi',
+    en: 'Devote service',
+    jvNgoko: 'Mbatur',
+    jvKrama: 'Ngerencang',
+  ),
+  TranslationEntry(
     id: 'Mengadakan',
     en: 'Hold',
     jvNgoko: 'Nganakake',
@@ -1471,10 +2106,22 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Ngajengaken',
   ),
   TranslationEntry(
+    id: 'Mengaku',
+    en: 'Confess',
+    jvNgoko: 'Ngakoni',
+    jvKrama: 'Ngakeni',
+  ),
+  TranslationEntry(
     id: 'Mengakui',
     en: 'Admit',
     jvNgoko: 'Ngaku',
     jvKrama: 'Ngaken',
+  ),
+  TranslationEntry(
+    id: 'Mengalah',
+    en: 'Yield',
+    jvNgoko: 'Ngalah',
+    jvKrama: 'Ngawon',
   ),
   TranslationEntry(
     id: 'Mengambilkan',
@@ -1495,10 +2142,34 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Sebat',
   ),
   TranslationEntry(
+    id: 'Mengejar',
+    en: 'Pursue',
+    jvNgoko: 'Mburu',
+    jvKrama: 'Mbujeng',
+  ),
+  TranslationEntry(
+    id: 'Mengenai',
+    en: 'Concerning',
+    jvNgoko: 'Ngenani',
+    jvKrama: 'Ngengingi',
+  ),
+  TranslationEntry(
     id: 'Mengerjakan',
     en: 'Do',
     jvNgoko: 'Nangani',
     jvKrama: 'Nangani',
+  ),
+  TranslationEntry(
+    id: 'Mengetahui',
+    en: 'Find out',
+    jvNgoko: 'Meruhi',
+    jvKrama: 'Nyemerepi',
+  ),
+  TranslationEntry(
+    id: 'Mengganti',
+    en: 'Substitute',
+    jvNgoko: 'Nyalini',
+    jvKrama: 'Nggantosi',
   ),
   TranslationEntry(
     id: 'Menggembala',
@@ -1525,6 +2196,36 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Ngendelaken',
   ),
   TranslationEntry(
+    id: 'Menghitung',
+    en: 'Calculate',
+    jvNgoko: 'Milang',
+    jvKrama: 'Mical',
+  ),
+  TranslationEntry(
+    id: 'Mengingat',
+    en: 'Remember well',
+    jvNgoko: 'Ngelingi',
+    jvKrama: 'Ngengeti',
+  ),
+  TranslationEntry(
+    id: 'Mengingat-ingat',
+    en: 'Reminisce',
+    jvNgoko: 'Ngeling-eling',
+    jvKrama: 'Ngemut-emut',
+  ),
+  TranslationEntry(
+    id: 'Mengira',
+    en: 'Assume',
+    jvNgoko: 'Ngira',
+    jvKrama: 'Nginten',
+  ),
+  TranslationEntry(
+    id: 'Mengirim',
+    en: 'Dispatch',
+    jvNgoko: 'Ngirim',
+    jvKrama: 'Ngintun',
+  ),
+  TranslationEntry(
     id: 'Mengiring',
     en: 'Escort',
     jvNgoko: 'Iring',
@@ -1541,6 +2242,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Bury',
     jvNgoko: 'Ngubur',
     jvKrama: 'Metak',
+  ),
+  TranslationEntry(
+    id: 'Mengundang',
+    en: 'Invite',
+    jvNgoko: 'Nyuruhi',
+    jvKrama: 'Nyedahi',
+    jvKramaAndhap: 'Ngaturi',
   ),
   TranslationEntry(
     id: 'Mengunyah',
@@ -1579,6 +2287,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Nyegah',
   ),
   TranslationEntry(
+    id: 'Menjauh',
+    en: 'Move away',
+    jvNgoko: 'Ngadoh',
+    jvKrama: 'Nebih',
+  ),
+  TranslationEntry(
     id: 'Menjelaskan',
     en: 'Explain',
     jvNgoko: 'Njarwakake',
@@ -1591,6 +2305,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Mugut',
   ),
   TranslationEntry(
+    id: 'Menuju',
+    en: 'Head toward',
+    jvNgoko: 'Ngener',
+    jvKrama: 'Ngleres',
+  ),
+  TranslationEntry(
     id: 'Menumbuk padi',
     en: 'Pound',
     jvNgoko: 'Nutu',
@@ -1601,6 +2321,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Wait',
     jvNgoko: 'Nganti-nganti',
     jvKrama: 'Ngantos-ngantos',
+  ),
+  TranslationEntry(
+    id: 'Menyabung',
+    en: 'Pit against',
+    jvNgoko: 'Adu',
+    jvKrama: 'Aben',
   ),
   TranslationEntry(
     id: 'Menyakiti',
@@ -1619,6 +2345,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Sing',
     jvNgoko: 'Nembang',
     jvKrama: 'Nyekar',
+  ),
+  TranslationEntry(
+    id: 'Menyapu',
+    en: 'Sweep',
+    jvNgoko: 'Nyapu',
+    jvKrama: 'Nyapu',
   ),
   TranslationEntry(
     id: 'Menyebar benih',
@@ -1687,16 +2419,34 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Nggampilaken',
   ),
   TranslationEntry(
+    id: 'Merias',
+    en: 'Groom',
+    jvNgoko: 'Ndandani',
+    jvKrama: 'Ndandani',
+  ),
+  TranslationEntry(
     id: 'Meskipun',
     en: 'Although',
     jvNgoko: 'Ala-ala',
     jvKrama: 'Awon-awon',
   ),
   TranslationEntry(
+    id: 'Mewarnai kain',
+    en: 'Dye fabric',
+    jvNgoko: 'Medel',
+    jvKrama: 'Nyelep',
+  ),
+  TranslationEntry(
     id: 'Minta maaf',
     en: 'Apologize',
     jvNgoko: 'Amit',
     jvKrama: 'Amit',
+  ),
+  TranslationEntry(
+    id: 'Minuman',
+    en: 'Beverage',
+    jvNgoko: 'Omben-omben',
+    jvKrama: 'Omben-omben',
   ),
   TranslationEntry(
     id: 'Muat',
@@ -1729,10 +2479,41 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Mutah',
   ),
   TranslationEntry(
+    id: 'Murahan',
+    en: 'Cheap quality',
+    jvNgoko: 'Murahan',
+    jvKrama: 'Mirahan',
+  ),
+  TranslationEntry(
     id: 'Musuh',
     en: 'Enemy',
     jvNgoko: 'Mungsuh',
     jvKrama: 'Mengsah',
+  ),
+  TranslationEntry(
+    id: 'Naik',
+    en: 'Ascend',
+    jvNgoko: 'Munggah',
+    jvKrama: 'Minggah',
+  ),
+  TranslationEntry(
+    id: 'Naik haji',
+    en: 'Pilgrimage',
+    jvNgoko: 'Munggah kaji',
+    jvKrama: 'Minggah kaji',
+  ),
+  TranslationEntry(
+    id: 'Nama',
+    en: 'Name',
+    jvNgoko: 'Jeneng',
+    jvKrama: 'Nama',
+    jvKramaInggil: 'Asma',
+  ),
+  TranslationEntry(
+    id: 'Nasihat keras',
+    en: 'Stern warning',
+    jvNgoko: 'Wanti-wanti',
+    jvKrama: 'Wantos-wantos',
   ),
   TranslationEntry(
     id: 'Negara',
@@ -1765,6 +2546,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Tiyang',
   ),
   TranslationEntry(
+    id: 'Pakai',
+    en: 'Put on',
+    jvNgoko: 'Anggo',
+    jvKrama: 'Engge',
+  ),
+  TranslationEntry(
     id: 'Panggil',
     en: 'Call',
     jvNgoko: 'Undang',
@@ -1781,6 +2568,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Countryside',
     jvNgoko: 'Padesan',
     jvKrama: 'Pedhusunan',
+  ),
+  TranslationEntry(
+    id: 'Pegang',
+    en: 'Grasp',
+    jvNgoko: 'Cekel',
+    jvKrama: 'Cepeng',
+    jvKramaInggil: 'Asta',
   ),
   TranslationEntry(
     id: 'Pegunungan',
@@ -1831,10 +2625,22 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Pandung',
   ),
   TranslationEntry(
+    id: 'Pengajian',
+    en: 'Religious study',
+    jvNgoko: 'Pengajian',
+    jvKrama: 'Pengaosan',
+  ),
+  TranslationEntry(
     id: 'Pengertian',
     en: 'Understanding',
     jvNgoko: 'Pangerten',
     jvKrama: 'Pangertosan',
+  ),
+  TranslationEntry(
+    id: 'Pengetahuan',
+    en: 'Wisdom',
+    jvNgoko: 'Kawruh',
+    jvKrama: 'Seserepan',
   ),
   TranslationEntry(
     id: 'Penggembala',
@@ -1847,6 +2653,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Livelihood',
     jvNgoko: 'Panguripan',
     jvKrama: 'Panggesangan',
+  ),
+  TranslationEntry(
+    id: 'Penting',
+    en: 'Important',
+    jvNgoko: 'Wigati',
+    jvKrama: 'Wigatos',
   ),
   TranslationEntry(
     id: 'Penurut',
@@ -1909,6 +2721,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Pasedherekan',
   ),
   TranslationEntry(
+    id: 'Persawahan',
+    en: 'Rice fields',
+    jvNgoko: 'Pesawahan',
+    jvKrama: 'Pesabinan',
+  ),
+  TranslationEntry(
     id: 'Pertunjukan',
     en: 'Show',
     jvNgoko: 'Tontonan',
@@ -1939,6 +2757,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Pindah',
   ),
   TranslationEntry(
+    id: 'Pinjam',
+    en: 'Lend',
+    jvNgoko: 'Silih',
+    jvKrama: 'Sambut',
+  ),
+  TranslationEntry(
     id: 'Pinjaman',
     en: 'Loan',
     jvNgoko: 'Silihan',
@@ -1949,6 +2773,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Request',
     jvNgoko: 'Jaluk',
     jvKrama: 'Tedha',
+  ),
+  TranslationEntry(
+    id: 'Pintar',
+    en: 'Clever',
+    jvNgoko: 'Pinter',
+    jvKrama: 'Pinter',
   ),
   TranslationEntry(
     id: 'Pisang',
@@ -1993,6 +2823,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Wados',
   ),
   TranslationEntry(
+    id: 'Rambut',
+    en: 'Hair',
+    jvNgoko: 'Rambut',
+    jvKrama: 'Rambut',
+    jvKramaInggil: 'Rikma',
+  ),
+  TranslationEntry(
     id: 'Raut muka',
     en: 'Expression',
     jvNgoko: 'Ulat',
@@ -2015,6 +2852,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Deer',
     jvNgoko: 'Menjangan',
     jvKrama: 'Sangsam',
+  ),
+  TranslationEntry(
+    id: 'Rusak',
+    en: 'Broken',
+    jvNgoko: 'Rusak',
+    jvKrama: 'Risak',
   ),
   TranslationEntry(
     id: 'Rusuh',
@@ -2059,6 +2902,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Ngantos',
   ),
   TranslationEntry(
+    id: 'Sampai sekarang',
+    en: 'Until now',
+    jvNgoko: 'Seprene',
+    jvKrama: 'Sepriki',
+  ),
+  TranslationEntry(
     id: 'Sana',
     en: 'There',
     jvNgoko: 'Kana',
@@ -2081,6 +2930,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Scabbard',
     jvNgoko: 'Wrangka',
     jvKrama: 'Sarungan',
+  ),
+  TranslationEntry(
+    id: 'Saudara',
+    en: 'Relative',
+    jvNgoko: 'Sedulur',
+    jvKrama: 'Sedherek',
+  ),
+  TranslationEntry(
+    id: 'Saya pamit',
+    en: 'I take my leave',
+    jvNgoko: 'Aku pamit',
+    jvKrama: 'Kula nyuwun pamit',
   ),
   TranslationEntry(
     id: 'Sebelumnya',
@@ -2113,16 +2974,34 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Tumunten',
   ),
   TranslationEntry(
+    id: 'Sejak dahulu',
+    en: 'Since long ago',
+    jvNgoko: 'Seprana',
+    jvKrama: 'Seprika',
+  ),
+  TranslationEntry(
     id: 'Sejati',
     en: 'Genuine',
     jvNgoko: 'Sejati',
     jvKrama: 'Sejatos',
   ),
   TranslationEntry(
+    id: 'Sekian',
+    en: 'That much',
+    jvNgoko: 'Semana',
+    jvKrama: 'Semanten',
+  ),
+  TranslationEntry(
     id: 'Selamat',
     en: 'Safe',
     jvNgoko: 'Slamet',
     jvKrama: 'Wilujeng',
+  ),
+  TranslationEntry(
+    id: 'Selamatan',
+    en: 'Thanksgiving feast',
+    jvNgoko: 'Slametan',
+    jvKrama: 'Wilujengan',
   ),
   TranslationEntry(
     id: 'Selesai',
@@ -2135,6 +3014,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Blanket',
     jvNgoko: 'Kemul',
     jvKrama: 'Kemul',
+  ),
+  TranslationEntry(
+    id: 'Sembuh',
+    en: 'Recover',
+    jvNgoko: 'Waras',
+    jvKrama: 'Mantun',
   ),
   TranslationEntry(
     id: 'Sempit',
@@ -2167,6 +3052,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Sepen',
   ),
   TranslationEntry(
+    id: 'Serba',
+    en: 'All-around',
+    jvNgoko: 'Sarwa',
+    jvKrama: 'Sarwi',
+  ),
+  TranslationEntry(
     id: 'Sesepuh',
     en: 'Elder',
     jvNgoko: 'Tetuwa',
@@ -2179,10 +3070,28 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Sikut',
   ),
   TranslationEntry(
+    id: 'Singgah',
+    en: 'Drop by',
+    jvNgoko: 'Ampir',
+    jvKrama: 'Ampir',
+  ),
+  TranslationEntry(
     id: 'Sini',
     en: 'Here',
     jvNgoko: 'Kene',
     jvKrama: 'Riki',
+  ),
+  TranslationEntry(
+    id: 'Sirih',
+    en: 'Betel leaf',
+    jvNgoko: 'Suruh',
+    jvKrama: 'Sedhah',
+  ),
+  TranslationEntry(
+    id: 'Situ',
+    en: 'Over there',
+    jvNgoko: 'Kono',
+    jvKrama: 'Riku',
   ),
   TranslationEntry(
     id: 'Suami-istri',
@@ -2197,6 +3106,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Suwantenan',
   ),
   TranslationEntry(
+    id: 'Subang',
+    en: 'Ear stud',
+    jvNgoko: 'Suweng',
+    jvKrama: 'Sengkang',
+  ),
+  TranslationEntry(
+    id: 'Sudah waktunya tidur',
+    en: 'It is time to sleep',
+    jvNgoko: 'Wis wayahe turu',
+    jvKrama: 'Sampun wekdalipun tilem',
+  ),
+  TranslationEntry(
     id: 'Sulung',
     en: 'Eldest',
     jvNgoko: 'Mbarep',
@@ -2209,10 +3130,34 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Estu',
   ),
   TranslationEntry(
+    id: 'Supaya',
+    en: 'So that',
+    jvNgoko: 'Supaya',
+    jvKrama: 'Supados',
+  ),
+  TranslationEntry(
+    id: 'Supit',
+    en: 'Circumcision',
+    jvNgoko: 'Tetak',
+    jvKrama: 'Supit',
+  ),
+  TranslationEntry(
     id: 'Surga',
     en: 'Heaven',
     jvNgoko: 'Suwarga',
     jvKrama: 'Suwargi',
+  ),
+  TranslationEntry(
+    id: 'Suruh',
+    en: 'Instruct',
+    jvNgoko: 'Akon',
+    jvKrama: 'Aken',
+  ),
+  TranslationEntry(
+    id: 'Suruhan',
+    en: 'Messenger',
+    jvNgoko: 'Kongkonan',
+    jvKrama: 'Kengkenan',
   ),
   TranslationEntry(
     id: 'Susah',
@@ -2263,6 +3208,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Tangsul',
   ),
   TranslationEntry(
+    id: 'Tambah',
+    en: 'Increase',
+    jvNgoko: 'Mundhak',
+    jvKrama: 'Mindhak',
+  ),
+  TranslationEntry(
+    id: 'Tambahan',
+    en: 'Addition',
+    jvNgoko: 'Undhakan',
+    jvKrama: 'Indhakan',
+  ),
+  TranslationEntry(
     id: 'Tamu',
     en: 'Guest',
     jvNgoko: 'Dhayo',
@@ -2279,6 +3236,13 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Signature',
     jvNgoko: 'Tanda tangan',
     jvKrama: 'Tanda Tangan',
+    jvKramaInggil: 'Tapak asma',
+  ),
+  TranslationEntry(
+    id: 'Tanggung',
+    en: 'Halfway',
+    jvNgoko: 'Tanggung',
+    jvKrama: 'Tanggel',
   ),
   TranslationEntry(
     id: 'Tanggung jawab',
@@ -2305,6 +3269,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Joged',
   ),
   TranslationEntry(
+    id: 'Tarian',
+    en: 'Traditional dance',
+    jvNgoko: 'Jogedan',
+    jvKrama: 'Jogedan',
+  ),
+  TranslationEntry(
     id: 'Taruh',
     en: 'Put',
     jvNgoko: 'Deleh',
@@ -2321,6 +3291,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Captive',
     jvNgoko: 'Bebadan',
     jvKrama: 'Bebadan',
+  ),
+  TranslationEntry(
+    id: 'Tawar',
+    en: 'Offer',
+    jvNgoko: 'Tari',
+    jvKrama: 'Taros',
   ),
   TranslationEntry(
     id: 'Tawar-menawar',
@@ -2347,10 +3323,28 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Sata',
   ),
   TranslationEntry(
+    id: 'Tempat',
+    en: 'Location',
+    jvNgoko: 'Panggonan',
+    jvKrama: 'Panggenan',
+  ),
+  TranslationEntry(
+    id: 'Tempat mandi',
+    en: 'Bathing place',
+    jvNgoko: 'Padusan',
+    jvKrama: 'Padusan',
+  ),
+  TranslationEntry(
     id: 'Temu',
     en: 'Meet',
     jvNgoko: 'Temu',
     jvKrama: 'Panggih',
+  ),
+  TranslationEntry(
+    id: 'Tengkuk',
+    en: 'Nape',
+    jvNgoko: 'Githok',
+    jvKrama: 'Githok',
   ),
   TranslationEntry(
     id: 'Tentu',
@@ -2363,6 +3357,18 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Felt',
     jvNgoko: 'Krasa',
     jvKrama: 'Kraos',
+  ),
+  TranslationEntry(
+    id: 'Terbakar',
+    en: 'Burned',
+    jvNgoko: 'Kobong',
+    jvKrama: 'Kabesmi',
+  ),
+  TranslationEntry(
+    id: 'Terbang',
+    en: 'Fly',
+    jvNgoko: 'Mabur',
+    jvKrama: 'Mabur',
   ),
   TranslationEntry(
     id: 'Terbayang',
@@ -2395,6 +3401,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Tampi',
   ),
   TranslationEntry(
+    id: 'Teringat',
+    en: 'Recall',
+    jvNgoko: 'Kelingan',
+    jvKrama: 'Kemutan',
+  ),
+  TranslationEntry(
     id: 'Terjadi',
     en: 'Happen',
     jvNgoko: 'Kedadeyan',
@@ -2423,6 +3435,36 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Too',
     jvNgoko: 'Banget-banget',
     jvKrama: 'Sanget-sanget',
+  ),
+  TranslationEntry(
+    id: 'Terlalu berani',
+    en: 'Overly bold',
+    jvNgoko: 'Kumawani',
+    jvKrama: 'Kumawantun',
+  ),
+  TranslationEntry(
+    id: 'Terlalu jauh',
+    en: 'Too distant',
+    jvNgoko: 'Kadohan',
+    jvKrama: 'Ketebihen',
+  ),
+  TranslationEntry(
+    id: 'Terlalu lama',
+    en: 'Too long',
+    jvNgoko: 'Kesuwen',
+    jvKrama: 'Kedangon',
+  ),
+  TranslationEntry(
+    id: 'Terlanjur',
+    en: 'Already done',
+    jvNgoko: 'Kebacut',
+    jvKrama: 'Kelajeng',
+  ),
+  TranslationEntry(
+    id: 'Terlupa',
+    en: 'Forgotten',
+    jvNgoko: 'Kelalen',
+    jvKrama: 'Kesupen',
   ),
   TranslationEntry(
     id: 'Termasuk',
@@ -2467,6 +3509,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Mboten-mbotenipun',
   ),
   TranslationEntry(
+    id: 'Tidak tahu',
+    en: 'Do not know',
+    jvNgoko: 'Embuh',
+    jvKrama: 'Mboten mangertos',
+  ),
+  TranslationEntry(
     id: 'Tidak Tentu',
     en: 'Uncertain',
     jvNgoko: 'Ora karuwan',
@@ -2477,6 +3525,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Mat',
     jvNgoko: 'Klasa',
     jvKrama: 'Gelaran',
+  ),
+  TranslationEntry(
+    id: 'Tinggal',
+    en: 'Reside',
+    jvNgoko: 'Manggon',
+    jvKrama: 'Manggen',
   ),
   TranslationEntry(
     id: 'Tombak',
@@ -2503,10 +3557,28 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Balung',
   ),
   TranslationEntry(
+    id: 'Tumbuk padi',
+    en: 'Pound rice',
+    jvNgoko: 'Tutu',
+    jvKrama: 'Gentang',
+  ),
+  TranslationEntry(
     id: 'Tunggal',
     en: 'Single',
     jvNgoko: 'Tunggal',
     jvKrama: 'Tunggil',
+  ),
+  TranslationEntry(
+    id: 'Tunggu',
+    en: 'Await',
+    jvNgoko: 'Tunggu',
+    jvKrama: 'Tengga',
+  ),
+  TranslationEntry(
+    id: 'Turun',
+    en: 'Descend',
+    jvNgoko: 'Mudhun',
+    jvKrama: 'Mandhap',
   ),
   TranslationEntry(
     id: 'Turut',
@@ -2543,6 +3615,7 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Age',
     jvNgoko: 'Umur',
     jvKrama: 'Umur',
+    jvKramaInggil: 'Yuswa',
   ),
   TranslationEntry(
     id: 'Undangan',
@@ -2587,6 +3660,12 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     jvKrama: 'Wekdal',
   ),
   TranslationEntry(
+    id: 'Waktu hujan',
+    en: 'Rainy time',
+    jvNgoko: 'Udan-udan',
+    jvKrama: 'Jawah-jawah',
+  ),
+  TranslationEntry(
     id: 'Warisan',
     en: 'Inheritance',
     jvNgoko: 'Warisan',
@@ -2609,5 +3688,11 @@ const List<TranslationEntry> kExtendedTranslationEntries = [
     en: 'Alert',
     jvNgoko: 'Waspada',
     jvKrama: 'Waspaos',
+  ),
+  TranslationEntry(
+    id: 'Yaitu',
+    en: 'Namely',
+    jvNgoko: 'Yaiku',
+    jvKrama: 'Inggih punika',
   ),
 ];

@@ -423,7 +423,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get learnModuleProverbsSubtitle =>
-      'Paribasan, bebasan, lan saloka warisan Jawa';
+      'Paribasan, bebasan, dan saloka warisan Jawa';
 
   @override
   String get learnModuleProverbsLabel => '15 peribahasa';
@@ -853,7 +853,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsDataCredit =>
-      'Kamus: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa, Narolis, Prayanta; CC BY 4.0). Sebagian entri disesuaikan.';
+      'Kamus: Starter Kit (CC BY 4.0) & LorthGyu (MIT). Sebagian entri disesuaikan.';
 
   @override
   String get settingsClose => 'Tutup';
@@ -937,7 +937,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get aksaraDetailExampleHeader => 'Contoh Kata';
 
   @override
-  String get aksaraDetailSandanganHeader => 'Sandangan';
+  String get aksaraDetailSandanganHeader => 'Sandhangan';
 
   @override
   String get aksaraDetailSandanganSubtitle =>
@@ -1875,4 +1875,34 @@ class AppLocalizationsId extends AppLocalizations {
   String homeHeroQuestProgressRatio(int done, int total) {
     return '$done/$total';
   }
+
+  @override
+  String get translatorRegisterNgoko => 'Ngoko';
+
+  @override
+  String get translatorRegisterKramaLugu =>
+      'Krama Lugu (diri sendiri / netral)';
+
+  @override
+  String get translatorRegisterKramaInggil => 'Krama Inggil (menghormati)';
+
+  @override
+  String get translatorRegisterKramaAndhap =>
+      'Krama Andhap (merendah kepada yang dihormati)';
+
+  @override
+  String get translatorUncertainBadge =>
+      'Perlu perhatian konteks / kata belum di kamus';
+
+  @override
+  String get homeWisdomBadge => 'MUTIARA PIWULANG';
+
+  @override
+  String get homeWisdomNextTooltip => 'Ganti Piwulang';
+
+  @override
+  String get homeWisdomReadMore => 'Baca Makna Luhur & Sumber';
+
+  @override
+  String get homeWisdomClose => 'Tutup Makna Luhur';
 }

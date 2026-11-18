@@ -556,7 +556,7 @@
   "@learnModuleProverbsTitle": {
     "description": "Judul modul peribahasa dan saloka"
   },
-  "learnModuleProverbsSubtitle": "Paribasan, bebasan, lan saloka warisan Jawa",
+  "learnModuleProverbsSubtitle": "Paribasan, bebasan, dan saloka warisan Jawa",
   "@learnModuleProverbsSubtitle": {
     "description": "Subjudul modul peribahasa dan saloka"
   },
@@ -1137,7 +1137,7 @@
   "@settingsPrivacyPolicyContent": {
     "description": "Teks isi dialog kebijakan privasi"
   },
-  "settingsDataCredit": "Kamus: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa, Narolis, Prayanta; CC BY 4.0). Sebagian entri disesuaikan.",
+  "settingsDataCredit": "Kamus: Starter Kit (CC BY 4.0) & LorthGyu (MIT). Sebagian entri disesuaikan.",
   "@settingsDataCredit": {
     "description": "Teks kredit sumber kamus di layar Pengaturan"
   },
@@ -1250,7 +1250,7 @@
   "@aksaraDetailExampleHeader": {
     "description": "Judul bagian contoh kata aksara"
   },
-  "aksaraDetailSandanganHeader": "Sandangan",
+  "aksaraDetailSandanganHeader": "Sandhangan",
   "@aksaraDetailSandanganHeader": {
     "description": "Judul bagian sandhangan aksara"
   },
@@ -2422,5 +2422,41 @@
         "type": "int"
       }
     }
+  },
+  "translatorRegisterNgoko": "Ngoko",
+  "@translatorRegisterNgoko": {
+    "description": "Label lencana tingkat tutur Ngoko pada hasil terjemahan offline"
+  },
+  "translatorRegisterKramaLugu": "Krama Lugu (diri sendiri / netral)",
+  "@translatorRegisterKramaLugu": {
+    "description": "Label lencana tingkat tutur Krama Lugu pada hasil terjemahan offline"
+  },
+  "translatorRegisterKramaInggil": "Krama Inggil (menghormati)",
+  "@translatorRegisterKramaInggil": {
+    "description": "Label lencana tingkat tutur Krama Inggil pada hasil terjemahan offline"
+  },
+  "translatorRegisterKramaAndhap": "Krama Andhap (merendah kepada yang dihormati)",
+  "@translatorRegisterKramaAndhap": {
+    "description": "Label lencana tingkat tutur Krama Andhap pada hasil terjemahan offline"
+  },
+  "translatorUncertainBadge": "Perlu perhatian konteks / kata belum di kamus",
+  "@translatorUncertainBadge": {
+    "description": "Penanda ringkas saat hasil terjemahan offline memiliki ambiguitas konteks atau kata tak dikenal"
+  },
+  "homeWisdomBadge": "MUTIARA PIWULANG",
+  "@homeWisdomBadge": {
+    "description": "Label lencana kartu piwulang budaya di Beranda"
+  },
+  "homeWisdomNextTooltip": "Ganti Piwulang",
+  "@homeWisdomNextTooltip": {
+    "description": "Tooltip tombol ganti peribahasa Jawa di Beranda"
+  },
+  "homeWisdomReadMore": "Baca Makna Luhur & Sumber",
+  "@homeWisdomReadMore": {
+    "description": "Tombol perluas penjelasan piwulang budaya"
+  },
+  "homeWisdomClose": "Tutup Makna Luhur",
+  "@homeWisdomClose": {
+    "description": "Tombol tutup penjelasan piwulang budaya"
   }
 }

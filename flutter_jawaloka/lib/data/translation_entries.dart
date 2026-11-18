@@ -9,18 +9,63 @@ import 'translation_entries_extended.dart';
 // ─────────────────────────────────────────────────────────────────────────────
 
 /// Model entri kamus terjemahan dwiarah multi-varian JawaLoka.
+///
+/// Mendukung pemisahan tingkat tutur Krama Lugu (untuk diri sendiri / netral)
+/// dan Krama Inggil (untuk menghormati orang lain) secara kompatibel ke belakang
+/// terhadap seluruh pemanggil [jvKrama] yang sudah ada.
 class TranslationEntry {
   final String id;
   final String en;
   final String jvNgoko;
   final String jvKrama;
 
+  /// Bentuk Krama Lugu (untuk diri sendiri / netral) bila berbeda dari [jvKrama].
+  final String? jvKramaLugu;
+
+  /// Bentuk Krama Inggil (untuk menghormati orang lain) bila berbeda dari [jvKrama].
+  final String? jvKramaInggil;
+
+  /// Bentuk Krama Andhap (perendahan diri saat diri sendiri melakukan tindakan kepada
+  /// orang yang dihormati, mis. 'Nyaosi', 'Matur', 'Nyuwun pirsa', 'Ngaturi').
+  final String? jvKramaAndhap;
+
   const TranslationEntry({
     required this.id,
     required this.en,
     required this.jvNgoko,
     required this.jvKrama,
+    this.jvKramaLugu,
+    this.jvKramaInggil,
+    this.jvKramaAndhap,
   });
+
+  /// Bentuk Krama Lugu efektif (dipakai untuk subjek diri sendiri: kula).
+  String get kramaLugu => jvKramaLugu ?? jvKrama;
+
+  /// Bentuk Krama Inggil efektif (dipakai untuk subjek yang dihormati: bapak/ibu/eyang/guru).
+  String get kramaInggil => jvKramaInggil ?? jvKrama;
+
+  /// Bentuk Krama Andhap efektif (dipakai saat diri sendiri bertindak terhadap orang yang dihormati).
+  String get kramaAndhap => jvKramaAndhap ?? kramaLugu;
+
+  /// Benar apabila entri ini memiliki pembedaan bentuk Krama Lugu vs Krama Inggil / Krama Andhap.
+  bool get hasHonorificDistinction =>
+      kramaLugu.trim().toLowerCase() != kramaInggil.trim().toLowerCase() ||
+      jvKramaAndhap != null;
+
+  /// Mengambil bentuk Bahasa Jawa sesuai [SpeechRegister].
+  String getByRegister(SpeechRegister register) {
+    switch (register) {
+      case SpeechRegister.ngoko:
+        return jvNgoko;
+      case SpeechRegister.kramaLugu:
+        return kramaLugu;
+      case SpeechRegister.kramaInggil:
+        return kramaInggil;
+      case SpeechRegister.kramaAndhap:
+        return kramaAndhap;
+    }
+  }
 
   /// Mengambil teks sesuai varian bahasa yang diminta.
   String getVariant(TranslationVariant variant) {
@@ -122,7 +167,7 @@ const List<TranslationEntry> kTranslationEntries = [
     id: 'Harga',
     en: 'Price',
     jvNgoko: 'Rega',
-    jvKrama: 'Rega', // DRAF: varian krama belum diverifikasi (kemungkinan 'Regi')
+    jvKrama: 'Regi',
   ),
   TranslationEntry(
     id: 'Sangat',
@@ -182,7 +227,7 @@ const List<TranslationEntry> kTranslationEntries = [
     id: 'Senang bertemu dengan Anda',
     en: 'Nice to meet you',
     jvNgoko: 'Seneng ketemu karo sliramu',
-    jvKrama: 'Remen pinanggih kalian panjenengan',
+    jvKrama: 'Remen pinanggih kaliyan panjenengan',
   ),
   TranslationEntry(
     id: 'Nama saya',
@@ -203,6 +248,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'You',
     jvNgoko: 'Kowe',
     jvKrama: 'Panjenengan',
+    jvKramaLugu: 'Sampeyan',
   ),
   TranslationEntry(
     id: 'Dia',
@@ -309,54 +355,63 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Eat',
     jvNgoko: 'Mangan',
     jvKrama: 'Nedha',
+    jvKramaInggil: 'Dhahar',
   ),
   TranslationEntry(
     id: 'Minum',
     en: 'Drink',
     jvNgoko: 'Ngombe',
     jvKrama: 'Ngunjuk',
+    jvKramaLugu: 'Nginum',
   ),
   TranslationEntry(
     id: 'Tidur',
     en: 'Sleep',
     jvNgoko: 'Turu',
     jvKrama: 'Sare',
+    jvKramaLugu: 'Tilem',
   ),
   TranslationEntry(
     id: 'Bangun',
     en: 'Wake up',
     jvNgoko: 'Tangi',
     jvKrama: 'Tangi',
+    jvKramaInggil: 'Wungu',
   ),
   TranslationEntry(
     id: 'Pergi',
     en: 'Go',
     jvNgoko: 'Lunga',
     jvKrama: 'Tindak',
+    jvKramaLugu: 'Kesah',
   ),
   TranslationEntry(
     id: 'Datang',
     en: 'Come',
     jvNgoko: 'Teka',
     jvKrama: 'Rawuh',
+    jvKramaLugu: 'Dhateng',
   ),
   TranslationEntry(
     id: 'Pulang',
     en: 'Return home',
     jvNgoko: 'Mulih',
     jvKrama: 'Wangsul',
+    jvKramaInggil: 'Kondur',
   ),
   TranslationEntry(
     id: 'Duduk',
     en: 'Sit',
     jvNgoko: 'Lungguh',
     jvKrama: 'Lenggah',
+    jvKramaLugu: 'Linggih',
   ),
   TranslationEntry(
     id: 'Berdiri',
     en: 'Stand',
     jvNgoko: 'Ngadeg',
     jvKrama: 'Ngadeg',
+    jvKramaInggil: 'Jumeneng',
   ),
   TranslationEntry(
     id: 'Berjalan',
@@ -375,24 +430,30 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Speak',
     jvNgoko: 'Ngomong',
     jvKrama: 'Matur',
+    jvKramaLugu: 'Wicanten',
+    jvKramaInggil: 'Ngendika',
+    jvKramaAndhap: 'Matur',
   ),
   TranslationEntry(
     id: 'Mendengar',
     en: 'Listen',
     jvNgoko: 'Krungu',
     jvKrama: 'Mireng',
+    jvKramaInggil: 'Midhanget',
   ),
   TranslationEntry(
     id: 'Melihat',
     en: 'See',
     jvNgoko: 'Ndelok',
     jvKrama: 'Ningali',
+    jvKramaInggil: 'Mriksani',
   ),
   TranslationEntry(
     id: 'Membeli',
     en: 'Buy',
     jvNgoko: 'Tuku',
     jvKrama: 'Tumbas',
+    jvKramaInggil: 'Mundhut',
   ),
   TranslationEntry(
     id: 'Menjual',
@@ -405,6 +466,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Work',
     jvNgoko: 'Nyambut gawe',
     jvKrama: 'Nyambut damel',
+    jvKramaInggil: 'Ngasta',
   ),
   TranslationEntry(
     id: 'Belajar',
@@ -465,6 +527,9 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Give',
     jvNgoko: 'Menehi',
     jvKrama: 'Paring',
+    jvKramaLugu: 'Nyukani',
+    jvKramaInggil: 'Maringi',
+    jvKramaAndhap: 'Nyaosi',
   ),
   TranslationEntry(
     id: 'Mengambil',
@@ -477,6 +542,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Know',
     jvNgoko: 'Ngerti',
     jvKrama: 'Mangertos',
+    jvKramaInggil: 'Priksa',
   ),
   TranslationEntry(
     id: 'Mau',
@@ -503,6 +569,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'House',
     jvNgoko: 'Omah',
     jvKrama: 'Griya',
+    jvKramaInggil: 'Dalem',
   ),
   TranslationEntry(
     id: 'Pintu',
@@ -635,7 +702,7 @@ const List<TranslationEntry> kTranslationEntries = [
   TranslationEntry(
     id: 'Bulan',
     en: 'Moon',
-    jvNgoko: 'Wulan',
+    jvNgoko: 'Rembulan',
     jvKrama: 'Wulan',
   ),
   TranslationEntry(
@@ -776,7 +843,7 @@ const List<TranslationEntry> kTranslationEntries = [
     id: 'Minyak',
     en: 'Oil',
     jvNgoko: 'Lenga',
-    jvKrama: 'Lenga',
+    jvKrama: 'Lisah',
   ),
   TranslationEntry(
     id: 'Nasi goreng',
@@ -847,24 +914,28 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Head',
     jvNgoko: 'Sirah',
     jvKrama: 'Mustaka',
+    jvKramaLugu: 'Sirah',
   ),
   TranslationEntry(
     id: 'Mata',
     en: 'Eye',
     jvNgoko: 'Mripat',
     jvKrama: 'Paningal',
+    jvKramaLugu: 'Mripat',
   ),
   TranslationEntry(
     id: 'Hidung',
     en: 'Nose',
     jvNgoko: 'Irung',
     jvKrama: 'Grana',
+    jvKramaLugu: 'Irung',
   ),
   TranslationEntry(
     id: 'Mulut',
     en: 'Mouth',
     jvNgoko: 'Cangkem',
     jvKrama: 'Tutuk',
+    jvKramaLugu: 'Lesan',
   ),
   TranslationEntry(
     id: 'Telinga',
@@ -877,12 +948,14 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Hand',
     jvNgoko: 'Tangan',
     jvKrama: 'Asta',
+    jvKramaLugu: 'Tangan',
   ),
   TranslationEntry(
     id: 'Kaki',
     en: 'Foot',
     jvNgoko: 'Sikil',
     jvKrama: 'Suku',
+    jvKramaInggil: 'Ampeyan',
   ),
   TranslationEntry(
     id: 'Perut',
@@ -901,6 +974,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Tooth',
     jvNgoko: 'Untu',
     jvKrama: 'Waja',
+    jvKramaLugu: 'Untu',
   ),
 
   // ── 10. Kata sifat ──────────────────────────────────────────────────────────
@@ -944,7 +1018,7 @@ const List<TranslationEntry> kTranslationEntries = [
     id: 'Panas',
     en: 'Hot',
     jvNgoko: 'Panas',
-    jvKrama: 'Panas',
+    jvKrama: 'Benter',
   ),
   TranslationEntry(
     id: 'Dingin',
@@ -1287,12 +1361,14 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Older sibling',
     jvNgoko: 'Kakang',
     jvKrama: 'Kakang',
+    jvKramaInggil: 'Raka',
   ),
   TranslationEntry(
     id: 'Adik',
     en: 'Younger sibling',
     jvNgoko: 'Adhi',
     jvKrama: 'Adhi',
+    jvKramaInggil: 'Rayi',
   ),
   TranslationEntry(
     id: 'Kakek',
@@ -1323,6 +1399,8 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Child',
     jvNgoko: 'Anak',
     jvKrama: 'Anak',
+    jvKramaLugu: 'Lare',
+    jvKramaInggil: 'Putra',
   ),
   TranslationEntry(
     id: 'Suami',
@@ -1405,6 +1483,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Sick',
     jvNgoko: 'Lara',
     jvKrama: 'Gerah',
+    jvKramaLugu: 'Sakit',
   ),
   TranslationEntry(
     id: 'Sehat',
@@ -1417,6 +1496,7 @@ const List<TranslationEntry> kTranslationEntries = [
     en: 'Medicine',
     jvNgoko: 'Obat',
     jvKrama: 'Jampi',
+    jvKramaInggil: 'Usada',
   ),
   TranslationEntry(
     id: 'Dokter',
@@ -1446,7 +1526,7 @@ const List<TranslationEntry> kTranslationEntries = [
     id: 'Pusing',
     en: 'Dizzy',
     jvNgoko: 'Mumet',
-    jvKrama: 'Mumet',
+    jvKrama: 'Puyeng',
   ),
 
   // ── 16. Percakapan & ungkapan praktis ───────────────────────────────────────

@@ -161,6 +161,14 @@ void main() {
       'profileChooseBlangkonButton',
       'blangkonTitle',
       'blangkonLevelRequired',
+      'profileChooseBusanaButton',
+      'busanaTitle',
+      'busanaNameYogyakarta',
+      'busanaNameSurakarta',
+      'busanaNameBanyumas',
+      'busanaNameKedu',
+      'busanaNameCirebon',
+      'busanaNamePusaka',
       'levelUpMicroTag',
       'levelUpTitle',
       'levelUpAchievementTitle',
@@ -175,6 +183,7 @@ void main() {
       'learnUnggahNgokoAlusTitle',
       'learnUnggahKramaLuguTitle',
       'learnUnggahKramaInggilTitle',
+      'translatorRegisterNgoko',
       ...kJvPendingKeys,
     };
 

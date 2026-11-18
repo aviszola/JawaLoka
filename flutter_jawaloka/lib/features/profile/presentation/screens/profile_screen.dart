@@ -478,7 +478,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            '${ProfileScope.maybeOf(context)?.gender.label ?? "Putra"} • ${ProfileScope.maybeOf(context)?.age ?? 17} Th',
+                            context.l10n.settingsProfileDialogCharacterAgeValue(
+                              ProfileScope.maybeOf(context)?.gender ==
+                                      UserGender.female
+                                  ? context.l10n.profileSetupFemaleTitle
+                                  : context.l10n.profileSetupMaleTitle,
+                              ProfileScope.maybeOf(context)?.age ?? 17,
+                            ),
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: AppColors.ink,

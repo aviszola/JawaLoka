@@ -38,7 +38,7 @@ class Unit4Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt:
-          'Sebatan tumrap mbakyu kang luwih tuwa ing kulawarga kramane yaiku...',
+          'Sebatan tumrap sedulur wadon kang luwih tuwa ing kulawarga yaiku...',
       glyph: '',
       options: ['Adhimas', 'Mbakyu', 'Rayi', 'Kakang'],
       correctIndex: 1,
@@ -183,12 +183,12 @@ class Unit4Questions {
       topicKey: 'nama_benda',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Pintu gerbang mlebu ing plataran omah Jawa sinebut...',
+      prompt: 'Lawang gerbang (gapura) mlebu ing plataran omah Jawa sinebut...',
       glyph: '',
       options: ['Pawon', 'Regol', 'Gandhok', 'Jeding'],
       correctIndex: 1,
       explanation:
-          'Regol yaiku gapura utawa pintu gerbang plataran omah tradhisional.',
+          'Regol yaiku gapura utawa lawang gerbang plataran omah tradhisional.',
       sourceReference: 'Arsitektur Omah Jawa Tradisional',
     ),
 
@@ -241,7 +241,7 @@ class Unit4Questions {
       type: QuestionType.glyphIdentify,
       prompt: 'Tembung "adus" krama inggile kagem simbah yaiku...',
       glyph: '',
-      options: ['Siram', 'Adus', 'Kamas', 'Nglangi'],
+      options: ['Siram', 'Adus', 'Kramas', 'Nglangi'],
       correctIndex: 0,
       explanation: 'Adus krama inggile yaiku "Siram".',
       sourceReference: 'Pepak Basa Jawa',
@@ -672,7 +672,7 @@ class Unit4Questions {
       topicKey: 'perbedaan_tingkatan_bahasa',
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
-      prompt: 'Urutan undha-usuk tembung "dhuwit" yaiku...',
+      prompt: 'Padanan tembung "dhuwit" ing tataran ngoko lan krama yaiku...',
       glyph: '',
       options: [
         'Dhuwit -> Arta -> Yatra',
@@ -681,7 +681,7 @@ class Unit4Questions {
         'Arta -> Yatra -> Dhuwit',
       ],
       correctIndex: 0,
-      explanation: 'Dhuwit (ngoko) -> Arta utawa Yatra (krama).',
+      explanation: 'Dhuwit (ngoko) nduweni padanan krama "arta" utawa "yatra" (ragam krama kang luwih alus/sastra).',
       sourceReference: 'Pepak Basa Jawa',
     ),
 
@@ -875,10 +875,10 @@ class Unit4Questions {
       prompt:
           '"Pak, kula ... sepedha motor panjenengan." Tembung kang trep tumrap bocah nyilih barang yaiku...',
       glyph: '',
-      options: ['Nyuwun', 'Mundhut', 'Nyambut / nyampil', 'Maringi'],
+      options: ['Nyuwun', 'Mundhut', 'Nyambut / ngampil', 'Maringi'],
       correctIndex: 2,
       explanation:
-          'Nyilih krama aluse "nyampil" utawa "nyambut" kagem nyilih barang kanthi trapsila.',
+          'Nyilih krama lugune "nyambut", dene krama andhape "ngampil" kagem nyilih barang kanthi trapsila.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 

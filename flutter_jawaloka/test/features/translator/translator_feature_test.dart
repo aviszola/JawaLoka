@@ -594,7 +594,7 @@ void main() {
         await controller.setLocale(const Locale('jv'));
         await tester.pumpAndSettle();
 
-        expect(find.text('Penerjemah'), findsOneWidget);
+        expect(find.text('Panjarwa'), findsOneWidget);
         expect(find.text('LEBETAKEN TEKS'), findsOneWidget);
         expect(find.text('Jarwakake'), findsOneWidget);
         expect(find.text('ASILING JARWAN'), findsOneWidget);
