@@ -51,7 +51,7 @@ class VocabWord {
     VocabWord(
       id: 'banyu',
       javanese: 'Banyu',
-      aksara: 'ꦧꦤꦾꦸ',
+      aksara: 'ꦧꦚꦸ',
       indonesian: 'Air',
       english: 'Water',
       level: 'Ngoko',
@@ -62,7 +62,7 @@ class VocabWord {
       aksara: 'ꦱꦼꦒꦫ',
       indonesian: 'Laut',
       english: 'Sea',
-      level: 'Krama',
+      level: 'Ngoko',
     ),
     VocabWord(
       id: 'lemah',
@@ -75,7 +75,7 @@ class VocabWord {
     VocabWord(
       id: 'langit',
       javanese: 'Langit',
-      aksara: 'ꦭꦁꦒꦶꦠ꧀',
+      aksara: 'ꦭꦔꦶꦠ꧀',
       indonesian: 'Langit',
       english: 'Sky',
       level: 'Ngoko',

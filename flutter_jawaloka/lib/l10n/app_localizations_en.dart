@@ -1881,4 +1881,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String homeHeroQuestProgressRatio(int done, int total) {
     return '$done/$total';
   }
+
+  @override
+  String get translatorRegisterNgoko => 'Ngoko';
+
+  @override
+  String get translatorRegisterKramaLugu => 'Krama Lugu (self / neutral)';
+
+  @override
+  String get translatorRegisterKramaInggil => 'Krama Inggil (honorific)';
+
+  @override
+  String get translatorRegisterKramaAndhap =>
+      'Krama Andhap (humble toward respected person)';
+
+  @override
+  String get translatorUncertainBadge =>
+      'Needs context review / word not in dictionary';
+
+  @override
+  String get homeWisdomBadge => 'CULTURAL WISDOM';
+
+  @override
+  String get homeWisdomNextTooltip => 'Next Proverb';
+
+  @override
+  String get homeWisdomReadMore => 'Read Meaning & Source';
+
+  @override
+  String get homeWisdomClose => 'Hide Meaning';
 }

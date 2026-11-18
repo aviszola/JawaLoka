@@ -233,7 +233,7 @@ class Unit1Questions {
       ],
       correctIndex: 1,
       explanation:
-          'Marang simbah nggunakake krama alus lan mendoakan kawilujengan tindake.',
+          'Marang simbah nggunakake krama alus lan ndongakake kawilujengan tindake.',
       sourceReference: 'Unggah-Ungguh Basa Jawa',
     ),
 
@@ -363,14 +363,14 @@ class Unit1Questions {
       prompt: 'Ukara nepangaken dhiri marang kanca anyar yaiku...',
       glyph: '',
       options: [
-        'Tepangaken, jenengku Budi',
+        'Kenalke, jenengku Budi',
         'Kowe sapa kok wani mrene?',
         'Ayo padha gelut wae',
         'Njaluk dhuwite saiki',
       ],
       correctIndex: 0,
       explanation:
-          'Nepangaken dhiri marang kanca nggunakake ukara sumeh: "Tepangaken, jenengku Budi".',
+          'Nepangaken dhiri marang kanca nggunakake ukara sumeh ngoko: "Kenalke, jenengku Budi".',
       sourceReference: 'Pepak Basa Jawa: Pitepangan',
     ),
     QuizQuestion(
@@ -649,7 +649,7 @@ class Unit1Questions {
           'Ing adicara pahargyan, panitia ngaturake panuwun marang para rawuh kanthi ukara...',
       glyph: '',
       options: [
-        'Panitia ngaturake agunging panuwun awit rawuh panjenengan sedaya',
+        'Panitia ngaturaken agunging panuwun awit rawuhipun panjenengan sedaya',
         'Wis rampung mangga padha bubar',
         'Matur nuwun wis teka ning kene',
         'Kula nyuwun pamit dhisik para tamu',
@@ -801,7 +801,7 @@ class Unit1Questions {
       ],
       correctIndex: 0,
       explanation:
-          'Awak mbungkukake sethithik minangka tandha ngurmati wong kang luwih sepuh.',
+          'Mbungkukake awak sethithik minangka tandha ngurmati wong kang luwih sepuh.',
       sourceReference: 'Pepak Basa Jawa: Subasita',
     ),
     QuizQuestion(
@@ -814,7 +814,7 @@ class Unit1Questions {
       options: [
         'Tangan loro mlebu sak clana',
         'Tangan tengen nyekel tangan kiwa ing sangarepe puser/weteng',
-        'Tangan sedhakep ing dada kanthi mentheng-mentheng',
+        'Tangan sedhakep ing dhadha kanthi mentheng-mentheng',
         'Tangan loro diunggahake ing dhuwur sirah',
       ],
       correctIndex: 1,
@@ -876,7 +876,7 @@ class Unit1Questions {
       ],
       correctIndex: 1,
       explanation:
-          'Wanita Jawa lumrahe lungguh timpuh kanthi ngempukake dhengkul minangka tandha subasita.',
+          'Wanita Jawa lumrahe lungguh timpuh kanthi nglempitake dhengkul minangka tandha subasita.',
       sourceReference: 'Tata Krama Kraton Surakarta & Yogyakarta',
     ),
 
@@ -948,7 +948,7 @@ class Unit1Questions {
           'Yen arep takon dalan marang wong ing pinggir dalan, ukara pambuka kang becik yaiku...',
       glyph: '',
       options: [
-        'Nyuwun sewu, kepareng nyuwun pirsa dalan dhateng stasiun pundi nggih?',
+        'Nyuwun sewu, kepareng nyuwun pirsa margi dhateng stasiun pundi nggih?',
         'Hei kowe, tulung tuduhna dalan menyang stasiun saiki!',
         'Kowe ngerti apa ora dalan kang tumuju menyang stasiun?',
         'Ayo cepet tuduhna dalan stasiun amarga aku selak telat!',
@@ -969,7 +969,7 @@ class Unit1Questions {
       options: ['Mangan', 'Lunga', 'Turu', 'Lungguh'],
       correctIndex: 3,
       explanation:
-          'Lungguh (ngoko) -> Lenggah (krama) -> Pinarak (krama inggil).',
+          'Lungguh (ngoko) -> Lenggah (krama inggil). Tembung pinarak (krama inggil saka mampir/singgah) lumrah dienggo ngaturi tamu supaya mlebu lan lenggah.',
       sourceReference: 'Bausastra Jawa: Tembung Lenggah & Pinarak',
     ),
     QuizQuestion(
@@ -1144,7 +1144,7 @@ class Unit1Questions {
       options: ['Mangan', 'Mlebu', 'Lungguh', 'Turu'],
       correctIndex: 2,
       explanation:
-          'Pinarak tegese lenggah utawa lungguh ing tataran krama inggil.',
+          'Pinarak (krama inggil saka mampir/singgah) ing ukara "sumangga pinarak" dienggo ngaturi tamu supaya mlebu lan lenggah.',
       sourceReference: 'Evaluasi Unit 1 JawaLoka',
     ),
   ];

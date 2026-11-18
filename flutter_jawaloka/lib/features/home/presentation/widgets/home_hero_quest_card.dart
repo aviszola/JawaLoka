@@ -3,11 +3,14 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
+import '../../../quiz/domain/quest_target.dart';
 
 /// Kartu Misi Aktif — disederhanakan untuk anak kecil:
 /// label "Misi Hari Ini", aksara target besar, judul pendek,
 /// lencana +30 XP, bar progres bersegmen + "3/5", dan tombol "Mulai".
 class HomeHeroQuestCard extends StatelessWidget {
+  static const String _kQuestXpReward = '+30 XP';
+
   const HomeHeroQuestCard({super.key});
 
   @override
@@ -92,7 +95,7 @@ class HomeHeroQuestCard extends StatelessWidget {
                           border: Border.all(color: AppColors.border),
                         ),
                         child: Text(
-                          '+30 XP',
+                          _kQuestXpReward,
                           style: textTheme.labelMedium?.copyWith(
                             color: AppColors.ink,
                             fontWeight: FontWeight.w700,
@@ -116,7 +119,7 @@ class HomeHeroQuestCard extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'ꦲ',
+                          QuestTarget.hanacarakaAll.first.aksaraChar,
                           style: textTheme.displayLarge?.copyWith(
                             fontFamily: 'NotoSansJavanese',
                             color: AppColors.ink,

@@ -1,0 +1,856 @@
+id,en,ngoko_app,krama_app,krama_lugu_app,krama_inggil_app,krama_andhap_app,ngoko_usulan,krama_usulan,krama_inggil_usulan,krama_andhap_usulan,sumber,url_entri,status,diverifikasi_oleh,prioritas,kategori_tinjauan,catatan
+Akan,Will,Arep,Badhe,Badhe,Badhe,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Bakal; KA=Badhe; KI=Badhe)
+Apa,What,Opo,Menapa,Menapa,Menapa,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TEMUAN_PHASE4,"Konflik kamus_conflicts.csv (dataset: N=Apa; KA=Menapa; KI=Punapa) ; Ejaan Ngoko memakai ""Opo"" (bukan ejaan baku ""Apa""); perlu keputusan standardisasi ortografi"
+Bagaimana,How,Kepiye,Kados pundi,Kados pundi,Kados pundi,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Kepriye; KA=Kados pundi; KI=Kados pundi)
+Bagus,Good,Apik,Sae,Sae,Sae,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Becik; KA=Sae; KI=Sae)
+Bekerja,Work,Nyambut gawe,Nyambut damel,Nyambut damel,Ngasta,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Gawe; KA=Damel; KI=Ngasta) ; Pemisahan register aktif (KL=Nyambut damel; KI=Ngasta; KA=-)
+Berapa,How much,Piro,Pinten,Pinten,Pinten,,,,,,,,BELUM_DIPERIKSA,,P1,TEMUAN_PHASE4,"Ejaan Ngoko memakai ""Piro"" (bukan ejaan baku ""Pira""); perlu keputusan standardisasi ortografi"
+Berat,Heavy,Abot,Awrat,Awrat,Awrat,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: berat
+Berbulan-bulan,For months,Sasen-sasen,Wewulanan,Wewulanan,Wewulanan,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: bulan
+Berhati-hati,Be careful,Ngati-ati,Ngatos-ngatos,Ngatos-ngatos,Ngatos-ngatos,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: hati
+Berkali-kali,Repeatedly,Bola-bali,Wongsal-wangsul,Wongsal-wangsul,Wongsal-wangsul,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: kali
+Bersih,Clean,Resik,Resik,Resik,Resik,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|NGOKO_SAMA_KRAMA_INVARIAN,Konflik kamus_conflicts.csv (dataset: N=Wahing; KA=Wahing; KI=Sigra) ; Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Bisa,Can,Iso,Saged,Saged,Saged,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: bisa
+Bulan,Moon,Rembulan,Wulan,Wulan,Wulan,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|POLISEMI_19,Konflik kamus_conflicts.csv (dataset: N=Sasi; KA=Wulan; KI=Wulan) ; Kelompok polisemi: bulan
+Bunga,Flower,Kembang,Sekar,Sekar,Sekar,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: bunga
+Cepat,Fast,Cepet,Gancang,Gancang,Gancang,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Age; KA=Enggal; KI=Enggal)
+Daging,Meat,Daging,Daging,Daging,Daging,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|NGOKO_SAMA_KRAMA_TINJAU,Konflik kamus_conflicts.csv (dataset: N=Iwak; KA=Ulam; KI=Ulam) ; Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Datang,Come,Teka,Rawuh,Dhateng,Rawuh,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Teka; KA=Dhateng; KI=Rawuh) ; Pemisahan register aktif (KL=Dhateng; KI=Rawuh; KA=-)
+Demam,Fever,Demam,Demam,Demam,Demam,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|NGOKO_SAMA_KRAMA_TINJAU,Konflik kamus_conflicts.csv (dataset: N=Adhem panas; KA=Asrep benter; KI=Asrep benter) ; Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Gigi,Tooth,Untu,Waja,Untu,Waja,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Untu; KA=Waos; KI=Waja) ; Pemisahan register aktif (KL=Untu; KI=Waja; KA=-)
+Hati,Inner heart,Ati,Manah,Manah,Penggalih,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|TINGKAT_TUTUR,Kelompok polisemi: hati ; Pemisahan register aktif (KL=Manah; KI=Penggalih; KA=-)
+Hati-hati,Careful,Ati-ati,Atos-atos,Atos-atos,Atos-atos,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: hati
+Hidung,Nose,Irung,Grana,Irung,Grana,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Irung; KA=Irung; KI=Grana) ; Pemisahan register aktif (KL=Irung; KI=Grana; KA=-)
+Ibu,Mother,Ibu,Ibu,Ibu,Ibu,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|NGOKO_SAMA_KRAMA_INVARIAN,Konflik kamus_conflicts.csv (dataset: N=Embok; KA=Embok; KI=Ibu) ; Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Ikat kepala,Headband,Iket,Udheng,Udheng,Udheng,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: kepala
+Jadi,Turn into,Dadi,Dados,Dados,Dados,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: jadi
+Jalan,Road,Dalan,Margi,Margi,Margi,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: jalan
+Jalan-jalan,Stroll,Mlaku-mlaku,Mlampah-mlampah,Mlampah-mlampah,Mlampah-mlampah,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: jalan
+Jam,Clock,Jam,Jam,Jam,Jam,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|NGOKO_SAMA_KRAMA_INVARIAN,Kelompok polisemi: jam ; Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Jelek,Bad,Elek,Awon,Awon,Awon,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Ala; KA=Awon; KI=Awon)
+Kain,Cloth,Dodot,Dodot,Dodot,Dodot,,,,,,,,BELUM_DIPERIKSA,,P1,NGOKO_SAMA_KRAMA_TINJAU|TEMUAN_PHASE4,"Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku ; Ngoko/Krama memakai ""Dodot"" (busana kebesaran keraton), bukan padanan umum ""kain""; perlu tinjauan penutur asli"
+Kakek,Grandfather,Simbah kakung,Eyang kakung,Eyang kakung,Eyang kakung,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Embah; KA=Simbah; KI='Eyang)
+Kaki,Foot,Sikil,Suku,Suku,Ampeyan,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|TINGKAT_TUTUR,Kelompok polisemi: kaki ; Pemisahan register aktif (KL=Suku; KI=Ampeyan; KA=-)
+Kamu,You,Kowe,Panjenengan,Sampeyan,Panjenengan,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Kowe; KA=Sampeyan; KI=Panjenengan) ; Pemisahan register aktif (KL=Sampeyan; KI=Panjenengan; KA=-)
+Kapan,When,Kapan,Kapan,Kapan,Kapan,,,,,,,,BELUM_DIPERIKSA,,P1,NGOKO_SAMA_KRAMA_TINJAU|TEMUAN_PHASE4,"Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku ; Ngoko=Krama (""Kapan""); pertimbangkan Krama baku ""Benjing punapa / Kala punapa"""
+Kepala,Head,Sirah,Mustaka,Sirah,Mustaka,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|POLISEMI_19|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Endas; KA=Sirah; KI=Mustaka) ; Kelompok polisemi: kepala ; Pemisahan register aktif (KL=Sirah; KI=Mustaka; KA=-)
+Kuat,Strong,Kuat,Kiyat,Kiyat,Kiyat,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Kuat; KA=Kuwawi; KI=Kuwawi)
+Lapar,Hungry,Luwe,Luwe,Luwe,Luwe,,,,,,,,BELUM_DIPERIKSA,,P1,NGOKO_SAMA_KRAMA_TINJAU|TEMUAN_PHASE4,"Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku ; Ngoko=Krama (""Luwe""); pertimbangkan Krama baku ""Lapa"" atau tetap invarian sehari-hari"
+Maaf,Sorry,Njaluk ngapura,Nyuwun pangapunten,Nyuwun pangapunten,Nyuwun pangapunten,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Apura; KA=Apunten; KI=Apunten)
+Malu,Shy,Isin,Lingsem,Isin,Lingsem,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|TINGKAT_TUTUR,Kelompok polisemi: malu ; Pemisahan register aktif (KL=Isin; KI=Lingsem; KA=-)
+Mata,Eye,Mripat,Paningal,Mripat,Paningal,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Mata; KA=Mripat; KI=Paningal) ; Pemisahan register aktif (KL=Mripat; KI=Paningal; KA=-)
+Matahari,Sun,Srengenge,Surya,Surya,Surya,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Srengenge; KA=Srengenge; KI=Surya)
+Melihat,See,Ndelok,Ningali,Ningali,Mriksani,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Ndeleng; KA=Ninggali; KI=Mriksani) ; Pemisahan register aktif (KL=Ningali; KI=Mriksani; KA=-)
+Memberi,Give,Menehi,Paring,Nyukani,Maringi,Nyaosi,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Menehi; KA=Nyukani; KI=Maringi) ; Pemisahan register aktif (KL=Nyukani; KI=Maringi; KA=Nyaosi)
+Mencari,Search,Goleki,Pados,Pados,Pados,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Nggoleki; KA=Madosi; KI=Madosi)
+Mengapa,Why,Kenopo,Kenging menapa,Kenging menapa,Kenging menapa,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TEMUAN_PHASE4,"Konflik kamus_conflicts.csv (dataset: N=Ganeya; KA=Kenging menapa; KI=Kenging menapa) ; Ejaan Ngoko memakai ""Kenopo"" (bukan ejaan baku ""Kenapa/Geneya""); perlu tinjauan penutur asli"
+Menjual,Sell,Adol,Sade,Sade,Sade,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Ngedol; KA=Nyade; KI=Nyade)
+Minta maaf,Apologize,Amit,Amit,Amit,Amit,,,,,,,,BELUM_DIPERIKSA,,P1,NGOKO_SAMA_KRAMA_TINJAU|TEMUAN_PHASE4,"Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku ; Memakai ""Amit"" (makna lazim: permisi), bukan ""minta maaf""; perlu tinjauan penutur asli"
+Mulut,Mouth,Cangkem,Tutuk,Lesan,Tutuk,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Cangkem; KA=Lesan; KI=Tutuk) ; Pemisahan register aktif (KL=Lesan; KI=Tutuk; KA=-)
+Murah,Cheap,Murah,Mirah,Mirah,Mirah,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Mirah; KA=Mirah; KI=Mirah)
+Nasihat keras,Stern warning,Wanti-wanti,Wantos-wantos,Wantos-wantos,Wantos-wantos,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: keras
+Nilai,Grade,Biji,Biji,Biji,Biji,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|NGOKO_SAMA_KRAMA_TINJAU,Konflik kamus_conflicts.csv (dataset: N=Aji; KA=Aos; KI=Aos) ; Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Obat,Medicine,Obat,Jampi,Jampi,Usada,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Tamba; KA=Jampi; KI=Usada) ; Pemisahan register aktif (KL=Jampi; KI=Usada; KA=-)
+Pelajaran,Lesson,Pelajaran,Pelajaran,Pelajaran,Pelajaran,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|NGOKO_SAMA_KRAMA_TINJAU,Konflik kamus_conflicts.csv (dataset: N=Wulangan; KA=Wucalan; KI=Wucalan) ; Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Pendek,Short,Cendhek,Cendhak,Cendhak,Cendhak,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Cendhek; KA=Andhap; KI=Andhap)
+Pergi,Go,Lunga,Tindak,Kesah,Tindak,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Lunga; KA=Kesah; KI=Tindak) ; Pemisahan register aktif (KL=Kesah; KI=Tindak; KA=-)
+Pulang,Return home,Mulih,Wangsul,Wangsul,Kondur,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Muleh; KA=Mantuk; KI=Kundur) ; Pemisahan register aktif (KL=Wangsul; KI=Kondur; KA=-)
+Pusing,Dizzy,Mumet,Puyeng,Puyeng,Puyeng,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Ngelu; KA=Puyeng; KI=Puyeng)
+Sakit hati,Hurt,Kelara-lara,Kesakit-sakit,Kesakit-sakit,Kesakit-sakit,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: hati
+Saya tidak tahu,I do not know,Aku ora weruh,Kula mboten mangertos menapa-menapa,Kula mboten mangertos menapa-menapa,Kula mboten mangertos menapa-menapa,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: tahu
+Sedikit,Few,Sithik,Sakedhik,Sakedhik,Sakedhik,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Sethitik; KA=Sekedhik; KI=Sekedhik)
+Sekarang,Now,Saiki,Samenika,Samenika,Samenika,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Saiki; KA=Sakmenika; KI=Sakmenika)
+Selamat sore,Good evening,Sugeng sonten,Sugeng sonten,Sugeng sonten,Sugeng sonten,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|NGOKO_SAMA_KRAMA_INVARIAN,Kelompok polisemi: sore ; Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Seratus,One hundred,Satus,Satus,Satus,Satus,,,,,,,,BELUM_DIPERIKSA,,P1,NGOKO_SAMA_KRAMA_TINJAU|TEMUAN_PHASE4,"Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku ; Ngoko=Krama (""Satus""); pertimbangkan Krama baku ""Satunggal atus"""
+Seribu,One thousand,Sewu,Sewu,Sewu,Sewu,,,,,,,,BELUM_DIPERIKSA,,P1,NGOKO_SAMA_KRAMA_TINJAU|TEMUAN_PHASE4,"Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku ; Ngoko=Krama (""Sewu""); pertimbangkan Krama baku ""Satunggal ewu"""
+Siapa,Who,Sopo,Sinten,Sinten,Sinten,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TEMUAN_PHASE4,"Konflik kamus_conflicts.csv (dataset: N=Sapa; KA=Sinten; KI=Sinten) ; Ejaan Ngoko memakai ""Sopo"" (bukan ejaan baku ""Sapa""); perlu keputusan standardisasi ortografi"
+Sore,Evening,Sore,Sonten,Sonten,Sonten,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: sore
+Suami,Husband,Bojo lanang,Garwa kakung,Garwa kakung,Garwa kakung,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Somah; KA=Sema; KI=Garwa)
+Susah hati,Grieved,Susah ati,Sisah manah,Sisah manah,Sisah manah,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: hati
+Tahu,Know,Ngerti,Mangertos,Mangertos,Priksa,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|TINGKAT_TUTUR,Kelompok polisemi: tahu ; Pemisahan register aktif (KL=Mangertos; KI=Priksa; KA=-)
+Tanda tangan,Signature,Tanda tangan,Tanda Tangan,Tanda Tangan,Tapak asma,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19|TINGKAT_TUTUR,Kelompok polisemi: tangan ; Pemisahan register aktif (KL=Tanda Tangan; KI=Tapak asma; KA=-)
+Tangan,Hand,Tangan,Asta,Tangan,Asta,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|POLISEMI_19|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Tangan; KA=Tangan; KI=Asta) ; Kelompok polisemi: tangan ; Pemisahan register aktif (KL=Tangan; KI=Asta; KA=-)
+Tawar,Offer,Tari,Taros,Taros,Taros,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: tawar
+Tawar-menawar,Bargain,Anyang-anyangan,Awis-awisan,Awis-awisan,Awis-awisan,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: tawar
+Tidak tahu,Do not know,Embuh,Mboten mangertos,Mboten mangertos,Mboten mangertos,,,,,,,,BELUM_DIPERIKSA,,P1,POLISEMI_19,Kelompok polisemi: tahu
+Tidur,Sleep,Turu,Sare,Tilem,Sare,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1|TINGKAT_TUTUR,Konflik kamus_conflicts.csv (dataset: N=Turu; KA=Tilem; KI=Sare) ; Pemisahan register aktif (KL=Tilem; KI=Sare; KA=-)
+Ya,Yes,Iya,Inggih,Inggih,Inggih,,,,,,,,BELUM_DIPERIKSA,,P1,KONFLIK_P1,Konflik kamus_conflicts.csv (dataset: N=Yo; KA=Inggih; KI=Injih)
+Adik,Younger sibling,Adhi,Adhi,Adhi,Rayi,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Adhi; KI=Rayi; KA=-)
+Air mata,Tear,Eluh,Eluh,Eluh,Eluh,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Alis,Eyebrow,Alis,Alis,Alis,Imba,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Alis; KI=Imba; KA=-)
+Amal,Charity,Derma,Derma,Derma,Derma,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Ampun,Pardon,Aksama,Aksama,Aksama,Aksama,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Anak,Child,Anak,Anak,Lare,Putra,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Lare; KI=Putra; KA=-)
+Badan,Body,Awak,Badan,Badan,Salira,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Badan; KI=Salira; KA=-)
+Bangun,Wake up,Tangi,Tangi,Tangi,Wungu,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Tangi; KI=Wungu; KA=-)
+Bedak,Powder,Boreh,Boreh,Boreh,Boreh,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Berbakti,Devote,Ngabekti,Ngabekti,Ngabekti,Ngabekti,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Berbicara,Speak,Ngomong,Matur,Wicanten,Ngendika,Matur,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Wicanten; KI=Ngendika; KA=Matur)
+Berdiri,Stand,Ngadeg,Ngadeg,Ngadeg,Jumeneng,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Ngadeg; KI=Jumeneng; KA=-)
+Berkumur,Rinse mouth,Kekemon,Kekemon,Kekemon,Kekemon,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Bermanja,Act spoiled,Ngadi-gadi,Ngadi-gadi,Ngadi-gadi,Ngadi-gadi,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Berselimut,Use a blanket,Kemulan,Kemulan,Kemulan,Kemulan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Bertanya,Ask,Takon,Taken,Taken,Ndangu,Nyuwun pirsa,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Taken; KI=Ndangu; KA=Nyuwun pirsa)
+Bibir,Lip,Lambe,Lambe,Lambe,Lathi,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Lambe; KI=Lathi; KA=-)
+Bisul,Boil,Wudun,Wudun,Wudun,Wudun,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Bodoh,Foolish,Bodho,Bodho,Bodho,Bodho,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Borgol,Handcuff,Banda,Banda,Banda,Banda,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Cermin,Mirror,Ilo,Ilo,Ilo,Ilo,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Cium,Kiss,Ambung,Ambung,Ambung,Aras,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Ambung; KI=Aras; KA=-)
+Cukur,Shave,Cukur,Cukur,Cukur,Cukur,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Dada,Chest,Dhadha,Dhadha,Dhadha,Jaja,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Dhadha; KI=Jaja; KA=-)
+Dagu,Chin,Janggut,Janggut,Janggut,Janggut,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Dahi,Forehead,Bathuk,Bathuk,Bathuk,Palarapan,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Bathuk; KI=Palarapan; KA=-)
+Duduk,Sit,Lungguh,Lenggah,Linggih,Lenggah,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Linggih; KI=Lenggah; KA=-)
+Duduk-duduk,Lounge,Jagongan,Jagongan,Jagongan,Jagongan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Gelung,Bun,Gelung,Gelung,Gelung,Gelung,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Gemuk,Fat,Lemu,Lemu,Lemu,Lemu,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Hamil,Pregnant,Meteng,Mbobot,Mbobot,Ngarbini,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Mbobot; KI=Ngarbini; KA=-)
+Hapal,Memorize,Apal,Apal,Apal,Apal,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Hapalan,Memorization,Apalan,Apalan,Apalan,Apalan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Hormat,Respect,Bekti,Bekti,Bekti,Bekti,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Ingus,Snot,Umbel,Umbel,Umbel,Umbel,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Janggut,Beard,Jenggot,Jenggot,Jenggot,Jenggot,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Janji,Promise,Ujar,Ujar,Ujar,Ujar,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Jarik,Batik cloth,Bebed,Bebed,Bebed,Bebed,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Kain wanita,Traditional wrap skirt,Tapih,Tapih,Tapih,Tapih,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Kakak,Older sibling,Kakang,Kakang,Kakang,Raka,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Kakang; KI=Raka; KA=-)
+Keguguran,Miscarriage,Keluron,Keluron,Keluron,Keluron,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Kehendak,Desire,Karep,Kajeng,Kajeng,Kersa,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Kajeng; KI=Kersa; KA=-)
+Kendor,Slack,Udhar,Udhar,Udhar,Udhar,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Keringat,Sweat,Kringet,Kringet,Kringet,Riwe,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Kringet; KI=Riwe; KA=-)
+Khitan,Circumcise,Sunat,Sunat,Sunat,Sunat,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Kulit,Skin,Lulang,Lulang,Lulang,Lulang,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Kumur,Gargle,Kemu,Kemu,Kemu,Kemu,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Kutu rambut,Head lice,Tumo,Tumo,Tumo,Tumo,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Lauk,Side dish,Lawuh,Lawuh,Lawuh,Lawuh,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Leher,Neck,Gulu,Gulu,Gulu,Jangga,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Gulu; KI=Jangga; KA=-)
+Ludah,Saliva,Idu,Idu,Idu,Idu,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Lutut,Knee,Dhengkul,Dhengkul,Dhengkul,Dhengkul,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Mabuk,Drunk,Mendem,Mendem,Mendem,Mendem,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Main,Hang out,Dolan,Dolan,Dolan,Dolan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Makam,Tomb,Kuburan,Kuburan,Kuburan,Kuburan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Makan,Eat,Mangan,Nedha,Nedha,Dhahar,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Nedha; KI=Dhahar; KA=-)
+Mandi,Bathe,Adus,Adus,Adus,Siram,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Adus; KI=Siram; KA=-)
+Mandi jamas,Hair wash,Kramas,Kramas,Kramas,Kramas,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Manja,Spoiled,Adi-adi,Adi-adi,Adi-adi,Adi-adi,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Marah-marah,Rage,Muring-muring,Muring-muring,Muring-muring,Muring-muring,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Melayani,Serve,Saji,Saji,Saji,Saji,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Membawa,Carry,Nggawa,Mbekta,Mbekta,Ngasta,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Mbekta; KI=Ngasta; KA=-)
+Membeli,Buy,Tuku,Tumbas,Tumbas,Mundhut,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Tumbas; KI=Mundhut; KA=-)
+Memerintah,Govern,Ngabani,Ngabani,Ngabani,Ngabani,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Memijit,Massage,Dadah,Dadah,Dadah,Dadah,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Meminjam,Borrow,Nyilih,Nyambut,Nyambut,Ngampil,Ngampil,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Nyambut; KI=Ngampil; KA=Ngampil)
+Meminta,Ask for,Njaluk,Nyuwun,Nyuwun,Mundhut,Nyuwun,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Nyuwun; KI=Mundhut; KA=Nyuwun)
+Menangis,Cry,Tangis,Tangis,Tangis,Tangis,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Menari,Perform dance,Njoged,Njoged,Njoged,Njoged,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Mendengar,Listen,Krungu,Mireng,Mireng,Midhanget,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Mireng; KI=Midhanget; KA=-)
+Mengerjakan,Do,Nangani,Nangani,Nangani,Nangani,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Mengiring,Escort,Iring,Iring,Iring,Iring,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Mengundang,Invite,Nyuruhi,Nyedahi,Nyedahi,Nyedahi,Ngaturi,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Nyedahi; KI=Nyedahi; KA=Ngaturi)
+Mengunyah,Chew,Mamah,Mamah,Mamah,Mamah,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Menyapu,Sweep,Nyapu,Nyapu,Nyapu,Nyapu,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Merias,Groom,Ndandani,Ndandani,Ndandani,Ndandani,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Minum,Drink,Ngombe,Ngunjuk,Nginum,Ngunjuk,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Nginum; KI=Ngunjuk; KA=-)
+Minuman,Beverage,Omben-omben,Omben-omben,Omben-omben,Omben-omben,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Muntah,Vomit,Mutah,Mutah,Mutah,Mutah,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Nama,Name,Jeneng,Nama,Nama,Asma,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Nama; KI=Asma; KA=-)
+Nisan,Gravestone,Kijing,Kijing,Kijing,Kijing,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Ompong,Toothless,Ompong,Ompong,Ompong,Ompong,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Pantat,Buttock,Bokong,Bokong,Bokong,Bokong,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Pegang,Grasp,Cekel,Cepeng,Cepeng,Asta,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Cepeng; KI=Asta; KA=-)
+Pelana,Saddle,Abah-abah,Abah-abah,Abah-abah,Abah-abah,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Percobaan,Experiment,Pacoban,Pacoban,Pacoban,Pacoban,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Perintah,Command,Aba,Aba,Aba,Aba,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Pintar,Clever,Pinter,Pinter,Pinter,Pinter,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Punggung,Back,Geger,Geger,Geger,Geger,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Pusar,Navel,Wudel,Wudel,Wudel,Wudel,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Rambut,Hair,Rambut,Rambut,Rambut,Rikma,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Rambut; KI=Rikma; KA=-)
+Raut muka,Expression,Ulat,Ulat,Ulat,Ulat,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Rendah,Low,Asor,Asor,Asor,Asor,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Rumah,House,Omah,Griya,Griya,Dalem,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Griya; KI=Dalem; KA=-)
+Sajian,Dish,Sajen,Sajen,Sajen,Sajen,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Sakit,Sick,Lara,Gerah,Sakit,Gerah,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Sakit; KI=Gerah; KA=-)
+Selimut,Blanket,Kemul,Kemul,Kemul,Kemul,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Siku,Elbow,Sikut,Sikut,Sikut,Sikut,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Singgah,Drop by,Ampir,Ampir,Ampir,Ampir,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Taji,Spur,Jalu,Jalu,Jalu,Jalu,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tari,Dance,Joged,Joged,Joged,Joged,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tarian,Traditional dance,Jogedan,Jogedan,Jogedan,Jogedan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tawanan,Captive,Bebadan,Bebadan,Bebadan,Bebadan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tempat mandi,Bathing place,Padusan,Padusan,Padusan,Padusan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tengkuk,Nape,Githok,Githok,Githok,Githok,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Terbang,Fly,Mabur,Mabur,Mabur,Mabur,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tergila-gila,Infatuated,Kedanan,Kedanan,Kedanan,Kedanan,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Terjaga,Awake,Melek,Melek,Melek,Melek,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tongkat,Stick,Teken,Teken,Teken,Teken,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Tulang,Bone,Balung,Balung,Balung,Balung,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Ubun-ubun,Crown,Embun-embun,Embun-embun,Embun-embun,Embun-embun,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Umur,Age,Umur,Umur,Umur,Yuswa,,,,,,,,BELUM_DIPERIKSA,,P2,TINGKAT_TUTUR,Pemisahan register aktif (KL=Umur; KI=Yuswa; KA=-)
+Undangan,Invitation,Ulem,Ulem,Ulem,Ulem,,,,,,,,BELUM_DIPERIKSA,,P2,NGOKO_SAMA_KRAMA_TINJAU,Ngoko=Krama — perlu verifikasi penutur asli apakah invarian alami atau memiliki padanan Krama baku
+Ada,Exist,Ono,Wonten,Wonten,Wonten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Adapun,As for,Ana dene,Wondene,Wondene,Wondene,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Agama,Religion,Agama,Agami,Agami,Agami,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Air,Water,Banyu,Toya,Toya,Toya,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Alat,Tool,Gaman,Dedamel,Dedamel,Dedamel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Almari,Cupboard,Lemari,Lemantun,Lemantun,Lemantun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ambil,Take away,Jupuk,Pendhet,Pendhet,Pendhet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Angin,Wind,Angin,Angin,Angin,Angin,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Angkat,Lift,Sangga,Sanggi,Sanggi,Sanggi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Anjing,Dog,Asu,Segawon,Segawon,Segawon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Antara,Between,Antara,Antawis,Antawis,Antawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Apa kabar,How are you,Piye kabare,Pripun kabaripun,Pripun kabaripun,Pripun kabaripun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Api,Fire,Geni,Latu,Latu,Latu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Arti,Meaning,Surasa,Suraos,Suraos,Suraos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Asalkan,Provided that,Angger,Uger,Uger,Uger,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ayah,Father,Bapak,Bapak,Bapak,Bapak,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Ayam,Chicken,Pitik,Ayam,Ayam,Ayam,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Babi hutan,Boar,Celeng,Andaan,Andaan,Andaan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bacaan,Reading,Wacan,Waosan,Waosan,Waosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bagian depan,Front side,Ngarepan,Ngajengan,Ngajengan,Ngajengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bahaya,Danger,Mutawatir,Mutawatos,Mutawatos,Mutawatos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Baik-baik saja,I am fine,Apik-apik wae,Sae-sae kemawon,Sae-sae kemawon,Sae-sae kemawon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bajak,Plow,Luku,Lujeng,Lujeng,Lujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Baju,Clothes,Klambi,Rasukan,Rasukan,Rasukan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bakar,Burn,Obong,Besmi,Besmi,Besmi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Banjir,Flood,Banjir,Bena,Bena,Bena,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bantal,Pillow,Bantal,Bantal,Bantal,Bantal,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Banyak,Many,Akeh,Kathah,Kathah,Kathah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Barangkali,Perhaps,Ayake,Mbok menawi,Mbok menawi,Mbok menawi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Baru,New,Anyar,Enggal,Enggal,Enggal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Batal,Cancel,Wurung,Sande,Sande,Sande,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Batik,Batik,Bathik,Serat,Serat,Serat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Batin,Inner,Batin,Batos,Batos,Batos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Batu,Stone,Watu,Sela,Sela,Sela,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Batu bata,Brick,Bata,Banon,Banon,Banon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Batuk,Cough,Watuk,Watuk,Watuk,Watuk,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Bau,Smell,Ambu,Ambet,Ambet,Ambet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bau-bauan,Fragrances,Ambon-ambon,Ambet-ambetan,Ambet-ambetan,Ambet-ambetan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bawa,Bring,Gawa,Bekta,Bekta,Bekta,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bawaan,Luggage,Gawan,Bektan,Bektan,Bektan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bawah,Bottom,Isor,Andhap,Andhap,Andhap,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bayaran,Payment,Opahan,Epahan,Epahan,Epahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Beda,Different,Beda,Benten,Benten,Benten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Begitu,So,Mengkene,Mekaten,Mekaten,Mekaten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bekas,Trace,Lawasan,Lamen,Lamen,Lamen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Belajar,Study,Sinau,Sinau,Sinau,Sinau,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Belakang,Behind,Buri,Wingking,Wingking,Wingking,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Belum,Not yet,Durung,Dereng,Dereng,Dereng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Benang,Thread,Bolah,Benang,Benang,Benang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Benar,Correct,Bener,Leres,Leres,Leres,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berangkat,Depart,Budhal,Bidhal,Bidhal,Bidhal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berani,Brave,Wani,Wantun,Wantun,Wantun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berapa harganya,How much is it,Regane piro,Reginipun pinten,Reginipun pinten,Reginipun pinten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Beras,Uncooked rice,Beras,Uwos,Uwos,Uwos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berbaring-baring,Lie down,Turon,Tileman,Tileman,Tileman,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berburu,Hunt,Beburu,Bebujeng,Bebujeng,Bebujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bercakap-cakap,Chat,Omong-omong,Gineman,Gineman,Gineman,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bercanda,Joke,Guyon,Gegujengan,Gegujengan,Gegujengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bercelana,Wear trousers,Kathokan,Suwalan,Suwalan,Suwalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berganti-ganti,Take turns,Salin-salin,Gantos-gantos,Gantos-gantos,Gantos-gantos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bergembira,Rejoice,Bungah-bungah,Bingah-bingah,Bingah-bingah,Bingah-bingah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bergerak,Move around,Obah,Ebah,Ebah,Ebah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bergilir,Alternate,Gantenan,Gentosan,Gentosan,Gentosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berhadapan,Face to face,Adhep-adhepan,Ajeng-ajengan,Ajeng-ajengan,Ajeng-ajengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berhias,Dress,Dandan,Dandos,Dandos,Dandos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berhubungan,Relate,Sesambungan,Sesambetan,Sesambetan,Sesambetan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berita,News,Werta,Wertos,Wertos,Wertos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berjalan,Walk,Mlaku,Mlampah,Mlampah,Mlampah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berkata,Utter,Kandha,Criyos,Criyos,Criyos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berkedai,Run a stall,Marung,Mande,Mande,Mande,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berkenalan,Acquaint,Tetepungan,Tetepangan,Tetepangan,Tetepangan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berkumpul,Gather,Nglumpuk,Nglempak,Nglempak,Nglempak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berkunjung,Visit,Tilik,Tuwi,Tuwi,Tuwi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bermain,Play,Dolanan,Dolanan,Dolanan,Dolanan,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Bermalam,Stay,Nginep,Nyipeng,Nyipeng,Nyipeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bermusuhan,Hostile,Mungsuhan,Mengsahan,Mengsahan,Mengsahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bernilai,Valuable,Pangaji,Pengaos,Pengaos,Pengaos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Berobat,Seek treatment,Jejamu,Jejampi,Jejampi,Jejampi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bersalin,Give birth,Manak,Gadhah Lare,Gadhah Lare,Gadhah Lare,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bersama,Together,Bareng,Sareng,Sareng,Sareng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bersisir,Comb hair,Jungkatan,Seratan,Seratan,Seratan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bersuara,Make a sound,Muni,Mungel,Mungel,Mungel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bertelur,Lay,Ngendhog,Nigan,Nigan,Nigan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bertengkar,Fight,Padu,Paben,Paben,Paben,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Besar,Big,Gedhe,Ageng,Ageng,Ageng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Besi,Iron,Wesi,Tosan,Tosan,Tosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Besok,Tomorrow,Sesuk,Mbenjing,Mbenjing,Mbenjing,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Besok pagi,Tomorrow morning,Sesuk esuk,Benjang enjang,Benjang enjang,Benjang enjang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Biar,Let,Ben,Kajengipun,Kajengipun,Kajengipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Biasa,Normal,Lumrah,Limrah,Limrah,Limrah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bibi,Aunt,Bibi,Bibi,Bibi,Bibi,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Bicara,Converse,Omong,Ginem,Ginem,Ginem,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bilangan,Number,Wilangan,Wicalan,Wicalan,Wicalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bintang,Star,Lintang,Lintang,Lintang,Lintang,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Bohong,Lie,Goroh,Dora,Dora,Dora,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Boleh,May,Oleh,Pareng,Pareng,Pareng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Buah,Fruit,Woh-wohan,Woh-wohan,Woh-wohan,Woh-wohan,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Buang,Throw,Buwang,Bucal,Bucal,Bucal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Buang hajat,Defecate,Ngising,Bebucal,Bebucal,Bebucal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bubaran,Dispersal,Budhalan,Bidhalan,Bidhalan,Bidhalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bukan,Not that,Dudu,Sanes,Sanes,Sanes,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Buku,Book,Buku,Buku,Buku,Buku,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Buluh,Bamboo reed,Wuluh,Welah,Welah,Welah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bunyi,Sound,Uni,Ungel,Ungel,Ungel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bupati,Regent,Bupati,Bupati,Bupati,Bupati,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Burung,Bird,Manuk,Peksi,Peksi,Peksi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Bus,Bus,Bus,Bus,Bus,Bus,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Butuh,Need,Butuh,Betah,Betah,Betah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Cantik,Beautiful,Ayu,Ayu,Ayu,Ayu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Celana,Pants,Katok,Suwal,Suwal,Suwal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Cerita,Story,Cerita,Ceriyos,Ceriyos,Ceriyos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Cincin,Ring,Ali-ali,Sesupe,Sesupe,Sesupe,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Coba,Try,Coba,Cobi,Cobi,Cobi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Cukup,Enough,Cukup,Cekap,Cekap,Cekap,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Cukupan,Adequate,Sedhengan,Cekapan,Cekapan,Cekapan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dagang,Trade,Dagang,Gramen,Gramen,Gramen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dahulu,Formerly,Biyen,Rumiyin,Rumiyin,Rumiyin,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dahulunya,In the past,Mbiyene,Rumiyinipun,Rumiyinipun,Rumiyinipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dalam,Deep,Jero,Lebet,Lebet,Lebet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dapur,Kitchen,Pawon,Pawon,Pawon,Pawon,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Darah,Blood,Getih,Rah,Rah,Rah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Daun,Leaf,Godhong,Ron,Ron,Ron,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dedaunan,Foliage,Gegodhongan,Ron-ronan,Ron-ronan,Ron-ronan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dekat,Near,Cedhak,Celak,Celak,Celak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Delapan,Eight,Wolu,Wolu,Wolu,Wolu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Depan,Front,Ngarep,Ngajeng,Ngajeng,Ngajeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Desa,Village,Desa,Dhusun,Dhusun,Dhusun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dewasa,Adult,Wis umur,Sampun umur,Sampun umur,Sampun umur,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Di bawah,Below,Ngisor,Ngandhap,Ngandhap,Ngandhap,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Di luar,Outdoors,Njaba,Njawi,Njawi,Njawi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Di mana,Where,Neng ndi,Wonten pundi,Wonten pundi,Wonten pundi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Di mana toilet,Where is the toilet,Neng ndi toilete,Wonten pundi toiletipun,Wonten pundi toiletipun,Wonten pundi toiletipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dia,He or she,Dheweke,Piyambakipun,Piyambakipun,Piyambakipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Diakui,Acknowledged,Diaku,Dipunaken,Dipunaken,Dipunaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Diam,Silent,Meneng,Mendel,Mendel,Mendel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dikelilingi,Surrounded,Kepung,Kepang,Kepang,Kepang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dingin,Cold,Adhem,Asrep,Asrep,Asrep,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Diperintah,Ordered,Diabani,Dipun abani,Dipun abani,Dipun abani,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dokter,Doctor,Dokter,Dokter,Dokter,Dokter,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Dua,Two,Loro,Kalih,Kalih,Kalih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Dua puluh lima,Twenty-five,Selawe,Selangkung,Selangkung,Selangkung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Duga,Guess,Duga,Dugi,Dugi,Dugi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Emas,Gold,Emas,Jene,Jene,Jene,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Empat,Four,Papat,Sekawan,Sekawan,Sekawan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Enak,Delicious,Enak,Eca,Eca,Eca,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Enak perasaan,Comfortable,Kepenak,Sekeca,Sekeca,Sekeca,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Enam,Six,Enem,Enem,Enem,Enem,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Gamelan,Gamelan,Gamelan,Gangsa,Gangsa,Gangsa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Garam,Salt,Uyah,Sarem,Sarem,Sarem,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Gelang,Bracelet,Gelang,Gelang,Gelang,Gelang,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Gembira,Glad,Bungah,Bingah,Bingah,Bingah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Gila,Crazy,Edan,Ewah,Ewah,Ewah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Gilir,Rotate,Genti,Gentos,Gentos,Gentos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Gula,Sugar,Gula,Gendhis,Gendhis,Gendhis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Guna,Use,Guna,Gina,Gina,Gina,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Gunung,Mountain,Gunung,Redi,Redi,Redi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Guru,Teacher,Guru,Guru,Guru,Guru,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Habis,Exhausted,Entek,Telas,Telas,Telas,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Halangan,Obstacle,Alangan,Pambengan,Pambengan,Pambengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Halo,Hello,Halo,Halo,Halo,Halo,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Halus,Smooth,Lembut,Lembat,Lembat,Lembat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hantu,Ghost,Memedi,Memedos,Memedos,Memedos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hanya,Merely,Bae,Kemawon,Kemawon,Kemawon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Harga,Price,Rega,Regi,Regi,Regi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hari,Day,Dina,Dinten,Dinten,Dinten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hari ini,Today,Dina iki,Dinten menika,Dinten menika,Dinten menika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hari kelahiran,Birthday,Weton,Wedalan,Wedalan,Wedalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Harian,Daily,Padinan,Padintenan,Padintenan,Padintenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Harus,Must,Kudu,Kedah,Kedah,Kedah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Haus,Thirsty,Ngelak,Ngelak,Ngelak,Ngelak,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Henti,Pause,Endheg,Kendel,Kendel,Kendel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hiasan,Decoration,Kembangan,Sekaran,Sekaran,Sekaran,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hijau,Green,Ijo,Ijem,Ijem,Ijem,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hilang,Lost,Ilang,Ical,Ical,Ical,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hitam,Black,Ireng,Cemeng,Cemeng,Cemeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hitung,Count,Wilang,Wical,Wical,Wical,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hujan,Rain,Udan,Jawah,Jawah,Jawah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Hutan,Forest,Alas,Wana,Wana,Wana,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ikan,Fish,Iwak,Ulam,Ulam,Ulam,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ilmu,Knowledge,Elmu,Elmi,Elmi,Elmi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Inap,Lodge,Inep,Sipeng,Sipeng,Sipeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ingat,Remember,Eling,Emut,Emut,Emut,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ini,This,Iki,Menika,Menika,Menika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ini berapa,How much is this,Iki piro,Menika pinten,Menika pinten,Menika pinten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Istimewa,Special,Kinacek,Kinaot,Kinaot,Kinaot,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Istri,Wife,Bojo wadon,Garwa putri,Garwa putri,Garwa putri,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Itik,Duck,Bebek,Kembangan,Kembangan,Kembangan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Itu,That,Iku,Punika,Punika,Punika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jaga,Guard,Jaga,Jagi,Jagi,Jagi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jago,Rooster,Jago,Sawung,Sawung,Sawung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jamuan,Banquet,Suguhan,Segahan,Segahan,Segahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jangan berkata,Do not speak,Aja ngomong,Ampun matur,Ampun matur,Ampun matur,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jantan,Male,Lanangan,Jaleran,Jaleran,Jaleran,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jantung,Heart,Jantung,Jantung,Jantung,Jantung,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Jarum,Needle,Dom,Jarum,Jarum,Jarum,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jati,Teak,Jati,Jatos,Jatos,Jatos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jauh,Far,Adoh,Tebih,Tebih,Tebih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jenazah,Corpse,Mayit,Jisim,Jisim,Jisim,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jendela,Window,Jendhela,Jendhela,Jendhela,Jendhela,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Jeruk,Orange,Jeruk,Jeram,Jeram,Jeram,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jika,If,Menawa,Menawi,Menawi,Menawi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jual beli,Commerce,Dol tinuku,Sade tinumbas,Sade tinumbas,Sade tinumbas,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Jumat,Friday,Jemuwah,Jemuwah,Jemuwah,Jemuwah,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kadang-kadang,Sometimes,Sok,Asring,Asring,Asring,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kafan,Shroud,Mori,Monten,Monten,Monten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kain panjang,Sarong,Jarit,Sinjang,Sinjang,Sinjang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kalah,Be defeated,Kalah,Kawon,Kawon,Kawon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kalung,Necklace,Kalung,Kalung,Kalung,Kalung,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kamar mandi,Bathroom,Kamar mandi,Kamar mandi,Kamar mandi,Kamar mandi,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kambing,Goat,Wedhus,Menda,Menda,Menda,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kami,We,Aku kabeh,Kula sedaya,Kula sedaya,Kula sedaya,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kamis,Thursday,Kemis,Kemis,Kemis,Kemis,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kantor,Office,Kantor,Kantor,Kantor,Kantor,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kapal,Ship,Prahu,Baita,Baita,Baita,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Katanya,Rumor,Jare,Cariyosipun,Cariyosipun,Cariyosipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kawin,Marry,Omah-omah,Emah-emah,Emah-emah,Emah-emah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kayu jati,Teak wood,Kayu jati,Kajeng jatos,Kajeng jatos,Kajeng jatos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Keadaan,Condition,Kahanan,Kawontenan,Kawontenan,Kawontenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kebaikan,Goodness,Kebecikan,Kasaenan,Kasaenan,Kasaenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kebakaran,Fire disaster,Kobongan,Kabesmen,Kabesmen,Kabesmen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kebanyakan,Too many,Kakehan,Kekathahen,Kekathahen,Kekathahen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kebatinan,Spirituality,Kebatinan,Kebatosan,Kebatosan,Kebatosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Keberatan,Objection,Kabotan,Kawratan,Kawratan,Kawratan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kebun,Garden,Kebon,Kebon,Kebon,Kebon,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kebutuhan,Necessity,Kebutuhan,Kebetahan,Kebetahan,Kebetahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kecil,Small,Cilik,Alit,Alit,Alit,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kecuali,Except,Kejaba,Kejawi,Kejawi,Kejawi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kecukupan,Sufficiency,Kecukupan,Kecekapan,Kecekapan,Kecekapan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kedatangan,Arrival,Katekan,Kedhatengan,Kedhatengan,Kedhatengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kedinginan,Freezing,Kadhemen,Kasrepen,Kasrepen,Kasrepen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Keduanya,Both,Karo-karone,Kalih-kalihipun,Kalih-kalihipun,Kalih-kalihipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kehabisan,Run out of,Kentekan,Ketelasan,Ketelasan,Ketelasan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kehilangan,Loss,Kelangan,Kecalan,Kecalan,Kecalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kehujanan,Caught in rain,Kodanan,Kejawahan,Kejawahan,Kejawahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kejar,Chase,Buru,Bujeng,Bujeng,Bujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kejelekan,Badness,Piala,Piawon,Piawon,Piawon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kelapa,Coconut,Kambil,Klapa,Klapa,Klapa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kelebihan,Excess,Keluwihan,Kelangkungan,Kelangkungan,Kelangkungan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kelewat,Too far,Keliwat,Kelangkung,Kelangkung,Kelangkung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kelihatan,Visible,Ketok,Ketingal,Ketingal,Ketingal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Keluar,Exit,Metu,Medal,Medal,Medal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kemalaman,Caught by nightfall,Kewengen,Kedalon,Kedalon,Kedalon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kemarin,Yesterday,Wingi,Kala wingi,Kala wingi,Kala wingi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kemasukan,Possessed,Kelebon,Kelebetan,Kelebetan,Kelebetan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kembali,Return,Bali,Wangsung,Wangsung,Wangsung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kemurahan,Generosity,Kemurahan,Kemirahan,Kemirahan,Kemirahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kenal,Be acquainted,Tepung,Tepang,Tepang,Tepang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kencing,Urinate,Uyuh,Toyan,Toyan,Toyan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kendaraan,Vehicle,Tunggangan,Tumpakan,Tumpakan,Tumpakan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kenduri,Feast,Kepungan,Kepangan,Kepangan,Kepangan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kentara,Noticeable,Ketara,Ketawis,Ketawis,Ketawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kenyang,Satiated,Wareg,Tuwuk,Tuwuk,Tuwuk,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kepercayaan,Trust,Piandel,Kapitadosan,Kapitadosan,Kapitadosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kerbau,Buffalo,Kebo,Maesa,Maesa,Maesa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kereta,Train,Sepur,Sepur,Sepur,Sepur,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Keris,Kris,Keris,Duwung,Duwung,Duwung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kertas,Paper,Dluwang,Dlancang,Dlancang,Dlancang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kesakitan,Agony,Kelaran,Kesakitan,Kesakitan,Kesakitan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kesalahan,Mistake,Kaluputan,Kalepatan,Kalepatan,Kalepatan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kesenangan,Pleasure,Dhemenan,Remenan,Remenan,Remenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kesiangan,Overslept,Kawanen,Kesiangan,Kesiangan,Kesiangan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ketahuan,Discovered,Kangerten,Kangertosan,Kangertosan,Kangertosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Keterlaluan,Excessive,Kebangeten,Kesangeten,Kesangeten,Kesangeten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ketika,At the time,Dhek,Kala,Kala,Kala,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kira,Estimate,Kira,Kinten,Kinten,Kinten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kira-kira,Approximately,Kira-kira,Kinten-kinten,Kinten-kinten,Kinten-kinten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kirim,Send,Kirim,Kintun,Kintun,Kintun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kliru,Mistaken,Kleru,Klintu,Klintu,Klintu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kopi,Coffee,Kopi,Kopi,Kopi,Kopi,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kosong,Empty,Suwung,Suwung,Suwung,Suwung,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kota,City,Kutha,Kitha,Kitha,Kitha,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kotor,Dirty,Reged,Reged,Reged,Reged,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kubur,Grave,Kubur,Petak,Petak,Petak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kuda,Horse,Jaran,Kapal,Kapal,Kapal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kumis,Mustache,Brengos,Rawis,Rawis,Rawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kumpul,Assemble,Kumpul,Kempal,Kempal,Kempal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kumpulan,Collection,Klumpukan,Klempakan,Klempakan,Klempakan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Kursi,Chair,Kursi,Kursi,Kursi,Kursi,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Kurus,Thin,Gering,Kera,Kera,Kera,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lahir batin,Body and soul,Lair batin,Lair batos,Lair batos,Lair batos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lain-lain,Others,Seje-seje,Sanes-sanes,Sanes-sanes,Sanes-sanes,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lalu,Next,Nuli,Lajeng,Lajeng,Lajeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lama,Old,Lawas,Sepuh,Sepuh,Sepuh,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lama-kelamaan,Gradually,Suwe-suwe,Dangu-dangu,Dangu-dangu,Dangu-dangu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lambat,Slow,Alon,Aris,Aris,Aris,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Langit,Sky,Langit,Langit,Langit,Langit,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Lari,Run,Mlayu,Mlajeng,Mlajeng,Mlajeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Laut,Sea,Segara,Seganten,Seganten,Seganten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lelah,Tired,Kesel,Sayah,Sayah,Sayah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lemah,Weak,Ringkih,Ringkih,Ringkih,Ringkih,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Letak,Position,Dokok,Dekek,Dekek,Dekek,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lewat,Pass,Liwat,Langkung,Langkung,Langkung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lima,Five,Lima,Gangsal,Gangsal,Gangsal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Luar,Outside,Jaba,Jawi,Jawi,Jawi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Luas,Wide,Amba,Wiyar,Wiyar,Wiyar,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Lupa,Forget,Lali,Supe,Supe,Supe,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Madu,Honey,Madu,Maben,Maben,Maben,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mahal,Expensive,Larang,Awis,Awis,Awis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Maju,Advance,Maju,Majeng,Majeng,Majeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Maka,Then,Mula,Mila,Mila,Mila,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Malam,Night,Bengi,Dalu,Dalu,Dalu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mana,Which,Endi,Pundi,Pundi,Pundi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Marah,Angry,Nesu,Srengen,Srengen,Srengen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mari,Come on,Ayo,Mangga,Mangga,Mangga,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Masa muda,Youth,Enom-enoman,Enem-eneman,Enem-eneman,Enem-eneman,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Masih,Still,Isih,Taksih,Taksih,Taksih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Masing-masing,Each,Nyeparo,Nyepalih,Nyepalih,Nyepalih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Masuk,Enter,Mlebu,Mlebet,Mlebet,Mlebet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Matahari terbenam,Sunset,Surup srengenge,Serap surya,Serap surya,Serap surya,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mati,Die,Mati,Tilar,Tilar,Tilar,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mau,Want,Gelem,Kersa,Kersa,Kersa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Meja,Table,Meja,Meja,Meja,Meja,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Melahirkan,Deliver,Bayen,Nglairaken,Nglairaken,Nglairaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Melengkapi,Complete,Ngganepi,Njangkepi,Njangkepi,Njangkepi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memaafkan,Forgive,Ngapura,Ngapunten,Ngapunten,Ngapunten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memakai,Wear,Nganggo,Ngangge,Ngangge,Ngangge,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memalukan,Shameful,Ngisin-isini,Ngelingsemi,Ngelingsemi,Ngelingsemi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memanggil,Summon,Ngundang,Nimbali,Nimbali,Nimbali,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memarahi,Scold,Nesoni,Nyrengeni,Nyrengeni,Nyrengeni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memasak,Cook,Masak,Masak,Masak,Masak,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Membaca,Read,Maca,Maos,Maos,Maos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membacakan,Read aloud,Macakake,Maosaken,Maosaken,Maosaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membagi dua,Halve,Maro,Malih,Malih,Malih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membahayakan,Endanger,Mutawatiri,Mutawatosi,Mutawatosi,Mutawatosi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membajak,Plow field,Mluku,Mlujeng,Mlujeng,Mlujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membantu,Help,Nulung,Mbiyantu,Mbiyantu,Mbiyantu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membatalkan,Call off,Murungake,Nyandekaken,Nyandekaken,Nyandekaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membelakang,Turn away,Mungkur,Mengker,Mengker,Mengker,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memberatkan,Burden,Ngabot-aboti,Ngawrat-awrati,Ngawrat-awrati,Ngawrat-awrati,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memberitahukan,Inform,Tuduh,Tedah,Tedah,Tedah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membuat,Create,Gawe,Damel,Damel,Damel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membuat lama,Delay,Nyuweni,Ndedangu,Ndedangu,Ndedangu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Membunuh,Kill,Mateni,Mejahi,Mejahi,Mejahi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memegang,Grasping,Nyekel,Nyepeng,Nyepeng,Nyepeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memelihara,Raise,Ngingu,Ngingah,Ngingah,Ngingah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memikir,Ponder,Mbatin,Mbatos,Mbatos,Mbatos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memperdalam,Deepen,Njerokake,Nglebetaken,Nglebetaken,Nglebetaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memperluas,Expand,Ngambakake,Miyaraken,Miyaraken,Miyaraken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memperpanjang,Lengthen,Ndedawa,Memanjang,Memanjang,Memanjang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Memuat,Load,Kamot,Kawrat,Kawrat,Kawrat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menambahkan,Add,Muwuhi,Mewahi,Mewahi,Mewahi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menampakkan diri,Show oneself,Ngetara,Ngetawis,Ngetawis,Ngetawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menanak nasi,Steam rice,Adang,Bethak,Bethak,Bethak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menang,Win,Menang,Mimpang,Mimpang,Mimpang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menangguhkan,Postpone,Semaya,Semados,Semados,Semados,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menanggung,Bear,Nanggung,Nanggel,Nanggel,Nanggel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menawar,Haggle,Nganyang,Ngawis,Ngawis,Ngawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mencari-cari,Search around,Golek-golek,Pados-pados,Pados-pados,Pados-pados,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mencintai,Love,Nyenengi,Ngremeni,Ngremeni,Ngremeni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mencium,Sniff,Ngambu,Ngambet,Ngambet,Ngambet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mencuci,Wash,Umbah-umbah,Umbah-umbah,Umbah-umbah,Umbah-umbah,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Mencuri,Steal,Njejupuk,Memendhet,Memendhet,Memendhet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menegur,Rebuke,Nyuwara,Nyuwanteni,Nyuwanteni,Nyuwanteni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menemani,Accompany,Mbaturi,Ngrencangi,Ngrencangi,Ngrencangi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menempati,Occupy,Ngenggoni,Ngenggeni,Ngenggeni,Ngenggeni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menemukan,Find,Ketemu,Kepanggih,Kepanggih,Kepanggih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menertawakan,Mock,Nggeguyu,Gegujeng,Gegujeng,Gegujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengabdi,Devote service,Mbatur,Ngerencang,Ngerencang,Ngerencang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengadakan,Hold,Nganakake,Ngawontenake,Ngawontenake,Ngawontenake,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengajar,Teach,Wulang,Wucal,Wucal,Wucal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengaji,Recite,Ngaji,Ngaos,Ngaos,Ngaos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengajukan,Propose,Ngajokake,Ngajengaken,Ngajengaken,Ngajengaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengaku,Confess,Ngakoni,Ngakeni,Ngakeni,Ngakeni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengakui,Admit,Ngaku,Ngaken,Ngaken,Ngaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengalah,Yield,Ngalah,Ngawon,Ngawon,Ngawon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengambil,Take,Njupuk,Mendhet,Mendhet,Mendhet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengambilkan,Fetch,Ngepekake,Mendhetaken,Mendhetaken,Mendhetaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menganggu,Disturb,Ngrusuhi,Ngresahi,Ngresahi,Ngresahi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengatakan,Say,Sebut,Sebat,Sebat,Sebat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengejar,Pursue,Mburu,Mbujeng,Mbujeng,Mbujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengenai,Concerning,Ngenani,Ngengingi,Ngengingi,Ngengingi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengetahui,Find out,Meruhi,Nyemerepi,Nyemerepi,Nyemerepi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengganti,Substitute,Nyalini,Nggantosi,Nggantosi,Nggantosi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menggembala,Herd,Angon,Angen,Angen,Angen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menggunakan,Utilize,Nggunakake,Ngginakake,Ngginakake,Ngginakake,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menghalangi,Block,Ngalang-alangi,Mambengi,Mambengi,Mambengi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menghentikan,Stop,Ngendhegake,Ngendelaken,Ngendelaken,Ngendelaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menghitung,Calculate,Milang,Mical,Mical,Mical,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengingat,Remember well,Ngelingi,Ngengeti,Ngengeti,Ngengeti,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengingat-ingat,Reminisce,Ngeling-eling,Ngemut-emut,Ngemut-emut,Ngemut-emut,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengira,Assume,Ngira,Nginten,Nginten,Nginten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengirim,Dispatch,Ngirim,Ngintun,Ngintun,Ngintun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengobati,Treat,Njamoni,Jampeni,Jampeni,Jampeni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengubur,Bury,Ngubur,Metak,Metak,Metak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mengupah,Hire,Ngopahi,Ngepahi,Ngepahi,Ngepahi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menilai,Evaluate,Ngajeni,Ngaosi,Ngaosi,Ngaosi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menjadi,Become,Dumadi,Dumados,Dumados,Dumados,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menjalankan,Execute,Nglakoni,Nglampahi,Nglampahi,Nglampahi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menjamu,Entertain,Nyuguh,Nyegah,Nyegah,Nyegah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menjauh,Move away,Ngadoh,Nebih,Nebih,Nebih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menjelaskan,Explain,Njarwakake,Njarwakaken,Njarwakaken,Njarwakaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menuai,Harvest,Ngeneni,Mugut,Mugut,Mugut,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menuju,Head toward,Ngener,Ngleres,Ngleres,Ngleres,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menulis,Write,Nulis,Nyerat,Nyerat,Nyerat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menumbuk padi,Pound,Nutu,Nggentang,Nggentang,Nggentang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menunggu,Wait,Nganti-nganti,Ngantos-ngantos,Ngantos-ngantos,Ngantos-ngantos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyabung,Pit against,Adu,Aben,Aben,Aben,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyakiti,Harm,Nglarani,Nyakiti,Nyakiti,Nyakiti,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyambung,Connect,Ngedu,Ngaben,Ngaben,Ngaben,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyanyi,Sing,Nembang,Nyekar,Nyekar,Nyekar,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyebar benih,Sow,Nyebar,Ndhawahaken,Ndhawahaken,Ndhawahaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyebut,Mention,Ngarani,Mastani,Mastani,Mastani,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyebutkan,State,Nyebut,Nyebat,Nyebat,Nyebat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyembelih,Slaughter,Sambelih,Pragat,Pragat,Pragat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyenangkan,Pleasant,Nyenengake,Ngremenaken,Ngremenaken,Ngremenaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyepi,Seclude,Nyepi,Nyepen,Nyepen,Nyepen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyisir,Comb,Njungkati,Nyerati,Nyerati,Nyerati,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyuruh,Order,Ngakon,Ngeken,Ngeken,Ngeken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Menyusu,Suckle,Nusu,Nyesep,Nyesep,Nyesep,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Merah,Red,Abang,Abrit,Abrit,Abrit,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mereka,They,Wong-wong iku,Tiyang-tiyang menika,Tiyang-tiyang menika,Tiyang-tiyang menika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Meremehkan,Underestimate,Nggampangake,Nggampilaken,Nggampilaken,Nggampilaken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Meskipun,Although,Ala-ala,Awon-awon,Awon-awon,Awon-awon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mewarnai kain,Dye fabric,Medel,Nyelep,Nyelep,Nyelep,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Minggu,Sunday,Ahad,Ahad,Ahad,Ahad,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Minyak,Oil,Lenga,Lisah,Lisah,Lisah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mobil,Car,Mobil,Mobil,Mobil,Mobil,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Motor,Motorcycle,Motor,Motor,Motor,Motor,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Muat,Fit,Mot,Wrat,Wrat,Wrat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mudah,Easy,Gampang,Gampil,Gampil,Gampil,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mudah-mudahan,Hopefully,Muga-muga,Mugi-mugi,Mugi-mugi,Mugi-mugi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Mungkin,Maybe,Sok uga,Sok ugi,Sok ugi,Sok ugi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Murahan,Cheap quality,Murahan,Mirahan,Mirahan,Mirahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Murid,Student,Murid,Murid,Murid,Murid,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Musuh,Enemy,Mungsuh,Mengsah,Mengsah,Mengsah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Naik,Ascend,Munggah,Minggah,Minggah,Minggah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Naik haji,Pilgrimage,Munggah kaji,Minggah kaji,Minggah kaji,Minggah kaji,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Nama saya,My name is,Jenengku,Nami kula,Nami kula,Nami kula,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Nanti,Later,Mengko,Mangke,Mangke,Mangke,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Nasi,Rice,Sega,Sekul,Sekul,Sekul,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Nasi goreng,Fried rice,Sega goreng,Sekul goreng,Sekul goreng,Sekul goreng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Negara,Country,Nagara,Nagari,Nagari,Nagari,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Nenek,Grandmother,Simbah putri,Eyang putri,Eyang putri,Eyang putri,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Oleh-oleh,Souvenir,Oleh-oleh,Angsal-angsal,Angsal-angsal,Angsal-angsal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Orang,Person,Wong,Tiyang,Tiyang,Tiyang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pagi,Morning,Esuk,Enjing,Enjing,Enjing,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pakai,Put on,Anggo,Engge,Engge,Engge,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Paman,Uncle,Paman,Paman,Paman,Paman,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Panas,Hot,Panas,Benter,Benter,Benter,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Panggil,Call,Undang,Timbal,Timbal,Timbal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Panjang,Long,Dawa,Panjang,Panjang,Panjang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Papan tulis,Blackboard,Papan tulis,Papan tulis,Papan tulis,Papan tulis,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Pasar,Market,Pasar,Peken,Peken,Peken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pedesaan,Countryside,Padesan,Pedhusunan,Pedhusunan,Pedhusunan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pegunungan,Mountains,Pegunungan,Pareden,Pareden,Pareden,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pekarangan,Yard,Pomahan,Pekawisan,Pekawisan,Pekawisan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pelihara,Foster,Upakara,Upakawis,Upakawis,Upakawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pelupa,Forgetful,Lalen,Supenan,Supenan,Supenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pembelajaran,Instruction,Pawulangan,Pawucalan,Pawucalan,Pawucalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pembesar,Dignitary,Penggedhe,Pengageng,Pengageng,Pengageng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pena,Pen,Pulpen,Pulpen,Pulpen,Pulpen,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Pencuri,Thief,Maling,Pandung,Pandung,Pandung,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pengajian,Religious study,Pengajian,Pengaosan,Pengaosan,Pengaosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pengertian,Understanding,Pangerten,Pangertosan,Pangertosan,Pangertosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pengetahuan,Wisdom,Kawruh,Seserepan,Seserepan,Seserepan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Penggembala,Shepherd,Pangon,Pangen,Pangen,Pangen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Penghidupan,Livelihood,Panguripan,Panggesangan,Panggesangan,Panggesangan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pensil,Pencil,Potlot,Potlot,Potlot,Potlot,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Penting,Important,Wigati,Wigatos,Wigatos,Wigatos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Penuh,Full,Kebak,Kebak,Kebak,Kebak,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Penurut,Obedient,Geleman,Purunan,Purunan,Purunan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Penyakit,Disease,Lelara,Sesakit,Sesakit,Sesakit,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Peram,Ripen,Imbu,Imbet,Imbet,Imbet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Percaya,Believe,Andel,Pitados,Pitados,Pitados,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Perempuan,Female,Wadon,Estri,Estri,Estri,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Perhatian,Attention,Kawigaten,Kawigatosan,Kawigatosan,Kawigatosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Permisi,Excuse me,Nuwun sewu,Nuwun sewu,Nuwun sewu,Nuwun sewu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Pernah,Ever,Tau,Nate,Nate,Nate,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Persaudaraan,Brotherhood,Paseduluran,Pasedherekan,Pasedherekan,Pasedherekan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Persawahan,Rice fields,Pesawahan,Pesabinan,Pesabinan,Pesabinan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pertunjukan,Show,Tontonan,Tetingalan,Tetingalan,Tetingalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Perut,Stomach,Weteng,Padharan,Padharan,Padharan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pesawat,Airplane,Montor mabur,Montor mabur,Montor mabur,Montor mabur,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Petang,Dusk,Surup,Serap,Serap,Serap,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Piara,Breed,Ingu,Ingah,Ingah,Ingah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pimpinan Desa,Headman,Kami Tuwa,Kami Sepuh,Kami Sepuh,Kami Sepuh,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pindah,Move,Alih,Pindah,Pindah,Pindah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pinjam,Lend,Silih,Sambut,Sambut,Sambut,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pinjaman,Loan,Silihan,Sambutan,Sambutan,Sambutan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pinta,Request,Jaluk,Tedha,Tedha,Tedha,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pintu,Door,Lawang,Konten,Konten,Konten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pisang,Banana,Gedhang,Pisang,Pisang,Pisang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pohon,Tree,Wit,Wit,Wit,Wit,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Pokok,Main,Baku,Baken,Baken,Baken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pria,Man,Lanang,Jaler,Jaler,Jaler,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Punya,Have,Duwe,Gadhah,Gadhah,Gadhah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Pusaka,Heirloom,Wesi aji,Tosan aji,Tosan aji,Tosan aji,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Rabu,Wednesday,Rebo,Rebo,Rebo,Rebo,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Rahasia,Secret,Wadi,Wados,Wados,Wados,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Roti,Bread,Roti,Roti,Roti,Roti,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Rugi,Lose,Tuna,Tuni,Tuni,Tuni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Rumah sakit,Hospital,Rumah sakit,Rumah sakit,Rumah sakit,Rumah sakit,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Rumput,Grass,Suket,Rumput,Rumput,Rumput,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Rusa,Deer,Menjangan,Sangsam,Sangsam,Sangsam,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Rusak,Broken,Rusak,Risak,Risak,Risak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Rusuh,Riotous,Rusuh,Resah,Resah,Resah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sabar,Patient,Sranta,Srantos,Srantos,Srantos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sabtu,Saturday,Setu,Setu,Setu,Setu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Sabuk,Belt,Sabuk,Sabuk,Sabuk,Sabuk,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Salah,Wrong,Salah,Lepat,Lepat,Lepat,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sambung,Join,Sambung,Sambet,Sambet,Sambet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sampai,Arrive,Nganti,Ngantos,Ngantos,Ngantos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sampai jumpa,Goodbye,Sugeng tindak,Sugeng tindak,Sugeng tindak,Sugeng tindak,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Sampai sekarang,Until now,Seprene,Sepriki,Sepriki,Sepriki,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sana,There,Kana,Rika,Rika,Rika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sangat,Very,Banget,Sanget,Sanget,Sanget,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sanggup,Capable,Saguh,Sagah,Sagah,Sagah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sapi,Cow,Sapi,Lembu,Lembu,Lembu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sarung keris,Scabbard,Wrangka,Sarungan,Sarungan,Sarungan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Satu,One,Siji,Setunggal,Setunggal,Setunggal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saudara,Relative,Sedulur,Sedherek,Sedherek,Sedherek,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sawah,Rice field,Sawah,Sabin,Sabin,Sabin,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya,I,Aku,Kula,Kula,Kula,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya haus,I am thirsty,Aku ngelak,Kula ngelak,Kula ngelak,Kula ngelak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya lapar,I am hungry,Aku luwe,Kula luwe,Kula luwe,Kula luwe,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya lelah,I am tired,Aku kesel,Kula sayah,Kula sayah,Kula sayah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya mengerti,I understand,Aku ngerti,Kula mangertos,Kula mangertos,Kula mangertos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya pamit,I take my leave,Aku pamit,Kula nyuwun pamit,Kula nyuwun pamit,Kula nyuwun pamit,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya sakit,I am sick,Aku lara,Kula sakit,Kula sakit,Kula sakit,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya sedih,I am sad,Aku sedhih,Kula sungkawa,Kula sungkawa,Kula sungkawa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya senang,I am happy,Aku seneng,Kula remen,Kula remen,Kula remen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Saya tidak mengerti,I don't understand,Aku ora ngerti,Kula mboten mangertos,Kula mboten mangertos,Kula mboten mangertos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sayuran,Vegetables,Janganan,Janganan,Janganan,Janganan,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Sebelumnya,Previously,Sadurunge,Saderengipun,Saderengipun,Saderengipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sebentar,Moment,Sedhela,Sekedhap,Sekedhap,Sekedhap,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sebetulnya,Actually,Sayekti,Sayektos,Sayektos,Sayektos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sedih,Sad,Sedhih,Sedhih,Sedhih,Sedhih,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Segala sesuatu,Everything,Samubarang,Samukawis,Samukawis,Samukawis,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Segera,Immediately,Tumuli,Tumunten,Tumunten,Tumunten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sehat,Healthy,Sehat,Sehat,Sehat,Sehat,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Sejak dahulu,Since long ago,Seprana,Seprika,Seprika,Seprika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sejati,Genuine,Sejati,Sejatos,Sejatos,Sejatos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sekian,That much,Semana,Semanten,Semanten,Semanten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sekolah,School,Sekolah,Sekolah,Sekolah,Sekolah,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selamat,Safe,Slamet,Wilujeng,Wilujeng,Wilujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Selamat bekerja,Have a good work,Sugeng nyambut gawe,Sugeng nyambut damel,Sugeng nyambut damel,Sugeng nyambut damel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Selamat belajar,Happy studying,Sugeng sinau,Sugeng sinau,Sugeng sinau,Sugeng sinau,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selamat datang,Welcome,Sugeng rawuh,Sugeng rawuh,Sugeng rawuh,Sugeng rawuh,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selamat malam,Good night,Sugeng dalu,Sugeng dalu,Sugeng dalu,Sugeng dalu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selamat pagi,Good morning,Sugeng enjing,Sugeng enjing,Sugeng enjing,Sugeng enjing,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selamat siang,Good afternoon,Sugeng siang,Sugeng siang,Sugeng siang,Sugeng siang,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selamatan,Thanksgiving feast,Slametan,Wilujengan,Wilujengan,Wilujengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Selasa,Tuesday,Selasa,Selasa,Selasa,Selasa,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Selesai,Finish,Bubar,Bibar,Bibar,Bibar,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sembilan,Nine,Sanga,Sanga,Sanga,Sanga,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Sembuh,Recover,Waras,Mantun,Mantun,Mantun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sempit,Narrow,Rupak,Ripak,Ripak,Ripak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Semua,All,Kabeh,Sedaya,Sedaya,Sedaya,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Senang,Happy,Seneng,Remen,Remen,Remen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Senang bertemu dengan Anda,Nice to meet you,Seneng ketemu karo sliramu,Remen pinanggih kaliyan panjenengan,Remen pinanggih kaliyan panjenengan,Remen pinanggih kaliyan panjenengan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sendiri,Alone,Dhewe,Piyambak,Piyambak,Piyambak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sendok,Spoon,Sendhok,Sendhok,Sendhok,Sendhok,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Senin,Monday,Senen,Senen,Senen,Senen,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Separo,Half,Separo,Sepalih,Sepalih,Sepalih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sepeda,Bicycle,Pit,Pit,Pit,Pit,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Sepi,Quiet,Sepi,Sepen,Sepen,Sepen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sepuluh,Ten,Sepuluh,Sedasa,Sedasa,Sedasa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Serba,All-around,Sarwa,Sarwi,Sarwi,Sarwi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sesepuh,Elder,Tetuwa,Sesepuh,Sesepuh,Sesepuh,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Siang,Afternoon,Awan,Siyang,Siyang,Siyang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sini,Here,Kene,Riki,Riki,Riki,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sirih,Betel leaf,Suruh,Sedhah,Sedhah,Sedhah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Situ,Over there,Kono,Riku,Riku,Riku,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Suami-istri,Couple,Bojo,Semah,Semah,Semah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Suara,Voice,Suwara,Suwantenan,Suwantenan,Suwantenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Subang,Ear stud,Suweng,Sengkang,Sengkang,Sengkang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sudah,Already,Wis,Sampun,Sampun,Sampun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sudah waktunya tidur,It is time to sleep,Wis wayahe turu,Sampun wekdalipun tilem,Sampun wekdalipun tilem,Sampun wekdalipun tilem,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sulung,Eldest,Mbarep,Pembajeng,Pembajeng,Pembajeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sungai,River,Kali,Lepen,Lepen,Lepen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Sungguh,Really,Temen,Estu,Estu,Estu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Supaya,So that,Supaya,Supados,Supados,Supados,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Supit,Circumcision,Tetak,Supit,Supit,Supit,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Surga,Heaven,Suwarga,Suwargi,Suwargi,Suwargi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Suruh,Instruct,Akon,Aken,Aken,Aken,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Suruhan,Messenger,Kongkonan,Kengkenan,Kengkenan,Kengkenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Susah,Difficult,Susah,Sisah,Sisah,Sisah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Susu,Milk,Susu,Susu,Susu,Susu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Taat,Compliant,Gugu,Gega,Gega,Gega,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tadi,Earlier,Mau,Wau,Wau,Wau,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tahi,Feces,Tai,Tinja,Tinja,Tinja,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Takut,Afraid,Wedi,Ajrih,Ajrih,Ajrih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tali,Rope,Tali,Tangsul,Tangsul,Tangsul,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tambah,Increase,Mundhak,Mindhak,Mindhak,Mindhak,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tambahan,Addition,Undhakan,Indhakan,Indhakan,Indhakan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tampan,Handsome,Bagus,Bagus,Bagus,Bagus,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Tamu,Guest,Dhayo,Tamu,Tamu,Tamu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tanah,Ground,Lemah,Siti,Siti,Siti,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tanam,Plant,Tandur,Tanem,Tanem,Tanem,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tanggung,Halfway,Tanggung,Tanggel,Tanggel,Tanggel,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tanggung jawab,Responsibility,Tanggung jawab,Tanggel jawab,Tanggel jawab,Tanggel jawab,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tanjakan,Slope,Unggah-unggahan,Inggah-inggahan,Inggah-inggahan,Inggah-inggahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tanpa pamrih,Selfless,Sepi ing pamrih,Sepen ing pamrih,Sepen ing pamrih,Sepen ing pamrih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Taruh,Put,Deleh,Suka,Suka,Suka,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tawa,Laughter,Guyu,Gujeng,Gujeng,Gujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tebu,Sugarcane,Tebu,Rosan,Rosan,Rosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Teh,Tea,Teh,Teh,Teh,Teh,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Telinga,Ear,Kuping,Talingan,Talingan,Talingan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Telur,Egg,Endhog,Tigan,Tigan,Tigan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Teman,Friend,Kanca,Rencang,Rencang,Rencang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tembaga,Copper,Tembaga,Tembagi,Tembagi,Tembagi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tembakau,Tobacco,Bako,Sata,Sata,Sata,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tempat,Location,Panggonan,Panggenan,Panggenan,Panggenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tempat tidur,Bed,Amben,Pasarean,Pasarean,Pasarean,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tempe,Tempeh,Tempe,Tempe,Tempe,Tempe,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Tempe goreng,Fried tempeh,Tempe goreng,Tempe goreng,Tempe goreng,Tempe goreng,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Temu,Meet,Temu,Panggih,Panggih,Panggih,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tentu,Certain,Karuwan,Kantenan,Kantenan,Kantenan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terasa,Felt,Krasa,Kraos,Kraos,Kraos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terbakar,Burned,Kobong,Kabesmi,Kabesmi,Kabesmi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terbayang,Imagined,Ketok-ketoken,Tetingalen,Tetingalen,Tetingalen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tergantung,Dependent,Mawa-mawa,Mawi-mawi,Mawi-mawi,Mawi-mawi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tergesa-gesa,Hurried,Kesusu,Kesesa,Kesesa,Kesesa,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terima,Receive,Tampa,Tampi,Tampi,Tampi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terima kasih,Thank you,Matur nuwun,Matur nuwun,Matur nuwun,Matur nuwun,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Teringat,Recall,Kelingan,Kemutan,Kemutan,Kemutan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terjadi,Happen,Kedadeyan,Kedadosan,Kedadosan,Kedadosan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlahir,Born,Kelahiran,Kedalan,Kedalan,Kedalan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlaksana,Accomplished,Kelakon,Kelampahan,Kelampahan,Kelampahan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlalu,Too,Banget-banget,Sanget-sanget,Sanget-sanget,Sanget-sanget,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlalu berani,Overly bold,Kumawani,Kumawantun,Kumawantun,Kumawantun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlalu jauh,Too distant,Kadohan,Ketebihen,Ketebihen,Ketebihen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlalu lama,Too long,Kesuwen,Kedangon,Kedangon,Kedangon,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlanjur,Already done,Kebacut,Kelajeng,Kelajeng,Kelajeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Terlupa,Forgotten,Kelalen,Kesupen,Kesupen,Kesupen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Termasuk,Included,Kelebu,Kelebet,Kelebet,Kelebet,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ternyata,Apparently,Kari-kari,Kantun-kantun,Kantun-kantun,Kantun-kantun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tertawa,Laugh,Gumuyu,Gumujeng,Gumujeng,Gumujeng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tertinggal,Left,Kari,Kantun,Kantun,Kantun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tetangga,Neighbor,Tangga,Tanggi,Tanggi,Tanggi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tiba,Reach,Tekan,Dumugi,Dumugi,Dumugi,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tidak,No,Ora,Mboten,Mboten,Mboten,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tidak boleh,Not allowed,Ora oleh,Mboten pareng,Mboten pareng,Mboten pareng,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tidak mungkin,Impossible,Ora-orane,Mboten-mbotenipun,Mboten-mbotenipun,Mboten-mbotenipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tidak Tentu,Uncertain,Ora karuwan,Mboten kantentan,Mboten kantentan,Mboten kantentan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tiga,Three,Telu,Tiga,Tiga,Tiga,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tikar,Mat,Klasa,Gelaran,Gelaran,Gelaran,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tinggal,Reside,Manggon,Manggen,Manggen,Manggen,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tinggi,Tall,Dhuwur,Inggil,Inggil,Inggil,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Toko,Shop,Toko,Toko,Toko,Toko,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Tolong,Please,Tulung,Tulung,Tulung,Tulung,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Tolong bantu saya,Please help me,Tulung tulungana aku,Nyuwun tulung biyantu kula,Nyuwun tulung biyantu kula,Nyuwun tulung biyantu kula,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tombak,Spear,Tumbak,Waos,Waos,Waos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tujuh,Seven,Pitu,Pitu,Pitu,Pitu,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Tukar,Exchange,Ijol,Lintu,Lintu,Lintu,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tumbuk padi,Pound rice,Tutu,Gentang,Gentang,Gentang,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tunggal,Single,Tunggal,Tunggil,Tunggil,Tunggil,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Tunggu,Await,Tunggu,Tengga,Tengga,Tengga,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Turun,Descend,Mudhun,Mandhap,Mandhap,Mandhap,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Turut,Follow,Anut,Tumut,Tumut,Tumut,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Uang,Money,Dhuwit,Arta,Arta,Arta,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ujian,Exam,Ujian,Ujian,Ujian,Ujian,,,,,,,,BELUM_DIPERIKSA,,P3,NGOKO_SAMA_KRAMA_INVARIAN,Ngoko=Krama (indikasi invarian alami/serapan; tetap butuh konfirmasi penutur asli)
+Ular,Snake,Ula,Sawer,Sawer,Sawer,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Umumnya,Generally,Akehe,Kathahipun,Kathahipun,Kathahipun,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Ungkapan,Phrase,Unen-unen,Ungel-ungelan,Ungel-ungelan,Ungel-ungelan,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Untuk,For,Kanggo,Kangge,Kangge,Kangge,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Upah,Wage,Opah,Epah,Epah,Epah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Utama,Primary,Utama,Utami,Utami,Utami,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Utara,North,Lor,Ler,Ler,Ler,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Waktu,Time,Wektu,Wekdal,Wekdal,Wekdal,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Waktu hujan,Rainy time,Udan-udan,Jawah-jawah,Jawah-jawah,Jawah-jawah,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Warisan,Inheritance,Warisan,Tilaran,Tilaran,Tilaran,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Warna,Color,Werna,Werni,Werni,Werni,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Warung,Stall,Warung,Wande,Wande,Wande,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Waspada,Alert,Waspada,Waspaos,Waspaos,Waspaos,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli
+Yaitu,Namely,Yaiku,Inggih punika,Inggih punika,Inggih punika,,,,,,,,BELUM_DIPERIKSA,,P3,REGULER,Entri aktif; belum diverifikasi penutur asli

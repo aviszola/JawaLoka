@@ -94,6 +94,12 @@ void main() {
         );
         await tester.pumpAndSettle();
 
+        await tester.drag(
+          find.byType(CustomScrollView),
+          const Offset(0, -500),
+        );
+        await tester.pumpAndSettle();
+
         final guestFinder = find.text('Lanjut sebagai Tamu');
         expect(guestFinder, findsOneWidget);
 

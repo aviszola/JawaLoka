@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_jawaloka/core/router/app_router.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/language_selection_screen.dart';
+import 'package:flutter_jawaloka/features/auth/presentation/screens/profile_setup_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter_jawaloka/features/auth/presentation/widgets/primary_button.dart';
@@ -81,8 +82,8 @@ void main() {
         await tester.tap(find.byType(PrimaryButton));
         await tester.pumpAndSettle();
 
-        // Membuka Daftar (RegisterScreen)
-        expect(find.byType(RegisterScreen), findsOneWidget);
+        // Membuka ProfileSetupScreen (alur profil lokal)
+        expect(find.byType(ProfileSetupScreen), findsOneWidget);
       },
     );
 
@@ -170,13 +171,15 @@ void main() {
         // Judul login
         expect(find.text('Masuk ke akunmu'), findsOneWidget);
 
-        // Submit form kosong -> pesan error
-        await tester.ensureVisible(find.widgetWithText(PrimaryButton, 'Masuk'));
+        // Masukkan nama terlalu pendek (< 2 karakter) lalu submit -> pesan error
+        await tester.enterText(find.byType(TextField).first, 'A');
+        await tester.pump();
+        await tester.drag(find.byType(CustomScrollView), const Offset(0, -500));
+        await tester.pumpAndSettle();
         await tester.tap(find.widgetWithText(PrimaryButton, 'Masuk'));
         await tester.pumpAndSettle();
 
-        expect(find.text('Format email belum benar'), findsOneWidget);
-        expect(find.text('Kata sandi tidak boleh kosong'), findsOneWidget);
+        expect(find.text('Nama minimal 2 karakter'), findsOneWidget);
 
         // Uji ketahanan terhadap keyboard
         await tester.pumpApp(

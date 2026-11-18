@@ -707,5 +707,41 @@
         "type": "int"
       }
     }
+  },
+  "translatorRegisterNgoko": "Ngoko",
+  "@translatorRegisterNgoko": {
+    "description": "Badge label for Ngoko speech register on offline translation result"
+  },
+  "translatorRegisterKramaLugu": "Krama Lugu (self / neutral)",
+  "@translatorRegisterKramaLugu": {
+    "description": "Badge label for Krama Lugu speech register on offline translation result"
+  },
+  "translatorRegisterKramaInggil": "Krama Inggil (honorific)",
+  "@translatorRegisterKramaInggil": {
+    "description": "Badge label for Krama Inggil speech register on offline translation result"
+  },
+  "translatorRegisterKramaAndhap": "Krama Andhap (humble toward respected person)",
+  "@translatorRegisterKramaAndhap": {
+    "description": "Badge label for Krama Andhap speech register on offline translation result"
+  },
+  "translatorUncertainBadge": "Needs context review / word not in dictionary",
+  "@translatorUncertainBadge": {
+    "description": "Indicator shown when offline translation has context ambiguity or unknown words"
+  },
+  "homeWisdomBadge": "CULTURAL WISDOM",
+  "@homeWisdomBadge": {
+    "description": "Badge label for the cultural wisdom card on Home"
+  },
+  "homeWisdomNextTooltip": "Next Proverb",
+  "@homeWisdomNextTooltip": {
+    "description": "Tooltip for cycling Javanese proverbs on Home"
+  },
+  "homeWisdomReadMore": "Read Meaning & Source",
+  "@homeWisdomReadMore": {
+    "description": "Button to expand cultural wisdom explanation"
+  },
+  "homeWisdomClose": "Hide Meaning",
+  "@homeWisdomClose": {
+    "description": "Button to collapse cultural wisdom explanation"
   }
 }

@@ -3,6 +3,7 @@ import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/profile/profile_scope.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
+
 /// Strip Kuis Mingguan bernuansa kuning pastel hangat.
 /// Kotak ikon pastel kuning di kiri atas, judul & hitungan, serta 7 lingkaran hari.
 class HomeWeeklyQuizStrip extends StatelessWidget {
@@ -53,10 +54,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.surfaceWarm,
                   borderRadius: BorderRadius.circular(14),
-                  border: Border.all(
-                    color: AppColors.border,
-                    width: 1,
-                  ),
+                  border: Border.all(color: AppColors.border, width: 1),
                 ),
                 child: const Icon(
                   AppIcons.weeklyActivity,
@@ -96,7 +94,7 @@ class HomeWeeklyQuizStrip extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Lihat',
+                    l10n.langSelectContinueButton,
                     style: textTheme.labelLarge?.copyWith(
                       color: AppColors.primaryDark,
                     ),

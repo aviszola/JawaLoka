@@ -57,6 +57,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
   bool _isAiCooldown = false;
   Timer? _aiCooldownTimer;
   String _outputText = '';
+  String? _offlineNote;
+  SpeechRegister? _appliedRegister;
   AiTranslationSuccess? _aiResult;
   AiTranslationError? _aiError;
   late AnimationController _swapCtrl;
@@ -89,9 +91,15 @@ class _TranslatorScreenState extends State<TranslatorScreen>
   void _onInputChanged() {
     setState(() {}); // Rebuild char counter
     if (_inputCtrl.text.trim().isEmpty &&
-        (_outputText.isNotEmpty || _aiResult != null || _aiError != null)) {
+        (_outputText.isNotEmpty ||
+            _offlineNote != null ||
+            _appliedRegister != null ||
+            _aiResult != null ||
+            _aiError != null)) {
       setState(() {
         _outputText = '';
+        _offlineNote = null;
+        _appliedRegister = null;
         _isTranslating = false;
         _aiResult = null;
         _aiError = null;
@@ -132,14 +140,29 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     );
 
     if (!mounted) return;
-    final String output = switch (result) {
-      Found(:final text) => text,
-      NotFound() => context.l10n.translatorMockUnavailable,
-    };
+    final String output;
+    final String? offlineNote;
+    final SpeechRegister? appliedRegister;
+    switch (result) {
+      case Found(
+        text: final foundText,
+        note: final foundNote,
+        appliedRegister: final foundRegister,
+      ):
+        output = foundText;
+        offlineNote = foundNote;
+        appliedRegister = foundRegister;
+      case NotFound():
+        output = context.l10n.translatorMockUnavailable;
+        offlineNote = null;
+        appliedRegister = null;
+    }
 
     setState(() {
       _isTranslating = false;
       _outputText = output;
+      _offlineNote = offlineNote;
+      _appliedRegister = appliedRegister;
       _aiResult = null;
       _aiError = null;
     });
@@ -198,6 +221,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         setState(() {
           _isTranslatingAi = false;
           _outputText = outcome.translation;
+          _offlineNote = null;
+          _appliedRegister = null;
           _aiResult = outcome;
           _aiError = null;
         });
@@ -205,6 +230,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         setState(() {
           _isTranslatingAi = false;
           _outputText = '';
+          _offlineNote = null;
+          _appliedRegister = null;
           _aiResult = null;
           _aiError = error;
         });
@@ -225,6 +252,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
         _inputCtrl.text = _outputText;
       }
       _outputText = '';
+      _offlineNote = null;
+      _appliedRegister = null;
       _isTranslating = false;
       _aiResult = null;
       _aiError = null;
@@ -376,6 +405,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
               _inputCtrl.clear();
               setState(() {
                 _outputText = '';
+                _offlineNote = null;
+                _appliedRegister = null;
                 _aiResult = null;
                 _aiError = null;
               });
@@ -623,6 +654,108 @@ class _TranslatorScreenState extends State<TranslatorScreen>
     }
   }
 
+  String _getRegisterLabel(BuildContext context, SpeechRegister register) {
+    final l10n = context.l10n;
+    switch (register) {
+      case SpeechRegister.ngoko:
+        return l10n.translatorRegisterNgoko;
+      case SpeechRegister.kramaLugu:
+        return l10n.translatorRegisterKramaLugu;
+      case SpeechRegister.kramaInggil:
+        return l10n.translatorRegisterKramaInggil;
+      case SpeechRegister.kramaAndhap:
+        return l10n.translatorRegisterKramaAndhap;
+    }
+  }
+
+  Widget _buildOfflineMetaSection(BuildContext context) {
+    final l10n = context.l10n;
+    final hasUnknown = _outputText.contains('[?]');
+    final hasNote = _offlineNote != null && _offlineNote!.trim().isNotEmpty;
+    final hasRegister = _appliedRegister != null;
+    if (!hasRegister && !hasNote && !hasUnknown) {
+      return const SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (hasRegister || hasNote || hasUnknown)
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
+              children: [
+                if (hasRegister)
+                  Container(
+                    key: const Key('translator_register_badge'),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: AppColors.border),
+                    ),
+                    child: Text(
+                      _getRegisterLabel(context, _appliedRegister!),
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.amberDark,
+                      ),
+                    ),
+                  ),
+                if (hasNote || hasUnknown)
+                  Container(
+                    key: const Key('translator_uncertain_badge'),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryAmber.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: AppColors.amberDark.withValues(alpha: 0.35),
+                      ),
+                    ),
+                    child: Text(
+                      l10n.translatorUncertainBadge,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.ink,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          if (hasNote) ...[
+            const SizedBox(height: 8),
+            Container(
+              key: const Key('translator_offline_note'),
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              decoration: BoxDecoration(
+                color: AppColors.surface.withValues(alpha: 0.85),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: Text(
+                _offlineNote!,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: AppColors.inkSecondary,
+                  height: 1.4,
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
   Widget _buildOutputPanel() {
     final l10n = context.l10n;
     final isLoading = _isTranslating || _isTranslatingAi;
@@ -662,6 +795,8 @@ class _TranslatorScreenState extends State<TranslatorScreen>
                     height: 1.5,
                   ),
                 ),
+                if (_outputText.isNotEmpty && _aiResult == null)
+                  _buildOfflineMetaSection(context),
                 if (_outputText.isNotEmpty && _aiResult != null) ...[
                   const SizedBox(height: 10),
                   Text(

@@ -111,7 +111,7 @@ void main() {
             'ꦲꦼ',
             'ꦲꦃ',
             'ꦲꦺꦴꦩꦃ',
-            'ꦧꦤꦾꦸ',
+            'ꦧꦚꦸ',
             'ꦱꦼꦒꦫ',
             'ꦭꦼꦩꦃ',
           ]),
@@ -162,7 +162,7 @@ void main() {
         expect(menengah[5].options[menengah[5].correctIndex], 'Hah');
         // Question 6: ꦲꦺꦴꦩꦃ -> 'Omah'
         expect(menengah[6].options[menengah[6].correctIndex], 'Omah');
-        // Question 7: ꦧꦤꦾꦸ -> 'Banyu'
+        // Question 7: ꦧꦚꦸ -> 'Banyu'
         expect(menengah[7].options[menengah[7].correctIndex], 'Banyu');
         // Question 8: ꦱꦼꦒꦫ -> 'Segara'
         expect(menengah[8].options[menengah[8].correctIndex], 'Segara');
@@ -186,8 +186,8 @@ void main() {
         expect(mahir[6].options[mahir[6].correctIndex], 'Sugeng enjing');
         // Question 7: terima kasih -> 'Matur nuwun'
         expect(mahir[7].options[mahir[7].correctIndex], 'Matur nuwun');
-        // Question 8: tanya kabar krama alus -> 'Pripun kabaripun?'
-        expect(mahir[8].options[mahir[8].correctIndex], 'Pripun kabaripun?');
+        // Question 8: tanya kabar krama alus -> 'Kados pundi kabaripun?'
+        expect(mahir[8].options[mahir[8].correctIndex], 'Kados pundi kabaripun?');
         // Question 9: paribasan makna -> 'Pakurmatan saka wicara'
         expect(
           mahir[9].options[mahir[9].correctIndex],
@@ -259,13 +259,16 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
-      // Tap 'Mulai Kuis'
-      await tester.tap(find.text('Mulai Kuis'));
+      // Tap 'Mulai Misi'
+      await tester.tap(find.text('Mulai Misi'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
-      // Expect Mudah question 1: glyph 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ' with options
-      expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
+      // Expect Mudah question 1 prompt & options
+      expect(
+        find.text('Ukara "Sugeng enjang" diucapake nalika wayah apa?'),
+        findsOneWidget,
+      );
       expect(find.text('Esuk (pagi)'), findsOneWidget);
       expect(find.text('Awan (siang)'), findsOneWidget);
       expect(find.text('Sore'), findsOneWidget);
@@ -292,12 +295,11 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
 
-      await tester.tap(find.text('Mulai Kuis'));
+      await tester.tap(find.text('Mulai Misi'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
 
-      // Expect Mahir question 1: glyph 'ꦱꦶꦪꦁ' with options
-      expect(find.text('ꦱꦶꦪꦁ'), findsOneWidget);
+      // Expect Mahir question 1 options
       expect(find.text('Sugeng sonten, Pak Guru'), findsOneWidget);
       expect(find.text('Sugeng dalu, Pak Guru'), findsOneWidget);
       expect(find.text('Sugeng siang, Pak Guru'), findsOneWidget);
@@ -324,12 +326,11 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        await tester.tap(find.text('Mulai Kuis'));
+        await tester.tap(find.text('Mulai Misi'));
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 500));
 
-        // Expect Sangat Mahir question 1: glyph 'ꦫꦮꦸꦃ' with options
-        expect(find.text('ꦫꦮꦸꦃ'), findsOneWidget);
+        // Expect Sangat Mahir question 1 options
         expect(find.text('Sugeng tindak'), findsOneWidget);
         expect(find.text('Sugeng kondur'), findsOneWidget);
         expect(find.text('Sugeng sare'), findsOneWidget);
@@ -357,12 +358,15 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        await tester.tap(find.text('Mulai Kuis'));
+        await tester.tap(find.text('Mulai Misi'));
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 500));
 
-        // Active quiz is Mudah (Question 1: 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ')
-        expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
+        // Active quiz is Mudah (Question 1)
+        expect(
+          find.text('Ukara "Sugeng enjang" diucapake nalika wayah apa?'),
+          findsOneWidget,
+        );
 
         // Simulate a background or live level change to Mahir (Level 10)
         await profile.setUserLevel(10);
@@ -372,7 +376,10 @@ void main() {
         await tester.pump();
 
         // Active quiz session must STILL display ongoing Mudah question 1
-        expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
+        expect(
+          find.text('Ukara "Sugeng enjang" diucapake nalika wayah apa?'),
+          findsOneWidget,
+        );
         expect(find.text('Esuk (pagi)'), findsOneWidget);
       },
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/l10n/l10n_extension.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 
@@ -19,28 +20,56 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
     _WisdomItem(
       aksara: 'ꦲꦸꦫꦶꦥ꧀ꦲꦶꦏꦸꦲꦸꦫꦸꦥ꧀',
       latin: 'Urip Iku Urup',
-      meaning: 'Hidup itu harus menyala dan memberi manfaat bagi sesama.',
-      context:
+      meaningId: 'Hidup itu harus menyala dan memberi manfaat bagi sesama.',
+      meaningJv: 'Urip iku kudu murub lan migunani tumrap sapadha-padha.',
+      meaningEn: 'Life should shine bright and bring benefit to others.',
+      contextId:
+          'Ajaran luhur tentang kebermanfaatan hidup: setiap manusia hendaknya selalu memberi cahaya kebaikan bagi masyarakat tanpa pamrih.',
+      contextJv:
           'Piwulang luhur babagan guna gesang: saben manungsa prayogane tansah aweh pepadhang marang bebrayan agung tanpa pamrih.',
-      source: 'Serat Wedhatama — Pupuh Pangkur',
+      contextEn:
+          'A noble Javanese teaching on meaningful living: every person should strive to illuminate and help society selflessly.',
+      sourceId: 'Piwulang Luhur Budaya Jawa (Sunan Kalijaga)',
+      sourceJv: 'Piwulang Luhur Budaya Jawa (Sunan Kalijaga)',
+      sourceEn: 'Noble Javanese Wisdom (Sunan Kalijaga)',
     ),
     _WisdomItem(
       aksara: 'ꦗꦼꦂꦧꦱꦸꦏꦶꦩꦮꦧꦺꦪ',
       latin: 'Jer Basuki Mawa Beya',
-      meaning:
+      meaningId:
           'Setiap keberhasilan dan kebahagiaan menuntut pengorbanan dan ikhtiar nyata.',
-      context:
+      meaningJv:
+          'Saben kasuksesan lan kabagyan mesthi mbutuhake pangorbanan lan usaha nyata.',
+      meaningEn:
+          'Every success and well-being requires real effort and sacrifice.',
+      contextId:
+          'Kebijaksanaan tentang pengorbanan: segala cita-cita luhur selalu memerlukan biaya, tekad, dan kerja keras.',
+      contextJv:
           'Kawicaksanan babagan pangorbanan: samubarang gegayuhan luhur mesthi mbutuhake ragad, tekad, lan kurbaning raga rasa.',
-      source: 'Sesanti Praja Jawa Timur',
+      contextEn:
+          'Wisdom about dedication: every worthy aspiration demands commitment, perseverance, and sincere sacrifice.',
+      sourceId: 'Sesanti Budaya Jawa',
+      sourceJv: 'Sesanti Praja Jawa Timur',
+      sourceEn: 'Traditional Javanese Motto',
     ),
     _WisdomItem(
       aksara: 'ꦲꦭꦺꦴꦤ꧀ꦲꦭꦺꦴꦤ꧀ꦮꦠꦺꦴꦤ꧀ꦏꦼꦭꦏꦺꦴꦤ꧀',
       latin: 'Alon-Alon Waton Kelakon',
-      meaning:
+      meaningId:
           'Ketelitian dan kehati-hatian lebih utama daripada ketergesa-gesaan yang mencelakakan.',
-      context:
-          'Bukan anjuran untuk bermalas-malasan, melainkan prinsip kehati-hatian (pradapa) agar setiap langkah berpijak teguh.',
-      source: 'Falsafah Budi Pekerti Luhur',
+      meaningJv:
+          'Kateliten lan pangati-ati luwih prayoga tinimbang kesusu kang bisa mbebayani.',
+      meaningEn:
+          'Steadiness and carefulness prevail over haste that leads to mistakes.',
+      contextId:
+          'Bukan anjuran untuk bermalas-malasan, melainkan prinsip kehati-hatian (prayitna) agar setiap langkah berpijak teguh.',
+      contextJv:
+          'Dudu piwulang supaya kesed, nanging paugeran pangati-ati (prayitna) supaya saben jangka bisa mantep lan kasil.',
+      contextEn:
+          'Not an excuse for laziness, but the principle of mindfulness (prayitna) so every step is steady and well-founded.',
+      sourceId: 'Falsafah Budi Pekerti Luhur',
+      sourceJv: 'Falsafah Budi Pekerti Luhur',
+      sourceEn: 'Javanese Ethics Philosophy',
     ),
   ];
 
@@ -55,6 +84,8 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
   Widget build(BuildContext context) {
     final current = _proverbs[_currentIndex];
     final textTheme = Theme.of(context).textTheme;
+    final l10n = context.l10n;
+    final langCode = Localizations.localeOf(context).languageCode;
 
     return Container(
       width: double.infinity,
@@ -102,7 +133,7 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                         const SizedBox(width: 4),
                         Flexible(
                           child: Text(
-                            'MUTIARA PIWULANG',
+                            l10n.homeWisdomBadge,
                             style: textTheme.labelMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               letterSpacing: 0.8,
@@ -123,7 +154,7 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                     color: AppColors.inkSecondary,
                   ),
                   onPressed: _nextProverb,
-                  tooltip: 'Ganti Piwulang',
+                  tooltip: l10n.homeWisdomNextTooltip,
                   visualDensity: VisualDensity.compact,
                 ),
               ],
@@ -157,7 +188,7 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
             ),
             const SizedBox(height: 6),
             Text(
-              current.meaning,
+              current.meaningFor(langCode),
               textAlign: TextAlign.center,
               maxLines: _isExpanded ? null : 1,
               overflow: _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
@@ -181,7 +212,7 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      current.source,
+                      current.sourceFor(langCode),
                       style: textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColors.primaryDark,
@@ -189,7 +220,7 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      current.context,
+                      current.contextFor(langCode),
                       style: textTheme.labelMedium?.copyWith(
                         height: 1.45,
                         color: AppColors.ink,
@@ -214,8 +245,8 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
                   Flexible(
                     child: Text(
                       _isExpanded
-                          ? 'Tutup Makna Luhur'
-                          : 'Waca Makna Luhur & Sumber',
+                          ? l10n.homeWisdomClose
+                          : l10n.homeWisdomReadMore,
                       style: textTheme.labelMedium?.copyWith(
                         color: AppColors.inkMuted,
                       ),
@@ -243,15 +274,45 @@ class _HomeCulturalWisdomCardState extends State<HomeCulturalWisdomCard> {
 class _WisdomItem {
   final String aksara;
   final String latin;
-  final String meaning;
-  final String context;
-  final String source;
+  final String meaningId;
+  final String meaningJv;
+  final String meaningEn;
+  final String contextId;
+  final String contextJv;
+  final String contextEn;
+  final String sourceId;
+  final String sourceJv;
+  final String sourceEn;
 
   const _WisdomItem({
     required this.aksara,
     required this.latin,
-    required this.meaning,
-    required this.context,
-    required this.source,
+    required this.meaningId,
+    required this.meaningJv,
+    required this.meaningEn,
+    required this.contextId,
+    required this.contextJv,
+    required this.contextEn,
+    required this.sourceId,
+    required this.sourceJv,
+    required this.sourceEn,
   });
+
+  String meaningFor(String code) => switch (code) {
+    'jv' => meaningJv,
+    'en' => meaningEn,
+    _ => meaningId,
+  };
+
+  String contextFor(String code) => switch (code) {
+    'jv' => contextJv,
+    'en' => contextEn,
+    _ => contextId,
+  };
+
+  String sourceFor(String code) => switch (code) {
+    'jv' => sourceJv,
+    'en' => sourceEn,
+    _ => sourceId,
+  };
 }

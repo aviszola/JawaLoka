@@ -90,7 +90,7 @@ void main() {
         'Saya sakit': 'Kula sakit',
         'Tidak boleh': 'Mboten pareng',
         'Tolong bantu saya': 'Nyuwun tulung biyantu kula',
-        'Senang bertemu dengan Anda': 'Remen pinanggih kalian panjenengan',
+        'Senang bertemu dengan Anda': 'Remen pinanggih kaliyan panjenengan',
       };
 
       for (final entry in sentences.entries) {
@@ -276,14 +276,14 @@ void main() {
 
       test('7. Kalimat Krama dengan kata keterangan belum dikenal', () async {
         final res = await service.translate(
-          text: 'Ayah sedang tidur',
+          text: 'Ayah pulas tidur',
           from: TranslationVariant.id,
           to: TranslationVariant.jvKrama,
         );
         expect(res, isA<Found>());
         final text = (res as Found).text;
         expect(text, contains('Bapak'));
-        expect(text, contains('sedang[?]'));
+        expect(text, contains('pulas[?]'));
         expect(text, contains('Sare'));
       });
 

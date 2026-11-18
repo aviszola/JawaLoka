@@ -209,7 +209,7 @@ class Unit3Questions {
       ],
       correctIndex: 0,
       explanation:
-          'Cakra (ꦿ) nambahi unine konsonan "ra" ing satengahing wanda (tuladha: ꦥꦿ = pra).',
+          'Layar (ꦂ) dipigunakake minangka panyigeg konsonan "r" ing pungkasaning wanda (tuladha: ꦥꦱꦂ = pasar), mula aksara ꦫ ora kena dipangkon.',
       sourceReference: 'Pepak Basa Jawa: Sandhangan Wyanjana',
     ),
     QuizQuestion(
@@ -351,7 +351,7 @@ class Unit3Questions {
         'Satengahing tembung utawa satengahing ukara lumrah',
         'Pungkasaning ukara sadurunge tandha pada lingsa',
         'Pungkasaning paragraf minangka panutup wacana',
-        'Wiwasananing angka Jawa ing panulisan tanggalan',
+        'Wiwitaning angka Jawa ing panulisan tanggalan',
       ],
       correctIndex: 0,
       explanation:
@@ -793,7 +793,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt:
-          'Tembung "weruh" yen ditulis aksara wa dipepet lan dilayar (ꦮꦼꦂ) bener utawa luput?',
+          'Tembung "werna" (ꦮꦼꦂꦤ) yen suku kapisane ditulis aksara wa dipepet lan dilayar (ꦮꦼꦂ) bener utawa luput?',
       glyph: '',
       options: [
         'Bener, amarga pepet lan layar bisa bebarengan ing dhuwure aksara wa',
@@ -803,7 +803,7 @@ class Unit3Questions {
       ],
       correctIndex: 0,
       explanation:
-          'Bener, aksara wa kawuwuhan pepet lan layar manggon bebarengan ing ndhuwur dadi "wer".',
+          'Bener, ing tembung "werna" (ꦮꦼꦂꦤ), aksara wa kawuwuhan pepet lan layar bebarengan ing ndhuwur dadi wanda "wer".',
       sourceReference: 'Paugeran Pasangon Aksara Jawa',
     ),
 
@@ -846,16 +846,16 @@ class Unit3Questions {
       difficulty: QuizDifficulty.mahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara iki wacane kepriye?',
-      glyph: 'ꦲꦶꦧꦸꦠꦸꦩ꧀ꦧꦱ꧀ꦧꦼꦫꦱ꧀',
+      glyph: 'ꦲꦶꦧꦸꦩꦸꦤ꧀ꦝꦸꦠ꧀ꦲꦸꦮꦺꦴꦱ꧀',
       options: [
-        'Ibu tumbas beras',
+        'Ibu mundhut uwos',
         'Ibu masak sega',
         'Ibu tindak pasar',
         'Ibu mundhut gula',
       ],
       correctIndex: 0,
       explanation:
-          'ꦲꦶꦧꦸ (Ibu) + ꦠꦸꦩ꧀ꦧꦱ꧀ (tumbas) + ꦧꦼꦫꦱ꧀ (beras) = "Ibu tumbas beras".',
+          'ꦲꦶꦧꦸ (Ibu) + ꦩꦸꦤ꧀ꦝꦸꦠ꧀ (mundhut) + ꦲꦸꦮꦺꦴꦱ꧀ (uwos) = "Ibu mundhut uwos" (krama alus).',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa',
     ),
     QuizQuestion(
@@ -882,11 +882,11 @@ class Unit3Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt: 'Ukara iki wacane kepriye?',
-      glyph: 'ꦏꦿꦺꦠꦥꦸꦭꦁ',
-      options: ['Kerta mulih', 'Kréta pulang', 'Kreteg jebol', 'Kraton mulya'],
+      glyph: 'ꦏꦿꦺꦠꦗꦮ',
+      options: ['Kerta mulih', 'Kréta jawa', 'Kreteg jebol', 'Kraton mulya'],
       correctIndex: 1,
       explanation:
-          'ꦏꦿꦺ (kre mawa taling lan cakra) + ꦠ (ta) + ꦥꦸꦭꦁ (pulang) = "kréta pulang".',
+          'ꦏꦿꦺ (kré mawa taling lan cakra) + ꦠ (ta) + ꦗꦮ (jawa) = "kréta jawa".',
       sourceReference: 'Gladhen Maca Ukara Aksara Jawa Kompleks',
     ),
     QuizQuestion(
@@ -973,7 +973,7 @@ class Unit3Questions {
       difficulty: QuizDifficulty.sangatMahir,
       type: QuestionType.glyphIdentify,
       prompt:
-          '[Evaluasi U3] Nalika nulis ukara "Bapak tindak pasar", aksara Jawa kang mbutuhake pasangan aksara yaiku aksara...',
+          '[Evaluasi U3] Nalika nulis ukara "Bapak tindak pasar", aksara Jawa sawise tembung "tindak" kang mbutuhake pasangan aksara yaiku...',
       glyph: '',
       options: [
         'Aksara Pa amarga sawise aksara Ka sigeg (mati) ing tindak',

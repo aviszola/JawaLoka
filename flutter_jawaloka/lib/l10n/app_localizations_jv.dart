@@ -26,7 +26,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get langSelectJvSub => 'Basa Jawa';
 
   @override
-  String get langSelectIdSub => 'Bawaan';
+  String get langSelectIdSub => 'Gawan';
 
   @override
   String get langSelectEnSub => 'Kanggo para pambelajar saindenging jagad';
@@ -104,41 +104,42 @@ class AppLocalizationsJv extends AppLocalizations {
   String get validationPasswordEmpty => 'Tembung sandi ora kena kothong';
 
   @override
-  String get validationNameTooShort => 'Nama minimal 2 karakter';
+  String get validationNameTooShort => 'Jeneng paling sithik 2 aksara';
 
   @override
-  String get validationNameTooLong => 'Nama maksimal 30 karakter';
+  String get validationNameTooLong => 'Jeneng paling akeh 30 aksara';
 
   @override
   String get validationNameInvalidChars =>
-      'Nama hanya boleh berisi huruf, tanda hubung, dan spasi';
+      'Jeneng mung oleh isi aksara, tandha hubung, lan spasi';
 
   @override
-  String get validationEmailEmpty => 'Email tidak boleh kosong';
+  String get validationEmailEmpty => 'Email ora oleh kosong';
 
   @override
-  String get validationEmailTooLong => 'Email maksimal 254 karakter';
+  String get validationEmailTooLong => 'Email paling akeh 254 karakter';
 
   @override
-  String get validationPasswordTooLong => 'Kata sandi maksimal 64 karakter';
+  String get validationPasswordTooLong =>
+      'Tembung sandhi paling akeh 64 karakter';
 
   @override
   String get validationPasswordWhitespaceOnly =>
-      'Kata sandi tidak boleh hanya berisi spasi';
+      'Tembung sandhi ora oleh mung isi spasi';
 
   @override
-  String get validationTranslationEmpty => 'Teks terjemahan tidak boleh kosong';
+  String get validationTranslationEmpty => 'Teks jarwan ora oleh kosong';
 
   @override
   String get validationTranslationTooLong =>
-      'Teks terjemahan maksimal 200 karakter';
+      'Teks jarwan paling akeh 200 karakter';
 
   @override
-  String get validationDrawingEmpty => 'Goreskan aksara terlebih dahulu';
+  String get validationDrawingEmpty => 'Goresna aksara dhisik';
 
   @override
   String get validationDrawingTooShort =>
-      'Goresan terlalu pendek, tulis aksara lebih lengkap';
+      'Goresan kecendhaken, tulisen aksara luwih jangkep';
 
   @override
   String get loginTitle => 'Mlebu menyang akunmu';
@@ -205,10 +206,10 @@ class AppLocalizationsJv extends AppLocalizations {
   String get registerButton => 'Ndhaptar';
 
   @override
-  String get registerTermsPrefix => 'Dengan mendaftar, kamu menyetujui ';
+  String get registerTermsPrefix => 'Kanthi ndhaptar, sampeyan sarujuk marang ';
 
   @override
-  String get registerPrivacyPolicy => 'Kebijakan Privasi';
+  String get registerPrivacyPolicy => 'Kawicaksanan Privasi';
 
   @override
   String get registerAlreadyHaveAccount => 'Wis duwe akun? ';
@@ -223,7 +224,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get authSkipToLearn => 'Lumpati & Wiwit Sinau';
 
   @override
-  String get navHome => 'Beranda';
+  String get navHome => 'Omah';
 
   @override
   String get navLearn => 'Sinau';
@@ -232,10 +233,10 @@ class AppLocalizationsJv extends AppLocalizations {
   String get navQuest => 'Gladhen';
 
   @override
-  String get navQuiz => 'Misi';
+  String get navQuiz => 'Ayahan';
 
   @override
-  String get navProfile => 'Profil';
+  String get navProfile => 'Dhiri';
 
   @override
   String get homeGreetingMorning => 'Sugeng enjang';
@@ -260,16 +261,16 @@ class AppLocalizationsJv extends AppLocalizations {
   }
 
   @override
-  String get homeWeeklyStripTitle => 'Aktivitas Misi Minggu Iki';
+  String get homeWeeklyStripTitle => 'Kagiyatan Ayahan Minggu Iki';
 
   @override
   String homeWeeklyCompletedCount(int count) {
-    return '$count misi rampung';
+    return '$count ayahan rampung';
   }
 
   @override
   String homeWeeklyStreakInfo(int count) {
-    return 'Streak misi $count dina aktif. Rampungake misi saben dina kanggo njaga streak.';
+    return 'Streak ayahan $count dina aktif. Rampungna ayahan saben dina kanggo njaga streak.';
   }
 
   @override
@@ -298,7 +299,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String homeHeroQuestTarget(int percent) {
-    return 'Target: ≥$percent% Presisi';
+    return 'Ancas: ≥$percent% Trep';
   }
 
   @override
@@ -312,7 +313,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get homeHeroQuestButton => 'Miwiti Nggambar';
 
   @override
-  String get homeContinueQuizTitle => 'Nglajengaken Misi';
+  String get homeContinueQuizTitle => 'Nglajengaken Ayahan';
 
   @override
   String get homeContinueQuizLevel => 'Tataran: Wasis';
@@ -322,11 +323,11 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String homeContinueQuizProgress(int completed) {
-    return '$completed saking 10 bab misi sampun rampung';
+    return '$completed saking 10 bab ayahan sampun rampung';
   }
 
   @override
-  String get homeContinueQuizButton => 'Bikak Dalan Misi';
+  String get homeContinueQuizButton => 'Bikak Dalan Ayahan';
 
   @override
   String get homeQuickLearnTitle => 'Sinau Cepet';
@@ -347,7 +348,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get homeQuickLearnAksaraSub => 'Hanacaraka';
 
   @override
-  String get homeQuickLearnTranslator => 'Penerjemah';
+  String get homeQuickLearnTranslator => 'Panjarwa';
 
   @override
   String get homeQuickLearnTranslatorSub => 'Ngoko-Krama';
@@ -400,14 +401,14 @@ class AppLocalizationsJv extends AppLocalizations {
   String get learnModuleVocabLabel => '120 tembung sampun rampung';
 
   @override
-  String get learnModuleTranslatorTitle => 'Penerjemah Basa';
+  String get learnModuleTranslatorTitle => 'Panjarwa Basa';
 
   @override
   String get learnModuleTranslatorSubtitle =>
       'Jarwan rong arah Indonesia, Ngoko, lan Krama';
 
   @override
-  String get learnModuleTranslatorLabel => 'Siap Diagem';
+  String get learnModuleTranslatorLabel => 'Siap Dipigunakake';
 
   @override
   String get learnModuleEtiquetteTitle => 'Unggah-Ungguh Basa';
@@ -454,7 +455,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get difficultySangatMahir => 'Linuwih';
 
   @override
-  String get quizPathTitle => 'Dalan Misi';
+  String get quizPathTitle => 'Dalan Ayahan';
 
   @override
   String quizCompletedBadge(int count) {
@@ -504,11 +505,11 @@ class AppLocalizationsJv extends AppLocalizations {
     int totalQuizzes,
     int questionCount,
   ) {
-    return 'Misi $quizIndex saking $totalQuizzes · $questionCount pitakenan';
+    return 'Ayahan $quizIndex saking $totalQuizzes · $questionCount pitakenan';
   }
 
   @override
-  String get quizBottomSheetStart => 'Miwiti Misi';
+  String get quizBottomSheetStart => 'Miwiti Ayahan';
 
   @override
   String get quizBottomSheetLater => 'Mangke rumiyin';
@@ -520,7 +521,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String quizOptionSemantics(String letter, String option) {
-    return 'Pilihan $letter: $option';
+    return 'Pamilihan $letter: $option';
   }
 
   @override
@@ -548,11 +549,11 @@ class AppLocalizationsJv extends AppLocalizations {
   String get quizFinish => 'Rampung';
 
   @override
-  String get quizResultAwesome => 'Luar Biasa!';
+  String get quizResultAwesome => 'Linuwih!';
 
   @override
   String quizResultStreakBanner(int days) {
-    return 'Streak misi aktif: $days dina';
+    return 'Streak ayahan aktif: $days dina';
   }
 
   @override
@@ -565,10 +566,10 @@ class AppLocalizationsJv extends AppLocalizations {
   String get quizResultAccuracy => 'Katelitian';
 
   @override
-  String get quizResultBackHome => 'Wangsul dhateng Beranda';
+  String get quizResultBackHome => 'Wangsul dhateng Omah';
 
   @override
-  String get quizResultRetry => 'Baleni misi';
+  String get quizResultRetry => 'Baleni ayahan';
 
   @override
   String get drawingTitle => 'Gladhen Nulis';
@@ -623,17 +624,17 @@ class AppLocalizationsJv extends AppLocalizations {
   String get dailyResultYourDrawing => 'Seratan panjenengan';
 
   @override
-  String get dailyResultTargetScript => 'Aksara Target';
+  String get dailyResultTargetScript => 'Aksara Ancas';
 
   @override
-  String get dailyResultStatusPassed => 'Status: Lulus';
+  String get dailyResultStatusPassed => 'Kahanan: Lulus';
 
   @override
   String get dailyResultStatusFailed => 'Status: Dereng Lulus';
 
   @override
   String dailyResultRequirement(int percent, int threshold) {
-    return 'Kemiripan $percent% (Syarat lulus: ≥ $threshold%)';
+    return 'Kamiripan $percent% (Sarat lulus: ≥ $threshold%)';
   }
 
   @override
@@ -643,7 +644,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get dailyResultTryAgain => 'Cobi Malih';
 
   @override
-  String get profileTitle => 'Profil';
+  String get profileTitle => 'Dhiri';
 
   @override
   String get profileSettingsSemantics => 'Setelan';
@@ -674,7 +675,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String profileQuizzesThisWeek(int count) {
-    return '$count Misi Minggu Iki';
+    return '$count Ayahan Minggu Iki';
   }
 
   @override
@@ -684,7 +685,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get profileBadgeOpenCount => '1 / 4 Binuka';
 
   @override
-  String get profileBadgeCollection => 'Koleksi Prestasi';
+  String get profileBadgeCollection => 'Kumpulan Prestasi';
 
   @override
   String get profileBadgeStreak7Title => 'Streak 7 Dina';
@@ -699,7 +700,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get profileBadgeLevelUpHighlight => 'Munggah Level';
 
   @override
-  String get profileBadgeAksaraCompleteTitle => 'Tamat Aksara';
+  String get profileBadgeAksaraCompleteTitle => 'Rampung Aksara';
 
   @override
   String get profileBadgeEasyLevel => 'Tataran Gampang';
@@ -711,10 +712,10 @@ class AppLocalizationsJv extends AppLocalizations {
   String get profileBadgeLocked => 'Kakonci';
 
   @override
-  String get profileChooseBlangkonButton => 'Pilih Blangkon';
+  String get profileChooseBlangkonButton => 'Milih Blangkon';
 
   @override
-  String get blangkonTitle => 'Pilih Blangkon';
+  String get blangkonTitle => 'Milih Blangkon';
 
   @override
   String get blangkonSaveButton => 'Simpen Pilihan';
@@ -749,10 +750,10 @@ class AppLocalizationsJv extends AppLocalizations {
   String get blangkonDescPusaka => 'Mahakarya tradisi kanthi ornamen emas';
 
   @override
-  String get profileChooseBusanaButton => 'Pilih Busana';
+  String get profileChooseBusanaButton => 'Milih Busana';
 
   @override
-  String get busanaTitle => 'Pilih Busana';
+  String get busanaTitle => 'Milih Busana';
 
   @override
   String get busanaSaveButton => 'Simpen Pilihan';
@@ -797,7 +798,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get busanaNamePusaka => 'Betawi Encim';
 
   @override
-  String get levelUpMicroTag => 'PENCAPAIAN JAWALOKA';
+  String get levelUpMicroTag => 'GAYUHAN JAWALOKA';
 
   @override
   String levelUpTitle(int level) {
@@ -848,17 +849,17 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get settingsPrivacyPolicyContent =>
-      'Aplikasi JawaLoka (versi awal) menyimpan data profil, pilihan bahasa, koleksi blangkon, dan progres belajar secara lokal di perangkat Anda. Penerjemah offline tidak mengirim data ke luar perangkat. Hanya jika Anda menekan tombol \"Terjemahkan dengan AI\", teks yang diketik dikirim ke Google Gemini untuk diterjemahkan. Aplikasi ini tidak memuat iklan maupun analitik. Menghapus data aplikasi atau mencopot pemasangan akan menghapus seluruh data lokal tersebut.';
+      'Aplikasi JawaLoka (versi wiwitan) nyimpen data dhiri, pamilihan basa, kumpulan blangkon, lan kamajuan sinau sacara lokal ing piranti panjenengan. Panjarwa offline ora ngirim data metu saka piranti. Mung yen panjenengan mencet tombol \"Jarwakake nganggo AI\", teks kang diketik dikirim menyang Google Gemini kanggo dijarwakake. Aplikasi iki ora ngemot iklan utawa analitik. Mbusek data aplikasi utawa nyopot instalasi bakal mbusek kabeh data lokal kasebut.';
 
   @override
   String get settingsDataCredit =>
-      'Kamus: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa, Narolis, Prayanta; CC BY 4.0). Sebagian entri disesuaikan.';
+      'Kamus: Starter Kit (CC BY 4.0) & LorthGyu (MIT). Sebagean entri disesuaikan.';
 
   @override
   String get settingsClose => 'Tutup';
 
   @override
-  String get settingsAccountRow => 'Akun';
+  String get settingsAccountRow => 'Data Dhiri';
 
   @override
   String get settingsAccountDialogTitle => 'Rerincen Akun';
@@ -870,7 +871,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get settingsAccountLocalNote => 'Akun lokal wonten ing piranti menika';
 
   @override
-  String get translatorTitle => 'Penerjemah';
+  String get translatorTitle => 'Panjarwa';
 
   @override
   String get translatorInputLabel => 'LEBETAKEN TEKS';
@@ -880,7 +881,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String translatorBasicPhrasesHint(String examples) {
-    return 'Contoh frasa dasar yang didukung: $examples.';
+    return 'Tuladha ukara dhasar kang kasedhiya: $examples.';
   }
 
   @override
@@ -912,7 +913,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get translatorClearTooltip => 'Busek';
 
   @override
-  String get translatorMockUnavailable => 'Belum tersedia pada versi contoh';
+  String get translatorMockUnavailable => 'Durung kasedhiya ing kamus iki';
 
   @override
   String get translatorLangJvNgoko => 'Jawa Ngoko';
@@ -936,7 +937,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get aksaraDetailExampleHeader => 'Tuladha Tembung';
 
   @override
-  String get aksaraDetailSandanganHeader => 'Sandangan';
+  String get aksaraDetailSandanganHeader => 'Sandhangan';
 
   @override
   String get aksaraDetailSandanganSubtitle =>
@@ -970,7 +971,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get aksaraDetailWritingButton => 'Gladhen Nulis';
 
   @override
-  String get aksaraDetailQuizButton => 'Miwiti Misi';
+  String get aksaraDetailQuizButton => 'Miwiti Ayahan';
 
   @override
   String get vocabDetailTitle => 'Kosa Tembung';
@@ -1023,7 +1024,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get vocabDetailFavoriteMarked => 'Ditandhani Favorit';
 
   @override
-  String get quizMilestoneNode => 'Node Tonggak';
+  String get quizMilestoneNode => 'Titik Tonggak';
 
   @override
   String quizNodeLockedToast(String topic) {
@@ -1089,16 +1090,16 @@ class AppLocalizationsJv extends AppLocalizations {
   String get quizCloseSemantics => 'Tutup';
 
   @override
-  String get quizExitDialogTitle => 'Metu saka Misi?';
+  String get quizExitDialogTitle => 'Metu saka Ayahan?';
 
   @override
-  String get quizExitDialogMessage => 'Progres misi iki ora bakal disimpen.';
+  String get quizExitDialogMessage => 'Progres ayahan iki ora bakal disimpen.';
 
   @override
   String get quizExitDialogConfirm => 'Metu';
 
   @override
-  String get quizExitDialogCancel => 'Banjurake misi';
+  String get quizExitDialogCancel => 'Banjurake ayahan';
 
   @override
   String get learnUnggahSheetTitle => 'Panganggoning Basa';
@@ -1165,7 +1166,7 @@ class AppLocalizationsJv extends AppLocalizations {
 
   @override
   String get learnProverb5Meaning =>
-      'Karukunan nuwuhake kasantosan lan kakuwatan, pasulayan ngendhangake karusakan.';
+      'Karukunan nuwuhake kasantosan lan kakuwatan, pasulayan ndadekake karusakan.';
 
   @override
   String get learnDailyWordOmah => 'Griya';
@@ -1180,7 +1181,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get learnDailyWordLemah => 'Siti';
 
   @override
-  String get learnDailyWordLangit => 'Awatara / Langit';
+  String get learnDailyWordLangit => 'Akasa / Langit';
 
   @override
   String get vocabDetailLangId => 'Basa Indonesia';
@@ -1192,7 +1193,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get vocabDetailLangJv => 'Basa Jawa (Ngoko)';
 
   @override
-  String get vocabDetailSentence1Translation => 'Griyaku wonten ing dhusun';
+  String get vocabDetailSentence1Translation => 'Griya kula wonten ing dhusun';
 
   @override
   String get vocabDetailSentence2Translation => 'Griya menika ageng sanget';
@@ -1201,7 +1202,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get aksaraDetailExampleHaraMeaning => 'Pang';
 
   @override
-  String get aksaraDetailExampleHawuMeaning => 'Pawon / Hawu';
+  String get aksaraDetailExampleHawuMeaning => 'Awu / Pawon';
 
   @override
   String get aksaraDetailExampleHasthaMeaning => 'Wolu';
@@ -1672,7 +1673,7 @@ class AppLocalizationsJv extends AppLocalizations {
       'Tantangan puncak nggabungake aksara, undha-usuk basa, lan kawruh luhur.';
 
   @override
-  String get profileSetupBadgeTag => 'PROFIL PANGANGGO';
+  String get profileSetupBadgeTag => 'DATA DHIRI PANGANGGO';
 
   @override
   String get profileSetupTitle => 'Isi Data Dhiri';
@@ -1690,7 +1691,7 @@ class AppLocalizationsJv extends AppLocalizations {
       'Karakter Putri (Kebaya lan Sanggul)';
 
   @override
-  String get profileSetupSelectCharacter => 'Pilih Karakter';
+  String get profileSetupSelectCharacter => 'Milih Karakter';
 
   @override
   String get profileSetupMaleTitle => 'Putra';
@@ -1734,7 +1735,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get profileSetupSkipButton => 'Liwati lan Mlebu Cepet';
 
   @override
-  String get profileSetupDefaultGuestName => 'Siswa Jawa';
+  String get profileSetupDefaultGuestName => 'Pambelajar Jawa';
 
   @override
   String get settingsProfileDialogTitle => 'Data Dhiri lan Karakter';
@@ -1758,7 +1759,7 @@ class AppLocalizationsJv extends AppLocalizations {
   String get settingsProfileDialogEditButton => 'Owahi Data';
 
   @override
-  String get drawingChooseAksaraButton => 'Pilih aksara';
+  String get drawingChooseAksaraButton => 'Milih aksara';
 
   @override
   String get drawingPickerTitle => 'Pilih Aksara Dhasar';
@@ -1779,70 +1780,71 @@ class AppLocalizationsJv extends AppLocalizations {
   String get translatorLangAuto => 'Otomatis';
 
   @override
-  String get translatorAiButton => 'Terjemahkan dengan AI';
+  String get translatorAiButton => 'Terjemahna nganggo AI';
 
   @override
   String get translatorAiPrivacyNotice =>
-      'Teks yang kamu ketik dikirim ke Google Gemini.';
+      'Teks sing kokketik dikirim menyang Google Gemini.';
 
   @override
-  String get translatorAiDisabledNotice => 'Fitur AI belum diaktifkan';
+  String get translatorAiDisabledNotice => 'Fitur AI durung diaktifake';
 
   @override
   String get translatorAiResultLabel =>
-      'Terjemahan AI (perkiraan), belum diperiksa penutur Jawa';
+      'Jarwan AI (prakiraan), durung dipriksa penutur Jawa';
 
   @override
   String translatorAiResultMeta(String language, String confidence) {
-    return 'Terdeteksi: $language • Keyakinan: $confidence';
+    return 'Kadhiteksi: $language • Kayakinan: $confidence';
   }
 
   @override
-  String get translatorAiDetectedUnknown => 'Tidak diketahui';
+  String get translatorAiDetectedUnknown => 'Ora dingerteni';
 
   @override
-  String get translatorAiConfidenceHigh => 'Tinggi';
+  String get translatorAiConfidenceHigh => 'Dhuwur';
 
   @override
-  String get translatorAiConfidenceMedium => 'Sedang';
+  String get translatorAiConfidenceMedium => 'Sedhengan';
 
   @override
-  String get translatorAiConfidenceLow => 'Rendah';
+  String get translatorAiConfidenceLow => 'Asor';
 
   @override
-  String get translatorAiErrorSameLanguage => 'Bahasa sumber dan tujuan sama';
+  String get translatorAiErrorSameLanguage =>
+      'Basa sumber lan basa tujuwan padha';
 
   @override
   String get translatorAiErrorNoInternet =>
-      'Tidak ada koneksi internet. Coba lagi nanti atau gunakan kamus offline.';
+      'Ora ana sambungan internet. Coba maneh mengko utawa gunakna kamus offline.';
 
   @override
   String get translatorAiErrorInvalidKey =>
-      'Kunci API AI tidak valid atau ditolak (401/403).';
+      'Kunci API AI ora sah utawa ditolak (401/403).';
 
   @override
   String get translatorAiErrorQuota =>
-      'Kuota permintaan AI tercapai (429). Coba lagi nanti.';
+      'Kuota panjaluk AI wis kebak (429). Coba maneh mengko.';
 
   @override
   String get translatorAiErrorTimeout =>
-      'Permintaan AI melebihi batas waktu 15 detik.';
+      'Panjaluk AI ngluwihi wates wektu 15 detik.';
 
   @override
   String get translatorAiErrorBlockedOrEmpty =>
-      'Respons AI kosong atau diblokir oleh filter keamanan.';
+      'Wangsulan AI kosong utawa diblokir dening saringan keamanan.';
 
   @override
   String get translatorAiErrorOther =>
-      'Terjemahan AI gagal diproses. Coba lagi atau gunakan kamus offline.';
+      'Jarwan AI gagal diproses. Coba maneh utawa gunakna kamus offline.';
 
   @override
   String homeStreakBlockSubtitle(int count) {
-    return '$count misi rampung minggu iki';
+    return '$count ayahan rampung minggu iki';
   }
 
   @override
-  String get quizPathBannerTitle => 'Nglajengaken Misi';
+  String get quizPathBannerTitle => 'Nglajengaken Ayahan';
 
   @override
   String quizPathBannerProgress(int completed, int total) {
@@ -1871,4 +1873,33 @@ class AppLocalizationsJv extends AppLocalizations {
   String homeHeroQuestProgressRatio(int done, int total) {
     return '$done/$total';
   }
+
+  @override
+  String get translatorRegisterNgoko => 'Ngoko';
+
+  @override
+  String get translatorRegisterKramaLugu => 'Krama Lugu (awak dhewe / umum)';
+
+  @override
+  String get translatorRegisterKramaInggil => 'Krama Inggil (ngurmati)';
+
+  @override
+  String get translatorRegisterKramaAndhap =>
+      'Krama Andhap (andhap asor marang kang kinurmatan)';
+
+  @override
+  String get translatorUncertainBadge =>
+      'Perlu digatekake konteks / tembung durung ing kamus';
+
+  @override
+  String get homeWisdomBadge => 'SESANTI PIWULANG';
+
+  @override
+  String get homeWisdomNextTooltip => 'Ganti Paribasan';
+
+  @override
+  String get homeWisdomReadMore => 'Waca Makna Luhur lan Sumber';
+
+  @override
+  String get homeWisdomClose => 'Tutup Katrangan';
 }

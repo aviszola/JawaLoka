@@ -54,6 +54,8 @@ void main() {
                 ...AppLocalizationDelegates.delegates,
               ],
               routes: {
+                '/profile-setup': (ctx) =>
+                    const Scaffold(body: Text('Profile Setup Target')),
                 '/register': (ctx) =>
                     const Scaffold(body: Text('Register Screen Target')),
                 '/login': (ctx) =>
@@ -178,7 +180,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(controller.hasChosenLanguage, isTrue);
-      expect(find.text('Register Screen Target'), findsOneWidget);
+      expect(find.text('Profile Setup Target'), findsOneWidget);
     });
   });
 
@@ -320,10 +322,10 @@ void main() {
     testWidgets('LoginScreen renders localized texts in all three languages', (
       tester,
     ) async {
-      for (final (locale, title, forgotPass) in [
-        (const Locale('id'), 'Masuk ke akunmu', 'Lupa kata sandi?'),
-        (const Locale('jv'), 'Mlebu menyang akunmu', 'Lali tembung sandi?'),
-        (const Locale('en'), 'Sign in to your account', 'Forgot password?'),
+      for (final (locale, title, guestLabel) in [
+        (const Locale('id'), 'Masuk ke akunmu', 'Lanjut sebagai Tamu'),
+        (const Locale('jv'), 'Mlebu menyang akunmu', 'Lajeng dados Tamu'),
+        (const Locale('en'), 'Sign in to your account', 'Continue as Guest'),
       ]) {
         final storage = InMemoryLocalePreferences(
           initialLocale: locale.languageCode,
@@ -337,7 +339,7 @@ void main() {
         await tester.pumpAndSettle();
 
         expect(find.text(title), findsOneWidget);
-        expect(find.text(forgotPass), findsOneWidget);
+        expect(find.text(guestLabel), findsOneWidget);
       }
     });
 
@@ -384,12 +386,15 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        // Submit empty form in Indonesian
+        // Submit too-short nickname in Indonesian
+        await tester.enterText(find.byType(TextField).first, 'A');
+        await tester.pump();
+        await tester.drag(find.byType(CustomScrollView), const Offset(0, -500));
+        await tester.pumpAndSettle();
         await tester.tap(find.byType(PrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(find.text('Kata sandi tidak boleh kosong'), findsOneWidget);
-        expect(find.text('Format email belum benar'), findsOneWidget);
+        expect(find.text('Nama minimal 2 karakter'), findsOneWidget);
 
         // Switch to English and submit again
         await controller.setLocale(const Locale('en'));
@@ -397,8 +402,7 @@ void main() {
         await tester.tap(find.byType(PrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(find.text('Password cannot be empty'), findsOneWidget);
-        expect(find.text('Invalid email format'), findsOneWidget);
+        expect(find.text('Name must be at least 2 characters'), findsOneWidget);
 
         // Switch to Javanese and submit again
         await controller.setLocale(const Locale('jv'));
@@ -406,8 +410,7 @@ void main() {
         await tester.tap(find.byType(PrimaryButton));
         await tester.pumpAndSettle();
 
-        expect(find.text('Tembung sandi ora kena kothong'), findsOneWidget);
-        expect(find.text('Format email durung bener'), findsOneWidget);
+        expect(find.text('Jeneng paling sithik 2 aksara'), findsOneWidget);
       },
     );
 
@@ -570,16 +573,16 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        // Bottom nav labels in Javanese
-        expect(find.text('Beranda'), findsOneWidget);
+        // Bottom nav labels in Javanese (all 5 tabs localized)
+        expect(find.text('Omah'), findsOneWidget);
         expect(find.text('Sinau'), findsOneWidget);
-        expect(find.text('Misi'), findsOneWidget);
-        expect(find.text('Kuis'), findsOneWidget);
-        expect(find.text('Profil'), findsOneWidget);
+        expect(find.text('Gladhen'), findsOneWidget);
+        expect(find.text('Ayahan'), findsOneWidget);
+        expect(find.text('Dhiri'), findsOneWidget);
 
-        // Home Header in Javanese
+        // Home Header & Streak Block in Javanese
         expect(find.text('Sugeng rawuh, Dimas!'), findsOneWidget);
-        expect(find.text('5 dina'), findsOneWidget);
+        expect(find.textContaining('ayahan rampung minggu iki'), findsOneWidget);
       },
     );
 
@@ -598,9 +601,9 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('Profil'), findsOneWidget);
-      expect(find.text('Koleksi Prestasi'), findsOneWidget);
-      expect(find.text('Pilih Blangkon'), findsOneWidget);
+      expect(find.text('Dhiri'), findsOneWidget);
+      expect(find.text('Kumpulan Prestasi'), findsOneWidget);
+      expect(find.text('Milih Blangkon'), findsOneWidget);
       expect(find.text('Binuka'), findsOneWidget);
     });
 
@@ -622,7 +625,7 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('Penerjemah'), findsOneWidget);
+      expect(find.text('Panjarwa'), findsOneWidget);
       expect(find.text('LEBETAKEN TEKS'), findsOneWidget);
       expect(find.text('Jarwakake'), findsOneWidget);
       expect(find.text('ASILING JARWAN'), findsOneWidget);
@@ -649,7 +652,7 @@ void main() {
       expect(find.text('Tuladha Tembung'), findsOneWidget);
       expect(find.text('Carane Nulis'), findsOneWidget);
       expect(find.text('Gladhen Nulis'), findsOneWidget);
-      expect(find.text('Miwiti Misi'), findsOneWidget);
+      expect(find.text('Miwiti Ayahan'), findsOneWidget);
     });
 
     testWidgets(
@@ -867,7 +870,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        expect(find.text('Dalan Misi'), findsOneWidget);
+        expect(find.text('Dalan Ayahan'), findsOneWidget);
         expect(
           find.text('Unit 1: Uluk Salam lan Tata Krama Awal'),
           findsOneWidget,
@@ -881,7 +884,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 300));
 
-        expect(find.text('Miwiti Misi'), findsOneWidget);
+        expect(find.text('Miwiti Ayahan'), findsOneWidget);
         expect(find.text('Mangke rumiyin'), findsOneWidget);
 
         // Close bottom sheet
@@ -965,13 +968,13 @@ void main() {
         await tester.tap(find.byIcon(Icons.close_rounded));
         await tester.pumpAndSettle();
 
-        expect(find.text('Metu saka Misi?'), findsOneWidget);
+        expect(find.text('Metu saka Ayahan?'), findsOneWidget);
         expect(
-          find.text('Progres misi iki ora bakal disimpen.'),
+          find.text('Progres ayahan iki ora bakal disimpen.'),
           findsOneWidget,
         );
         expect(find.text('Metu'), findsOneWidget);
-        expect(find.text('Banjurake misi'), findsOneWidget);
+        expect(find.text('Banjurake ayahan'), findsOneWidget);
       },
     );
 
@@ -1006,9 +1009,9 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 500));
 
-        expect(find.text('Luar Biasa!'), findsOneWidget);
-        expect(find.text('Wangsul dhateng Beranda'), findsOneWidget);
-        expect(find.text('Baleni misi'), findsOneWidget);
+        expect(find.text('Linuwih!'), findsOneWidget);
+        expect(find.text('Wangsul dhateng Omah'), findsOneWidget);
+        expect(find.text('Baleni ayahan'), findsOneWidget);
         expect(find.text('Pitakenan Leres'), findsOneWidget);
         expect(find.text('Katelitian'), findsOneWidget);
 
@@ -1042,25 +1045,37 @@ void main() {
         );
         await tester.pumpAndSettle();
 
+        // Indonesian: all 5 bottom nav tabs
+        expect(find.text('Beranda'), findsOneWidget);
         expect(find.text('Belajar'), findsOneWidget);
-        expect(find.text('Sinau'), findsNothing);
-        expect(find.text('Learn'), findsNothing);
+        expect(find.text('Latihan'), findsOneWidget);
+        expect(find.text('Misi'), findsOneWidget);
+        expect(find.text('Profil'), findsOneWidget);
 
-        // Switch to Javanese
+        // Switch to Javanese: all 5 bottom nav tabs switch to Javanese
         await controller.setLocale(const Locale('jv'));
         await tester.pumpAndSettle();
 
+        expect(find.text('Omah'), findsOneWidget);
         expect(find.text('Sinau'), findsOneWidget);
-        expect(find.text('Belajar'), findsNothing);
-        expect(find.text('Learn'), findsNothing);
+        expect(find.text('Gladhen'), findsOneWidget);
+        expect(find.text('Ayahan'), findsOneWidget);
+        expect(find.text('Dhiri'), findsOneWidget);
+        expect(find.text('Beranda'), findsNothing);
+        expect(find.text('Misi'), findsNothing);
+        expect(find.text('Profil'), findsNothing);
 
-        // Switch to English
+        // Switch to English: all 5 bottom nav tabs switch to English
         await controller.setLocale(const Locale('en'));
         await tester.pumpAndSettle();
 
+        expect(find.text('Home'), findsOneWidget);
         expect(find.text('Learn'), findsOneWidget);
+        expect(find.text('Practice'), findsOneWidget);
+        expect(find.text('Mission'), findsOneWidget);
+        expect(find.text('Profile'), findsOneWidget);
+        expect(find.text('Omah'), findsNothing);
         expect(find.text('Sinau'), findsNothing);
-        expect(find.text('Belajar'), findsNothing);
       },
     );
 
@@ -1277,7 +1292,7 @@ void main() {
           expect(find.text('Basa Inggris'), findsOneWidget);
           expect(find.text('Basa Jawa (Ngoko)'), findsOneWidget);
           expect(find.text('Tuladha Ukara'), findsOneWidget);
-          expect(find.text('Griyaku wonten ing dhusun'), findsOneWidget);
+          expect(find.text('Griya kula wonten ing dhusun'), findsOneWidget);
           expect(find.text('Tembung Sabanjure'), findsOneWidget);
 
           // Switch to English (en)
@@ -1332,10 +1347,10 @@ void main() {
           expect(find.text('Aksara Jawa'), findsOneWidget);
           expect(find.text('Tuladha Tembung'), findsOneWidget);
           expect(find.text('Pang'), findsOneWidget);
-          expect(find.text('Pawon / Hawu'), findsOneWidget);
+          expect(find.text('Awu / Pawon'), findsOneWidget);
           expect(find.text('Wolu'), findsOneWidget);
           expect(find.text('Gladhen Nulis'), findsOneWidget);
-          expect(find.text('Miwiti Misi'), findsOneWidget);
+          expect(find.text('Miwiti Ayahan'), findsOneWidget);
 
           // Switch to English (en)
           await controller.setLocale(const Locale('en'));
@@ -1431,7 +1446,7 @@ void main() {
         await controller.setLocale(const Locale('jv'));
         await tester.pumpAndSettle();
 
-        expect(find.text('Penerjemah'), findsOneWidget);
+        expect(find.text('Panjarwa'), findsOneWidget);
         expect(find.text('LEBETAKEN TEKS'), findsOneWidget);
         expect(find.text('Jarwakake'), findsOneWidget);
         expect(find.text('ASILING JARWAN'), findsOneWidget);
@@ -1529,7 +1544,7 @@ void main() {
         expect(find.text('Asil Gladhen'), findsOneWidget);
         expect(find.text('Pabandhingan Tulisan'), findsOneWidget);
         expect(find.text('Seratan panjenengan'), findsOneWidget);
-        expect(find.text('Aksara Target'), findsOneWidget);
+        expect(find.text('Aksara Ancas'), findsOneWidget);
         expect(find.text('Nglajengaken Sinau →'), findsOneWidget);
         expect(find.text('Cobi Malih'), findsOneWidget);
 
@@ -1598,7 +1613,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 400));
 
-        expect(find.text('Pilih Blangkon'), findsOneWidget);
+        expect(find.text('Milih Blangkon'), findsOneWidget);
         expect(find.text('Simpen Pilihan'), findsOneWidget);
         expect(find.text('Klasik, mondolan bunder nonjol'), findsOneWidget);
 
@@ -1645,7 +1660,7 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 1000));
 
-        expect(find.text('PENCAPAIAN JAWALOKA'), findsOneWidget);
+        expect(find.text('GAYUHAN JAWALOKA'), findsOneWidget);
         expect(find.text('Level 5!'), findsOneWidget);
         expect(find.text('Agem Blangkon'), findsOneWidget);
         expect(find.text('Mangke rumiyin'), findsOneWidget);

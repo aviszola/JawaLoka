@@ -94,7 +94,7 @@ class Unit5Questions {
       ],
       correctIndex: 0,
       explanation:
-          'Ing Serat Wulangreh pupuh Pangkur diwulangake: "Miwah ta ing saben dina, den samya sira anirua...".',
+          'Ing Serat Wulangreh pupuh Pangkur diwulangake: "Sekar Pangkur kang winarna... miwah ingkang tata krama, den kaesthi siyang ratri".',
       sourceReference: 'Serat Wulangreh dening Pakubuwana IV',
     ),
     QuizQuestion(
@@ -678,7 +678,7 @@ class Unit5Questions {
       ],
       correctIndex: 0,
       explanation:
-          'Tembang Gundhul-gundhul pacul lanjute: "Nyunggi-nyunggi wakul kul, gembelengan, wakul ngglimpang segane dadi saratar".',
+          'Tembang Gundhul-gundhul pacul lanjute: "Nyunggi-nyunggi wakul kul, gembelengan, wakul ngglimpang segane dadi sak latar".',
       sourceReference: 'Tembang Dolanan Jawa Tradhisional',
     ),
     QuizQuestion(
@@ -689,7 +689,7 @@ class Unit5Questions {
       prompt: 'Tembang dolanan "Padhang bulan" ngajak bocah-bocah supaya...',
       glyph: '',
       options: [
-        'Ayo kanca dolanan ing njaba latar sinambi mensyukuri rembulan',
+        'Ayo kanca dolanan ing njaba latar sinambi nyukuri padhange rembulan',
         'Ayo padha turu sore ing kamar supaya sesuk ora kawanen tangi',
         'Sinau ngetung dhuwit asil dodolan ing pasar tradhisional',
         'Mangan sega liwet bebarengan ing wayah tengah wengi kang sepi',
@@ -752,7 +752,7 @@ class Unit5Questions {
       ],
       correctIndex: 0,
       explanation:
-          '"Enak-enak ngorok ora nyambut gawe" ngelingake supaya manungsa ora kesranan males kaya menthog.',
+          '"Enak-enak ngorok ora nyambut gawe" ngelingake supaya manungsa ora kesed lan males kaya menthog.',
       sourceReference: 'Piwulang Luhur Tembang Dolanan',
     ),
     QuizQuestion(
@@ -786,7 +786,7 @@ class Unit5Questions {
       prompt: 'Sikap "tepa slira" tegese yaiku...',
       glyph: '',
       options: [
-        'Bisa ngrasakake perasaane wong liya lan tansah ngajeni',
+        'Bisa ngrasakake rasane wong liya lan tansah ngajeni',
         'Seneng pamer kasugihan lan kepinteran marang wong liya',
         'Golek bathi kanggo awake dhewe tanpa mikirake tanggane',
         'Nyingkiri kabeh masalah kanthi ora gelem tetulung maneh',
@@ -802,7 +802,7 @@ class Unit5Questions {
       difficulty: QuizDifficulty.mudah,
       type: QuestionType.glyphIdentify,
       prompt:
-          'Yen ana tanggamu lagi nandang lelayu (kesripahan), sikap tepa slira kang bener yaiku...',
+          'Yen ana tanggamu lagi nandhang kesripahan (lelayu), sikap tepa slira kang bener yaiku...',
       glyph: '',
       options: [
         'Melu nglayat lan aweh pambiyantu kanthi rasa ikhlas',
@@ -932,7 +932,7 @@ class Unit5Questions {
       prompt: 'Dasanama saka tembung "banyu" yaiku...',
       glyph: '',
       options: [
-        'Tirta, Warih, Ranukara',
+        'Tirta, Warih, Ranu',
         'Surya, Bagaskara',
         'Maruta, Bayu',
         'Bawana, Bantala',
@@ -957,7 +957,7 @@ class Unit5Questions {
       ],
       correctIndex: 0,
       explanation:
-          'Tembung saroja nggandheng rong tembung teges padha kanggo nyanthet teges kang luwih anteb.',
+          'Tembung saroja nggandheng rong tembung teges padha kanggo ngantebake teges supaya luwih anteb.',
       sourceReference: 'Pepak Basa Jawa: Tembung Saroja',
     ),
     QuizQuestion(

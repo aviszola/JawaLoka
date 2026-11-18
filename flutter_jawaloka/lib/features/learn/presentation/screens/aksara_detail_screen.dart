@@ -495,7 +495,7 @@ class _SandanganSection extends StatelessWidget {
     _SandanganData(combined: 'ꦲꦺ', name: 'Taling', result: 'He'),
     _SandanganData(combined: 'ꦲꦺꦴ', name: 'Taling-Tarung', result: 'Ho'),
     _SandanganData(combined: 'ꦲꦼ', name: 'Pepet', result: 'Hǝ'),
-    _SandanganData(combined: 'ꦲꦃ', name: 'Visarga', result: 'Hah'),
+    _SandanganData(combined: 'ꦲꦃ', name: 'Wignyan', result: 'Hah'),
   ];
 
   @override

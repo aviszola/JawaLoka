@@ -391,13 +391,12 @@ void main() {
 
         // Question 1 of Salam Mudah:
         // prompt: 'Ukara "Sugeng enjang" diucapake nalika wayah apa?'
-        // glyph: 'ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'
         // options: ['Esuk (pagi)', 'Awan (siang)', 'Sore', 'Wengi (malam)']
         expect(
           find.text('Ukara "Sugeng enjang" diucapake nalika wayah apa?'),
           findsOneWidget,
         );
-        expect(find.text('ꦱꦸꦒꦼꦁꦲꦺꦚ꧀ꦗꦁ'), findsOneWidget);
+        expect(find.text('Esuk (pagi)'), findsOneWidget);
 
         // Select correct option: 'Esuk (pagi)' (index 0)
         await tester.tap(find.text('Esuk (pagi)'));

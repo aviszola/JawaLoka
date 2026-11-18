@@ -859,7 +859,7 @@ abstract class AppLocalizations {
   /// Subjudul modul peribahasa dan saloka
   ///
   /// In id, this message translates to:
-  /// **'Paribasan, bebasan, lan saloka warisan Jawa'**
+  /// **'Paribasan, bebasan, dan saloka warisan Jawa'**
   String get learnModuleProverbsSubtitle;
 
   /// Label progres modul peribahasa
@@ -1625,7 +1625,7 @@ abstract class AppLocalizations {
   /// Teks kredit sumber kamus di layar Pengaturan
   ///
   /// In id, this message translates to:
-  /// **'Kamus: Indonesian Javanese Dictionary Starter Kit (Rahutomo, Yunhasnawa, Narolis, Prayanta; CC BY 4.0). Sebagian entri disesuaikan.'**
+  /// **'Kamus: Starter Kit (CC BY 4.0) & LorthGyu (MIT). Sebagian entri disesuaikan.'**
   String get settingsDataCredit;
 
   /// Tombol tutup dialog
@@ -1787,7 +1787,7 @@ abstract class AppLocalizations {
   /// Judul bagian sandhangan aksara
   ///
   /// In id, this message translates to:
-  /// **'Sandangan'**
+  /// **'Sandhangan'**
   String get aksaraDetailSandanganHeader;
 
   /// Keterangan variasi vokal sandhangan aksara Ha
@@ -3379,6 +3379,60 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'{done}/{total}'**
   String homeHeroQuestProgressRatio(int done, int total);
+
+  /// Label lencana tingkat tutur Ngoko pada hasil terjemahan offline
+  ///
+  /// In id, this message translates to:
+  /// **'Ngoko'**
+  String get translatorRegisterNgoko;
+
+  /// Label lencana tingkat tutur Krama Lugu pada hasil terjemahan offline
+  ///
+  /// In id, this message translates to:
+  /// **'Krama Lugu (diri sendiri / netral)'**
+  String get translatorRegisterKramaLugu;
+
+  /// Label lencana tingkat tutur Krama Inggil pada hasil terjemahan offline
+  ///
+  /// In id, this message translates to:
+  /// **'Krama Inggil (menghormati)'**
+  String get translatorRegisterKramaInggil;
+
+  /// Label lencana tingkat tutur Krama Andhap pada hasil terjemahan offline
+  ///
+  /// In id, this message translates to:
+  /// **'Krama Andhap (merendah kepada yang dihormati)'**
+  String get translatorRegisterKramaAndhap;
+
+  /// Penanda ringkas saat hasil terjemahan offline memiliki ambiguitas konteks atau kata tak dikenal
+  ///
+  /// In id, this message translates to:
+  /// **'Perlu perhatian konteks / kata belum di kamus'**
+  String get translatorUncertainBadge;
+
+  /// Label lencana kartu piwulang budaya di Beranda
+  ///
+  /// In id, this message translates to:
+  /// **'MUTIARA PIWULANG'**
+  String get homeWisdomBadge;
+
+  /// Tooltip tombol ganti peribahasa Jawa di Beranda
+  ///
+  /// In id, this message translates to:
+  /// **'Ganti Piwulang'**
+  String get homeWisdomNextTooltip;
+
+  /// Tombol perluas penjelasan piwulang budaya
+  ///
+  /// In id, this message translates to:
+  /// **'Baca Makna Luhur & Sumber'**
+  String get homeWisdomReadMore;
+
+  /// Tombol tutup penjelasan piwulang budaya
+  ///
+  /// In id, this message translates to:
+  /// **'Tutup Makna Luhur'**
+  String get homeWisdomClose;
 }
 
 class _AppLocalizationsDelegate
