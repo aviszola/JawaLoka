@@ -317,7 +317,8 @@ class _QuizResultScreenState extends State<QuizResultScreen>
                   const SizedBox(width: 8),
                   Text(
                     context.l10n.quizResultStreakBanner(
-                      widget.result.currentStreak,
+                      ProfileScope.maybeOf(context)?.streakDays ??
+                          widget.result.currentStreak,
                     ),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w700,

@@ -5,6 +5,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_icons.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../core/progression/reward_summary.dart';
+import '../../../../core/profile/profile_scope.dart';
+import '../../../profile/presentation/screens/level_up_screen.dart';
 import '../../domain/quest_target.dart';
 
 // ─────────────────────────────────────────────────────────
@@ -490,7 +492,25 @@ class _DailyResultScreenState extends State<DailyResultScreen>
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              final summary = widget.rewardSummary;
+              final profile = ProfileScope.maybeOf(context);
+              if (summary != null &&
+                  summary.leveledUp &&
+                  profile != null &&
+                  profile.shouldCelebrateLevel(summary.newLevel)) {
+                await profile.markLevelCelebrated(summary.newLevel);
+                if (!context.mounted) return;
+                await Navigator.of(context).pushNamed(
+                  AppRouter.levelUp,
+                  arguments: LevelUpArgs(
+                    newLevel: summary.newLevel,
+                    previousLevel: summary.previousLevel,
+                    unlockedBlangkons: summary.unlockedBlangkons,
+                  ),
+                );
+              }
+              if (!context.mounted) return;
               if (Navigator.of(context).canPop()) {
                 Navigator.of(context).popUntil(
                   (route) =>
