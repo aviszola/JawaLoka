@@ -107,6 +107,7 @@ class QuizSession {
   /// Builds the final [QuizResult] upon completion.
   QuizResult toResult({
     bool isStreakAchievedToday = true,
+    int? currentStreak,
     RewardSummary? rewardSummary,
     bool isEvaluation = false,
   }) {
@@ -117,6 +118,7 @@ class QuizSession {
       totalQuestions: totalQuestions,
       accuracy: scorePercentage,
       isStreakAchievedToday: isStreakAchievedToday,
+      currentStreak: currentStreak ?? 1,
       questions: questions,
       moduleTitle: moduleTitle,
       rewardSummary: rewardSummary,

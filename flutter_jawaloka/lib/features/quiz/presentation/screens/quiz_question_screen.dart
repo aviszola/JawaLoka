@@ -277,6 +277,7 @@ class _QuizQuestionScreenState extends State<QuizQuestionScreen>
     final result = _session.toResult(
       rewardSummary: summary,
       isEvaluation: widget.isEvaluation,
+      currentStreak: profile?.streakDays ?? 1,
     );
     if (!mounted) return;
     Navigator.of(

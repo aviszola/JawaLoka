@@ -1217,19 +1217,19 @@ abstract class AppLocalizations {
   /// Status kelulusan quest tercapai
   ///
   /// In id, this message translates to:
-  /// **'Status: Lulus'**
+  /// **'Hore, Kamu Berhasil!'**
   String get dailyResultStatusPassed;
 
   /// Status kelulusan quest belum tercapai
   ///
   /// In id, this message translates to:
-  /// **'Status: Belum Lulus'**
+  /// **'Sedikit Lagi! Ayo Coba Lagi'**
   String get dailyResultStatusFailed;
 
   /// Keterangan skor kemiripan dan ambang kelulusan
   ///
   /// In id, this message translates to:
-  /// **'Kemiripan {percent}% (Syarat lulus: ≥ {threshold}%)'**
+  /// **'Nilai tulisanmu: {percent}% (Target nilai: {threshold}%)'**
   String dailyResultRequirement(int percent, int threshold);
 
   /// Tombol lanjut belajar dari hasil quest

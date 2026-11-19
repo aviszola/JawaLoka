@@ -625,14 +625,14 @@ class AppLocalizationsId extends AppLocalizations {
   String get dailyResultTargetScript => 'Aksara Target';
 
   @override
-  String get dailyResultStatusPassed => 'Status: Lulus';
+  String get dailyResultStatusPassed => 'Hore, Kamu Berhasil!';
 
   @override
-  String get dailyResultStatusFailed => 'Status: Belum Lulus';
+  String get dailyResultStatusFailed => 'Sedikit Lagi! Ayo Coba Lagi';
 
   @override
   String dailyResultRequirement(int percent, int threshold) {
-    return 'Kemiripan $percent% (Syarat lulus: ≥ $threshold%)';
+    return 'Nilai tulisanmu: $percent% (Target nilai: $threshold%)';
   }
 
   @override

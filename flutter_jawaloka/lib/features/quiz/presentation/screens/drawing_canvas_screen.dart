@@ -24,22 +24,22 @@ extension _StrokeSizeExt on _StrokeSize {
   double get width {
     switch (this) {
       case _StrokeSize.thin:
-        return 2.5;
+        return 5.0;
       case _StrokeSize.medium:
-        return 4.5;
+        return 8.5;
       case _StrokeSize.thick:
-        return 7.0;
+        return 13.0;
     }
   }
 
   double get indicatorSize {
     switch (this) {
       case _StrokeSize.thin:
-        return 6;
+        return 8;
       case _StrokeSize.medium:
-        return 10;
+        return 13;
       case _StrokeSize.thick:
-        return 15;
+        return 18;
     }
   }
 }
@@ -94,8 +94,16 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
   }
 
   void _onPanUpdate(DragUpdateDetails details) {
+    final pos = details.localPosition;
+    if (_currentStroke.isNotEmpty) {
+      final last = _currentStroke.last;
+      final dx = pos.dx - last.dx;
+      final dy = pos.dy - last.dy;
+      // Filter out redundant sub-pixel duplicate events to keep rendering silky smooth
+      if (dx * dx + dy * dy < 0.25) return;
+    }
     setState(() {
-      _currentStroke = [..._currentStroke, details.localPosition];
+      _currentStroke.add(pos);
     });
   }
 
@@ -671,6 +679,7 @@ class _DrawingCanvasScreenState extends State<DrawingCanvasScreen> {
       final similarity = await StrokeSimilarityEvaluator.evaluateWithFontMask(
         strokes: _strokes,
         targetAksara: _activeTarget.aksaraChar,
+        strokeWidth: _selectedSize.width,
       );
 
       RewardSummary? summary;

@@ -154,93 +154,43 @@ class DrawingCanvasPainter extends CustomPainter {
     if (points.isEmpty) return;
 
     if (points.length == 1) {
-      // Tap dot with organic ink droplet shape
-      canvas.drawCircle(points.first, baseWidth * 0.8, Paint()..color = color);
+      // Tap dot with solid round ink droplet shape
+      canvas.drawCircle(
+        points.first,
+        baseWidth / 2,
+        Paint()
+          ..color = color
+          ..style = PaintingStyle.fill,
+      );
       return;
     }
 
-    final inkPaint = Paint()
+    final strokePaint = Paint()
       ..color = color
-      ..style = PaintingStyle.fill;
+      ..strokeWidth = baseWidth
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..isAntiAlias = true;
 
-    // Build calligraphic ribbon polygon using 45-degree chisel nib offset
-    final angle = math.pi / 4; // 45 degrees
-    final nibDx = math.cos(angle);
-    final nibDy = math.sin(angle);
-
-    final List<Offset> leftEdge = [];
-    final List<Offset> rightEdge = [];
-
-    for (int i = 0; i < points.length; i++) {
-      final curr = points[i];
-
-      // Calculate direction vector
-      double dirX = 0;
-      double dirY = 0;
-      if (i < points.length - 1) {
-        dirX += points[i + 1].dx - curr.dx;
-        dirY += points[i + 1].dy - curr.dy;
-      }
-      if (i > 0) {
-        dirX += curr.dx - points[i - 1].dx;
-        dirY += curr.dy - points[i - 1].dy;
-      }
-
-      final dirLen = math.sqrt(dirX * dirX + dirY * dirY);
-      double widthFactor = 1.0;
-
-      if (dirLen > 0.001) {
-        final normDirX = dirX / dirLen;
-        final normDirY = dirY / dirLen;
-
-        // Dot product with nib normal: perpendicular to nib angle gives maximum thickness
-        final dot = (normDirX * -nibDy + normDirY * nibDx).abs();
-        widthFactor =
-            0.45 +
-            (dot * 0.75); // Range from 0.45x (thin hair) to 1.2x (broad stroke)
-      }
-
-      // Taper at start and end
-      if (i < 3) {
-        widthFactor *= (i + 1) / 3.0;
-      } else if (i > points.length - 4) {
-        widthFactor *= (points.length - i) / 3.0;
-      }
-
-      final halfW = (baseWidth * widthFactor).clamp(1.5, baseWidth * 1.5) / 2;
-      final offX = -nibDy * halfW;
-      final offY = nibDx * halfW;
-
-      leftEdge.add(Offset(curr.dx + offX, curr.dy + offY));
-      rightEdge.add(Offset(curr.dx - offX, curr.dy - offY));
+    if (points.length == 2) {
+      canvas.drawLine(points.first, points.last, strokePaint);
+      return;
     }
 
-    // Assemble smooth closed polygon path
-    final ribbonPath = Path()..moveTo(leftEdge.first.dx, leftEdge.first.dy);
+    // Build smooth path using midpoint quadratic Bezier curves.
+    // Eliminates any kinking, pinching, or broken/interrupted stroke artifacts.
+    final path = Path()..moveTo(points.first.dx, points.first.dy);
 
-    for (int i = 0; i < leftEdge.length - 1; i++) {
-      final p0 = leftEdge[i];
-      final p1 = leftEdge[i + 1];
+    for (int i = 0; i < points.length - 1; i++) {
+      final p0 = points[i];
+      final p1 = points[i + 1];
       final mid = Offset((p0.dx + p1.dx) / 2, (p0.dy + p1.dy) / 2);
-      ribbonPath.quadraticBezierTo(p0.dx, p0.dy, mid.dx, mid.dy);
+      path.quadraticBezierTo(p0.dx, p0.dy, mid.dx, mid.dy);
     }
-    ribbonPath.lineTo(leftEdge.last.dx, leftEdge.last.dy);
+    path.lineTo(points.last.dx, points.last.dy);
 
-    // Connect to right edge in reverse
-    ribbonPath.lineTo(rightEdge.last.dx, rightEdge.last.dy);
-    for (int i = rightEdge.length - 1; i > 0; i--) {
-      final p0 = rightEdge[i];
-      final p1 = rightEdge[i - 1];
-      final mid = Offset((p0.dx + p1.dx) / 2, (p0.dy + p1.dy) / 2);
-      ribbonPath.quadraticBezierTo(p0.dx, p0.dy, mid.dx, mid.dy);
-    }
-    ribbonPath.close();
-
-    canvas.drawPath(ribbonPath, inkPaint);
-
-    // Rounded start and end terminals
-    canvas.drawCircle(points.first, baseWidth * 0.35, inkPaint);
-    canvas.drawCircle(points.last, baseWidth * 0.35, inkPaint);
+    canvas.drawPath(path, strokePaint);
   }
 
   @override
