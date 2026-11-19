@@ -858,15 +858,15 @@
   "@dailyResultTargetScript": {
     "description": "Label panel aksara target acuan"
   },
-  "dailyResultStatusPassed": "Status: Lulus",
+  "dailyResultStatusPassed": "Hore, Kamu Berhasil!",
   "@dailyResultStatusPassed": {
     "description": "Status kelulusan quest tercapai"
   },
-  "dailyResultStatusFailed": "Status: Belum Lulus",
+  "dailyResultStatusFailed": "Sedikit Lagi! Ayo Coba Lagi",
   "@dailyResultStatusFailed": {
     "description": "Status kelulusan quest belum tercapai"
   },
-  "dailyResultRequirement": "Kemiripan {percent}% (Syarat lulus: ≥ {threshold}%)",
+  "dailyResultRequirement": "Nilai tulisanmu: {percent}% (Target nilai: {threshold}%)",
   "@dailyResultRequirement": {
     "description": "Keterangan skor kemiripan dan ambang kelulusan",
     "placeholders": {

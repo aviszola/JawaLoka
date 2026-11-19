@@ -19,10 +19,10 @@ class PixelMaskEvaluatorConfig {
   static const int alphaThreshold = 25;
 
   /// Ketebalan pena normalisasi untuk merasterisasi goresan pengguna ke kanvas topeng.
-  static const double userStrokeMaskWidth = 3.5;
+  static const double userStrokeMaskWidth = 4.5;
 
   /// Toleransi jarak (piksel dalam ruang [maskSize]) agar piksel huruf & goresan dianggap dekat.
-  static const double distanceTolerancePx = 2.5;
+  static const double distanceTolerancePx = 2.6;
 
   /// Ambang minimal rasio cakupan piksel huruf oleh goresan (coverage >= 0.75).
   static const double minCoverageThreshold = 0.75;
@@ -147,6 +147,7 @@ class StrokeSimilarityEvaluator {
   static Future<double> evaluateWithFontMask({
     required List<List<Offset>> strokes,
     required String targetAksara,
+    double? strokeWidth,
   }) async {
     if (Validators.validateQuestStrokes(strokes).isInvalid) return 0.0;
 
@@ -172,7 +173,10 @@ class StrokeSimilarityEvaluator {
     // Rasterisasi goresan pengguna langsung di Dart ke kanvas topeng virtual
     final userGrid = Uint8List(maskSize * maskSize);
     final userPoints = <Offset>[];
-    final radius = PixelMaskEvaluatorConfig.userStrokeMaskWidth / 2.0;
+    final effectiveMaskWidth = strokeWidth != null
+        ? (strokeWidth * scale * 1.05).clamp(3.8, 5.8)
+        : PixelMaskEvaluatorConfig.userStrokeMaskWidth;
+    final radius = effectiveMaskWidth / 2.0;
     final radiusSq = radius * radius;
 
     for (final stroke in strokes) {

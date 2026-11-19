@@ -463,6 +463,199 @@ class OfflineDictionaryService implements TranslationService {
       TranslationVariant.jvNgoko: 'saben',
       TranslationVariant.jvKrama: 'saben',
     },
+    // ─── Entri Gramatikal Fungsional Bahasa Inggris ─────────────────────────
+    'and': {
+      TranslationVariant.id: 'dan',
+      TranslationVariant.en: 'and',
+      TranslationVariant.jvNgoko: 'lan',
+      TranslationVariant.jvKrama: 'kaliyan',
+    },
+    'or': {
+      TranslationVariant.id: 'atau',
+      TranslationVariant.en: 'or',
+      TranslationVariant.jvNgoko: 'utawa',
+      TranslationVariant.jvKrama: 'utawi',
+    },
+    'but': {
+      TranslationVariant.id: 'tetapi',
+      TranslationVariant.en: 'but',
+      TranslationVariant.jvNgoko: 'nanging',
+      TranslationVariant.jvKrama: 'ananging',
+    },
+    'because': {
+      TranslationVariant.id: 'karena',
+      TranslationVariant.en: 'because',
+      TranslationVariant.jvNgoko: 'amarga',
+      TranslationVariant.jvKrama: 'amargi',
+    },
+    'in': {
+      TranslationVariant.id: 'di',
+      TranslationVariant.en: 'in',
+      TranslationVariant.jvNgoko: 'neng',
+      TranslationVariant.jvKrama: 'wonten',
+    },
+    'at': {
+      TranslationVariant.id: 'di',
+      TranslationVariant.en: 'at',
+      TranslationVariant.jvNgoko: 'neng',
+      TranslationVariant.jvKrama: 'wonten',
+    },
+    'on': {
+      TranslationVariant.id: 'di',
+      TranslationVariant.en: 'on',
+      TranslationVariant.jvNgoko: 'neng',
+      TranslationVariant.jvKrama: 'wonten',
+    },
+    'to': {
+      TranslationVariant.id: 'ke',
+      TranslationVariant.en: 'to',
+      TranslationVariant.jvNgoko: 'menyang',
+      TranslationVariant.jvKrama: 'dhateng',
+    },
+    'from': {
+      TranslationVariant.id: 'dari',
+      TranslationVariant.en: 'from',
+      TranslationVariant.jvNgoko: 'saka',
+      TranslationVariant.jvKrama: 'saking',
+    },
+    'with': {
+      TranslationVariant.id: 'dengan',
+      TranslationVariant.en: 'with',
+      TranslationVariant.jvNgoko: 'karo',
+      TranslationVariant.jvKrama: 'kaliyan',
+    },
+    'and also': {
+      TranslationVariant.id: 'dan juga',
+      TranslationVariant.en: 'and also',
+      TranslationVariant.jvNgoko: 'lan uga',
+      TranslationVariant.jvKrama: 'kaliyan ugi',
+    },
+    'also': {
+      TranslationVariant.id: 'juga',
+      TranslationVariant.en: 'also',
+      TranslationVariant.jvNgoko: 'uga',
+      TranslationVariant.jvKrama: 'ugi',
+    },
+    'do not': {
+      TranslationVariant.id: 'jangan',
+      TranslationVariant.en: 'do not',
+      TranslationVariant.jvNgoko: 'aja',
+      TranslationVariant.jvKrama: 'sampun',
+    },
+    'dont': {
+      TranslationVariant.id: 'jangan',
+      TranslationVariant.en: 'do not',
+      TranslationVariant.jvNgoko: 'aja',
+      TranslationVariant.jvKrama: 'sampun',
+    },
+    "don't": {
+      TranslationVariant.id: 'jangan',
+      TranslationVariant.en: 'do not',
+      TranslationVariant.jvNgoko: 'aja',
+      TranslationVariant.jvKrama: 'sampun',
+    },
+    'not': {
+      TranslationVariant.id: 'tidak',
+      TranslationVariant.en: 'not',
+      TranslationVariant.jvNgoko: 'ora',
+      TranslationVariant.jvKrama: 'mboten',
+    },
+    'have to': {
+      TranslationVariant.id: 'harus',
+      TranslationVariant.en: 'have to',
+      TranslationVariant.jvNgoko: 'kudu',
+      TranslationVariant.jvKrama: 'kedah',
+    },
+    'where to': {
+      TranslationVariant.id: 'ke mana',
+      TranslationVariant.en: 'where to',
+      TranslationVariant.jvNgoko: 'menyang ngendi',
+      TranslationVariant.jvKrama: 'dhateng pundi',
+    },
+    'where from': {
+      TranslationVariant.id: 'dari mana',
+      TranslationVariant.en: 'where from',
+      TranslationVariant.jvNgoko: 'saka ngendi',
+      TranslationVariant.jvKrama: 'saking pundi',
+    },
+    'even though': {
+      TranslationVariant.id: 'meskipun',
+      TranslationVariant.en: 'even though',
+      TranslationVariant.jvNgoko: 'sanajan',
+      TranslationVariant.jvKrama: 'sanadyan',
+    },
+    'in order to': {
+      TranslationVariant.id: 'agar',
+      TranslationVariant.en: 'in order to',
+      TranslationVariant.jvNgoko: 'supaya',
+      TranslationVariant.jvKrama: 'supados',
+    },
+    'while': {
+      TranslationVariant.id: 'sambil',
+      TranslationVariant.en: 'while',
+      TranslationVariant.jvNgoko: 'karo',
+      TranslationVariant.jvKrama: 'sinambi',
+    },
+    'let us': {
+      TranslationVariant.id: 'mari',
+      TranslationVariant.en: 'let us',
+      TranslationVariant.jvNgoko: 'ayo',
+      TranslationVariant.jvKrama: 'mangga',
+    },
+    "let's": {
+      TranslationVariant.id: 'mari',
+      TranslationVariant.en: "let's",
+      TranslationVariant.jvNgoko: 'ayo',
+      TranslationVariant.jvKrama: 'mangga',
+    },
+    'every': {
+      TranslationVariant.id: 'setiap',
+      TranslationVariant.en: 'every',
+      TranslationVariant.jvNgoko: 'saben',
+      TranslationVariant.jvKrama: 'saben',
+    },
+    'very much': {
+      TranslationVariant.id: 'sangat',
+      TranslationVariant.en: 'very much',
+      TranslationVariant.jvNgoko: 'banget',
+      TranslationVariant.jvKrama: 'sanget',
+    },
+    'want to': {
+      TranslationVariant.id: 'mau',
+      TranslationVariant.en: 'want to',
+      TranslationVariant.jvNgoko: 'gelem',
+      TranslationVariant.jvKrama: 'purun',
+    },
+    'what is your name': {
+      TranslationVariant.id: 'siapa namamu',
+      TranslationVariant.en: 'what is your name',
+      TranslationVariant.jvNgoko: 'sapa jenengmu',
+      TranslationVariant.jvKrama: 'sinten asmanipun',
+    },
+    'terima kasih banyak': {
+      TranslationVariant.id: 'terima kasih banyak',
+      TranslationVariant.en: 'thank you very much',
+      TranslationVariant.jvNgoko: 'matur nuwun sanget',
+      TranslationVariant.jvKrama: 'matur nuwun sanget',
+    },
+    'matur nuwun sanget': {
+      TranslationVariant.id: 'terima kasih banyak',
+      TranslationVariant.en: 'thank you very much',
+      TranslationVariant.jvNgoko: 'matur nuwun sanget',
+      TranslationVariant.jvKrama: 'matur nuwun sanget',
+    },
+    'matur nuwun banget': {
+      TranslationVariant.id: 'terima kasih banyak',
+      TranslationVariant.en: 'thank you very much',
+      TranslationVariant.jvNgoko: 'matur nuwun banget',
+      TranslationVariant.jvKrama: 'matur nuwun sanget',
+    },
+    'thank you very much': {
+      TranslationVariant.id: 'terima kasih banyak',
+      TranslationVariant.en: 'thank you very much',
+      TranslationVariant.jvNgoko: 'matur nuwun sanget',
+      TranslationVariant.jvKrama: 'matur nuwun sanget',
+    },
   };
 
   // ─── Lookup & Entry Index Cache ───────────────────────────────────────────
@@ -554,6 +747,84 @@ class OfflineDictionaryService implements TranslationService {
           'kados pundi kabaripun': 'pripun kabaripun',
           'sampeyan': 'panjenengan',
         },
+        TranslationVariant.en: {
+          // Kata ganti & rujukan
+          'he': 'he or she',
+          'she': 'he or she',
+          'him': 'he or she',
+          'her': 'he or she',
+          'his': 'he or she',
+          'me': 'i',
+          'my': 'i',
+          'your': 'you',
+          'yours': 'you',
+          'our': 'we',
+          'us': 'we',
+          'their': 'they',
+          'them': 'they',
+
+          // Keluarga & sapaan
+          'dad': 'father',
+          'daddy': 'father',
+          'mom': 'mother',
+          'mommy': 'mother',
+          'grandpa': 'grandfather',
+          'grandma': 'grandmother',
+          'kid': 'child',
+          'kids': 'child',
+          'children': 'child',
+
+          // Lokasi & tempat
+          'home': 'house',
+          'there': 'over there',
+
+          // Bentuk leksikal tunggal ke multi-kata kamus
+          'take': 'take away',
+          'heart': 'inner heart',
+          'dance': 'perform dance',
+          'wear': 'put on',
+          'cancel': 'call off',
+          'ask': 'ask for',
+          'know': 'find out',
+          'lose': 'be defeated',
+          'play': 'hang out',
+          'wake': 'wake up',
+          'leave': 'go away',
+          'return': 'return home',
+          'go home': 'return home',
+          'plow': 'plow field',
+          'careful': 'be careful',
+          'how many': 'how much',
+          'dish': 'side dish',
+
+          // Frasa modal & verba umum
+          'like to': 'like',
+          'need to': 'must',
+
+          // Verba bentuk lampau tak beraturan (irregular past tense)
+          'went': 'go',
+          'ate': 'eat',
+          'drank': 'drink',
+          'slept': 'sleep',
+          'saw': 'see',
+          'took': 'take away',
+          'bought': 'buy',
+          'spoke': 'speak',
+          'came': 'come',
+          'felt': 'feel',
+          'gave': 'give',
+          'knew': 'know',
+          'wrote': 'write',
+          'ran': 'run',
+          'sat': 'sit',
+          'stood': 'stand',
+          'read': 'read',
+          'made': 'make',
+          'did': 'do',
+          'said': 'say',
+          'heard': 'listen',
+          'found': 'find out',
+        },
       };
 
   /// Mencari satu frasa [phrase] di index untuk arah [from]→[to].
@@ -612,6 +883,10 @@ class OfflineDictionaryService implements TranslationService {
     'kami',
     'kita',
     'kula',
+    'i',
+    'we',
+    'me',
+    'us',
   };
 
   static const Set<String> _kHonoredSubjects = {
@@ -632,10 +907,29 @@ class OfflineDictionaryService implements TranslationService {
     'budhe',
     'paman',
     'bibi',
+    'father',
+    'mother',
+    'teacher',
+    'grandfather',
+    'grandmother',
+    'grandpa',
+    'grandma',
+    'dad',
+    'mom',
+    'uncle',
+    'aunt',
+    'you',
   };
 
   /// Subjek orang ketiga yang status kehormatannya tidak eksplisit (fallback aman ke Krama Lugu).
-  static const Set<String> _kAmbiguousThirdSubjects = {'dia', 'ia', 'mereka'};
+  static const Set<String> _kAmbiguousThirdSubjects = {
+    'dia',
+    'ia',
+    'mereka',
+    'he',
+    'she',
+    'they',
+  };
 
   /// Kata kerja relasional yang memiliki bentuk Krama Andhap saat diri sendiri
   /// bertindak terhadap orang yang dihormati (mis. memberi->nyaosi, bertanya->nyuwun pirsa).
@@ -652,6 +946,11 @@ class OfflineDictionaryService implements TranslationService {
     'undang',
     'meminjam',
     'pinjam',
+    'give',
+    'ask',
+    'invite',
+    'borrow',
+    'speak',
   };
 
   static const Set<String> _kRecipientPrepositions = {
@@ -664,6 +963,9 @@ class OfflineDictionaryService implements TranslationService {
     'kangge',
     'kaliyan',
     'karo',
+    'to',
+    'for',
+    'with',
   };
 
   static const Set<String> _kClauseBoundaries = {
@@ -697,6 +999,15 @@ class OfflineDictionaryService implements TranslationService {
     'sanadyan',
     'supados',
     'sinambi',
+    'and',
+    'but',
+    'because',
+    'or',
+    'while',
+    'when',
+    'if',
+    'although',
+    'so',
   };
 
   static const Set<String> _kPossessableHonorificNouns = {
@@ -1585,12 +1896,13 @@ class OfflineDictionaryService implements TranslationService {
   // ─── Penanganan Morfologi & Imbuhan Terkendali ─────────────────────────────
 
   /// Mencoba menerjemahkan kata berimbuhan [token] berdasarkan aturan morfologi
-  /// Jawa dan Indonesia yang valid dan terverifikasi leksikonnya.
+  /// Jawa, Indonesia, dan Inggris yang valid dan terverifikasi leksikonnya.
   String? _tryMorphology(
     String token,
     TranslationVariant from,
-    TranslationVariant to,
-  ) {
+    TranslationVariant to, {
+    SpeechRegister? register,
+  }) {
     if (token.length <= 3) return null;
 
     // A. Klitika posesif bahasa Jawa:
@@ -1601,7 +1913,7 @@ class OfflineDictionaryService implements TranslationService {
       // 1. -ku
       if (token.endsWith('ku') && token.length > 4) {
         final base = token.substring(0, token.length - 2);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) return '$baseTrans-ku';
           if (to == TranslationVariant.en) return 'my $baseTrans';
@@ -1612,7 +1924,7 @@ class OfflineDictionaryService implements TranslationService {
       // 2. -mu
       if (token.endsWith('mu') && token.length > 4) {
         final base = token.substring(0, token.length - 2);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) return '$baseTrans-mu';
           if (to == TranslationVariant.en) return 'your $baseTrans';
@@ -1623,7 +1935,7 @@ class OfflineDictionaryService implements TranslationService {
       // 3a. -nipun (Krama pasca-vokal: griyanipun, toyanipun)
       if (token.endsWith('nipun') && token.length > 7) {
         final base = token.substring(0, token.length - 5);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) return '$baseTrans-nya';
           if (to == TranslationVariant.en) return 'the $baseTrans';
@@ -1634,7 +1946,7 @@ class OfflineDictionaryService implements TranslationService {
       // 3b. -ipun (Krama pasca-konsonan: kabaripun, griyaipun)
       if (token.endsWith('ipun') && token.length > 6) {
         final base = token.substring(0, token.length - 4);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) return '$baseTrans-nya';
           if (to == TranslationVariant.en) return 'the $baseTrans';
@@ -1645,7 +1957,7 @@ class OfflineDictionaryService implements TranslationService {
       // 4a. -ne (Ngoko pasca-vokal: bukune, segane, kancane)
       if (token.endsWith('ne') && token.length > 4) {
         final base = token.substring(0, token.length - 2);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) return '$baseTrans-nya';
           if (to == TranslationVariant.en) return 'the $baseTrans';
@@ -1656,7 +1968,7 @@ class OfflineDictionaryService implements TranslationService {
       // 4b. -e (Ngoko pasca-konsonan: omahe, awake)
       if (token.endsWith('e') && token.length > 3) {
         final base = token.substring(0, token.length - 1);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) return '$baseTrans-nya';
           if (to == TranslationVariant.en) return 'the $baseTrans';
@@ -1667,7 +1979,7 @@ class OfflineDictionaryService implements TranslationService {
       // 5a. Awalan pasif Krama: dipun- (dipuntumbas, dipunwaos)
       if (token.startsWith('dipun') && token.length > 7) {
         final base = token.substring(5);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) {
             return _toIndonesianPassive(baseTrans);
@@ -1680,7 +1992,7 @@ class OfflineDictionaryService implements TranslationService {
       // 5b. Awalan pasif Jawa: di- (dituku, diserat)
       if (token.startsWith('di') && token.length > 4) {
         final base = token.substring(2);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) {
             return _toIndonesianPassive(baseTrans);
@@ -1694,7 +2006,7 @@ class OfflineDictionaryService implements TranslationService {
       if ((token.startsWith('tak') || token.startsWith('dak')) &&
           token.length > 5) {
         final base = token.substring(3);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) {
             return 'ku${_stripIndoActivePrefix(baseTrans)}';
@@ -1705,7 +2017,7 @@ class OfflineDictionaryService implements TranslationService {
       }
       if (token.startsWith('kok') && token.length > 5) {
         final base = token.substring(3);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.id) {
             return 'kau${_stripIndoActivePrefix(baseTrans)}';
@@ -1722,7 +2034,7 @@ class OfflineDictionaryService implements TranslationService {
       // 1. -ku
       if (token.endsWith('ku') && token.length > 4) {
         final base = token.substring(0, token.length - 2);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.jvNgoko) return '$baseTrans-ku';
           if (to == TranslationVariant.jvKrama) return '$baseTrans kula';
@@ -1732,7 +2044,7 @@ class OfflineDictionaryService implements TranslationService {
       // 2. -mu
       if (token.endsWith('mu') && token.length > 4) {
         final base = token.substring(0, token.length - 2);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.jvNgoko) return '$baseTrans-mu';
           if (to == TranslationVariant.jvKrama) return '$baseTrans panjenengan';
@@ -1742,7 +2054,7 @@ class OfflineDictionaryService implements TranslationService {
       // 3. -nya
       if (token.endsWith('nya') && token.length > 5) {
         final base = token.substring(0, token.length - 3);
-        final baseTrans = _lookup(base, from, to);
+        final baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans != null) {
           if (to == TranslationVariant.jvNgoko) return '$baseTrans-e';
           if (to == TranslationVariant.jvKrama) return '$baseTrans-ipun';
@@ -1753,7 +2065,7 @@ class OfflineDictionaryService implements TranslationService {
       if (token.startsWith('di') && token.length > 4) {
         final base = token.substring(2);
         // Coba cari dasar langsung (misal: 'makan') atau bentuk me- (misal: 'beli' -> 'membeli')
-        String? baseTrans = _lookup(base, from, to);
+        String? baseTrans = _lookup(base, from, to, register: register);
         if (baseTrans == null) {
           final activeCandidate = switch (base[0]) {
             'b' || 'p' => 'mem$base',
@@ -1761,13 +2073,79 @@ class OfflineDictionaryService implements TranslationService {
             's' => 'meny${base.substring(1)}',
             _ => 'meng$base',
           };
-          baseTrans = _lookup(activeCandidate, from, to);
+          baseTrans = _lookup(activeCandidate, from, to, register: register);
         }
         if (baseTrans != null) {
           if (to == TranslationVariant.jvNgoko) return 'di$baseTrans';
           if (to == TranslationVariant.jvKrama) return 'dipun$baseTrans';
           if (to == TranslationVariant.en) return 'be $baseTrans';
         }
+      }
+    }
+
+    // C. Morfologi Bahasa Inggris:
+    //    1. Suffix -ing (present participle / progresif)
+    //    2. Suffix -es (verba orang ketiga / plural nomina)
+    //    3. Suffix -s (verba orang ketiga / plural nomina)
+    //    4. Suffix -ed (lampau / partisipel)
+    if (from == TranslationVariant.en) {
+      // 1. Suffix -ing (reading, eating, going, walking, coming, writing)
+      if (token.endsWith('ing') && token.length >= 5) {
+        // a. Pangkas langsung 'ing'
+        final base1 = token.substring(0, token.length - 3);
+        String? baseTrans = _lookup(base1, from, to, register: register);
+        // b. Tambahkan silent 'e' (writing -> write, coming -> come)
+        if (baseTrans == null && base1.length >= 2) {
+          baseTrans = _lookup('${base1}e', from, to, register: register);
+        }
+        // c. Konsonan ganda (running -> run, sitting -> sit)
+        if (baseTrans == null &&
+            base1.length >= 3 &&
+            base1[base1.length - 1] == base1[base1.length - 2]) {
+          baseTrans = _lookup(
+            base1.substring(0, base1.length - 1),
+            from,
+            to,
+            register: register,
+          );
+        }
+        if (baseTrans != null) return baseTrans;
+      }
+
+      // 2. Suffix -es (goes, watches, boxes, houses)
+      if (token.endsWith('es') && token.length >= 4) {
+        final base1 = token.substring(0, token.length - 2);
+        String? baseTrans = _lookup(base1, from, to, register: register);
+        if (baseTrans == null) {
+          final base2 = token.substring(0, token.length - 1);
+          baseTrans = _lookup(base2, from, to, register: register);
+        }
+        if (baseTrans != null) return baseTrans;
+      }
+
+      // 3. Suffix -s (sleeps, eats, drinks, books, friends, clothes)
+      if (token.endsWith('s') && token.length > 3 && !token.endsWith('ss')) {
+        final base = token.substring(0, token.length - 1);
+        final baseTrans = _lookup(base, from, to, register: register);
+        if (baseTrans != null) return baseTrans;
+      }
+
+      // 4. Suffix -ed (walked, asked, helped, lived)
+      if (token.endsWith('ed') && token.length > 4) {
+        final base1 = token.substring(0, token.length - 2);
+        String? baseTrans = _lookup(base1, from, to, register: register);
+        baseTrans ??= _lookup('${base1}e', from, to, register: register);
+        if (baseTrans == null &&
+            base1.length >= 3 &&
+            base1[base1.length - 1] == base1[base1.length - 2]) {
+          baseTrans = _lookup(
+            base1.substring(0, base1.length - 1),
+            from,
+            to,
+            register: register,
+          );
+        }
+        if (baseTrans != null) return baseTrans;
       }
     }
 
@@ -2009,10 +2387,91 @@ class OfflineDictionaryService implements TranslationService {
         }
       }
 
+      // 0c. Penanganan artikel & kopula bahasa Inggris
+      if (!matched && from == TranslationVariant.en) {
+        // Artikel bahasa Inggris ('the', 'a', 'an') dilewati dalam kalimat multi-kata
+        if (tokens.length > 1 &&
+            (currentToken == 'the' || currentToken == 'a' || currentToken == 'an')) {
+          i++;
+          continue;
+        }
+
+        // Kopula predikatif & aspek bahasa Inggris ('is', 'am', 'are', 'was', 'were')
+        if (tokens.length > 1 &&
+            const {'is', 'am', 'are', 'was', 'were'}.contains(currentToken)) {
+          final nextTok = i + 1 < tokens.length ? tokens[i + 1] : null;
+          // Aspek progresif: 'is reading', 'are eating'
+          if (nextTok != null && nextTok.endsWith('ing')) {
+            if (buffer.isNotEmpty) buffer.write(' ');
+            if (to == TranslationVariant.id) {
+              buffer.write('sedang');
+            } else if (to == TranslationVariant.jvNgoko) {
+              buffer.write('lagi');
+            } else if (to == TranslationVariant.jvKrama) {
+              buffer.write('nembe');
+            }
+            anyFound = true;
+          }
+          // Zero-copula dalam bahasa Indonesia & Jawa untuk posisi predikatif/inversi
+          i++;
+          continue;
+        }
+      }
+
+      // 0d. Penanganan frasa posesif bahasa Inggris (mis. 'my book' -> 'bukuku', 'your name' -> 'jenengmu')
+      if (!matched &&
+          from == TranslationVariant.en &&
+          (currentToken == 'my' || currentToken == 'your') &&
+          i + 1 < tokens.length) {
+        final nextTok = tokens[i + 1];
+        if (!_kFunctionalGrammar.containsKey(nextTok) &&
+            !_kClauseBoundaries.contains(nextTok)) {
+          var nounTrans = _lookup(nextTok, from, to, register: effectiveRegister);
+          nounTrans ??= _tryMorphology(nextTok, from, to, register: effectiveRegister);
+          if (nounTrans != null) {
+            if (buffer.isNotEmpty) buffer.write(' ');
+            if (currentToken == 'my') {
+              if (to == TranslationVariant.id) {
+                buffer.write('$nounTrans-ku');
+              } else if (to == TranslationVariant.jvNgoko) {
+                buffer.write('$nounTrans-ku');
+              } else if (to == TranslationVariant.jvKrama) {
+                buffer.write('$nounTrans kula');
+              } else {
+                buffer.write('my $nounTrans');
+              }
+            } else {
+              if (to == TranslationVariant.id) {
+                buffer.write('$nounTrans-mu');
+              } else if (to == TranslationVariant.jvNgoko) {
+                buffer.write('$nounTrans-mu');
+              } else if (to == TranslationVariant.jvKrama) {
+                buffer.write('$nounTrans panjenengan');
+              } else {
+                buffer.write('your $nounTrans');
+              }
+            }
+            anyFound = true;
+            i += 2;
+            matched = true;
+          }
+        }
+      }
+
+      // Khusus verba 'reading' setelah kopula progresif: gunakan verba 'read' (Maca/Maos), bukan nomina 'Wacan'
+      final effectiveSingleToken = (from == TranslationVariant.en &&
+              currentToken == 'reading' &&
+              prevTok != null &&
+              const {'is', 'am', 'are', 'was', 'were'}.contains(prevTok))
+          ? 'read'
+          : currentToken;
+
       // 1. Coba frasa dari panjang maksimum mundur ke satu token
       if (!matched) {
         for (int len = tokens.length - i; len >= 1; len--) {
-          final phrase = tokens.sublist(i, i + len).join(' ');
+          final phrase = len == 1
+              ? effectiveSingleToken
+              : tokens.sublist(i, i + len).join(' ');
           final target = _lookup(phrase, from, to, register: effectiveRegister);
           if (target != null) {
             if (buffer.isNotEmpty) buffer.write(' ');
@@ -2027,7 +2486,12 @@ class OfflineDictionaryService implements TranslationService {
 
       // 2. Jika token tunggal belum cocok leksikal, uji aturan morfologi
       if (!matched) {
-        final morphTarget = _tryMorphology(currentToken, from, to);
+        final morphTarget = _tryMorphology(
+          effectiveSingleToken,
+          from,
+          to,
+          register: effectiveRegister,
+        );
         if (morphTarget != null) {
           if (buffer.isNotEmpty) buffer.write(' ');
           buffer.write(morphTarget);

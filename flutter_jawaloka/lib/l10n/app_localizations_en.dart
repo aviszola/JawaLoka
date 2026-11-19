@@ -630,14 +630,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dailyResultTargetScript => 'Target Script';
 
   @override
-  String get dailyResultStatusPassed => 'Status: Passed';
+  String get dailyResultStatusPassed => 'Hooray, You Did It!';
 
   @override
-  String get dailyResultStatusFailed => 'Status: Not Passed';
+  String get dailyResultStatusFailed => 'Almost There! Try Again';
 
   @override
   String dailyResultRequirement(int percent, int threshold) {
-    return 'Accuracy $percent% (Passing requirement: ≥ $threshold%)';
+    return 'Your score: $percent% (Target score: $threshold%)';
   }
 
   @override

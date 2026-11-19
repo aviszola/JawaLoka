@@ -318,9 +318,9 @@ void main() {
         expect(thumbnailFinder, findsOneWidget);
 
         // Status is passed because similarity >= 0.70
-        expect(find.text('Status: Lulus'), findsOneWidget);
+        expect(find.text('Hore, Kamu Berhasil!'), findsOneWidget);
         expect(
-          find.text('Kemiripan 90% (Syarat lulus: ≥ 70%)'),
+          find.text('Nilai tulisanmu: 90% (Target nilai: 70%)'),
           findsOneWidget,
         );
       },
@@ -339,9 +339,9 @@ void main() {
         await tester.pump();
         await tester.pump(const Duration(milliseconds: 1500));
 
-        expect(find.text('Status: Belum Lulus'), findsOneWidget);
+        expect(find.text('Sedikit Lagi! Ayo Coba Lagi'), findsOneWidget);
         expect(
-          find.text('Kemiripan 45% (Syarat lulus: ≥ 70%)'),
+          find.text('Nilai tulisanmu: 45% (Target nilai: 70%)'),
           findsOneWidget,
         );
         expect(find.text('Coba Lagi'), findsOneWidget);

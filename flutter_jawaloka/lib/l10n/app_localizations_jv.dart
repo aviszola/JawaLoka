@@ -627,14 +627,14 @@ class AppLocalizationsJv extends AppLocalizations {
   String get dailyResultTargetScript => 'Aksara Ancas';
 
   @override
-  String get dailyResultStatusPassed => 'Kahanan: Lulus';
+  String get dailyResultStatusPassed => 'Hore, Kowe Kasil!';
 
   @override
-  String get dailyResultStatusFailed => 'Status: Dereng Lulus';
+  String get dailyResultStatusFailed => 'Kurang Sithik Maneh! Ayo Coba Maneh';
 
   @override
   String dailyResultRequirement(int percent, int threshold) {
-    return 'Kamiripan $percent% (Sarat lulus: ≥ $threshold%)';
+    return 'Biji tulisanmu: $percent% (Target biji: $threshold%)';
   }
 
   @override
